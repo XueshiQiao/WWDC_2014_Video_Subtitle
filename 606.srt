@@ -1,0 +1,5300 @@
+
+
+1
+00:00:11.076 --> 00:00:12.496 A:middle
+&gt;&gt; Hello. My name is Norman.
+
+2
+00:00:12.646 --> 00:00:16.586 A:middle
+I'd like to give you a quick
+tour and some of the details
+
+3
+00:00:16.586 --> 00:00:18.436 A:middle
+in what's new in SpriteKit.
+
+4
+00:00:19.316 --> 00:00:22.206 A:middle
+So last year we have announced
+SpriteKit at a conference,
+
+5
+00:00:22.506 --> 00:00:24.896 A:middle
+a high performance 2D
+game engine was built
+
+6
+00:00:24.896 --> 00:00:25.946 A:middle
+in physic support.
+
+7
+00:00:26.256 --> 00:00:29.316 A:middle
+We also built tools writing
+inside of Xcode to help develop
+
+8
+00:00:29.316 --> 00:00:31.626 A:middle
+or improve their game
+content iteration time
+
+9
+00:00:32.046 --> 00:00:35.906 A:middle
+like a particle editor and the
+automatic [inaudible] generator.
+
+10
+00:00:36.636 --> 00:00:38.856 A:middle
+And this year we made
+SpriteKit even better.
+
+11
+00:00:39.506 --> 00:00:42.846 A:middle
+We have awesome graphics
+technologies like shaders,
+
+12
+00:00:43.016 --> 00:00:45.606 A:middle
+lightings and shadows
+that help you really bring
+
+13
+00:00:45.606 --> 00:00:46.956 A:middle
+out the liveliness of your game.
+
+14
+00:00:47.746 --> 00:00:49.946 A:middle
+We also have good
+simulation technologies
+
+15
+00:00:49.946 --> 00:00:52.626 A:middle
+like per-pixel physics
+[inaudible], physics field,
+
+16
+00:00:53.076 --> 00:00:54.926 A:middle
+universe kinematics
+and constraints.
+
+17
+00:00:55.246 --> 00:00:57.746 A:middle
+They really allow you to
+build rich user interactions.
+
+18
+00:00:59.086 --> 00:00:59.836 A:middle
+So that's not all.
+
+19
+00:01:00.566 --> 00:01:03.956 A:middle
+In Xcode 6 release we now
+have a SpriteKit editor built
+
+20
+00:01:03.956 --> 00:01:07.366 A:middle
+into the IDE that allow
+you to create game scenes
+
+21
+00:01:07.366 --> 00:01:08.556 A:middle
+without writing any code.
+
+22
+00:01:08.686 --> 00:01:13.106 A:middle
+And you can use the very same
+editor to interact with any
+
+23
+00:01:13.106 --> 00:01:15.206 A:middle
+of the new and existing
+SpriteKit features.
+
+24
+00:01:15.576 --> 00:01:16.386 A:middle
+So how cool is that?
+
+25
+00:01:18.936 --> 00:01:21.056 A:middle
+So, for the agenda for
+this session we're going
+
+26
+00:01:21.056 --> 00:01:23.656 A:middle
+to start looking at how
+to use custom shaders
+
+27
+00:01:23.726 --> 00:01:26.146 A:middle
+to customize the drawing
+behaviors of your Sprite,
+
+28
+00:01:26.766 --> 00:01:29.546 A:middle
+how to add lightings and
+shadows to your scene
+
+29
+00:01:30.046 --> 00:01:32.296 A:middle
+and we really have a lot
+of New Physics update I'd
+
+30
+00:01:32.296 --> 00:01:33.696 A:middle
+like to give you an update on.
+
+31
+00:01:34.296 --> 00:01:35.136 A:middle
+And the integration
+
+32
+00:01:35.136 --> 00:01:37.456 A:middle
+with SceneKit really
+bring new possibility
+
+33
+00:01:37.456 --> 00:01:39.016 A:middle
+of writing to these games.
+
+34
+00:01:39.426 --> 00:01:42.826 A:middle
+It also blurs the lines
+between the actual 2D game
+
+35
+00:01:42.826 --> 00:01:44.186 A:middle
+and 3D game implementations.
+
+36
+00:01:45.196 --> 00:01:48.146 A:middle
+And lastly, I'm going to give
+you a quick tour and demo
+
+37
+00:01:48.146 --> 00:01:49.326 A:middle
+of the new SpriteKit editor
+
+38
+00:01:50.096 --> 00:01:53.056 A:middle
+and some other improvement
+already existing APIs.
+
+39
+00:01:53.056 --> 00:01:57.746 A:middle
+So the first thing I want
+to talk about is shaders.
+
+40
+00:01:59.076 --> 00:02:00.986 A:middle
+SpriteKit does a fantastic job
+
+41
+00:02:00.986 --> 00:02:05.156 A:middle
+of extracting the lower level
+platform dependent graphics APIs
+
+42
+00:02:05.156 --> 00:02:06.416 A:middle
+away from our users.
+
+43
+00:02:06.986 --> 00:02:11.096 A:middle
+But from time to time there's
+always a very special effect
+
+44
+00:02:11.096 --> 00:02:17.016 A:middle
+they want to achieve, say a
+custom blur or a heat signature
+
+45
+00:02:17.016 --> 00:02:20.426 A:middle
+when you turn on thermal
+vision, the positive facts,
+
+46
+00:02:20.596 --> 00:02:22.306 A:middle
+or when you build a space game
+
+47
+00:02:22.306 --> 00:02:24.666 A:middle
+where the spaceship hit
+taking damage you want
+
+48
+00:02:24.666 --> 00:02:27.026 A:middle
+to have a custom warping
+effect just on like Sprite.
+
+49
+00:02:27.786 --> 00:02:30.716 A:middle
+The shaders become a more
+relevant solution in this case
+
+50
+00:02:30.996 --> 00:02:33.406 A:middle
+and for this release we
+do give you the ability.
+
+51
+00:02:35.126 --> 00:02:36.916 A:middle
+So here we have a
+SpriteKit shader demo.
+
+52
+00:02:37.006 --> 00:02:39.746 A:middle
+We actually just
+rendering a single Sprite
+
+53
+00:02:39.746 --> 00:02:43.086 A:middle
+without any textures but
+the Sprite itself is running
+
+54
+00:02:43.086 --> 00:02:43.876 A:middle
+on custom shaders.
+
+55
+00:02:44.266 --> 00:02:45.716 A:middle
+Shader does a lot
+of things here.
+
+56
+00:02:46.196 --> 00:02:47.986 A:middle
+Its' rendering all the
+stars in the background.
+
+57
+00:02:47.986 --> 00:02:50.936 A:middle
+It's also drawing the grid,
+also provide the warping effect
+
+58
+00:02:50.936 --> 00:02:54.726 A:middle
+of the grid and also when the
+touch, the user touches any
+
+59
+00:02:54.726 --> 00:02:58.176 A:middle
+of the screen areas it's going
+to provide an energy effect.
+
+60
+00:02:58.686 --> 00:03:00.356 A:middle
+So all of this are
+done in shaders.
+
+61
+00:03:00.686 --> 00:03:05.326 A:middle
+So to do this we also passing
+the actual touch locations
+
+62
+00:03:05.326 --> 00:03:06.786 A:middle
+down to the shaders as uniform.
+
+63
+00:03:06.786 --> 00:03:10.566 A:middle
+So in a shader, shader knows
+okay user just touch this area.
+
+64
+00:03:10.566 --> 00:03:12.196 A:middle
+Now let's render
+the warping here
+
+65
+00:03:12.506 --> 00:03:15.176 A:middle
+and render the energy
+factor associated with it.
+
+66
+00:03:15.916 --> 00:03:18.786 A:middle
+So let's have a look at what the
+overview of a shader look like.
+
+67
+00:03:19.276 --> 00:03:22.726 A:middle
+So shader help you really
+customize the way the Sprites
+
+68
+00:03:22.726 --> 00:03:23.136 A:middle
+are drawn.
+
+69
+00:03:23.136 --> 00:03:25.176 A:middle
+You have 100 percent control
+
+70
+00:03:25.246 --> 00:03:28.086 A:middle
+of how every single pixels are
+going to be output on a screen.
+
+71
+00:03:29.236 --> 00:03:32.606 A:middle
+The shader syntax uses
+very C-like GLSL syntax,
+
+72
+00:03:32.916 --> 00:03:36.856 A:middle
+a very powerful tool to have
+any of the powerful effect
+
+73
+00:03:36.856 --> 00:03:38.996 A:middle
+like image processing or to,
+
+74
+00:03:38.996 --> 00:03:42.956 A:middle
+all the way to fast motion blurs
+that's being used in 3D games.
+
+75
+00:03:43.626 --> 00:03:45.726 A:middle
+And whether you are
+new to SpriteKit
+
+76
+00:03:45.726 --> 00:03:48.776 A:middle
+or existing SpriteKit users,
+you can drop this custom shader
+
+77
+00:03:48.776 --> 00:03:50.946 A:middle
+in with just a single
+line of code.
+
+78
+00:03:51.506 --> 00:03:55.756 A:middle
+So to use custom shaders we
+create a brand new object called
+
+79
+00:03:55.756 --> 00:03:56.656 A:middle
+SKShader object.
+
+80
+00:03:56.956 --> 00:04:00.406 A:middle
+It is essentially a
+container that holds the GLSL,
+
+81
+00:04:00.406 --> 00:04:01.866 A:middle
+the OpenGL ES fragment shader.
+
+82
+00:04:01.866 --> 00:04:05.666 A:middle
+So we're following the
+GLSL OpenGL ES 2.0 standard
+
+83
+00:04:06.556 --> 00:04:08.916 A:middle
+and once you write a
+shader it can be deployed
+
+84
+00:04:08.916 --> 00:04:10.666 A:middle
+to both OS X and iOS.
+
+85
+00:04:11.996 --> 00:04:14.726 A:middle
+So here is a list of the
+node that's being supported
+
+86
+00:04:14.726 --> 00:04:15.366 A:middle
+in SpriteKit.
+
+87
+00:04:15.366 --> 00:04:17.546 A:middle
+So SKSpriteNode support
+custom shaders
+
+88
+00:04:18.016 --> 00:04:21.406 A:middle
+and SKShapeNode now support
+custom shaders on both drawing,
+
+89
+00:04:21.406 --> 00:04:22.616 A:middle
+the soaking and filling.
+
+90
+00:04:23.366 --> 00:04:26.966 A:middle
+And SKEmmiterNode so with the
+particle effect you have a
+
+91
+00:04:26.966 --> 00:04:30.456 A:middle
+custom shader running on
+every single emitter particle
+
+92
+00:04:30.456 --> 00:04:31.546 A:middle
+that goes in the Scene.
+
+93
+00:04:31.546 --> 00:04:33.086 A:middle
+And lastly the EffectNode
+
+94
+00:04:33.086 --> 00:04:35.246 A:middle
+and SKScene now support
+custom shaders.
+
+95
+00:04:35.546 --> 00:04:37.426 A:middle
+So that gives you
+the powerful ability
+
+96
+00:04:37.426 --> 00:04:41.006 A:middle
+to not only use the CI filters
+to have a full screen effect,
+
+97
+00:04:41.306 --> 00:04:44.646 A:middle
+but also you can have a shader
+to have any possible effect
+
+98
+00:04:44.646 --> 00:04:45.876 A:middle
+that you want to implement.
+
+99
+00:04:46.836 --> 00:04:49.286 A:middle
+So, as soon as the shader is
+getting uploaded to the Sprite
+
+100
+00:04:49.286 --> 00:04:53.026 A:middle
+and it's being run at a pixel
+level we also passing a lot
+
+101
+00:04:53.026 --> 00:04:54.646 A:middle
+of building attributes
+to the shader.
+
+102
+00:04:54.646 --> 00:04:57.716 A:middle
+So we don't have to set
+up a brand new attribute
+
+103
+00:04:57.716 --> 00:04:59.366 A:middle
+or uniforms and pass it in.
+
+104
+00:04:59.546 --> 00:05:01.896 A:middle
+So, for example, here we're
+passing the u underscore texture
+
+105
+00:05:01.896 --> 00:05:03.926 A:middle
+that give it to you as
+what texture is being used
+
+106
+00:05:03.926 --> 00:05:05.806 A:middle
+for the current Sprite
+as well as,
+
+107
+00:05:05.806 --> 00:05:08.336 A:middle
+as well as the texture
+coordinate and the size
+
+108
+00:05:08.336 --> 00:05:10.606 A:middle
+of the Sprite that's
+in pixel size.
+
+109
+00:05:12.606 --> 00:05:14.776 A:middle
+So how does shader
+work in SpriteKit?
+
+110
+00:05:14.916 --> 00:05:20.756 A:middle
+Once you know about the SKShader
+class now it has 2 possible
+
+111
+00:05:21.056 --> 00:05:22.296 A:middle
+attributes that you
+can start on.
+
+112
+00:05:22.296 --> 00:05:23.876 A:middle
+The first one is
+the shader source.
+
+113
+00:05:24.236 --> 00:05:26.166 A:middle
+You can create a shader
+from 2 possibilities
+
+114
+00:05:26.166 --> 00:05:27.206 A:middle
+by attaching the source.
+
+115
+00:05:27.496 --> 00:05:29.816 A:middle
+One is creating the
+shader from a file
+
+116
+00:05:30.186 --> 00:05:33.356 A:middle
+and also you can set the
+shader from a string.
+
+117
+00:05:34.726 --> 00:05:37.556 A:middle
+And the shader itself also
+have an array of uniforms.
+
+118
+00:05:37.556 --> 00:05:41.076 A:middle
+These are optional, but if your
+shader actually requires any
+
+119
+00:05:41.076 --> 00:05:43.956 A:middle
+of the external parameters
+that being set in your game,
+
+120
+00:05:44.376 --> 00:05:48.156 A:middle
+you can use that, ask a uniforms
+on the uniforms property.
+
+121
+00:05:48.966 --> 00:05:51.146 A:middle
+So now once we have
+these 2 properties set,
+
+122
+00:05:51.606 --> 00:05:54.796 A:middle
+the shader is loaded
+and is ready to go.
+
+123
+00:05:55.996 --> 00:05:58.116 A:middle
+And we have a scene
+here, for example,
+
+124
+00:05:58.116 --> 00:05:59.746 A:middle
+a scene has 3 separate Sprites.
+
+125
+00:06:00.096 --> 00:06:02.416 A:middle
+You can assign a shader
+directly to the scene.
+
+126
+00:06:02.416 --> 00:06:06.666 A:middle
+You can assign the shader to any
+of the Sprite and then they pick
+
+127
+00:06:06.666 --> 00:06:12.066 A:middle
+up a fact right away in the
+next, in the next frame.
+
+128
+00:06:12.066 --> 00:06:14.916 A:middle
+So create a shader will have
+the new API called SKShader.
+
+129
+00:06:14.916 --> 00:06:16.576 A:middle
+It can create with a file.
+
+130
+00:06:16.576 --> 00:06:19.386 A:middle
+SKShader WithFileNamed
+with passing like blur.fsh.
+
+131
+00:06:19.476 --> 00:06:23.946 A:middle
+The shader will look like any
+G, OpenGL fragment program
+
+132
+00:06:23.946 --> 00:06:26.656 A:middle
+that has a main function
+and in the return values
+
+133
+00:06:26.656 --> 00:06:27.976 A:middle
+and the gl underscore FragColor.
+
+134
+00:06:28.266 --> 00:06:29.316 A:middle
+And if the shader needs any
+
+135
+00:06:29.316 --> 00:06:32.486 A:middle
+of the custom uniforms you can
+just set a uniforms array here
+
+136
+00:06:32.486 --> 00:06:36.066 A:middle
+with creating SKUinform
+uniformWithName.
+
+137
+00:06:36.066 --> 00:06:37.016 A:middle
+You give it a name here.
+
+138
+00:06:37.016 --> 00:06:39.146 A:middle
+We call it u underscrore
+red, that's a floating type
+
+139
+00:06:39.666 --> 00:06:42.736 A:middle
+and the next one we're
+setting a u textural passing
+
+140
+00:06:42.736 --> 00:06:45.516 A:middle
+in a second retexture
+to the custom shader.
+
+141
+00:06:46.036 --> 00:06:50.516 A:middle
+So these supported types are
+float, texture, back to 2,
+
+142
+00:06:50.516 --> 00:06:54.376 A:middle
+3 and 4 and matrix
+2x2, 3x3 and 4x4.
+
+143
+00:06:57.186 --> 00:06:59.636 A:middle
+And for the full list
+of the custom symbols
+
+144
+00:06:59.636 --> 00:07:00.976 A:middle
+that we're passing
+into the shader,
+
+145
+00:07:00.976 --> 00:07:02.406 A:middle
+as soon as your shader
+is getting run,
+
+146
+00:07:02.646 --> 00:07:03.446 A:middle
+here is the full list.
+
+147
+00:07:03.666 --> 00:07:07.226 A:middle
+So in terms of uniform you get
+direct access to the texture
+
+148
+00:07:07.226 --> 00:07:11.626 A:middle
+of the Sprite, the Sprite size
+in pixels, the global time
+
+149
+00:07:11.626 --> 00:07:14.266 A:middle
+in case you need to do any of
+the animation in terms of color
+
+150
+00:07:14.326 --> 00:07:16.736 A:middle
+or shapes and you
+also have access
+
+151
+00:07:17.006 --> 00:07:18.846 A:middle
+if you have custom
+shader that's running
+
+152
+00:07:18.846 --> 00:07:21.246 A:middle
+on a shape to the passes lens.
+
+153
+00:07:22.296 --> 00:07:24.716 A:middle
+In terms of variance we're
+passing the texture coordinate,
+
+154
+00:07:24.866 --> 00:07:28.366 A:middle
+the color mix, as well as
+the distance of the path
+
+155
+00:07:29.316 --> 00:07:32.136 A:middle
+and we also have a very
+convenient method in the shader
+
+156
+00:07:32.136 --> 00:07:34.826 A:middle
+so you can call directly
+called SKDefaultShading.
+
+157
+00:07:35.056 --> 00:07:39.916 A:middle
+This is as if you were to like
+SpriteKit render the current
+
+158
+00:07:39.916 --> 00:07:44.406 A:middle
+Sprite and give me the pixel
+value of the current behavior.
+
+159
+00:07:44.966 --> 00:07:47.576 A:middle
+So the shaders are cool.
+
+160
+00:07:47.576 --> 00:07:50.656 A:middle
+There's some best
+practices I like to call out.
+
+161
+00:07:50.656 --> 00:07:54.666 A:middle
+So number one I like to
+recommend using building
+
+162
+00:07:54.666 --> 00:07:56.266 A:middle
+uniforms as much as possible.
+
+163
+00:07:56.516 --> 00:07:58.656 A:middle
+So we passing a lot of
+uniform for you to use.
+
+164
+00:07:58.656 --> 00:08:00.856 A:middle
+That gives you a lot
+of raw attributes
+
+165
+00:08:00.856 --> 00:08:03.246 A:middle
+of what we're doing
+at the OpenGL level.
+
+166
+00:08:03.746 --> 00:08:07.346 A:middle
+But if you do need to access
+all the same uniforms,
+
+167
+00:08:07.606 --> 00:08:08.966 A:middle
+please use their building one
+
+168
+00:08:08.966 --> 00:08:10.656 A:middle
+to minimize the amount
+of redundancy.
+
+169
+00:08:11.246 --> 00:08:14.466 A:middle
+And also we would recommend
+
+170
+00:08:14.466 --> 00:08:17.416 A:middle
+to avoid changing this shader
+source in the middle of a frame
+
+171
+00:08:17.416 --> 00:08:19.936 A:middle
+because that will force a
+shader recompilation happening
+
+172
+00:08:20.716 --> 00:08:21.386 A:middle
+at a backend.
+
+173
+00:08:21.386 --> 00:08:25.596 A:middle
+And also when the shader is
+being loaded and we recommend
+
+174
+00:08:25.596 --> 00:08:28.046 A:middle
+to loadset all the
+uniforms upfront
+
+175
+00:08:29.006 --> 00:08:30.776 A:middle
+and you can change
+uniforms that refrain,
+
+176
+00:08:30.776 --> 00:08:31.896 A:middle
+but that's nice and fast.
+
+177
+00:08:32.176 --> 00:08:34.746 A:middle
+But adding or removing
+uniform will also cause another
+
+178
+00:08:34.746 --> 00:08:35.746 A:middle
+shader recompilation.
+
+179
+00:08:37.885 --> 00:08:40.106 A:middle
+Also in terms of draw
+call performance we
+
+180
+00:08:40.106 --> 00:08:44.496 A:middle
+like to share the same shader
+instance as much as possible
+
+181
+00:08:44.496 --> 00:08:45.996 A:middle
+because the same shader running
+
+182
+00:08:45.996 --> 00:08:49.406 A:middle
+on multiple drawing instances
+gets to batch together.
+
+183
+00:08:50.556 --> 00:08:53.476 A:middle
+And we'll recommend to
+initialize the shader
+
+184
+00:08:53.476 --> 00:08:57.756 A:middle
+at low time and initialize the
+shader using a file name rather
+
+185
+00:08:57.756 --> 00:09:01.786 A:middle
+than initial shader using
+string because if the shaders,
+
+186
+00:09:01.786 --> 00:09:04.386 A:middle
+multiple shaders are sharing
+the same shader source
+
+187
+00:09:04.436 --> 00:09:08.376 A:middle
+and SpriteKit will pick it up as
+identical shaders or drawbacks,
+
+188
+00:09:09.006 --> 00:09:11.296 A:middle
+draw call batching
+performance remain high.
+
+189
+00:09:11.636 --> 00:09:15.586 A:middle
+So the summary of using
+custom shaders, it allow you
+
+190
+00:09:15.586 --> 00:09:18.876 A:middle
+to completely customize the
+way Sprite are being rendered
+
+191
+00:09:18.876 --> 00:09:19.436 A:middle
+on the screen.
+
+192
+00:09:19.716 --> 00:09:22.666 A:middle
+You have raw access to a
+lot of building attributes
+
+193
+00:09:22.666 --> 00:09:25.326 A:middle
+that we're passing
+down to the shader.
+
+194
+00:09:25.826 --> 00:09:27.756 A:middle
+And it can create an
+infinite number of cool
+
+195
+00:09:27.756 --> 00:09:29.196 A:middle
+and unique effects for a game.
+
+196
+00:09:29.596 --> 00:09:32.496 A:middle
+Next I want to talk about
+lightings and shadows.
+
+197
+00:09:33.856 --> 00:09:35.726 A:middle
+So lightings and
+shadows really bring
+
+198
+00:09:35.726 --> 00:09:37.636 A:middle
+out the liveliness
+of your games.
+
+199
+00:09:37.636 --> 00:09:40.206 A:middle
+Say if I'm building a
+dungeons game and walking
+
+200
+00:09:40.206 --> 00:09:44.106 A:middle
+in a long corridor all of
+a sudden the area gets dark
+
+201
+00:09:44.106 --> 00:09:47.696 A:middle
+and all of a sudden I see a
+very dim shaky light at the end
+
+202
+00:09:47.696 --> 00:09:49.556 A:middle
+of the hallway that
+kind of bring
+
+203
+00:09:49.556 --> 00:09:54.946 A:middle
+out that really scary atmosphere
+and mood for the player.
+
+204
+00:09:55.646 --> 00:09:57.036 A:middle
+So to create a light
+
+205
+00:09:57.036 --> 00:10:00.966 A:middle
+in SpriteKit we introduce a
+new type called SKLightNode.
+
+206
+00:10:01.966 --> 00:10:04.256 A:middle
+You can add it to the
+scene and position it
+
+207
+00:10:04.256 --> 00:10:07.246 A:middle
+into anywhere you want
+and it can light any
+
+208
+00:10:07.246 --> 00:10:09.056 A:middle
+of the Sprite that's
+being participated
+
+209
+00:10:09.056 --> 00:10:10.066 A:middle
+in the current light.
+
+210
+00:10:10.686 --> 00:10:14.376 A:middle
+You can change the color,
+shadow and falloff of the light
+
+211
+00:10:15.006 --> 00:10:19.196 A:middle
+and with support up to 8 lights
+like for a single Sprite.
+
+212
+00:10:20.096 --> 00:10:23.176 A:middle
+And the bottom line
+is SKLightNode is just
+
+213
+00:10:23.176 --> 00:10:24.186 A:middle
+another SKNode.
+
+214
+00:10:24.736 --> 00:10:27.746 A:middle
+You can move it around,
+turn it to another sprite
+
+215
+00:10:27.746 --> 00:10:29.806 A:middle
+if you want the light to
+follow one of your Sprites.
+
+216
+00:10:30.206 --> 00:10:35.046 A:middle
+You can run actions on it,
+have it run follow a path.
+
+217
+00:10:35.256 --> 00:10:35.926 A:middle
+It's really cool.
+
+218
+00:10:37.246 --> 00:10:38.206 A:middle
+So now let's look at some
+
+219
+00:10:38.206 --> 00:10:41.196 A:middle
+of the basic add
+properties for SKLightNode.
+
+220
+00:10:41.336 --> 00:10:42.356 A:middle
+So here we have a scene.
+
+221
+00:10:42.606 --> 00:10:43.446 A:middle
+It's very bland.
+
+222
+00:10:43.646 --> 00:10:45.736 A:middle
+We add a light source
+in a scene.
+
+223
+00:10:46.926 --> 00:10:48.656 A:middle
+Now if we can change
+to the lightColor,
+
+224
+00:10:48.656 --> 00:10:50.596 A:middle
+we decide the lightColor
+to be yellow,
+
+225
+00:10:50.676 --> 00:10:52.836 A:middle
+it adds a yellow tint
+to the collect color.
+
+226
+00:10:53.666 --> 00:10:56.646 A:middle
+And now if we set a
+shadowColor to be gray
+
+227
+00:10:57.756 --> 00:11:02.416 A:middle
+and now the boxes start casting
+shadows and lastly if we want
+
+228
+00:11:02.416 --> 00:11:03.686 A:middle
+to see a little bit more
+
+229
+00:11:03.686 --> 00:11:05.816 A:middle
+out of the scene we
+set the ambientColor
+
+230
+00:11:05.816 --> 00:11:08.436 A:middle
+to really bring the scene
+up a little bit more.
+
+231
+00:11:08.926 --> 00:11:12.336 A:middle
+So let's look at the additional
+attributes for SKLightNode.
+
+232
+00:11:12.426 --> 00:11:13.576 A:middle
+The number one is falloff.
+
+233
+00:11:13.966 --> 00:11:18.916 A:middle
+Falloff controls the radius
+of the light into the effect
+
+234
+00:11:19.576 --> 00:11:21.786 A:middle
+and we also take what
+works really well
+
+235
+00:11:21.786 --> 00:11:25.136 A:middle
+with our physics properties
+with the category of BitMask.
+
+236
+00:11:25.666 --> 00:11:29.216 A:middle
+So with SpriteNode now you
+have individual big control
+
+237
+00:11:29.326 --> 00:11:31.446 A:middle
+of whether the Sprite is
+participating in the lighting,
+
+238
+00:11:31.886 --> 00:11:34.876 A:middle
+whether it's casting shadows or
+whether it's receiving shadows.
+
+239
+00:11:35.116 --> 00:11:37.546 A:middle
+You have fine control
+of exactly how you want
+
+240
+00:11:37.546 --> 00:11:40.376 A:middle
+to control these 3 attributes
+for each individual Sprite.
+
+241
+00:11:40.906 --> 00:11:44.316 A:middle
+And now since we are
+talking about SpriteNode,
+
+242
+00:11:44.816 --> 00:11:48.236 A:middle
+SpriteNode also has a brand new
+property called normalTexture,
+
+243
+00:11:48.236 --> 00:11:50.186 A:middle
+which you can assign
+normalTexture with.
+
+244
+00:11:50.706 --> 00:11:54.306 A:middle
+So usually normalTexture
+is heavily used in 3D games
+
+245
+00:11:54.746 --> 00:11:58.176 A:middle
+and normalTexture uses the
+pixel RGB value to describe
+
+246
+00:11:58.176 --> 00:12:00.556 A:middle
+where the normal vector for the
+service is pointing towards,
+
+247
+00:12:00.826 --> 00:12:03.326 A:middle
+so the lighting calculation
+can be used in the [inaudible]
+
+248
+00:12:03.326 --> 00:12:04.616 A:middle
+with the normal vectors.
+
+249
+00:12:05.166 --> 00:12:07.136 A:middle
+So here we're using
+the exact same formula.
+
+250
+00:12:08.026 --> 00:12:09.876 A:middle
+So to render the scene
+
+251
+00:12:10.596 --> 00:12:15.216 A:middle
+with a normal map we use the
+traditional A + B = C formula,
+
+252
+00:12:15.216 --> 00:12:17.266 A:middle
+which means you supply
+the texture,
+
+253
+00:12:17.746 --> 00:12:19.236 A:middle
+you supply the normal texture.
+
+254
+00:12:19.916 --> 00:12:23.816 A:middle
+SpriteKit will do its magic
+and give you the result,
+
+255
+00:12:23.816 --> 00:12:25.406 A:middle
+which is lighting up the scene
+
+256
+00:12:25.406 --> 00:12:27.866 A:middle
+with the bumpy service
+that's being mapped.
+
+257
+00:12:28.226 --> 00:12:31.026 A:middle
+So here you-- as you can see
+I can just set normal texture
+
+258
+00:12:31.026 --> 00:12:34.126 A:middle
+directly on the SKSpriteNode
+by loading it
+
+259
+00:12:34.566 --> 00:12:36.466 A:middle
+from the normal .pmg file.
+
+260
+00:12:38.156 --> 00:12:40.326 A:middle
+So now being SpriteKit we
+
+261
+00:12:40.326 --> 00:12:43.886 A:middle
+like to make our user's
+life as easy as possible.
+
+262
+00:12:43.886 --> 00:12:48.876 A:middle
+So in addition to the A + B =
+C formula we get you directly
+
+263
+00:12:48.876 --> 00:12:49.926 A:middle
+from A to C.
+
+264
+00:12:50.196 --> 00:12:52.426 A:middle
+You do not need to
+supply any NormalMap.
+
+265
+00:12:52.496 --> 00:12:55.706 A:middle
+So, what we do is we take
+the source texture image
+
+266
+00:12:56.016 --> 00:13:00.606 A:middle
+and perform image analyzation
+on every single pixel and based
+
+267
+00:13:00.606 --> 00:13:04.026 A:middle
+on the frameworks of each pixel
+we have a multipass algorithm
+
+268
+00:13:04.026 --> 00:13:05.986 A:middle
+that generate the
+best normal map
+
+269
+00:13:06.336 --> 00:13:08.196 A:middle
+that describe the
+current picture.
+
+270
+00:13:08.426 --> 00:13:12.066 A:middle
+So if you give us a picture
+that you take from the beach,
+
+271
+00:13:12.066 --> 00:13:13.446 A:middle
+which is a bunch of rocks
+
+272
+00:13:13.446 --> 00:13:16.686 A:middle
+and their rounded
+edge is really sharp
+
+273
+00:13:16.686 --> 00:13:18.716 A:middle
+yet the surface remain
+very smooth.
+
+274
+00:13:19.246 --> 00:13:20.466 A:middle
+So here it's very easy.
+
+275
+00:13:20.466 --> 00:13:21.736 A:middle
+It's magic one liner.
+
+276
+00:13:21.736 --> 00:13:26.286 A:middle
+All we need to do is
+sprite.normalTexture = generate
+
+277
+00:13:26.736 --> 00:13:29.706 A:middle
+a Normalmap from the
+existing sprite's texture.
+
+278
+00:13:30.226 --> 00:13:31.646 A:middle
+That's not all.
+
+279
+00:13:32.426 --> 00:13:36.736 A:middle
+There is not a solution or a
+one size fits all solution.
+
+280
+00:13:37.246 --> 00:13:40.806 A:middle
+So, in addition we provide 2
+more parameters for you guys
+
+281
+00:13:40.806 --> 00:13:44.216 A:middle
+to change the dynamic behavior
+of the GeneratingNormalMap
+
+282
+00:13:44.556 --> 00:13:47.426 A:middle
+in terms of smoothness,
+in terms of contrast,
+
+283
+00:13:47.426 --> 00:13:50.146 A:middle
+which is how bumpy you want
+the main service to be.
+
+284
+00:13:50.936 --> 00:13:51.836 A:middle
+And this will give
+
+285
+00:13:51.836 --> 00:13:54.326 A:middle
+in combination give you an
+infinite number of looks.
+
+286
+00:13:54.326 --> 00:13:59.356 A:middle
+For example, our cobblestone
+I just have 2, 4-loops running
+
+287
+00:13:59.356 --> 00:14:01.636 A:middle
+on these parameters
+with 1 second delay.
+
+288
+00:14:01.636 --> 00:14:03.976 A:middle
+As you can see it
+actually change the look.
+
+289
+00:14:03.976 --> 00:14:06.006 A:middle
+You can get an infinite
+number of looks out of it.
+
+290
+00:14:06.306 --> 00:14:07.086 A:middle
+And the best part
+
+291
+00:14:07.086 --> 00:14:10.376 A:middle
+about automatic NormalMap
+generation is you can do this
+
+292
+00:14:10.376 --> 00:14:11.596 A:middle
+on dynamic content.
+
+293
+00:14:11.956 --> 00:14:15.516 A:middle
+If the user take a picture
+from outside and decide to put
+
+294
+00:14:15.516 --> 00:14:16.706 A:middle
+that in the game, guess what?
+
+295
+00:14:16.746 --> 00:14:18.696 A:middle
+You can light it without
+any normal texture.
+
+296
+00:14:18.956 --> 00:14:20.516 A:middle
+We can do all of this for you.
+
+297
+00:14:21.046 --> 00:14:24.896 A:middle
+So to summarize lighting
+and shadows,
+
+298
+00:14:25.726 --> 00:14:27.286 A:middle
+they are very easy to use.
+
+299
+00:14:27.376 --> 00:14:30.126 A:middle
+SKLightNode is just
+like any SKNode.
+
+300
+00:14:30.126 --> 00:14:31.266 A:middle
+You can run it animation on it.
+
+301
+00:14:31.266 --> 00:14:32.116 A:middle
+You can parent it.
+
+302
+00:14:32.386 --> 00:14:34.796 A:middle
+You can set up colors and
+everything is 1 liner.
+
+303
+00:14:35.376 --> 00:14:38.896 A:middle
+Automatic normal map generation
+really provides this dynamic
+
+304
+00:14:38.896 --> 00:14:39.466 A:middle
+look for you.
+
+305
+00:14:39.586 --> 00:14:42.816 A:middle
+You don't have to spend time
+sitting down with artists
+
+306
+00:14:42.816 --> 00:14:45.486 A:middle
+and trying to figure out how
+to hand paint a normal map.
+
+307
+00:14:45.796 --> 00:14:49.266 A:middle
+Oh, it's purple facing outward
+or green facing to the left.
+
+308
+00:14:49.646 --> 00:14:50.926 A:middle
+You don't have to
+do any of that.
+
+309
+00:14:50.926 --> 00:14:53.176 A:middle
+We take out the nitty
+gritty detail for you.
+
+310
+00:14:53.586 --> 00:14:56.386 A:middle
+There's some best
+practice in terms
+
+311
+00:14:56.386 --> 00:14:57.826 A:middle
+of performance I'd
+like to point out.
+
+312
+00:14:58.116 --> 00:14:59.836 A:middle
+It's okay to have multiple
+lights in the scene
+
+313
+00:14:59.836 --> 00:15:01.536 A:middle
+and it runs reasonably fast.
+
+314
+00:15:01.776 --> 00:15:03.866 A:middle
+But if you have -- the number
+
+315
+00:15:03.866 --> 00:15:06.736 A:middle
+of lights that's lighting
+the very same Sprite
+
+316
+00:15:06.736 --> 00:15:07.556 A:middle
+actually matters.
+
+317
+00:15:07.836 --> 00:15:11.286 A:middle
+And if I have more than 2 lights
+lighting the same Sprite you
+
+318
+00:15:11.286 --> 00:15:13.906 A:middle
+might not be able to
+stay on constant 60
+
+319
+00:15:13.906 --> 00:15:15.406 A:middle
+on certain iOS hardwares.
+
+320
+00:15:15.456 --> 00:15:16.776 A:middle
+It's just something
+to point out.
+
+321
+00:15:17.226 --> 00:15:22.516 A:middle
+Next I'd like to point out
+all the new physics features
+
+322
+00:15:22.516 --> 00:15:23.166 A:middle
+that we have.
+
+323
+00:15:23.286 --> 00:15:24.166 A:middle
+So let's look at them.
+
+324
+00:15:24.776 --> 00:15:29.526 A:middle
+Number 1 per-pixel physics
+updates we have constraints,
+
+325
+00:15:29.926 --> 00:15:31.946 A:middle
+allowed to remove
+the boilerplate code
+
+326
+00:15:32.046 --> 00:15:32.996 A:middle
+in your updates.
+
+327
+00:15:33.286 --> 00:15:34.986 A:middle
+We also have inverse kinematics,
+
+328
+00:15:34.986 --> 00:15:37.646 A:middle
+allow to you build
+mechanical AI.
+
+329
+00:15:37.946 --> 00:15:41.216 A:middle
+We also have physics field
+that apply these forces,
+
+330
+00:15:41.216 --> 00:15:43.666 A:middle
+allow you to build the
+next space game simulation.
+
+331
+00:15:44.576 --> 00:15:47.356 A:middle
+So let's look at the per-pixel
+physics body creation.
+
+332
+00:15:48.426 --> 00:15:50.806 A:middle
+With the current
+implementation on the left side,
+
+333
+00:15:51.276 --> 00:15:54.836 A:middle
+if I want to build a
+gears game, I can't.
+
+334
+00:15:55.456 --> 00:15:58.486 A:middle
+The best thing I can do
+is using bonding circles
+
+335
+00:15:58.586 --> 00:16:01.836 A:middle
+and create the bonding circle
+around these box, these gears.
+
+336
+00:16:01.836 --> 00:16:04.136 A:middle
+They don't actually
+grind each other
+
+337
+00:16:04.136 --> 00:16:05.656 A:middle
+and the teeth don't interlock.
+
+338
+00:16:06.176 --> 00:16:08.006 A:middle
+Okay, maybe I can
+fake it a little bit.
+
+339
+00:16:08.096 --> 00:16:10.146 A:middle
+I reduce the radius
+of the physics bodies
+
+340
+00:16:10.146 --> 00:16:11.936 A:middle
+so that the teeth might overlap,
+
+341
+00:16:12.416 --> 00:16:15.096 A:middle
+but they still don't
+touch exactly.
+
+342
+00:16:15.096 --> 00:16:19.176 A:middle
+And also, the angular
+velocity don't transfer
+
+343
+00:16:19.176 --> 00:16:20.376 A:middle
+from one gear to another.
+
+344
+00:16:20.826 --> 00:16:24.316 A:middle
+But now with a single line of
+code you can generate from,
+
+345
+00:16:24.586 --> 00:16:28.056 A:middle
+go from there to
+give you a physics,
+
+346
+00:16:28.496 --> 00:16:30.946 A:middle
+a pixel based physics body.
+
+347
+00:16:31.286 --> 00:16:32.016 A:middle
+It's very easy.
+
+348
+00:16:32.286 --> 00:16:34.116 A:middle
+So when we [inaudible]
+the source image,
+
+349
+00:16:34.466 --> 00:16:37.676 A:middle
+based on the alpha mask we
+generate a rough shape and based
+
+350
+00:16:37.676 --> 00:16:41.126 A:middle
+on the shape we generate an
+exact shape that's the minimal
+
+351
+00:16:41.266 --> 00:16:42.676 A:middle
+in order to fit the
+current Sprite.
+
+352
+00:16:43.336 --> 00:16:44.276 A:middle
+It's very accurate.
+
+353
+00:16:44.346 --> 00:16:48.026 A:middle
+And now the build gears demo you
+can just have a couple 1 liners,
+
+354
+00:16:48.296 --> 00:16:49.586 A:middle
+have the same code in there,
+
+355
+00:16:49.586 --> 00:16:52.126 A:middle
+just change from
+using bonding circles
+
+356
+00:16:52.126 --> 00:16:55.576 A:middle
+to using image-based physics
+body and you are good to go.
+
+357
+00:16:55.796 --> 00:16:57.786 A:middle
+And they can be pinned,
+they can be transferring
+
+358
+00:16:57.786 --> 00:17:00.016 A:middle
+and interlocking;
+it's really fun.
+
+359
+00:17:01.116 --> 00:17:02.506 A:middle
+So, let's look at how we do it.
+
+360
+00:17:03.066 --> 00:17:06.506 A:middle
+So, with the current API
+to create a physics body
+
+361
+00:17:06.506 --> 00:17:09.506 A:middle
+with bonding box
+we use PhysicsBody
+
+362
+00:17:10.296 --> 00:17:14.556 A:middle
+and bodyWithRectangleOfSize will
+give you an exact bonding box
+
+363
+00:17:14.556 --> 00:17:16.316 A:middle
+of the different dimensions
+that you have specified.
+
+364
+00:17:17.026 --> 00:17:20.616 A:middle
+Now, with a new API it's
+the same initializer
+
+365
+00:17:20.616 --> 00:17:21.156 A:middle
+convenience [inaudible].
+
+366
+00:17:21.226 --> 00:17:24.556 A:middle
+You're just passing the texture
+and the size of the texture.
+
+367
+00:17:24.856 --> 00:17:28.136 A:middle
+For example, a hammer here will
+give you the exact hammer body
+
+368
+00:17:28.136 --> 00:17:29.266 A:middle
+that's traced with the outline.
+
+369
+00:17:29.266 --> 00:17:32.416 A:middle
+You no longer have to
+do that yourself or try
+
+370
+00:17:32.416 --> 00:17:35.186 A:middle
+to build any approximation
+of the physics bodies.
+
+371
+00:17:37.196 --> 00:17:38.206 A:middle
+Just like the automatic
+
+372
+00:17:38.206 --> 00:17:41.066 A:middle
+and NormalMap generation there's
+not a one solution fits all.
+
+373
+00:17:41.256 --> 00:17:44.246 A:middle
+If you have a source
+art that has a lot
+
+374
+00:17:44.246 --> 00:17:46.756 A:middle
+of semi-transparent
+pixels we do allow you
+
+375
+00:17:46.756 --> 00:17:50.596 A:middle
+to specify the alpha
+threshold, which defines
+
+376
+00:17:50.866 --> 00:17:53.606 A:middle
+which pixels are being
+interpreted during the process
+
+377
+00:17:53.606 --> 00:17:55.246 A:middle
+as opaque or not.
+
+378
+00:17:56.116 --> 00:18:02.346 A:middle
+So in summary, per-pixel physics
+body is very easy to create.
+
+379
+00:18:02.516 --> 00:18:03.856 A:middle
+They're very accurate.
+
+380
+00:18:05.236 --> 00:18:08.886 A:middle
+And whether you are existing
+SpriteKit users or new
+
+381
+00:18:08.886 --> 00:18:13.876 A:middle
+to the APIs it's just a matter
+of setting 1 line change
+
+382
+00:18:13.876 --> 00:18:17.166 A:middle
+in your codes to create really
+accurate physics simulations.
+
+383
+00:18:18.306 --> 00:18:20.376 A:middle
+So again I'd like to point
+out performance tips.
+
+384
+00:18:20.986 --> 00:18:24.476 A:middle
+SpriteKit does a really good
+job of optimizing this algorithm
+
+385
+00:18:24.526 --> 00:18:27.446 A:middle
+and we provide a good
+balance between performance
+
+386
+00:18:27.446 --> 00:18:30.386 A:middle
+and accuracy, but the
+texture size matters.
+
+387
+00:18:30.936 --> 00:18:35.266 A:middle
+So if you are passing a 2K
+by 2K texture and scale it
+
+388
+00:18:35.266 --> 00:18:39.036 A:middle
+down to 10 percent by
+rendering a 20 by 200
+
+389
+00:18:39.036 --> 00:18:44.786 A:middle
+by 200 Sprite we do have to walk
+down the whole 2K by 2K pixels
+
+390
+00:18:44.786 --> 00:18:46.396 A:middle
+in order to figure
+out the exact shape,
+
+391
+00:18:46.916 --> 00:18:48.986 A:middle
+so just something
+to think about.
+
+392
+00:18:49.746 --> 00:18:54.776 A:middle
+Next a brand new
+API that constraints
+
+393
+00:18:54.776 --> 00:18:58.436 A:middle
+to help you really simplify
+the game update logic.
+
+394
+00:18:59.526 --> 00:19:02.576 A:middle
+The constraint, the motivation
+of creating constraint for us is
+
+395
+00:19:02.576 --> 00:19:05.976 A:middle
+to really remove the boilerplate
+code in your updates.
+
+396
+00:19:05.976 --> 00:19:08.846 A:middle
+So, a lot of times if I
+want to move a character
+
+397
+00:19:09.066 --> 00:19:11.736 A:middle
+but I want a healthy indicator
+to follow the character
+
+398
+00:19:11.736 --> 00:19:14.856 A:middle
+that exactly 5 pixels
+above, 2 pixels behind.
+
+399
+00:19:15.576 --> 00:19:17.466 A:middle
+I need to put that in
+an update somewhere.
+
+400
+00:19:17.466 --> 00:19:18.746 A:middle
+I need to have a cannon.
+
+401
+00:19:18.746 --> 00:19:21.446 A:middle
+You want to orient a cannon
+to follow the airplane.
+
+402
+00:19:21.946 --> 00:19:25.076 A:middle
+Guess what, I need to add that
+code in to calculate the angle
+
+403
+00:19:25.076 --> 00:19:26.596 A:middle
+and figure out the delta,
+
+404
+00:19:26.596 --> 00:19:29.136 A:middle
+translate the delta rotation
+inside the translation
+
+405
+00:19:29.336 --> 00:19:30.696 A:middle
+or if the airplane want to land
+
+406
+00:19:30.696 --> 00:19:32.756 A:middle
+on the runway I need
+to orient that first.
+
+407
+00:19:33.456 --> 00:19:35.956 A:middle
+We do all of that work
+for you and we do it
+
+408
+00:19:35.956 --> 00:19:36.876 A:middle
+with simple constraint.
+
+409
+00:19:39.516 --> 00:19:44.126 A:middle
+So now we add, because of the
+constraint that's being added we
+
+410
+00:19:44.126 --> 00:19:47.456 A:middle
+need to add some new
+features in our update loop.
+
+411
+00:19:47.846 --> 00:19:51.016 A:middle
+So in the update loop we expand
+it to some new selectors.
+
+412
+00:19:51.576 --> 00:19:55.386 A:middle
+Number 1 right after physics
+simulation now the scene starts
+
+413
+00:19:55.386 --> 00:19:56.606 A:middle
+kicking in the constraint.
+
+414
+00:19:56.976 --> 00:19:59.636 A:middle
+So constraints are not
+limited to physics anymore,
+
+415
+00:19:59.636 --> 00:20:01.386 A:middle
+so you don't have
+to worry about oh,
+
+416
+00:20:01.386 --> 00:20:02.976 A:middle
+is the character standing
+on a conveyor belt?
+
+417
+00:20:03.106 --> 00:20:05.156 A:middle
+Is it going to be pushed
+
+418
+00:20:05.156 --> 00:20:07.526 A:middle
+over because the box
+is right beside it?
+
+419
+00:20:07.696 --> 00:20:09.116 A:middle
+Constraints will take
+care of that for you.
+
+420
+00:20:09.646 --> 00:20:12.736 A:middle
+And right after constraint
+update user have another chance
+
+421
+00:20:12.736 --> 00:20:15.066 A:middle
+of doing another update.
+
+422
+00:20:15.066 --> 00:20:18.196 A:middle
+We do give the user a
+callback on didApplyConstraints
+
+423
+00:20:18.436 --> 00:20:21.896 A:middle
+so here you have a chance to do
+any other last minute cleanup.
+
+424
+00:20:23.826 --> 00:20:25.766 A:middle
+And the basis of constraints,
+
+425
+00:20:25.906 --> 00:20:28.906 A:middle
+again we'll have a new object
+called SKConstraint object.
+
+426
+00:20:29.036 --> 00:20:31.776 A:middle
+It is use to wrap around
+this mathematical constraint
+
+427
+00:20:31.776 --> 00:20:33.946 A:middle
+on the properties of the node
+that you want to animate.
+
+428
+00:20:34.696 --> 00:20:37.216 A:middle
+So the constraints
+are then attached
+
+429
+00:20:37.216 --> 00:20:39.696 A:middle
+to node via the new
+constraints array.
+
+430
+00:20:40.406 --> 00:20:42.216 A:middle
+And the scene will
+apply the constraints
+
+431
+00:20:42.296 --> 00:20:43.676 A:middle
+to the attached node.
+
+432
+00:20:43.906 --> 00:20:47.006 A:middle
+So what kind of constraints
+can it set on a node?
+
+433
+00:20:47.416 --> 00:20:51.076 A:middle
+You can set the constraints
+on position, orientation
+
+434
+00:20:51.446 --> 00:20:53.896 A:middle
+and distance and you
+can quickly enable
+
+435
+00:20:53.896 --> 00:20:55.426 A:middle
+and disable between frames.
+
+436
+00:20:56.866 --> 00:21:00.936 A:middle
+So for example, let's look at a
+quick example of how to orient
+
+437
+00:21:00.936 --> 00:21:02.246 A:middle
+to node.constraint works.
+
+438
+00:21:02.616 --> 00:21:04.166 A:middle
+So we just call SKConstraint
+
+439
+00:21:04.266 --> 00:21:07.856 A:middle
+with orientToNode
+initializer and follow a node.
+
+440
+00:21:07.856 --> 00:21:10.976 A:middle
+So here the arrow just
+following the circle
+
+441
+00:21:10.976 --> 00:21:12.976 A:middle
+and then we just
+passing the circle.
+
+442
+00:21:13.146 --> 00:21:16.616 A:middle
+[inaudible] the SKNode and
+the range of offset is 0
+
+443
+00:21:16.616 --> 00:21:19.376 A:middle
+and you can set I want to
+lead the circle following in
+
+444
+00:21:19.376 --> 00:21:22.196 A:middle
+or lagging it, you
+have that possibility.
+
+445
+00:21:22.836 --> 00:21:26.526 A:middle
+So once the constraint is
+created I just directly set
+
+446
+00:21:27.056 --> 00:21:29.186 A:middle
+on the arrow's constraints
+property.
+
+447
+00:21:30.616 --> 00:21:33.636 A:middle
+Next, how do we set
+position of constraint?
+
+448
+00:21:34.056 --> 00:21:37.886 A:middle
+So here we create a positional
+range of minus 100 to 100.
+
+449
+00:21:38.646 --> 00:21:43.056 A:middle
+We can first set the limit
+of constraint on the X axis.
+
+450
+00:21:43.056 --> 00:21:46.086 A:middle
+This will limit the movement
+in the X direction of the node.
+
+451
+00:21:47.506 --> 00:21:49.626 A:middle
+Now we can also set
+it on the Y direction
+
+452
+00:21:49.626 --> 00:21:51.696 A:middle
+that will give a
+limitation on the Y axis.
+
+453
+00:21:53.056 --> 00:21:56.896 A:middle
+And if you combine these 2
+together you are limiting the
+
+454
+00:21:56.896 --> 00:22:00.806 A:middle
+movement of the current
+node to a 200 by 200 box;
+
+455
+00:22:01.166 --> 00:22:02.526 A:middle
+very, very simple to use.
+
+456
+00:22:02.816 --> 00:22:05.056 A:middle
+You no longer have to
+write this update code
+
+457
+00:22:05.436 --> 00:22:09.156 A:middle
+that will manually snap
+the object back in the box.
+
+458
+00:22:09.786 --> 00:22:13.056 A:middle
+So in summary, it really
+helped to remove a lot
+
+459
+00:22:13.056 --> 00:22:15.946 A:middle
+of the boilerplate code, making
+sure you just write the code
+
+460
+00:22:15.946 --> 00:22:17.926 A:middle
+and focusing on building
+the game you want rather
+
+461
+00:22:17.926 --> 00:22:19.706 A:middle
+than having to fix up things.
+
+462
+00:22:20.546 --> 00:22:23.876 A:middle
+And also the -- because of
+the constraints is the array
+
+463
+00:22:24.496 --> 00:22:30.196 A:middle
+that you can add the multiple
+constraints into the same array
+
+464
+00:22:30.196 --> 00:22:32.466 A:middle
+and the order of
+evaluation happens from --
+
+465
+00:22:33.116 --> 00:22:35.256 A:middle
+is based on the order of the
+insertion into the array.
+
+466
+00:22:35.966 --> 00:22:38.646 A:middle
+And we also offer a lot
+of varieties of constraint
+
+467
+00:22:38.646 --> 00:22:41.256 A:middle
+into position orientation
+and distance.
+
+468
+00:22:41.726 --> 00:22:47.096 A:middle
+Next, I'd like to talk
+about inverse kinematics.
+
+469
+00:22:47.786 --> 00:22:50.216 A:middle
+This is usually a very
+strange word for people
+
+470
+00:22:50.756 --> 00:22:53.746 A:middle
+who doesn't have a
+mechanical engineering degree
+
+471
+00:22:53.746 --> 00:22:56.706 A:middle
+or people haven't written
+an animation engine.
+
+472
+00:22:57.116 --> 00:23:01.566 A:middle
+So inverse kinematics allow
+you to use kinematics equations
+
+473
+00:23:01.566 --> 00:23:04.326 A:middle
+to solve the joint parameters
+
+474
+00:23:04.486 --> 00:23:06.526 A:middle
+if you have a joint
+hierarchy trying to reach
+
+475
+00:23:06.526 --> 00:23:08.696 A:middle
+for things in a 2D space.
+
+476
+00:23:09.136 --> 00:23:12.226 A:middle
+So here I'm trying to use
+the robot arm reaching
+
+477
+00:23:12.226 --> 00:23:15.346 A:middle
+for where my mouse cursor is
+pointing and I want to set
+
+478
+00:23:15.346 --> 00:23:18.226 A:middle
+up the exact the exact
+behavior of how robot will move.
+
+479
+00:23:18.576 --> 00:23:21.176 A:middle
+I imagine to do that you
+will update yourself and try
+
+480
+00:23:21.176 --> 00:23:22.146 A:middle
+to do this every frame.
+
+481
+00:23:22.146 --> 00:23:23.776 A:middle
+Okay, it's easy to move the hand
+
+482
+00:23:23.776 --> 00:23:26.026 A:middle
+and now what does the
+lower hand is going to do,
+
+483
+00:23:26.026 --> 00:23:28.006 A:middle
+followed by what the
+upper hand is going to do
+
+484
+00:23:28.006 --> 00:23:29.626 A:middle
+to provide a realistic behavior.
+
+485
+00:23:29.886 --> 00:23:32.706 A:middle
+So you can do this for arms
+and you can do this for legs.
+
+486
+00:23:33.076 --> 00:23:34.916 A:middle
+You can do it with
+blend with animation.
+
+487
+00:23:36.006 --> 00:23:39.306 A:middle
+So number 1 of using
+inverse kinematics they need
+
+488
+00:23:39.306 --> 00:23:40.436 A:middle
+to have a joint hierarchy.
+
+489
+00:23:40.546 --> 00:23:41.386 A:middle
+So for example, if you look
+
+490
+00:23:41.386 --> 00:23:44.196 A:middle
+at a robot arm it's
+a joint of 3 pieces.
+
+491
+00:23:44.496 --> 00:23:50.236 A:middle
+We start with the upper arm,
+that's the root node followed
+
+492
+00:23:50.236 --> 00:23:54.366 A:middle
+by the lower arm, which attach
+as a child to the upper arm.
+
+493
+00:23:54.456 --> 00:23:57.136 A:middle
+And then we'll have the
+claw, which is attached
+
+494
+00:23:57.136 --> 00:23:59.216 A:middle
+as a child to the lower arm.
+
+495
+00:24:00.766 --> 00:24:05.146 A:middle
+So now each of these joints to
+create realistic look I need
+
+496
+00:24:05.146 --> 00:24:06.216 A:middle
+to set up some constraint.
+
+497
+00:24:06.436 --> 00:24:10.666 A:middle
+For example, my arm, my elbow
+probably opens at 180 degrees
+
+498
+00:24:10.706 --> 00:24:13.166 A:middle
+and close at 30 and
+anything beyond
+
+499
+00:24:13.166 --> 00:24:14.506 A:middle
+that range is going to snap.
+
+500
+00:24:14.506 --> 00:24:16.616 A:middle
+I can't take it anymore.
+
+501
+00:24:17.176 --> 00:24:19.036 A:middle
+So you can set up
+that constraint
+
+502
+00:24:19.036 --> 00:24:20.706 A:middle
+for each individual
+node to create
+
+503
+00:24:20.706 --> 00:24:22.376 A:middle
+that really realistic behavior.
+
+504
+00:24:24.536 --> 00:24:26.976 A:middle
+So with SpriteKit how do
+you do inverse kinematics?
+
+505
+00:24:27.466 --> 00:24:29.166 A:middle
+How do I set up the constraint.
+
+506
+00:24:29.166 --> 00:24:31.196 A:middle
+How do I set up the
+parent-child hierarchy.
+
+507
+00:24:32.426 --> 00:24:33.516 A:middle
+You don't have to do that,
+
+508
+00:24:33.796 --> 00:24:35.746 A:middle
+because we use the
+existing scene graph
+
+509
+00:24:35.746 --> 00:24:37.836 A:middle
+that already have the
+parent-child relationship
+
+510
+00:24:38.176 --> 00:24:39.186 A:middle
+and we are good to go.
+
+511
+00:24:39.186 --> 00:24:42.476 A:middle
+The only thing you need to set
+up is setting up the constraints
+
+512
+00:24:42.476 --> 00:24:44.806 A:middle
+on how each joints
+open and close
+
+513
+00:24:44.926 --> 00:24:46.846 A:middle
+or create the realistic
+look that you want
+
+514
+00:24:47.156 --> 00:24:48.586 A:middle
+and would provide actions
+
+515
+00:24:48.636 --> 00:24:50.606 A:middle
+to drive these constraints
+of the chain.
+
+516
+00:24:51.496 --> 00:24:53.696 A:middle
+So the joints rotates
+around its anchor point.
+
+517
+00:24:53.936 --> 00:24:56.446 A:middle
+So by default the anchor
+point is at .5 and .5
+
+518
+00:24:56.446 --> 00:24:58.606 A:middle
+and that's not really
+realistic for my shoulder.
+
+519
+00:24:58.766 --> 00:25:02.976 A:middle
+Probably set it to
+0.5 or 0 and 0.5.
+
+520
+00:25:04.556 --> 00:25:07.616 A:middle
+So the constraint that we set is
+called SKReachConstraint object.
+
+521
+00:25:07.796 --> 00:25:10.256 A:middle
+It simply have to 2 properties;
+the lower angle limit
+
+522
+00:25:10.256 --> 00:25:11.476 A:middle
+and upper angle limit.
+
+523
+00:25:11.926 --> 00:25:15.966 A:middle
+Once you have these angles
+specified you can attach
+
+524
+00:25:16.226 --> 00:25:18.646 A:middle
+that to any of the SKNode
+that's in the scene.
+
+525
+00:25:19.266 --> 00:25:21.896 A:middle
+And now you have perfectly
+working joint hierarchy.
+
+526
+00:25:22.376 --> 00:25:24.116 A:middle
+How do I drive it?
+
+527
+00:25:24.766 --> 00:25:27.256 A:middle
+To drive it would
+provide SKActions.
+
+528
+00:25:27.426 --> 00:25:30.926 A:middle
+We have 2 variants,
+reachToNode and reachToPosition.
+
+529
+00:25:31.326 --> 00:25:33.786 A:middle
+So, if you want to
+reach to a moving target
+
+530
+00:25:33.786 --> 00:25:35.486 A:middle
+or any stationary position
+
+531
+00:25:35.486 --> 00:25:37.196 A:middle
+within the scene
+you can use either
+
+532
+00:25:37.246 --> 00:25:39.806 A:middle
+of the variants that's
+being specified.
+
+533
+00:25:40.226 --> 00:25:44.306 A:middle
+So, here I have a quick
+example of 1 liner writing,
+
+534
+00:25:44.486 --> 00:25:47.506 A:middle
+running the SKAction of
+reaching a constraint.
+
+535
+00:25:47.506 --> 00:25:51.856 A:middle
+So here we have a simple
+4, 3 joint constraint.
+
+536
+00:25:51.856 --> 00:25:52.746 A:middle
+I use constraint.
+
+537
+00:25:52.846 --> 00:25:55.116 A:middle
+Each joint will have a
+constraint of opening
+
+538
+00:25:55.116 --> 00:25:56.676 A:middle
+from 0 to 180 degrees.
+
+539
+00:25:57.036 --> 00:25:59.776 A:middle
+As you can see when the mouse
+moves it actually obeys the
+
+540
+00:25:59.776 --> 00:26:03.386 A:middle
+constraint and tries not to over
+bend and but it really give you
+
+541
+00:26:03.386 --> 00:26:06.946 A:middle
+that realistic look of
+mechanical bell mechanical AI.
+
+542
+00:26:07.496 --> 00:26:14.406 A:middle
+And now we also take the same
+inverse kinematics solver to 3D.
+
+543
+00:26:14.656 --> 00:26:16.376 A:middle
+It's much, much more interesting
+
+544
+00:26:16.376 --> 00:26:18.856 A:middle
+but it's also very
+closely implemented just
+
+545
+00:26:18.856 --> 00:26:20.446 A:middle
+like this SpriteKit API.
+
+546
+00:26:20.646 --> 00:26:22.716 A:middle
+So you have SK as
+seen in IKConstraint
+
+547
+00:26:23.246 --> 00:26:26.606 A:middle
+and each node has a
+SKConstraints array
+
+548
+00:26:26.606 --> 00:26:27.876 A:middle
+that you set these
+constraints on.
+
+549
+00:26:28.136 --> 00:26:30.376 A:middle
+Also you have animation
+influenceFactor.
+
+550
+00:26:30.546 --> 00:26:32.716 A:middle
+So here just give
+you a quick demo.
+
+551
+00:26:33.186 --> 00:26:37.396 A:middle
+You have a 3D scene with a
+3D character playing a punch
+
+552
+00:26:37.396 --> 00:26:39.696 A:middle
+animation, nothing,
+nothing else is running.
+
+553
+00:26:40.836 --> 00:26:46.816 A:middle
+But now with IK running
+I can blend it on top
+
+554
+00:26:46.816 --> 00:26:50.066 A:middle
+of the animation playback
+at 60 frames per second,
+
+555
+00:26:50.426 --> 00:26:53.416 A:middle
+making the sure the hand is
+always punching at a red target.
+
+556
+00:26:53.846 --> 00:26:57.036 A:middle
+So now imagine the possibility
+of I'm building a tennis game.
+
+557
+00:26:57.356 --> 00:26:59.606 A:middle
+All I now need is to animations.
+
+558
+00:26:59.606 --> 00:27:01.886 A:middle
+One is the back paddle
+and forward paddle,
+
+559
+00:27:02.196 --> 00:27:05.746 A:middle
+everything else I will let IK
+take care of it so I don't have
+
+560
+00:27:05.746 --> 00:27:08.286 A:middle
+to build an infinite number
+of animation combinations
+
+561
+00:27:08.316 --> 00:27:10.776 A:middle
+for the game to also
+have the realistic look.
+
+562
+00:27:11.666 --> 00:27:14.836 A:middle
+So this really opened up
+a lot of opportunities.
+
+563
+00:27:15.276 --> 00:27:18.186 A:middle
+So, in summary, inverse
+kinematics is really easy
+
+564
+00:27:18.186 --> 00:27:18.596 A:middle
+to use.
+
+565
+00:27:18.596 --> 00:27:19.936 A:middle
+You don't even need
+to set it up.
+
+566
+00:27:19.936 --> 00:27:21.876 A:middle
+The scene graph will
+take care of it.
+
+567
+00:27:21.876 --> 00:27:24.236 A:middle
+And the constraints can be set
+
+568
+00:27:24.236 --> 00:27:25.786 A:middle
+on every single joint
+that you have.
+
+569
+00:27:25.786 --> 00:27:27.866 A:middle
+You can control the
+opening and closing angle
+
+570
+00:27:28.276 --> 00:27:31.946 A:middle
+and to drive these chains you
+just run a single action 1 liner
+
+571
+00:27:32.226 --> 00:27:35.456 A:middle
+and tell the joint to reach
+out for a position or a node.
+
+572
+00:27:35.876 --> 00:27:40.236 A:middle
+Next, I want to talk
+about physics fields.
+
+573
+00:27:41.886 --> 00:27:45.546 A:middle
+Now physics fields are
+a type of field forces
+
+574
+00:27:45.856 --> 00:27:48.066 A:middle
+that apply the generated forces
+
+575
+00:27:48.406 --> 00:27:50.696 A:middle
+to the object that's
+being part of the scene.
+
+576
+00:27:51.176 --> 00:27:54.696 A:middle
+So here, I'm having a space
+cannon launching off cannonballs
+
+577
+00:27:55.286 --> 00:27:59.506 A:middle
+that interact with 2
+different radio gravity fields.
+
+578
+00:28:00.296 --> 00:28:04.016 A:middle
+As you can see, as the
+cannonballs gets closer
+
+579
+00:28:05.456 --> 00:28:09.386 A:middle
+to the planet the linear
+acceleration gets converted
+
+580
+00:28:09.386 --> 00:28:12.776 A:middle
+into angular velocity and
+start orbiting the planet
+
+581
+00:28:12.776 --> 00:28:13.416 A:middle
+or shoots out.
+
+582
+00:28:15.456 --> 00:28:16.806 A:middle
+So, we use the fields
+
+583
+00:28:16.806 --> 00:28:21.946 A:middle
+to simulate any physical field
+forces and fields can interact
+
+584
+00:28:21.946 --> 00:28:23.716 A:middle
+with the physics bodies
+that's in the region.
+
+585
+00:28:23.896 --> 00:28:25.516 A:middle
+And the region is the place
+
+586
+00:28:25.516 --> 00:28:27.856 A:middle
+where we define the
+field effect areas.
+
+587
+00:28:28.516 --> 00:28:31.146 A:middle
+And we have a lot of different
+fields that's provided
+
+588
+00:28:31.146 --> 00:28:32.096 A:middle
+as this release.
+
+589
+00:28:32.596 --> 00:28:33.596 A:middle
+There's about 10 of them.
+
+590
+00:28:34.956 --> 00:28:38.396 A:middle
+So, when those fields get
+updated so number 1 I need
+
+591
+00:28:38.396 --> 00:28:40.466 A:middle
+to have field nodes
+in the scene graph.
+
+592
+00:28:40.566 --> 00:28:42.136 A:middle
+They are just like any SKNode.
+
+593
+00:28:42.136 --> 00:28:43.396 A:middle
+You can add them to a scene.
+
+594
+00:28:43.806 --> 00:28:45.626 A:middle
+You can run action
+on them as well.
+
+595
+00:28:45.976 --> 00:28:48.396 A:middle
+You can parent it to
+another sprite so if you want
+
+596
+00:28:48.396 --> 00:28:53.126 A:middle
+to have a really big
+cookie planet you can add a
+
+597
+00:28:53.316 --> 00:28:56.066 A:middle
+radial-gravity field as a child
+and move that cookie planet
+
+598
+00:28:56.066 --> 00:28:58.746 A:middle
+around and then the field
+is going to follow it.
+
+599
+00:28:58.746 --> 00:29:01.336 A:middle
+And if there are physics
+bodies that's located
+
+600
+00:29:01.336 --> 00:29:05.056 A:middle
+within this region and the
+bitMask matches the interaction
+
+601
+00:29:05.056 --> 00:29:05.766 A:middle
+will start happening.
+
+602
+00:29:05.926 --> 00:29:10.286 A:middle
+Now, the control fields, fields
+will provide a lot of parameters
+
+603
+00:29:10.286 --> 00:29:12.556 A:middle
+that will allow you
+to get the exact look
+
+604
+00:29:12.556 --> 00:29:14.676 A:middle
+and different interactions
+that you want.
+
+605
+00:29:15.066 --> 00:29:16.636 A:middle
+You can control number 1 region.
+
+606
+00:29:16.916 --> 00:29:22.106 A:middle
+That's the area of effect of how
+big of the area I want the field
+
+607
+00:29:22.106 --> 00:29:23.556 A:middle
+to interact with [inaudible].
+
+608
+00:29:24.376 --> 00:29:29.236 A:middle
+Now, the strength in combination
+of falloff controls what's the
+
+609
+00:29:29.236 --> 00:29:31.796 A:middle
+of magnitude of force
+that's being applied
+
+610
+00:29:31.796 --> 00:29:33.866 A:middle
+to each individual object
+that's in the field.
+
+611
+00:29:34.536 --> 00:29:36.966 A:middle
+And minimal radius is
+just a clamp radius
+
+612
+00:29:37.516 --> 00:29:40.636 A:middle
+and bitMask can be
+used to differentiate
+
+613
+00:29:40.636 --> 00:29:43.996 A:middle
+which physics body you want to
+interact with this field or not.
+
+614
+00:29:45.266 --> 00:29:47.016 A:middle
+Now, let's look at the regions.
+
+615
+00:29:47.566 --> 00:29:49.866 A:middle
+The SKRegions define
+the area of effect
+
+616
+00:29:49.866 --> 00:29:51.216 A:middle
+for this particular field.
+
+617
+00:29:51.626 --> 00:29:54.926 A:middle
+The region defines
+this area in 2D space.
+
+618
+00:29:55.276 --> 00:29:58.616 A:middle
+By default it is infinite and
+you can create a rectangle,
+
+619
+00:29:58.616 --> 00:30:00.986 A:middle
+circle or even create
+a region from CGPath.
+
+620
+00:30:01.396 --> 00:30:05.306 A:middle
+You can do a lot of complicated
+operations on them like invert,
+
+621
+00:30:05.306 --> 00:30:06.976 A:middle
+subtract, union and intersect.
+
+622
+00:30:07.686 --> 00:30:10.476 A:middle
+So for example, here I'm
+if building Earth here
+
+623
+00:30:10.476 --> 00:30:12.736 A:middle
+and the radial-gravity
+around the Earth
+
+624
+00:30:12.736 --> 00:30:15.496 A:middle
+as you can see is pulling
+everything towards the center.
+
+625
+00:30:15.676 --> 00:30:21.436 A:middle
+So, in addition to physics
+bodies fields can also interact
+
+626
+00:30:21.436 --> 00:30:23.596 A:middle
+with SpriteKit particle effects.
+
+627
+00:30:24.226 --> 00:30:26.446 A:middle
+So, as long as you
+set the fieldBitMask
+
+628
+00:30:26.446 --> 00:30:30.446 A:middle
+on the particle effects every
+single emitted object particles
+
+629
+00:30:30.446 --> 00:30:31.506 A:middle
+can interact with the field.
+
+630
+00:30:31.506 --> 00:30:32.966 A:middle
+So, here we have a noise field
+
+631
+00:30:32.966 --> 00:30:35.386 A:middle
+that apply a coherent
+noise force to each
+
+632
+00:30:35.386 --> 00:30:36.486 A:middle
+of the emitted particles.
+
+633
+00:30:36.486 --> 00:30:39.776 A:middle
+Now, let's look at some
+
+634
+00:30:39.776 --> 00:30:41.876 A:middle
+of the basic fields
+that's being provided
+
+635
+00:30:41.876 --> 00:30:44.436 A:middle
+so everyone can get a feeling
+
+636
+00:30:44.436 --> 00:30:47.586 A:middle
+of what fields are
+really looking like.
+
+637
+00:30:48.286 --> 00:30:50.936 A:middle
+So, by default we provide the
+base linear gravity field.
+
+638
+00:30:50.936 --> 00:30:53.776 A:middle
+This is just to simulate
+Earth's gravity in one dimension
+
+639
+00:30:53.776 --> 00:30:56.566 A:middle
+and you can change the direction
+at any time or if you go
+
+640
+00:30:56.566 --> 00:31:00.186 A:middle
+up it will attract the object
+at the correct location.
+
+641
+00:31:01.296 --> 00:31:02.416 A:middle
+And second, if I want
+
+642
+00:31:02.416 --> 00:31:06.476 A:middle
+to simulate a space game have
+a planetarium gravity effect we
+
+643
+00:31:06.476 --> 00:31:10.196 A:middle
+have the radial gravity
+field you can use.
+
+644
+00:31:10.196 --> 00:31:13.196 A:middle
+For example, here the object
+carries a linear velocity,
+
+645
+00:31:13.196 --> 00:31:14.516 A:middle
+but when it reach close
+
+646
+00:31:14.516 --> 00:31:18.806 A:middle
+to the orbit the linear gravity
+converting into angular velocity
+
+647
+00:31:18.806 --> 00:31:23.676 A:middle
+so the object actually
+orient around the planet.
+
+648
+00:31:24.176 --> 00:31:25.786 A:middle
+We also have a spring field.
+
+649
+00:31:25.976 --> 00:31:27.456 A:middle
+This is the imaginary field
+
+650
+00:31:27.456 --> 00:31:30.136 A:middle
+as it's imagining every
+single object in the scene,
+
+651
+00:31:30.356 --> 00:31:33.276 A:middle
+in the field actually have
+a spring hook from one end
+
+652
+00:31:33.276 --> 00:31:34.396 A:middle
+and attach to the node.
+
+653
+00:31:34.776 --> 00:31:37.446 A:middle
+So, here you can see they're
+being oscillated back and forth.
+
+654
+00:31:40.006 --> 00:31:41.586 A:middle
+And we also have noise fields
+
+655
+00:31:41.796 --> 00:31:44.836 A:middle
+that apply a coherent
+noise force
+
+656
+00:31:45.446 --> 00:31:47.976 A:middle
+to every single object that's
+being participated in the scene.
+
+657
+00:31:53.236 --> 00:31:55.886 A:middle
+And electric fields
+are particularly cool.
+
+658
+00:31:56.046 --> 00:31:59.736 A:middle
+So, imagine each of the objects
+have charges, positive charges
+
+659
+00:31:59.736 --> 00:32:04.266 A:middle
+and negative charges and here
+we have an electric field
+
+660
+00:32:04.266 --> 00:32:06.146 A:middle
+that carries positive charges.
+
+661
+00:32:06.316 --> 00:32:10.676 A:middle
+And positive charge attracts
+objects with negative charges
+
+662
+00:32:10.676 --> 00:32:14.136 A:middle
+and repel objects
+with the same charge.
+
+663
+00:32:14.246 --> 00:32:18.096 A:middle
+So, here the red particles
+or red cannons actually
+
+664
+00:32:18.606 --> 00:32:21.506 A:middle
+that when they carry positive
+charge they get repelled away.
+
+665
+00:32:21.726 --> 00:32:23.856 A:middle
+And the green ones
+carries a negative charge
+
+666
+00:32:24.086 --> 00:32:27.766 A:middle
+and being attract and interact
+with the electric field.
+
+667
+00:32:28.516 --> 00:32:31.356 A:middle
+So, fields we provide
+physics fields
+
+668
+00:32:31.356 --> 00:32:33.256 A:middle
+as building blocks
+as like Legos.
+
+669
+00:32:33.256 --> 00:32:36.446 A:middle
+Feel free to interact
+with them and build,
+
+670
+00:32:36.896 --> 00:32:37.836 A:middle
+combine them together.
+
+671
+00:32:38.106 --> 00:32:40.576 A:middle
+So, you can combine
+them together
+
+672
+00:32:40.576 --> 00:32:43.816 A:middle
+to have big building blocks and
+each of the fields can interact
+
+673
+00:32:43.816 --> 00:32:44.766 A:middle
+with different fields.
+
+674
+00:32:45.256 --> 00:32:49.166 A:middle
+So for example, if I want
+to implement one variation
+
+675
+00:32:49.166 --> 00:32:54.426 A:middle
+of the Lorenz attractor I can
+simply have 4 magnetic fields
+
+676
+00:32:54.426 --> 00:32:57.086 A:middle
+sitting right by each
+other with opposite charge.
+
+677
+00:32:57.476 --> 00:33:02.156 A:middle
+And what happens if I sent
+particles through the field?
+
+678
+00:33:02.726 --> 00:33:09.136 A:middle
+So, that's what it looks
+like so, which is very cool.
+
+679
+00:33:10.116 --> 00:33:12.896 A:middle
+So, in summary the
+fields are very fast,
+
+680
+00:33:13.186 --> 00:33:14.346 A:middle
+they're very efficient.
+
+681
+00:33:14.636 --> 00:33:16.506 A:middle
+We have a brand new
+implementation for --
+
+682
+00:33:16.936 --> 00:33:18.916 A:middle
+and we actually have a lot of --
+
+683
+00:33:18.916 --> 00:33:21.346 A:middle
+spend a lot of optimization
+effort on this feature.
+
+684
+00:33:21.906 --> 00:33:24.796 A:middle
+And you can use fields to
+interact either physics bodies
+
+685
+00:33:24.796 --> 00:33:28.746 A:middle
+or particles to have that really
+fun interaction experience
+
+686
+00:33:28.746 --> 00:33:29.346 A:middle
+for the user.
+
+687
+00:33:29.866 --> 00:33:32.956 A:middle
+And you can also use fields
+to interact with other field
+
+688
+00:33:32.956 --> 00:33:34.556 A:middle
+to have a combined effect.
+
+689
+00:33:35.486 --> 00:33:37.786 A:middle
+Next, I want to talk about
+integration with SceneKit.
+
+690
+00:33:38.506 --> 00:33:41.066 A:middle
+We work really closely
+together with the SceneKit team
+
+691
+00:33:41.066 --> 00:33:43.186 A:middle
+to make sure we have the
+best possible experience
+
+692
+00:33:43.476 --> 00:33:45.796 A:middle
+for bringing 3D content
+into 2D games.
+
+693
+00:33:46.456 --> 00:33:47.566 A:middle
+So, here we have a demo.
+
+694
+00:33:47.566 --> 00:33:51.616 A:middle
+The spaceship is in 3D,
+object that's in a 2D and same
+
+695
+00:33:51.966 --> 00:33:56.696 A:middle
+as the asteroid that's in
+the 3D object but we'll bring
+
+696
+00:33:56.836 --> 00:34:00.556 A:middle
+into the 2D background.
+
+697
+00:34:01.046 --> 00:34:03.846 A:middle
+So, the integration
+brings new possibilities
+
+698
+00:34:03.846 --> 00:34:08.676 A:middle
+to developing 2D games so we
+can now officially include 3D
+
+699
+00:34:08.676 --> 00:34:10.156 A:middle
+content into SpriteKit games.
+
+700
+00:34:10.596 --> 00:34:13.116 A:middle
+You can control any
+of the 3D objects just
+
+701
+00:34:13.116 --> 00:34:14.746 A:middle
+like any other SKNode.
+
+702
+00:34:14.746 --> 00:34:15.866 A:middle
+You can run action on it.
+
+703
+00:34:15.866 --> 00:34:16.775 A:middle
+You can run scale.
+
+704
+00:34:17.056 --> 00:34:20.596 A:middle
+You can make it follow paths or
+even make any 3D manipulations.
+
+705
+00:34:22.735 --> 00:34:25.666 A:middle
+It's deeply integrated
+of the 2 frameworks.
+
+706
+00:34:25.666 --> 00:34:27.196 A:middle
+Yea, it would remain
+loosely coupled
+
+707
+00:34:27.196 --> 00:34:30.956 A:middle
+as 2 independent solutions
+for the game developers.
+
+708
+00:34:31.266 --> 00:34:33.496 A:middle
+So, it is rendered very
+efficiently together,
+
+709
+00:34:33.496 --> 00:34:36.196 A:middle
+SceneKit is rendering directly
+into the OpenGL content.
+
+710
+00:34:36.196 --> 00:34:38.386 A:middle
+We're not passing -- we're
+not rendering to texture
+
+711
+00:34:38.386 --> 00:34:40.366 A:middle
+and then passing texture around
+between the 2 frameworks.
+
+712
+00:34:40.746 --> 00:34:43.045 A:middle
+This is a very efficient
+solution.
+
+713
+00:34:43.926 --> 00:34:48.005 A:middle
+So, to bring 3D content into
+2D based games we create
+
+714
+00:34:48.005 --> 00:34:49.226 A:middle
+an SK3DNode.
+
+715
+00:34:49.516 --> 00:34:51.235 A:middle
+It is the toll free
+bridge allowing you
+
+716
+00:34:51.235 --> 00:34:54.096 A:middle
+to incorporate any 3D content
+into SpriteKit based games.
+
+717
+00:34:55.036 --> 00:34:59.536 A:middle
+So, once you have SK3DNode you
+can attach any of the scnScenes
+
+718
+00:34:59.696 --> 00:35:03.876 A:middle
+to this SK3DNode in order for
+it to render in this SKScene.
+
+719
+00:35:04.656 --> 00:35:07.626 A:middle
+And once you have the scnScene
+you can set the scnScene
+
+720
+00:35:07.626 --> 00:35:11.246 A:middle
+property on an SK3DNode and they
+will start using this SceneKit
+
+721
+00:35:11.246 --> 00:35:15.026 A:middle
+render in our render path.
+
+722
+00:35:15.506 --> 00:35:17.366 A:middle
+So, how do we create
+an SK3DNode?
+
+723
+00:35:17.476 --> 00:35:19.976 A:middle
+And we have the initializer
+create a scnNodeWith
+
+724
+00:35:19.976 --> 00:35:22.566 A:middle
+ViewportSize, you
+specify a static size.
+
+725
+00:35:23.016 --> 00:35:25.676 A:middle
+You can attach any of the
+scnScene and SceneKit scenes
+
+726
+00:35:25.676 --> 00:35:28.326 A:middle
+or SceneKit object through
+the scnScene property.
+
+727
+00:35:30.076 --> 00:35:33.576 A:middle
+You also have access to SCNNode,
+which gives you the point
+
+728
+00:35:33.576 --> 00:35:36.646 A:middle
+of view of where the default
+camera or if there is a camera
+
+729
+00:35:36.976 --> 00:35:39.076 A:middle
+where is the pointer -- where
+is the camera looking at,
+
+730
+00:35:39.076 --> 00:35:39.936 A:middle
+at the current scene.
+
+731
+00:35:40.576 --> 00:35:43.376 A:middle
+And if the scene doesn't have
+any lighting you can use 1 line
+
+732
+00:35:43.376 --> 00:35:45.886 A:middle
+or automatic -- autoenable
+DefaultLighting
+
+733
+00:35:45.886 --> 00:35:48.256 A:middle
+that will turn on-- add a
+default light to the scene
+
+734
+00:35:48.256 --> 00:35:50.026 A:middle
+so all the objects
+are properly lit.
+
+735
+00:35:51.676 --> 00:35:52.746 A:middle
+So, here is a quick example,
+
+736
+00:35:52.886 --> 00:35:54.866 A:middle
+which is called SK3DNode
+initialize
+
+737
+00:35:54.896 --> 00:35:56.016 A:middle
+with a default viewport.
+
+738
+00:35:56.906 --> 00:36:02.526 A:middle
+Load scnScene and set the scene
+and add it to the SKScene.
+
+739
+00:36:02.526 --> 00:36:05.506 A:middle
+Now, the 3D alien object
+is going to appear.
+
+740
+00:36:05.696 --> 00:36:09.346 A:middle
+Now, the integration
+also goes both ways.
+
+741
+00:36:09.636 --> 00:36:13.026 A:middle
+SpriteKit now powers all the
+texture needs for SceneKit
+
+742
+00:36:13.026 --> 00:36:16.256 A:middle
+as well as sounds so you can
+use SpriteKit texture object
+
+743
+00:36:16.326 --> 00:36:18.816 A:middle
+directly on SceneKit,
+that including all
+
+744
+00:36:18.816 --> 00:36:20.826 A:middle
+of the tools we built
+from the last version,
+
+745
+00:36:21.136 --> 00:36:23.676 A:middle
+which is the automatic
+TextureAtlas generation
+
+746
+00:36:23.676 --> 00:36:25.326 A:middle
+within Xcode as well
+
+747
+00:36:25.326 --> 00:36:27.636 A:middle
+as the procedurally
+generated normal map.
+
+748
+00:36:27.636 --> 00:36:30.386 A:middle
+So, you can automatically
+generate a normal map,
+
+749
+00:36:30.746 --> 00:36:33.506 A:middle
+put it on any 3D object and
+the effect looks really,
+
+750
+00:36:33.506 --> 00:36:35.676 A:middle
+really cool as SpriteKit
+
+751
+00:36:35.676 --> 00:36:38.286 A:middle
+and SceneKit also share the
+same audio playback interface.
+
+752
+00:36:38.906 --> 00:36:43.696 A:middle
+So, having the integration
+within the 2 frameworks really,
+
+753
+00:36:43.696 --> 00:36:45.766 A:middle
+really add a lot of
+possibilities here.
+
+754
+00:36:45.766 --> 00:36:49.126 A:middle
+You can have another level
+of interaction with you user,
+
+755
+00:36:49.126 --> 00:36:51.726 A:middle
+for example, have a constant
+background of 3D and all
+
+756
+00:36:51.726 --> 00:36:54.296 A:middle
+of the sudden you see a 3D
+object flying out of the screen.
+
+757
+00:36:54.656 --> 00:36:58.756 A:middle
+It's actually making the user
+having a third perspective
+
+758
+00:36:59.196 --> 00:37:00.376 A:middle
+of what a game looks like.
+
+759
+00:37:01.346 --> 00:37:03.786 A:middle
+Lastly, I want to
+talk about tools here.
+
+760
+00:37:03.906 --> 00:37:09.006 A:middle
+So, for Xcode 6 we have released
+a brand new SpriteKit editor.
+
+761
+00:37:10.086 --> 00:37:14.116 A:middle
+It is part of Xcode release and
+you can use it to create any
+
+762
+00:37:14.116 --> 00:37:16.186 A:middle
+of the game scenes
+without writing any code.
+
+763
+00:37:16.596 --> 00:37:19.246 A:middle
+You can also use it to interact
+any of the SpriteKit features.
+
+764
+00:37:20.376 --> 00:37:24.936 A:middle
+In a nutshell everything you
+have seen here today can be done
+
+765
+00:37:24.936 --> 00:37:26.056 A:middle
+inside of SpriteKit Editor
+
+766
+00:37:26.056 --> 00:37:28.066 A:middle
+without writing any
+lines of code.
+
+767
+00:37:28.576 --> 00:37:33.586 A:middle
+It also enables you to
+write the data driven model.
+
+768
+00:37:34.256 --> 00:37:37.096 A:middle
+Writing games usually
+deals with a lot of data.
+
+769
+00:37:37.836 --> 00:37:40.486 A:middle
+And we want to shift
+the focus from focusing
+
+770
+00:37:40.486 --> 00:37:44.266 A:middle
+on designing one level rather
+than have a generic approach
+
+771
+00:37:44.526 --> 00:37:46.206 A:middle
+of data oriented
+programming model.
+
+772
+00:37:46.616 --> 00:37:49.766 A:middle
+So, now with SpriteKit Editor
+we actually separate the game
+
+773
+00:37:49.766 --> 00:37:51.286 A:middle
+content from the game logic.
+
+774
+00:37:51.666 --> 00:37:54.416 A:middle
+So, you no longer have to
+manually add a spaceship,
+
+775
+00:37:55.186 --> 00:37:58.166 A:middle
+set a degree at 10-10 and
+launch the game, recompile it
+
+776
+00:37:58.166 --> 00:38:01.106 A:middle
+and launch the game and
+I'm about five pixels off.
+
+777
+00:38:01.106 --> 00:38:04.516 A:middle
+Maybe I'll add 5 pixels and
+it takes all the guessing work
+
+778
+00:38:04.586 --> 00:38:06.056 A:middle
+out of your iteration process.
+
+779
+00:38:06.296 --> 00:38:10.516 A:middle
+And we also provide
+simplified game templates that's
+
+780
+00:38:10.516 --> 00:38:12.776 A:middle
+in both Swift and Objective-C.
+
+781
+00:38:13.376 --> 00:38:15.636 A:middle
+So, out of the box
+you are good to go
+
+782
+00:38:15.636 --> 00:38:18.816 A:middle
+and have a brand new scene
+created for you and ready
+
+783
+00:38:18.816 --> 00:38:20.966 A:middle
+for drag and drop and
+play create your level
+
+784
+00:38:21.256 --> 00:38:24.126 A:middle
+and making sure your game
+is running on day one.
+
+785
+00:38:25.266 --> 00:38:28.546 A:middle
+Not only you can use
+SpriteKit Editor as an editor,
+
+786
+00:38:28.546 --> 00:38:30.486 A:middle
+you can use it as
+a debugger as well.
+
+787
+00:38:31.006 --> 00:38:33.926 A:middle
+So, if you're in the middle
+of running your scene one
+
+788
+00:38:33.926 --> 00:38:37.806 A:middle
+of your ships becomes missing
+you can use this 1 line of code
+
+789
+00:38:37.806 --> 00:38:40.956 A:middle
+and just type that in a
+debugger, you get an SKS file.
+
+790
+00:38:41.046 --> 00:38:43.506 A:middle
+And guess what, you can
+load that back into Xcode
+
+791
+00:38:43.506 --> 00:38:46.576 A:middle
+and see what's going on for that
+scene and you track back exactly
+
+792
+00:38:46.576 --> 00:38:47.606 A:middle
+where the scene hierarchy is.
+
+793
+00:38:48.266 --> 00:38:51.216 A:middle
+So, in the case of say if
+the spaceship got hidden,
+
+794
+00:38:51.216 --> 00:38:53.666 A:middle
+because of the Z order
+you can totally see
+
+795
+00:38:53.666 --> 00:38:54.956 A:middle
+that within the Xcode.
+
+796
+00:38:55.756 --> 00:38:59.066 A:middle
+And if you have an existing
+game that's not even written
+
+797
+00:38:59.066 --> 00:39:01.536 A:middle
+for data oriented programming
+you can use the same line
+
+798
+00:39:01.536 --> 00:39:02.906 A:middle
+of code to serialize it out.
+
+799
+00:39:02.906 --> 00:39:04.506 A:middle
+And if you need to retouch
+
+800
+00:39:05.266 --> 00:39:10.076 A:middle
+or adding new features dragging
+new Xcode in use the editor
+
+801
+00:39:10.076 --> 00:39:11.296 A:middle
+and add new features in.
+
+802
+00:39:11.466 --> 00:39:12.306 A:middle
+They are ready to go.
+
+803
+00:39:13.246 --> 00:39:14.886 A:middle
+So, some of the basic
+features that we provide
+
+804
+00:39:14.886 --> 00:39:16.266 A:middle
+for the SpriteKit
+Editor allow you
+
+805
+00:39:16.266 --> 00:39:18.556 A:middle
+to do basic object
+manipulation and placement,
+
+806
+00:39:18.556 --> 00:39:21.916 A:middle
+they include position,
+orientation and scale.
+
+807
+00:39:22.416 --> 00:39:25.646 A:middle
+You can set up a physics bodies,
+bonding box, bonding circles
+
+808
+00:39:25.646 --> 00:39:28.286 A:middle
+or even the brand new
+per-pixel physics set up.
+
+809
+00:39:28.686 --> 00:39:31.976 A:middle
+You can bring in 3D content
+from [inaudible] directly
+
+810
+00:39:31.976 --> 00:39:34.446 A:middle
+into a 2D scene and save
+it and load it in game
+
+811
+00:39:34.726 --> 00:39:36.586 A:middle
+and see the 3D object
+and it's ready for --
+
+812
+00:39:36.856 --> 00:39:37.996 A:middle
+ready to be manipulated.
+
+813
+00:39:38.596 --> 00:39:40.036 A:middle
+And we can set up shadows
+
+814
+00:39:40.306 --> 00:39:43.586 A:middle
+and lighting effects,
+inverse kinematics.
+
+815
+00:39:43.976 --> 00:39:46.606 A:middle
+You can set up an inverse
+kinematic joint hierarchy right
+
+816
+00:39:46.606 --> 00:39:49.766 A:middle
+inside of Xcode and preview
+that effect right here.
+
+817
+00:39:50.256 --> 00:39:53.066 A:middle
+We also provide an integrated
+shader editor allowing you
+
+818
+00:39:53.066 --> 00:39:57.356 A:middle
+to have a WYSIWYG effect
+of editing your shaders
+
+819
+00:39:57.356 --> 00:39:58.756 A:middle
+and tuning your shader uniforms.
+
+820
+00:39:59.546 --> 00:40:01.436 A:middle
+So, I'm going to give
+you a quick demo.
+
+821
+00:40:02.346 --> 00:40:03.666 A:middle
+So, from Monday's talk,
+
+822
+00:40:03.866 --> 00:40:05.926 A:middle
+the State of the Union demo
+hopefully you have seen how
+
+823
+00:40:05.926 --> 00:40:08.096 A:middle
+to use SpriteKit Editor
+to create physics bodies,
+
+824
+00:40:08.486 --> 00:40:12.526 A:middle
+set up per pixel physics
+collusions and also interact
+
+825
+00:40:12.526 --> 00:40:13.936 A:middle
+with field forces
+and 3D objects.
+
+826
+00:40:14.106 --> 00:40:17.276 A:middle
+So, today the topic that
+I'm going to cover is how
+
+827
+00:40:17.276 --> 00:40:19.996 A:middle
+to use SpriteKit
+Editor to set up lights
+
+828
+00:40:20.286 --> 00:40:23.066 A:middle
+and shadows using
+inverse kinematics and how
+
+829
+00:40:23.066 --> 00:40:24.586 A:middle
+to use the building
+shader editor
+
+830
+00:40:24.586 --> 00:40:25.976 A:middle
+to quickly iterate your shaders.
+
+831
+00:40:26.296 --> 00:40:27.126 A:middle
+So, let's have a look.
+
+832
+00:40:28.196 --> 00:40:31.606 A:middle
+So, here we have a brand
+new lighting scene.
+
+833
+00:40:31.856 --> 00:40:35.506 A:middle
+So, nothing is in
+here and ready to go.
+
+834
+00:40:36.006 --> 00:40:39.346 A:middle
+If you click in the object
+library this gives you any
+
+835
+00:40:39.346 --> 00:40:41.556 A:middle
+existing textures that's
+in a current project.
+
+836
+00:40:41.686 --> 00:40:43.306 A:middle
+So, if I just drag
+in a cobblestone
+
+837
+00:40:44.066 --> 00:40:46.246 A:middle
+and I can make it
+slightly bigger.
+
+838
+00:40:47.416 --> 00:40:50.776 A:middle
+And to see any of the SpriteKit
+widget you just open the object
+
+839
+00:40:50.776 --> 00:40:52.196 A:middle
+library and because we're adding
+
+840
+00:40:52.196 --> 00:40:54.076 A:middle
+in a SpriteKit scene
+its content sensitive.
+
+841
+00:40:54.076 --> 00:40:56.796 A:middle
+It knows these are the
+SpriteKit object that's relevant
+
+842
+00:40:56.796 --> 00:40:59.016 A:middle
+for this editing experience.
+
+843
+00:40:59.356 --> 00:41:00.596 A:middle
+And now let's drag a light in.
+
+844
+00:41:01.086 --> 00:41:04.056 A:middle
+It doesn't do quite what I want
+yet, because it hasn't lit yet.
+
+845
+00:41:04.406 --> 00:41:07.706 A:middle
+As you can see the lighting
+mask that we have on the sprite
+
+846
+00:41:07.706 --> 00:41:09.556 A:middle
+or on the cobblestone
+is not set.
+
+847
+00:41:09.626 --> 00:41:12.586 A:middle
+So, here if we set it to be
+one we you see that right away,
+
+848
+00:41:13.166 --> 00:41:14.856 A:middle
+no code of writing, nothing.
+
+849
+00:41:15.096 --> 00:41:17.486 A:middle
+So, if you save this file,
+load it in your scene,
+
+850
+00:41:18.016 --> 00:41:19.486 A:middle
+this is exactly what
+you're going to get,
+
+851
+00:41:19.486 --> 00:41:22.306 A:middle
+because SpriteKit Editor
+actually uses SpriteKit writing
+
+852
+00:41:22.306 --> 00:41:23.046 A:middle
+instead of Xcode.
+
+853
+00:41:24.356 --> 00:41:27.366 A:middle
+So, now we can move the scene
+around, move the light around.
+
+854
+00:41:27.646 --> 00:41:28.676 A:middle
+You can see different effects.
+
+855
+00:41:29.286 --> 00:41:31.826 A:middle
+And now it's kind of
+2D-ish and blandish.
+
+856
+00:41:32.456 --> 00:41:34.016 A:middle
+Maybe we can change the texture
+
+857
+00:41:34.076 --> 00:41:36.376 A:middle
+so we can automatically generate
+a normal map on the fly.
+
+858
+00:41:36.886 --> 00:41:39.136 A:middle
+Say if I want to make
+stone a little bit sharp,
+
+859
+00:41:39.136 --> 00:41:42.536 A:middle
+but also have a bit of
+contrast I can do that.
+
+860
+00:41:43.166 --> 00:41:44.296 A:middle
+It's just 2 numbers.
+
+861
+00:41:44.946 --> 00:41:48.796 A:middle
+And if I want to make it
+slightly maybe it's too sharp,
+
+862
+00:41:48.936 --> 00:41:52.426 A:middle
+it might look very
+discomfort to walk on.
+
+863
+00:41:52.426 --> 00:41:54.356 A:middle
+So, if I want to have --
+
+864
+00:41:54.666 --> 00:41:56.926 A:middle
+lower that, that's
+slightly more subtle look.
+
+865
+00:41:56.926 --> 00:41:59.596 A:middle
+And if I move that object
+
+866
+00:41:59.596 --> 00:42:02.646 A:middle
+around as you can see
+the light real light.
+
+867
+00:42:03.386 --> 00:42:07.886 A:middle
+So, now let's go ahead and
+add a stone object here.
+
+868
+00:42:08.196 --> 00:42:09.156 A:middle
+That's a little bit too big.
+
+869
+00:42:09.346 --> 00:42:10.356 A:middle
+Let's make is smaller.
+
+870
+00:42:10.996 --> 00:42:12.896 A:middle
+And I want the stone
+to be lit as well
+
+871
+00:42:12.956 --> 00:42:14.626 A:middle
+so let's set the
+lighting mask to be 1,
+
+872
+00:42:14.876 --> 00:42:18.286 A:middle
+same as the scene object, okay.
+
+873
+00:42:18.916 --> 00:42:22.606 A:middle
+And because we want to
+have maybe a 3D look
+
+874
+00:42:22.606 --> 00:42:25.456 A:middle
+for this maybe stone will
+need cast shadows we just need
+
+875
+00:42:25.456 --> 00:42:28.776 A:middle
+to set the shadow mask on that.
+
+876
+00:42:28.776 --> 00:42:34.696 A:middle
+So, move it around and now
+we can change some properties
+
+877
+00:42:35.006 --> 00:42:35.826 A:middle
+of lighting.
+
+878
+00:42:36.616 --> 00:42:38.216 A:middle
+So, I can change
+the lighting color,
+
+879
+00:42:38.586 --> 00:42:39.716 A:middle
+but that's a little weird.
+
+880
+00:42:42.186 --> 00:42:48.066 A:middle
+Something normalish, warm color
+is the way to go, so there.
+
+881
+00:42:48.616 --> 00:42:52.756 A:middle
+As soon as you hit File
+Save the scene is ready
+
+882
+00:42:52.756 --> 00:42:54.166 A:middle
+and you are good to go.
+
+883
+00:42:54.306 --> 00:42:59.046 A:middle
+You don't have to do SKLightNode
+in it, add it to scene,
+
+884
+00:42:59.046 --> 00:43:00.646 A:middle
+position equals none of that.
+
+885
+00:43:01.116 --> 00:43:02.646 A:middle
+So, this is very cool.
+
+886
+00:43:03.486 --> 00:43:05.646 A:middle
+So, next I want to show
+is the inverse kinematics,
+
+887
+00:43:05.756 --> 00:43:07.496 A:middle
+so here I have a
+preassembled robot.
+
+888
+00:43:07.496 --> 00:43:09.666 A:middle
+I'm just going to give
+you a quick overview.
+
+889
+00:43:09.916 --> 00:43:11.416 A:middle
+So, here I have the arm object.
+
+890
+00:43:12.516 --> 00:43:16.236 A:middle
+Arm is parented directly to
+the scene for the upper arm.
+
+891
+00:43:17.076 --> 00:43:20.676 A:middle
+The lower arm is attached as
+a parent for the upper arm.
+
+892
+00:43:21.416 --> 00:43:24.346 A:middle
+And we have the claw that
+attach to the lower arm.
+
+893
+00:43:25.116 --> 00:43:28.206 A:middle
+So, to launch or set
+up inverse kinematics
+
+894
+00:43:28.206 --> 00:43:30.956 A:middle
+for this robot I just need
+to start simulate a scene,
+
+895
+00:43:31.676 --> 00:43:37.536 A:middle
+select these objects and I
+can run inverse kinematics
+
+896
+00:43:37.836 --> 00:43:39.516 A:middle
+on the robot right
+inside of the editor
+
+897
+00:43:39.866 --> 00:43:41.346 A:middle
+and to see how it's set up.
+
+898
+00:43:42.126 --> 00:43:44.456 A:middle
+And if you want, that doesn't
+look quite right, maybe I need
+
+899
+00:43:44.456 --> 00:43:46.326 A:middle
+to set a little bit of
+constraint on there.
+
+900
+00:43:46.666 --> 00:43:50.916 A:middle
+Maybe I need to limit to say
+90 degrees to 180 degrees
+
+901
+00:43:50.946 --> 00:43:54.616 A:middle
+for that joint and you
+can have the same effect.
+
+902
+00:43:56.676 --> 00:44:00.666 A:middle
+As you can see it actually
+reaches back and it will not
+
+903
+00:44:00.666 --> 00:44:02.356 A:middle
+over bend that arm at the elbow.
+
+904
+00:44:03.186 --> 00:44:05.936 A:middle
+So, that's the inverse
+kinematics, very easy to set up.
+
+905
+00:44:05.936 --> 00:44:08.216 A:middle
+Again, you don't have to
+write any lines of code
+
+906
+00:44:08.296 --> 00:44:10.736 A:middle
+to see the code effect or
+use any of the features here.
+
+907
+00:44:11.186 --> 00:44:13.166 A:middle
+Plus I want to go
+over our shaders.
+
+908
+00:44:13.526 --> 00:44:15.906 A:middle
+To uses shaders is very easy.
+
+909
+00:44:16.956 --> 00:44:19.616 A:middle
+So, here from the widget
+library I can just pull
+
+910
+00:44:19.616 --> 00:44:21.246 A:middle
+in a solid color of sprite.
+
+911
+00:44:22.366 --> 00:44:25.616 A:middle
+And here I happen to have a
+custom shader that I can run.
+
+912
+00:44:25.726 --> 00:44:27.676 A:middle
+So, how do I set
+a custom shader?
+
+913
+00:44:28.536 --> 00:44:30.916 A:middle
+SpriteKit Editor automatically
+process your work space
+
+914
+00:44:30.986 --> 00:44:33.386 A:middle
+and figure out how many
+FSH files that you have.
+
+915
+00:44:33.746 --> 00:44:34.926 A:middle
+So, here I have a single one.
+
+916
+00:44:35.216 --> 00:44:37.356 A:middle
+I set that and boom,
+I'm good to go.
+
+917
+00:44:38.076 --> 00:44:39.416 A:middle
+This is only half
+of the equation.
+
+918
+00:44:40.256 --> 00:44:44.136 A:middle
+To actually -- the iteration
+experience is even better.
+
+919
+00:44:45.926 --> 00:44:50.316 A:middle
+So, here if I want to make a
+change to the shader I just call
+
+920
+00:44:50.316 --> 00:44:51.716 A:middle
+in the assistant editor.
+
+921
+00:44:52.326 --> 00:44:56.376 A:middle
+If I just click on the object
+it knows which shader you used
+
+922
+00:44:56.466 --> 00:44:58.926 A:middle
+and it brings up the
+shader source side by side
+
+923
+00:44:58.926 --> 00:44:59.996 A:middle
+and you're ready to edit.
+
+924
+00:45:00.136 --> 00:45:03.456 A:middle
+You're ready to make changes and
+monitor your whole workspace.
+
+925
+00:45:03.876 --> 00:45:08.226 A:middle
+So, now if I notice the
+radius of the center
+
+926
+00:45:08.226 --> 00:45:10.066 A:middle
+of the circle I want to
+shift it a little bit.
+
+927
+00:45:10.106 --> 00:45:14.556 A:middle
+So, if I change it to .2 and
+.2 and then what happened?
+
+928
+00:45:15.156 --> 00:45:18.006 A:middle
+Usually you need to
+rebuild your application.
+
+929
+00:45:18.356 --> 00:45:19.956 A:middle
+You need to rerun
+the application.
+
+930
+00:45:20.546 --> 00:45:23.036 A:middle
+The application will upload
+a new shader to the OpenGL,
+
+931
+00:45:23.036 --> 00:45:26.786 A:middle
+GL driver will compile whether
+if you forget a semicolon,
+
+932
+00:45:26.956 --> 00:45:28.546 A:middle
+guess what, you start
+that process again.
+
+933
+00:45:29.846 --> 00:45:32.276 A:middle
+Here you just need
+to do file save.
+
+934
+00:45:33.386 --> 00:45:35.386 A:middle
+So, if I make -- oh, it
+automatically saved for me.
+
+935
+00:45:35.386 --> 00:45:37.166 A:middle
+So, if I change it back to .5,
+
+936
+00:45:37.416 --> 00:45:41.106 A:middle
+.5 and file save you see
+the live change right here.
+
+937
+00:45:43.336 --> 00:45:46.216 A:middle
+And what if I decide to
+add a brand new uniforms
+
+938
+00:45:46.726 --> 00:45:47.286 A:middle
+to the shader?
+
+939
+00:45:47.286 --> 00:45:50.186 A:middle
+So, here I want to
+add a speed parameter
+
+940
+00:45:50.186 --> 00:45:53.296 A:middle
+so I can control the
+effect that I'm having here.
+
+941
+00:45:53.296 --> 00:45:55.806 A:middle
+So, if I save that guess what,
+
+942
+00:45:55.806 --> 00:46:00.306 A:middle
+you have real OpenGL annotation
+here right inside of Xcode.
+
+943
+00:46:00.626 --> 00:46:03.096 A:middle
+So, here because I
+introduced a new uniform
+
+944
+00:46:03.466 --> 00:46:05.966 A:middle
+that has not been
+declared so the declaration
+
+945
+00:46:05.966 --> 00:46:07.796 A:middle
+of current time fails at any --
+
+946
+00:46:08.066 --> 00:46:10.076 A:middle
+the 2 other places
+that I referenced
+
+947
+00:46:10.406 --> 00:46:12.456 A:middle
+to current time will
+fail as well.
+
+948
+00:46:12.716 --> 00:46:15.186 A:middle
+So, how do we fix that,
+because we add this new uniform.
+
+949
+00:46:15.496 --> 00:46:18.066 A:middle
+Let's go ahead and add
+that in the dictionary.
+
+950
+00:46:19.496 --> 00:46:22.396 A:middle
+So, because we're calling it
+uspeed we make sure the name
+
+951
+00:46:22.396 --> 00:46:26.366 A:middle
+matches, uspeed and
+has a value of 0.
+
+952
+00:46:27.116 --> 00:46:30.796 A:middle
+And if I change that to 1
+I see the live effect right
+
+953
+00:46:30.856 --> 00:46:33.396 A:middle
+in the editor and
+make it spin faster.
+
+954
+00:46:33.986 --> 00:46:36.866 A:middle
+Ooh, see there, let's
+make it slower.
+
+955
+00:46:39.386 --> 00:46:41.516 A:middle
+So, live shader editing.
+
+956
+00:46:42.256 --> 00:46:44.376 A:middle
+So that's the demo of
+our SpriteKit Editor.
+
+957
+00:46:45.806 --> 00:46:48.696 A:middle
+Lastly, I want to go over
+some additional improvements
+
+958
+00:46:48.696 --> 00:46:49.316 A:middle
+that we have done
+
+959
+00:46:49.316 --> 00:46:52.676 A:middle
+to the existing SpriteKit
+framework APIs.
+
+960
+00:46:52.866 --> 00:46:56.526 A:middle
+So, for those of you who are new
+SpriteKit here is the brand new
+
+961
+00:46:56.946 --> 00:46:59.666 A:middle
+update clock that we
+have done for this year.
+
+962
+00:47:01.576 --> 00:47:04.286 A:middle
+As the frame starts we
+start with update function.
+
+963
+00:47:04.556 --> 00:47:06.536 A:middle
+So, this is where you can
+set up your game logic.
+
+964
+00:47:07.806 --> 00:47:10.826 A:middle
+After that, scene will
+start evaluating actions.
+
+965
+00:47:12.366 --> 00:47:15.906 A:middle
+After the actions are evaluated
+user gets a call back saying
+
+966
+00:47:15.906 --> 00:47:18.306 A:middle
+okay if I animate or
+move this object from A
+
+967
+00:47:18.306 --> 00:47:20.586 A:middle
+to B do I need to
+do anything else.
+
+968
+00:47:21.466 --> 00:47:24.646 A:middle
+After the actions,
+physics kicks in and set
+
+969
+00:47:24.646 --> 00:47:27.156 A:middle
+up the physics use
+stepping for the frame.
+
+970
+00:47:27.856 --> 00:47:30.866 A:middle
+Once physics simulation is
+finished user gets another call
+
+971
+00:47:30.866 --> 00:47:32.336 A:middle
+back with the simulated physics.
+
+972
+00:47:32.426 --> 00:47:34.156 A:middle
+And this is where
+you can set up say
+
+973
+00:47:34.156 --> 00:47:36.906 A:middle
+if the player gets pushed
+off maybe I move back
+
+974
+00:47:36.906 --> 00:47:38.136 A:middle
+by another 5 pixels.
+
+975
+00:47:38.886 --> 00:47:41.466 A:middle
+And now with the brand
+new constraints API
+
+976
+00:47:41.686 --> 00:47:46.116 A:middle
+where adding a scene will
+apply constraints right
+
+977
+00:47:46.116 --> 00:47:46.796 A:middle
+at this moment.
+
+978
+00:47:47.196 --> 00:47:50.706 A:middle
+After constraints are being
+applied user gets another
+
+979
+00:47:50.706 --> 00:47:53.486 A:middle
+notification of -- with
+didApplyConstraints.
+
+980
+00:47:53.996 --> 00:47:57.656 A:middle
+And now we also added one more
+selector for user to react
+
+981
+00:47:57.656 --> 00:47:59.186 A:middle
+on called didFinishUpdate.
+
+982
+00:47:59.436 --> 00:48:02.696 A:middle
+This is absolutely the last
+stop before SpriteKit packages
+
+983
+00:48:02.696 --> 00:48:05.566 A:middle
+everything up and send
+it to the graphics GPU
+
+984
+00:48:05.766 --> 00:48:06.426 A:middle
+for the current frame.
+
+985
+00:48:06.426 --> 00:48:09.526 A:middle
+And SpriteKit renders
+the current frame
+
+986
+00:48:10.206 --> 00:48:12.876 A:middle
+and the same loop continues
+60 times per second.
+
+987
+00:48:14.436 --> 00:48:17.046 A:middle
+Now, SKTexture got a
+little bit revamped here.
+
+988
+00:48:17.046 --> 00:48:20.206 A:middle
+We introduce a new type of
+texture called mutable texture.
+
+989
+00:48:21.046 --> 00:48:23.946 A:middle
+You can create from data and
+can be modified very efficiently
+
+990
+00:48:23.986 --> 00:48:24.626 A:middle
+every frame.
+
+991
+00:48:24.816 --> 00:48:26.786 A:middle
+We provide a callback
+block allowing you
+
+992
+00:48:26.786 --> 00:48:29.146 A:middle
+to make modifications
+to the raw pointers.
+
+993
+00:48:29.246 --> 00:48:31.516 A:middle
+So, here if I'm just
+making changes
+
+994
+00:48:31.516 --> 00:48:33.596 A:middle
+to the raw pixel data
+you can set that.
+
+995
+00:48:34.236 --> 00:48:37.856 A:middle
+So, if you have a really cool
+CPU based post processing effect
+
+996
+00:48:37.856 --> 00:48:41.366 A:middle
+and you want to modify a texture
+you have the freedom to do that.
+
+997
+00:48:41.626 --> 00:48:44.456 A:middle
+If you want to have a custom
+data, you want to send it
+
+998
+00:48:44.456 --> 00:48:47.816 A:middle
+to a shader as input by
+sending up all the data
+
+999
+00:48:47.816 --> 00:48:51.326 A:middle
+as textures you can
+do that as well.
+
+1000
+00:48:51.696 --> 00:48:55.196 A:middle
+Also SKTextures can
+generate noise textures now.
+
+1001
+00:48:55.196 --> 00:48:57.606 A:middle
+It generates coherent
+noise that gives you --
+
+1002
+00:48:57.606 --> 00:48:59.366 A:middle
+or the noise vector
+from a sphere.
+
+1003
+00:48:59.996 --> 00:49:01.806 A:middle
+So, it supports both
+the noise generating
+
+1004
+00:49:01.806 --> 00:49:04.866 A:middle
+in the gray scale color, gray
+scale or the color output.
+
+1005
+00:49:05.216 --> 00:49:08.196 A:middle
+If it's generated from a
+noise vector we have to stay
+
+1006
+00:49:08.246 --> 00:49:09.796 A:middle
+in the color output space.
+
+1007
+00:49:10.236 --> 00:49:13.556 A:middle
+So, here to create the noise
+texture you just call texture
+
+1008
+00:49:13.556 --> 00:49:15.586 A:middle
+with noise, which you can
+control the smoothness
+
+1009
+00:49:15.896 --> 00:49:19.326 A:middle
+as well as control the size.
+
+1010
+00:49:19.856 --> 00:49:22.716 A:middle
+Now, SKShapeNode also received
+a lot of revamp this year.
+
+1011
+00:49:23.086 --> 00:49:25.576 A:middle
+So, we added convenient
+constructors for common shapes.
+
+1012
+00:49:25.706 --> 00:49:29.586 A:middle
+They include rectangles,
+circles, ellipse and splines.
+
+1013
+00:49:30.436 --> 00:49:36.116 A:middle
+We also allow you to set texture
+and shaders for both the stroke
+
+1014
+00:49:36.256 --> 00:49:38.006 A:middle
+and fill for the actual shape.
+
+1015
+00:49:39.056 --> 00:49:41.406 A:middle
+You can use ShapeNode to
+interact with your physics
+
+1016
+00:49:41.406 --> 00:49:46.266 A:middle
+as well if you build up this
+very complex shape using
+
+1017
+00:49:46.266 --> 00:49:49.206 A:middle
+ShapeNode you can just access
+the path property directly
+
+1018
+00:49:49.656 --> 00:49:52.316 A:middle
+and then get a CG path,
+send it directly to physics,
+
+1019
+00:49:52.446 --> 00:49:54.216 A:middle
+physics will create a
+physics body for you.
+
+1020
+00:49:56.456 --> 00:50:00.606 A:middle
+We've also made creating
+pin joint much, much easier.
+
+1021
+00:50:00.806 --> 00:50:04.406 A:middle
+So, with SKphysicsBody we
+now have a new property
+
+1022
+00:50:04.406 --> 00:50:04.976 A:middle
+called pinned.
+
+1023
+00:50:06.056 --> 00:50:10.886 A:middle
+To pin an object to
+another object you just need
+
+1024
+00:50:10.886 --> 00:50:11.946 A:middle
+to set one property.
+
+1025
+00:50:12.126 --> 00:50:13.506 A:middle
+So, here I have a big gear.
+
+1026
+00:50:13.716 --> 00:50:14.936 A:middle
+I want to pin it to the board.
+
+1027
+00:50:15.376 --> 00:50:18.506 A:middle
+I just set the property to
+yes, SpriteKit will figure
+
+1028
+00:50:18.506 --> 00:50:22.176 A:middle
+out all the parents of
+the conversion space
+
+1029
+00:50:22.176 --> 00:50:23.926 A:middle
+and whether the object
+has physics body.
+
+1030
+00:50:23.926 --> 00:50:26.616 A:middle
+It will take care of all of
+that detail for you, very cool.
+
+1031
+00:50:28.556 --> 00:50:32.606 A:middle
+Now, in addition to pin joint
+we also make creating weld joint
+
+1032
+00:50:32.606 --> 00:50:33.696 A:middle
+really, really easy.
+
+1033
+00:50:34.066 --> 00:50:36.176 A:middle
+So, weld joint is just
+the same as pin joint,
+
+1034
+00:50:36.176 --> 00:50:38.596 A:middle
+which means pinned equal
+YES, but if I don't want
+
+1035
+00:50:38.596 --> 00:50:42.526 A:middle
+to allow rotation that means
+I'm welded to my parents.
+
+1036
+00:50:42.906 --> 00:50:44.216 A:middle
+So, here I have a small gear
+
+1037
+00:50:44.266 --> 00:50:46.916 A:middle
+that will be welded
+to the big gear.
+
+1038
+00:50:47.826 --> 00:50:52.646 A:middle
+So, we set 2 properties and the
+physics is automatically set
+
+1039
+00:50:52.646 --> 00:50:53.046 A:middle
+up for you.
+
+1040
+00:50:54.416 --> 00:50:58.756 A:middle
+In addition physics body can
+now be created using compound
+
+1041
+00:50:58.756 --> 00:50:59.456 A:middle
+physics bodies.
+
+1042
+00:50:59.626 --> 00:51:00.666 A:middle
+All you need to do is just
+
+1043
+00:51:00.666 --> 00:51:03.226 A:middle
+in SKPhysicsBody we'll
+add a new initializer
+
+1044
+00:51:03.226 --> 00:51:04.446 A:middle
+called bodyWithBodies.
+
+1045
+00:51:04.446 --> 00:51:07.626 A:middle
+You pass in an array of the
+different physics body shapes.
+
+1046
+00:51:07.776 --> 00:51:11.556 A:middle
+And for example, hammer here
+is contained with 2 rectangles,
+
+1047
+00:51:11.826 --> 00:51:14.726 A:middle
+one for the top and a handle.
+
+1048
+00:51:15.896 --> 00:51:18.416 A:middle
+Now, SKTexture Atlas is our --
+
+1049
+00:51:19.416 --> 00:51:22.116 A:middle
+one of the key components
+to allow users
+
+1050
+00:51:22.116 --> 00:51:24.466 A:middle
+to have efficient
+graphics performance.
+
+1051
+00:51:24.656 --> 00:51:28.136 A:middle
+So, anything that's in a
+texture atlas we allow OpenGL
+
+1052
+00:51:28.136 --> 00:51:29.436 A:middle
+to do efficient batching here.
+
+1053
+00:51:29.856 --> 00:51:32.556 A:middle
+So, it's now supported for
+both SpriteKit and SceneKit.
+
+1054
+00:51:32.986 --> 00:51:36.366 A:middle
+We support both retina and
+non-retina resolutions.
+
+1055
+00:51:36.526 --> 00:51:39.896 A:middle
+So, if you have a game and
+have all the assets put
+
+1056
+00:51:39.896 --> 00:51:43.676 A:middle
+in one folder the Texture Atlas
+generator will separate them
+
+1057
+00:51:43.676 --> 00:51:44.126 A:middle
+for you.
+
+1058
+00:51:44.126 --> 00:51:46.086 A:middle
+So, you don't have to
+pay the memory overhead.
+
+1059
+00:51:46.086 --> 00:51:49.206 A:middle
+If you're loading the Texture
+Atlas on a retina device
+
+1060
+00:51:49.686 --> 00:51:51.736 A:middle
+and you don't have to
+load the non-retina asset.
+
+1061
+00:51:52.556 --> 00:51:56.636 A:middle
+Also support the full
+32-bit pixel format
+
+1062
+00:51:57.166 --> 00:51:59.116 A:middle
+and also the compressed
+16 format.
+
+1063
+00:52:00.116 --> 00:52:02.866 A:middle
+Now, one of the big
+changes we now support
+
+1064
+00:52:02.866 --> 00:52:04.676 A:middle
+up to 4k by 4k resolution.
+
+1065
+00:52:04.676 --> 00:52:09.066 A:middle
+So, it's a simple change in the
+Xcode settings for your project.
+
+1066
+00:52:10.446 --> 00:52:14.726 A:middle
+And in addition we
+support Runtime Texture
+
+1067
+00:52:14.726 --> 00:52:15.876 A:middle
+Atlas generation.
+
+1068
+00:52:16.706 --> 00:52:19.596 A:middle
+So, if you have downloadable
+content saying user download a
+
+1069
+00:52:19.596 --> 00:52:22.086 A:middle
+new level, everything
+is coming in loose files
+
+1070
+00:52:22.456 --> 00:52:25.376 A:middle
+or users go take -- go out and
+take some pictures and decide
+
+1071
+00:52:25.376 --> 00:52:28.736 A:middle
+to use that in game as a cube
+map you can just simply pass
+
+1072
+00:52:28.736 --> 00:52:32.246 A:middle
+into the SKTextureAtlas API and
+we'll automatically stitch it
+
+1073
+00:52:32.246 --> 00:52:36.676 A:middle
+for you and trim off
+the transparent pixels.
+
+1074
+00:52:37.946 --> 00:52:42.676 A:middle
+So, in summary we really have
+a lot of new features packed
+
+1075
+00:52:42.676 --> 00:52:44.266 A:middle
+in this SpriteKit release.
+
+1076
+00:52:44.266 --> 00:52:46.076 A:middle
+We have a lot of cool
+graphics technology
+
+1077
+00:52:46.076 --> 00:52:48.906 A:middle
+like custom shaders,
+lighting and shadows.
+
+1078
+00:52:49.156 --> 00:52:53.676 A:middle
+We have really cool simulation
+effects like inverse kinematics,
+
+1079
+00:52:53.876 --> 00:52:57.776 A:middle
+physics field, per-pixel
+physics and constraints.
+
+1080
+00:52:58.706 --> 00:53:02.556 A:middle
+All of these features can be
+done using 1 line or no lines
+
+1081
+00:53:02.556 --> 00:53:04.516 A:middle
+at all if you use
+the SpriteKit Editor.
+
+1082
+00:53:05.256 --> 00:53:08.426 A:middle
+So, the SpriteKit Editor is a
+new edition to the Xcode family
+
+1083
+00:53:08.426 --> 00:53:09.706 A:middle
+and is a really,
+really cool feature.
+
+1084
+00:53:09.706 --> 00:53:11.046 A:middle
+I highly encourage
+you to use it.
+
+1085
+00:53:11.766 --> 00:53:15.036 A:middle
+And it's also a good learning
+experience to see how any
+
+1086
+00:53:15.036 --> 00:53:18.476 A:middle
+of the new features interact
+with each other within a scene.
+
+1087
+00:53:19.106 --> 00:53:21.046 A:middle
+And we can't wait
+to see what you come
+
+1088
+00:53:21.046 --> 00:53:22.196 A:middle
+up with all these technology
+
+1089
+00:53:22.196 --> 00:53:24.096 A:middle
+and tools we provide
+for this release.
+
+1090
+00:53:24.556 --> 00:53:27.766 A:middle
+So, with that said if you
+have any questions or feedback
+
+1091
+00:53:27.766 --> 00:53:30.976 A:middle
+or anything you want to see in
+the future we would like to --
+
+1092
+00:53:31.316 --> 00:53:35.206 A:middle
+you can feel free to contact
+our Developer Evangelist Allan
+
+1093
+00:53:35.206 --> 00:53:37.956 A:middle
+Schaffer and Filip Iliescu
+
+1094
+00:53:38.596 --> 00:53:42.266 A:middle
+and we have a revamped a
+SpriteKit Programming Guide
+
+1095
+00:53:42.266 --> 00:53:43.566 A:middle
+that's on the Developer Portal.
+
+1096
+00:53:43.566 --> 00:53:45.326 A:middle
+So, if you want to pick
+up the documentation
+
+1097
+00:53:45.326 --> 00:53:47.266 A:middle
+for these new features
+they're already there.
+
+1098
+00:53:48.196 --> 00:53:49.616 A:middle
+And for the related
+session right
+
+1099
+00:53:49.616 --> 00:53:51.226 A:middle
+after this session
+is the Best Practice
+
+1100
+00:53:51.226 --> 00:53:52.206 A:middle
+of Building SpriteKit Games.
+
+1101
+00:53:52.416 --> 00:53:53.636 A:middle
+We're going to go into depth
+
+1102
+00:53:53.636 --> 00:53:56.176 A:middle
+of what are the best performance
+practice and how to set
+
+1103
+00:53:56.176 --> 00:53:58.356 A:middle
+up a game [inaudible] in order
+to use these new features
+
+1104
+00:53:58.906 --> 00:54:00.936 A:middle
+and set up for scalability.
+
+1105
+00:54:01.386 --> 00:54:04.136 A:middle
+And as I said before we
+worked really closely
+
+1106
+00:54:04.136 --> 00:54:08.346 A:middle
+with the SceneKit team to making
+sure SceneKit is also a high
+
+1107
+00:54:08.346 --> 00:54:10.176 A:middle
+level 3D API just
+like SpriteKit.
+
+1108
+00:54:10.256 --> 00:54:12.326 A:middle
+I highly encourage you to
+check out the SceneKit sections
+
+1109
+00:54:12.326 --> 00:54:14.626 A:middle
+for tomorrow in the same
+room for 2 sections.
+
+1110
+00:54:15.376 --> 00:54:17.476 A:middle
+And with that said
+thank you very much,
+
+1111
+00:54:17.526 --> 00:54:18.596 A:middle
+this is the end of the session.
+
+1112
+00:54:18.596 --> 00:54:20.976 A:middle
+I hope you guys have the
+rest of the -- a good week.
+
+1113
+00:54:21.516 --> 00:54:24.300 A:middle
+[ Applause ]
+
