@@ -1,0 +1,4616 @@
+
+
+1
+00:00:21.806 --> 00:00:24.206 A:middle
+&gt;&gt; Good morning-ish.
+
+2
+00:00:25.026 --> 00:00:28.846 A:middle
+My name is Andy, and I'm here
+to talk about Motion Processing.
+
+3
+00:00:29.216 --> 00:00:29.786 A:middle
+So welcome.
+
+4
+00:00:29.786 --> 00:00:32.806 A:middle
+We're going to start
+with some definitions.
+
+5
+00:00:33.196 --> 00:00:36.436 A:middle
+We'll flesh out that
+term "motion processing"
+
+6
+00:00:36.896 --> 00:00:39.756 A:middle
+by giving you a description of
+the features that comprise it.
+
+7
+00:00:40.606 --> 00:00:43.866 A:middle
+We'll talk about how they work,
+as well as how well they work.
+
+8
+00:00:45.526 --> 00:00:49.106 A:middle
+We'll give you some ideas on how
+to use it in your application.
+
+9
+00:00:49.186 --> 00:00:54.486 A:middle
+We'll help answer some questions
+about when should I use one
+
+10
+00:00:54.646 --> 00:00:56.776 A:middle
+or the other, what
+interface should I use,
+
+11
+00:00:57.176 --> 00:01:01.146 A:middle
+and how can I use it with
+other services from the OS?
+
+12
+00:01:01.596 --> 00:01:04.525 A:middle
+From this very high level then
+we'll dive into the details
+
+13
+00:01:04.525 --> 00:01:07.386 A:middle
+of the interface,
+we'll talk about usage,
+
+14
+00:01:07.386 --> 00:01:11.826 A:middle
+we'll deconstruct
+the data objects
+
+15
+00:01:11.826 --> 00:01:13.366 A:middle
+so that you can know
+better what to expect,
+
+16
+00:01:13.426 --> 00:01:15.716 A:middle
+and finally we'll
+reiterate the main points
+
+17
+00:01:16.066 --> 00:01:17.226 A:middle
+with a coding exercise.
+
+18
+00:01:17.816 --> 00:01:21.216 A:middle
+Now before I go any further,
+I do want to apologize
+
+19
+00:01:21.276 --> 00:01:22.706 A:middle
+because I've been standing
+
+20
+00:01:22.706 --> 00:01:25.586 A:middle
+up here saying motion
+processing, motion processing.
+
+21
+00:01:26.136 --> 00:01:26.736 A:middle
+It's vague.
+
+22
+00:01:27.566 --> 00:01:30.336 A:middle
+The title of this track
+is "Motion Tracking",
+
+23
+00:01:31.376 --> 00:01:33.786 A:middle
+and this session is not Gaming,
+
+24
+00:01:34.556 --> 00:01:37.696 A:middle
+so there's probably a
+huge number of you who are
+
+25
+00:01:37.696 --> 00:01:40.206 A:middle
+in here thinking that you're
+going to learn all about how
+
+26
+00:01:40.206 --> 00:01:42.926 A:middle
+to track a person's
+motion in a gaming context.
+
+27
+00:01:44.076 --> 00:01:50.926 A:middle
+This is not that talk, so
+nevertheless I hope you'll stick
+
+28
+00:01:50.926 --> 00:01:53.086 A:middle
+around because there's a
+lot of really neat things
+
+29
+00:01:53.086 --> 00:01:55.996 A:middle
+that we're going to
+reveal and hopefully even
+
+30
+00:01:55.996 --> 00:01:58.956 A:middle
+if you weren't planning
+to use this,
+
+31
+00:01:58.956 --> 00:02:00.306 A:middle
+at least it'll spark some ideas
+
+32
+00:02:00.306 --> 00:02:03.336 A:middle
+on how you can perhaps develop
+the next great app with this.
+
+33
+00:02:03.496 --> 00:02:05.726 A:middle
+So, with that, let's go on.
+
+34
+00:02:06.166 --> 00:02:09.205 A:middle
+The biggest thing that happened
+since the last time we talked,
+
+35
+00:02:09.846 --> 00:02:14.056 A:middle
+Core Motion, has been the advent
+of the M7 Motion Coprocessor.
+
+36
+00:02:14.986 --> 00:02:19.206 A:middle
+This is an ultra-efficient
+microcontroller that we use
+
+37
+00:02:19.266 --> 00:02:22.576 A:middle
+to essentially manage all
+of our sensory interaction.
+
+38
+00:02:23.046 --> 00:02:26.066 A:middle
+It's really cool, but for
+the purposes of this talk,
+
+39
+00:02:26.066 --> 00:02:30.306 A:middle
+I'm really just going to focus
+about how we combine the M7
+
+40
+00:02:30.306 --> 00:02:33.016 A:middle
+with an electron
+sipping accelerometer
+
+41
+00:02:33.446 --> 00:02:37.926 A:middle
+to give you motion awareness,
+constant motion awareness,
+
+42
+00:02:38.256 --> 00:02:40.746 A:middle
+with no noticeable
+impact on battery life.
+
+43
+00:02:41.846 --> 00:02:44.596 A:middle
+How efficient is our
+motion processing system?
+
+44
+00:02:45.356 --> 00:02:50.436 A:middle
+You get 24 hours of
+motion activity pedometer
+
+45
+00:02:51.006 --> 00:02:56.366 A:middle
+for about three minutes
+of a FaceTime call.
+
+46
+00:02:57.186 --> 00:02:58.636 A:middle
+So what can you do
+with motion activity?
+
+47
+00:02:58.636 --> 00:03:02.746 A:middle
+I think that when you're talking
+about a mobile application,
+
+48
+00:03:03.366 --> 00:03:05.796 A:middle
+where you have limited
+real estate,
+
+49
+00:03:06.606 --> 00:03:11.006 A:middle
+you have limited bandwidth, and
+the user is always in a hurry,
+
+50
+00:03:11.826 --> 00:03:15.116 A:middle
+context is key, right?
+
+51
+00:03:16.026 --> 00:03:19.796 A:middle
+It's the filter that
+allows you to filter
+
+52
+00:03:19.796 --> 00:03:21.446 A:middle
+out the nonessential information
+
+53
+00:03:21.446 --> 00:03:24.066 A:middle
+so that the really important
+stuff just comes to the top
+
+54
+00:03:24.776 --> 00:03:27.146 A:middle
+and it allows the user
+to connect the dots
+
+55
+00:03:27.816 --> 00:03:29.976 A:middle
+so that they can bridge
+missing information.
+
+56
+00:03:30.766 --> 00:03:32.826 A:middle
+It allows you to
+relate information
+
+57
+00:03:32.886 --> 00:03:35.896 A:middle
+from disparate sources so that
+you can recognize patterns,
+
+58
+00:03:35.896 --> 00:03:36.096 A:middle
+right?
+
+59
+00:03:36.746 --> 00:03:41.016 A:middle
+Now I don't have to convince
+you of how important location is
+
+60
+00:03:41.346 --> 00:03:44.466 A:middle
+as a context, it's intuitive and
+you're all aware of that, right?
+
+61
+00:03:44.776 --> 00:03:47.646 A:middle
+I do a search for
+cafes in London,
+
+62
+00:03:48.146 --> 00:03:51.246 A:middle
+I would expect different results
+if I had initiated that search
+
+63
+00:03:51.426 --> 00:03:54.876 A:middle
+in Ohio versus England, right?
+
+64
+00:03:56.096 --> 00:03:59.446 A:middle
+Time is a context.
+
+65
+00:03:59.446 --> 00:04:05.086 A:middle
+Activity is similarly very, very
+powerful as a context, right?
+
+66
+00:04:05.366 --> 00:04:07.816 A:middle
+And that's what we're
+here to give you,
+
+67
+00:04:08.246 --> 00:04:13.176 A:middle
+the ability to know the
+user's motion at any time
+
+68
+00:04:13.606 --> 00:04:17.726 A:middle
+so that you can frame
+the context.
+
+69
+00:04:17.726 --> 00:04:21.755 A:middle
+So not all activities are going
+to be detected in the same way,
+
+70
+00:04:22.055 --> 00:04:23.916 A:middle
+there are going to be
+differences, and I want you
+
+71
+00:04:23.916 --> 00:04:25.236 A:middle
+to be aware of that
+because that's going
+
+72
+00:04:25.236 --> 00:04:26.876 A:middle
+to drive different use cases.
+
+73
+00:04:27.146 --> 00:04:29.726 A:middle
+Different activities are
+going to be better suited
+
+74
+00:04:29.966 --> 00:04:33.826 A:middle
+for different ways or
+different applications.
+
+75
+00:04:33.876 --> 00:04:34.956 A:middle
+So please be aware.
+
+76
+00:04:34.956 --> 00:04:37.076 A:middle
+And then when we talk about
+performance we're really going
+
+77
+00:04:37.076 --> 00:04:38.526 A:middle
+to evaluate on three things.
+
+78
+00:04:38.886 --> 00:04:42.746 A:middle
+We're going to look at detection
+accuracy, we're going to talk
+
+79
+00:04:42.746 --> 00:04:45.906 A:middle
+about the latency of
+detection and then, finally,
+
+80
+00:04:45.906 --> 00:04:49.436 A:middle
+we're going to talk about the
+robustness, how sensitive are we
+
+81
+00:04:49.956 --> 00:04:53.236 A:middle
+to differences in, say,
+the device location
+
+82
+00:04:53.466 --> 00:04:54.976 A:middle
+or situational differences.
+
+83
+00:04:54.976 --> 00:04:56.456 A:middle
+So, again, please
+bear this in mind.
+
+84
+00:04:56.786 --> 00:05:00.126 A:middle
+And when I start talking about
+the performance in a little bit,
+
+85
+00:05:00.126 --> 00:05:01.666 A:middle
+I'm going to stay
+very qualitative.
+
+86
+00:05:02.076 --> 00:05:04.576 A:middle
+I will give you some
+numbers, but the intent is not
+
+87
+00:05:04.576 --> 00:05:06.766 A:middle
+to give you precise
+numbers and not
+
+88
+00:05:06.766 --> 00:05:10.056 A:middle
+to compare the performance
+to our competitors.
+
+89
+00:05:10.056 --> 00:05:14.386 A:middle
+We are very proud that we have
+industry leading performance,
+
+90
+00:05:14.386 --> 00:05:17.456 A:middle
+but we do encourage you, I
+encourage you to please go out
+
+91
+00:05:17.456 --> 00:05:19.526 A:middle
+and test for yourself
+and quantify
+
+92
+00:05:19.526 --> 00:05:22.766 A:middle
+for yourself how well
+this will work for you
+
+93
+00:05:23.686 --> 00:05:25.306 A:middle
+when you get the final seed.
+
+94
+00:05:25.406 --> 00:05:27.036 A:middle
+So, with that, let's go
+ahead and get started.
+
+95
+00:05:27.706 --> 00:05:29.476 A:middle
+The first activity
+I'm going to talk
+
+96
+00:05:29.476 --> 00:05:30.866 A:middle
+about is the walking activity.
+
+97
+00:05:31.306 --> 00:05:34.686 A:middle
+This is something that
+most people do every day,
+
+98
+00:05:34.686 --> 00:05:37.296 A:middle
+it occurs quite often, so
+you're going to see this a lot.
+
+99
+00:05:37.296 --> 00:05:39.376 A:middle
+When we talk about
+the performance
+
+100
+00:05:39.756 --> 00:05:42.426 A:middle
+and how the performance
+changes across location,
+
+101
+00:05:42.796 --> 00:05:44.466 A:middle
+it's very, very robust.
+
+102
+00:05:44.466 --> 00:05:46.246 A:middle
+When you're walking,
+we're going to detect it,
+
+103
+00:05:46.246 --> 00:05:48.816 A:middle
+and it doesn't really matter
+if the device is in the pocket,
+
+104
+00:05:48.856 --> 00:05:52.466 A:middle
+on the waist, on the
+arm, or even in hand.
+
+105
+00:05:52.586 --> 00:05:56.786 A:middle
+Now I do want to caution,
+though, that when a person -
+
+106
+00:05:56.786 --> 00:06:00.046 A:middle
+it is possible that a
+person could hold a device
+
+107
+00:06:00.226 --> 00:06:03.066 A:middle
+so steady while they're walking,
+such as when they're trying
+
+108
+00:06:03.066 --> 00:06:06.456 A:middle
+to read a text or so on, so that
+you can fall out of walking,
+
+109
+00:06:06.776 --> 00:06:08.276 A:middle
+but again they're
+not going to do
+
+110
+00:06:08.276 --> 00:06:10.276 A:middle
+that over the entire
+walk so that's okay.
+
+111
+00:06:11.116 --> 00:06:15.896 A:middle
+In terms of latency, it's
+fairly low, 5 to 10 seconds.
+
+112
+00:06:16.386 --> 00:06:17.546 A:middle
+If it's in my pocket
+and I get up
+
+113
+00:06:17.546 --> 00:06:19.106 A:middle
+and I start walking
+it's going to detect
+
+114
+00:06:19.176 --> 00:06:20.986 A:middle
+that in about 3 to 5 seconds.
+
+115
+00:06:21.216 --> 00:06:24.416 A:middle
+It's going to take longer, as
+I said, if it's in the hand
+
+116
+00:06:24.416 --> 00:06:25.836 A:middle
+or the user is fiddling
+with that.
+
+117
+00:06:25.836 --> 00:06:28.106 A:middle
+So that should be
+your expectation.
+
+118
+00:06:28.106 --> 00:06:31.796 A:middle
+In terms of accuracy
+it's very accurate.
+
+119
+00:06:32.116 --> 00:06:33.346 A:middle
+You walk, we're going
+to detect it.
+
+120
+00:06:33.346 --> 00:06:35.636 A:middle
+And I'm going to say
+it's accurate on average
+
+121
+00:06:35.686 --> 00:06:37.786 A:middle
+because you can expect
+that you're going
+
+122
+00:06:37.786 --> 00:06:41.096 A:middle
+to intermittently fall into
+and out of the walking state,
+
+123
+00:06:41.376 --> 00:06:43.286 A:middle
+but again that's okay, right,
+
+124
+00:06:43.286 --> 00:06:46.236 A:middle
+because that's actually
+the situation
+
+125
+00:06:46.576 --> 00:06:48.286 A:middle
+that the user finds himself in.
+
+126
+00:06:48.646 --> 00:06:51.636 A:middle
+Let me explain what
+I mean by that.
+
+127
+00:06:51.926 --> 00:06:54.606 A:middle
+When you get up and
+you walk a lot
+
+128
+00:06:54.606 --> 00:06:57.606 A:middle
+of times you may get
+distracted or you may stop, say,
+
+129
+00:06:57.606 --> 00:06:59.886 A:middle
+to open a door, or
+somebody stops you to chat.
+
+130
+00:07:00.306 --> 00:07:03.836 A:middle
+And so as you stop and as you
+start you're going to fall into
+
+131
+00:07:03.836 --> 00:07:06.666 A:middle
+and out of the walking state,
+and so the application,
+
+132
+00:07:06.956 --> 00:07:09.846 A:middle
+going back later in time
+to look at say the query,
+
+133
+00:07:09.846 --> 00:07:13.256 A:middle
+the history of transitions
+between the start of the walk
+
+134
+00:07:13.256 --> 00:07:15.716 A:middle
+and the end of the walk you'll
+see that it's mostly walk
+
+135
+00:07:15.926 --> 00:07:19.566 A:middle
+and sometimes you'll be in a
+non-walking state, but again,
+
+136
+00:07:19.566 --> 00:07:22.826 A:middle
+that's okay and as long as
+you expect that and deal
+
+137
+00:07:22.826 --> 00:07:24.446 A:middle
+with that appropriately
+it should be okay.
+
+138
+00:07:25.286 --> 00:07:27.986 A:middle
+But what does that mean for
+how you can use walking?
+
+139
+00:07:29.896 --> 00:07:32.466 A:middle
+You should use walking,
+if you're thinking
+
+140
+00:07:32.466 --> 00:07:36.286 A:middle
+about using walking as a
+context in the here and now,
+
+141
+00:07:37.316 --> 00:07:38.626 A:middle
+you'll want to be
+careful about that
+
+142
+00:07:38.716 --> 00:07:41.986 A:middle
+because walking is not
+a context here and now,
+
+143
+00:07:42.536 --> 00:07:46.786 A:middle
+walking is a context over the
+past say 30 seconds, right?
+
+144
+00:07:47.046 --> 00:07:50.326 A:middle
+If I've been walking for the
+past 30 seconds I'm walking,
+
+145
+00:07:50.986 --> 00:07:52.966 A:middle
+but I could be instantaneously
+stopped.
+
+146
+00:07:52.966 --> 00:07:59.076 A:middle
+I think walking might be better
+suited to use as a transition,
+
+147
+00:07:59.076 --> 00:08:01.876 A:middle
+and I'll talk a little bit
+later in the presentation,
+
+148
+00:08:01.876 --> 00:08:03.946 A:middle
+it'll be more apparent
+what I mean by transition,
+
+149
+00:08:04.286 --> 00:08:07.556 A:middle
+but walking is how we
+go from A to B, right?
+
+150
+00:08:07.746 --> 00:08:10.256 A:middle
+And so if you keep that
+in mind it'll be a very,
+
+151
+00:08:10.256 --> 00:08:11.566 A:middle
+very powerful tool for you
+
+152
+00:08:11.566 --> 00:08:15.766 A:middle
+to help infer what the
+situational context was.
+
+153
+00:08:16.186 --> 00:08:17.296 A:middle
+All right, next is running.
+
+154
+00:08:17.606 --> 00:08:18.486 A:middle
+Running is really great.
+
+155
+00:08:19.286 --> 00:08:21.796 A:middle
+Again, in terms of robustness,
+
+156
+00:08:21.796 --> 00:08:24.466 A:middle
+it doesn't matter
+where you hold it.
+
+157
+00:08:24.596 --> 00:08:26.746 A:middle
+We're going to detect
+running, and it's going
+
+158
+00:08:26.746 --> 00:08:28.456 A:middle
+to be pretty uniform
+in the performance.
+
+159
+00:08:28.686 --> 00:08:30.056 A:middle
+What's great about running is
+
+160
+00:08:30.096 --> 00:08:34.275 A:middle
+that not only is the
+signal very, very vivid,
+
+161
+00:08:34.756 --> 00:08:37.346 A:middle
+in other words, it allows
+us to quickly detect
+
+162
+00:08:37.346 --> 00:08:39.186 A:middle
+that a person is running.
+
+163
+00:08:39.186 --> 00:08:42.236 A:middle
+You take a handful of
+steps, a handful of steps,
+
+164
+00:08:42.236 --> 00:08:43.405 A:middle
+and we're going to
+detect running.
+
+165
+00:08:44.166 --> 00:08:46.226 A:middle
+So not only is it
+very, very vivid,
+
+166
+00:08:46.736 --> 00:08:49.516 A:middle
+but there is no situational
+ambiguity.
+
+167
+00:08:49.886 --> 00:08:53.906 A:middle
+If a person runs they
+really mean it, right?
+
+168
+00:08:54.276 --> 00:08:56.216 A:middle
+They're not going to
+multitask while they run,
+
+169
+00:08:56.216 --> 00:08:58.206 A:middle
+as like they do while
+they're walking, right?
+
+170
+00:08:58.206 --> 00:09:01.216 A:middle
+When they're running they're
+not going to log into Facebook
+
+171
+00:09:01.216 --> 00:09:02.976 A:middle
+and change their
+relationship status,
+
+172
+00:09:03.256 --> 00:09:05.236 A:middle
+they're just going to run.
+
+173
+00:09:05.296 --> 00:09:08.796 A:middle
+And when they stop it's not
+because they saw something shiny
+
+174
+00:09:08.796 --> 00:09:10.636 A:middle
+on the side of the road
+and just got distracted.
+
+175
+00:09:10.636 --> 00:09:12.336 A:middle
+No, they stop because
+they meant to stop.
+
+176
+00:09:13.166 --> 00:09:18.426 A:middle
+So as a context in the here
+
+177
+00:09:19.346 --> 00:09:22.566 A:middle
+and now running is
+very, very great, right?
+
+178
+00:09:22.986 --> 00:09:26.546 A:middle
+Short in terms of latency;
+very, very short in terms
+
+179
+00:09:26.546 --> 00:09:29.476 A:middle
+of detection; very, very
+accurate; and in terms
+
+180
+00:09:29.476 --> 00:09:32.806 A:middle
+of robustness completely
+robust, so think about that,
+
+181
+00:09:32.886 --> 00:09:34.216 A:middle
+just think about how
+you'd want to use that.
+
+182
+00:09:34.966 --> 00:09:37.226 A:middle
+We've already talked
+about the accuracy.
+
+183
+00:09:37.226 --> 00:09:42.986 A:middle
+So let's go on to driving,
+driving is different
+
+184
+00:09:42.986 --> 00:09:46.316 A:middle
+from running and walking because
+the motion signature is more
+
+185
+00:09:46.316 --> 00:09:48.386 A:middle
+subtle, and because
+it's more subtle.
+
+186
+00:09:48.786 --> 00:09:53.306 A:middle
+The more coupled the device
+is to the vehicle dynamics,
+
+187
+00:09:53.686 --> 00:09:56.076 A:middle
+the more likely it
+is that we'll be able
+
+188
+00:09:56.156 --> 00:09:58.796 A:middle
+to detect the driving
+state much more quickly.
+
+189
+00:09:58.796 --> 00:10:02.176 A:middle
+So if the user were to, say, get
+in the car and put the device
+
+190
+00:10:02.636 --> 00:10:05.836 A:middle
+on the dash, in the cup holder,
+perhaps mounted, that's fine.
+
+191
+00:10:06.026 --> 00:10:07.386 A:middle
+As soon as they drive
+off we're going
+
+192
+00:10:07.386 --> 00:10:08.476 A:middle
+to be able to detect driving.
+
+193
+00:10:09.256 --> 00:10:13.176 A:middle
+Conversely, if the user
+were to, say, have the phone
+
+194
+00:10:13.176 --> 00:10:16.116 A:middle
+in their back pocket, and
+it would take a lot longer
+
+195
+00:10:16.556 --> 00:10:21.776 A:middle
+to detect driving,
+but again that's fine
+
+196
+00:10:22.046 --> 00:10:24.216 A:middle
+because eventually
+we'll detect driving,
+
+197
+00:10:24.466 --> 00:10:29.176 A:middle
+and if you use driving as,
+again, defining a transition
+
+198
+00:10:29.236 --> 00:10:31.336 A:middle
+or if we were going to
+use that with walking,
+
+199
+00:10:31.336 --> 00:10:34.916 A:middle
+I'll show you again later in
+the presentation how you want
+
+200
+00:10:34.916 --> 00:10:38.206 A:middle
+to do that, you can make up
+for some of these challenges
+
+201
+00:10:38.716 --> 00:10:40.906 A:middle
+from observing things
+strictly through motion.
+
+202
+00:10:41.196 --> 00:10:48.576 A:middle
+Now the latency, again, is
+variable, as I just described.
+
+203
+00:10:49.096 --> 00:10:52.776 A:middle
+Now what's really cool is that
+we're going to use information
+
+204
+00:10:52.776 --> 00:10:55.896 A:middle
+from other sources as
+it becomes available.
+
+205
+00:10:56.016 --> 00:10:58.166 A:middle
+Without really going into
+details what it really means is
+
+206
+00:10:58.166 --> 00:11:03.376 A:middle
+that if you get in your
+car, you plug your device in
+
+207
+00:11:03.746 --> 00:11:06.476 A:middle
+or you have Bluetooth
+or so on and so forth,
+
+208
+00:11:06.476 --> 00:11:10.116 A:middle
+it's going to be able to detect
+your driving state pretty
+
+209
+00:11:10.116 --> 00:11:12.616 A:middle
+quickly, so that's really cool.
+
+210
+00:11:12.696 --> 00:11:15.626 A:middle
+Cycling is new, something
+we introduced in iOS 8.
+
+211
+00:11:16.246 --> 00:11:22.726 A:middle
+Cycling is very challenging,
+and again you need the dynamics
+
+212
+00:11:22.726 --> 00:11:25.106 A:middle
+and so it's going to be
+very sensitive to location.
+
+213
+00:11:25.106 --> 00:11:28.656 A:middle
+If it was mounted on the
+upper arm the latency is going
+
+214
+00:11:28.656 --> 00:11:30.396 A:middle
+to be fairly reasonable.
+
+215
+00:11:30.546 --> 00:11:33.446 A:middle
+And if it's anywhere else, it's
+going to take a lot longer.
+
+216
+00:11:33.446 --> 00:11:37.906 A:middle
+So definitely I would not
+suggest using cycling activity
+
+217
+00:11:37.906 --> 00:11:41.716 A:middle
+classification as a hint for
+the context here and now.
+
+218
+00:11:41.976 --> 00:11:44.306 A:middle
+It's really something
+that you'll want to use
+
+219
+00:11:44.346 --> 00:11:47.946 A:middle
+in a retrospective manner for
+a journaling app, for example.
+
+220
+00:11:48.136 --> 00:11:51.016 A:middle
+This would be a perfect
+use case for that, right?
+
+221
+00:11:51.276 --> 00:11:53.356 A:middle
+So that's motion activity.
+
+222
+00:11:53.526 --> 00:11:56.846 A:middle
+Now I want to talk a little
+bit about the pedometer.
+
+223
+00:11:57.696 --> 00:12:02.116 A:middle
+For the pedometer you have two
+things, you have step counts
+
+224
+00:12:02.796 --> 00:12:06.256 A:middle
+and you have the stride
+estimate, how long is your step.
+
+225
+00:12:07.026 --> 00:12:12.546 A:middle
+With step counting there is
+a surprising amount of value
+
+226
+00:12:12.626 --> 00:12:15.266 A:middle
+in just the user knowing
+their step count, right?
+
+227
+00:12:15.486 --> 00:12:18.616 A:middle
+There's a lot of research
+already out there that suggests
+
+228
+00:12:18.656 --> 00:12:21.476 A:middle
+that at least for sedentary,
+
+229
+00:12:21.536 --> 00:12:23.396 A:middle
+for people with a very
+sedentary lifestyle,
+
+230
+00:12:23.396 --> 00:12:26.616 A:middle
+the best thing they can do for
+themselves is to just to get up
+
+231
+00:12:26.616 --> 00:12:29.646 A:middle
+and walk, just take steps.
+
+232
+00:12:29.646 --> 00:12:35.036 A:middle
+And we know that, say, the
+average American only takes
+
+233
+00:12:35.036 --> 00:12:39.096 A:middle
+around 5,100 steps a day.
+
+234
+00:12:39.326 --> 00:12:43.256 A:middle
+If you are from Switzerland,
+Western Australia,
+
+235
+00:12:43.256 --> 00:12:46.326 A:middle
+interestingly, you'll
+take about 9,500 steps.
+
+236
+00:12:47.096 --> 00:12:50.506 A:middle
+And so what you see here
+is a great opportunity,
+
+237
+00:12:50.896 --> 00:12:53.576 A:middle
+it's a great opportunity
+to provide something
+
+238
+00:12:53.826 --> 00:12:57.436 A:middle
+that will really help users
+improve their quality of life,
+
+239
+00:12:57.436 --> 00:13:01.456 A:middle
+just knowing that I want to
+target 7,500 to 9,000 steps or,
+
+240
+00:13:01.456 --> 00:13:04.016 A:middle
+if I want to be more active,
+try to get over 10,000,
+
+241
+00:13:04.246 --> 00:13:05.666 A:middle
+and giving me constant feedback
+
+242
+00:13:05.806 --> 00:13:08.786 A:middle
+about how I'm doing,
+that would be great.
+
+243
+00:13:09.656 --> 00:13:13.526 A:middle
+I think that would just
+really make a whole world
+
+244
+00:13:13.526 --> 00:13:13.986 A:middle
+of difference.
+
+245
+00:13:14.606 --> 00:13:19.936 A:middle
+But if you wanted more than just
+step counts and just wanted more
+
+246
+00:13:19.936 --> 00:13:23.156 A:middle
+than knowing how active you are,
+
+247
+00:13:23.226 --> 00:13:26.386 A:middle
+then stride estimation gives
+you more quantitative results,
+
+248
+00:13:26.386 --> 00:13:26.616 A:middle
+right?
+
+249
+00:13:26.926 --> 00:13:32.956 A:middle
+With stride estimation we can
+tell how far your walk was,
+
+250
+00:13:32.956 --> 00:13:35.826 A:middle
+and so if you were to like,
+say, initiate an activity,
+
+251
+00:13:36.076 --> 00:13:39.106 A:middle
+go out and hike, go out and
+run, we would be able to say
+
+252
+00:13:39.276 --> 00:13:41.436 A:middle
+at the end of it that
+you ran four miles
+
+253
+00:13:41.506 --> 00:13:43.416 A:middle
+or that you hiked
+three-and-a-half miles.
+
+254
+00:13:43.906 --> 00:13:49.106 A:middle
+And then, also, if you were to
+look at how we do, the user ran
+
+255
+00:13:49.386 --> 00:13:53.126 A:middle
+or hiked in short bursts then
+you can see the intensity
+
+256
+00:13:53.126 --> 00:13:54.646 A:middle
+of the workout, and
+again that is something
+
+257
+00:13:54.646 --> 00:13:57.056 A:middle
+that is very interesting
+and very powerful
+
+258
+00:13:57.206 --> 00:13:59.296 A:middle
+to present to the user, right?
+
+259
+00:13:59.296 --> 00:14:02.236 A:middle
+Now you can argue that you
+could do this with GPS,
+
+260
+00:14:03.606 --> 00:14:07.006 A:middle
+and while that's true,
+the attendant power cost
+
+261
+00:14:07.006 --> 00:14:11.826 A:middle
+in GPS is literally 100
+times greater than the power
+
+262
+00:14:11.826 --> 00:14:14.466 A:middle
+of the speedometer, the energy
+cost of the speedometer.
+
+263
+00:14:14.466 --> 00:14:18.186 A:middle
+So you can give, what if you
+can give the same performance
+
+264
+00:14:18.326 --> 00:14:21.776 A:middle
+in terms of the distance
+without that power,
+
+265
+00:14:22.066 --> 00:14:24.586 A:middle
+and what if you can give
+the same performance
+
+266
+00:14:24.976 --> 00:14:29.926 A:middle
+in that distance no matter,
+say, the GPS conditions,
+
+267
+00:14:29.926 --> 00:14:32.526 A:middle
+whether it's urban,
+canyons, trail hiking,
+
+268
+00:14:33.176 --> 00:14:36.846 A:middle
+or suburban streets, you
+get the same performance,
+
+269
+00:14:37.246 --> 00:14:37.896 A:middle
+wouldn't that be cool?
+
+270
+00:14:39.106 --> 00:14:41.966 A:middle
+So talk a little bit then
+
+271
+00:14:41.966 --> 00:14:46.456 A:middle
+about the performance
+of our pedometer.
+
+272
+00:14:46.856 --> 00:14:48.316 A:middle
+Similar to the activity
+classification,
+
+273
+00:14:48.776 --> 00:14:52.036 A:middle
+the step counting is very
+consistent across body location,
+
+274
+00:14:52.366 --> 00:14:54.946 A:middle
+and that's something that
+we're very, very proud of.
+
+275
+00:14:54.946 --> 00:14:56.786 A:middle
+Again, it doesn't matter
+whether a device is,
+
+276
+00:14:57.036 --> 00:14:58.406 A:middle
+here let's say, FitBit.
+
+277
+00:14:58.836 --> 00:15:04.116 A:middle
+The device is here, it provides
+very, very good clean signature
+
+278
+00:15:04.286 --> 00:15:07.646 A:middle
+of your motion, and so
+they're able to get a very,
+
+279
+00:15:07.646 --> 00:15:10.746 A:middle
+very accurate count
+to your step.
+
+280
+00:15:11.186 --> 00:15:14.676 A:middle
+We're able to provide
+similar levels of accuracy,
+
+281
+00:15:14.916 --> 00:15:17.536 A:middle
+but not only just, not
+only here, but in the hand
+
+282
+00:15:17.536 --> 00:15:19.676 A:middle
+and everywhere else,
+so that's really cool.
+
+283
+00:15:20.056 --> 00:15:23.216 A:middle
+Just talked about accuracy.
+
+284
+00:15:23.796 --> 00:15:27.436 A:middle
+Another thing that we
+really focus on is we try
+
+285
+00:15:27.436 --> 00:15:29.446 A:middle
+to be robust to extraneous
+inputs.
+
+286
+00:15:29.776 --> 00:15:33.416 A:middle
+It is accelerometer-based,
+and so you'll see things,
+
+287
+00:15:33.416 --> 00:15:38.936 A:middle
+such as periodic inputs into the
+device that will generate steps.
+
+288
+00:15:39.236 --> 00:15:42.676 A:middle
+We try very hard to
+eliminate most of that,
+
+289
+00:15:42.676 --> 00:15:44.436 A:middle
+and we actually do
+very, very well.
+
+290
+00:15:44.676 --> 00:15:47.246 A:middle
+Compared to our competitors,
+
+291
+00:15:47.306 --> 00:15:48.606 A:middle
+we're actually much,
+much better.
+
+292
+00:15:48.606 --> 00:15:53.416 A:middle
+So try this for yourself,
+get a Fitbit, hop on a bus,
+
+293
+00:15:53.786 --> 00:15:55.466 A:middle
+sit in the back of
+the bus, more towards
+
+294
+00:15:55.466 --> 00:15:56.356 A:middle
+over the wheel well, right?
+
+295
+00:15:56.356 --> 00:15:59.506 A:middle
+Take it up and down the 280,
+you'll see that you'll walk
+
+296
+00:15:59.506 --> 00:16:01.586 A:middle
+out of there and will have
+counted, say, 1,000 steps,
+
+297
+00:16:02.526 --> 00:16:06.296 A:middle
+but again that's a
+challenge of a pedometer
+
+298
+00:16:06.296 --> 00:16:07.776 A:middle
+or an accelerometer solution.
+
+299
+00:16:08.206 --> 00:16:15.446 A:middle
+So stride estimation, this is
+again just like the step count,
+
+300
+00:16:15.756 --> 00:16:17.666 A:middle
+we're very insensitive
+to the body location,
+
+301
+00:16:18.246 --> 00:16:20.306 A:middle
+but and this is the
+really important thing,
+
+302
+00:16:21.096 --> 00:16:25.036 A:middle
+we're also insensitive
+across pace.
+
+303
+00:16:25.776 --> 00:16:29.996 A:middle
+It doesn't matter if
+you're running or jogging
+
+304
+00:16:30.446 --> 00:16:33.876 A:middle
+or hiking you're going
+to get the same accuracy,
+
+305
+00:16:34.236 --> 00:16:36.376 A:middle
+and that same accuracy,
+like I said,
+
+306
+00:16:36.656 --> 00:16:39.366 A:middle
+is pretty good, very, very good.
+
+307
+00:16:39.786 --> 00:16:41.416 A:middle
+And the other great thing
+is that it's going to adapt
+
+308
+00:16:41.606 --> 00:16:43.516 A:middle
+to the user across over time.
+
+309
+00:16:43.766 --> 00:16:46.926 A:middle
+So the more they use it, the
+more accurate it's going to get.
+
+310
+00:16:48.706 --> 00:16:52.476 A:middle
+So, again, I encourage you when
+the final release comes out,
+
+311
+00:16:52.476 --> 00:16:56.766 A:middle
+do go try it out for yourself,
+take the device, strap it on,
+
+312
+00:16:57.166 --> 00:16:58.536 A:middle
+walk around the block,
+
+313
+00:16:58.696 --> 00:17:00.266 A:middle
+maybe walk around
+the block a few times
+
+314
+00:17:00.676 --> 00:17:01.966 A:middle
+and see how well we do.
+
+315
+00:17:03.016 --> 00:17:07.506 A:middle
+Okay, so how can we
+use motion activity?
+
+316
+00:17:07.856 --> 00:17:11.526 A:middle
+I want to start by talking
+about the different data models
+
+317
+00:17:11.526 --> 00:17:13.096 A:middle
+that we use or the
+different ways
+
+318
+00:17:13.096 --> 00:17:14.195 A:middle
+that we can get the data to you.
+
+319
+00:17:14.556 --> 00:17:19.046 A:middle
+There's a notion of
+push versus pull.
+
+320
+00:17:19.705 --> 00:17:24.116 A:middle
+In the push interface, we give
+you events as they happen.
+
+321
+00:17:24.226 --> 00:17:27.356 A:middle
+This is our lowest latency
+path, so if latency is important
+
+322
+00:17:27.356 --> 00:17:29.446 A:middle
+to you, you'll want
+to use this interface.
+
+323
+00:17:29.446 --> 00:17:32.716 A:middle
+What that means is that when
+motion state transitions happen,
+
+324
+00:17:32.716 --> 00:17:34.756 A:middle
+we'll let you know right away.
+
+325
+00:17:34.756 --> 00:17:37.696 A:middle
+Every two-and-a-half seconds,
+
+326
+00:17:38.446 --> 00:17:40.696 A:middle
+we'll give you the
+new step count,
+
+327
+00:17:41.256 --> 00:17:42.376 A:middle
+that's the lowest latency.
+
+328
+00:17:42.376 --> 00:17:45.956 A:middle
+You can also use
+the query interface,
+
+329
+00:17:46.156 --> 00:17:49.896 A:middle
+and in the query interface you
+will provide a range of times,
+
+330
+00:17:49.986 --> 00:17:51.516 A:middle
+a start time and an end time.
+
+331
+00:17:52.016 --> 00:17:53.506 A:middle
+And for motion activities,
+
+332
+00:17:53.506 --> 00:17:56.746 A:middle
+we will give you basically every
+transition that has happened
+
+333
+00:17:57.026 --> 00:17:58.636 A:middle
+between the start and end time.
+
+334
+00:17:59.186 --> 00:18:02.456 A:middle
+For the pedometer we'll just
+give you the cumulative steps,
+
+335
+00:18:03.516 --> 00:18:04.746 A:middle
+so you'll get a single record
+
+336
+00:18:04.746 --> 00:18:07.296 A:middle
+that provides a cumulative
+pedometer activity
+
+337
+00:18:07.336 --> 00:18:08.786 A:middle
+between the start and end time.
+
+338
+00:18:09.266 --> 00:18:13.136 A:middle
+So you understand latency,
+but then what is the value
+
+339
+00:18:13.136 --> 00:18:14.056 A:middle
+of the query interface?
+
+340
+00:18:14.956 --> 00:18:17.546 A:middle
+For that let me talk a little
+bit about the architecture,
+
+341
+00:18:17.636 --> 00:18:19.376 A:middle
+so we'll start with
+the accelerometer.
+
+342
+00:18:19.376 --> 00:18:24.286 A:middle
+And as you can probably surmise
+we then operate in the data
+
+343
+00:18:24.286 --> 00:18:25.446 A:middle
+at a periodic interval.
+
+344
+00:18:25.896 --> 00:18:27.896 A:middle
+I mentioned two-and-a-half
+seconds earlier
+
+345
+00:18:27.896 --> 00:18:28.576 A:middle
+for the step count.
+
+346
+00:18:28.806 --> 00:18:31.746 A:middle
+It's actually what cadences
+that run everything.
+
+347
+00:18:31.996 --> 00:18:35.976 A:middle
+Now I'm telling you this not so
+that you set your watches by it
+
+348
+00:18:36.316 --> 00:18:39.696 A:middle
+or that you design around this,
+I'm really telling you this,
+
+349
+00:18:39.696 --> 00:18:42.426 A:middle
+two-and-a-half seconds, so
+that you can get an expectation
+
+350
+00:18:42.426 --> 00:18:44.236 A:middle
+for the latencies, right?
+
+351
+00:18:44.546 --> 00:18:48.096 A:middle
+And so when I say running, we
+can detect that you're running
+
+352
+00:18:48.096 --> 00:18:50.416 A:middle
+in three to five
+seconds, that's really,
+
+353
+00:18:50.416 --> 00:18:52.346 A:middle
+that three to five
+seconds that's because of
+
+354
+00:18:52.346 --> 00:18:56.056 A:middle
+that two-and-a-half second
+batch processing that we do.
+
+355
+00:18:56.326 --> 00:19:00.566 A:middle
+And really as soon as we just
+look at data over that interval
+
+356
+00:19:00.566 --> 00:19:01.396 A:middle
+and you're running, we're going
+
+357
+00:19:01.396 --> 00:19:04.256 A:middle
+to know you're running
+right away, right?
+
+358
+00:19:04.506 --> 00:19:06.546 A:middle
+And so this information
+as it happens gets pushed
+
+359
+00:19:06.546 --> 00:19:08.096 A:middle
+to the client, and so
+that's the push interface.
+
+360
+00:19:08.946 --> 00:19:12.926 A:middle
+Now what's interesting is that
+we also filter the information,
+
+361
+00:19:12.926 --> 00:19:16.576 A:middle
+so we'll take all of these state
+transitions in, and we'll try
+
+362
+00:19:16.576 --> 00:19:18.926 A:middle
+to fuse them with data
+from other sources,
+
+363
+00:19:18.926 --> 00:19:20.026 A:middle
+and then we'll persist that.
+
+364
+00:19:20.316 --> 00:19:23.456 A:middle
+And so if an application were to
+come back later in time and ask
+
+365
+00:19:23.456 --> 00:19:27.846 A:middle
+for the data, the information
+is going to be more accurate
+
+366
+00:19:29.156 --> 00:19:32.266 A:middle
+and it's going to be
+less intermittent.
+
+367
+00:19:32.266 --> 00:19:35.346 A:middle
+We talked about walk and how
+you can start and stop, and stop
+
+368
+00:19:35.346 --> 00:19:36.806 A:middle
+and start, and start and stop.
+
+369
+00:19:36.936 --> 00:19:38.426 A:middle
+With the query interface,
+
+370
+00:19:38.426 --> 00:19:41.666 A:middle
+many of those transitions
+will be smoothed out for you.
+
+371
+00:19:43.806 --> 00:19:49.766 A:middle
+So I think it might be
+more tangible if I were
+
+372
+00:19:49.886 --> 00:19:54.036 A:middle
+to motivate how we use
+this in an application.
+
+373
+00:19:54.846 --> 00:19:58.506 A:middle
+So let's say running, let's come
+up with a running application.
+
+374
+00:19:58.506 --> 00:20:00.986 A:middle
+I mentioned running as one
+of those great activities
+
+375
+00:20:01.396 --> 00:20:03.096 A:middle
+that gives you the
+context here and now.
+
+376
+00:20:03.096 --> 00:20:04.476 A:middle
+I'm going to see
+how we can use that.
+
+377
+00:20:04.966 --> 00:20:09.056 A:middle
+So in a running application,
+I'm going to be running,
+
+378
+00:20:09.106 --> 00:20:11.816 A:middle
+so the last thing I
+want to do is to mess
+
+379
+00:20:11.816 --> 00:20:14.156 A:middle
+around with the interface or
+do anything with it, right?
+
+380
+00:20:14.346 --> 00:20:16.056 A:middle
+I just want to launch
+it, and I just want it
+
+381
+00:20:16.056 --> 00:20:18.006 A:middle
+to understand what I'm
+doing and try to react
+
+382
+00:20:18.266 --> 00:20:20.766 A:middle
+to me rather than
+what I do to it.
+
+383
+00:20:20.766 --> 00:20:24.836 A:middle
+And so I wanted to automatically
+change this experience,
+
+384
+00:20:25.776 --> 00:20:27.966 A:middle
+my experience as I go
+through my exercise.
+
+385
+00:20:29.346 --> 00:20:33.496 A:middle
+While I'm exercising I want it
+to give me constant feedback
+
+386
+00:20:33.906 --> 00:20:34.946 A:middle
+on how well I'm doing.
+
+387
+00:20:35.826 --> 00:20:38.646 A:middle
+And then it'd be nice that
+once I stopped it could
+
+388
+00:20:38.646 --> 00:20:40.786 A:middle
+automatically, say,
+summarize my results
+
+389
+00:20:40.816 --> 00:20:44.336 A:middle
+and present that to me, right?
+
+390
+00:20:44.336 --> 00:20:45.936 A:middle
+So, let's think about
+how that could happen.
+
+391
+00:20:45.936 --> 00:20:47.926 A:middle
+So let's say I've
+got this running app,
+
+392
+00:20:47.926 --> 00:20:50.986 A:middle
+I'm going to launch it,
+I'm going to strap it on,
+
+393
+00:20:50.986 --> 00:20:52.896 A:middle
+and then I'm just going to
+go through my stretches.
+
+394
+00:20:53.306 --> 00:20:56.916 A:middle
+Now music is a really
+important part of my experience
+
+395
+00:20:57.286 --> 00:20:59.696 A:middle
+when I exercise, and so
+let's say that it's going
+
+396
+00:20:59.696 --> 00:21:03.116 A:middle
+to start just playing some
+kind of preprogrammed,
+
+397
+00:21:03.836 --> 00:21:05.886 A:middle
+easy listening kind of playlist.
+
+398
+00:21:05.886 --> 00:21:11.676 A:middle
+Now my stretch and my warm-up
+routine, it's not constant,
+
+399
+00:21:11.676 --> 00:21:13.386 A:middle
+so some days it might
+be two minutes,
+
+400
+00:21:13.516 --> 00:21:15.056 A:middle
+some days it might
+be 10 minutes.
+
+401
+00:21:15.056 --> 00:21:18.526 A:middle
+And so I don't want
+to design a playlist
+
+402
+00:21:18.526 --> 00:21:21.446 A:middle
+around my stretch workout,
+
+403
+00:21:21.446 --> 00:21:22.796 A:middle
+I just want to put
+something in there.
+
+404
+00:21:23.246 --> 00:21:26.166 A:middle
+And then when I start
+running it'd be nice
+
+405
+00:21:26.236 --> 00:21:29.596 A:middle
+if the OS detected that,
+and then the app were then
+
+406
+00:21:29.596 --> 00:21:32.886 A:middle
+to quickly or just automatically
+change out my playlist,
+
+407
+00:21:32.886 --> 00:21:34.696 A:middle
+so to something that's
+more uptempo, right?
+
+408
+00:21:34.696 --> 00:21:37.766 A:middle
+Don't even have to think
+about it, I just start running
+
+409
+00:21:37.766 --> 00:21:39.316 A:middle
+and then, boom, the
+music changes.
+
+410
+00:21:40.046 --> 00:21:45.346 A:middle
+So I'm running, and now you can
+imagine the Siri voice coming
+
+411
+00:21:45.346 --> 00:21:51.796 A:middle
+out over my earphone, giving me
+just this great feedback, "Andy,
+
+412
+00:21:52.106 --> 00:21:54.726 A:middle
+you're doing a great
+job, you're on pace
+
+413
+00:21:54.726 --> 00:21:57.146 A:middle
+for your 15-minute mile."
+
+414
+00:21:57.546 --> 00:22:00.496 A:middle
+So just stuff that gets
+me really pumped up.
+
+415
+00:22:00.826 --> 00:22:03.836 A:middle
+And you can imagine I hit my
+first mile and it tells me,
+
+416
+00:22:03.896 --> 00:22:05.416 A:middle
+you know, what my
+split time is, right?
+
+417
+00:22:05.636 --> 00:22:06.736 A:middle
+So it's really real cool.
+
+418
+00:22:06.876 --> 00:22:09.636 A:middle
+I'm getting this constant
+feedback, and then I get
+
+419
+00:22:09.636 --> 00:22:11.586 A:middle
+to the end of my
+run and I slow down,
+
+420
+00:22:11.946 --> 00:22:13.426 A:middle
+and that music is
+really bothering me,
+
+421
+00:22:13.646 --> 00:22:17.076 A:middle
+so it switches automatically
+to a cooldown playlist,
+
+422
+00:22:17.416 --> 00:22:21.326 A:middle
+something more suited
+to my walking pace now.
+
+423
+00:22:22.166 --> 00:22:24.056 A:middle
+And I don't even have to
+think about it, right?
+
+424
+00:22:24.056 --> 00:22:25.646 A:middle
+It just happens, right?
+
+425
+00:22:25.886 --> 00:22:28.966 A:middle
+And then, let's say, I'm done
+walking, I'm done with cooldown,
+
+426
+00:22:29.196 --> 00:22:33.176 A:middle
+and automatically just, say,
+maybe it uses a query interface
+
+427
+00:22:33.266 --> 00:22:37.186 A:middle
+to loop back over how I've been
+doing the past several days
+
+428
+00:22:37.536 --> 00:22:40.756 A:middle
+and compares my performance
+historically,
+
+429
+00:22:41.036 --> 00:22:45.436 A:middle
+or it might summarize my
+run in that particular day.
+
+430
+00:22:45.436 --> 00:22:51.976 A:middle
+So all of that basically you
+can get for very little cost
+
+431
+00:22:51.976 --> 00:22:55.846 A:middle
+with the services that we're
+providing you in Core Motion,
+
+432
+00:22:55.906 --> 00:22:56.886 A:middle
+so that's pretty cool.
+
+433
+00:22:57.656 --> 00:23:01.136 A:middle
+So that's an example of
+a running application
+
+434
+00:23:01.136 --> 00:23:03.556 A:middle
+where you rely primarily
+on the push interface,
+
+435
+00:23:03.556 --> 00:23:06.586 A:middle
+you're using context in the
+here and now, but let's talk
+
+436
+00:23:06.586 --> 00:23:07.506 A:middle
+about a journaling app,
+
+437
+00:23:07.846 --> 00:23:09.706 A:middle
+where the requirements
+might be different.
+
+438
+00:23:10.446 --> 00:23:13.326 A:middle
+And so what would it - why
+would I want a journaling app?
+
+439
+00:23:13.466 --> 00:23:17.496 A:middle
+I think in a journaling app what
+really matters to me is context
+
+440
+00:23:17.496 --> 00:23:18.566 A:middle
+and correlation, right?
+
+441
+00:23:18.756 --> 00:23:22.926 A:middle
+But I want the app
+to do that for me.
+
+442
+00:23:23.786 --> 00:23:28.746 A:middle
+I want it to be able to figure
+out what I was doing and where,
+
+443
+00:23:28.876 --> 00:23:32.706 A:middle
+so I'd want it to correlate
+multiple sources of information.
+
+444
+00:23:33.116 --> 00:23:36.346 A:middle
+And then ideally I
+would like for it
+
+445
+00:23:36.346 --> 00:23:38.106 A:middle
+to profile my physical activity,
+
+446
+00:23:38.106 --> 00:23:41.386 A:middle
+let me know how active I've
+been through the past day.
+
+447
+00:23:42.256 --> 00:23:45.886 A:middle
+So, this is what my
+typical day looks like,
+
+448
+00:23:45.886 --> 00:23:50.366 A:middle
+and so let's say this
+journaling app would start
+
+449
+00:23:50.756 --> 00:23:55.066 A:middle
+by querying the visit monitoring
+service, which is a service
+
+450
+00:23:55.066 --> 00:23:59.926 A:middle
+from the location, Core
+Location, and it gives me a list
+
+451
+00:23:59.926 --> 00:24:01.756 A:middle
+of places that I've
+visited throughout the day.
+
+452
+00:24:02.476 --> 00:24:05.846 A:middle
+Typically I go from home,
+sometimes I go to the gym,
+
+453
+00:24:06.386 --> 00:24:10.126 A:middle
+and then of course I go to work,
+and so it detects all that,
+
+454
+00:24:10.126 --> 00:24:12.486 A:middle
+and so that provides essentially
+the location context.
+
+455
+00:24:13.496 --> 00:24:19.906 A:middle
+Now suppose the journaling
+app also then queries
+
+456
+00:24:19.966 --> 00:24:22.486 A:middle
+for the transport context
+between these points?
+
+457
+00:24:22.766 --> 00:24:25.866 A:middle
+And so looking at motion
+activity it knows that, oh,
+
+458
+00:24:25.866 --> 00:24:29.806 A:middle
+I drove from home to the
+gym instead of cycling
+
+459
+00:24:30.006 --> 00:24:34.086 A:middle
+and doing a solid for the
+environment, just really lazy.
+
+460
+00:24:34.666 --> 00:24:37.196 A:middle
+Got to the gym, and then from
+the gym I walked to work.
+
+461
+00:24:37.606 --> 00:24:41.136 A:middle
+And what if the app then
+queried the pedometer,
+
+462
+00:24:41.626 --> 00:24:47.326 A:middle
+and then I could look and
+see, say, how far was the walk
+
+463
+00:24:47.326 --> 00:24:51.566 A:middle
+between work and the gym and how
+many steps that I took in each
+
+464
+00:24:51.566 --> 00:24:52.476 A:middle
+of those different places.
+
+465
+00:24:52.476 --> 00:24:56.486 A:middle
+And you can see here that this
+presentation of these results is
+
+466
+00:24:56.486 --> 00:24:58.536 A:middle
+so much more powerful
+than to, say,
+
+467
+00:24:58.536 --> 00:25:00.946 A:middle
+that I walked 5,000
+steps, right?
+
+468
+00:25:01.206 --> 00:25:04.626 A:middle
+To say that I walked 5,000
+steps, if I were to look back
+
+469
+00:25:05.206 --> 00:25:08.266 A:middle
+at that data, five
+days or 10 days
+
+470
+00:25:08.266 --> 00:25:09.966 A:middle
+from now it would mean
+very, very little to me.
+
+471
+00:25:10.286 --> 00:25:12.986 A:middle
+But if I looked at that data
+and it was presented something
+
+472
+00:25:12.986 --> 00:25:14.326 A:middle
+like this I would know that, oh,
+
+473
+00:25:14.326 --> 00:25:19.506 A:middle
+on that day I lost my
+keys in the morning.
+
+474
+00:25:20.916 --> 00:25:23.146 A:middle
+That's when I walked
+around, all over the house.
+
+475
+00:25:23.276 --> 00:25:28.866 A:middle
+All right, so that's
+some examples of how
+
+476
+00:25:29.046 --> 00:25:32.636 A:middle
+to use the services,
+how to combine it
+
+477
+00:25:32.876 --> 00:25:35.906 A:middle
+with other OS services,
+and the difference
+
+478
+00:25:35.906 --> 00:25:37.256 A:middle
+between a push and
+a pull interface.
+
+479
+00:25:37.946 --> 00:25:44.256 A:middle
+So now let's go a little
+into the, basically the API.
+
+480
+00:25:44.256 --> 00:25:46.986 A:middle
+Before I do that, I want
+to talk about privacy.
+
+481
+00:25:46.986 --> 00:25:48.596 A:middle
+It's very important
+to us, privacy,
+
+482
+00:25:48.596 --> 00:25:50.446 A:middle
+we treat it very,
+very seriously.
+
+483
+00:25:51.266 --> 00:25:53.336 A:middle
+And so, for motion,
+just like location,
+
+484
+00:25:53.666 --> 00:25:55.116 A:middle
+the user is going
+to need to opt in.
+
+485
+00:25:55.726 --> 00:26:00.096 A:middle
+Now the very first time you
+launch your app we're going
+
+486
+00:26:00.096 --> 00:26:04.476 A:middle
+to request access on
+your behalf, and a popup,
+
+487
+00:26:04.476 --> 00:26:06.736 A:middle
+a dialogue will pop up that
+looks something like this.
+
+488
+00:26:07.406 --> 00:26:10.986 A:middle
+Your app name there, and then
+the user would then choose
+
+489
+00:26:10.986 --> 00:26:13.196 A:middle
+to opt in, and as
+soon as the user opts
+
+490
+00:26:13.196 --> 00:26:19.926 A:middle
+in then essentially you get data
+up to seven days in the past,
+
+491
+00:26:20.266 --> 00:26:22.366 A:middle
+no more than seven days,
+just seven days in the past.
+
+492
+00:26:22.756 --> 00:26:23.826 A:middle
+Now it's important to note
+
+493
+00:26:23.826 --> 00:26:29.276 A:middle
+that at any time the user can
+opt out, so when the user opts
+
+494
+00:26:29.276 --> 00:26:34.526 A:middle
+out then you will no longer be
+authorized to receive the data,
+
+495
+00:26:35.046 --> 00:26:35.776 A:middle
+and then you'll have
+
+496
+00:26:35.816 --> 00:26:37.736 A:middle
+to basically be able
+to handle that case.
+
+497
+00:26:38.126 --> 00:26:39.586 A:middle
+Sunny is going to
+show you in a bit
+
+498
+00:26:39.586 --> 00:26:43.226 A:middle
+with a coding example how
+you can detect that condition
+
+499
+00:26:43.576 --> 00:26:46.696 A:middle
+and how you can essentially
+request for reauthorization.
+
+500
+00:26:47.096 --> 00:26:48.836 A:middle
+And so that's a bit
+about privacy.
+
+501
+00:26:49.116 --> 00:26:50.666 A:middle
+Now let's go on into
+actually the API.
+
+502
+00:26:51.006 --> 00:26:53.716 A:middle
+So the very first thing that
+we want to talk about is the -
+
+503
+00:26:53.926 --> 00:26:56.496 A:middle
+for the activity classification
+you'll want to deal
+
+504
+00:26:56.496 --> 00:27:00.576 A:middle
+with the activity manager,
+so you'll get a reference
+
+505
+00:27:00.776 --> 00:27:03.106 A:middle
+to the CM activity
+manager object.
+
+506
+00:27:03.766 --> 00:27:05.486 A:middle
+And the first thing
+you want to do is
+
+507
+00:27:05.486 --> 00:27:07.976 A:middle
+to check whether activity
+classification is available.
+
+508
+00:27:08.006 --> 00:27:10.036 A:middle
+It's pretty standard
+stuff, there's not a lot
+
+509
+00:27:10.226 --> 00:27:12.726 A:middle
+of mystery there, but I'm
+just pointing that out
+
+510
+00:27:13.026 --> 00:27:17.616 A:middle
+because it's just
+good general hygiene.
+
+511
+00:27:18.256 --> 00:27:20.236 A:middle
+Now two ways I mentioned
+to get data,
+
+512
+00:27:20.486 --> 00:27:21.676 A:middle
+there's the push and the pull.
+
+513
+00:27:21.676 --> 00:27:25.646 A:middle
+For this one, this push
+interface, what you want
+
+514
+00:27:25.646 --> 00:27:29.246 A:middle
+to do is basically provide
+a handler and a queue,
+
+515
+00:27:29.546 --> 00:27:31.876 A:middle
+and then we'll call you
+back on that handler
+
+516
+00:27:32.246 --> 00:27:35.336 A:middle
+and we'll basically
+call you back.
+
+517
+00:27:35.336 --> 00:27:39.026 A:middle
+As soon as you call that start
+method we'll call you back right
+
+518
+00:27:39.026 --> 00:27:43.096 A:middle
+away, and what we're going to
+give you then is the activity
+
+519
+00:27:43.096 --> 00:27:46.226 A:middle
+that the user or the device
+is in at that time, okay?
+
+520
+00:27:46.306 --> 00:27:49.196 A:middle
+And then any subsequent changes
+
+521
+00:27:49.196 --> 00:27:53.286 A:middle
+after that we will then
+trigger an update, right?
+
+522
+00:27:54.076 --> 00:27:57.226 A:middle
+For the push, for the
+pull interface, again,
+
+523
+00:27:57.386 --> 00:28:00.466 A:middle
+you provide a start time and
+an end time in the query.
+
+524
+00:28:00.796 --> 00:28:03.766 A:middle
+Now the reason why you want
+to provide a queue is because,
+
+525
+00:28:03.766 --> 00:28:06.826 A:middle
+like I said before, we're going
+to call you back not just once,
+
+526
+00:28:06.826 --> 00:28:09.526 A:middle
+but we're going to call you back
+for every activity transition
+
+527
+00:28:09.856 --> 00:28:11.666 A:middle
+that has happened between
+the start and the stop,
+
+528
+00:28:11.786 --> 00:28:16.746 A:middle
+so you'll basically get a flood
+or a storm of records, okay?
+
+529
+00:28:17.076 --> 00:28:19.306 A:middle
+And it's also important to
+note that the first record
+
+530
+00:28:19.306 --> 00:28:22.356 A:middle
+that you get, you'll
+actually get a time
+
+531
+00:28:22.626 --> 00:28:25.066 A:middle
+that is before your requested
+time, and that's okay
+
+532
+00:28:25.446 --> 00:28:27.126 A:middle
+because it's that
+current activity,
+
+533
+00:28:27.766 --> 00:28:30.526 A:middle
+that's the very first activity
+
+534
+00:28:30.526 --> 00:28:32.396 A:middle
+and its start time
+might be before
+
+535
+00:28:32.676 --> 00:28:36.476 A:middle
+when you asked for
+it, all right?
+
+536
+00:28:36.476 --> 00:28:38.786 A:middle
+Okay, so that's pretty
+straightforward.
+
+537
+00:28:39.486 --> 00:28:41.826 A:middle
+The start time and the activity,
+
+538
+00:28:41.826 --> 00:28:43.306 A:middle
+and so the
+CMMotionActivityManager,
+
+539
+00:28:43.306 --> 00:28:46.716 A:middle
+you'll get a CMActivity object.
+
+540
+00:28:46.716 --> 00:28:50.156 A:middle
+Again, the start date,
+not that interesting.
+
+541
+00:28:50.666 --> 00:28:53.906 A:middle
+This is what is very
+interesting,
+
+542
+00:28:54.216 --> 00:28:55.676 A:middle
+in addition to the start date
+
+543
+00:28:55.676 --> 00:28:57.976 A:middle
+of the activity we'll
+give you a confidence.
+
+544
+00:28:58.486 --> 00:29:04.646 A:middle
+The confidence is what you can
+use to trade off the difference
+
+545
+00:29:04.646 --> 00:29:07.556 A:middle
+between accuracy - or trade
+off accuracy with latency.
+
+546
+00:29:08.366 --> 00:29:12.676 A:middle
+When you start walking, you'll
+get walking, low confidence,
+
+547
+00:29:14.056 --> 00:29:16.956 A:middle
+potentially medium confidence,
+and then high confidence.
+
+548
+00:29:17.206 --> 00:29:18.246 A:middle
+Sometimes when we're really,
+
+549
+00:29:18.246 --> 00:29:20.816 A:middle
+really sure that you're
+high confidence walking,
+
+550
+00:29:20.816 --> 00:29:22.596 A:middle
+we might skip the
+ones in between,
+
+551
+00:29:22.596 --> 00:29:24.716 A:middle
+but typically the
+transition is going to go
+
+552
+00:29:24.716 --> 00:29:26.326 A:middle
+from low, medium, to high.
+
+553
+00:29:26.616 --> 00:29:28.336 A:middle
+And so if you're
+really, really interested
+
+554
+00:29:28.336 --> 00:29:30.616 A:middle
+in latency you may
+want to react as soon
+
+555
+00:29:30.616 --> 00:29:33.606 A:middle
+as you get a low confidence
+transition, but if you want
+
+556
+00:29:33.606 --> 00:29:36.566 A:middle
+to be sure that you only react
+
+557
+00:29:36.566 --> 00:29:37.646 A:middle
+to very high confidence
+stuff then you want
+
+558
+00:29:37.646 --> 00:29:37.976 A:middle
+to wait, all right?
+
+559
+00:29:38.046 --> 00:29:44.416 A:middle
+Now I want to get to the actual
+classifications, themselves.
+
+560
+00:29:44.416 --> 00:29:48.056 A:middle
+The classifications are
+presented as a bunch of BOOLs
+
+561
+00:29:48.056 --> 00:29:49.746 A:middle
+that you're going to have
+to query one at a time.
+
+562
+00:29:50.026 --> 00:29:52.436 A:middle
+So, the very first one is
+this notion of stationary.
+
+563
+00:29:52.736 --> 00:29:57.026 A:middle
+Now stationary here is in the
+context of motion stationary
+
+564
+00:29:57.406 --> 00:29:59.386 A:middle
+and not location
+stationary, right?
+
+565
+00:29:59.696 --> 00:30:02.626 A:middle
+Here I'm on the stage, I
+am location stationary,
+
+566
+00:30:02.966 --> 00:30:06.326 A:middle
+but I am not motion stationary,
+so this thing is only going
+
+567
+00:30:06.326 --> 00:30:09.526 A:middle
+to be true when the
+device is say on the table.
+
+568
+00:30:10.186 --> 00:30:13.276 A:middle
+These are the actual
+classifications that we're going
+
+569
+00:30:13.276 --> 00:30:16.006 A:middle
+to try to make a call on -
+walking, running, automotive,
+
+570
+00:30:16.006 --> 00:30:17.066 A:middle
+cycling, you already know that.
+
+571
+00:30:17.386 --> 00:30:19.286 A:middle
+Unknown, that's an
+interesting one.
+
+572
+00:30:19.286 --> 00:30:21.616 A:middle
+What that represents is
+essentially the state
+
+573
+00:30:21.616 --> 00:30:25.446 A:middle
+in which we don't have enough
+data in order to make a call.
+
+574
+00:30:26.706 --> 00:30:29.566 A:middle
+When all of those BOOLs
+are false it means
+
+575
+00:30:29.566 --> 00:30:30.936 A:middle
+that we have plenty of data,
+
+576
+00:30:31.636 --> 00:30:32.896 A:middle
+we're just not going
+to make the call.
+
+577
+00:30:33.376 --> 00:30:40.776 A:middle
+Unknown is, the unknown state
+there is the unknown unknown,
+
+578
+00:30:41.886 --> 00:30:45.706 A:middle
+and when they're all false
+it is the known unknown.
+
+579
+00:30:47.796 --> 00:30:52.366 A:middle
+Now I know you can't appreciate
+this, but I've always wanted
+
+580
+00:30:52.366 --> 00:30:59.086 A:middle
+to stand on stage and say that,
+and so, check, bucket list.
+
+581
+00:30:59.606 --> 00:31:02.726 A:middle
+All right, again, so to make
+these points really salient,
+
+582
+00:31:02.726 --> 00:31:05.386 A:middle
+let's go through some
+example scenarios.
+
+583
+00:31:05.846 --> 00:31:08.556 A:middle
+So here we have the scenario
+that the device is going to be
+
+584
+00:31:08.556 --> 00:31:11.566 A:middle
+in and then all the BOOLs and
+what they're going to represent.
+
+585
+00:31:11.566 --> 00:31:15.056 A:middle
+So when the device is on
+the table, like we said,
+
+586
+00:31:15.106 --> 00:31:17.926 A:middle
+it's going to be stationary and,
+obviously, it's not going to be
+
+587
+00:31:17.926 --> 00:31:20.496 A:middle
+in any of those other states,
+so a trivial example, right?
+
+588
+00:31:21.266 --> 00:31:24.286 A:middle
+What happens when the device
+is on the runner's upper arm?
+
+589
+00:31:24.286 --> 00:31:28.186 A:middle
+In that case, running
+is going to be true
+
+590
+00:31:28.186 --> 00:31:29.936 A:middle
+and everything else is
+going to be false, so,
+
+591
+00:31:30.116 --> 00:31:31.506 A:middle
+again, not that interesting.
+
+592
+00:31:32.296 --> 00:31:35.626 A:middle
+This is interesting, what if
+it was in the dash of a vehicle
+
+593
+00:31:35.626 --> 00:31:36.986 A:middle
+and it's idling at a stoplight?
+
+594
+00:31:37.866 --> 00:31:41.216 A:middle
+In this case the
+stationary flag is true,
+
+595
+00:31:41.656 --> 00:31:44.946 A:middle
+as well as automotive
+flag is true.
+
+596
+00:31:45.296 --> 00:31:50.576 A:middle
+So stationary can be -
+coexist alongside the other
+
+597
+00:31:50.576 --> 00:31:52.976 A:middle
+classification states,
+that's an important point.
+
+598
+00:31:52.976 --> 00:31:55.766 A:middle
+And if it was in the
+in-dash of a moving vehicle,
+
+599
+00:31:56.006 --> 00:31:57.716 A:middle
+then stationary toggles
+back to false,
+
+600
+00:31:58.096 --> 00:31:59.506 A:middle
+automotive still stays true.
+
+601
+00:32:00.626 --> 00:32:04.096 A:middle
+Immediately after the
+reboot, this is the case
+
+602
+00:32:04.096 --> 00:32:06.856 A:middle
+where we don't have enough data
+yet to make a determination,
+
+603
+00:32:06.856 --> 00:32:09.326 A:middle
+so we actually don't
+know what the state is,
+
+604
+00:32:09.326 --> 00:32:15.966 A:middle
+and so that's the only time
+when - oh, I jumped ahead - oh,
+
+605
+00:32:15.966 --> 00:32:18.156 A:middle
+so for this one,
+this is interesting,
+
+606
+00:32:19.136 --> 00:32:21.626 A:middle
+this is when the
+passenger's checking e-mail.
+
+607
+00:32:21.626 --> 00:32:27.436 A:middle
+This is because there's motion
+here and it's not something
+
+608
+00:32:27.436 --> 00:32:30.266 A:middle
+that we want to classify, the
+passenger or the vehicle is
+
+609
+00:32:30.266 --> 00:32:32.546 A:middle
+in the car, but the
+motion suggests
+
+610
+00:32:32.546 --> 00:32:34.506 A:middle
+that we actually don't know
+whether it's in the vehicle
+
+611
+00:32:34.506 --> 00:32:37.066 A:middle
+or not, so all of
+this is a false.
+
+612
+00:32:37.066 --> 00:32:38.526 A:middle
+We know that you, as a driver,
+
+613
+00:32:38.936 --> 00:32:40.176 A:middle
+wouldn't be checking
+your e-mail,
+
+614
+00:32:40.546 --> 00:32:44.616 A:middle
+so that's why we
+have that example.
+
+615
+00:32:44.936 --> 00:32:46.296 A:middle
+Finally, the immediately
+
+616
+00:32:46.296 --> 00:32:48.476 A:middle
+after the reboot was what I
+was talking about earlier.
+
+617
+00:32:48.786 --> 00:32:52.116 A:middle
+This is the only time when
+the unknown flag will be true.
+
+618
+00:32:53.056 --> 00:32:57.786 A:middle
+So similar to checking the
+e-mail, what if there is motion
+
+619
+00:32:57.786 --> 00:33:03.226 A:middle
+with a very strong
+pattern, but like say Zumba?
+
+620
+00:33:03.946 --> 00:33:08.246 A:middle
+That one is tough
+because it's periodic,
+
+621
+00:33:08.386 --> 00:33:11.546 A:middle
+so in some ways it can look a
+lot like walking and running,
+
+622
+00:33:11.936 --> 00:33:16.476 A:middle
+but if it's on somebody that
+is not well practiced in Zumba
+
+623
+00:33:16.476 --> 00:33:17.596 A:middle
+or whose hips don't work
+
+624
+00:33:17.596 --> 00:33:19.796 A:middle
+that way it could
+look really awkward,
+
+625
+00:33:20.116 --> 00:33:22.896 A:middle
+and so from a motion signature
+standpoint it's something
+
+626
+00:33:22.896 --> 00:33:25.556 A:middle
+that it's just going to stay
+unknown for us for a while,
+
+627
+00:33:25.956 --> 00:33:27.946 A:middle
+but that doesn't preclude us
+
+628
+00:33:27.946 --> 00:33:30.366 A:middle
+from extending our
+classifications in the future
+
+629
+00:33:30.656 --> 00:33:34.316 A:middle
+to add activities that are
+interesting, all right?
+
+630
+00:33:34.806 --> 00:33:38.076 A:middle
+So, I talked earlier about
+how we can use walking
+
+631
+00:33:38.416 --> 00:33:43.076 A:middle
+as essentially a transition
+and how that can help us,
+
+632
+00:33:43.076 --> 00:33:45.206 A:middle
+so let me drive that point home.
+
+633
+00:33:45.556 --> 00:33:50.406 A:middle
+Let's take this example, let's
+say I'm walking to my car,
+
+634
+00:33:50.456 --> 00:33:53.396 A:middle
+and so in that particular state,
+walking is going to be true.
+
+635
+00:33:53.546 --> 00:33:57.796 A:middle
+I get into my car
+and now I sat down,
+
+636
+00:33:57.796 --> 00:34:00.356 A:middle
+and so now walking is
+no longer true and all
+
+637
+00:34:00.356 --> 00:34:01.136 A:middle
+of my flags are false.
+
+638
+00:34:01.136 --> 00:34:03.816 A:middle
+I'm essentially in
+the unknown state.
+
+639
+00:34:03.816 --> 00:34:09.996 A:middle
+I start the engine and I start
+driving, and I put it down
+
+640
+00:34:09.996 --> 00:34:12.366 A:middle
+and start driving, put it
+down, start the engine,
+
+641
+00:34:12.366 --> 00:34:14.966 A:middle
+so it's completely stationary
+now, so now stationary is true.
+
+642
+00:34:14.966 --> 00:34:18.646 A:middle
+And now I start driving,
+and so automotive is true
+
+643
+00:34:18.866 --> 00:34:20.565 A:middle
+and stationary is false, right?
+
+644
+00:34:20.876 --> 00:34:21.706 A:middle
+I stop at a light.
+
+645
+00:34:22.646 --> 00:34:26.525 A:middle
+I'm still in automotive,
+stationary is true.
+
+646
+00:34:26.926 --> 00:34:30.085 A:middle
+Now you can imagine that you're
+going to cycle back and forth
+
+647
+00:34:30.085 --> 00:34:33.266 A:middle
+on this thing until you
+actually pick the device up
+
+648
+00:34:33.266 --> 00:34:37.085 A:middle
+and now it doesn't look like
+we're in automotive anymore,
+
+649
+00:34:37.085 --> 00:34:38.636 A:middle
+and then you'll go
+into that empty set.
+
+650
+00:34:39.156 --> 00:34:44.656 A:middle
+What's interesting is that
+in the driving context you'll
+
+651
+00:34:44.656 --> 00:34:48.426 A:middle
+basically limit cycle
+among these four states
+
+652
+00:34:49.906 --> 00:34:52.696 A:middle
+without actually being
+automotive equals true.
+
+653
+00:34:53.146 --> 00:34:57.416 A:middle
+You can think automotive equals
+true as a hard classification,
+
+654
+00:34:58.646 --> 00:35:02.196 A:middle
+and you can think of those other
+two states essentially being an
+
+655
+00:35:02.196 --> 00:35:05.206 A:middle
+inference that you're still
+driving, and that you're going
+
+656
+00:35:05.256 --> 00:35:09.386 A:middle
+to stay driving until
+you walk away, right?
+
+657
+00:35:09.386 --> 00:35:13.896 A:middle
+And in this case, walking
+serves as a boundary condition
+
+658
+00:35:14.556 --> 00:35:18.796 A:middle
+that defines driving
+in a larger context.
+
+659
+00:35:19.086 --> 00:35:21.526 A:middle
+Does that make sense?
+
+660
+00:35:21.526 --> 00:35:21.696 A:middle
+All right.
+
+661
+00:35:22.446 --> 00:35:25.026 A:middle
+That's pretty cool.
+
+662
+00:35:25.026 --> 00:35:27.296 A:middle
+All right, so now let's talk
+about the pedometer API.
+
+663
+00:35:27.996 --> 00:35:31.856 A:middle
+So, again, you'll want to
+check whether it's available.
+
+664
+00:35:31.856 --> 00:35:35.296 A:middle
+It's not going to be
+available on all devices.
+
+665
+00:35:35.296 --> 00:35:37.896 A:middle
+We're going to, and when
+I say it's not available
+
+666
+00:35:37.896 --> 00:35:39.486 A:middle
+on all devices, it's not
+going to be available
+
+667
+00:35:39.486 --> 00:35:42.986 A:middle
+on all M7 devices, we're only
+going to support a subset
+
+668
+00:35:42.986 --> 00:35:46.316 A:middle
+of them, so you'll want to check
+which ones that are supported.
+
+669
+00:35:47.236 --> 00:35:51.746 A:middle
+All right, so similar to the
+activity, the push interface,
+
+670
+00:35:51.746 --> 00:35:54.926 A:middle
+you provide a start call,
+
+671
+00:35:54.926 --> 00:35:56.836 A:middle
+and then we'll start
+giving you updates.
+
+672
+00:35:57.176 --> 00:36:00.206 A:middle
+Now the one thing that I
+didn't mention earlier is
+
+673
+00:36:00.206 --> 00:36:02.816 A:middle
+that we don't always
+provide an update.
+
+674
+00:36:03.196 --> 00:36:04.186 A:middle
+I said earlier we were going
+
+675
+00:36:04.186 --> 00:36:05.666 A:middle
+to give you an update every
+two-and-a-half seconds.
+
+676
+00:36:05.666 --> 00:36:06.666 A:middle
+Well, that's not strictly true.
+
+677
+00:36:07.486 --> 00:36:10.216 A:middle
+We'll give you an update every
+two-and-a-half seconds as long
+
+678
+00:36:10.216 --> 00:36:11.146 A:middle
+as you're taking steps.
+
+679
+00:36:11.896 --> 00:36:13.636 A:middle
+As soon as you stop
+taking steps,
+
+680
+00:36:13.696 --> 00:36:15.606 A:middle
+we won't give you an update,
+but again that makes sense.
+
+681
+00:36:15.826 --> 00:36:17.496 A:middle
+So we'll give you an update
+
+682
+00:36:17.496 --> 00:36:18.886 A:middle
+when something interesting
+is happening.
+
+683
+00:36:19.676 --> 00:36:22.776 A:middle
+What's interesting is that the
+only time we violate that is
+
+684
+00:36:22.776 --> 00:36:25.516 A:middle
+when your app gets backgrounded
+and it gets resumed.
+
+685
+00:36:25.876 --> 00:36:27.556 A:middle
+In that case, as soon
+as you get resumed,
+
+686
+00:36:27.556 --> 00:36:29.926 A:middle
+regardless of whether
+you've taken any steps
+
+687
+00:36:29.926 --> 00:36:31.836 A:middle
+or the user has taken
+any steps you're going
+
+688
+00:36:31.836 --> 00:36:35.196 A:middle
+to get an immediate
+update, all right?
+
+689
+00:36:35.196 --> 00:36:38.246 A:middle
+As far as the pull interface,
+again, you're just going
+
+690
+00:36:38.246 --> 00:36:40.546 A:middle
+to give us start and
+end, and we're just going
+
+691
+00:36:40.636 --> 00:36:42.296 A:middle
+to give you everything
+that happened in between.
+
+692
+00:36:42.296 --> 00:36:46.266 A:middle
+So there's really not a
+lot to say about that.
+
+693
+00:36:46.266 --> 00:36:50.676 A:middle
+Start and stop time, again,
+that's going to mark the -
+
+694
+00:36:50.676 --> 00:36:54.706 A:middle
+what's interesting here is that
+for the pedometer, every record
+
+695
+00:36:54.706 --> 00:36:58.756 A:middle
+that you get you'll have
+the same start time,
+
+696
+00:36:59.396 --> 00:37:02.266 A:middle
+and that start time is the time
+
+697
+00:37:02.266 --> 00:37:05.896 A:middle
+when you call the
+start update method.
+
+698
+00:37:06.846 --> 00:37:10.276 A:middle
+That's really, really
+important, so every record
+
+699
+00:37:10.276 --> 00:37:12.566 A:middle
+that you get will have
+the same start time,
+
+700
+00:37:12.896 --> 00:37:14.856 A:middle
+you'll just have a
+different end time, okay?
+
+701
+00:37:15.406 --> 00:37:20.266 A:middle
+And that end time represents
+basically the cumulative number
+
+702
+00:37:20.396 --> 00:37:24.026 A:middle
+of steps taken between the
+start time and the end time,
+
+703
+00:37:24.026 --> 00:37:27.686 A:middle
+so you can think of every record
+essentially just providing a
+
+704
+00:37:27.736 --> 00:37:30.636 A:middle
+cumulative value that
+is delta increment
+
+705
+00:37:30.666 --> 00:37:33.436 A:middle
+over the previous value.
+
+706
+00:37:34.596 --> 00:37:37.136 A:middle
+The number of steps is going
+to be an integer number,
+
+707
+00:37:37.546 --> 00:37:41.776 A:middle
+and one of the things
+that we always get asked
+
+708
+00:37:41.776 --> 00:37:44.806 A:middle
+about is what happens if
+you provide several queries,
+
+709
+00:37:45.256 --> 00:37:52.896 A:middle
+one query over say 24 hours, and
+then 24 queries over an hour,
+
+710
+00:37:53.426 --> 00:37:55.656 A:middle
+should you expect to get
+the same number of steps?
+
+711
+00:37:56.116 --> 00:37:59.436 A:middle
+And the answer is yes, there
+might be slight differences due
+
+712
+00:37:59.436 --> 00:38:02.786 A:middle
+to rounding issues or
+interpolation issues,
+
+713
+00:38:03.486 --> 00:38:06.096 A:middle
+but by and large the number
+of steps should be the same.
+
+714
+00:38:06.946 --> 00:38:09.636 A:middle
+And the reason why you'd
+want a large query,
+
+715
+00:38:10.636 --> 00:38:12.306 A:middle
+in addition to smaller
+queries, again,
+
+716
+00:38:12.306 --> 00:38:13.456 A:middle
+it depends on your use case.
+
+717
+00:38:13.456 --> 00:38:14.996 A:middle
+If, say, for example, you know
+
+718
+00:38:14.996 --> 00:38:17.176 A:middle
+that a person left the
+particular location
+
+719
+00:38:17.176 --> 00:38:21.016 A:middle
+at a certain time and ended
+in a location then you want
+
+720
+00:38:21.016 --> 00:38:23.426 A:middle
+to just provide a query over
+that time interval, right?
+
+721
+00:38:24.396 --> 00:38:27.836 A:middle
+All right, total distance,
+again, similar to the number
+
+722
+00:38:27.916 --> 00:38:31.156 A:middle
+of steps, except distance is
+going to be a fractional number
+
+723
+00:38:31.156 --> 00:38:32.666 A:middle
+and that's going to be
+represented in meters.
+
+724
+00:38:32.946 --> 00:38:35.306 A:middle
+Again, that is the total
+distance that you travel,
+
+725
+00:38:35.856 --> 00:38:38.266 A:middle
+it could be from start to stop,
+
+726
+00:38:38.266 --> 00:38:40.706 A:middle
+so it's not the actual
+stride themselves.
+
+727
+00:38:41.876 --> 00:38:50.576 A:middle
+All right, so that is pretty
+briefly the Motion Processing
+
+728
+00:38:50.576 --> 00:38:52.106 A:middle
+services that we provide.
+
+729
+00:38:52.436 --> 00:38:56.146 A:middle
+The APIs are pretty
+straightforward, pretty simple,
+
+730
+00:38:56.446 --> 00:38:58.636 A:middle
+but you'll find that the
+things that you can do
+
+731
+00:38:58.636 --> 00:39:01.946 A:middle
+with them can potentially
+be very, very powerful.
+
+732
+00:39:02.706 --> 00:39:10.426 A:middle
+The stride estimate, I think can
+basically facilitate a whole new
+
+733
+00:39:10.426 --> 00:39:13.406 A:middle
+set of applications
+around health and fitness.
+
+734
+00:39:13.736 --> 00:39:16.966 A:middle
+And you can imagine now
+using health or the things
+
+735
+00:39:16.966 --> 00:39:19.956 A:middle
+that you achieve in fitness
+as an additional currency.
+
+736
+00:39:19.956 --> 00:39:25.196 A:middle
+If you've not seen the HealthKit
+session, I encourage you
+
+737
+00:39:25.196 --> 00:39:28.536 A:middle
+to watch that on video because
+that perhaps will give you some
+
+738
+00:39:28.536 --> 00:39:31.276 A:middle
+ideas on how you can use this
+
+739
+00:39:31.436 --> 00:39:33.256 A:middle
+in a social media
+context, all right?
+
+740
+00:39:33.786 --> 00:39:36.516 A:middle
+So that's it, all that I have.
+
+741
+00:39:36.516 --> 00:39:38.876 A:middle
+I'm going to invite
+Sunny up to actually go
+
+742
+00:39:38.876 --> 00:39:39.976 A:middle
+over the demo exercise.
+
+743
+00:39:40.516 --> 00:39:45.236 A:middle
+[ Applause ]
+
+744
+00:39:45.736 --> 00:39:46.236 A:middle
+&gt;&gt; Thank you, Andy.
+
+745
+00:39:48.786 --> 00:39:49.996 A:middle
+Hello, everyone.
+
+746
+00:39:49.996 --> 00:39:50.826 A:middle
+My name is Sunny.
+
+747
+00:39:51.046 --> 00:39:56.466 A:middle
+I'm a Developer on
+the Core Motion Team.
+
+748
+00:39:57.476 --> 00:40:02.536 A:middle
+So the topics I want to be
+covering today are mainly
+
+749
+00:40:02.536 --> 00:40:04.066 A:middle
+about CMMotionActivityManager,
+
+750
+00:40:04.096 --> 00:40:06.116 A:middle
+CMPedometer, as Andy
+just covered.
+
+751
+00:40:06.116 --> 00:40:07.776 A:middle
+We'll be taking a
+deeper look at both
+
+752
+00:40:07.776 --> 00:40:09.646 A:middle
+of these classes during
+the coding exercise.
+
+753
+00:40:10.336 --> 00:40:14.376 A:middle
+Now as we're going
+through coding exercise,
+
+754
+00:40:14.506 --> 00:40:15.976 A:middle
+at times there might be a lot
+
+755
+00:40:15.976 --> 00:40:17.376 A:middle
+of code that's displayed
+all at once.
+
+756
+00:40:17.376 --> 00:40:18.336 A:middle
+Don't worry too much
+
+757
+00:40:18.336 --> 00:40:19.886 A:middle
+about following every
+last detail, though.
+
+758
+00:40:20.436 --> 00:40:23.066 A:middle
+This coding exercise has already
+been made publicly available.
+
+759
+00:40:24.266 --> 00:40:27.556 A:middle
+The important parts, though,
+I will be sure to highlight,
+
+760
+00:40:27.556 --> 00:40:28.456 A:middle
+and I think as long
+
+761
+00:40:28.456 --> 00:40:31.166 A:middle
+as you follow those parts
+it'll make your experience
+
+762
+00:40:31.166 --> 00:40:33.556 A:middle
+with the Motion Activity
+APIs that much smoother.
+
+763
+00:40:34.556 --> 00:40:36.286 A:middle
+So let's go ahead and start
+with the coding exercise.
+
+764
+00:40:36.946 --> 00:40:39.596 A:middle
+Here you go.
+
+765
+00:40:39.856 --> 00:40:42.796 A:middle
+So just some context - so this
+coding exercise eventually
+
+766
+00:40:42.796 --> 00:40:46.946 A:middle
+compiles into a UI application,
+and the code that we're
+
+767
+00:40:46.946 --> 00:40:50.196 A:middle
+about to implement right
+now makes up the data model
+
+768
+00:40:50.726 --> 00:40:52.426 A:middle
+that the UI application
+will use.
+
+769
+00:40:52.996 --> 00:40:55.166 A:middle
+The very first thing
+that we want to do
+
+770
+00:40:55.166 --> 00:40:58.416 A:middle
+with this data model is, as
+Andy mentioned, we want to do -
+
+771
+00:40:58.696 --> 00:41:01.176 A:middle
+we want to check for
+proper availability
+
+772
+00:41:01.176 --> 00:41:04.816 A:middle
+of these APIs before
+we start using any
+
+773
+00:41:04.816 --> 00:41:06.306 A:middle
+of the queries or
+the live updates.
+
+774
+00:41:06.546 --> 00:41:08.846 A:middle
+So let's go ahead and
+go implement that.
+
+775
+00:41:10.316 --> 00:41:14.266 A:middle
+Get rid of that typo
+there, and the check
+
+776
+00:41:15.226 --> 00:41:18.416 A:middle
+for availability looks
+something like this.
+
+777
+00:41:19.626 --> 00:41:21.646 A:middle
+And you look at the
+parts I have highlighted.
+
+778
+00:41:21.646 --> 00:41:26.086 A:middle
+Here it's as simple as checking
+for activity that's available
+
+779
+00:41:26.216 --> 00:41:28.756 A:middle
+for CMMotionActivityManager
+
+780
+00:41:28.756 --> 00:41:32.836 A:middle
+and isStepCountingAvailable
+for CMPedometer?
+
+781
+00:41:33.606 --> 00:41:36.376 A:middle
+It's important to check for
+both because, as Andy mentioned,
+
+782
+00:41:36.376 --> 00:41:37.876 A:middle
+not all platforms support both.
+
+783
+00:41:37.876 --> 00:41:45.356 A:middle
+Now that we've done our due
+diligence it's time for us
+
+784
+00:41:45.476 --> 00:41:46.946 A:middle
+to create our instances
+
+785
+00:41:47.006 --> 00:41:50.076 A:middle
+of CMMotionActivityManager
+and CMPedometer.
+
+786
+00:41:51.016 --> 00:41:56.296 A:middle
+Something to keep in mind with
+these classes is that a lot
+
+787
+00:41:56.296 --> 00:41:58.926 A:middle
+of our APIs are largely
+callback-based,
+
+788
+00:41:59.206 --> 00:42:00.776 A:middle
+so you want to keep in mind
+
+789
+00:42:00.776 --> 00:42:06.926 A:middle
+about the lifetime
+of these objects.
+
+790
+00:42:08.016 --> 00:42:10.036 A:middle
+For my class, because
+I'm expecting
+
+791
+00:42:10.036 --> 00:42:11.436 A:middle
+or will be expecting
+live updates
+
+792
+00:42:11.436 --> 00:42:14.356 A:middle
+at any point during my
+program, I've decided
+
+793
+00:42:14.446 --> 00:42:16.926 A:middle
+to tie really the
+lifetime of these objects
+
+794
+00:42:16.926 --> 00:42:20.026 A:middle
+with my data model, in
+essence tie the lifetime
+
+795
+00:42:20.026 --> 00:42:22.156 A:middle
+of my data model
+with my application.
+
+796
+00:42:22.416 --> 00:42:25.956 A:middle
+A pattern I've seen commonly
+with code that has come
+
+797
+00:42:25.956 --> 00:42:30.936 A:middle
+across my table is people will
+very commonly create an instance
+
+798
+00:42:31.976 --> 00:42:35.126 A:middle
+and assign it to an object
+that only lives on the stack,
+
+799
+00:42:35.496 --> 00:42:38.296 A:middle
+and so what happens
+when that object perhaps
+
+800
+00:42:38.296 --> 00:42:40.406 A:middle
+in a stack frame
+goes out of scope?
+
+801
+00:42:40.406 --> 00:42:41.806 A:middle
+Well, that object is released,
+
+802
+00:42:41.806 --> 00:42:43.676 A:middle
+and no more callbacks
+are called.
+
+803
+00:42:43.786 --> 00:42:45.726 A:middle
+So it's important
+that you keep in mind
+
+804
+00:42:45.946 --> 00:42:47.566 A:middle
+about lifetimes of
+these objects.
+
+805
+00:42:47.566 --> 00:42:48.286 A:middle
+You just want to make sure
+
+806
+00:42:48.286 --> 00:42:51.136 A:middle
+that these objects are still
+available when callbacks,
+
+807
+00:42:51.916 --> 00:42:54.066 A:middle
+when you want callbacks
+to be involved.
+
+808
+00:42:54.066 --> 00:42:58.226 A:middle
+The next thing we want to do
+is check for authorization.
+
+809
+00:42:58.226 --> 00:43:01.326 A:middle
+This is - we handle
+most of the details
+
+810
+00:43:01.376 --> 00:43:02.916 A:middle
+of authorization for you, right?
+
+811
+00:43:03.216 --> 00:43:07.936 A:middle
+Every time you make a call
+that accesses motion activity,
+
+812
+00:43:07.936 --> 00:43:10.356 A:middle
+we'll do the proper popups.
+
+813
+00:43:10.436 --> 00:43:12.956 A:middle
+The only time you'll want to
+do something more than that is
+
+814
+00:43:13.006 --> 00:43:17.236 A:middle
+to check to make sure that your
+app does have authorization
+
+815
+00:43:17.236 --> 00:43:19.376 A:middle
+to access activity
+because when you don't,
+
+816
+00:43:19.376 --> 00:43:23.346 A:middle
+you want to show a dialogue
+box saying, informing the user
+
+817
+00:43:23.346 --> 00:43:26.906 A:middle
+of his mistake and
+allowing your app a chance
+
+818
+00:43:26.906 --> 00:43:29.236 A:middle
+to correct that behavior.
+
+819
+00:43:34.076 --> 00:43:35.706 A:middle
+So the query looks like this.
+
+820
+00:43:35.706 --> 00:43:39.136 A:middle
+As Andy mentioned,
+there's - well,
+
+821
+00:43:39.136 --> 00:43:43.066 A:middle
+the authorization really
+is just a simple query.
+
+822
+00:43:43.326 --> 00:43:45.226 A:middle
+We don't really care about
+the results that come
+
+823
+00:43:45.226 --> 00:43:47.946 A:middle
+from this query, we
+just care about sort
+
+824
+00:43:47.946 --> 00:43:49.976 A:middle
+of whether it returns
+an error or not.
+
+825
+00:43:49.976 --> 00:43:51.686 A:middle
+This is why the "from" dates
+
+826
+00:43:51.686 --> 00:43:53.546 A:middle
+and "to" dates are
+both equal to now.
+
+827
+00:43:54.956 --> 00:43:58.396 A:middle
+Now on the callback we
+just want to make sure
+
+828
+00:43:58.396 --> 00:44:00.476 A:middle
+that there's no errors, and
+if there is an error code
+
+829
+00:44:00.476 --> 00:44:03.286 A:middle
+that it's not equal to this
+particular error message.
+
+830
+00:44:03.466 --> 00:44:05.456 A:middle
+And if you've done that
+then you've made sure
+
+831
+00:44:05.456 --> 00:44:08.126 A:middle
+that your app is, indeed,
+ready to start querying
+
+832
+00:44:08.126 --> 00:44:09.126 A:middle
+for motion activity data.
+
+833
+00:44:10.086 --> 00:44:11.716 A:middle
+There's one more
+thing to notice here,
+
+834
+00:44:11.716 --> 00:44:16.706 A:middle
+I've chosen to use CMPedometer
+to check for this authorization,
+
+835
+00:44:17.056 --> 00:44:18.806 A:middle
+and because my
+authorizationCheck
+
+836
+00:44:18.806 --> 00:44:22.586 A:middle
+CompletionHandler may possibly
+invoke some UI dialogue
+
+837
+00:44:22.586 --> 00:44:25.836 A:middle
+informing the user that
+motion activity was denied,
+
+838
+00:44:27.056 --> 00:44:29.396 A:middle
+you will want to make sure
+that you dispatch that block
+
+839
+00:44:29.396 --> 00:44:34.836 A:middle
+onto the main queue because
+blocks that are passed
+
+840
+00:44:34.836 --> 00:44:38.356 A:middle
+to CMPedometer will be
+invoked on an arbitrary queue
+
+841
+00:44:38.356 --> 00:44:40.366 A:middle
+that might not necessarily
+be your main queue.
+
+842
+00:44:40.996 --> 00:44:46.556 A:middle
+Okay, so now that we've done
+our check for authorization,
+
+843
+00:44:46.736 --> 00:44:49.316 A:middle
+now it's time for us to start
+querying data, and this is kind
+
+844
+00:44:49.316 --> 00:44:52.806 A:middle
+of the magical part of our
+API because it allows your app
+
+845
+00:44:52.806 --> 00:44:57.116 A:middle
+to give the illusion that you've
+been collecting data all along.
+
+846
+00:44:57.456 --> 00:44:59.416 A:middle
+So the queries, for
+this data model,
+
+847
+00:45:00.026 --> 00:45:02.866 A:middle
+this data model is
+responsible for collecting data
+
+848
+00:45:02.866 --> 00:45:07.706 A:middle
+from start date to end date
+for both motion activity data
+
+849
+00:45:07.706 --> 00:45:09.796 A:middle
+and step counting
+data, and when all
+
+850
+00:45:09.796 --> 00:45:12.786 A:middle
+of that data has been
+collected then it's time
+
+851
+00:45:12.836 --> 00:45:13.656 A:middle
+to invoke some sort
+
+852
+00:45:13.656 --> 00:45:17.786 A:middle
+of completion handler
+allowing the UI to be updated
+
+853
+00:45:17.786 --> 00:45:18.736 A:middle
+with all of that data.
+
+854
+00:45:23.056 --> 00:45:24.986 A:middle
+So the motion query looks
+something like this.
+
+855
+00:45:25.556 --> 00:45:29.596 A:middle
+There's a start date, there's an
+end date, there's a main queue,
+
+856
+00:45:30.226 --> 00:45:31.426 A:middle
+and there's a completion
+handler.
+
+857
+00:45:32.266 --> 00:45:33.706 A:middle
+Be sure to check for errors
+
+858
+00:45:34.336 --> 00:45:37.856 A:middle
+because at any point during your
+program's operation the user can
+
+859
+00:45:37.936 --> 00:45:41.286 A:middle
+still go ahead to the security
+screen or the privacy pane
+
+860
+00:45:41.286 --> 00:45:43.566 A:middle
+and disable authorization
+on your app.
+
+861
+00:45:44.276 --> 00:45:48.976 A:middle
+After that, you can
+start playing
+
+862
+00:45:48.976 --> 00:45:51.916 A:middle
+around with the activities
+that are passed back
+
+863
+00:45:52.346 --> 00:45:53.656 A:middle
+when this call back is invoked.
+
+864
+00:45:54.936 --> 00:45:58.456 A:middle
+Now a word about the
+types of data segments
+
+865
+00:45:58.456 --> 00:46:00.856 A:middle
+that are passed back
+after this query,
+
+866
+00:46:01.076 --> 00:46:02.916 A:middle
+very often you might
+not be interested
+
+867
+00:46:02.916 --> 00:46:04.666 A:middle
+in all the data segments
+that are passed back.
+
+868
+00:46:05.696 --> 00:46:09.686 A:middle
+For example, you might not be
+interested in all the periods
+
+869
+00:46:09.686 --> 00:46:13.346 A:middle
+of time for which your
+device stays static or that,
+
+870
+00:46:13.346 --> 00:46:16.706 A:middle
+if you're a fitness app you
+might want to consider a trip,
+
+871
+00:46:16.856 --> 00:46:18.226 A:middle
+a jog through a shopping mall
+
+872
+00:46:18.226 --> 00:46:22.246 A:middle
+as one bit contiguous walking
+segment as opposed to a walking,
+
+873
+00:46:22.246 --> 00:46:24.156 A:middle
+stopping, walking,
+stopping segment.
+
+874
+00:46:25.146 --> 00:46:28.086 A:middle
+And so you'll want to do some
+sort of app-specific filtering
+
+875
+00:46:28.086 --> 00:46:32.236 A:middle
+on this activity data to kind of
+clean up and make it appropriate
+
+876
+00:46:32.236 --> 00:46:34.686 A:middle
+and more sort of easier to
+understand for the user.
+
+877
+00:46:34.686 --> 00:46:36.186 A:middle
+And this is what,
+
+878
+00:46:36.566 --> 00:46:38.466 A:middle
+this additional processing
+method is doing,
+
+879
+00:46:38.466 --> 00:46:41.106 A:middle
+it's doing some filtering that's
+specific for the demo app.
+
+880
+00:46:41.246 --> 00:46:45.286 A:middle
+In the demo app, we'll do some
+filtering based on confidence,
+
+881
+00:46:45.286 --> 00:46:49.696 A:middle
+we'll do some filtering based
+on getting rid of data seconds
+
+882
+00:46:49.766 --> 00:46:52.046 A:middle
+that are short enough
+and have no sort
+
+883
+00:46:52.046 --> 00:46:54.376 A:middle
+of classification behind them.
+
+884
+00:46:54.936 --> 00:46:58.866 A:middle
+But I'll leave the sort of
+implementation details up to you
+
+885
+00:46:59.136 --> 00:47:00.876 A:middle
+as an exercise for you
+to check out later.
+
+886
+00:47:02.036 --> 00:47:04.756 A:middle
+Now that we've done that,
+we have activities ready,
+
+887
+00:47:04.756 --> 00:47:08.066 A:middle
+they're filtered, they're almost
+- we're almost ready to push up
+
+888
+00:47:08.066 --> 00:47:10.246 A:middle
+and let the UI know that
+all of our data is ready,
+
+889
+00:47:10.246 --> 00:47:12.776 A:middle
+but as I mentioned we're also
+interested in step count data.
+
+890
+00:47:14.006 --> 00:47:16.176 A:middle
+The question that
+comes up now is, well,
+
+891
+00:47:16.176 --> 00:47:19.266 A:middle
+how do I synchronize my
+motion activity results
+
+892
+00:47:19.266 --> 00:47:23.856 A:middle
+with my step counting results,
+and what I like to do is
+
+893
+00:47:24.196 --> 00:47:26.456 A:middle
+to solve that problem
+and nest the query
+
+894
+00:47:26.456 --> 00:47:30.336 A:middle
+so that one successful query
+results in another query,
+
+895
+00:47:30.336 --> 00:47:32.566 A:middle
+and at the end of all
+the successful queries is
+
+896
+00:47:32.566 --> 00:47:35.976 A:middle
+when you tell the UI is
+ready to display the data.
+
+897
+00:47:36.496 --> 00:47:41.746 A:middle
+The step count query
+looks like this.
+
+898
+00:47:44.796 --> 00:47:46.926 A:middle
+There's a start date,
+there's an end date.
+
+899
+00:47:47.296 --> 00:47:50.176 A:middle
+Note again the absence of an
+operation queue parameter,
+
+900
+00:47:50.626 --> 00:47:51.596 A:middle
+this means that if you were
+
+901
+00:47:51.596 --> 00:47:55.766 A:middle
+to invoke any UI modification
+behavior inside your completion
+
+902
+00:47:55.766 --> 00:47:58.766 A:middle
+block, that it's wise to
+dispatch your first domain.
+
+903
+00:47:58.766 --> 00:48:03.316 A:middle
+And let's go ahead and
+invoke the completion block
+
+904
+00:48:03.316 --> 00:48:05.416 A:middle
+that ultimately invokes the UI.
+
+905
+00:48:06.026 --> 00:48:11.336 A:middle
+And that's it, at this point
+my app has all the data
+
+906
+00:48:11.696 --> 00:48:14.136 A:middle
+that was accumulated on behalf
+
+907
+00:48:14.136 --> 00:48:16.286 A:middle
+of my app while my app
+was in the background.
+
+908
+00:48:17.336 --> 00:48:20.516 A:middle
+So in order to further
+the user experience
+
+909
+00:48:20.516 --> 00:48:26.416 A:middle
+so that you can see live updates
+as the user is using the device,
+
+910
+00:48:26.416 --> 00:48:30.286 A:middle
+let's go ahead and start
+using the live updates parts
+
+911
+00:48:30.286 --> 00:48:32.356 A:middle
+of our API.
+
+912
+00:48:34.056 --> 00:48:37.766 A:middle
+So we'll start with step
+updates, it's as simple
+
+913
+00:48:37.816 --> 00:48:40.086 A:middle
+as calling starts, and
+for people who are used
+
+914
+00:48:40.086 --> 00:48:41.956 A:middle
+to seeing step counter
+you might have noticed
+
+915
+00:48:41.956 --> 00:48:44.276 A:middle
+that we have a new
+parameter here and a state,
+
+916
+00:48:44.406 --> 00:48:48.096 A:middle
+this is a convenience for
+you so that in case you want
+
+917
+00:48:48.096 --> 00:48:51.436 A:middle
+to start step counting, but you
+want some offset applied to it,
+
+918
+00:48:51.846 --> 00:48:54.966 A:middle
+say you're a daily journaling
+app, you want step counts
+
+919
+00:48:54.966 --> 00:48:58.486 A:middle
+to be counted from the beginning
+of today, not from right now.
+
+920
+00:48:59.126 --> 00:49:00.736 A:middle
+You can now specify that date,
+
+921
+00:49:01.046 --> 00:49:03.206 A:middle
+that saves you an
+additional query and having
+
+922
+00:49:03.206 --> 00:49:04.566 A:middle
+to combine information together.
+
+923
+00:49:05.976 --> 00:49:09.166 A:middle
+Again, we did not specify
+an NS operation queue
+
+924
+00:49:09.866 --> 00:49:12.466 A:middle
+because this makes the API
+simpler, but if you want
+
+925
+00:49:12.466 --> 00:49:14.956 A:middle
+to do any UI modification
+behaviors,
+
+926
+00:49:14.956 --> 00:49:16.706 A:middle
+be sure to dispatch this back
+
+927
+00:49:16.776 --> 00:49:19.356 A:middle
+to the main queue before you
+run your completion handler.
+
+928
+00:49:19.616 --> 00:49:23.086 A:middle
+I know I'm sounding like a -
+I'm repeating myself a couple
+
+929
+00:49:23.086 --> 00:49:25.106 A:middle
+of times, but this is something
+that I've found something
+
+930
+00:49:25.156 --> 00:49:27.626 A:middle
+to be problematic in
+my own app development.
+
+931
+00:49:29.656 --> 00:49:33.156 A:middle
+Stopping step updates is
+simple, you just call stop.
+
+932
+00:49:39.876 --> 00:49:42.076 A:middle
+Let's go ahead and start
+motion updates, as well.
+
+933
+00:49:42.076 --> 00:49:48.626 A:middle
+Starting motion updates is
+very simple, specify queue,
+
+934
+00:49:48.786 --> 00:49:52.066 A:middle
+specify a completion block, and
+they'll all be kind of handled
+
+935
+00:49:52.066 --> 00:49:55.596 A:middle
+for you, and you'll have
+indications every time you get a
+
+936
+00:49:55.596 --> 00:49:57.376 A:middle
+new motion activity.
+
+937
+00:49:58.306 --> 00:50:01.796 A:middle
+And stopping motion updates is
+also as simple as calling stop.
+
+938
+00:50:02.436 --> 00:50:05.706 A:middle
+And there you go.
+
+939
+00:50:05.706 --> 00:50:08.626 A:middle
+At this point you have a
+fully functional data model
+
+940
+00:50:08.626 --> 00:50:12.276 A:middle
+that you can use in your UI
+app to get motion activity data
+
+941
+00:50:12.656 --> 00:50:14.656 A:middle
+for when your app is in
+the background and for
+
+942
+00:50:14.656 --> 00:50:16.116 A:middle
+when your app is
+in the foreground.
+
+943
+00:50:16.666 --> 00:50:17.956 A:middle
+So let's go ahead
+and take a look
+
+944
+00:50:17.956 --> 00:50:19.926 A:middle
+at what this eventually
+compiles into.
+
+945
+00:50:26.036 --> 00:50:29.546 A:middle
+So here we have the
+motion activity demo app,
+
+946
+00:50:30.496 --> 00:50:32.426 A:middle
+and in the very first
+view you can see a listing
+
+947
+00:50:32.426 --> 00:50:35.366 A:middle
+of the past seven days, for
+which we've collected data,
+
+948
+00:50:35.366 --> 00:50:38.926 A:middle
+and if you click on any of
+these days you'll see sort
+
+949
+00:50:38.926 --> 00:50:42.556 A:middle
+of some transformations
+that we've done on the set
+
+950
+00:50:42.556 --> 00:50:43.786 A:middle
+of activity data segments.
+
+951
+00:50:44.156 --> 00:50:45.936 A:middle
+You'll see the total
+durations for walking,
+
+952
+00:50:45.936 --> 00:50:47.836 A:middle
+running, driving, and moving.
+
+953
+00:50:48.376 --> 00:50:49.276 A:middle
+And because I've clicked
+
+954
+00:50:49.276 --> 00:50:53.226 A:middle
+on the Today view you can
+also see my current activity,
+
+955
+00:50:53.356 --> 00:50:55.906 A:middle
+and because this device is in
+my hand it says it's moving.
+
+956
+00:50:56.306 --> 00:50:59.796 A:middle
+If I set this device on
+the floor or on the table,
+
