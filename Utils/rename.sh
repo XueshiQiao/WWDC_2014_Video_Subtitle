@@ -1,3 +1,5 @@
+#/bin/bash
+
 <<HELP
 	1. copy the srt files to the videos' directory
 	2. copy this script to the videos' directory
