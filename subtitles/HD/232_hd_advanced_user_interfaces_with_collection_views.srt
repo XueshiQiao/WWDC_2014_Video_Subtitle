@@ -1,0 +1,5714 @@
+1
+00:00:11,656 --> 00:00:13,056
+>> So good afternoon, everybody.
+
+
+2
+00:00:14,066 --> 00:00:15,286
+My name is Jeff Watkins.
+
+
+3
+00:00:15,936 --> 00:00:17,446
+I'm an iOS Software Engineer.
+
+
+4
+00:00:17,866 --> 00:00:20,936
+I'm on the iTunes team and I
+have the pleasure of talking
+
+
+5
+00:00:20,936 --> 00:00:21,416
+to you a little bit
+
+
+6
+00:00:21,416 --> 00:00:25,896
+about Advanced User
+Interfaces with Collection View.
+
+
+7
+00:00:26,116 --> 00:00:30,216
+Recently, we got some brand
+new designs for iTunes Connect.
+
+
+8
+00:00:31,446 --> 00:00:37,736
+And these were welcome new
+designs for iOS 7 look and feel
+
+
+9
+00:00:38,386 --> 00:00:40,666
+and they were really fantastic.
+
+
+10
+00:00:40,706 --> 00:00:44,706
+They were brand new,
+fresh, clean look and feel
+
+
+11
+00:00:45,216 --> 00:00:47,366
+and they gave us a
+great opportunity
+
+
+12
+00:00:47,916 --> 00:00:50,696
+because we have been
+making decisions
+
+
+13
+00:00:50,866 --> 00:00:53,106
+for our codes since iOS 2.
+
+
+14
+00:00:53,746 --> 00:00:58,706
+And as you can imagine, the
+decisions that we made back
+
+
+15
+00:00:58,706 --> 00:01:02,936
+in iOS 2 were really
+not the same decisions
+
+
+16
+00:01:03,376 --> 00:01:05,056
+that we would be making today.
+
+
+17
+00:01:05,726 --> 00:01:08,156
+So, this was an ideal
+opportunity for us
+
+
+18
+00:01:08,736 --> 00:01:12,296
+to take some time and pay
+off some technical debt.
+
+
+19
+00:01:13,156 --> 00:01:15,926
+Now, we all know that
+that's fancy speak for
+
+
+20
+00:01:16,086 --> 00:01:19,246
+"throw away the old code and
+write some shiny new code."
+
+
+21
+00:01:19,886 --> 00:01:23,136
+But the reality is,
+we really wanted
+
+
+22
+00:01:23,136 --> 00:01:27,126
+to build a really great
+modern architecture
+
+
+23
+00:01:27,836 --> 00:01:29,856
+that would take us forward
+a few more releases.
+
+
+24
+00:01:30,956 --> 00:01:33,156
+You know, everybody
+thinks that they're going
+
+
+25
+00:01:33,156 --> 00:01:36,726
+to build this shiny,
+glittering jewel
+
+
+26
+00:01:36,726 --> 00:01:38,976
+of an architecture that's
+going to last forever.
+
+
+27
+00:01:39,426 --> 00:01:42,726
+But the reality is you get
+two, maybe three releases
+
+
+28
+00:01:42,876 --> 00:01:44,956
+out of anything you
+build and then it's time
+
+
+29
+00:01:44,956 --> 00:01:48,446
+to rethink things, but
+this was our opportunity.
+
+
+30
+00:01:49,896 --> 00:01:54,086
+So, I'm really excited
+to announce
+
+
+31
+00:01:54,086 --> 00:01:57,516
+that we have some sample code
+that goes along with this talk.
+
+
+32
+00:01:58,226 --> 00:02:02,146
+But what makes this sample code
+even more interesting is this
+
+
+33
+00:02:02,146 --> 00:02:03,806
+sample code is distilled
+
+
+34
+00:02:03,856 --> 00:02:06,956
+down from the actual source
+code of iTunes Connect.
+
+
+35
+00:02:07,786 --> 00:02:11,396
+I have my manager and his chain
+of management to thank for this
+
+
+36
+00:02:11,836 --> 00:02:13,896
+because this is kind of unusual.
+
+
+37
+00:02:14,206 --> 00:02:15,746
+Normally sample code
+is something
+
+
+38
+00:02:15,746 --> 00:02:19,266
+that you would just sort of
+whip together for your talk
+
+
+39
+00:02:20,236 --> 00:02:22,886
+and it covers the aspects
+that you're talking about.
+
+
+40
+00:02:23,406 --> 00:02:26,286
+But it, you know, it
+covers the bare minimum.
+
+
+41
+00:02:26,756 --> 00:02:32,576
+This actually is full,
+rich data sources, full,
+
+
+42
+00:02:32,576 --> 00:02:36,386
+rich UICollectionViewLayout
+and there's actually way more
+
+
+43
+00:02:36,386 --> 00:02:37,916
+in there that we're going
+to talk about today.
+
+
+44
+00:02:38,516 --> 00:02:44,556
+[ Applause ]
+
+
+45
+00:02:45,056 --> 00:02:49,176
+Plus, I'm sure there are bugs.
+
+
+46
+00:02:49,786 --> 00:02:53,336
+But more importantly,
+we'll be building on it
+
+
+47
+00:02:53,386 --> 00:02:55,066
+and improving it
+as time goes on.
+
+
+48
+00:02:55,486 --> 00:02:57,586
+So, look for all
+sorts of additions
+
+
+49
+00:02:57,626 --> 00:02:59,606
+to this sample code
+as time goes on.
+
+
+50
+00:03:00,206 --> 00:03:02,976
+So, we had some requirements
+just
+
+
+51
+00:03:02,976 --> 00:03:04,486
+like you all probably
+get requirements
+
+
+52
+00:03:04,486 --> 00:03:08,556
+with your applications and I'd
+like to go through those one
+
+
+53
+00:03:08,556 --> 00:03:13,036
+by one and take a look at
+them and give you a little bit
+
+
+54
+00:03:13,246 --> 00:03:18,136
+of a sense of where we were
+coming from and, you know,
+
+
+55
+00:03:18,136 --> 00:03:21,436
+a little bit sense of
+the terror that I felt
+
+
+56
+00:03:21,606 --> 00:03:22,736
+when I took a look at them.
+
+
+57
+00:03:23,316 --> 00:03:26,796
+So first of all, we had
+really complex data.
+
+
+58
+00:03:28,156 --> 00:03:32,506
+We started off with iTunes
+Connect 2 supporting apps
+
+
+59
+00:03:32,506 --> 00:03:34,726
+and books, and that was great.
+
+
+60
+00:03:35,376 --> 00:03:38,326
+But now, we were going to
+support all of the content types
+
+
+61
+00:03:38,326 --> 00:03:39,806
+that the store supports.
+
+
+62
+00:03:39,806 --> 00:03:45,306
+So we were going to add music,
+we're going to add music,
+
+
+63
+00:03:46,356 --> 00:03:50,346
+as well as movies
+and TV seasons.
+
+
+64
+00:03:50,906 --> 00:03:57,256
+Now, that was going to post a
+significant challenge for us,
+
+
+65
+00:03:57,996 --> 00:03:59,916
+because each one of
+these content types
+
+
+66
+00:03:59,916 --> 00:04:01,866
+as you can see has
+multiple sections,
+
+
+67
+00:04:02,586 --> 00:04:07,186
+multiple different tabs
+within there, we're talking
+
+
+68
+00:04:07,186 --> 00:04:08,636
+about an awful lot
+of data that's going
+
+
+69
+00:04:08,636 --> 00:04:11,926
+to be a real difficult
+time to manage.
+
+
+70
+00:04:12,516 --> 00:04:15,706
+On top of that, we really wanted
+
+
+71
+00:04:16,776 --> 00:04:18,106
+to have a single
+loading indicator.
+
+
+72
+00:04:19,136 --> 00:04:21,935
+One of the things that I think
+is really tremendously important
+
+
+73
+00:04:22,516 --> 00:04:26,076
+is that users know when
+the content is available
+
+
+74
+00:04:26,286 --> 00:04:27,366
+and ready for interaction.
+
+
+75
+00:04:27,906 --> 00:04:32,086
+I really don't like it when an
+application has a spinner here,
+
+
+76
+00:04:32,086 --> 00:04:34,336
+spinner there, and
+I don't really know
+
+
+77
+00:04:34,336 --> 00:04:35,336
+if it's ready for me.
+
+
+78
+00:04:36,016 --> 00:04:38,876
+So I wanted to make
+iTunes Connect really clear
+
+
+79
+00:04:39,646 --> 00:04:42,236
+that when the spinner was
+gone, we were ready for you.
+
+
+80
+00:04:43,116 --> 00:04:45,966
+So, we were going
+to have our spinner
+
+
+81
+00:04:45,966 --> 00:04:50,946
+where our spinner is going to go
+away and there was the content.
+
+
+82
+00:04:50,946 --> 00:04:53,856
+Now, most of our designs looked
+
+
+83
+00:04:53,856 --> 00:04:56,316
+like UITableView
+and this was easy.
+
+
+84
+00:04:57,036 --> 00:04:58,276
+We could have done
+this in our sleep.
+
+
+85
+00:04:59,536 --> 00:05:03,426
+But, it got more interesting
+on iPad because we needed
+
+
+86
+00:05:03,426 --> 00:05:04,866
+to support multiple columns.
+
+
+87
+00:05:06,416 --> 00:05:10,366
+Now, we could have hacked
+together a solution for iPad
+
+
+88
+00:05:10,516 --> 00:05:12,866
+but that didn't feel
+right, right?
+
+
+89
+00:05:13,096 --> 00:05:16,016
+Here we're trying to create
+a future-looking modern
+
+
+90
+00:05:16,016 --> 00:05:19,876
+architecture where you
+shouldn't consider hacks.
+
+
+91
+00:05:21,036 --> 00:05:24,956
+So, we really needed to do
+something more sophisticated
+
+
+92
+00:05:25,046 --> 00:05:27,366
+for iPad and that's
+when I started thinking,
+
+
+93
+00:05:27,616 --> 00:05:30,796
+"Let's take a look
+at collection view."
+
+
+94
+00:05:31,006 --> 00:05:32,966
+Well, if you know
+collection view,
+
+
+95
+00:05:32,966 --> 00:05:35,296
+you know there are
+some limitations
+
+
+96
+00:05:35,366 --> 00:05:36,896
+with the standard flow layout.
+
+
+97
+00:05:37,646 --> 00:05:41,966
+Specifically, it doesn't
+really support global headers
+
+
+98
+00:05:42,216 --> 00:05:44,216
+like you have in
+table view, right?
+
+
+99
+00:05:44,216 --> 00:05:46,206
+And we needed to
+support global headers.
+
+
+100
+00:05:46,206 --> 00:05:48,676
+We needed to be able to have
+this one header that stuck
+
+
+101
+00:05:48,676 --> 00:05:51,556
+around as you tabbed
+through your content.
+
+
+102
+00:05:52,666 --> 00:05:55,656
+So that made me start
+thinking, "I'm going to have
+
+
+103
+00:05:55,656 --> 00:05:58,796
+to do something here and
+I might wind up having
+
+
+104
+00:05:58,796 --> 00:05:59,696
+to write my own layout."
+
+
+105
+00:06:01,176 --> 00:06:05,796
+In addition, we also needed
+to support pinned headers.
+
+
+106
+00:06:06,256 --> 00:06:08,406
+So, as we're scrolling
+through our content,
+
+
+107
+00:06:09,166 --> 00:06:12,746
+it is really important that
+we able-we'd be able to get
+
+
+108
+00:06:12,746 --> 00:06:16,806
+at those segmented controls
+so that we could get
+
+
+109
+00:06:16,806 --> 00:06:18,426
+to the different
+sections of our content.
+
+
+110
+00:06:19,796 --> 00:06:21,946
+So we needed to be able
+to support pinned headers
+
+
+111
+00:06:22,176 --> 00:06:24,916
+and flow layout also doesn't
+really support that either.
+
+
+112
+00:06:26,216 --> 00:06:29,496
+So, that kind of put
+the nail in the coffin
+
+
+113
+00:06:29,636 --> 00:06:31,306
+of using the flow layout for us.
+
+
+114
+00:06:32,036 --> 00:06:35,576
+And that meant we're
+going to have
+
+
+115
+00:06:35,576 --> 00:06:38,226
+to do a collection view
+layout which I got to admit,
+
+
+116
+00:06:38,226 --> 00:06:39,946
+it was pretty exciting.
+
+
+117
+00:06:40,796 --> 00:06:43,696
+I also wanted to
+add swipe to edit.
+
+
+118
+00:06:44,226 --> 00:06:45,936
+This was a new feature in iOS 7
+
+
+119
+00:06:45,936 --> 00:06:48,656
+and I thought it would be a
+great addition to iTunes Connect
+
+
+120
+00:06:48,696 --> 00:06:51,996
+because it gives it that
+modern interactive feel
+
+
+121
+00:06:52,736 --> 00:06:57,086
+and users can then swipe,
+delete Xcode from their list
+
+
+122
+00:06:57,806 --> 00:07:01,406
+of favorites and move on.
+
+
+123
+00:07:02,516 --> 00:07:04,906
+[ Applause ]
+
+
+124
+00:07:05,406 --> 00:07:08,346
+Also, you know, if you've got a
+list of favorites, you're going
+
+
+125
+00:07:08,346 --> 00:07:10,596
+to want to be able to
+edit those, so we wanted
+
+
+126
+00:07:10,596 --> 00:07:18,466
+to support batch editing, and
+likewise, you can delete Xcode.
+
+
+127
+00:07:19,656 --> 00:07:22,996
+Now, favorites wouldn't
+be any good, right,
+
+
+128
+00:07:22,996 --> 00:07:24,846
+if you couldn't manipulate them,
+
+
+129
+00:07:24,846 --> 00:07:28,326
+if you couldn't reorder your
+favorites because it'd be kind
+
+
+130
+00:07:28,326 --> 00:07:30,286
+of a drag if you got
+a lot of favorites
+
+
+131
+00:07:30,566 --> 00:07:31,956
+and they're in the wrong order.
+
+
+132
+00:07:32,576 --> 00:07:37,236
+So we wanted to support drag
+reordering as well and we needed
+
+
+133
+00:07:37,236 --> 00:07:39,616
+to support that with a custom
+layout and that was going
+
+
+134
+00:07:39,616 --> 00:07:42,536
+to be a bit of a challenge but
+I feel like I've been slagging
+
+
+135
+00:07:42,536 --> 00:07:45,066
+on Xcode so I'm going to put
+it back at the top of the list
+
+
+136
+00:07:45,066 --> 00:07:49,046
+of favorites because they really
+have hit it out of the park.
+
+
+137
+00:07:51,416 --> 00:07:51,976
+Come on.
+
+
+138
+00:07:52,516 --> 00:07:56,706
+[ Applause ]
+
+
+139
+00:07:57,206 --> 00:07:59,406
+With Swift and all of the
+other stuff they've been doing,
+
+
+140
+00:08:00,136 --> 00:08:07,276
+those guys-so, those were our
+requirements and that was kind
+
+
+141
+00:08:07,276 --> 00:08:10,036
+of a lot, I mean on top of all
+the other stuff that the rest
+
+
+142
+00:08:10,036 --> 00:08:10,806
+of the guys had to do.
+
+
+143
+00:08:11,376 --> 00:08:14,806
+But I want to talk about
+the first one first
+
+
+144
+00:08:15,116 --> 00:08:19,346
+because without data, right,
+iTunes Connect is nothing.
+
+
+145
+00:08:19,716 --> 00:08:22,166
+They would just be some
+pretty pictures of your apps
+
+
+146
+00:08:22,166 --> 00:08:25,736
+and everything else which are
+nice but nobody is going to want
+
+
+147
+00:08:25,736 --> 00:08:30,396
+to look at, you know,
+lines and pretty pictures.
+
+
+148
+00:08:30,726 --> 00:08:34,056
+So, getting the data right
+is the most important thing
+
+
+149
+00:08:34,056 --> 00:08:35,885
+and quite frankly, it was
+the thing that I was really,
+
+
+150
+00:08:35,885 --> 00:08:41,806
+really convolutedly freaked out
+about because five data types
+
+
+151
+00:08:41,806 --> 00:08:44,646
+and all these different
+sections and, oh my goodness.
+
+
+152
+00:08:44,776 --> 00:08:47,646
+So, I really needed to
+come up with some way
+
+
+153
+00:08:47,926 --> 00:08:49,996
+to minimize the complexity
+of all that data.
+
+
+154
+00:08:51,546 --> 00:08:56,206
+And the way I took a look
+at this is I took all
+
+
+155
+00:08:56,206 --> 00:08:59,656
+of the designs that our
+HI guys and gals, in fact,
+
+
+156
+00:09:00,126 --> 00:09:04,806
+mostly a gal had come up with,
+and we lay them out and I kind
+
+
+157
+00:09:04,806 --> 00:09:07,656
+of squinted them, add them
+and lay them out side by side
+
+
+158
+00:09:07,916 --> 00:09:10,736
+and I realized that there were
+some real similarities here,
+
+
+159
+00:09:11,756 --> 00:09:12,436
+right?
+
+
+160
+00:09:12,706 --> 00:09:14,096
+If you squinted this,
+you realized
+
+
+161
+00:09:14,096 --> 00:09:19,466
+that we've got some key values
+stuff going on here and that
+
+
+162
+00:09:19,466 --> 00:09:21,796
+in particular showed up all
+throughout the application.
+
+
+163
+00:09:22,796 --> 00:09:27,266
+We've also got this Status
+section that shows up frequently
+
+
+164
+00:09:27,586 --> 00:09:32,186
+and we've got lots of sections
+in our layouts that seem
+
+
+165
+00:09:32,186 --> 00:09:34,246
+to reappear all over the place.
+
+
+166
+00:09:35,106 --> 00:09:36,386
+And I thought to myself "Gosh.
+
+
+167
+00:09:37,256 --> 00:09:39,746
+This is really something that
+we need to take advantage of."
+
+
+168
+00:09:39,746 --> 00:09:43,436
+We really need to be able
+to reuse this kind of code.
+
+
+169
+00:09:44,886 --> 00:09:49,596
+But the problem is, if you've
+been doing collection view
+
+
+170
+00:09:50,026 --> 00:09:50,816
+controllers in the past,
+
+
+171
+00:09:51,786 --> 00:09:55,166
+you know that there's really
+challenges with code reuse
+
+
+172
+00:09:55,226 --> 00:09:59,956
+when it comes to data sources.
+
+
+173
+00:10:00,046 --> 00:10:02,346
+The traditional approach
+to a collection
+
+
+174
+00:10:02,346 --> 00:10:05,486
+of your data source has
+you putting everything
+
+
+175
+00:10:05,486 --> 00:10:06,256
+in the view controller.
+
+
+176
+00:10:07,126 --> 00:10:10,126
+And as a result, you'll wind
+up with one of the two things.
+
+
+177
+00:10:10,886 --> 00:10:13,716
+First, you can wind up with
+a gigantic view controller.
+
+
+178
+00:10:14,526 --> 00:10:17,476
+And I'm sure you've all seen
+this-not on your projects.
+
+
+179
+00:10:18,296 --> 00:10:21,896
+But you wind up with the
+view controller that's
+
+
+180
+00:10:21,896 --> 00:10:24,176
+like 5,000 lines of code.
+
+
+181
+00:10:25,156 --> 00:10:29,026
+And it does everything
+including things
+
+
+182
+00:10:29,026 --> 00:10:30,166
+that you don't do anymore.
+
+
+183
+00:10:31,436 --> 00:10:32,656
+I deleted all that code.
+
+
+184
+00:10:33,866 --> 00:10:37,706
+And so, we didn't want
+that especially now,
+
+
+185
+00:10:37,706 --> 00:10:39,776
+I mean we're starting fresh,
+right, we wouldn't want that.
+
+
+186
+00:10:40,946 --> 00:10:43,756
+The other option is we could
+have had one view controller
+
+
+187
+00:10:43,956 --> 00:10:46,296
+for each content
+type and that seems
+
+
+188
+00:10:46,296 --> 00:10:49,176
+like it's a better
+approach but it's really not
+
+
+189
+00:10:49,516 --> 00:10:51,196
+because there's really
+a lot of things
+
+
+190
+00:10:51,196 --> 00:10:54,266
+that the view controller
+just does innately
+
+
+191
+00:10:55,246 --> 00:10:58,276
+and the way you wind up with
+sharing common code is you wind
+
+
+192
+00:10:58,276 --> 00:11:00,446
+up pushing it down to
+a common base class,
+
+
+193
+00:11:01,336 --> 00:11:02,806
+which winds up being
+the same thing
+
+
+194
+00:11:02,806 --> 00:11:04,446
+as having one gigantic
+view controller
+
+
+195
+00:11:04,446 --> 00:11:06,556
+because you've pushed it
+all to the base class.
+
+
+196
+00:11:06,906 --> 00:11:09,706
+So sure you've kind of hidden
+it a little bit but now it's
+
+
+197
+00:11:09,706 --> 00:11:13,346
+down there and you're
+just not looking at it.
+
+
+198
+00:11:13,346 --> 00:11:15,126
+And it doesn't at
+all solve the problem
+
+
+199
+00:11:15,126 --> 00:11:17,516
+of code reuse across screens.
+
+
+200
+00:11:18,106 --> 00:11:20,406
+So we wanted a better solution.
+
+
+201
+00:11:21,296 --> 00:11:24,736
+Now fortunately, I had
+the pleasure of working
+
+
+202
+00:11:24,736 --> 00:11:28,566
+on the Game Center team during
+the iOS 7 redesign and they came
+
+
+203
+00:11:28,566 --> 00:11:30,326
+up with a solution to
+this exact problem.
+
+
+204
+00:11:31,336 --> 00:11:33,226
+It's called Aggregate
+Data Sources.
+
+
+205
+00:11:34,076 --> 00:11:36,276
+Now their data was a
+little bit less complex
+
+
+206
+00:11:36,336 --> 00:11:38,516
+than ours by just a smidge.
+
+
+207
+00:11:39,166 --> 00:11:43,886
+But they hit upon the right
+answer, which was building
+
+
+208
+00:11:43,886 --> 00:11:46,226
+up data sources from
+smaller data sources.
+
+
+209
+00:11:46,636 --> 00:11:51,876
+There's nothing that says that
+a UICollectionViewDataSource has
+
+
+210
+00:11:51,876 --> 00:11:53,346
+to be implemented on
+your view controller.
+
+
+211
+00:11:54,476 --> 00:11:58,816
+In fact, I would encourage you
+not to implement the data source
+
+
+212
+00:11:58,816 --> 00:11:59,586
+on your view controller.
+
+
+213
+00:12:00,776 --> 00:12:02,226
+In fact, I'd go so
+far as to say,
+
+
+214
+00:12:02,226 --> 00:12:05,636
+never ever again implement
+it on your view controller.
+
+
+215
+00:12:06,046 --> 00:12:08,046
+[ Applause ]
+
+
+216
+00:12:08,076 --> 00:12:09,546
+I mean, unless you
+really want to,
+
+
+217
+00:12:10,146 --> 00:12:13,216
+but what we do here
+is we implement it
+
+
+218
+00:12:13,216 --> 00:12:17,156
+as a general NSObject, and
+then we build those together
+
+
+219
+00:12:17,876 --> 00:12:20,376
+to build a much more
+sophisticated data source
+
+
+220
+00:12:21,226 --> 00:12:24,576
+and this goes a long way
+to enabling code reuse.
+
+
+221
+00:12:25,006 --> 00:12:28,086
+Because as you can imagine,
+we've got these little classes
+
+
+222
+00:12:28,206 --> 00:12:30,546
+of data sources that
+we cobble together
+
+
+223
+00:12:30,546 --> 00:12:32,506
+and we reuse them
+all over the place.
+
+
+224
+00:12:33,396 --> 00:12:36,326
+And as a result, we wound up
+with a single view controller
+
+
+225
+00:12:36,326 --> 00:12:39,576
+for our product detail screen
+that has only 14 methods.
+
+
+226
+00:12:40,786 --> 00:12:43,346
+Now, six of those
+methods-before you get all upset
+
+
+227
+00:12:43,346 --> 00:12:47,436
+that I have 14 methods,
+six of those methods,
+
+
+228
+00:12:47,976 --> 00:12:50,136
+five of them are building
+the five content types
+
+
+229
+00:12:50,136 --> 00:12:53,236
+of data sources, one of
+them is building the overall
+
+
+230
+00:12:53,236 --> 00:12:53,756
+data source.
+
+
+231
+00:12:54,726 --> 00:12:57,356
+And then the rest of them are
+some action methods that bubble
+
+
+232
+00:12:57,356 --> 00:12:58,896
+up our responder chain.
+
+
+233
+00:12:59,296 --> 00:13:00,916
+I think there's some, you know,
+
+
+234
+00:13:01,006 --> 00:13:03,216
+delegate methods in
+there and whatnot.
+
+
+235
+00:13:03,266 --> 00:13:05,406
+So I mean, we do go
+a little overboard.
+
+
+236
+00:13:05,516 --> 00:13:09,016
+I probably could
+have cut it down but,
+
+
+237
+00:13:09,016 --> 00:13:10,636
+you know, we're getting there.
+
+
+238
+00:13:11,446 --> 00:13:17,036
+So let's take a look at the four
+intrinsic aggregate data source
+
+
+239
+00:13:17,036 --> 00:13:18,766
+classes that you'll
+see in a sample code.
+
+
+240
+00:13:20,276 --> 00:13:23,606
+The first and most
+important one where all
+
+
+241
+00:13:23,606 --> 00:13:26,496
+of the action is
+is AAPLDataSource.
+
+
+242
+00:13:26,896 --> 00:13:28,106
+That's the base data source.
+
+
+243
+00:13:28,576 --> 00:13:31,206
+That's where we implement the
+UICollectionViewDataSource
+
+
+244
+00:13:31,206 --> 00:13:35,066
+protocol, as well as a host of
+other good stuff that we'll talk
+
+
+245
+00:13:35,066 --> 00:13:36,306
+about in a little bit.
+
+
+246
+00:13:37,396 --> 00:13:41,326
+On top of that, we've layered
+the AAPLSegmentedDataSource
+
+
+247
+00:13:42,356 --> 00:13:44,956
+and that can have multiple
+children but only one
+
+
+248
+00:13:44,956 --> 00:13:45,966
+of them is active at a time.
+
+
+249
+00:13:46,726 --> 00:13:49,636
+Think of a UISegmentedControl,
+in fact,
+
+
+250
+00:13:49,826 --> 00:13:50,976
+there's a good reason
+to think of that.
+
+
+251
+00:13:50,976 --> 00:13:54,756
+It will vend out a header
+with a UISegmentedControl
+
+
+252
+00:13:54,756 --> 00:13:57,956
+as part of its base behavior.
+
+
+253
+00:13:59,066 --> 00:14:02,006
+Then there's the
+AAPLComposedDataSource
+
+
+254
+00:14:02,086 --> 00:14:03,946
+and that will take a
+number of children.
+
+
+255
+00:14:04,666 --> 00:14:07,796
+They're all active at once
+and it manages the mapping
+
+
+256
+00:14:07,796 --> 00:14:09,696
+between the external IndexPaths
+
+
+257
+00:14:10,226 --> 00:14:12,706
+and the internal
+child IndexPaths.
+
+
+258
+00:14:13,726 --> 00:14:16,996
+And then there's this
+AAPLBasicDataSource.
+
+
+259
+00:14:17,236 --> 00:14:19,946
+How many times have you
+had just a list of things
+
+
+260
+00:14:20,026 --> 00:14:21,006
+and you just want to show them?
+
+
+261
+00:14:21,006 --> 00:14:23,466
+Well, that's what the
+basic data source is for.
+
+
+262
+00:14:23,796 --> 00:14:26,166
+It takes an array of items.
+
+
+263
+00:14:26,556 --> 00:14:28,546
+It manages insertions,
+deletions,
+
+
+264
+00:14:28,546 --> 00:14:30,606
+reorderings, all
+that nasty stuff.
+
+
+265
+00:14:30,726 --> 00:14:32,376
+It sends out the
+right notifications.
+
+
+266
+00:14:32,936 --> 00:14:34,336
+It only allows you
+to have one section
+
+
+267
+00:14:34,336 --> 00:14:37,596
+because there's countless
+times where that's all you need
+
+
+268
+00:14:38,456 --> 00:14:41,136
+and we wind up using
+it all over the place.
+
+
+269
+00:14:41,606 --> 00:14:47,026
+So let's take a look in how we
+use these four classes to build
+
+
+270
+00:14:47,026 --> 00:14:49,726
+up our product details
+data source.
+
+
+271
+00:14:50,606 --> 00:14:54,486
+So first of all, the product
+details data source is a
+
+
+272
+00:14:54,486 --> 00:14:58,126
+segmented data source
+and it has four segments.
+
+
+273
+00:14:58,996 --> 00:15:02,376
+No surprise, one for
+Details, one for Episodes,
+
+
+274
+00:15:02,756 --> 00:15:04,876
+one for Reviews and
+one for Trends.
+
+
+275
+00:15:05,176 --> 00:15:06,956
+Those correspond exactly
+
+
+276
+00:15:07,406 --> 00:15:10,226
+to the UISegmentedControl
+in the headers.
+
+
+277
+00:15:11,216 --> 00:15:13,856
+That UISegmentedControl
+is actually created
+
+
+278
+00:15:14,206 --> 00:15:17,656
+by the Segmented Data Source.
+
+
+279
+00:15:17,656 --> 00:15:24,266
+Now, the Details child
+data source is a composed
+
+
+280
+00:15:24,466 --> 00:15:25,066
+data source.
+
+
+281
+00:15:25,826 --> 00:15:31,676
+And it has children
+for the Status section,
+
+
+282
+00:15:31,796 --> 00:15:35,116
+Information and Description.
+
+
+283
+00:15:35,546 --> 00:15:37,526
+Each one of those is
+its own data source.
+
+
+284
+00:15:38,556 --> 00:15:42,366
+The Information was one of
+those key value data sources.
+
+
+285
+00:15:43,086 --> 00:15:47,276
+The Description is a
+special textual data source.
+
+
+286
+00:15:47,506 --> 00:15:49,506
+And all of these are
+pulling information
+
+
+287
+00:15:49,506 --> 00:15:53,036
+out of the product object.
+
+
+288
+00:15:53,556 --> 00:15:59,216
+Now, Episodes is just one
+of those basic data sources
+
+
+289
+00:15:59,306 --> 00:16:00,976
+because we've just got
+a list of Episodes.
+
+
+290
+00:16:02,146 --> 00:16:03,556
+But this is where
+it gets interesting
+
+
+291
+00:16:03,996 --> 00:16:08,386
+because as you can see,
+Episodes have a show date.
+
+
+292
+00:16:09,056 --> 00:16:13,266
+Now we could take the date and
+we could pass it off to the cell
+
+
+293
+00:16:13,266 --> 00:16:17,386
+and we could have the cell
+create an NSDateFormatter
+
+
+294
+00:16:17,386 --> 00:16:19,846
+and we could render and do that,
+
+
+295
+00:16:20,006 --> 00:16:23,806
+but we've been told countless
+times that's really the wrong
+
+
+296
+00:16:23,806 --> 00:16:25,166
+thing to do, right?
+
+
+297
+00:16:25,796 --> 00:16:28,316
+So this is what data
+source has allow us
+
+
+298
+00:16:28,316 --> 00:16:32,416
+to do is we can encapsulate
+task-specific logic,
+
+
+299
+00:16:33,156 --> 00:16:35,076
+presentation-specific logic.
+
+
+300
+00:16:36,136 --> 00:16:39,386
+So, in my Episode's data source,
+
+
+301
+00:16:39,996 --> 00:16:43,266
+that's where I have a date
+formatter that's specific
+
+
+302
+00:16:43,266 --> 00:16:46,776
+to the Episodes and I do that
+conversion of the NSDate,
+
+
+303
+00:16:47,176 --> 00:16:49,136
+that's in each episode,
+
+
+304
+00:16:49,466 --> 00:16:51,626
+into a string before I
+jam it into the cell.
+
+
+305
+00:16:53,116 --> 00:16:57,446
+And that way, I get the best
+performance rather than allowing
+
+
+306
+00:16:57,446 --> 00:16:59,526
+that to happen in each cell.
+
+
+307
+00:17:00,956 --> 00:17:04,036
+Then Reviews is another
+composed data source.
+
+
+308
+00:17:04,526 --> 00:17:07,955
+You're probably getting
+tired of this but it's great.
+
+
+309
+00:17:07,955 --> 00:17:09,366
+Let me tell you.
+
+
+310
+00:17:09,366 --> 00:17:12,506
+And the composed data source
+for Reviews has one for Ratings
+
+
+311
+00:17:13,286 --> 00:17:15,106
+and another one for
+the Actual Reviews.
+
+
+312
+00:17:15,695 --> 00:17:19,846
+And we'll actually come back
+to the Reviews data source
+
+
+313
+00:17:20,146 --> 00:17:23,675
+when we look at how things
+load in the upcoming slides.
+
+
+314
+00:17:23,675 --> 00:17:27,215
+And then Trends is a
+custom data source.
+
+
+315
+00:17:27,215 --> 00:17:30,376
+It derives directly from
+the base data source.
+
+
+316
+00:17:30,706 --> 00:17:32,726
+Because we go out and
+we fetch the trend data
+
+
+317
+00:17:32,816 --> 00:17:36,796
+and then we actually render
+it in two separate sections.
+
+
+318
+00:17:36,796 --> 00:17:40,736
+One for the Graph and then
+another for the Historical Data.
+
+
+319
+00:17:41,356 --> 00:17:46,896
+So that's how we build up a
+product details data source
+
+
+320
+00:17:47,176 --> 00:17:50,116
+from all these little
+aggregate data sources.
+
+
+321
+00:17:50,206 --> 00:17:53,006
+And that has an additional
+benefit.
+
+
+322
+00:17:53,776 --> 00:17:56,066
+Because remember I
+told that we wanted
+
+
+323
+00:17:56,066 --> 00:18:00,106
+to have a single
+loading indicator, right?
+
+
+324
+00:18:00,716 --> 00:18:07,096
+Well, we originally tried to
+make our single point of truth
+
+
+325
+00:18:07,456 --> 00:18:09,796
+for whether we're loading
+via the view controller.
+
+
+326
+00:18:10,596 --> 00:18:14,796
+And that's kind of tough because
+the view controller really
+
+
+327
+00:18:14,796 --> 00:18:18,206
+doesn't know what all
+is being loaded, right?
+
+
+328
+00:18:18,206 --> 00:18:21,006
+We've got five different
+content types, multiple sections
+
+
+329
+00:18:21,346 --> 00:18:23,936
+with subsections within them.
+
+
+330
+00:18:24,196 --> 00:18:27,296
+Each one loads its own content,
+how is it going to know?
+
+
+331
+00:18:27,296 --> 00:18:31,706
+Well it turns out, we
+have one thing that knows
+
+
+332
+00:18:31,796 --> 00:18:35,096
+about everything and that's the
+product details data source.
+
+
+333
+00:18:36,006 --> 00:18:39,006
+So the answer to
+the whole problem
+
+
+334
+00:18:39,446 --> 00:18:43,696
+of who knows what's
+loading, is the data source.
+
+
+335
+00:18:44,326 --> 00:18:46,726
+The data source is responsible
+for loading its content.
+
+
+336
+00:18:46,946 --> 00:18:49,666
+And when you think about it,
+it actually makes total sense.
+
+
+337
+00:18:50,726 --> 00:18:54,556
+And if you make the data
+sources responsible,
+
+
+338
+00:18:55,266 --> 00:18:57,286
+they know just the
+data they need to load.
+
+
+339
+00:18:58,356 --> 00:19:02,006
+They know exactly how to load it
+and they're already responsible
+
+
+340
+00:19:02,006 --> 00:19:05,956
+for their own task-specific
+logic so they can format it,
+
+
+341
+00:19:05,956 --> 00:19:09,476
+do whatever they need to and
+make it ready for presentation.
+
+
+342
+00:19:10,496 --> 00:19:13,026
+So now, the view controller
+kicks off the whole process
+
+
+343
+00:19:13,096 --> 00:19:18,306
+in -viewWillAppear by sending
+a load data to the data source
+
+
+344
+00:19:18,636 --> 00:19:20,876
+which in turn propagates
+that message
+
+
+345
+00:19:21,056 --> 00:19:22,536
+to its children as appropriate.
+
+
+346
+00:19:23,056 --> 00:19:26,066
+So for example, a segmented
+data source will only send it
+
+
+347
+00:19:26,066 --> 00:19:27,806
+to the selected data source,
+
+
+348
+00:19:28,576 --> 00:19:32,816
+but a composed data source will
+send it all of its children.
+
+
+349
+00:19:32,916 --> 00:19:36,776
+And because we're good computer
+scientists just like all of you,
+
+
+350
+00:19:36,776 --> 00:19:42,046
+we use a state machine to
+keep track of everything.
+
+
+351
+00:19:42,076 --> 00:19:42,596
+You would, right?
+
+
+352
+00:19:42,596 --> 00:19:45,726
+Let's take a look at
+that state machine.
+
+
+353
+00:19:46,516 --> 00:19:48,546
+[ Applause ]
+
+
+354
+00:19:49,046 --> 00:19:54,076
+So the obviously named
+AAPLLoadableContentStateMachine,
+
+
+355
+00:19:56,056 --> 00:19:59,356
+it's got a few states.
+
+
+356
+00:19:59,696 --> 00:20:02,676
+It's not as nasty
+as it could be.
+
+
+357
+00:20:03,486 --> 00:20:05,876
+All data sources start
+off in the initial state
+
+
+358
+00:20:05,876 --> 00:20:08,346
+until they receive a
+load content message.
+
+
+359
+00:20:09,336 --> 00:20:11,436
+Once they've received
+the load content message,
+
+
+360
+00:20:11,656 --> 00:20:14,296
+then they transition into
+the loading content state.
+
+
+361
+00:20:14,616 --> 00:20:16,056
+That's when we display
+the spinner.
+
+
+362
+00:20:17,176 --> 00:20:19,036
+That's the only time we
+ever display the spinner.
+
+
+363
+00:20:19,316 --> 00:20:22,026
+And if you noticed, you
+can't ever get back there.
+
+
+364
+00:20:23,486 --> 00:20:25,966
+So when they get content
+or they get an error
+
+
+365
+00:20:25,966 --> 00:20:29,636
+or they receive no content
+from their respective sources,
+
+
+366
+00:20:30,846 --> 00:20:33,456
+they'll transition into
+no content, content loaded
+
+
+367
+00:20:33,776 --> 00:20:38,166
+or an error state and will
+display the appropriate view.
+
+
+368
+00:20:39,186 --> 00:20:41,056
+And we'll take a look at
+exactly how that works.
+
+
+369
+00:20:42,206 --> 00:20:44,196
+So let's see how this all works
+
+
+370
+00:20:44,326 --> 00:20:47,486
+from a data source loading
+data off the network
+
+
+371
+00:20:47,486 --> 00:20:48,726
+and from a UI standpoint.
+
+
+372
+00:20:48,726 --> 00:20:51,486
+So here we are in
+the initial state.
+
+
+373
+00:20:51,646 --> 00:20:54,276
+And we've got my Cat
+List Data Source.
+
+
+374
+00:20:54,276 --> 00:20:56,066
+This is from the
+sample application
+
+
+375
+00:20:56,516 --> 00:20:58,096
+because I am cat crazy.
+
+
+376
+00:20:59,576 --> 00:21:02,626
+And yes, I was heartbroken
+when we switched
+
+
+377
+00:21:02,626 --> 00:21:04,196
+to California landmarks.
+
+
+378
+00:21:07,246 --> 00:21:11,406
+Yeah, I thought the Ocelot was
+finally going to get its chance.
+
+
+379
+00:21:13,026 --> 00:21:15,386
+So were starting off
+in the initial state
+
+
+380
+00:21:15,726 --> 00:21:17,406
+and we get the load
+content message
+
+
+381
+00:21:18,056 --> 00:21:19,776
+and we transition
+into loading content.
+
+
+382
+00:21:20,846 --> 00:21:23,436
+Then the data source, in this
+case, it's going to request
+
+
+383
+00:21:23,436 --> 00:21:26,426
+out to its server,
+"Get me some cats."
+
+
+384
+00:21:27,426 --> 00:21:30,426
+The server eventually comes
+back and says, "Here you go."
+
+
+385
+00:21:31,186 --> 00:21:34,346
+Now depending on what the
+response is, then it's going
+
+
+386
+00:21:34,346 --> 00:21:35,866
+to make a transition
+into the right place.
+
+
+387
+00:21:36,466 --> 00:21:39,406
+And let's take a look at what
+the UI does in this case.
+
+
+388
+00:21:40,086 --> 00:21:41,556
+So here we are in
+the loading content,
+
+
+389
+00:21:41,556 --> 00:21:42,386
+we're showing the spinner
+
+
+390
+00:21:43,016 --> 00:21:46,196
+and let's imagine we
+get back some cats.
+
+
+391
+00:21:48,146 --> 00:21:49,646
+So here we're going
+to display the cats.
+
+
+392
+00:21:49,946 --> 00:21:51,746
+Like I said, this is
+the sample application.
+
+
+393
+00:21:52,366 --> 00:21:55,296
+Assuming everything works
+well, this will compile
+
+
+394
+00:21:55,296 --> 00:21:58,866
+and run exactly as
+planned on your machines.
+
+
+395
+00:21:59,786 --> 00:22:03,176
+And we'll see our list of big
+cats right there on our devices.
+
+
+396
+00:22:05,316 --> 00:22:09,476
+However, if you know anything
+about cats, they're never
+
+
+397
+00:22:09,476 --> 00:22:10,716
+where you expect them to be.
+
+
+398
+00:22:11,216 --> 00:22:15,176
+So more than likely, you're
+going to try to load the cats
+
+
+399
+00:22:15,926 --> 00:22:17,946
+and you're going to be told,
+there are no cats here.
+
+
+400
+00:22:19,406 --> 00:22:23,026
+Well, the great thing about this
+is I had to do no work here,
+
+
+401
+00:22:23,596 --> 00:22:28,226
+which is great because cats
+do a lot of work for you.
+
+
+402
+00:22:28,696 --> 00:22:31,966
+So in this case, all I set
+up was the No Content message
+
+
+403
+00:22:31,966 --> 00:22:33,856
+and the No Content
+title on my data source.
+
+
+404
+00:22:35,126 --> 00:22:36,296
+And behind the scenes,
+
+
+405
+00:22:36,296 --> 00:22:38,106
+the machinery took care
+of everything else.
+
+
+406
+00:22:39,266 --> 00:22:42,366
+When I transition into the
+No Content state, the layout
+
+
+407
+00:22:42,366 --> 00:22:44,276
+and the data sources take care
+
+
+408
+00:22:44,276 --> 00:22:45,646
+of presenting the
+place holder for me.
+
+
+409
+00:22:46,776 --> 00:22:49,446
+It really takes a lot of
+burden off of my shoulders.
+
+
+410
+00:22:50,676 --> 00:22:53,266
+Now, sometimes, things go wrong.
+
+
+411
+00:22:53,266 --> 00:22:57,956
+And then, we go from the
+Loading Content state
+
+
+412
+00:22:58,306 --> 00:22:59,176
+into the Error state.
+
+
+413
+00:22:59,846 --> 00:23:01,886
+And similarly to No Content,
+
+
+414
+00:23:02,736 --> 00:23:06,496
+if we've configured an Error
+message and an Error title,
+
+
+415
+00:23:06,986 --> 00:23:09,526
+we'll get a placeholder telling
+the user what's gone wrong.
+
+
+416
+00:23:10,086 --> 00:23:15,426
+So this is a really
+great way that we found
+
+
+417
+00:23:15,426 --> 00:23:20,156
+to get our consistent UI
+but it's a little bit more
+
+
+418
+00:23:20,156 --> 00:23:23,896
+than because in most cases,
+
+
+419
+00:23:24,636 --> 00:23:27,586
+we're not just loading
+one thing, right?
+
+
+420
+00:23:28,056 --> 00:23:31,216
+I mentioned, we'd come back
+to the Ratings and Reviews.
+
+
+421
+00:23:32,576 --> 00:23:34,916
+We load that information
+separately.
+
+
+422
+00:23:35,706 --> 00:23:38,056
+We fetch the ratings and
+we fetch the reviews.
+
+
+423
+00:23:39,126 --> 00:23:43,466
+Well, we can't update if we've
+got a single loading indicator.
+
+
+424
+00:23:43,746 --> 00:23:46,256
+We can't update the
+Collection View with the Ratings
+
+
+425
+00:23:46,786 --> 00:23:49,376
+and then the Reviews because
+that wouldn't look right.
+
+
+426
+00:23:50,386 --> 00:23:52,396
+So we've got to update
+everything all at once.
+
+
+427
+00:23:53,416 --> 00:23:57,436
+And in order to do that,
+we needed a solution
+
+
+428
+00:23:57,786 --> 00:24:02,246
+that was elegant because
+anything less would be
+
+
+429
+00:24:02,706 --> 00:24:03,176
+just wrong.
+
+
+430
+00:24:04,106 --> 00:24:07,676
+So the solution that we came
+up with relies on the fact
+
+
+431
+00:24:07,926 --> 00:24:10,356
+that we have a parent-child
+relationship
+
+
+432
+00:24:10,456 --> 00:24:11,376
+to our data sources.
+
+
+433
+00:24:11,596 --> 00:24:13,456
+So let's take a look at that.
+
+
+434
+00:24:13,956 --> 00:24:16,636
+All of our data sources start
+off in the initial state.
+
+
+435
+00:24:16,726 --> 00:24:20,016
+They get the load
+content message
+
+
+436
+00:24:20,306 --> 00:24:22,906
+and then it all transitioned
+into the loading content state
+
+
+437
+00:24:23,426 --> 00:24:27,316
+at which point, the ratings and
+the reviews data sources send
+
+
+438
+00:24:27,316 --> 00:24:30,416
+out their request to the server.
+
+
+439
+00:24:30,596 --> 00:24:32,956
+Now, we all know that
+the servers not going
+
+
+440
+00:24:32,956 --> 00:24:35,776
+to respond simultaneously
+to both requests.
+
+
+441
+00:24:36,646 --> 00:24:37,726
+That's fantasy land.
+
+
+442
+00:24:38,746 --> 00:24:41,966
+So what happens is one of the
+responses comes back first.
+
+
+443
+00:24:43,096 --> 00:24:45,286
+That data source will
+process the response
+
+
+444
+00:24:45,496 --> 00:24:46,936
+but not update itself.
+
+
+445
+00:24:47,526 --> 00:24:49,436
+What it does is it
+queues up a block
+
+
+446
+00:24:49,716 --> 00:24:52,656
+that actually will do the
+update and it sends it
+
+
+447
+00:24:52,656 --> 00:24:56,596
+up to the parent chain and
+that block will just sort
+
+
+448
+00:24:56,596 --> 00:24:59,296
+of hang out there for a bit.
+
+
+449
+00:24:59,496 --> 00:25:03,066
+Then, the next data source
+will get its response,
+
+
+450
+00:25:03,676 --> 00:25:06,096
+it does the same thing.
+
+
+451
+00:25:06,476 --> 00:25:08,286
+It transitions into
+Content Loaded,
+
+
+452
+00:25:09,386 --> 00:25:11,186
+queues up an update block.
+
+
+453
+00:25:12,426 --> 00:25:15,786
+And then the parent will
+discover, "Oh, look.
+
+
+454
+00:25:16,166 --> 00:25:18,316
+All of my children are loaded.
+
+
+455
+00:25:19,066 --> 00:25:21,996
+It's OK for me to transition
+into Content Loaded."
+
+
+456
+00:25:23,026 --> 00:25:26,426
+And now I can call
+performBatchUpdates
+
+
+457
+00:25:26,616 --> 00:25:29,476
+on the collectionView
+and schedule all
+
+
+458
+00:25:29,476 --> 00:25:33,216
+of those update blocks
+safely inside
+
+
+459
+00:25:33,216 --> 00:25:34,926
+of performBatchUpdates block.
+
+
+460
+00:25:36,516 --> 00:25:39,546
+[ Applause ]
+
+
+461
+00:25:40,046 --> 00:25:42,256
+The good thing about all these
+is we don't get exceptions
+
+
+462
+00:25:42,746 --> 00:25:44,736
+because of our timing
+inconsistencies.
+
+
+463
+00:25:44,856 --> 00:25:48,016
+And I don't know about you,
+but I don't like exceptions.
+
+
+464
+00:25:48,666 --> 00:25:51,076
+My boss gets really grouchy.
+
+
+465
+00:25:51,686 --> 00:25:57,376
+So to recap, Aggregate Data
+Sources were a great way for us
+
+
+466
+00:25:57,376 --> 00:25:59,186
+to reduce our view
+controller complexity.
+
+
+467
+00:25:59,366 --> 00:26:03,076
+Our view controller only
+does view controllery things.
+
+
+468
+00:26:03,806 --> 00:26:05,006
+It no longer involved
+
+
+469
+00:26:05,056 --> 00:26:06,716
+in the data source other
+than setting it up.
+
+
+470
+00:26:06,716 --> 00:26:10,726
+And it went a long way
+to promoting code reuse.
+
+
+471
+00:26:11,516 --> 00:26:15,836
+So now our code is scattered
+in these aggregate data sources
+
+
+472
+00:26:15,836 --> 00:26:17,196
+that we use all over the place
+
+
+473
+00:26:17,816 --> 00:26:21,186
+and it isolates task-specific
+logic that we use for setting
+
+
+474
+00:26:21,186 --> 00:26:23,796
+up ourselves into
+the data sources
+
+
+475
+00:26:23,796 --> 00:26:24,516
+where they're appropriate.
+
+
+476
+00:26:25,616 --> 00:26:28,866
+And we got that single
+loading indicator
+
+
+477
+00:26:28,866 --> 00:26:29,736
+that we were looking for.
+
+
+478
+00:26:30,326 --> 00:26:33,796
+So that was our first
+two requirements.
+
+
+479
+00:26:33,796 --> 00:26:41,976
+So let's take a look
+at the next four,
+
+
+480
+00:26:42,186 --> 00:26:47,716
+which necessitated a Custom
+UICollectionViewLayout.
+
+
+481
+00:26:49,316 --> 00:26:52,166
+Now, I have a confession
+to make.
+
+
+482
+00:26:52,556 --> 00:26:57,406
+The first time I built the
+layout, I was very unhappy.
+
+
+483
+00:26:58,566 --> 00:26:59,106
+It worked.
+
+
+484
+00:26:59,936 --> 00:27:01,206
+It worked actually really well.
+
+
+485
+00:27:01,996 --> 00:27:07,826
+But I am-how shall I put
+this, hard to please?
+
+
+486
+00:27:08,746 --> 00:27:12,216
+And it didn't work
+as well as I wanted.
+
+
+487
+00:27:13,106 --> 00:27:15,776
+And the reason is I didn't
+collect all the information
+
+
+488
+00:27:15,776 --> 00:27:17,856
+that I should have.
+
+
+489
+00:27:17,856 --> 00:27:22,186
+I tried to be done and just
+move on to other things.
+
+
+490
+00:27:22,776 --> 00:27:25,056
+So the message I want
+you to take away from all
+
+
+491
+00:27:25,056 --> 00:27:26,586
+of this-and I'm sort
+of skipping ahead
+
+
+492
+00:27:26,586 --> 00:27:31,576
+to the summary before I even
+start-is do your bookkeeping.
+
+
+493
+00:27:32,116 --> 00:27:33,716
+Get all the information you can.
+
+
+494
+00:27:33,716 --> 00:27:37,006
+And at the very end, run
+instruments to make sure
+
+
+495
+00:27:37,006 --> 00:27:38,526
+that you have enough memory
+
+
+496
+00:27:38,526 --> 00:27:40,936
+and you're not using
+too much resources
+
+
+497
+00:27:41,506 --> 00:27:44,746
+and then prune back the
+information you're keeping
+
+
+498
+00:27:45,356 --> 00:27:47,096
+but keep it all upfront.
+
+
+499
+00:27:47,806 --> 00:27:50,656
+So let's take a look at
+the information I kept,
+
+
+500
+00:27:51,676 --> 00:27:56,386
+the information I didn't keep
+and what I should have kept.
+
+
+501
+00:27:56,636 --> 00:28:01,456
+So first, what did I need to
+keep and where did it belong?
+
+
+502
+00:28:01,976 --> 00:28:05,666
+So obviously, we got these
+great designs from HI
+
+
+503
+00:28:06,396 --> 00:28:09,096
+and they're just
+pictures, right?
+
+
+504
+00:28:09,576 --> 00:28:12,336
+We need to interpret that and
+figure out what did we need
+
+
+505
+00:28:12,336 --> 00:28:16,996
+from that to actually layout
+cells and headers and footers
+
+
+506
+00:28:16,996 --> 00:28:19,876
+and supplementary views
+and decoration views
+
+
+507
+00:28:19,876 --> 00:28:20,646
+and the whole nine yards.
+
+
+508
+00:28:21,666 --> 00:28:25,426
+And then, kind of as a
+footnote, where does it all go?
+
+
+509
+00:28:25,426 --> 00:28:28,596
+And I want to address that
+first, get it out of the way.
+
+
+510
+00:28:29,966 --> 00:28:32,396
+Data sources vend
+visual information.
+
+
+511
+00:28:33,076 --> 00:28:33,906
+They vend views.
+
+
+512
+00:28:35,056 --> 00:28:36,836
+Design metrics are
+visual information.
+
+
+513
+00:28:37,556 --> 00:28:39,636
+I put them in the data source.
+
+
+514
+00:28:40,696 --> 00:28:42,966
+Partly because the data
+sources are hierarchal
+
+
+515
+00:28:43,646 --> 00:28:45,446
+and they've got default metrics
+
+
+516
+00:28:45,446 --> 00:28:47,046
+and they've got section-based
+metrics,
+
+
+517
+00:28:47,486 --> 00:28:49,086
+it just made sense
+to put it there.
+
+
+518
+00:28:50,026 --> 00:28:52,116
+I could have put it in
+a parallel structure
+
+
+519
+00:28:52,666 --> 00:28:54,096
+but then I would have
+parallel structures
+
+
+520
+00:28:54,096 --> 00:28:55,716
+and that would have
+been too crazy.
+
+
+521
+00:28:56,536 --> 00:28:57,906
+So, they're in the data sources.
+
+
+522
+00:28:58,036 --> 00:28:58,986
+That's where you'll find them.
+
+
+523
+00:28:59,616 --> 00:29:03,316
+So let's take a look
+at the section metrics.
+
+
+524
+00:29:03,796 --> 00:29:08,236
+So here, we've got some Big
+Cats and naturally we're going
+
+
+525
+00:29:08,236 --> 00:29:10,786
+to want to know the rowHeight.
+
+
+526
+00:29:10,936 --> 00:29:15,526
+We also want to know the
+backgroundColor, right?
+
+
+527
+00:29:16,096 --> 00:29:19,776
+A lot of our sections
+can be gray.
+
+
+528
+00:29:19,966 --> 00:29:20,636
+Some of them are white.
+
+
+529
+00:29:20,636 --> 00:29:23,446
+None of them are garish colors.
+
+
+530
+00:29:25,346 --> 00:29:27,536
+Obviously, we have some
+that have separators
+
+
+531
+00:29:27,656 --> 00:29:31,116
+and separatorInsets but not all
+of our sections have separators.
+
+
+532
+00:29:32,066 --> 00:29:35,896
+So we needed to be able to set
+that on a per section bases.
+
+
+533
+00:29:36,036 --> 00:29:39,546
+We also needed to be able to
+set a selectedBackgroundColor.
+
+
+534
+00:29:40,116 --> 00:29:46,696
+The way we determine whether or
+not a cell appears selectable is
+
+
+535
+00:29:46,696 --> 00:29:48,356
+by the selectedBackgroundColor.
+
+
+536
+00:29:48,856 --> 00:29:52,596
+Whether it actually is
+selectable is in code.
+
+
+537
+00:29:53,436 --> 00:29:58,646
+Now remember, we also support
+multiple columns so we needed
+
+
+538
+00:29:58,646 --> 00:29:59,876
+to know, based on the section,
+
+
+539
+00:30:00,006 --> 00:30:03,206
+how many columns it
+should support and whether
+
+
+540
+00:30:03,206 --> 00:30:04,746
+or not it should show
+a column separator.
+
+
+541
+00:30:07,216 --> 00:30:10,946
+For the headers and
+footers, we similarly needed
+
+
+542
+00:30:10,946 --> 00:30:14,106
+to know the height, although
+most of the time we set this
+
+
+543
+00:30:14,186 --> 00:30:16,416
+to zero which means
+figure it out yourself,
+
+
+544
+00:30:17,576 --> 00:30:18,446
+thanks to auto layout.
+
+
+545
+00:30:19,726 --> 00:30:22,606
+We also wanted to know the
+backgroundColor but most
+
+
+546
+00:30:22,606 --> 00:30:23,996
+of the time we set this to nil
+
+
+547
+00:30:24,326 --> 00:30:29,116
+which means inherited
+from the section.
+
+
+548
+00:30:29,946 --> 00:30:34,626
+And we also want to specify
+a padding because one
+
+
+549
+00:30:34,626 --> 00:30:35,596
+of the things that we saw
+
+
+550
+00:30:35,596 --> 00:30:38,826
+in our designs a lot was
+exactly the same header
+
+
+551
+00:30:38,826 --> 00:30:43,496
+but with a little bit more
+space between this instance
+
+
+552
+00:30:43,496 --> 00:30:45,686
+of the header and that
+instance of the header.
+
+
+553
+00:30:46,706 --> 00:30:49,356
+And yeah, we could
+define a subclass
+
+
+554
+00:30:49,856 --> 00:30:51,246
+to give us a little extra space
+
+
+555
+00:30:51,836 --> 00:30:55,126
+or we could just have
+another metric that says, "Oh,
+
+
+556
+00:30:55,126 --> 00:30:56,856
+here we're going to have
+10 points of spacing,
+
+
+557
+00:30:57,506 --> 00:30:58,386
+there we're going to have 20."
+
+
+558
+00:30:59,186 --> 00:30:59,926
+So we added padding.
+
+
+559
+00:31:01,196 --> 00:31:04,076
+It actually wound up being
+hugely helpful when we needed
+
+
+560
+00:31:04,076 --> 00:31:06,316
+to align things horizontally
+as well.
+
+
+561
+00:31:07,486 --> 00:31:09,906
+So this gave us all the
+information we needed
+
+
+562
+00:31:10,776 --> 00:31:14,826
+to lay things out in
+our actual layout.
+
+
+563
+00:31:15,766 --> 00:31:17,826
+But some of this information
+needed to be passed along
+
+
+564
+00:31:17,826 --> 00:31:20,806
+to the cells and the
+headers and, to do that,
+
+
+565
+00:31:20,806 --> 00:31:22,266
+we had some Custom Attributes.
+
+
+566
+00:31:22,556 --> 00:31:24,936
+And I'm sure you all know
+that you can create subclasses
+
+
+567
+00:31:25,046 --> 00:31:28,176
+of the layout attributes so
+that's exactly what we did,
+
+
+568
+00:31:28,176 --> 00:31:33,236
+and we wound up with four plus
+a few more Custom Attributes--
+
+
+569
+00:31:33,976 --> 00:31:36,726
+first of all, backgroundColor
+and the selectedBackgroundColor,
+
+
+570
+00:31:37,266 --> 00:31:39,956
+and padding but also
+pinnedHeader.
+
+
+571
+00:31:40,616 --> 00:31:44,216
+At one point, we thought
+that we wanted our headers
+
+
+572
+00:31:44,216 --> 00:31:45,526
+to respond to being pinned.
+
+
+573
+00:31:45,886 --> 00:31:51,216
+For example, if we'd had a
+navigation bar that was blue,
+
+
+574
+00:31:51,566 --> 00:31:55,896
+it would make perfect sense for
+the header to reach the top pin
+
+
+575
+00:31:55,896 --> 00:32:00,046
+and change to be blue,
+and it would need to know
+
+
+576
+00:32:00,046 --> 00:32:01,386
+that it was pinned
+in order to do that.
+
+
+577
+00:32:02,546 --> 00:32:06,346
+So those were the custom
+attributes we decided to define
+
+
+578
+00:32:06,646 --> 00:32:09,216
+for headers and footers
+and our cells.
+
+
+579
+00:32:10,376 --> 00:32:15,076
+Now remember, we also needed
+to support Global Headers.
+
+
+580
+00:32:15,076 --> 00:32:19,476
+And to do that, I'm
+going to let you
+
+
+581
+00:32:19,566 --> 00:32:22,266
+in on what I thought
+was a secret.
+
+
+582
+00:32:22,266 --> 00:32:25,696
+It turns out it's not.
+
+
+583
+00:32:26,696 --> 00:32:27,506
+We're all familiar
+
+
+584
+00:32:27,506 --> 00:32:29,996
+with NSIndexPath normally
+having two indices,
+
+
+585
+00:32:30,976 --> 00:32:32,826
+one for Section, one for Item.
+
+
+586
+00:32:33,976 --> 00:32:38,276
+Well, it seems that you can
+also create an NSIndexPath
+
+
+587
+00:32:38,276 --> 00:32:41,666
+with one index and
+when you do that,
+
+
+588
+00:32:42,336 --> 00:32:47,076
+you're creating a Global
+Supplementary View indexPath
+
+
+589
+00:32:47,746 --> 00:32:50,136
+or a Global Decoration
+View indexPath.
+
+
+590
+00:32:51,246 --> 00:32:53,946
+It makes no sense two create
+these four items so don't try.
+
+
+591
+00:32:54,876 --> 00:32:58,666
+But this is how we
+separated our global headers
+
+
+592
+00:32:59,356 --> 00:33:00,956
+from everything else.
+
+
+593
+00:33:01,516 --> 00:33:03,876
+When we initially tried
+this, I tried to lump them
+
+
+594
+00:33:03,876 --> 00:33:05,706
+in with section zero and
+it just made no sense.
+
+
+595
+00:33:06,666 --> 00:33:10,766
+So now, I'm able to distinguish
+them from everything else
+
+
+596
+00:33:11,146 --> 00:33:12,976
+and we treat global
+headers differently.
+
+
+597
+00:33:13,386 --> 00:33:16,146
+When you look at the
+sample code, you will notice
+
+
+598
+00:33:16,246 --> 00:33:19,206
+that the global headers
+actually never go off screen.
+
+
+599
+00:33:19,986 --> 00:33:23,626
+They pin just underneath
+the navigation bar.
+
+
+600
+00:33:24,336 --> 00:33:27,596
+They're treated as what we'll
+call special attributes.
+
+
+601
+00:33:28,416 --> 00:33:31,886
+And they get updated as you
+scroll so that they stay
+
+
+602
+00:33:31,886 --> 00:33:34,346
+in place and they do all
+sorts of funny, fancy things.
+
+
+603
+00:33:35,816 --> 00:33:37,706
+Now, the code needs to
+be a little bit smart
+
+
+604
+00:33:38,506 --> 00:33:40,766
+so that you check the
+length of your index path,
+
+
+605
+00:33:41,076 --> 00:33:44,696
+so that you don't accidentally
+call section and item
+
+
+606
+00:33:44,856 --> 00:33:46,376
+for these global index paths.
+
+
+607
+00:33:46,376 --> 00:33:51,176
+But other than that,
+you're good.
+
+
+608
+00:33:51,386 --> 00:33:52,846
+Now, building a layout.
+
+
+609
+00:33:53,406 --> 00:33:57,726
+Earlier today, you might
+have heard Olivier mention
+
+
+610
+00:33:58,126 --> 00:34:03,116
+that you want to be really
+careful about using invalidation
+
+
+611
+00:34:03,606 --> 00:34:04,726
+or you want to be really careful
+
+
+612
+00:34:04,886 --> 00:34:06,636
+to use invalidation,
+I should say.
+
+
+613
+00:34:07,036 --> 00:34:08,766
+And that's exactly the case.
+
+
+614
+00:34:09,186 --> 00:34:12,735
+You might be tempted to
+build the most perfect,
+
+
+615
+00:34:13,826 --> 00:34:16,016
+single-pass layout engine.
+
+
+616
+00:34:16,876 --> 00:34:19,726
+Don't, because what you'll wind
+
+
+617
+00:34:19,726 --> 00:34:23,985
+up with is absolute
+efficiency the first time.
+
+
+618
+00:34:24,755 --> 00:34:27,376
+And then someone will come in
+and-the collection will come in
+
+
+619
+00:34:27,376 --> 00:34:29,735
+and say, "Hey, this
+cell has changed."
+
+
+620
+00:34:30,386 --> 00:34:32,786
+And you'll have to
+re-layout everything.
+
+
+621
+00:34:33,846 --> 00:34:36,795
+Or the origin has changed
+because you've scrolled
+
+
+622
+00:34:37,076 --> 00:34:40,166
+and you'll have to lay out
+everything and you'll just drop.
+
+
+623
+00:34:40,446 --> 00:34:41,516
+Your performance will die.
+
+
+624
+00:34:42,096 --> 00:34:45,596
+So let's take a look at the
+pseudo-code so to speak,
+
+
+625
+00:34:45,596 --> 00:34:47,775
+for the layout that
+we came up with.
+
+
+626
+00:34:48,585 --> 00:34:51,326
+And then, we're going
+to show you a little bit
+
+
+627
+00:34:51,326 --> 00:34:55,166
+of how we snapshot the metrics
+for one of our sections.
+
+
+628
+00:34:55,166 --> 00:34:58,026
+And I'll think you'll get a
+good sense of why breaking this
+
+
+629
+00:34:58,026 --> 00:35:00,696
+up into sections is
+really important.
+
+
+630
+00:35:01,796 --> 00:35:06,356
+So first of all, if the data
+source is changed significantly,
+
+
+631
+00:35:06,356 --> 00:35:09,106
+like it's a totally different
+one or the total number
+
+
+632
+00:35:09,106 --> 00:35:11,516
+of sections have changed, we
+just throw everything away.
+
+
+633
+00:35:12,146 --> 00:35:16,736
+And the reason for this is it's
+probably more efficient for us
+
+
+634
+00:35:16,856 --> 00:35:19,026
+to just re-compute
+everything than it would be
+
+
+635
+00:35:19,026 --> 00:35:21,686
+to compute the deltas because
+our data sources are actually
+
+
+636
+00:35:21,686 --> 00:35:22,196
+pretty small.
+
+
+637
+00:35:23,146 --> 00:35:24,536
+If you've seen iTunes Connect,
+
+
+638
+00:35:24,986 --> 00:35:27,196
+you know that the actual
+content isn't that big.
+
+
+639
+00:35:28,566 --> 00:35:32,056
+So, yeah, I could probably
+come up with a clever way
+
+
+640
+00:35:32,056 --> 00:35:33,896
+to compute deltas
+and everything else
+
+
+641
+00:35:34,306 --> 00:35:35,816
+but this wound up
+being just easier.
+
+
+642
+00:35:36,886 --> 00:35:39,916
+And in the long run, getting
+it done is sometimes just
+
+
+643
+00:35:39,916 --> 00:35:40,436
+as important.
+
+
+644
+00:35:42,826 --> 00:35:47,376
+Next, if the collection view's
+width has changed or obviously
+
+
+645
+00:35:47,376 --> 00:35:48,406
+if I threw everything away,
+
+
+646
+00:35:49,156 --> 00:35:53,266
+then I need to regenerate all
+the layout attributes as well
+
+
+647
+00:35:53,266 --> 00:35:56,246
+as collect all of the
+special layout attributes.
+
+
+648
+00:35:56,546 --> 00:35:59,846
+So all of those global
+headers and any pinned headers
+
+
+649
+00:35:59,846 --> 00:36:03,456
+that might have been
+defined within the content.
+
+
+650
+00:36:03,526 --> 00:36:06,966
+So, I make that single pass
+and I layout everything.
+
+
+651
+00:36:07,426 --> 00:36:15,136
+And then, if the origin has
+changed because we've scrolled,
+
+
+652
+00:36:15,136 --> 00:36:19,266
+I update the position of any
+special layout attributes.
+
+
+653
+00:36:20,606 --> 00:36:22,846
+Now when I go back and I
+update all of this code
+
+
+654
+00:36:22,846 --> 00:36:25,456
+to support iOS 8,
+I'm going to fix this
+
+
+655
+00:36:25,766 --> 00:36:27,476
+because I'll use the
+new invalidation context
+
+
+656
+00:36:27,536 --> 00:36:30,516
+and this all will be different
+but this is how we do it today.
+
+
+657
+00:36:31,246 --> 00:36:37,056
+So let's take a look at how
+we snapshot the metrics.
+
+
+658
+00:36:37,166 --> 00:36:40,406
+So we have this hierarchal
+structure of data sources.
+
+
+659
+00:36:41,486 --> 00:36:47,026
+And on your right, is the
+product detail screen.
+
+
+660
+00:36:47,856 --> 00:36:52,256
+So we start with Section
+0, which is the Status,
+
+
+661
+00:36:53,066 --> 00:36:57,646
+and we begin our snapshot at the
+very least specific data source,
+
+
+662
+00:36:58,056 --> 00:36:59,576
+which is the Segmented
+Data Source.
+
+
+663
+00:37:00,316 --> 00:37:03,516
+Now in this case, these are
+actually the default metrics
+
+
+664
+00:37:03,916 --> 00:37:06,066
+for the entire product details.
+
+
+665
+00:37:06,916 --> 00:37:08,866
+And that's rowHeight equals 44.
+
+
+666
+00:37:09,206 --> 00:37:10,626
+BackgroundColor equals
+light-grey.
+
+
+667
+00:37:11,696 --> 00:37:15,346
+That means everything
+is rowHeight equals 44,
+
+
+668
+00:37:15,726 --> 00:37:16,946
+backgroundColor equals
+light-grey.
+
+
+669
+00:37:16,946 --> 00:37:18,666
+So that's what we start with.
+
+
+670
+00:37:19,516 --> 00:37:23,176
+Next, we move to the next
+most specific data source
+
+
+671
+00:37:23,176 --> 00:37:25,636
+which is the composed
+data source for details.
+
+
+672
+00:37:27,096 --> 00:37:30,126
+It just so happens that
+it doesn't define any
+
+
+673
+00:37:30,126 --> 00:37:30,956
+metrics whatsoever.
+
+
+674
+00:37:31,156 --> 00:37:34,226
+Not default metrics, not
+section-based metrics.
+
+
+675
+00:37:34,756 --> 00:37:38,246
+So then we can move on
+to the status data source
+
+
+676
+00:37:39,346 --> 00:37:43,906
+which has section-based metrics
+specifically for that section
+
+
+677
+00:37:44,546 --> 00:37:45,916
+of rowHeight equals 60
+
+
+678
+00:37:46,706 --> 00:37:48,976
+and selectedBackgroundColor
+of mediumGrey.
+
+
+679
+00:37:49,916 --> 00:37:51,896
+Because remember, we
+do the selection based
+
+
+680
+00:37:51,896 --> 00:37:52,706
+on the actual color.
+
+
+681
+00:37:53,846 --> 00:37:57,176
+So, we have these
+overrides for rowHeight
+
+
+682
+00:37:57,936 --> 00:38:01,666
+and we have a new attribute for
+the selectedBackgroundColor.
+
+
+683
+00:38:01,986 --> 00:38:04,536
+So you can imagine, if we
+had to go through this,
+
+
+684
+00:38:05,566 --> 00:38:08,536
+every time we move the origin
+of the collection view,
+
+
+685
+00:38:09,666 --> 00:38:12,946
+we'd get terrible frame rates.
+
+
+686
+00:38:13,146 --> 00:38:15,896
+So, it's really important
+that we only do this
+
+
+687
+00:38:16,126 --> 00:38:17,766
+when it's absolutely necessary.
+
+
+688
+00:38:18,536 --> 00:38:20,416
+So we only do it when the
+collection view changes.
+
+
+689
+00:38:21,046 --> 00:38:25,076
+But then, we go through and
+we update our attributes
+
+
+690
+00:38:25,076 --> 00:38:26,876
+when we actually scroll.
+
+
+691
+00:38:27,486 --> 00:38:32,296
+So I spoke earlier about
+Optional Layout Methods
+
+
+692
+00:38:32,926 --> 00:38:35,226
+and this is where my
+whole confession comes in.
+
+
+693
+00:38:36,136 --> 00:38:37,356
+I did these out of order.
+
+
+694
+00:38:37,966 --> 00:38:40,216
+I know I spoke to some
+of you in the lab earlier
+
+
+695
+00:38:40,746 --> 00:38:42,996
+and I gave you some
+specific details.
+
+
+696
+00:38:43,526 --> 00:38:46,396
+I started with
+-initialLayoutAttributes
+
+
+697
+00:38:46,396 --> 00:38:51,206
+and -finalLayoutAttributes and I
+realize that, "Oh, my goodness.
+
+
+698
+00:38:51,556 --> 00:38:53,826
+In order to do
+-initialLayoutAttributes
+
+
+699
+00:38:53,826 --> 00:38:57,086
+and -finalLayoutAttributes, I
+need the update information."
+
+
+700
+00:38:57,316 --> 00:38:59,336
+So let me implement
+-prepareForCollection
+
+
+701
+00:38:59,336 --> 00:39:04,476
+ViewUpdates and I'll just
+grab the array of updates.
+
+
+702
+00:39:05,116 --> 00:39:08,806
+I'll just stash those over
+here because I need them.
+
+
+703
+00:39:09,016 --> 00:39:11,866
+And each time I would get called
+for -initalLayoutAttributes,
+
+
+704
+00:39:11,866 --> 00:39:14,336
+I'd walk the array and I try
+to figure out what was going on
+
+
+705
+00:39:15,386 --> 00:39:18,576
+and quickly my head exploded
+because it was just too hard.
+
+
+706
+00:39:19,546 --> 00:39:24,156
+And I admit, I deleted
+all the code.
+
+
+707
+00:39:24,306 --> 00:39:25,826
+I went on to other things
+
+
+708
+00:39:26,726 --> 00:39:29,186
+and it was weeks before I was
+willing to come back to it.
+
+
+709
+00:39:29,186 --> 00:39:33,326
+And fortunately, in those weeks,
+I talked to a lot of people.
+
+
+710
+00:39:33,326 --> 00:39:35,306
+I read a lot of the
+documentation
+
+
+711
+00:39:35,306 --> 00:39:38,206
+and I finally figured out
+what I was doing wrong.
+
+
+712
+00:39:38,206 --> 00:39:42,346
+And what I was doing wrong is
+I wasn't doing my bookkeeping.
+
+
+713
+00:39:42,936 --> 00:39:45,406
+I wasn't collecting the
+information that I needed.
+
+
+714
+00:39:46,676 --> 00:39:49,756
+And so let's talk
+about that information
+
+
+715
+00:39:50,226 --> 00:39:52,356
+and more importantly let's talk
+
+
+716
+00:39:52,356 --> 00:39:54,566
+about the information
+in the right order.
+
+
+717
+00:39:55,446 --> 00:39:57,376
+So this it turns out
+is the right order.
+
+
+718
+00:39:57,756 --> 00:39:58,746
+Prepare for layout.
+
+
+719
+00:39:59,136 --> 00:40:01,636
+You probably already implement
+this if you're doing a layout
+
+
+720
+00:40:02,476 --> 00:40:04,826
+but there's some information
+that we need to capture here,
+
+
+721
+00:40:05,076 --> 00:40:07,106
+not just building our layout.
+
+
+722
+00:40:08,056 --> 00:40:11,306
+And then -prepareForCollection
+ViewUpdates followed
+
+
+723
+00:40:11,306 --> 00:40:14,216
+by -targetContentOffsetFor
+ProposedContentOffset,
+
+
+724
+00:40:14,216 --> 00:40:17,906
+which is quite a mouthful, and
+then -initialLayoutAttributes
+
+
+725
+00:40:17,906 --> 00:40:19,046
+and -finalLayoutAttributes.
+
+
+726
+00:40:19,606 --> 00:40:22,216
+So I'm going to talk
+about -prepareLayout
+
+
+727
+00:40:22,216 --> 00:40:24,326
+and -prepareForCollection
+ViewUpdates together
+
+
+728
+00:40:25,006 --> 00:40:27,806
+because they do sort of pair up.
+
+
+729
+00:40:28,556 --> 00:40:30,716
+First, -prepareLayout.
+
+
+730
+00:40:31,546 --> 00:40:34,026
+So here's my layout,
+very colorful.
+
+
+731
+00:40:34,776 --> 00:40:39,796
+And when I get -prepareLayout,
+what I do is I take a snapshot
+
+
+732
+00:40:41,016 --> 00:40:44,086
+of the current layout and
+I keep it as my old layout.
+
+
+733
+00:40:45,596 --> 00:40:49,076
+In the process of building my
+layout, I have a lookup table
+
+
+734
+00:40:49,306 --> 00:40:54,786
+between all the IndexPaths
+to items, all the IndexPaths
+
+
+735
+00:40:54,836 --> 00:40:58,176
+to supplementary views, all the
+IndexPaths to decoration views.
+
+
+736
+00:40:59,386 --> 00:41:01,246
+Remember I said,
+keep everything.
+
+
+737
+00:41:02,206 --> 00:41:04,306
+Well, when I get called
+for -prepareLayout,
+
+
+738
+00:41:05,046 --> 00:41:05,916
+I duplicate everything.
+
+
+739
+00:41:06,216 --> 00:41:08,506
+I stash it as the old layout.
+
+
+740
+00:41:09,696 --> 00:41:12,936
+Then, in -prepareForCollection
+ViewUpdates,
+
+
+741
+00:41:13,906 --> 00:41:17,036
+I create a lookup table
+for deletions, insertions
+
+
+742
+00:41:17,326 --> 00:41:18,516
+and everything that
+was reloaded.
+
+
+743
+00:41:18,516 --> 00:41:21,556
+And I run through
+the array of updates
+
+
+744
+00:41:22,626 --> 00:41:24,226
+and all the deletions
+get tracked
+
+
+745
+00:41:25,626 --> 00:41:29,186
+and all the insertions
+also get tracked.
+
+
+746
+00:41:29,316 --> 00:41:32,726
+So now, I know everything
+that's going on in my layout.
+
+
+747
+00:41:32,726 --> 00:41:36,116
+And then before I'm done
+
+
+748
+00:41:36,116 --> 00:41:37,576
+with -prepareForCollection
+ViewUpdates,
+
+
+749
+00:41:38,066 --> 00:41:42,726
+I calculate the delta in the
+height of the two layouts
+
+
+750
+00:41:43,756 --> 00:41:50,676
+as well as the change in
+where the offset of the start
+
+
+751
+00:41:50,676 --> 00:41:51,916
+of my content should be.
+
+
+752
+00:41:52,346 --> 00:41:54,396
+Because I've got
+content that's pinned
+
+
+753
+00:41:54,396 --> 00:41:56,366
+and possibly scrolled
+off the screen.
+
+
+754
+00:41:56,696 --> 00:41:57,796
+It gets a little bit tricky.
+
+
+755
+00:41:58,526 --> 00:42:00,036
+And for the sake
+of the examples,
+
+
+756
+00:42:00,036 --> 00:42:01,076
+we're going to ignore all that.
+
+
+757
+00:42:01,966 --> 00:42:05,496
+But that all gets done
+right here before I return
+
+
+758
+00:42:05,496 --> 00:42:07,256
+from prepareForCollection
+ViewUpdates.
+
+
+759
+00:42:07,256 --> 00:42:11,006
+So, let's take a look at one
+
+
+760
+00:42:11,106 --> 00:42:13,616
+of the other methods
+I didn't implement
+
+
+761
+00:42:14,426 --> 00:42:18,476
+and later wished I had, the
+-targetContentOffset method.
+
+
+762
+00:42:19,616 --> 00:42:23,326
+Now, the documentation says that
+this adjusts the scroll offset
+
+
+763
+00:42:24,306 --> 00:42:27,636
+and I didn't understand
+viscerally,
+
+
+764
+00:42:27,636 --> 00:42:30,496
+how important this was
+until I saw it in action.
+
+
+765
+00:42:30,806 --> 00:42:32,226
+And so I have animations
+that I'm going
+
+
+766
+00:42:32,226 --> 00:42:34,386
+to show you just how
+important this is.
+
+
+767
+00:42:35,006 --> 00:42:39,476
+It's used by my layout actually
+to calculate the pinning offset
+
+
+768
+00:42:39,956 --> 00:42:43,226
+and the delta that I use
+to prevent unwanted motion.
+
+
+769
+00:42:43,306 --> 00:42:45,996
+And the trick is I get
+this calculation correct,
+
+
+770
+00:42:46,146 --> 00:42:48,106
+which took a little while,
+
+
+771
+00:42:48,106 --> 00:42:50,326
+but then I used it
+in so many places.
+
+
+772
+00:42:51,636 --> 00:42:53,636
+So let's take a look at
+that exactly how that works.
+
+
+773
+00:42:54,356 --> 00:42:57,736
+Before I implemented this,
+here I've got my old content
+
+
+774
+00:42:58,396 --> 00:43:02,426
+and it's 320 by 1000 and
+I'm scrolled all the way
+
+
+775
+00:43:03,226 --> 00:43:04,546
+to the bottom.
+
+
+776
+00:43:04,546 --> 00:43:07,376
+And I put in some new content
+which is considerably shorter
+
+
+777
+00:43:08,526 --> 00:43:12,146
+and collection view, remember,
+does a lot of work for us
+
+
+778
+00:43:12,606 --> 00:43:15,126
+and it says, "Hey,
+that's not valid.
+
+
+779
+00:43:15,596 --> 00:43:16,416
+I'll help you out.
+
+
+780
+00:43:17,266 --> 00:43:20,146
+I'll adjust your
+contentOffset to 0, 165.
+
+
+781
+00:43:20,146 --> 00:43:22,496
+I'll animate everything
+down for you."
+
+
+782
+00:43:22,986 --> 00:43:26,136
+Well remember, I'm
+not easy to please
+
+
+783
+00:43:26,906 --> 00:43:27,906
+and I don't want it there.
+
+
+784
+00:43:27,906 --> 00:43:31,336
+I want to be able to see
+the new content beginning
+
+
+785
+00:43:31,336 --> 00:43:32,236
+at the new content.
+
+
+786
+00:43:32,656 --> 00:43:34,656
+That's kind of why
+I put it there.
+
+
+787
+00:43:34,756 --> 00:43:38,586
+So, that means to me that I
+need to change my contentOffset.
+
+
+788
+00:43:39,986 --> 00:43:44,816
+So, after implementing
+target contentOffset
+
+
+789
+00:43:44,816 --> 00:43:50,856
+for proposed contentOffset, here
+I've got my old content again
+
+
+790
+00:43:50,856 --> 00:43:54,826
+with the original
+contentOffset of 0, 432.
+
+
+791
+00:43:55,366 --> 00:43:59,546
+And this time, I propose-give
+a new contentOffset of 0,
+
+
+792
+00:43:59,546 --> 00:44:04,206
+0 and notice, whoosh,
+everything slides down
+
+
+793
+00:44:04,536 --> 00:44:07,286
+and I can see my content
+at the correct position.
+
+
+794
+00:44:08,386 --> 00:44:12,936
+But I'm still not happy because
+my content shouldn't be moving.
+
+
+795
+00:44:13,706 --> 00:44:16,636
+If you've seen the sample app
+or you've seen iTunes Connect
+
+
+796
+00:44:17,146 --> 00:44:19,766
+or if you've seen Game
+Center, you actually know
+
+
+797
+00:44:19,766 --> 00:44:23,236
+that I wanted my content
+not just to come in.
+
+
+798
+00:44:23,956 --> 00:44:26,536
+I wanted my content to
+slide in from the side
+
+
+799
+00:44:27,076 --> 00:44:28,516
+because frankly that's cool.
+
+
+800
+00:44:29,476 --> 00:44:32,816
+And if I've got content
+that slides in from the top
+
+
+801
+00:44:33,226 --> 00:44:36,566
+and slides in from the side, my
+users are going to get seasick.
+
+
+802
+00:44:36,926 --> 00:44:37,836
+I don't want that.
+
+
+803
+00:44:37,836 --> 00:44:39,566
+I'm going to get
+one-star reviews for that.
+
+
+804
+00:44:40,176 --> 00:44:45,366
+So the solution is -initial
+and -finalLayoutAttributes.
+
+
+805
+00:44:45,626 --> 00:44:49,146
+That function that I tried
+to do first is the final one
+
+
+806
+00:44:49,146 --> 00:44:50,006
+that I needed to implement.
+
+
+807
+00:44:50,896 --> 00:44:51,956
+And just a reminder,
+
+
+808
+00:44:52,866 --> 00:44:55,896
+initialLayoutAttributes is
+called if the view will be
+
+
+809
+00:44:55,896 --> 00:44:57,376
+on the screen after the update.
+
+
+810
+00:44:57,836 --> 00:45:00,906
+finalLayoutAttributes is
+called if the view was
+
+
+811
+00:45:00,906 --> 00:45:02,986
+on the screen before the
+update and they're both going
+
+
+812
+00:45:02,986 --> 00:45:05,396
+to be called for a view
+that remains on the screen.
+
+
+813
+00:45:06,626 --> 00:45:09,646
+And I know you're not
+going to believe this
+
+
+814
+00:45:09,646 --> 00:45:14,196
+until you see the code, but it's
+actually really simple once all
+
+
+815
+00:45:14,196 --> 00:45:15,396
+the information is
+been processed.
+
+
+816
+00:45:16,696 --> 00:45:19,646
+So, let's look at some more
+animations before I let you see
+
+
+817
+00:45:19,646 --> 00:45:19,966
+the code.
+
+
+818
+00:45:20,466 --> 00:45:24,916
+On the left here, we see what's
+happening to the viewport.
+
+
+819
+00:45:25,806 --> 00:45:29,526
+On the right is what the
+user actually sees, OK?
+
+
+820
+00:45:29,846 --> 00:45:34,376
+Without initialLayoutAttributes,
+the blue content is stuck
+
+
+821
+00:45:34,966 --> 00:45:39,546
+where it really is and the
+viewport slides up to meet it
+
+
+822
+00:45:39,546 --> 00:45:43,016
+and that makes that
+unwanted animation.
+
+
+823
+00:45:44,996 --> 00:45:50,316
+However, after I've implemented
+initialLayoutAttributes,
+
+
+824
+00:45:50,856 --> 00:45:54,086
+you'll notice that the
+new content is synced
+
+
+825
+00:45:54,086 --> 00:45:57,896
+up with the viewport and
+as the viewport transitions
+
+
+826
+00:45:57,896 --> 00:46:01,956
+to its new location, the
+new content animates with it
+
+
+827
+00:46:01,956 --> 00:46:06,516
+and appears to stand still.
+
+
+828
+00:46:06,726 --> 00:46:10,116
+Now, everything is
+moving but nothing appears
+
+
+829
+00:46:10,116 --> 00:46:12,006
+like it's moving, and
+that's what's important.
+
+
+830
+00:46:12,006 --> 00:46:15,066
+So, let's take a look
+at the actual code.
+
+
+831
+00:46:15,066 --> 00:46:16,936
+I promise you it's
+actually really simple.
+
+
+832
+00:46:18,296 --> 00:46:21,226
+So, this is the first half.
+
+
+833
+00:46:21,386 --> 00:46:26,596
+We start off by getting the
+section then we get a copy
+
+
+834
+00:46:26,796 --> 00:46:29,346
+of the layout attributes,
+and obviously we need to copy
+
+
+835
+00:46:29,346 --> 00:46:31,836
+because we're going to modify
+them possibly and we don't want
+
+
+836
+00:46:31,836 --> 00:46:33,146
+to modify the real attributes
+
+
+837
+00:46:33,186 --> 00:46:35,326
+because then we'll be
+modifying the real attributes
+
+
+838
+00:46:35,816 --> 00:46:37,896
+and then our cells
+will be horrible.
+
+
+839
+00:46:38,516 --> 00:46:41,316
+So then, we just
+determine whether
+
+
+840
+00:46:41,316 --> 00:46:44,106
+or not this particular item
+was inserted or reloaded.
+
+
+841
+00:46:44,676 --> 00:46:46,936
+Remember I said we did
+all this calculation
+
+
+842
+00:46:47,156 --> 00:46:48,656
+in -prepareForCollection
+ViewUpdates,
+
+
+843
+00:46:49,146 --> 00:46:53,246
+and now that means we've only
+got these two lines of code.
+
+
+844
+00:46:54,656 --> 00:46:57,046
+Then it was inserted.
+
+
+845
+00:46:57,766 --> 00:47:01,796
+We changed the alpha to be
+0 so it's going to fade in.
+
+
+846
+00:47:02,286 --> 00:47:08,636
+If it was reloaded and it
+didn't exist in the old layout,
+
+
+847
+00:47:09,296 --> 00:47:11,426
+remember I created the
+snapshot of the old layout.
+
+
+848
+00:47:12,326 --> 00:47:16,186
+So, if there is no item at that
+IndexPath in the old layout
+
+
+849
+00:47:16,936 --> 00:47:19,066
+when it was reloaded,
+we want it to fade in.
+
+
+850
+00:47:19,676 --> 00:47:21,186
+It's perfectly OK.
+
+
+851
+00:47:21,496 --> 00:47:24,416
+If there was an item there the
+previous time then it's just
+
+
+852
+00:47:24,416 --> 00:47:24,966
+going to change.
+
+
+853
+00:47:25,396 --> 00:47:26,686
+I'm OK with that.
+
+
+854
+00:47:27,476 --> 00:47:32,166
+And then finally, we want to
+offset the origin of the item
+
+
+855
+00:47:33,026 --> 00:47:35,496
+by the delta of the
+content offset.
+
+
+856
+00:47:36,136 --> 00:47:42,746
+And that way, everything is
+going to stay exactly in place.
+
+
+857
+00:47:42,936 --> 00:47:46,226
+So, to recap, bookkeeping
+is critical
+
+
+858
+00:47:46,666 --> 00:47:48,076
+to making your layout work.
+
+
+859
+00:47:48,376 --> 00:47:50,106
+If you don't have the
+information you need,
+
+
+860
+00:47:50,336 --> 00:47:52,786
+there's no way you can
+make these methods work.
+
+
+861
+00:47:53,916 --> 00:47:57,566
+And then the optional methods
+really make a huge difference.
+
+
+862
+00:47:58,006 --> 00:48:01,376
+They're the difference between
+a layout that technically works
+
+
+863
+00:48:01,816 --> 00:48:03,066
+and a layout that's just great.
+
+
+864
+00:48:03,936 --> 00:48:06,986
+So, middle four requirements.
+
+
+865
+00:48:06,986 --> 00:48:09,026
+I think we did a pretty
+good job with that.
+
+
+866
+00:48:09,976 --> 00:48:14,516
+The last three I thought were
+just going to be, you know,
+
+
+867
+00:48:15,026 --> 00:48:17,416
+a little something extra that
+we'd add to the application.
+
+
+868
+00:48:18,336 --> 00:48:22,346
+And they changed from being
+a little something extra
+
+
+869
+00:48:22,346 --> 00:48:25,276
+when they started to
+take a little bit of time
+
+
+870
+00:48:25,456 --> 00:48:27,986
+so let's take a look at them.
+
+
+871
+00:48:28,196 --> 00:48:31,066
+In order to add Swipe to
+Edit, obviously we needed
+
+
+872
+00:48:31,066 --> 00:48:32,776
+to add actions to our cells.
+
+
+873
+00:48:33,426 --> 00:48:36,036
+And there's any numbers of ways
+we could have added actions.
+
+
+874
+00:48:36,456 --> 00:48:39,336
+But in this case, we add
+them directly to the cells.
+
+
+875
+00:48:40,346 --> 00:48:43,286
+And here we are because we're
+going to use this as an example.
+
+
+876
+00:48:43,746 --> 00:48:47,746
+We're adding two actions
+to a cell, makeFavorite
+
+
+877
+00:48:48,266 --> 00:48:49,946
+and swipeToDeleteCell.
+
+
+878
+00:48:50,556 --> 00:48:54,856
+You can see that each action
+has a title and a selector.
+
+
+879
+00:48:55,636 --> 00:48:59,356
+Those selectors when they
+get-- when the actions invoked,
+
+
+880
+00:48:59,766 --> 00:49:01,316
+bubble up the responder chain
+
+
+881
+00:49:01,506 --> 00:49:03,356
+and our view controller
+catches them.
+
+
+882
+00:49:04,536 --> 00:49:07,186
+Now, for swipe to
+edit and batch editing
+
+
+883
+00:49:07,186 --> 00:49:08,226
+and the whole nine yards,
+
+
+884
+00:49:08,986 --> 00:49:11,286
+we needed some additional
+custom attributes.
+
+
+885
+00:49:12,306 --> 00:49:17,636
+We needed the columnIndex,
+the editing state, and whether
+
+
+886
+00:49:17,636 --> 00:49:18,836
+or not a cell was movable.
+
+
+887
+00:49:19,296 --> 00:49:22,286
+And I think those will become
+apparent why we needed them
+
+
+888
+00:49:22,286 --> 00:49:22,976
+in just a moment.
+
+
+889
+00:49:23,896 --> 00:49:27,716
+So, for Swipe to Edit with
+one column, this works exactly
+
+
+890
+00:49:27,716 --> 00:49:29,456
+as you would expect, right?
+
+
+891
+00:49:29,696 --> 00:49:33,446
+Swipe over, you get the two
+buttons, you tap on a button,
+
+
+892
+00:49:34,036 --> 00:49:35,656
+actually goes up
+the responder chain,
+
+
+893
+00:49:36,036 --> 00:49:37,186
+view controller catches it.
+
+
+894
+00:49:37,476 --> 00:49:40,266
+Hooray, all is good.
+
+
+895
+00:49:41,286 --> 00:49:44,786
+Now, in the case of the delete
+action, that's all handled
+
+
+896
+00:49:44,786 --> 00:49:45,896
+by the base view controller.
+
+
+897
+00:49:46,436 --> 00:49:51,146
+For two columns, it gets a
+little bit more complicated
+
+
+898
+00:49:51,506 --> 00:49:55,056
+because, just like Game
+Center, we wanted it to appear
+
+
+899
+00:49:55,906 --> 00:50:01,166
+that our cell was sliding
+underneath the other content.
+
+
+900
+00:50:02,496 --> 00:50:07,066
+And in order to do that, we
+needed to have the column index
+
+
+901
+00:50:07,536 --> 00:50:09,786
+as an attribute on the cell.
+
+
+902
+00:50:10,536 --> 00:50:13,806
+So when the column index is not
+0, we display a little gradient
+
+
+903
+00:50:14,366 --> 00:50:17,146
+and therefore everything looks
+like it's sliding underneath.
+
+
+904
+00:50:17,706 --> 00:50:21,946
+So for batch editing,
+we have an attribute
+
+
+905
+00:50:22,056 --> 00:50:23,236
+for whether it's editing.
+
+
+906
+00:50:23,786 --> 00:50:27,406
+And when that changes to No, we
+animate out our editing controls
+
+
+907
+00:50:27,406 --> 00:50:31,656
+and if movable is Yes, then
+we'll also display the gripper.
+
+
+908
+00:50:32,656 --> 00:50:36,216
+And movable is actually
+determined based on a query
+
+
+909
+00:50:36,216 --> 00:50:39,416
+to your data source or
+our data source really.
+
+
+910
+00:50:40,006 --> 00:50:43,386
+And as you would expect,
+you tap on the twisty thing
+
+
+911
+00:50:43,966 --> 00:50:45,306
+and out come the
+editing controls.
+
+
+912
+00:50:47,346 --> 00:50:51,876
+And because I am much
+addicted to state machines,
+
+
+913
+00:50:52,406 --> 00:50:57,166
+it is all controlled by
+another state machine.
+
+
+914
+00:50:58,086 --> 00:50:59,886
+This manages all of our
+gesture recognizers,
+
+
+915
+00:50:59,926 --> 00:51:03,676
+the UIPanGestureRecognizer, the
+UILongPressGestureRecognizer.
+
+
+916
+00:51:03,736 --> 00:51:06,896
+The states are somewhat complex.
+
+
+917
+00:51:07,996 --> 00:51:10,026
+The diagram gives
+you an indication.
+
+
+918
+00:51:10,466 --> 00:51:12,406
+The reason for that
+is that we have
+
+
+919
+00:51:12,406 --> 00:51:14,156
+to respond to external stimulus.
+
+
+920
+00:51:14,506 --> 00:51:16,716
+So for example, if you have
+a toolbar that has an Edit
+
+
+921
+00:51:16,716 --> 00:51:19,016
+and a Done button that toggles.
+
+
+922
+00:51:19,016 --> 00:51:23,486
+If you're editing and the user
+taps Done, at any given moment,
+
+
+923
+00:51:23,486 --> 00:51:24,936
+we have to shut it all down
+
+
+924
+00:51:25,346 --> 00:51:27,926
+and transition back
+into the idle state.
+
+
+925
+00:51:28,816 --> 00:51:32,806
+And so, that means that things
+are a little bit more complex.
+
+
+926
+00:51:33,926 --> 00:51:37,486
+I'd love to revisit this and
+see if I can't, you know,
+
+
+927
+00:51:37,616 --> 00:51:41,266
+simplify it, but it
+works and that's,
+
+
+928
+00:51:41,666 --> 00:51:42,786
+you know, a key criteria.
+
+
+929
+00:51:44,176 --> 00:51:46,546
+It only works with our
+layout in our cells.
+
+
+930
+00:51:47,536 --> 00:51:51,396
+I tried at some length to
+generalize it a little bit more,
+
+
+931
+00:51:51,996 --> 00:51:56,016
+but it works and
+that's a great feature.
+
+
+932
+00:51:56,726 --> 00:51:57,956
+So, Drag to Reorder.
+
+
+933
+00:51:58,846 --> 00:52:00,426
+It required some layout changes.
+
+
+934
+00:52:00,996 --> 00:52:03,016
+In order to make
+everything work correctly,
+
+
+935
+00:52:03,836 --> 00:52:05,546
+we need to add a layout gap.
+
+
+936
+00:52:06,716 --> 00:52:09,636
+So as you're dragging
+the cell around,
+
+
+937
+00:52:09,966 --> 00:52:13,366
+we needed to split apart
+the existing cells.
+
+
+938
+00:52:14,726 --> 00:52:18,116
+And we also needed to take the
+cell that you were dragging
+
+
+939
+00:52:18,446 --> 00:52:20,776
+and mark it as Hidden.
+
+
+940
+00:52:20,916 --> 00:52:22,726
+And we also needed to make sure
+
+
+941
+00:52:22,726 --> 00:52:25,636
+that our layout calculation
+was fast enough.
+
+
+942
+00:52:25,636 --> 00:52:28,566
+I'm not going to pretend that
+it's as fast as it's going
+
+
+943
+00:52:28,566 --> 00:52:32,996
+to get because I'm not done
+yet, but it was fast enough.
+
+
+944
+00:52:34,046 --> 00:52:36,236
+It feels reasonably fluid.
+
+
+945
+00:52:36,776 --> 00:52:39,476
+It's good enough for
+the first release.
+
+
+946
+00:52:40,706 --> 00:52:42,886
+Now, it does require
+data source support.
+
+
+947
+00:52:43,436 --> 00:52:46,686
+So by default, the data source
+normally answers, "Nope,
+
+
+948
+00:52:46,686 --> 00:52:47,416
+you can't move that one.
+
+
+949
+00:52:47,906 --> 00:52:50,066
+Nope, you can't edit
+that," so on and so forth.
+
+
+950
+00:52:50,696 --> 00:52:53,776
+So, in order to actually
+implement drag reordering
+
+
+951
+00:52:53,776 --> 00:52:56,726
+in your code, you're going
+to want to say, "Oh yes,
+
+
+952
+00:52:56,756 --> 00:52:57,636
+you can move those thing.
+
+
+953
+00:52:57,636 --> 00:52:59,456
+You can drag those things."
+
+
+954
+00:52:59,576 --> 00:53:03,276
+And so there are some methods
+on your data source that need
+
+
+955
+00:53:03,276 --> 00:53:04,896
+to have the right responses.
+
+
+956
+00:53:06,206 --> 00:53:09,776
+But it really was an
+incremental change to our layout
+
+
+957
+00:53:09,776 --> 00:53:11,866
+and an incremental change
+to our data sources.
+
+
+958
+00:53:12,446 --> 00:53:17,936
+So, that's the last
+three requirements.
+
+
+959
+00:53:18,906 --> 00:53:23,646
+And they were a little bit of
+a challenge but they were just,
+
+
+960
+00:53:24,356 --> 00:53:25,476
+you know, a little bit extra.
+
+
+961
+00:53:26,926 --> 00:53:31,346
+So in summary, the aggregate
+data sources went a long way
+
+
+962
+00:53:31,346 --> 00:53:33,516
+to simplifying our
+complex designs.
+
+
+963
+00:53:33,916 --> 00:53:36,706
+When I first saw the
+designs that HI gave us,
+
+
+964
+00:53:36,706 --> 00:53:38,986
+I was a little bit terrified.
+
+
+965
+00:53:39,846 --> 00:53:40,716
+There was a lot there.
+
+
+966
+00:53:40,716 --> 00:53:45,316
+We had a very short
+time and I'm glad
+
+
+967
+00:53:45,316 --> 00:53:47,026
+that we found a way
+to make it easier.
+
+
+968
+00:53:48,296 --> 00:53:50,516
+And for UICollectionView?
+
+
+969
+00:53:51,216 --> 00:53:53,306
+Bookkeeping, bookkeeping,
+bookkeeping.
+
+
+970
+00:53:53,606 --> 00:53:54,676
+Keep all the data.
+
+
+971
+00:53:55,876 --> 00:53:56,916
+Don't let it out of your sight.
+
+
+972
+00:53:58,286 --> 00:54:00,376
+At the very end,
+when you're concerned
+
+
+973
+00:54:00,376 --> 00:54:03,346
+that you're using too much
+memory, fire up Instruments.
+
+
+974
+00:54:04,126 --> 00:54:06,206
+Let Instruments tell you if
+you're using too much memory.
+
+
+975
+00:54:07,656 --> 00:54:09,376
+And then finally, Swipe to Edit,
+
+
+976
+00:54:09,376 --> 00:54:11,526
+Drag Reordering-they're
+just incremental things.
+
+
+977
+00:54:12,006 --> 00:54:13,956
+You can do it.
+
+
+978
+00:54:13,956 --> 00:54:16,046
+And they're sample code.
+
+
+979
+00:54:16,776 --> 00:54:19,486
+Pull it out of there and
+make it part of your own.
+
+
+980
+00:54:20,066 --> 00:54:22,096
+So, for more information,
+
+
+981
+00:54:22,576 --> 00:54:24,756
+talk to the incomparable
+Jake Behrens.
+
+
+982
+00:54:25,466 --> 00:54:27,676
+I'm told he has great shoes.
+
+
+983
+00:54:28,596 --> 00:54:31,116
+Documentation, take a look
+
+
+984
+00:54:31,116 --> 00:54:34,876
+at the iOS documentation
+online and the Dev Forums.
+
+
+985
+00:54:34,996 --> 00:54:36,526
+There's great material there.
+
+
+986
+00:54:37,266 --> 00:54:38,966
+We've been known to
+hang out there as well.
+
+
+987
+00:54:40,126 --> 00:54:42,086
+There were related
+sessions this morning.
+
+
+988
+00:54:42,616 --> 00:54:44,016
+I'm sure they'll be
+online this evening.
+
+
+989
+00:54:44,776 --> 00:54:46,116
+So, thank you so much for coming
+
+
+990
+00:54:46,116 --> 00:54:48,776
+and I hope you enjoyed
+this evening.
+
+
+991
+00:54:50,516 --> 00:54:53,350
+[ Applause ]
+

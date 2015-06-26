@@ -1,0 +1,4815 @@
+1
+00:00:00,506 --> 00:00:11,216
+[ Silence ]
+
+
+2
+00:00:11,716 --> 00:00:12,716
+>> Good morning, everyone.
+
+
+3
+00:00:13,456 --> 00:00:15,306
+>> Good morning.
+
+
+4
+00:00:15,416 --> 00:00:18,216
+>> Hey, [applause] it's great
+
+
+5
+00:00:18,356 --> 00:00:22,666
+to see some hardcore web people
+here, especially on, you know,
+
+
+6
+00:00:22,736 --> 00:00:24,286
+the morning after the beer bash.
+
+
+7
+00:00:24,346 --> 00:00:26,136
+So I know you're all
+hardcore if you're here.
+
+
+8
+00:00:26,786 --> 00:00:28,806
+And welcome to the
+Designing Responsive Web
+
+
+9
+00:00:28,806 --> 00:00:29,826
+Experiences session.
+
+
+10
+00:00:30,476 --> 00:00:31,666
+My name is Casey.
+
+
+11
+00:00:31,706 --> 00:00:32,256
+>> And I'm Ted.
+
+
+12
+00:00:32,296 --> 00:00:34,906
+>> And today we're going to
+show you how you can build one
+
+
+13
+00:00:35,056 --> 00:00:37,876
+website that's going to
+look great everywhere.
+
+
+14
+00:00:38,876 --> 00:00:40,486
+And by the way, any
+time that we say
+
+
+15
+00:00:40,486 --> 00:00:43,536
+"website" during this
+session, we mean any web media.
+
+
+16
+00:00:43,936 --> 00:00:45,406
+I'm on the iBooks team.
+
+
+17
+00:00:45,606 --> 00:00:46,646
+>> And I'm on the WebKit team.
+
+
+18
+00:00:47,036 --> 00:00:50,966
+>> And we want both your
+digital books and your websites
+
+
+19
+00:00:51,356 --> 00:00:52,246
+to look great everywhere.
+
+
+20
+00:00:53,396 --> 00:00:55,006
+So we don't have to tell you
+
+
+21
+00:00:55,006 --> 00:00:58,456
+that your website is being
+viewed on a whole variety
+
+
+22
+00:00:58,456 --> 00:01:00,406
+of different devices
+and screen sizes.
+
+
+23
+00:01:00,826 --> 00:01:05,486
+What we can do, though, is teach
+you some really easy techniques
+
+
+24
+00:01:05,906 --> 00:01:07,286
+that you can use to ensure
+
+
+25
+00:01:07,286 --> 00:01:10,966
+that your website looks
+great on all of these.
+
+
+26
+00:01:11,046 --> 00:01:12,196
+I want to be very clear, though.
+
+
+27
+00:01:12,986 --> 00:01:14,506
+What we are not going to talk
+
+
+28
+00:01:14,506 --> 00:01:17,316
+about today is building
+multiple versions
+
+
+29
+00:01:17,636 --> 00:01:18,626
+for each of these devices.
+
+
+30
+00:01:19,646 --> 00:01:22,656
+In fact, today's session,
+it is the antithesis
+
+
+31
+00:01:22,656 --> 00:01:24,516
+of the mobile-specific site.
+
+
+32
+00:01:25,286 --> 00:01:28,296
+There will be no
+m.domainname here.
+
+
+33
+00:01:29,056 --> 00:01:31,246
+So instead, we're going
+to build one website
+
+
+34
+00:01:31,246 --> 00:01:33,486
+that looks great
+on all of these.
+
+
+35
+00:01:33,616 --> 00:01:37,466
+And a site that has a design
+that can adapt and adjust
+
+
+36
+00:01:38,076 --> 00:01:39,576
+to always look good on all
+
+
+37
+00:01:39,576 --> 00:01:44,526
+of these different devices is
+usually referred to as a website
+
+
+38
+00:01:44,526 --> 00:01:46,716
+that has a responsive design.
+
+
+39
+00:01:48,196 --> 00:01:51,456
+A responsive design, it's
+just-it's just a buzzword.
+
+
+40
+00:01:52,116 --> 00:01:55,526
+It just means that your website
+is sensitive to its environment,
+
+
+41
+00:01:56,016 --> 00:01:58,696
+which will allow it
+to adapt and change
+
+
+42
+00:01:58,696 --> 00:02:00,246
+and just simply always
+look good.
+
+
+43
+00:02:00,926 --> 00:02:03,676
+And so today, Ted
+and I are going
+
+
+44
+00:02:03,676 --> 00:02:07,846
+to show you not only what a
+simple idea a responsive design
+
+
+45
+00:02:07,846 --> 00:02:10,955
+is, but really how
+simple it is to implement.
+
+
+46
+00:02:13,156 --> 00:02:15,846
+We're going to look
+at responsive columns.
+
+
+47
+00:02:16,436 --> 00:02:20,016
+Columns are a really great way
+to both add some visual interest
+
+
+48
+00:02:20,016 --> 00:02:21,586
+to your website as well
+
+
+49
+00:02:21,816 --> 00:02:24,666
+as improve the legibility
+of your site.
+
+
+50
+00:02:25,996 --> 00:02:28,376
+We'll also teach you
+about font-relative units
+
+
+51
+00:02:28,376 --> 00:02:31,036
+and how you can use
+them to make sure
+
+
+52
+00:02:31,036 --> 00:02:34,396
+that your layout has
+fidelity at every font size.
+
+
+53
+00:02:34,916 --> 00:02:39,616
+And then Ted's going to show
+you how you can use CSS Shapes
+
+
+54
+00:02:39,776 --> 00:02:43,376
+to wrap text around
+images, and we'll make sure
+
+
+55
+00:02:43,376 --> 00:02:47,936
+that those images
+are Retina ready.
+
+
+56
+00:02:47,936 --> 00:02:51,006
+And for the larger design
+changes that we need to make,
+
+
+57
+00:02:51,006 --> 00:02:52,156
+we'll use media queries.
+
+
+58
+00:02:52,936 --> 00:02:55,796
+And finally, the finishing
+touch will be hairlines,
+
+
+59
+00:02:55,926 --> 00:02:58,336
+where we can really dive
+in deep and make use
+
+
+60
+00:02:58,336 --> 00:02:59,816
+of those beautiful
+Retina screens.
+
+
+61
+00:03:01,656 --> 00:03:03,526
+So why are we talking
+about this anyway?
+
+
+62
+00:03:04,736 --> 00:03:07,956
+You know, WebKit does a really
+great job of making sure
+
+
+63
+00:03:07,956 --> 00:03:11,616
+that your website looks
+just as great on the iPhone
+
+
+64
+00:03:11,616 --> 00:03:12,756
+as it does on the desktop.
+
+
+65
+00:03:13,356 --> 00:03:16,666
+It just shrinks your site down
+
+
+66
+00:03:16,836 --> 00:03:18,226
+and makes it fit on
+the phone screen.
+
+
+67
+00:03:18,226 --> 00:03:22,226
+And then the user can double tap
+or pinch to zoom in to make sure
+
+
+68
+00:03:22,476 --> 00:03:23,656
+that they can read that text.
+
+
+69
+00:03:23,806 --> 00:03:25,466
+The text becomes
+larger that way.
+
+
+70
+00:03:26,806 --> 00:03:27,946
+And it looks great.
+
+
+71
+00:03:28,606 --> 00:03:29,566
+It's not a lot of work for you.
+
+
+72
+00:03:30,616 --> 00:03:33,636
+And WebKit does the same
+thing for more complex sites,
+
+
+73
+00:03:33,636 --> 00:03:34,946
+like this one that
+Ted and I made.
+
+
+74
+00:03:35,936 --> 00:03:37,596
+It just shrinks all
+that formatting
+
+
+75
+00:03:37,596 --> 00:03:39,496
+and layout down into one screen.
+
+
+76
+00:03:39,496 --> 00:03:41,136
+And that seems great, right?
+
+
+77
+00:03:42,316 --> 00:03:43,266
+Can you read that text?
+
+
+78
+00:03:43,886 --> 00:03:45,026
+Barely? At all?
+
+
+79
+00:03:45,026 --> 00:03:48,286
+Not really, and many
+mobile designers
+
+
+80
+00:03:48,286 --> 00:03:50,636
+or website designers have
+looked at this and said,
+
+
+81
+00:03:51,356 --> 00:03:52,326
+"Pshht, I can't have that.
+
+
+82
+00:03:52,816 --> 00:03:55,086
+I'm going to have to make
+a mobile-specific site."
+
+
+83
+00:03:55,086 --> 00:03:57,426
+You know, we get it.
+
+
+84
+00:03:57,816 --> 00:04:00,966
+You want your website to
+look great, and you want it
+
+
+85
+00:04:00,966 --> 00:04:03,566
+to be clear and easy to read
+without your users having
+
+
+86
+00:04:03,566 --> 00:04:08,916
+to double-tap and pinch
+to zoom in and pan around.
+
+
+87
+00:04:08,916 --> 00:04:10,366
+And some of you may
+be thinking, "Well,
+
+
+88
+00:04:10,796 --> 00:04:12,586
+of course it doesn't look great.
+
+
+89
+00:04:12,586 --> 00:04:14,346
+You need to add a
+meta viewport," right.
+
+
+90
+00:04:14,346 --> 00:04:17,546
+And that's a great first step.
+
+
+91
+00:04:17,546 --> 00:04:19,956
+A meta viewport's going
+to make your text larger
+
+
+92
+00:04:19,956 --> 00:04:21,326
+in relation to the screen size.
+
+
+93
+00:04:22,366 --> 00:04:25,636
+But the thing is is that
+your layout is still all tiny
+
+
+94
+00:04:25,636 --> 00:04:26,506
+and shrunk down.
+
+
+95
+00:04:26,796 --> 00:04:30,886
+So now you've got these big
+words in a shrunk down layout,
+
+
+96
+00:04:30,886 --> 00:04:33,276
+and it just -- it
+looks awful, right.
+
+
+97
+00:04:34,866 --> 00:04:38,486
+So lest you think, "OK, Casey,
+no, really, we're going to have
+
+
+98
+00:04:38,526 --> 00:04:43,396
+to make a mobile-specific
+site now," please keep in mind
+
+
+99
+00:04:43,756 --> 00:04:47,966
+that we're not building
+websites for just the iPhone,
+
+
+100
+00:04:47,966 --> 00:04:49,906
+the iPad, the desktop.
+
+
+101
+00:04:50,766 --> 00:04:54,766
+And to prove this, if you
+were to look at our website
+
+
+102
+00:04:54,766 --> 00:04:56,216
+on the desktop, looks
+great, right?
+
+
+103
+00:04:56,856 --> 00:04:59,946
+We designed it for this
+window size basically.
+
+
+104
+00:05:00,786 --> 00:05:04,516
+But if I shrink down
+the window, ooh,
+
+
+105
+00:05:04,516 --> 00:05:09,176
+I've got the same problem
+here that I do on the phone.
+
+
+106
+00:05:10,316 --> 00:05:12,576
+So we need to make sure
+that we're building a site
+
+
+107
+00:05:12,966 --> 00:05:16,136
+that looks great no matter
+what our window size.
+
+
+108
+00:05:17,416 --> 00:05:19,996
+So, so far I've laid out
+just a whole lot of no's.
+
+
+109
+00:05:20,236 --> 00:05:24,176
+I've said, "Well, you can't
+make a mobile-specific site.
+
+
+110
+00:05:24,176 --> 00:05:26,936
+Using a meta viewport
+isn't going
+
+
+111
+00:05:26,936 --> 00:05:27,836
+to get you all the way there.
+
+
+112
+00:05:28,246 --> 00:05:30,926
+And you have to build
+a website that works
+
+
+113
+00:05:30,926 --> 00:05:34,746
+for every single possible
+permutation on the desktop."
+
+
+114
+00:05:34,746 --> 00:05:36,526
+So what can we do?
+
+
+115
+00:05:36,526 --> 00:05:38,636
+>> Well, hold on.
+
+
+116
+00:05:38,636 --> 00:05:42,066
+Our goal here is to use
+some simple responsive
+
+
+117
+00:05:42,066 --> 00:05:43,016
+design techniques.
+
+
+118
+00:05:43,706 --> 00:05:45,986
+And it seems like the
+best way forward is just
+
+
+119
+00:05:45,986 --> 00:05:49,496
+to identify specific problems
+that we're seeing right now
+
+
+120
+00:05:50,016 --> 00:05:51,616
+and just work through
+them one at a time.
+
+
+121
+00:05:52,006 --> 00:05:52,426
+>> Sounds good.
+
+
+122
+00:05:52,606 --> 00:05:56,216
+>> I mean, the first one that's
+obvious to me is that masthead
+
+
+123
+00:05:56,216 --> 00:05:59,826
+up top becomes so tall
+on the phone that I have
+
+
+124
+00:05:59,826 --> 00:06:01,026
+to scroll to see any content.
+
+
+125
+00:06:01,256 --> 00:06:04,336
+>> And the other thing is is
+those columns are just really
+
+
+126
+00:06:04,336 --> 00:06:07,456
+skinny like so it's
+completely illegible.
+
+
+127
+00:06:08,186 --> 00:06:10,426
+>> And that caption on our
+galaxy is blowing right
+
+
+128
+00:06:10,426 --> 00:06:12,916
+out of the image and covering
+our initial text there.
+
+
+129
+00:06:13,456 --> 00:06:14,756
+>> Yeah, that's pretty horrible.
+
+
+130
+00:06:14,756 --> 00:06:15,826
+Where do you think
+we should start?
+
+
+131
+00:06:16,916 --> 00:06:18,226
+>> I think we should
+start with the columns.
+
+
+132
+00:06:18,576 --> 00:06:19,506
+Those look really terrible.
+
+
+133
+00:06:20,696 --> 00:06:23,846
+>> OK, let's start with columns
+'cause I personally really
+
+
+134
+00:06:23,846 --> 00:06:25,906
+like columns.
+
+
+135
+00:06:25,906 --> 00:06:29,116
+I love that they add both a
+visual interest to my website
+
+
+136
+00:06:29,116 --> 00:06:31,446
+and that they improve
+the legibility.
+
+
+137
+00:06:31,446 --> 00:06:33,196
+It's really the perfect
+combination
+
+
+138
+00:06:33,196 --> 00:06:33,976
+of form and function.
+
+
+139
+00:06:37,206 --> 00:06:42,616
+And columns are great for this
+because they're able to divide
+
+
+140
+00:06:42,966 --> 00:06:46,446
+up big blocks of text
+into more legible chunks.
+
+
+141
+00:06:46,856 --> 00:06:49,746
+So where I might've had a big
+block or really long lines
+
+
+142
+00:06:49,746 --> 00:06:53,686
+of text, I'm now able to have
+very consumable size, right.
+
+
+143
+00:06:54,086 --> 00:06:57,606
+Now, the problem we ran
+into with our website
+
+
+144
+00:06:57,606 --> 00:07:00,036
+and why those columns
+weren't looking good is
+
+
+145
+00:07:00,036 --> 00:07:05,416
+because we defined a set number
+of columns that had to be there
+
+
+146
+00:07:05,416 --> 00:07:07,336
+for every screen size, right.
+
+
+147
+00:07:07,776 --> 00:07:10,796
+So when our windows shrunk
+down, those columns had
+
+
+148
+00:07:10,796 --> 00:07:14,216
+to become really narrow
+and we were only able
+
+
+149
+00:07:14,216 --> 00:07:15,766
+to have a few words per line.
+
+
+150
+00:07:17,266 --> 00:07:20,776
+So to make your columns
+responsive,
+
+
+151
+00:07:21,306 --> 00:07:24,346
+all we have to do is instead
+of defining a column count
+
+
+152
+00:07:24,736 --> 00:07:26,896
+or a set number of
+columns on our page,
+
+
+153
+00:07:27,486 --> 00:07:30,186
+we just define the column width.
+
+
+154
+00:07:30,186 --> 00:07:34,616
+So to give you an example of
+this, I have two web pages here,
+
+
+155
+00:07:34,616 --> 00:07:39,366
+very simplified, of where
+one has the columns defined
+
+
+156
+00:07:39,366 --> 00:07:42,376
+in column width, one
+has the columns defined
+
+
+157
+00:07:42,376 --> 00:07:44,796
+by the column count,
+like Ted's and my site.
+
+
+158
+00:07:45,606 --> 00:07:51,446
+Now when I resize that window
+-- resize that window --
+
+
+159
+00:07:51,446 --> 00:07:57,266
+the page that we defined
+the column width we have
+
+
+160
+00:07:57,266 --> 00:07:58,016
+two columns.
+
+
+161
+00:07:58,016 --> 00:08:00,436
+And we've maintained
+that legible width,
+
+
+162
+00:08:01,116 --> 00:08:03,856
+whereas the column count had to
+shrink down like we saw before.
+
+
+163
+00:08:04,666 --> 00:08:07,356
+So responsive columns
+are really great,
+
+
+164
+00:08:07,616 --> 00:08:09,596
+defining the column
+width is really great
+
+
+165
+00:08:09,596 --> 00:08:11,336
+because WebKit will
+automatically add
+
+
+166
+00:08:12,196 --> 00:08:15,656
+or eliminate columns as room
+becomes available or is removed.
+
+
+167
+00:08:16,096 --> 00:08:20,636
+And we recommend when you are
+defining your column width
+
+
+168
+00:08:20,636 --> 00:08:23,886
+that you use a font-relative
+unit.
+
+
+169
+00:08:24,996 --> 00:08:26,556
+Font-relative units
+are really great
+
+
+170
+00:08:26,556 --> 00:08:29,286
+because if your user
+resizes their text,
+
+
+171
+00:08:29,626 --> 00:08:33,525
+the column's width will
+also resize to match that.
+
+
+172
+00:08:34,285 --> 00:08:36,086
+So give you a simplified
+example.
+
+
+173
+00:08:37,506 --> 00:08:39,986
+Here we have the
+alphabet, right.
+
+
+174
+00:08:39,986 --> 00:08:42,996
+There's five letters
+on that first line
+
+
+175
+00:08:42,996 --> 00:08:46,076
+of the first column:
+A, B, C, D, and E.
+
+
+176
+00:08:46,076 --> 00:08:48,686
+Now, because my column's
+width is defined
+
+
+177
+00:08:48,926 --> 00:08:53,286
+in a font-relative unit,
+when I make my text smaller,
+
+
+178
+00:08:53,876 --> 00:08:56,846
+I will maintain those five
+letters across the top.
+
+
+179
+00:08:57,146 --> 00:09:00,546
+And the same thing goes with the
+number of words on your column.
+
+
+180
+00:09:00,546 --> 00:09:03,056
+You'll maintain a
+legible link of words.
+
+
+181
+00:09:04,316 --> 00:09:07,036
+So all of this great
+functionality,
+
+
+182
+00:09:07,036 --> 00:09:08,306
+these responsive columns,
+
+
+183
+00:09:08,306 --> 00:09:10,086
+it seems like you're
+getting a lot here, right?
+
+
+184
+00:09:11,066 --> 00:09:12,906
+It's just one CSS property.
+
+
+185
+00:09:13,726 --> 00:09:16,316
+You just define column
+width and define it
+
+
+186
+00:09:16,316 --> 00:09:17,386
+with the font-relative unit.
+
+
+187
+00:09:17,386 --> 00:09:19,916
+In this case we're using 15 rem.
+
+
+188
+00:09:21,206 --> 00:09:24,416
+So to show you how great
+columns are in real time,
+
+
+189
+00:09:24,636 --> 00:09:25,526
+here's Ted with a demo.
+
+
+190
+00:09:26,836 --> 00:09:27,646
+>> OK, thanks, Casey.
+
+
+191
+00:09:27,646 --> 00:09:28,196
+Here we are.
+
+
+192
+00:09:28,196 --> 00:09:31,126
+So here's this website
+that Casey and I built,
+
+
+193
+00:09:31,576 --> 00:09:35,196
+and it's looking pretty
+great at this-wow,
+
+
+194
+00:09:35,196 --> 00:09:38,626
+that scrolls really
+fast-at this window width.
+
+
+195
+00:09:39,196 --> 00:09:43,876
+But as you saw, when we
+make it more narrower,
+
+
+196
+00:09:45,276 --> 00:09:49,596
+the columns start getting harder
+and harder to read until a point
+
+
+197
+00:09:49,596 --> 00:09:52,576
+where you hit here and
+it's just very illegible.
+
+
+198
+00:09:52,576 --> 00:09:54,996
+So you can see up in the
+corner I have a little bit
+
+
+199
+00:09:54,996 --> 00:09:58,036
+of JavaScript showing you
+what the window width is
+
+
+200
+00:09:58,036 --> 00:10:00,326
+so I can make adjustments
+as necessary.
+
+
+201
+00:10:01,576 --> 00:10:06,106
+So as Casey suggested, let's try
+setting our column width instead
+
+
+202
+00:10:06,106 --> 00:10:06,936
+of our column count.
+
+
+203
+00:10:07,196 --> 00:10:10,676
+So over here in Xcode, you can
+see I have the column count
+
+
+204
+00:10:10,676 --> 00:10:11,036
+of 3.
+
+
+205
+00:10:12,426 --> 00:10:21,286
+Just kill that and replace that
+with setting the column width
+
+
+206
+00:10:21,896 --> 00:10:23,746
+to 15 rem like Casey suggested.
+
+
+207
+00:10:24,156 --> 00:10:28,886
+We'll save that, we'll hit
+reload and nothing's changed.
+
+
+208
+00:10:29,446 --> 00:10:31,056
+Our window width is
+still wide enough
+
+
+209
+00:10:31,056 --> 00:10:33,256
+to accommodate three
+columns like we had before.
+
+
+210
+00:10:33,866 --> 00:10:36,256
+But this time as
+we get more narrow,
+
+
+211
+00:10:37,446 --> 00:10:38,536
+we'll hit a point-let's see
+
+
+212
+00:10:38,536 --> 00:10:40,296
+where it happens-right,
+OK, here.
+
+
+213
+00:10:40,376 --> 00:10:43,386
+Right around 1100 pixels we
+drop down to two columns.
+
+
+214
+00:10:43,936 --> 00:10:44,926
+It's still really legible.
+
+
+215
+00:10:45,756 --> 00:10:50,316
+And, again, as we get even
+smaller, we'll hit a point right
+
+
+216
+00:10:50,316 --> 00:10:54,026
+around 700 and some odd pixels
+where we go down to one column,
+
+
+217
+00:10:54,826 --> 00:10:56,316
+which, even at the
+narrowest window width,
+
+
+218
+00:10:56,316 --> 00:11:00,266
+is still a very legible
+amount of text.
+
+
+219
+00:11:00,266 --> 00:11:03,376
+I mean, we're not done; that
+sidebar still looks terrible.
+
+
+220
+00:11:03,376 --> 00:11:07,136
+But that's really
+all you have to do
+
+
+221
+00:11:07,136 --> 00:11:10,396
+to get simple responsive columns
+with just a single property.
+
+
+222
+00:11:10,836 --> 00:11:18,496
+Let's dive a little bit
+more into the features
+
+
+223
+00:11:18,496 --> 00:11:23,926
+of the CSS columns
+column module.
+
+
+224
+00:11:24,076 --> 00:11:26,906
+OK, so you've seen
+the column count
+
+
+225
+00:11:27,316 --> 00:11:28,436
+and column width properties,
+
+
+226
+00:11:28,816 --> 00:11:30,356
+which are pretty
+straightforward.
+
+
+227
+00:11:31,246 --> 00:11:33,576
+When you are laying out
+a page with columns,
+
+
+228
+00:11:33,576 --> 00:11:36,556
+it's best to have some white
+space between the columns.
+
+
+229
+00:11:36,996 --> 00:11:39,556
+If you don't, the
+lines can run together
+
+
+230
+00:11:39,556 --> 00:11:40,746
+and it can be really
+hard to read.
+
+
+231
+00:11:40,746 --> 00:11:43,886
+And this is controlled with
+the column-gap property.
+
+
+232
+00:11:44,456 --> 00:11:48,316
+You might want a decorative
+line inside that gap.
+
+
+233
+00:11:48,966 --> 00:11:52,636
+You can define such a line
+with the column-rule property,
+
+
+234
+00:11:52,636 --> 00:11:54,916
+whose syntax is just like the
+border properties you're used
+
+
+235
+00:11:54,916 --> 00:11:55,626
+to using already.
+
+
+236
+00:11:56,626 --> 00:11:59,896
+And finally, if you'd
+like an element to pop
+
+
+237
+00:11:59,896 --> 00:12:01,986
+out of your columns
+and span across them,
+
+
+238
+00:12:01,986 --> 00:12:05,176
+you can easily do this with
+the column-span property,
+
+
+239
+00:12:05,906 --> 00:12:07,896
+which looks really great.
+
+
+240
+00:12:08,536 --> 00:12:13,086
+So to sum up, making
+responsive columns that adjust
+
+
+241
+00:12:13,616 --> 00:12:15,306
+to a different environment
+is super easy.
+
+
+242
+00:12:15,696 --> 00:12:17,836
+CSS gets you a lot
+of that for free
+
+
+243
+00:12:18,696 --> 00:12:20,006
+by using the column
+width property.
+
+
+244
+00:12:21,156 --> 00:12:25,516
+I want to expand a bit,
+though, on why we chose
+
+
+245
+00:12:25,516 --> 00:12:29,506
+to use a font-relative
+unit there.
+
+
+246
+00:12:29,686 --> 00:12:32,746
+Font-relative units are
+exactly what they sound like.
+
+
+247
+00:12:32,806 --> 00:12:35,556
+They're CSS units that
+are defined in terms
+
+
+248
+00:12:35,556 --> 00:12:36,816
+of your current font size
+
+
+249
+00:12:37,126 --> 00:12:40,946
+or some other text metric
+that's related to font size.
+
+
+250
+00:12:41,656 --> 00:12:43,146
+And it's very common
+to use these
+
+
+251
+00:12:43,146 --> 00:12:46,956
+to set the font size itself,
+but you could also use them
+
+
+252
+00:12:46,956 --> 00:12:49,926
+for any part of your
+layout whose size should be
+
+
+253
+00:12:49,926 --> 00:12:52,756
+proportional to the
+current text size.
+
+
+254
+00:12:52,756 --> 00:12:56,516
+An obvious example would be the
+margins around your paragraphs.
+
+
+255
+00:12:57,106 --> 00:13:00,126
+As font size increases,
+you'd like those margins
+
+
+256
+00:13:00,126 --> 00:13:02,316
+to also increase in
+proportion to that.
+
+
+257
+00:13:02,816 --> 00:13:08,426
+And the big benefit here is
+that by using these units,
+
+
+258
+00:13:08,426 --> 00:13:11,736
+your layout will automatically
+adjust to different font sizes.
+
+
+259
+00:13:12,936 --> 00:13:16,186
+Now, you set a font size, but
+your user might change it.
+
+
+260
+00:13:16,216 --> 00:13:17,926
+They could use Cmd+ and Cmd-
+
+
+261
+00:13:18,816 --> 00:13:23,496
+or perhaps they've changed
+the minimum font size setting,
+
+
+262
+00:13:23,866 --> 00:13:25,656
+which is very common
+for low-vision users.
+
+
+263
+00:13:26,196 --> 00:13:29,646
+So you should always make your
+layout adjust to a font size
+
+
+264
+00:13:29,646 --> 00:13:32,586
+that you're not expecting.
+
+
+265
+00:13:32,646 --> 00:13:35,846
+There are four font-relative
+units in CSS.
+
+
+266
+00:13:36,916 --> 00:13:40,206
+There's the em, which I'm sure
+you're all very familiar with;
+
+
+267
+00:13:40,206 --> 00:13:42,306
+it's very popular,
+very common on the web.
+
+
+268
+00:13:42,446 --> 00:13:45,926
+And an em is defined in
+terms of the font size
+
+
+269
+00:13:46,456 --> 00:13:47,406
+of the current element,
+
+
+270
+00:13:48,456 --> 00:13:50,586
+which may be inherited
+from its ancestors.
+
+
+271
+00:13:51,046 --> 00:13:56,406
+Less common is the ex, which
+is approximately half an em.
+
+
+272
+00:13:57,016 --> 00:13:59,946
+It's really supposed to
+be basically the height
+
+
+273
+00:13:59,946 --> 00:14:02,816
+of a lowercase letter.
+
+
+274
+00:14:03,316 --> 00:14:04,816
+This is very useful
+when you're trying
+
+
+275
+00:14:04,816 --> 00:14:07,826
+to size an element
+inside a line of text
+
+
+276
+00:14:07,826 --> 00:14:10,156
+so that it looks
+natural next to the rest
+
+
+277
+00:14:10,396 --> 00:14:13,106
+of the text in the line.
+
+
+278
+00:14:13,106 --> 00:14:17,556
+The ch is based on the
+width of the numeral 0,
+
+
+279
+00:14:18,356 --> 00:14:19,306
+which may seem random.
+
+
+280
+00:14:20,436 --> 00:14:24,316
+That is a typical character
+width, and so you can use it
+
+
+281
+00:14:24,316 --> 00:14:25,986
+for sizing an input element
+
+
+282
+00:14:26,606 --> 00:14:28,906
+where you're expecting,
+say, 30 characters.
+
+
+283
+00:14:29,446 --> 00:14:32,316
+You can say 30 ch and it'll be
+approximately the right size.
+
+
+284
+00:14:33,386 --> 00:14:35,236
+And finally we come to the rem,
+
+
+285
+00:14:35,236 --> 00:14:36,906
+which is the unit
+that Casey was using.
+
+
+286
+00:14:37,446 --> 00:14:40,836
+The rem is just like the em that
+you're already familiar with,
+
+
+287
+00:14:41,376 --> 00:14:43,786
+but instead of being
+based on the font size
+
+
+288
+00:14:43,786 --> 00:14:47,166
+of the current element, it's
+always based on the font size
+
+
+289
+00:14:47,166 --> 00:14:48,556
+of the body, or the
+root element.
+
+
+290
+00:14:49,076 --> 00:14:52,906
+So why would you want to
+use rems instead of ems?
+
+
+291
+00:14:53,036 --> 00:14:55,436
+You're already using ems;
+they're great for you.
+
+
+292
+00:14:55,436 --> 00:14:57,086
+So here's a simple example.
+
+
+293
+00:14:57,166 --> 00:15:02,606
+I've got a simple website
+with a header, "Hello,"
+
+
+294
+00:15:02,606 --> 00:15:05,006
+and on the left I've
+sized it with ems
+
+
+295
+00:15:05,556 --> 00:15:09,686
+and on the right I've
+sized it with rems.
+
+
+296
+00:15:09,756 --> 00:15:14,586
+OK, so far they're identical,
+everything works the same.
+
+
+297
+00:15:15,056 --> 00:15:16,036
+Well, a few months from now,
+
+
+298
+00:15:17,066 --> 00:15:18,776
+I've made a change
+to my website.
+
+
+299
+00:15:18,776 --> 00:15:21,646
+I've added a container
+element that happens
+
+
+300
+00:15:21,646 --> 00:15:22,836
+to have this header
+inside of it.
+
+
+301
+00:15:23,276 --> 00:15:26,116
+And because someone told me
+to use font-relative units,
+
+
+302
+00:15:26,426 --> 00:15:29,496
+I went ahead and sized that
+font size with ems as well.
+
+
+303
+00:15:30,076 --> 00:15:33,736
+So what I expect to happen is
+this: I want nothing to change.
+
+
+304
+00:15:34,746 --> 00:15:40,296
+But if I had used ems for
+my header, what happens?
+
+
+305
+00:15:40,996 --> 00:15:43,146
+The browser says, "Oh,
+this font size is in ems.
+
+
+306
+00:15:44,366 --> 00:15:45,736
+OK, well, what's the
+parent font size?
+
+
+307
+00:15:45,736 --> 00:15:46,566
+Oh, that's in ems."
+
+
+308
+00:15:47,196 --> 00:15:50,006
+And it keeps looking up until
+it finds a concrete font size
+
+
+309
+00:15:50,076 --> 00:15:53,426
+and then computes this
+sort of compound font size.
+
+
+310
+00:15:54,326 --> 00:15:57,006
+And so the result is something
+way bigger than I intended
+
+
+311
+00:15:57,146 --> 00:15:58,976
+when I first sized that
+header a few months ago.
+
+
+312
+00:16:00,446 --> 00:16:02,906
+Unlike that, in the
+case of rems,
+
+
+313
+00:16:03,236 --> 00:16:05,706
+it's always looking back
+to the body element.
+
+
+314
+00:16:05,706 --> 00:16:07,856
+It's skipping its
+whole ancestor chain,
+
+
+315
+00:16:07,856 --> 00:16:11,326
+so I never have a different
+font size than I expected.
+
+
+316
+00:16:11,876 --> 00:16:17,246
+OK, so we've taken a quick
+look at font-relative units
+
+
+317
+00:16:17,246 --> 00:16:20,626
+and why I think the
+rem is pretty great.
+
+
+318
+00:16:21,486 --> 00:16:23,346
+Let's take a look at our
+website and see where we are.
+
+
+319
+00:16:27,156 --> 00:16:28,576
+OK, it's looking pretty good.
+
+
+320
+00:16:28,576 --> 00:16:29,776
+>> Yeah, that's definitely
+better.
+
+
+321
+00:16:30,526 --> 00:16:33,906
+We definitely still
+have the sidebar there
+
+
+322
+00:16:34,076 --> 00:16:35,576
+that is a significant issue.
+
+
+323
+00:16:35,576 --> 00:16:37,906
+But I think let's
+tackle that one later.
+
+
+324
+00:16:38,056 --> 00:16:38,306
+>> All right.
+
+
+325
+00:16:38,306 --> 00:16:39,756
+What do you want to do next?
+
+
+326
+00:16:39,756 --> 00:16:41,376
+>> Well, so what's kind
+of bothering me is all
+
+
+327
+00:16:41,376 --> 00:16:43,566
+that white text around
+the moon, right,
+
+
+328
+00:16:43,566 --> 00:16:44,666
+all that extra white space.
+
+
+329
+00:16:44,786 --> 00:16:47,026
+I just-I feel like we're
+not making a good use
+
+
+330
+00:16:47,386 --> 00:16:49,706
+of the screen real estate, and
+it just feels kind of clunky.
+
+
+331
+00:16:50,586 --> 00:16:53,486
+>> Yeah, I mean, the whole point
+of adjusting our column width
+
+
+332
+00:16:53,486 --> 00:16:57,016
+in the first place was to
+have nice, readable lines.
+
+
+333
+00:16:57,826 --> 00:16:59,856
+And our moon is really
+interfering with that.
+
+
+334
+00:16:59,856 --> 00:17:01,806
+We have these really narrow
+lines of text next to it.
+
+
+335
+00:17:02,356 --> 00:17:02,836
+>> Definitely.
+
+
+336
+00:17:02,956 --> 00:17:04,276
+>> So let's take a look at that.
+
+
+337
+00:17:04,776 --> 00:17:07,185
+So to simplify, here's our moon.
+
+
+338
+00:17:07,516 --> 00:17:09,256
+We've floated it in our column.
+
+
+339
+00:17:09,415 --> 00:17:11,316
+And those lines next
+to it, they're floating
+
+
+340
+00:17:11,316 --> 00:17:14,136
+around the image element
+and they look really narrow.
+
+
+341
+00:17:15,205 --> 00:17:19,996
+Well, I don't have a whole
+lot of time to fix this,
+
+
+342
+00:17:19,996 --> 00:17:21,996
+so the easiest thing
+is, you know,
+
+
+343
+00:17:21,996 --> 00:17:23,675
+we could just not float the moon
+
+
+344
+00:17:23,736 --> 00:17:25,756
+and that way there's no
+narrow lines next to it.
+
+
+345
+00:17:25,935 --> 00:17:27,976
+It looks pretty good, right?
+
+
+346
+00:17:27,976 --> 00:17:30,596
+>> OK, yeah, Ted,
+you could do that.
+
+
+347
+00:17:30,686 --> 00:17:33,916
+I have a feeling, though,
+that you have a much cleverer,
+
+
+348
+00:17:33,916 --> 00:17:36,246
+easy solution to that.
+
+
+349
+00:17:36,246 --> 00:17:40,626
+And this just kind of
+feels like a copout.
+
+
+350
+00:17:40,626 --> 00:17:41,826
+>> OK, fair enough.
+
+
+351
+00:17:41,886 --> 00:17:47,416
+So with a new feature called
+CSS Shapes, which is available
+
+
+352
+00:17:47,416 --> 00:17:51,826
+in Yosemite and iOS 8, we
+can actually flow that text
+
+
+353
+00:17:51,826 --> 00:17:53,146
+around the curvature
+of the moon.
+
+
+354
+00:17:53,146 --> 00:17:53,936
+It'll look really great.
+
+
+355
+00:17:54,786 --> 00:17:57,506
+So what's going on here?
+
+
+356
+00:17:57,506 --> 00:18:00,586
+CSS Shapes, it's a simple
+feature that allows you
+
+
+357
+00:18:00,586 --> 00:18:04,026
+to flow text around
+a floated element
+
+
+358
+00:18:04,496 --> 00:18:06,806
+with an interesting
+shape or geometry.
+
+
+359
+00:18:07,156 --> 00:18:11,936
+So in this case a triangle
+or a circle, like our moon,
+
+
+360
+00:18:12,616 --> 00:18:14,756
+or Casey's favorite, Mr. Pacman.
+
+
+361
+00:18:15,746 --> 00:18:16,446
+>> Go, Mr. Pacman.
+
+
+362
+00:18:17,766 --> 00:18:19,596
+>> So how can we use
+this for our moon?
+
+
+363
+00:18:20,076 --> 00:18:23,266
+So like we saw before,
+we have our moon element.
+
+
+364
+00:18:23,266 --> 00:18:24,886
+It's just an image
+element of course.
+
+
+365
+00:18:25,616 --> 00:18:27,466
+And we've floated it
+within our column.
+
+
+366
+00:18:27,966 --> 00:18:32,266
+Now, it just so happens that
+this image of the moon is
+
+
+367
+00:18:32,266 --> 00:18:33,396
+on a transparent background.
+
+
+368
+00:18:33,886 --> 00:18:39,226
+And CSS Shapes has a great
+feature where you can provide it
+
+
+369
+00:18:39,226 --> 00:18:42,416
+with an image and it will
+use the visible, or opaque,
+
+
+370
+00:18:42,416 --> 00:18:44,346
+part of that image
+to define the shape.
+
+
+371
+00:18:45,106 --> 00:18:46,256
+You do this with one property.
+
+
+372
+00:18:46,546 --> 00:18:48,696
+The property is called
+shape-outside,
+
+
+373
+00:18:48,696 --> 00:18:51,976
+and in this case we're providing
+it the image of the moon.
+
+
+374
+00:18:52,426 --> 00:18:54,566
+It'll look into the
+image data and say, OK,
+
+
+375
+00:18:54,566 --> 00:18:55,646
+here's the opaque part.
+
+
+376
+00:18:55,646 --> 00:18:58,236
+And as you can see, our
+lines of text are now flowing
+
+
+377
+00:18:58,236 --> 00:18:59,206
+around the edge of the moon.
+
+
+378
+00:18:59,756 --> 00:19:02,066
+It's that easy.
+
+
+379
+00:19:02,936 --> 00:19:04,056
+>> Pretty cool, right?
+
+
+380
+00:19:04,156 --> 00:19:04,546
+>> Of course.
+
+
+381
+00:19:04,546 --> 00:19:05,166
+It's that easy.
+
+
+382
+00:19:06,281 --> 00:19:08,281
+[ Applause ]
+
+
+383
+00:19:08,546 --> 00:19:10,536
+Of course it's that easy
+because I lucked out.
+
+
+384
+00:19:10,536 --> 00:19:12,466
+My moon is on a transparent
+background already.
+
+
+385
+00:19:13,226 --> 00:19:15,086
+But a lot of times it's not.
+
+
+386
+00:19:15,086 --> 00:19:17,856
+You have an image
+that's entirely opaque
+
+
+387
+00:19:17,856 --> 00:19:21,226
+and you don't have the
+Photoshop skills to go in
+
+
+388
+00:19:21,226 --> 00:19:22,556
+and fix it up; I
+certainly don't.
+
+
+389
+00:19:22,556 --> 00:19:24,166
+Actually, a lot of
+you do, I'm sure.
+
+
+390
+00:19:24,226 --> 00:19:26,476
+So what do I do now?
+
+
+391
+00:19:26,476 --> 00:19:29,036
+So as you can see, I still have
+that shape-outside property,
+
+
+392
+00:19:29,436 --> 00:19:31,026
+but this is an opaque moon,
+
+
+393
+00:19:31,876 --> 00:19:34,636
+so Shapes doesn't have
+anything to go on here.
+
+
+394
+00:19:37,036 --> 00:19:40,986
+Fortunately, we can also, in
+addition to using an image
+
+
+395
+00:19:40,986 --> 00:19:42,326
+of a source of the shape data,
+
+
+396
+00:19:42,326 --> 00:19:46,256
+we can simply use some basic
+geometric shapes as well.
+
+
+397
+00:19:46,606 --> 00:19:50,716
+And of course the moon,
+luckily for me, is a circle.
+
+
+398
+00:19:52,386 --> 00:19:58,086
+So what I want to do is somehow
+tell the CSS Shapes module
+
+
+399
+00:19:58,086 --> 00:20:01,266
+to use this circle to
+flow the text around.
+
+
+400
+00:20:01,396 --> 00:20:04,386
+And I do that using
+the circle() function.
+
+
+401
+00:20:05,766 --> 00:20:06,526
+Pretty straightforward.
+
+
+402
+00:20:06,526 --> 00:20:08,716
+It takes one argument,
+the radius.
+
+
+403
+00:20:09,356 --> 00:20:12,376
+In this case, I used 50 percent
+because I wanted the diameter
+
+
+404
+00:20:12,646 --> 00:20:15,876
+of the circle to be the full
+width of the image element.
+
+
+405
+00:20:16,066 --> 00:20:17,696
+And that's looking pretty good.
+
+
+406
+00:20:19,256 --> 00:20:21,106
+There are other predefined
+shapes.
+
+
+407
+00:20:21,336 --> 00:20:25,016
+Just to take one example,
+you can use an ellipse.
+
+
+408
+00:20:26,486 --> 00:20:29,646
+Of course, an ellipse with
+the same dimensions in x
+
+
+409
+00:20:29,646 --> 00:20:32,396
+and y is just a circle, so I
+really haven't changed anything.
+
+
+410
+00:20:32,896 --> 00:20:34,876
+But you can get really
+interesting with this too.
+
+
+411
+00:20:34,876 --> 00:20:37,586
+There is a polygon function
+
+
+412
+00:20:37,586 --> 00:20:40,706
+which allows you define
+a fairly arbitrary shape.
+
+
+413
+00:20:41,426 --> 00:20:45,016
+So as an example, I drew
+an octagon around my moon.
+
+
+414
+00:20:45,806 --> 00:20:48,106
+The polygon function takes
+just a sequence of x,
+
+
+415
+00:20:48,106 --> 00:20:51,666
+y coordinates and, hey, that
+looks pretty great actually.
+
+
+416
+00:20:51,666 --> 00:20:54,716
+And all of this was
+still, again,
+
+
+417
+00:20:54,796 --> 00:20:58,946
+with just one CSS property.
+
+
+418
+00:20:59,026 --> 00:21:03,746
+OK, cool. We see how easy
+it is to use CSS Shapes
+
+
+419
+00:21:04,146 --> 00:21:05,846
+to get a really great
+visual effect
+
+
+420
+00:21:05,896 --> 00:21:08,046
+that was basically
+impossible to do before.
+
+
+421
+00:21:08,586 --> 00:21:12,766
+What do you want to do next?
+
+
+422
+00:21:12,766 --> 00:21:14,946
+>> Well, let's take a
+look back at our website.
+
+
+423
+00:21:15,066 --> 00:21:17,666
+So now we have the text flowing
+around our moon really well,
+
+
+424
+00:21:17,666 --> 00:21:20,286
+which I think looks much better.
+
+
+425
+00:21:21,286 --> 00:21:24,826
+The one thing that
+I'm seeing, though,
+
+
+426
+00:21:24,866 --> 00:21:27,886
+is those images look
+a little fuzzy
+
+
+427
+00:21:27,886 --> 00:21:30,666
+on the phone, don't you think?
+
+
+428
+00:21:31,036 --> 00:21:31,916
+>> I agree.
+
+
+429
+00:21:31,966 --> 00:21:33,116
+I mean, look at that galaxy.
+
+
+430
+00:21:33,906 --> 00:21:36,136
+>> Yeah. I definitely
+think that we need
+
+
+431
+00:21:36,136 --> 00:21:38,456
+to make our site Retina-ready.
+
+
+432
+00:21:39,116 --> 00:21:40,086
+>> Yeah. It's all pixelated.
+
+
+433
+00:21:40,536 --> 00:21:42,516
+>> Yeah. That's not just
+having too many beers
+
+
+434
+00:21:42,516 --> 00:21:43,496
+at the beer bash last night.
+
+
+435
+00:21:43,576 --> 00:21:46,886
+So let's provide a higher
+resolution image for this.
+
+
+436
+00:21:47,706 --> 00:21:50,916
+You know, in the past, at
+previous WWDCs, we've talked
+
+
+437
+00:21:51,056 --> 00:21:55,546
+about how to Retinafy-I think
+that's a word, right, Retinafy?
+
+
+438
+00:21:56,026 --> 00:21:56,206
+>> Sure.
+
+
+439
+00:21:56,396 --> 00:21:58,146
+>> It's a word now;
+you can write it down.
+
+
+440
+00:21:58,176 --> 00:22:00,596
+We're going to talk about
+how to Retinafy your website
+
+
+441
+00:22:00,656 --> 00:22:04,256
+so that you have some
+brilliant, clear images
+
+
+442
+00:22:04,556 --> 00:22:05,786
+on all of your websites.
+
+
+443
+00:22:06,596 --> 00:22:08,786
+And in the past when we've
+talked about it, we've talked
+
+
+444
+00:22:08,786 --> 00:22:12,796
+about how to use kind of
+alternatives to images, so,
+
+
+445
+00:22:13,146 --> 00:22:16,036
+you know, one example
+of that was like instead
+
+
+446
+00:22:16,036 --> 00:22:20,856
+of using an image for a gradient
+you should use a CSS gradient,
+
+
+447
+00:22:20,946 --> 00:22:21,286
+right?
+
+
+448
+00:22:22,256 --> 00:22:25,926
+The one thing we haven't
+talked about, though, is how --
+
+
+449
+00:22:25,926 --> 00:22:29,086
+like what do I do with
+just -- just my photos?
+
+
+450
+00:22:29,086 --> 00:22:31,666
+Like if I have a website
+with all my photography,
+
+
+451
+00:22:32,416 --> 00:22:33,086
+what do I do with that?
+
+
+452
+00:22:33,876 --> 00:22:36,136
+We haven't tackled
+the image element yet.
+
+
+453
+00:22:36,436 --> 00:22:38,636
+What the heck, right?
+
+
+454
+00:22:38,636 --> 00:22:45,956
+So new to OS X and iOS 8
+we have Image Source Sets.
+
+
+455
+00:22:46,556 --> 00:22:51,276
+Image Source Sets let you really
+easily add both a standard
+
+
+456
+00:22:51,966 --> 00:22:54,386
+resolution image and a
+Retina resolution image,
+
+
+457
+00:22:54,626 --> 00:22:57,676
+and then WebKit will just
+magically pick the right one,
+
+
+458
+00:22:58,216 --> 00:23:02,036
+depending on what type of screen
+your website's being viewed on.
+
+
+459
+00:23:03,926 --> 00:23:07,226
+And it looks kind of like this.
+
+
+460
+00:23:07,876 --> 00:23:10,816
+So here's my galaxy image
+on a standard screen.
+
+
+461
+00:23:11,736 --> 00:23:16,816
+It looks pretty good, but
+here it is on a Retina screen.
+
+
+462
+00:23:17,316 --> 00:23:18,656
+It's pretty pixelated.
+
+
+463
+00:23:19,296 --> 00:23:24,076
+So fortunately, it's very,
+very easy to fix this.
+
+
+464
+00:23:24,076 --> 00:23:26,666
+And all you have to do is just
+start with the image element.
+
+
+465
+00:23:26,666 --> 00:23:29,596
+So here's my image element.
+
+
+466
+00:23:30,836 --> 00:23:32,986
+It should look pretty
+familiar to most of you.
+
+
+467
+00:23:33,046 --> 00:23:36,226
+It hasn't really changed
+since the '90s, right?
+
+
+468
+00:23:36,226 --> 00:23:39,176
+But because I'm always look
+for an opportunity to text,
+
+
+469
+00:23:39,176 --> 00:23:41,926
+I'm going to go ahead
+and walk you through it.
+
+
+470
+00:23:41,926 --> 00:23:44,876
+So our first attribute in
+there is our alt attribute.
+
+
+471
+00:23:45,436 --> 00:23:48,656
+Please always include it because
+anyone who's using a screen
+
+
+472
+00:23:48,656 --> 00:23:51,836
+reader needs to understand
+what is going on in this big,
+
+
+473
+00:23:51,836 --> 00:23:53,166
+beautiful image you've provided.
+
+
+474
+00:23:53,166 --> 00:23:56,736
+And then second, I have
+my source attribute,
+
+
+475
+00:23:57,416 --> 00:23:59,996
+which is just the
+location of the image.
+
+
+476
+00:24:01,006 --> 00:24:03,816
+So to make this standard
+image element
+
+
+477
+00:24:04,176 --> 00:24:05,646
+into an Image Source Set,
+
+
+478
+00:24:06,566 --> 00:24:09,486
+all we have to do is add the
+source set attribute: srcset.
+
+
+479
+00:24:10,456 --> 00:24:14,956
+So inside my source set
+attribute is literally a set
+
+
+480
+00:24:14,956 --> 00:24:15,576
+of images.
+
+
+481
+00:24:16,296 --> 00:24:21,996
+I have my standard galaxy.jpeg
+and my super-galaxy.jpeg
+
+
+482
+00:24:21,996 --> 00:24:23,196
+for my Retina screens.
+
+
+483
+00:24:23,836 --> 00:24:26,776
+And the difference between
+those is this modifier of 1x
+
+
+484
+00:24:26,776 --> 00:24:29,676
+for standard and 2x
+for Retina, right.
+
+
+485
+00:24:29,676 --> 00:24:32,456
+So then WebKit can then
+automatically understand
+
+
+486
+00:24:32,756 --> 00:24:34,536
+which image is for which screen.
+
+
+487
+00:24:35,166 --> 00:24:38,246
+Now, some of who you
+are actually reading
+
+
+488
+00:24:38,246 --> 00:24:41,716
+through my syntax might
+have noticed some redundancy
+
+
+489
+00:24:41,716 --> 00:24:42,046
+in there.
+
+
+490
+00:24:42,496 --> 00:24:44,666
+>> Yeah. You're saying
+galaxy JPEG twice.
+
+
+491
+00:24:44,836 --> 00:24:48,576
+>> Yeah. So galaxy.jpeg, my
+standard resolution image,
+
+
+492
+00:24:48,576 --> 00:24:49,836
+is in there two times.
+
+
+493
+00:24:50,406 --> 00:24:51,606
+And you might think, "Well,
+
+
+494
+00:24:52,426 --> 00:24:54,886
+let's just ditch
+the source," right.
+
+
+495
+00:24:55,686 --> 00:25:00,646
+But browsers that do not
+understand srcset are not going
+
+
+496
+00:25:00,646 --> 00:25:01,426
+to know what to do with that.
+
+
+497
+00:25:02,026 --> 00:25:04,636
+So for backwards compatibility,
+let's keep the src
+
+
+498
+00:25:04,636 --> 00:25:08,606
+and instead we will
+back out or remove
+
+
+499
+00:25:08,606 --> 00:25:11,356
+that 1x resolution image
+from the source set.
+
+
+500
+00:25:12,486 --> 00:25:16,776
+So that's like very little
+amount of markup, right.
+
+
+501
+00:25:16,776 --> 00:25:20,716
+With just this small amount of
+markup, we've made our website
+
+
+502
+00:25:20,716 --> 00:25:22,756
+and our image element
+Retina-ready.
+
+
+503
+00:25:23,676 --> 00:25:25,106
+Image source sets
+are really great.
+
+
+504
+00:25:26,086 --> 00:25:28,336
+They load only the right
+image, so you're going
+
+
+505
+00:25:28,336 --> 00:25:29,996
+to avoid that double download.
+
+
+506
+00:25:30,846 --> 00:25:31,836
+There's no additional CSS.
+
+
+507
+00:25:31,836 --> 00:25:34,446
+You don't have to
+go in there and muck
+
+
+508
+00:25:34,446 --> 00:25:36,236
+around with your dimensions
+or anything like that.
+
+
+509
+00:25:37,056 --> 00:25:40,416
+And it's backwards compatible
+with just this little amount
+
+
+510
+00:25:40,916 --> 00:25:42,436
+of syntax, this one attribute.
+
+
+511
+00:25:42,436 --> 00:25:45,986
+So, so far I've talked to you
+
+
+512
+00:25:45,986 --> 00:25:48,716
+about image source
+sets in your HTML.
+
+
+513
+00:25:49,666 --> 00:25:53,636
+It just so happens that there is
+another feature that we talked
+
+
+514
+00:25:53,636 --> 00:25:58,396
+about at WWDC in the past that
+has an incredibly similar name
+
+
+515
+00:25:58,396 --> 00:26:00,376
+and an incredibly
+similar function.
+
+
+516
+00:26:00,376 --> 00:26:02,496
+So we're going to go over
+that real quick, too,
+
+
+517
+00:26:02,496 --> 00:26:05,466
+so that you can understand
+when you use which and why.
+
+
+518
+00:26:06,986 --> 00:26:11,006
+So image source sets, which we
+just covered, are in your HTML,
+
+
+519
+00:26:11,786 --> 00:26:14,156
+but image sets live in your CSS.
+
+
+520
+00:26:15,136 --> 00:26:18,046
+And they are intended
+for styling your website,
+
+
+521
+00:26:18,046 --> 00:26:21,046
+like borders or background
+images.
+
+
+522
+00:26:21,956 --> 00:26:24,346
+So image sets, let's
+say I do have one
+
+
+523
+00:26:24,346 --> 00:26:28,886
+of those background images that
+I want to make Retina-ready.
+
+
+524
+00:26:29,776 --> 00:26:31,696
+I'll just start with
+my background image.
+
+
+525
+00:26:32,376 --> 00:26:35,106
+You'll see I have my
+URL with my galaxy.jpeg.
+
+
+526
+00:26:35,196 --> 00:26:38,716
+And to make it into
+an image set,
+
+
+527
+00:26:39,226 --> 00:26:42,016
+I add a second background
+image property.
+
+
+528
+00:26:42,416 --> 00:26:45,946
+And within it is the
+image-set() function.
+
+
+529
+00:26:45,946 --> 00:26:49,936
+And that function then
+contains both of my images.
+
+
+530
+00:26:49,936 --> 00:26:54,226
+It contains the galaxy
+JPEG modified with 1x
+
+
+531
+00:26:55,126 --> 00:26:58,026
+and my super-galaxy
+JPEG with 2x.
+
+
+532
+00:26:58,786 --> 00:27:01,806
+And then WebKit from here
+will automatically select the
+
+
+533
+00:27:01,806 --> 00:27:02,356
+right one.
+
+
+534
+00:27:02,856 --> 00:27:05,656
+And I'd like to point out
+that you do need to have both
+
+
+535
+00:27:05,656 --> 00:27:07,446
+of your background
+image properties there
+
+
+536
+00:27:07,696 --> 00:27:09,026
+for backwards compatibility.
+
+
+537
+00:27:10,296 --> 00:27:12,926
+So image sets, image
+source sets.
+
+
+538
+00:27:14,426 --> 00:27:16,106
+They're great, they're easy.
+
+
+539
+00:27:16,176 --> 00:27:17,606
+They make it super easy
+
+
+540
+00:27:17,606 --> 00:27:20,076
+for adding both standard
+and Retina images.
+
+
+541
+00:27:20,296 --> 00:27:21,876
+WebKit will pick the right one.
+
+
+542
+00:27:22,306 --> 00:27:27,046
+Just remember that your
+HTML image source sets are
+
+
+543
+00:27:27,106 --> 00:27:28,506
+for your content-those big,
+
+
+544
+00:27:28,506 --> 00:27:32,116
+beautiful photographs we talked
+about-and your CSS image sets
+
+
+545
+00:27:32,766 --> 00:27:35,986
+are for your style, so your
+background images, your borders.
+
+
+546
+00:27:38,076 --> 00:27:39,856
+So I think both are going
+
+
+547
+00:27:39,856 --> 00:27:42,516
+to be a really great
+solution for your websites.
+
+
+548
+00:27:42,516 --> 00:27:44,966
+Should we see where we're at?
+
+
+549
+00:27:44,966 --> 00:27:49,326
+>> Yeah. Let's-well,
+that looks way better.
+
+
+550
+00:27:50,606 --> 00:27:51,346
+Really happy about that.
+
+
+551
+00:27:51,346 --> 00:27:54,056
+I was worried that
+maybe I had too much fun
+
+
+552
+00:27:54,056 --> 00:27:54,976
+at the beer bash last night.
+
+
+553
+00:27:55,966 --> 00:27:57,416
+OK, so where are we now?
+
+
+554
+00:27:58,266 --> 00:27:59,386
+We've got our Retina image.
+
+
+555
+00:28:00,856 --> 00:28:04,846
+And we still have a bunch
+of basic layout problems
+
+
+556
+00:28:04,846 --> 00:28:06,836
+on this page that we
+haven't addressed yet.
+
+
+557
+00:28:07,136 --> 00:28:09,576
+>> Yeah. Our Retina
+image looks nice,
+
+
+558
+00:28:09,916 --> 00:28:11,616
+except that you can't
+really see it.
+
+
+559
+00:28:11,616 --> 00:28:11,716
+>> Right.
+
+
+560
+00:28:11,716 --> 00:28:13,326
+>> It's got that
+giant caption over it.
+
+
+561
+00:28:13,326 --> 00:28:13,936
+>> It's ridiculous.
+
+
+562
+00:28:14,136 --> 00:28:14,286
+>> Yeah.
+
+
+563
+00:28:14,856 --> 00:28:16,986
+>> So let's fix up some of
+our remaining layout problems
+
+
+564
+00:28:16,986 --> 00:28:18,706
+by using CSS media queries.
+
+
+565
+00:28:19,636 --> 00:28:21,596
+And I'm sure a lot of you
+use these all the time.
+
+
+566
+00:28:22,046 --> 00:28:24,846
+So let's just jump
+right in and take care
+
+
+567
+00:28:24,846 --> 00:28:25,976
+of these remaining issues.
+
+
+568
+00:28:26,316 --> 00:28:33,196
+OK, here we are again;
+this should look familiar.
+
+
+569
+00:28:33,196 --> 00:28:36,896
+You can see the text
+loading around that moon now.
+
+
+570
+00:28:37,076 --> 00:28:37,856
+It's looking pretty good.
+
+
+571
+00:28:38,956 --> 00:28:40,256
+I'm a big fan of that.
+
+
+572
+00:28:40,436 --> 00:28:47,916
+OK, let's see, and as you know,
+as we make our page narrower,
+
+
+573
+00:28:48,126 --> 00:28:49,836
+the layout gets more
+and more crazy.
+
+
+574
+00:28:49,836 --> 00:28:54,206
+In particular, I don't
+like how the masthead
+
+
+575
+00:28:54,206 --> 00:28:57,526
+of my page here is taking
+up so much vertical space.
+
+
+576
+00:28:57,736 --> 00:29:02,866
+This caption is really
+awkwardly overlapping my image.
+
+
+577
+00:29:03,286 --> 00:29:04,716
+In fact, it's blowing
+right out of it
+
+
+578
+00:29:04,716 --> 00:29:06,576
+and overlapping the
+heading below it.
+
+
+579
+00:29:07,226 --> 00:29:11,566
+And then the sidebar is really,
+really narrow and hard to read.
+
+
+580
+00:29:11,926 --> 00:29:13,756
+So let's fix each of these.
+
+
+581
+00:29:14,806 --> 00:29:17,836
+I'll start with the header.
+
+
+582
+00:29:18,126 --> 00:29:20,466
+So as you can see up in the
+corner, like I mentioned,
+
+
+583
+00:29:20,466 --> 00:29:21,856
+I have that handy
+bit of JavaScript
+
+
+584
+00:29:21,856 --> 00:29:23,216
+to show me how wide
+my window is.
+
+
+585
+00:29:23,516 --> 00:29:27,756
+So where does the
+header start to go off?
+
+
+586
+00:29:28,636 --> 00:29:34,056
+It seems like between
+650 and 700 pixels,
+
+
+587
+00:29:34,056 --> 00:29:35,846
+somewhere around there,
+we hit multiple lines.
+
+
+588
+00:29:36,266 --> 00:29:38,716
+And as you saw earlier on
+the phone, we end up with
+
+
+589
+00:29:38,716 --> 00:29:40,956
+like four lines of text.
+
+
+590
+00:29:40,956 --> 00:29:43,856
+So I want to adjust the size
+of my header somewhere around,
+
+
+591
+00:29:45,216 --> 00:29:47,106
+what, 690 pixels or something.
+
+
+592
+00:29:48,386 --> 00:29:49,866
+OK, so let's do that.
+
+
+593
+00:29:50,436 --> 00:29:53,176
+To do this, I'm going
+to use the @media rule.
+
+
+594
+00:29:56,316 --> 00:29:59,046
+So here I have an @media rule.
+
+
+595
+00:29:59,626 --> 00:30:03,496
+This is the part of CSS where
+you can provide a media query,
+
+
+596
+00:30:03,496 --> 00:30:06,856
+in this case a max-width
+of 675 pixels.
+
+
+597
+00:30:07,696 --> 00:30:11,026
+And then inside of braces you
+basically provide a whole style
+
+
+598
+00:30:11,026 --> 00:30:12,776
+sheet of things you'd like
+to change at that point.
+
+
+599
+00:30:13,936 --> 00:30:16,666
+In this case, I'm finding
+that masthead header
+
+
+600
+00:30:16,736 --> 00:30:18,326
+and adjusting its
+font size down.
+
+
+601
+00:30:19,966 --> 00:30:22,076
+OK, so we've made that change.
+
+
+602
+00:30:22,516 --> 00:30:23,246
+Let's refresh.
+
+
+603
+00:30:24,446 --> 00:30:26,996
+Nothing changed because
+this is wider
+
+
+604
+00:30:26,996 --> 00:30:29,546
+than that breakpoint
+of 675 pixels.
+
+
+605
+00:30:30,156 --> 00:30:33,386
+So let's make our site more
+narrow, and there we go.
+
+
+606
+00:30:33,386 --> 00:30:36,956
+Our header got smaller,
+it looks great even here
+
+
+607
+00:30:36,956 --> 00:30:38,586
+at this very narrow size.
+
+
+608
+00:30:40,456 --> 00:30:43,946
+Well, OK, next I think I'll
+take care of this caption.
+
+
+609
+00:30:44,476 --> 00:30:47,716
+So just like with the
+header, I need to figure
+
+
+610
+00:30:47,716 --> 00:30:50,186
+out where it starts looking bad.
+
+
+611
+00:30:50,186 --> 00:30:52,906
+It looks great out
+here at two lines.
+
+
+612
+00:30:53,846 --> 00:30:55,186
+I'm still pretty
+happy with it here.
+
+
+613
+00:30:55,236 --> 00:30:58,806
+And it seems to be right around
+where it goes to four lines
+
+
+614
+00:30:58,806 --> 00:31:02,876
+where that bottom right corner
+is intruding into my galaxy
+
+
+615
+00:31:02,876 --> 00:31:06,036
+and really kind of
+ruining the mood.
+
+
+616
+00:31:06,216 --> 00:31:07,456
+OK, so where was that?
+
+
+617
+00:31:07,456 --> 00:31:12,256
+That seems to be between
+700 and 750 pixels.
+
+
+618
+00:31:13,666 --> 00:31:18,036
+OK, so just like with my
+header I'll use an @media rule,
+
+
+619
+00:31:18,036 --> 00:31:21,986
+this time with a
+max-width of 750 pixels.
+
+
+620
+00:31:22,106 --> 00:31:26,386
+And what I'm doing here
+is initially my caption is
+
+
+621
+00:31:26,746 --> 00:31:30,036
+absolutely positioned so
+that it can be an overlay
+
+
+622
+00:31:30,036 --> 00:31:31,446
+on top of my image.
+
+
+623
+00:31:31,796 --> 00:31:35,116
+And its width is set at 50
+percent so that it takes
+
+
+624
+00:31:35,116 --> 00:31:38,236
+up about half the size
+of the image, like so.
+
+
+625
+00:31:39,306 --> 00:31:40,946
+So in my media query here,
+
+
+626
+00:31:40,946 --> 00:31:44,086
+I want to override both the
+position and width properties
+
+
+627
+00:31:44,616 --> 00:31:49,126
+so that it will simply appear
+below the image and take
+
+
+628
+00:31:49,126 --> 00:31:50,316
+up the full width of the column.
+
+
+629
+00:31:51,336 --> 00:31:51,916
+And that's it.
+
+
+630
+00:31:52,656 --> 00:31:57,856
+So we'll save and let me come
+out a little bit and refresh.
+
+
+631
+00:31:58,366 --> 00:32:01,496
+And as you can see, just
+like before nothing's changed
+
+
+632
+00:32:01,496 --> 00:32:04,846
+because I'm still wider than
+that media queries test.
+
+
+633
+00:32:05,856 --> 00:32:07,696
+But as we get closer
+to the bad part,
+
+
+634
+00:32:09,226 --> 00:32:10,346
+there it goes; it pops down.
+
+
+635
+00:32:10,436 --> 00:32:14,226
+It's quite legible below our
+image and doesn't interfere
+
+
+636
+00:32:14,226 --> 00:32:16,246
+with it, no matter how narrow
+our window screen gets.
+
+
+637
+00:32:16,756 --> 00:32:20,446
+OK, cool. Let's take
+care of that sidebar.
+
+
+638
+00:32:20,446 --> 00:32:21,586
+That's I think the last bit
+
+
+639
+00:32:21,626 --> 00:32:23,616
+that looked pretty
+bad at a narrow size.
+
+
+640
+00:32:23,616 --> 00:32:25,766
+So where does that
+get unreadable?
+
+
+641
+00:32:29,476 --> 00:32:31,986
+In this case, I feel
+like right around here is
+
+
+642
+00:32:31,986 --> 00:32:36,626
+where the block quote inside
+my sidebar is getting to be,
+
+
+643
+00:32:36,626 --> 00:32:38,676
+you know, one or
+two words per line.
+
+
+644
+00:32:38,676 --> 00:32:40,236
+It's really too narrow.
+
+
+645
+00:32:40,236 --> 00:32:43,826
+So let's make an adjustment
+around 800, 850 pixels.
+
+
+646
+00:32:45,316 --> 00:32:46,766
+By now I think you
+know the drill.
+
+
+647
+00:32:48,026 --> 00:32:50,246
+This adjustment is exactly
+like the other ones.
+
+
+648
+00:32:50,246 --> 00:32:54,226
+We have an @media rule
+for a width of 800 pixels.
+
+
+649
+00:32:54,966 --> 00:32:57,416
+Currently, this sidebar
+is floated over,
+
+
+650
+00:32:57,416 --> 00:33:01,456
+so I'm disabling the float
+just like with my caption.
+
+
+651
+00:33:01,456 --> 00:33:03,126
+I'm resetting the width
+
+
+652
+00:33:03,126 --> 00:33:06,596
+so it will automatically be
+the width of its container.
+
+
+653
+00:33:07,136 --> 00:33:09,316
+And I'm killing some of the
+margins that we had there
+
+
+654
+00:33:09,756 --> 00:33:11,866
+so that the sidebar
+will be offset
+
+
+655
+00:33:11,866 --> 00:33:14,526
+from the columns next to it.
+
+
+656
+00:33:14,776 --> 00:33:18,786
+So if we come back and
+refresh, still there.
+
+
+657
+00:33:18,786 --> 00:33:22,046
+But as we get smaller, there
+we go, the sidebar is popped in
+
+
+658
+00:33:22,046 --> 00:33:24,146
+and is now in line with
+the rest of our document.
+
+
+659
+00:33:24,586 --> 00:33:27,546
+And even in the really,
+
+
+660
+00:33:27,546 --> 00:33:31,366
+really narrow screen size this
+is starting to look pretty good.
+
+
+661
+00:33:33,156 --> 00:33:42,956
+OK, so let's talk a little
+bit more about media queries.
+
+
+662
+00:33:43,066 --> 00:33:48,086
+As you saw, we use media queries
+in CSS by using an @media rule,
+
+
+663
+00:33:48,836 --> 00:33:55,976
+which takes a media query to
+test and then some CSS to apply
+
+
+664
+00:33:56,136 --> 00:33:58,826
+when that media query matches.
+
+
+665
+00:33:59,316 --> 00:34:02,436
+So here, I'm fixing our
+caption like we saw earlier
+
+
+666
+00:34:02,816 --> 00:34:04,616
+by using a max-width
+media query,
+
+
+667
+00:34:05,036 --> 00:34:08,045
+and then I'm overriding the
+position and width properties.
+
+
+668
+00:34:08,585 --> 00:34:11,235
+This is in general how
+you use an @media rule.
+
+
+669
+00:34:11,596 --> 00:34:13,446
+You have some rules somewhere
+else in your style sheet
+
+
+670
+00:34:14,246 --> 00:34:15,255
+and then you say, OK, but
+
+
+671
+00:34:15,255 --> 00:34:18,966
+and sometimes I need
+to override those.
+
+
+672
+00:34:20,166 --> 00:34:22,565
+In all three cases, we used
+the max-width media query
+
+
+673
+00:34:22,565 --> 00:34:25,366
+because we were adjusting
+for when things got narrower.
+
+
+674
+00:34:25,366 --> 00:34:28,536
+There are several other media
+queries that you'll often want
+
+
+675
+00:34:28,536 --> 00:34:30,676
+to use when doing
+responsive design.
+
+
+676
+00:34:31,166 --> 00:34:34,456
+There's a corresponding
+min-width media query
+
+
+677
+00:34:34,525 --> 00:34:37,636
+where you can adjust things
+as the site gets wider.
+
+
+678
+00:34:38,386 --> 00:34:43,545
+And also an exact-width
+media query.
+
+
+679
+00:34:43,706 --> 00:34:47,606
+When you're adjusting your
+site to be Retina-ready,
+
+
+680
+00:34:47,746 --> 00:34:50,985
+in addition to using
+the features
+
+
+681
+00:34:50,985 --> 00:34:52,876
+that Casey showed you
+earlier, you might need
+
+
+682
+00:34:52,876 --> 00:34:54,196
+to make some layout adjustments.
+
+
+683
+00:34:54,585 --> 00:34:56,786
+And you can test
+for a Retina device
+
+
+684
+00:34:57,266 --> 00:35:00,796
+by using the device-pixel-ratio
+media query, which,
+
+
+685
+00:35:00,826 --> 00:35:07,976
+just like width, takes
+a min and max variance.
+
+
+686
+00:35:07,976 --> 00:35:10,696
+When adjusting your
+layout with a media query,
+
+
+687
+00:35:11,306 --> 00:35:12,576
+there's a few things
+you should keep in mind.
+
+
+688
+00:35:14,046 --> 00:35:17,366
+First off, the @media
+rule is actually a very
+
+
+689
+00:35:17,366 --> 00:35:18,376
+blunt instrument.
+
+
+690
+00:35:19,606 --> 00:35:23,806
+What you're doing is making an
+entire alternate style sheet
+
+
+691
+00:35:23,806 --> 00:35:25,546
+that applies in certain
+circumstances.
+
+
+692
+00:35:25,976 --> 00:35:29,666
+You have to duplicate the
+selectors you're using
+
+
+693
+00:35:29,666 --> 00:35:33,296
+in your default style sheet to
+override particular properties.
+
+
+694
+00:35:33,726 --> 00:35:36,406
+And as your site
+grows, this can lead
+
+
+695
+00:35:36,816 --> 00:35:39,636
+to a really large
+maintenance burden.
+
+
+696
+00:35:39,916 --> 00:35:41,146
+You might double or triple
+
+
+697
+00:35:41,146 --> 00:35:45,626
+or quadruple the size
+of your style sheet.
+
+
+698
+00:35:45,876 --> 00:35:52,096
+So instead, when possible, you
+should try to use CSS features
+
+
+699
+00:35:52,096 --> 00:35:54,706
+that naturally adapt
+your site without having
+
+
+700
+00:35:54,706 --> 00:35:56,586
+to duplicate all your work.
+
+
+701
+00:35:56,836 --> 00:36:00,506
+We saw two earlier: The column
+width property allowed us
+
+
+702
+00:36:00,706 --> 00:36:03,216
+to adjust the number of
+columns magically basically
+
+
+703
+00:36:03,586 --> 00:36:04,986
+without resorting
+to a media query.
+
+
+704
+00:36:04,986 --> 00:36:08,066
+And the image set
+function allows us
+
+
+705
+00:36:08,066 --> 00:36:10,916
+to pick the right image for
+our display without having
+
+
+706
+00:36:10,916 --> 00:36:13,656
+to use the device-pixel-ratio
+property media query.
+
+
+707
+00:36:13,976 --> 00:36:19,516
+And secondly, when I was
+adjusting our layout there,
+
+
+708
+00:36:19,586 --> 00:36:21,986
+I was doing it experimentally.
+
+
+709
+00:36:23,066 --> 00:36:27,926
+I loaded my site, fiddled
+with my window width and found
+
+
+710
+00:36:27,926 --> 00:36:30,476
+where each part of
+my layout went bad
+
+
+711
+00:36:30,566 --> 00:36:32,566
+and then made adjustments
+for that width.
+
+
+712
+00:36:33,216 --> 00:36:36,256
+I didn't look up the dimensions
+
+
+713
+00:36:36,256 --> 00:36:38,116
+of a particular screen
+on Wikipedia.
+
+
+714
+00:36:39,166 --> 00:36:41,046
+I let my content
+actually tell me
+
+
+715
+00:36:41,046 --> 00:36:42,486
+where it needed to be adjusted.
+
+
+716
+00:36:43,596 --> 00:36:46,336
+This will make your
+content more resilient
+
+
+717
+00:36:46,336 --> 00:36:50,976
+to an ever-increasing
+range of scenarios
+
+
+718
+00:36:50,976 --> 00:36:54,206
+where it might be loaded.
+
+
+719
+00:36:54,206 --> 00:36:57,576
+OK, so we've made our
+final layout adjustments
+
+
+720
+00:36:57,576 --> 00:36:58,826
+with some media queries.
+
+
+721
+00:36:59,416 --> 00:37:01,206
+There's just one
+little bit I wanted
+
+
+722
+00:37:01,256 --> 00:37:06,256
+to address before we
+can call it a day.
+
+
+723
+00:37:06,256 --> 00:37:10,876
+And this is some of these
+borders on our site.
+
+
+724
+00:37:10,936 --> 00:37:13,926
+So you can see up top there
+we have this little byline
+
+
+725
+00:37:13,926 --> 00:37:17,146
+of "This is the Friday edition
+of the Daily Space Digest,"
+
+
+726
+00:37:17,956 --> 00:37:19,256
+and we've got some
+borders around it.
+
+
+727
+00:37:19,256 --> 00:37:21,286
+And they look great
+on my laptop,
+
+
+728
+00:37:21,726 --> 00:37:26,796
+but they're a little
+thick on my phone.
+
+
+729
+00:37:27,846 --> 00:37:30,036
+I made a 1 pixel
+border and I wanted it
+
+
+730
+00:37:30,036 --> 00:37:36,496
+to be a 1 pixel border, but of
+course, as you already know,
+
+
+731
+00:37:36,736 --> 00:37:38,146
+when I say 1 pixel in CSS,
+
+
+732
+00:37:38,146 --> 00:37:42,816
+I don't actually get
+1 pixel on my display.
+
+
+733
+00:37:42,816 --> 00:37:48,676
+The CSS pixel is defined to be
+a sort of abstract measurement
+
+
+734
+00:37:49,326 --> 00:37:52,926
+that roughly corresponds
+to 1 physical pixel
+
+
+735
+00:37:52,926 --> 00:37:53,896
+on a pre-Retina display.
+
+
+736
+00:37:54,946 --> 00:37:56,366
+But now, with the Retina device,
+
+
+737
+00:37:56,946 --> 00:38:00,236
+a 1 CSS pixel actually
+contains 4 device pixels.
+
+
+738
+00:38:00,686 --> 00:38:06,086
+So what I want to do is sort
+of reach into the CSS pixel
+
+
+739
+00:38:06,086 --> 00:38:09,266
+and make full use of each
+of those device pixels.
+
+
+740
+00:38:09,556 --> 00:38:12,196
+I want to draw hairline borders.
+
+
+741
+00:38:14,196 --> 00:38:21,896
+OK, so right now I'm drawing
+my border with 1 pixel in CSS.
+
+
+742
+00:38:22,926 --> 00:38:25,716
+And when that draws
+on a standard display,
+
+
+743
+00:38:25,956 --> 00:38:28,166
+I get the thinnest line
+I could possibly get.
+
+
+744
+00:38:28,166 --> 00:38:33,286
+And on a Retina display, I
+get this line that's twice
+
+
+745
+00:38:33,286 --> 00:38:35,186
+as thick as I actually want.
+
+
+746
+00:38:36,096 --> 00:38:40,566
+So what I want to do is really
+only use 1 row or column
+
+
+747
+00:38:40,856 --> 00:38:43,216
+of device pixels
+to get this line.
+
+
+748
+00:38:43,446 --> 00:38:45,766
+So how do I do it?
+
+
+749
+00:38:46,026 --> 00:38:47,706
+Let's look at our CSS.
+
+
+750
+00:38:48,206 --> 00:38:50,306
+Here, I'm setting my
+border with 1 pixel.
+
+
+751
+00:38:50,356 --> 00:38:55,416
+I'm not the only one who's
+wanted hairline borders;
+
+
+752
+00:38:55,416 --> 00:38:56,366
+a lot of you have too.
+
+
+753
+00:38:57,506 --> 00:38:59,966
+And I've got to say, some of
+the solutions people have come
+
+
+754
+00:38:59,966 --> 00:39:04,246
+up with are amazing
+and horrifying.
+
+
+755
+00:39:06,496 --> 00:39:07,256
+Here's my favorite.
+
+
+756
+00:39:08,446 --> 00:39:10,276
+This is pretty brilliant.
+
+
+757
+00:39:10,276 --> 00:39:14,056
+It uses an inline SVG
+image and a data URL
+
+
+758
+00:39:14,056 --> 00:39:15,056
+as your background image.
+
+
+759
+00:39:15,366 --> 00:39:16,096
+Everyone got that?
+
+
+760
+00:39:16,336 --> 00:39:18,256
+It's really easy to
+remember how to type this,
+
+
+761
+00:39:18,256 --> 00:39:19,436
+as I'm sure you can see.
+
+
+762
+00:39:20,006 --> 00:39:21,106
+All right.
+
+
+763
+00:39:21,676 --> 00:39:25,766
+Let's cut this out;
+this is ridiculous.
+
+
+764
+00:39:26,866 --> 00:39:31,376
+And now, I'm really pleased to
+say that in Yosemite and iOS 8,
+
+
+765
+00:39:32,066 --> 00:39:35,666
+WebKit has enabled a feature
+that we call subpixel layout.
+
+
+766
+00:39:36,596 --> 00:39:39,776
+Now, mostly, this won't affect
+what you're doing at all.
+
+
+767
+00:39:39,966 --> 00:39:42,016
+It's just a magical,
+under-the-hood improvement
+
+
+768
+00:39:42,016 --> 00:39:43,246
+that just makes things
+a little bit better.
+
+
+769
+00:39:43,246 --> 00:39:46,856
+But we can take advantage of
+it to get the hairlines we want
+
+
+770
+00:39:47,216 --> 00:39:49,976
+without having to do
+this sort of thing.
+
+
+771
+00:39:50,106 --> 00:39:51,486
+OK, how do we do it?
+
+
+772
+00:39:52,766 --> 00:39:55,116
+So here we have our 1 pixel
+for our standard display.
+
+
+773
+00:39:56,346 --> 00:39:58,736
+And now, just like we saw
+before with our media queries,
+
+
+774
+00:39:58,736 --> 00:40:00,976
+we're going to check
+device-pixel-ratio to see,
+
+
+775
+00:40:00,976 --> 00:40:02,356
+are we on a Retina screen?
+
+
+776
+00:40:02,656 --> 00:40:03,676
+We are? Great.
+
+
+777
+00:40:03,676 --> 00:40:06,496
+And all we're doing is saying
+we're on a Retina display,
+
+
+778
+00:40:06,746 --> 00:40:08,766
+great, just use a half a pixel.
+
+
+779
+00:40:09,346 --> 00:40:14,516
+Remember, the CSS pixel is 2
+device pixels in each dimension,
+
+
+780
+00:40:14,516 --> 00:40:16,826
+so a half a pixel corresponds
+
+
+781
+00:40:16,866 --> 00:40:19,256
+to that beautiful,
+thin device pixel.
+
+
+782
+00:40:20,316 --> 00:40:22,596
+And now I can actually read
+this and remember what I meant
+
+
+783
+00:40:22,656 --> 00:40:26,196
+when I wrote it,
+so that's exciting.
+
+
+784
+00:40:26,196 --> 00:40:26,946
+And here we are.
+
+
+785
+00:40:26,946 --> 00:40:28,836
+I've got my retina iPad.
+
+
+786
+00:40:28,896 --> 00:40:32,506
+And if we use the magic of
+Keynote to zoom in on that,
+
+
+787
+00:40:32,506 --> 00:40:35,546
+you can see those lines are as
+thin as they could possibly get.
+
+
+788
+00:40:36,226 --> 00:40:37,686
+>> Ooh, aah.
+
+
+789
+00:40:38,191 --> 00:40:40,191
+[ Laughter ]
+
+
+790
+00:40:40,366 --> 00:40:40,776
+Thanks Ted.
+
+
+791
+00:40:41,176 --> 00:40:43,176
+[ Applause ]
+
+
+792
+00:40:43,336 --> 00:40:43,806
+All right.
+
+
+793
+00:40:44,036 --> 00:40:50,036
+So our website now looks so much
+better minus our sad engineering
+
+
+794
+00:40:50,036 --> 00:40:50,616
+design skills.
+
+
+795
+00:40:50,616 --> 00:40:53,436
+And it looks great
+on every device,
+
+
+796
+00:40:53,786 --> 00:40:55,346
+and with very little markup.
+
+
+797
+00:40:55,406 --> 00:40:57,336
+Like how many lines
+of code did we do?
+
+
+798
+00:40:57,456 --> 00:40:59,716
+>> I think we actually only
+changed about 20 lines of code.
+
+
+799
+00:41:00,116 --> 00:41:01,696
+>> That's pretty good, right?
+
+
+800
+00:41:02,696 --> 00:41:03,896
+Yes? Thank you.
+
+
+801
+00:41:04,451 --> 00:41:06,451
+[ Applause ]
+
+
+802
+00:41:06,886 --> 00:41:12,136
+All we had to do was make
+our columns responsive.
+
+
+803
+00:41:12,136 --> 00:41:13,096
+We defined the width
+
+
+804
+00:41:13,096 --> 00:41:15,366
+of our column instead
+of a column count.
+
+
+805
+00:41:15,876 --> 00:41:19,036
+We also designed our
+layout so that it was
+
+
+806
+00:41:19,036 --> 00:41:20,536
+in font-relative units,
+
+
+807
+00:41:20,536 --> 00:41:23,896
+which means that if our
+users change their font size,
+
+
+808
+00:41:24,306 --> 00:41:26,946
+we are going to have
+fidelity to our layout.
+
+
+809
+00:41:27,496 --> 00:41:30,096
+Also, Ted showed you
+how to use CSS Shapes
+
+
+810
+00:41:30,276 --> 00:41:33,756
+so that now we have the
+text flowing beautifully
+
+
+811
+00:41:33,756 --> 00:41:37,776
+around the curvature of our
+moon, and both our galaxy
+
+
+812
+00:41:37,776 --> 00:41:40,036
+and our moon image
+are Retina-ready.
+
+
+813
+00:41:40,916 --> 00:41:43,886
+Then, we also covered
+how to use media queries,
+
+
+814
+00:41:44,146 --> 00:41:48,366
+our blunt instrument for
+making larger layout changes
+
+
+815
+00:41:48,366 --> 00:41:49,536
+when necessary.
+
+
+816
+00:41:49,736 --> 00:41:54,946
+And the icing on the cake are
+those beautiful hairline borders
+
+
+817
+00:41:55,596 --> 00:41:57,376
+that really reach into
+the retina screen.
+
+
+818
+00:41:59,036 --> 00:42:00,496
+>> So for more information,
+
+
+819
+00:42:00,496 --> 00:42:02,736
+as always you can
+contact Apple Evangelism.
+
+
+820
+00:42:03,236 --> 00:42:06,466
+And check out our documentation
+in the Safari Developer Center
+
+
+821
+00:42:06,466 --> 00:42:09,946
+and participate in the
+wonderful conversations
+
+
+822
+00:42:09,946 --> 00:42:12,346
+over at our Developer Forums.
+
+
+823
+00:42:12,516 --> 00:42:16,036
+It's Friday morning, so
+our related session was
+
+
+824
+00:42:16,036 --> 00:42:17,096
+of course earlier this week.
+
+
+825
+00:42:17,146 --> 00:42:18,936
+And if you missed
+it, definitely check
+
+
+826
+00:42:18,936 --> 00:42:20,086
+out the video; it's
+really great.
+
+
+827
+00:42:20,876 --> 00:42:23,686
+And we've also talked
+about several things
+
+
+828
+00:42:23,686 --> 00:42:25,256
+that have come up
+in previous WWDCs.
+
+
+829
+00:42:25,256 --> 00:42:32,586
+In 2012, we introduced the
+image-set function for CSS
+
+
+830
+00:42:32,586 --> 00:42:37,686
+in a great talk that goes
+in extreme depth into how
+
+
+831
+00:42:37,776 --> 00:42:39,296
+to make a content Retina-ready.
+
+
+832
+00:42:39,776 --> 00:42:41,296
+It's really, really wonderful.
+
+
+833
+00:42:41,746 --> 00:42:43,626
+And then last year,
+
+
+834
+00:42:43,626 --> 00:42:47,676
+we introduced several new layout
+features, which we didn't go
+
+
+835
+00:42:47,676 --> 00:42:51,506
+into here, like CSS
+Regions, Flexbox,
+
+
+836
+00:42:51,656 --> 00:42:54,146
+and there's some really great
+advanced layout you can do
+
+
+837
+00:42:54,146 --> 00:42:57,166
+in CSS that will make
+your site really great.
+
+
+838
+00:42:57,766 --> 00:42:59,606
+And please do check that out.
+
+
+839
+00:42:59,606 --> 00:43:02,576
+I know some of you traveled
+from quite far to be here.
+
+
+840
+00:43:02,576 --> 00:43:03,656
+I hope you have a
+safe travel home.
+
+
+841
+00:43:04,306 --> 00:43:04,846
+>> Thanks, everyone.
+
+
+842
+00:43:04,846 --> 00:43:05,306
+>> Thanks, everyone.
+

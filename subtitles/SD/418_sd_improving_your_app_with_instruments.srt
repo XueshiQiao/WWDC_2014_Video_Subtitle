@@ -1,0 +1,6725 @@
+1
+00:00:12,716 --> 00:00:21,846
+>> Howdy. I'm Daniel Delwood
+and I'm excited to welcome you
+
+
+2
+00:00:21,846 --> 00:00:24,216
+to Session 418, "Improving
+Your App With Instruments".
+
+
+3
+00:00:24,356 --> 00:00:25,666
+I've got a lot of fun stuff
+
+
+4
+00:00:25,666 --> 00:00:28,876
+to cover today, so
+let's get started.
+
+
+5
+00:00:28,986 --> 00:00:30,906
+So there are five items
+on our agenda today,
+
+
+6
+00:00:31,156 --> 00:00:32,676
+but really only one
+goal and that's
+
+
+7
+00:00:32,676 --> 00:00:34,856
+to give you the tools
+you need to go out
+
+
+8
+00:00:34,856 --> 00:00:36,926
+and proactively profile
+your apps,
+
+
+9
+00:00:37,026 --> 00:00:40,716
+looking for memory
+problems, CPU problems,
+
+
+10
+00:00:41,056 --> 00:00:44,316
+and overall to increase the
+efficiency of your applications.
+
+
+11
+00:00:44,776 --> 00:00:46,416
+So I'll start by
+talking about what's new
+
+
+12
+00:00:46,416 --> 00:00:49,256
+in Instruments this year, and
+then we'll have three sections:
+
+
+13
+00:00:49,906 --> 00:00:51,766
+memory management,
+time profiling,
+
+
+14
+00:00:51,826 --> 00:00:55,106
+and performance counters,
+each with associated demos.
+
+
+15
+00:00:55,666 --> 00:00:58,846
+Hopefully, so that whether
+you're a new profiler
+
+
+16
+00:00:59,066 --> 00:01:00,026
+on our platform
+
+
+17
+00:01:00,296 --> 00:01:03,806
+or an experienced Instruments
+veteran you should be able
+
+
+18
+00:01:03,806 --> 00:01:07,276
+to take away some tips and
+techniques from those demos.
+
+
+19
+00:01:07,876 --> 00:01:09,346
+And, finally, what
+session is complete
+
+
+20
+00:01:09,346 --> 00:01:11,416
+without covering
+DTrace, and so we'll talk
+
+
+21
+00:01:11,416 --> 00:01:15,316
+about some new DTrace
+improvements in OS X Yosemite.
+
+
+22
+00:01:16,916 --> 00:01:19,866
+So to get started what is
+new in Instruments this year?
+
+
+23
+00:01:21,126 --> 00:01:23,556
+Well, we've got two
+major themes,
+
+
+24
+00:01:24,226 --> 00:01:28,026
+and the first theme is a new UI,
+
+
+25
+00:01:28,846 --> 00:01:31,726
+and so you'll notice it
+looks quite a bit different
+
+
+26
+00:01:31,956 --> 00:01:36,336
+than before, but this is
+to match the style of Xcode
+
+
+27
+00:01:36,336 --> 00:01:40,526
+and OS X Yosemite, and we think
+that you'll really like it.
+
+
+28
+00:01:40,526 --> 00:01:43,796
+At the top I'd like to
+point out the toolbar.
+
+
+29
+00:01:43,796 --> 00:01:47,966
+Of particular note is the path
+control there, it allows you
+
+
+30
+00:01:47,966 --> 00:01:51,196
+to quickly select both
+target device and process
+
+
+31
+00:01:51,196 --> 00:01:53,676
+in one gesture, which we
+think will really speed
+
+
+32
+00:01:53,676 --> 00:01:54,956
+up some of your workflows.
+
+
+33
+00:01:55,356 --> 00:02:01,756
+And on the right we've got
+a centralized place for all
+
+
+34
+00:02:01,756 --> 00:02:03,186
+of your configuration options,
+
+
+35
+00:02:03,276 --> 00:02:05,486
+so whether this is recording
+options before you run,
+
+
+36
+00:02:06,106 --> 00:02:09,765
+viewing options, or an
+extended detail, stack traces.
+
+
+37
+00:02:10,145 --> 00:02:12,586
+There's one place now to go and
+that's called the Inspector.
+
+
+38
+00:02:13,726 --> 00:02:17,336
+Now the reason we did this
+is mainly for your content,
+
+
+39
+00:02:17,796 --> 00:02:21,596
+and we all spend a lot of
+time looking at statistics
+
+
+40
+00:02:21,596 --> 00:02:23,926
+and call trees and
+having more real estate,
+
+
+41
+00:02:23,926 --> 00:02:26,426
+more space to clearly dive
+
+
+42
+00:02:26,426 --> 00:02:29,846
+into your problem is
+really what we did this for.
+
+
+43
+00:02:31,116 --> 00:02:32,626
+So that's the first theme.
+
+
+44
+00:02:32,666 --> 00:02:33,456
+What's the second theme?
+
+
+45
+00:02:34,316 --> 00:02:35,326
+Well, as you may have noticed,
+
+
+46
+00:02:36,696 --> 00:02:38,466
+Swift is a pretty
+big deal this year,
+
+
+47
+00:02:38,466 --> 00:02:41,086
+and we're really excited
+about what it offers.
+
+
+48
+00:02:41,626 --> 00:02:44,456
+But as you go out and adopt
+Swift in your application,
+
+
+49
+00:02:45,006 --> 00:02:48,206
+whether it's by adding
+a new Swift class
+
+
+50
+00:02:48,206 --> 00:02:52,576
+or even converting some of your
+current code to Swift we want
+
+
+51
+00:02:52,576 --> 00:02:54,526
+to make sure that you
+have the confidence
+
+
+52
+00:02:55,046 --> 00:02:57,756
+because you can measure and
+you can understand what's going
+
+
+53
+00:02:57,756 --> 00:02:59,026
+on with the technology.
+
+
+54
+00:02:59,366 --> 00:03:02,576
+And so Instruments has support
+for Swift, and this will run
+
+
+55
+00:03:02,576 --> 00:03:06,086
+across all of our demos today,
+so we'll be using both hybrid
+
+
+56
+00:03:06,136 --> 00:03:07,496
+and pure Swift apps for those.
+
+
+57
+00:03:08,126 --> 00:03:10,076
+Now there's a host of other
+features and Instruments,
+
+
+58
+00:03:10,196 --> 00:03:13,116
+some of which we'll get
+to today in the demos,
+
+
+59
+00:03:13,246 --> 00:03:16,886
+like simulators behaving as
+devices and Instruments now,
+
+
+60
+00:03:17,256 --> 00:03:19,596
+some counters improvements
+and the like,
+
+
+61
+00:03:19,986 --> 00:03:24,876
+but those are the two sort of
+high level things that are new.
+
+
+62
+00:03:26,416 --> 00:03:30,496
+So let's dive in and talk
+about the first problem
+
+
+63
+00:03:30,496 --> 00:03:32,496
+that you may face when
+developing your application,
+
+
+64
+00:03:32,816 --> 00:03:34,176
+and that's memory usage.
+
+
+65
+00:03:34,706 --> 00:03:37,736
+So how can you reduce the
+memory usage of your app?
+
+
+66
+00:03:38,016 --> 00:03:40,946
+Well, what we're talking about
+here is persistent memory usage,
+
+
+67
+00:03:41,416 --> 00:03:44,606
+so that helps narrow it down a
+little bit, but we also needed
+
+
+68
+00:03:44,606 --> 00:03:47,046
+to find out like what
+is your app using?
+
+
+69
+00:03:47,616 --> 00:03:49,986
+And for doing that, we
+can think of the memory
+
+
+70
+00:03:50,246 --> 00:03:53,096
+in your application
+as sort of an iceberg,
+
+
+71
+00:03:53,436 --> 00:03:56,266
+you've got the heap memory
+on top, which you know
+
+
+72
+00:03:56,266 --> 00:03:58,856
+about because these are the
+objects you interact withview
+
+
+73
+00:03:58,856 --> 00:04:02,766
+controllers, NSImages,
+managed object context,
+
+
+74
+00:04:03,246 --> 00:04:06,316
+these are the objects that your
+code directly interact with.
+
+
+75
+00:04:07,016 --> 00:04:08,686
+And then under the surface
+there's everything else,
+
+
+76
+00:04:08,836 --> 00:04:11,566
+there's the layer memory
+backing those images
+
+
+77
+00:04:11,946 --> 00:04:15,516
+or your managed object context,
+
+
+78
+00:04:15,676 --> 00:04:18,486
+there's a lot of
+objects, as well.
+
+
+79
+00:04:18,716 --> 00:04:23,376
+And so if you've managed the
+memory sort of on the surface
+
+
+80
+00:04:23,696 --> 00:04:25,806
+and you manage it well, it turns
+
+
+81
+00:04:25,806 --> 00:04:28,586
+out that you actually do a
+pretty good job managing the
+
+
+82
+00:04:28,586 --> 00:04:30,506
+whole usage of your application.
+
+
+83
+00:04:31,276 --> 00:04:34,576
+So how do we manage those
+objects that we deal with?
+
+
+84
+00:04:35,386 --> 00:04:39,456
+Well, for that there's
+an ownership model.
+
+
+85
+00:04:39,456 --> 00:04:43,516
+And Objective-C's Ownership
+Model is pretty straightforward.
+
+
+86
+00:04:43,566 --> 00:04:46,236
+It's a reference guide model
+based on retain and release,
+
+
+87
+00:04:46,526 --> 00:04:50,246
+and when the object drops
+to zero the object is freed.
+
+
+88
+00:04:50,706 --> 00:04:55,336
+These rules are well-known,
+the rules are documented,
+
+
+89
+00:04:55,786 --> 00:04:59,146
+and the key point here is
+that it's deterministic,
+
+
+90
+00:04:59,506 --> 00:05:01,966
+simple and pretty fast.
+
+
+91
+00:05:01,966 --> 00:05:04,306
+So what about ARC?
+
+
+92
+00:05:04,706 --> 00:05:06,306
+Well, this makes
+it so much easier
+
+
+93
+00:05:06,306 --> 00:05:08,606
+because it manages the
+retain/release for us.
+
+
+94
+00:05:08,856 --> 00:05:11,196
+And so it transforms
+that problem from dealing
+
+
+95
+00:05:11,196 --> 00:05:15,266
+with retains and releases to
+dealing with your object graph
+
+
+96
+00:05:15,326 --> 00:05:19,316
+and managing relationships
+at a semantic level.
+
+
+97
+00:05:20,446 --> 00:05:21,306
+So what about Swift?
+
+
+98
+00:05:21,706 --> 00:05:25,496
+Well, Swift's Object
+Model, understandably,
+
+
+99
+00:05:25,856 --> 00:05:29,906
+is a lot like Objective-C's,
+although I should point
+
+
+100
+00:05:29,906 --> 00:05:33,396
+out that there are a
+couple of differences,
+
+
+101
+00:05:33,816 --> 00:05:39,136
+namely that the retains and
+releases are inserted for you
+
+
+102
+00:05:39,666 --> 00:05:43,136
+and there's really no
+need to worry about them.
+
+
+103
+00:05:43,366 --> 00:05:44,946
+If you're working with
+Objective-C, though,
+
+
+104
+00:05:45,066 --> 00:05:48,106
+you do still have to manage
+autoreleasepools and for
+
+
+105
+00:05:48,106 --> 00:05:50,036
+that there's a nice
+standard library function,
+
+
+106
+00:05:50,356 --> 00:05:52,756
+which accepts a closure,
+and it's really easy to use.
+
+
+107
+00:05:53,226 --> 00:05:55,006
+And so just make sure
+
+
+108
+00:05:55,006 --> 00:05:58,036
+that you're inserting
+autoreleasepools as makes sense
+
+
+109
+00:05:58,256 --> 00:06:00,276
+with the objective C
+code that you're using.
+
+
+110
+00:06:02,296 --> 00:06:05,296
+So if these are the ownership
+models what tools do we have
+
+
+111
+00:06:05,296 --> 00:06:05,936
+available to us?
+
+
+112
+00:06:06,996 --> 00:06:08,486
+Well, one of the heavy lifters
+
+
+113
+00:06:08,486 --> 00:06:10,346
+that we have is the
+Allocations Instrument,
+
+
+114
+00:06:10,976 --> 00:06:15,166
+and this provides back traces
+and information for all
+
+
+115
+00:06:15,166 --> 00:06:17,796
+of your heap allocations,
+so it gives you things
+
+
+116
+00:06:17,796 --> 00:06:20,156
+like class names,
+like NSMutableArray.
+
+
+117
+00:06:20,476 --> 00:06:23,746
+If you're dealing with Swift
+objects, it's important to note
+
+
+118
+00:06:23,866 --> 00:06:28,736
+that your Swift objects will
+be prefixed with a module
+
+
+119
+00:06:29,026 --> 00:06:30,706
+that they are contained in.
+
+
+120
+00:06:31,136 --> 00:06:33,956
+And so for your application this
+may be just your app's name.
+
+
+121
+00:06:35,136 --> 00:06:40,506
+But for Swift objects, the heap
+only will contain your reference
+
+
+122
+00:06:40,616 --> 00:06:44,946
+types, and so if you're thinking
+about this at a code level,
+
+
+123
+00:06:44,946 --> 00:06:46,396
+these are your classes,
+not your structs.
+
+
+124
+00:06:47,176 --> 00:06:51,436
+But once you identify
+these allocations,
+
+
+125
+00:06:51,716 --> 00:06:54,716
+the allocations will provide
+you the reference histories
+
+
+126
+00:06:54,716 --> 00:06:56,196
+for them, so retains, releases,
+
+
+127
+00:06:56,196 --> 00:06:57,686
+and even allows you
+to pair these.
+
+
+128
+00:06:58,736 --> 00:07:00,616
+It also provides a
+lot of information
+
+
+129
+00:07:00,616 --> 00:07:03,916
+for anonymous VM usage and
+so you can use a Call Tree
+
+
+130
+00:07:03,916 --> 00:07:06,596
+and track it back to the source.
+
+
+131
+00:07:07,136 --> 00:07:11,706
+So I would actually like to show
+you a demo of using allocations
+
+
+132
+00:07:12,136 --> 00:07:14,056
+and profiling and app extension.
+
+
+133
+00:07:14,726 --> 00:07:17,616
+So I have here a
+simulator of an iPhone 4S,
+
+
+134
+00:07:17,616 --> 00:07:20,356
+and I'll launch Instruments,
+and you'll immediately notice
+
+
+135
+00:07:20,506 --> 00:07:22,526
+that we have a new
+template chooser.
+
+
+136
+00:07:22,826 --> 00:07:25,146
+And the template chooser
+allows you to select
+
+
+137
+00:07:25,286 --> 00:07:29,746
+at the top your device or
+even manage some devices.
+
+
+138
+00:07:29,786 --> 00:07:33,106
+For simulators we can
+go ahead and choose
+
+
+139
+00:07:33,106 --> 00:07:35,866
+to launch a different
+simulator, and allowing you
+
+
+140
+00:07:35,866 --> 00:07:37,336
+to choose the target
+that you want
+
+
+141
+00:07:37,336 --> 00:07:41,696
+to profile before even selecting
+your template matches the
+
+
+142
+00:07:41,696 --> 00:07:44,006
+workflow from Xcode
+a lot better.
+
+
+143
+00:07:44,416 --> 00:07:46,826
+And so if you're used to
+choosing what you want
+
+
+144
+00:07:46,826 --> 00:07:49,376
+to profile and then the
+tool you can do that
+
+
+145
+00:07:49,376 --> 00:07:52,716
+or you can just go ahead and
+select it as always the tool
+
+
+146
+00:07:52,716 --> 00:07:55,286
+and configure it first.
+
+
+147
+00:07:55,446 --> 00:07:57,956
+So I've selected
+the Leaks Template,
+
+
+148
+00:07:58,016 --> 00:07:59,256
+which has 2 instruments,
+
+
+149
+00:07:59,506 --> 00:08:00,866
+the Allocations and
+Leaks Instrument.
+
+
+150
+00:08:01,236 --> 00:08:06,086
+And for this demo I'll pull
+up the list of apps installed
+
+
+151
+00:08:06,086 --> 00:08:08,126
+on my simulator, and you'll
+notice it behaves just
+
+
+152
+00:08:08,126 --> 00:08:08,546
+like a device.
+
+
+153
+00:08:08,546 --> 00:08:10,626
+It gives me installed
+apps, and now,
+
+
+154
+00:08:11,006 --> 00:08:13,536
+new in iOS 8 it gives me
+app extensions, as well.
+
+
+155
+00:08:14,466 --> 00:08:16,476
+If I select, say, a
+sharing extension,
+
+
+156
+00:08:17,416 --> 00:08:21,136
+the popup will also let me
+select what app it's hosted in.
+
+
+157
+00:08:21,596 --> 00:08:25,786
+And since app extensions are
+accessible to multiple apps
+
+
+158
+00:08:25,786 --> 00:08:31,606
+in the system, even system
+apps can have behavior provided
+
+
+159
+00:08:31,606 --> 00:08:36,326
+by your extension, you may
+want to select a process other
+
+
+160
+00:08:36,326 --> 00:08:38,956
+than your main app executable
+
+
+161
+00:08:38,956 --> 00:08:41,275
+when you're profiling
+your sharing extension.
+
+
+162
+00:08:42,336 --> 00:08:43,905
+Now for this demo
+I'm actually going
+
+
+163
+00:08:43,905 --> 00:08:45,056
+to select a today extension,
+
+
+164
+00:08:46,086 --> 00:08:49,716
+and since we know what
+view it's going to appear
+
+
+165
+00:08:49,866 --> 00:08:53,096
+in there's actually no need
+to select a hosting app.
+
+
+166
+00:08:53,516 --> 00:08:55,896
+So I've actually launched
+my app in the simulator,
+
+
+167
+00:08:56,296 --> 00:08:59,146
+and it's an app extension
+bringing in today view.
+
+
+168
+00:08:59,396 --> 00:09:04,576
+And what I have is an extension
+that allows me quick access
+
+
+169
+00:09:04,646 --> 00:09:08,596
+to my game, and so maybe I'm
+playing a move very slowly,
+
+
+170
+00:09:08,596 --> 00:09:10,656
+I'll play a move every other
+day, and I just want to pull it
+
+
+171
+00:09:10,656 --> 00:09:13,286
+down and make a quick
+move, but it's a way
+
+
+172
+00:09:13,286 --> 00:09:16,346
+of me guessing what
+the pattern is,
+
+
+173
+00:09:16,486 --> 00:09:19,486
+it tells me how many I get
+right, how many I get misplaced
+
+
+174
+00:09:19,486 --> 00:09:21,556
+or wrong, make a couple
+of random guesses.
+
+
+175
+00:09:21,686 --> 00:09:24,546
+You'll notice the memory
+usage and Instruments is going
+
+
+176
+00:09:24,596 --> 00:09:28,296
+up slightly, but what I'm
+really interested in is finding
+
+
+177
+00:09:28,296 --> 00:09:31,336
+out how I'm doing cleaning up
+memory when I create a new game.
+
+
+178
+00:09:31,746 --> 00:09:37,446
+And so I can just create a
+few games here at the end,
+
+
+179
+00:09:37,446 --> 00:09:41,146
+and in Instruments you'll notice
+we detect quite a few leaks.
+
+
+180
+00:09:42,266 --> 00:09:47,236
+Let's take a look at that.
+
+
+181
+00:09:47,956 --> 00:09:52,156
+So, first of all, in
+Allocations it's showing me all
+
+
+182
+00:09:52,156 --> 00:09:55,926
+of the categories that I've
+recorded, things like CFString,
+
+
+183
+00:09:56,406 --> 00:09:59,146
+and I can type in
+for my example, dot,
+
+
+184
+00:10:00,486 --> 00:10:01,986
+and we see four different
+categories.
+
+
+185
+00:10:02,536 --> 00:10:05,196
+We see the colored button
+
+
+186
+00:10:05,516 --> 00:10:09,376
+and the DotsTodayViewController
+are prefixed by my module
+
+
+187
+00:10:09,806 --> 00:10:10,936
+because these are Swift classes,
+
+
+188
+00:10:11,616 --> 00:10:14,046
+and the other two
+are Objective-C,
+
+
+189
+00:10:14,096 --> 00:10:14,976
+so they're running
+together, working fine.
+
+
+190
+00:10:15,656 --> 00:10:21,766
+If I select one of these
+Swift classes and dive
+
+
+191
+00:10:21,766 --> 00:10:23,746
+in even more I can even see
+the retain/release history,
+
+
+192
+00:10:24,746 --> 00:10:28,136
+paired or not, and if I go back
+
+
+193
+00:10:28,456 --> 00:10:31,786
+to the summary I'll
+quickly notice
+
+
+194
+00:10:31,856 --> 00:10:34,216
+that the persistent number,
+which is the one I want to check
+
+
+195
+00:10:34,216 --> 00:10:39,196
+if I'm looking for memory
+growth, is, well, 100%.
+
+
+196
+00:10:39,936 --> 00:10:41,866
+Now this is where
+your expectations
+
+
+197
+00:10:41,866 --> 00:10:43,116
+as a developer come into play.
+
+
+198
+00:10:43,466 --> 00:10:48,706
+I expected my colored buttons
+to be reused, so there's a few
+
+
+199
+00:10:48,706 --> 00:10:50,356
+of them persistent, a
+few of them transient.
+
+
+200
+00:10:50,956 --> 00:10:53,936
+But my games, I expected there
+only to be on active at a time.
+
+
+201
+00:10:54,006 --> 00:10:58,276
+So this I've immediately
+identified a bug and I should go
+
+
+202
+00:10:58,276 --> 00:11:00,416
+at this point and fix it.
+
+
+203
+00:11:00,686 --> 00:11:02,776
+Now there's a couple other
+ways to find memory growth.
+
+
+204
+00:11:02,856 --> 00:11:04,636
+I'm going to show you two more.
+
+
+205
+00:11:05,566 --> 00:11:06,876
+First, we've got leaks,
+
+
+206
+00:11:07,576 --> 00:11:10,066
+and leaks will tell
+me all the memory
+
+
+207
+00:11:10,066 --> 00:11:11,386
+that it could find
+was unreferenced.
+
+
+208
+00:11:11,896 --> 00:11:13,596
+This is a type of
+persistent memory growth,
+
+
+209
+00:11:13,596 --> 00:11:16,896
+and so we've got malloc
+blocks, a couple of colors,
+
+
+210
+00:11:17,026 --> 00:11:18,666
+and those games again.
+
+
+211
+00:11:19,286 --> 00:11:22,546
+And when it comes to
+persistent memory growth,
+
+
+212
+00:11:22,646 --> 00:11:23,596
+there's really three types.
+
+
+213
+00:11:23,596 --> 00:11:26,136
+There's leaked memory,
+there's abandoned memory,
+
+
+214
+00:11:26,136 --> 00:11:27,206
+and there's cached memory.
+
+
+215
+00:11:28,086 --> 00:11:30,686
+Leaks will tell us the first
+of those three, but if I want
+
+
+216
+00:11:30,686 --> 00:11:33,886
+to investigate all three I
+can use a technique called
+
+
+217
+00:11:33,886 --> 00:11:35,036
+generational analysis.
+
+
+218
+00:11:35,926 --> 00:11:39,826
+Now normally you'd used this
+Marked Generation button while
+
+
+219
+00:11:39,826 --> 00:11:44,436
+you're running and set down some
+flags for you to then later know
+
+
+220
+00:11:44,436 --> 00:11:45,806
+when you were doing
+certain actions,
+
+
+221
+00:11:46,536 --> 00:11:48,526
+but in this case I actually
+know when I did them
+
+
+222
+00:11:48,626 --> 00:11:50,416
+and I can add them
+after the fact,
+
+
+223
+00:11:50,736 --> 00:11:52,096
+which is a really
+powerful technique.
+
+
+224
+00:11:53,336 --> 00:11:56,356
+So if I select Marked
+Generation, it creates sort
+
+
+225
+00:11:56,356 --> 00:12:00,066
+of a baseline snapshot, and what
+this is doing is categorizing
+
+
+226
+00:12:00,156 --> 00:12:02,366
+all the persistent
+memory in my application
+
+
+227
+00:12:02,636 --> 00:12:04,486
+by where it came
+from on the timeline.
+
+
+228
+00:12:04,886 --> 00:12:08,186
+So anything before this flag
+is grouped into generation one,
+
+
+229
+00:12:08,746 --> 00:12:10,376
+anything between flag one
+
+
+230
+00:12:10,376 --> 00:12:13,866
+and flag two is generation
+I guess B, as it's labeled,
+
+
+231
+00:12:13,926 --> 00:12:15,526
+and I can keep marking these.
+
+
+232
+00:12:15,976 --> 00:12:19,446
+I can even actually choose
+to move them around just
+
+
+233
+00:12:19,446 --> 00:12:22,696
+by dragging them, and it
+updates the generation
+
+
+234
+00:12:22,696 --> 00:12:23,786
+information immediately.
+
+
+235
+00:12:24,406 --> 00:12:30,426
+So if I turn down generation B
+here, you'll notice that, oh,
+
+
+236
+00:12:30,426 --> 00:12:31,886
+well, we have those
+dots games again,
+
+
+237
+00:12:32,586 --> 00:12:36,966
+and we also have an equal
+number of NSMallocBlocks.
+
+
+238
+00:12:37,606 --> 00:12:38,846
+Well, that's kind
+of interesting,
+
+
+239
+00:12:38,976 --> 00:12:40,076
+I wonder where these
+are coming from.
+
+
+240
+00:12:40,806 --> 00:12:45,356
+Perhaps we've got a retain
+cycle involving a block.
+
+
+241
+00:12:45,636 --> 00:12:49,966
+So on the right in the
+inspector area, I take a look
+
+
+242
+00:12:49,966 --> 00:12:53,136
+at the stack trace,
+and I'll notice
+
+
+243
+00:12:53,676 --> 00:12:57,876
+that here we have a Swift
+frame calling new game,
+
+
+244
+00:12:58,356 --> 00:13:01,226
+an action on my view controller.
+
+
+245
+00:13:01,716 --> 00:13:02,916
+Let's take a look
+at that real quick.
+
+
+246
+00:13:02,916 --> 00:13:08,666
+If I jump to Xcode, here's
+my new game function,
+
+
+247
+00:13:09,536 --> 00:13:15,896
+and it's just creating a dots
+game, assigning it to my library
+
+
+248
+00:13:16,536 --> 00:13:20,866
+and then it's registering for
+state changes on that game
+
+
+249
+00:13:21,386 --> 00:13:23,636
+and passing in what
+looks like a block.
+
+
+250
+00:13:23,876 --> 00:13:25,516
+Well, this is actually
+a Swift closure.
+
+
+251
+00:13:26,136 --> 00:13:28,556
+We can take a look at the
+header, and we see here
+
+
+252
+00:13:28,556 --> 00:13:30,656
+that registerForStateChanges
+takes a dispatch block,
+
+
+253
+00:13:31,366 --> 00:13:36,006
+and here when we're providing
+it we just give a very
+
+
+254
+00:13:36,006 --> 00:13:37,076
+natural syntax.
+
+
+255
+00:13:38,206 --> 00:13:41,826
+Well, if you're familiar
+with blocks
+
+
+256
+00:13:41,826 --> 00:13:46,666
+and retain cycles it's very
+easy to capture the game
+
+
+257
+00:13:47,396 --> 00:13:49,056
+in the block registered
+on that game.
+
+
+258
+00:13:49,426 --> 00:13:51,816
+And so what we really need to
+do here is actually declare
+
+
+259
+00:13:52,326 --> 00:13:55,726
+that we would like to
+capture new game and, well,
+
+
+260
+00:13:55,926 --> 00:13:58,576
+it's probably safe to capture
+self weakly as well here.
+
+
+261
+00:13:59,576 --> 00:14:04,326
+Now Swift offers a really
+good technique for doing this,
+
+
+262
+00:14:04,326 --> 00:14:05,526
+and that's Captureless.
+
+
+263
+00:14:06,356 --> 00:14:08,916
+So we can just say that we
+would like to capture self
+
+
+264
+00:14:08,916 --> 00:14:12,546
+and new game weakly
+in this block.
+
+
+265
+00:14:14,216 --> 00:14:16,076
+Now we get a compile
+error real quick,
+
+
+266
+00:14:16,076 --> 00:14:18,416
+and that's because when we
+declare something weak it gets
+
+
+267
+00:14:18,516 --> 00:14:20,086
+implicitly converted
+to optional.
+
+
+268
+00:14:20,666 --> 00:14:23,266
+Well, that's fine, if self
+is nil, we really don't care
+
+
+269
+00:14:23,266 --> 00:14:24,876
+to call that method,
+so we'll go ahead
+
+
+270
+00:14:24,876 --> 00:14:29,616
+and add some optional chaining,
+and there we go, we're done.
+
+
+271
+00:14:30,926 --> 00:14:34,516
+So, as I showed you,
+Instruments now supports app
+
+
+272
+00:14:34,516 --> 00:14:35,456
+extension profiling.
+
+
+273
+00:14:36,176 --> 00:14:38,476
+You can specify your host
+app either in the menu,
+
+
+274
+00:14:38,886 --> 00:14:42,466
+in Instruments or in
+your scheme, in Xcode.
+
+
+275
+00:14:43,536 --> 00:14:46,926
+And app extensions, while
+they are transient processes,
+
+
+276
+00:14:47,236 --> 00:14:51,546
+memory does matter
+because if they crash,
+
+
+277
+00:14:51,546 --> 00:14:54,826
+if they flicker it's a very
+bad experience for your users
+
+
+278
+00:14:54,826 --> 00:14:56,726
+and you want to make sure
+that when they're running
+
+
+279
+00:14:56,726 --> 00:14:59,146
+in other people's applications,
+when we're running on a system
+
+
+280
+00:14:59,446 --> 00:15:01,356
+that you get the best
+user experience possible.
+
+
+281
+00:15:02,046 --> 00:15:04,986
+Now I'd like to direct
+you to two other sessions,
+
+
+282
+00:15:04,986 --> 00:15:06,016
+if you're interested
+in learning more
+
+
+283
+00:15:06,016 --> 00:15:10,136
+about app extensions
+on iOS and OS X.
+
+
+284
+00:15:10,136 --> 00:15:13,206
+So let's talk briefly about
+memory management with Swift.
+
+
+285
+00:15:14,126 --> 00:15:17,156
+Objective-C code can still
+mismatch retain/release,
+
+
+286
+00:15:17,626 --> 00:15:22,706
+especially if it's a code
+that you've handwritten
+
+
+287
+00:15:22,706 --> 00:15:24,716
+and you haven't converted
+to ARC.
+
+
+288
+00:15:25,236 --> 00:15:28,656
+So when you're using Swift
+objects and passing them
+
+
+289
+00:15:28,656 --> 00:15:30,786
+to Objective-C code you may need
+
+
+290
+00:15:30,816 --> 00:15:32,396
+to do some retain/release
+pairing
+
+
+291
+00:15:32,576 --> 00:15:33,866
+and track down those problems.
+
+
+292
+00:15:34,696 --> 00:15:36,426
+Also, more important, is
+
+
+293
+00:15:36,426 --> 00:15:38,016
+that you can still
+form cycles in Swift.
+
+
+294
+00:15:38,916 --> 00:15:43,626
+Luckily there's two great tools,
+language tools available to us
+
+
+295
+00:15:44,086 --> 00:15:48,866
+to manage that graph and not
+have toand break these cycles.
+
+
+296
+00:15:48,936 --> 00:15:50,436
+So the first of them is weak,
+
+
+297
+00:15:50,996 --> 00:15:54,606
+and this actually
+converts your type,
+
+
+298
+00:15:55,666 --> 00:15:57,436
+it requires that you
+use an optional type
+
+
+299
+00:15:57,866 --> 00:16:00,796
+because what it does is it
+returns the type of nil,
+
+
+300
+00:16:01,046 --> 00:16:02,506
+depending on whether the object
+
+
+301
+00:16:02,656 --> 00:16:04,636
+that it references
+is still alive
+
+
+302
+00:16:04,736 --> 00:16:06,856
+at the time you attempt
+to use the variable.
+
+
+303
+00:16:08,506 --> 00:16:11,576
+Now for unowned you may think
+this is a lot like unsafe,
+
+
+304
+00:16:11,576 --> 00:16:16,816
+unretained and ARC, and it's
+actually safer than that.
+
+
+305
+00:16:16,816 --> 00:16:19,596
+What it does is it
+returns the type always,
+
+
+306
+00:16:19,966 --> 00:16:23,866
+but if the object doesn't
+exist you don't get an unknown
+
+
+307
+00:16:23,866 --> 00:16:27,576
+selector bug or an
+indeterminate crash later.
+
+
+308
+00:16:27,836 --> 00:16:29,866
+It actually validates if
+the object is still there
+
+
+309
+00:16:29,866 --> 00:16:31,616
+and then gives you a
+deterministic crash,
+
+
+310
+00:16:32,076 --> 00:16:36,256
+so some very powerful
+tools at your disposal
+
+
+311
+00:16:36,256 --> 00:16:37,046
+when dealing with Swift.
+
+
+312
+00:16:37,606 --> 00:16:39,986
+And, as I showed in the demo,
+
+
+313
+00:16:40,486 --> 00:16:42,886
+with block captures this
+is a really easy way
+
+
+314
+00:16:42,886 --> 00:16:44,296
+of creating retain cycles
+
+
+315
+00:16:44,386 --> 00:16:46,496
+and something you
+should be aware of.
+
+
+316
+00:16:46,936 --> 00:16:49,096
+In Objective-C, if I
+reference self, like this,
+
+
+317
+00:16:49,666 --> 00:16:52,796
+it's going to capture it
+strongly, as well as new game,
+
+
+318
+00:16:52,916 --> 00:16:59,366
+and I would have to use these
+weak type of declarations
+
+
+319
+00:16:59,796 --> 00:17:01,806
+and then use them
+inside the block.
+
+
+320
+00:17:03,926 --> 00:17:06,376
+In Swift, like I
+showed you, it's very,
+
+
+321
+00:17:06,376 --> 00:17:11,646
+very easy using capture lists to
+quickly change the memory type
+
+
+322
+00:17:12,516 --> 00:17:15,185
+of your variables
+within the closure,
+
+
+323
+00:17:15,526 --> 00:17:17,695
+and so just by declaring
+the weak
+
+
+324
+00:17:17,695 --> 00:17:21,366
+and the capture list we can
+use them and no problems.
+
+
+325
+00:17:21,816 --> 00:17:23,935
+And Swift is also really
+powerful here in that
+
+
+326
+00:17:24,086 --> 00:17:28,076
+if you reference a property
+it will force you to declare
+
+
+327
+00:17:28,076 --> 00:17:31,336
+that you really do
+intend to capture self
+
+
+328
+00:17:31,336 --> 00:17:32,936
+by using self.property.
+
+
+329
+00:17:33,996 --> 00:17:36,436
+To learn more about Swift we've
+got a lot of sessions this week,
+
+
+330
+00:17:36,986 --> 00:17:40,006
+"Swift Interoperability
+In-Depth", "Advanced Swift",
+
+
+331
+00:17:40,136 --> 00:17:43,386
+and if you want to learn more
+about the generational analysis
+
+
+332
+00:17:43,766 --> 00:17:45,486
+that I did during the
+demo I'd refer you back
+
+
+333
+00:17:45,596 --> 00:17:47,856
+to last year's talk on
+"Fixing Memory Issues".
+
+
+334
+00:17:48,936 --> 00:17:51,776
+So, with that, I'd like to
+turn it over to my colleague,
+
+
+335
+00:17:52,066 --> 00:17:54,506
+Kris Markel, for telling
+you about Time Profiling.
+
+
+336
+00:17:55,676 --> 00:17:59,196
+>> Time Profiler at a high level
+is a tool within Instruments
+
+
+337
+00:17:59,326 --> 00:18:01,336
+that helps you make
+your apps faster.
+
+
+338
+00:18:01,926 --> 00:18:03,636
+The real question, being faster,
+
+
+339
+00:18:03,636 --> 00:18:05,976
+in and of itself probably
+isn't your real goal.
+
+
+340
+00:18:05,976 --> 00:18:08,766
+Why is it that you actually
+want to use Time Profiler?
+
+
+341
+00:18:08,766 --> 00:18:11,936
+And the answer, I think,
+in a lot of cases is
+
+
+342
+00:18:12,326 --> 00:18:14,526
+to provide a great
+user experience.
+
+
+343
+00:18:14,756 --> 00:18:15,986
+And what does that mean?
+
+
+344
+00:18:16,246 --> 00:18:18,426
+That means you have
+faster app launch times.
+
+
+345
+00:18:19,476 --> 00:18:22,126
+If it's important that
+your frame rate stay
+
+
+346
+00:18:22,126 --> 00:18:24,536
+at 60 frames per second,
+Time Profiler is a tool
+
+
+347
+00:18:24,536 --> 00:18:25,476
+that can help you do that.
+
+
+348
+00:18:26,456 --> 00:18:31,166
+Buttery-smooth scrolling,
+Time Profiler is great
+
+
+349
+00:18:31,166 --> 00:18:32,856
+at finding hiccups
+in your scrolling
+
+
+350
+00:18:32,856 --> 00:18:34,996
+and helping you get
+past those problems.
+
+
+351
+00:18:36,256 --> 00:18:39,106
+And kind of a more
+general category,
+
+
+352
+00:18:39,106 --> 00:18:40,996
+you want to have
+a responsive UI.
+
+
+353
+00:18:41,276 --> 00:18:43,126
+If the user does
+something in the app,
+
+
+354
+00:18:43,646 --> 00:18:49,126
+they need to see the app
+respond as quickly as possible.
+
+
+355
+00:18:49,126 --> 00:18:51,766
+You don't want them to click a
+button and then wait and wait
+
+
+356
+00:18:51,766 --> 00:18:53,006
+and wait for something
+to happen.
+
+
+357
+00:18:53,956 --> 00:18:56,406
+So what exactly is
+Time Profiler?
+
+
+358
+00:18:57,166 --> 00:19:00,576
+Time Profiler is an instrument
+that samples stack traces
+
+
+359
+00:19:00,576 --> 00:19:04,836
+at pre-described intervals, and
+its goal is to give you an idea
+
+
+360
+00:19:04,836 --> 00:19:06,826
+of how much time is
+spent in each method.
+
+
+361
+00:19:07,816 --> 00:19:09,256
+There's an important
+distinction here
+
+
+362
+00:19:09,256 --> 00:19:12,056
+in that Time Profiler
+is not actually tracing
+
+
+363
+00:19:12,056 --> 00:19:14,366
+through every method and
+function calling your app
+
+
+364
+00:19:14,366 --> 00:19:15,676
+and measuring how long it takes.
+
+
+365
+00:19:16,276 --> 00:19:18,586
+It is capturing stack samples
+
+
+366
+00:19:19,096 --> 00:19:22,876
+and recording how often frames
+appear in those samples.
+
+
+367
+00:19:23,186 --> 00:19:25,846
+Now this can be important if
+you have a function or method
+
+
+368
+00:19:25,846 --> 00:19:28,826
+that doesn't run enough
+to show up in any samples
+
+
+369
+00:19:28,826 --> 00:19:30,676
+or it's too fast to
+show up in any samples.
+
+
+370
+00:19:31,066 --> 00:19:34,096
+This isn't an issue
+most of the time,
+
+
+371
+00:19:34,096 --> 00:19:35,266
+but it's an important
+distinction to keep in mind
+
+
+372
+00:19:35,266 --> 00:19:35,976
+when you're using Time Profiler.
+
+
+373
+00:19:36,046 --> 00:19:40,086
+When should you use
+Time Profiler?
+
+
+374
+00:19:40,456 --> 00:19:42,966
+Well, there's a couple
+different situations.
+
+
+375
+00:19:44,036 --> 00:19:46,606
+If you have a specific
+problem that you know about,
+
+
+376
+00:19:46,776 --> 00:19:49,886
+Time Profiler is great, you
+know, if you have stuttering
+
+
+377
+00:19:49,886 --> 00:19:52,646
+or frame rate slowdowns,
+some portion
+
+
+378
+00:19:52,646 --> 00:19:56,546
+of your app is taking too long,
+parsing a file or something
+
+
+379
+00:19:56,546 --> 00:20:00,216
+of that nature, but it's also
+fine to use Time Profiler
+
+
+380
+00:20:00,216 --> 00:20:03,686
+to identify and fix hot spots
+before they become problems.
+
+
+381
+00:20:04,296 --> 00:20:07,176
+You don't have to wait until
+you have a problem before firing
+
+
+382
+00:20:07,176 --> 00:20:08,686
+up Instruments and
+using Time Profiler.
+
+
+383
+00:20:09,266 --> 00:20:11,676
+And, actually, it's a
+good idea to keep an eye
+
+
+384
+00:20:11,676 --> 00:20:13,916
+on the CPU gauge
+inside of Xcode.
+
+
+385
+00:20:14,316 --> 00:20:17,376
+If that's spiking in
+ways you don't expect
+
+
+386
+00:20:17,376 --> 00:20:19,746
+or it just seems higher than
+you want, that's a little clue,
+
+
+387
+00:20:19,746 --> 00:20:22,056
+you know, something should go
+off in the back of your heads,
+
+
+388
+00:20:22,056 --> 00:20:23,636
+maybe I should look
+at Time Profiler
+
+
+389
+00:20:23,636 --> 00:20:25,096
+and see exactly what's
+going on here.
+
+
+390
+00:20:26,516 --> 00:20:28,336
+And so now I'm going
+to show you a demo
+
+
+391
+00:20:28,336 --> 00:20:31,466
+of how you can make your app
+faster with Time Profiler.
+
+
+392
+00:20:33,026 --> 00:20:36,266
+And what I have here
+is a hybrid app
+
+
+393
+00:20:36,456 --> 00:20:41,666
+and it's got some Swift files
+
+
+394
+00:20:41,666 --> 00:20:45,026
+and it's got some Objective-C
+files, and I've been working
+
+
+395
+00:20:45,026 --> 00:20:47,596
+on it for a while, and
+I want to get an idea
+
+
+396
+00:20:47,596 --> 00:20:50,426
+of how well it's running
+before, you know, I don't know
+
+
+397
+00:20:50,426 --> 00:20:52,416
+of any specific problems, but
+I want to kind of take a look
+
+
+398
+00:20:52,416 --> 00:20:54,236
+and see if maybe there's
+some hot spots in there.
+
+
+399
+00:20:54,706 --> 00:20:57,176
+So I'm going to go ahead
+and Time Profile this app,
+
+
+400
+00:20:57,526 --> 00:21:01,586
+and to do that I am going
+to press and click and hold
+
+
+401
+00:21:01,586 --> 00:21:04,696
+on the Run button in
+Xcode and choose Profile.
+
+
+402
+00:21:04,696 --> 00:21:07,596
+And this is going to
+launch Instruments
+
+
+403
+00:21:07,676 --> 00:21:08,766
+into the template chooser,
+
+
+404
+00:21:10,056 --> 00:21:13,586
+and once it's done building I'll
+show you a nifty little trick.
+
+
+405
+00:21:14,006 --> 00:21:16,316
+And if you're familiar with
+Instruments in the past,
+
+
+406
+00:21:16,576 --> 00:21:18,846
+what would happen here is it
+would give you the template
+
+
+407
+00:21:18,846 --> 00:21:22,086
+chooser, what you see here, and
+you would choose, you would go
+
+
+408
+00:21:22,086 --> 00:21:25,246
+down to the button down
+here, and you would click it,
+
+
+409
+00:21:25,246 --> 00:21:28,896
+and Time Profiler or
+whatever-actually, let me choose
+
+
+410
+00:21:28,896 --> 00:21:30,226
+that now while I'm
+thinking about it.
+
+
+411
+00:21:30,226 --> 00:21:33,286
+Whatever instrument you had
+chosen would automatically start
+
+
+412
+00:21:33,286 --> 00:21:34,906
+running and recording
+for your app.
+
+
+413
+00:21:35,316 --> 00:21:39,166
+With the new Instruments
+it gives you a chance
+
+
+414
+00:21:39,166 --> 00:21:41,836
+to change your configuration
+before it starts running.
+
+
+415
+00:21:42,446 --> 00:21:44,656
+Now if you want the old
+behavior it's still there,
+
+
+416
+00:21:44,656 --> 00:21:47,476
+if you hold down the Option key
+you can see the button change
+
+
+417
+00:21:47,476 --> 00:21:50,016
+to Profile, and that'll
+launch your app
+
+
+418
+00:21:50,156 --> 00:21:52,006
+and start running
+it immediately.
+
+
+419
+00:21:52,646 --> 00:21:54,416
+In my case I don't want to do
+that, I'm going to go ahead
+
+
+420
+00:21:54,416 --> 00:21:56,876
+and go to Choose, and
+I'm actually going
+
+
+421
+00:21:56,876 --> 00:21:57,926
+to make a couple adjustments.
+
+
+422
+00:21:58,196 --> 00:22:03,086
+And, actually, I'm right here,
+this is, you can't quite see all
+
+
+423
+00:22:03,086 --> 00:22:05,446
+of it, but the two changes I
+want to make and why is going
+
+
+424
+00:22:05,446 --> 00:22:07,866
+to become clear soon
+is I want to choose
+
+
+425
+00:22:07,866 --> 00:22:09,496
+to record waiting threads,
+
+
+426
+00:22:09,946 --> 00:22:13,426
+and this means don't only
+collect samples from the threads
+
+
+427
+00:22:13,426 --> 00:22:15,976
+that are doing work, but
+collect samples from the threads
+
+
+428
+00:22:15,976 --> 00:22:17,206
+that are idle, as well.
+
+
+429
+00:22:18,596 --> 00:22:19,976
+I happen to know
+that I want to do
+
+
+430
+00:22:19,976 --> 00:22:23,286
+that because I've
+rehearsed this talk before.
+
+
+431
+00:22:23,396 --> 00:22:26,356
+If you choose that option
+another really great option
+
+
+432
+00:22:26,356 --> 00:22:28,266
+to choose in the
+view options is just
+
+
+433
+00:22:28,316 --> 00:22:29,956
+to select running sample times,
+
+
+434
+00:22:30,686 --> 00:22:33,026
+and what this means is even
+though you're collecting the
+
+
+435
+00:22:33,026 --> 00:22:36,936
+idle samples, don't use them
+when computing time spent
+
+
+436
+00:22:37,636 --> 00:22:40,536
+because they really sort
+of water down the results.
+
+
+437
+00:22:40,536 --> 00:22:41,996
+You're going to have
+a lot of idle time
+
+
+438
+00:22:41,996 --> 00:22:44,596
+and get some very small
+numbers that you don't expect.
+
+
+439
+00:22:45,936 --> 00:22:48,306
+So, with that, I am
+going to zoom out,
+
+
+440
+00:22:48,666 --> 00:22:50,236
+I'm going to click
+the Record button
+
+
+441
+00:22:51,006 --> 00:22:53,796
+to start my app,
+and let's see here.
+
+
+442
+00:22:54,116 --> 00:22:57,386
+So here's my app, I've got a set
+of pictures over on the left,
+
+
+443
+00:22:57,386 --> 00:22:59,456
+I can select them
+and get the thumbnail
+
+
+444
+00:22:59,456 --> 00:23:00,396
+and then get the big view.
+
+
+445
+00:23:00,396 --> 00:23:02,136
+And now I'm going to go
+ahead and click on my button,
+
+
+446
+00:23:03,196 --> 00:23:06,146
+and whoa, that's awesome.
+
+
+447
+00:23:06,516 --> 00:23:08,956
+So let's go through
+and use a little more.
+
+
+448
+00:23:08,956 --> 00:23:10,466
+One thing I notice is
+
+
+449
+00:23:10,466 --> 00:23:13,946
+that between the time I click
+the button there's a little
+
+
+450
+00:23:13,946 --> 00:23:17,786
+pause before the eyes actually
+show up, and I don't like that.
+
+
+451
+00:23:18,046 --> 00:23:21,176
+My app is supposed to be
+eyemazing, if you can read
+
+
+452
+00:23:21,176 --> 00:23:24,056
+that title bar that's
+clear, and having to wait
+
+
+453
+00:23:24,056 --> 00:23:26,766
+for your googly eyes is not
+an eyemazing experience.
+
+
+454
+00:23:27,586 --> 00:23:30,306
+Well, fortunately, I was
+capturing a time profile,
+
+
+455
+00:23:30,306 --> 00:23:32,606
+let's go ahead and see
+what's going on here.
+
+
+456
+00:23:33,446 --> 00:23:38,836
+So now if we look at the track
+view, we now have new gestures
+
+
+457
+00:23:38,986 --> 00:23:40,106
+for working on the track view.
+
+
+458
+00:23:40,806 --> 00:23:44,046
+And to select a time profile
+all I have to do is click,
+
+
+459
+00:23:44,436 --> 00:23:47,246
+or to select a time filter all
+I have to do is click and drag
+
+
+460
+00:23:47,276 --> 00:23:49,086
+and that applies
+the time filter.
+
+
+461
+00:23:50,176 --> 00:23:56,206
+So it's much simpler,
+hopefully far more intuitive
+
+
+462
+00:23:56,206 --> 00:23:57,686
+than it was before.
+
+
+463
+00:23:57,686 --> 00:24:00,506
+And then to actually zoom in you
+do the same thing, but you hold
+
+
+464
+00:24:00,506 --> 00:24:03,126
+down the shift key, so I'll do
+that now, and I can zoom in,
+
+
+465
+00:24:03,126 --> 00:24:05,376
+and then I'll go back out.
+
+
+466
+00:24:07,316 --> 00:24:10,726
+And so now I can see, if I come
+down here I can see that most
+
+
+467
+00:24:10,726 --> 00:24:12,446
+of time is spent
+in the main thread
+
+
+468
+00:24:13,066 --> 00:24:15,986
+and in the start method
+and, oh, you're not here
+
+
+469
+00:24:15,986 --> 00:24:18,626
+to watch me click
+disclosure triangles all day.
+
+
+470
+00:24:19,056 --> 00:24:22,626
+I'm going to go over and I'm
+going to use Command 3 to bring
+
+
+471
+00:24:22,626 --> 00:24:24,146
+up the extended detail pane,
+
+
+472
+00:24:24,746 --> 00:24:27,356
+and this over here gives
+me my heaviest stack trace.
+
+
+473
+00:24:28,006 --> 00:24:30,306
+And what I'm looking for
+is in this column here.
+
+
+474
+00:24:30,306 --> 00:24:33,176
+I'm looking for a big
+drop in the numbers.
+
+
+475
+00:24:33,946 --> 00:24:37,206
+And I can see right here
+I go from 120 to 180,
+
+
+476
+00:24:37,206 --> 00:24:39,786
+that kind of gives me an
+idea of where my problem is,
+
+
+477
+00:24:40,026 --> 00:24:43,716
+and when I select it in the
+stack trace, it selects it
+
+
+478
+00:24:43,716 --> 00:24:44,866
+in the Call Tree view.
+
+
+479
+00:24:45,166 --> 00:24:47,316
+And there's still a
+lot of stuff in there,
+
+
+480
+00:24:47,316 --> 00:24:49,306
+a lot of which I don't
+really care about.
+
+
+481
+00:24:50,046 --> 00:24:53,146
+So I'm going to hit Command
+1, well, actually Command 2,
+
+
+482
+00:24:53,146 --> 00:24:55,806
+and go into my view options,
+and one of the ones I'm going
+
+
+483
+00:24:55,806 --> 00:24:58,346
+to choose over here is
+to hide missing symbols.
+
+
+484
+00:24:58,846 --> 00:25:01,096
+No, I'm going to choose
+hide system libraries,
+
+
+485
+00:25:01,686 --> 00:25:04,966
+and this narrows it
+down to just my code.
+
+
+486
+00:25:04,966 --> 00:25:08,106
+And it's kind of nice, if
+you look in here you can see,
+
+
+487
+00:25:08,106 --> 00:25:11,246
+I'm going to expand
+this one more.
+
+
+488
+00:25:11,766 --> 00:25:16,116
+Oop, you can see here's
+an Objective-C call,
+
+
+489
+00:25:17,256 --> 00:25:18,116
+here's a Swift call.
+
+
+490
+00:25:18,116 --> 00:25:19,456
+Oh, I got this backwards, right?
+
+
+491
+00:25:19,456 --> 00:25:21,876
+This is the Objective-C call,
+
+
+492
+00:25:22,176 --> 00:25:23,656
+this one down here
+is the Swift call,
+
+
+493
+00:25:23,656 --> 00:25:26,386
+and it's at Ob-C is the
+bridge between them.
+
+
+494
+00:25:26,386 --> 00:25:29,296
+And if you're using a
+hybrid app you'll see those,
+
+
+495
+00:25:29,466 --> 00:25:31,396
+and just so you're aware
+that they're there,
+
+
+496
+00:25:31,396 --> 00:25:34,206
+they're not causing
+any harm or anything,
+
+
+497
+00:25:34,206 --> 00:25:35,016
+it's not anything wrong.
+
+
+498
+00:25:35,526 --> 00:25:38,246
+Another thing I want to do is
+I want to invert the Call Tree
+
+
+499
+00:25:38,246 --> 00:25:40,676
+because this makes it a
+little easier to kind of see.
+
+
+500
+00:25:41,146 --> 00:25:44,016
+Frequently the most
+expensive calls
+
+
+501
+00:25:44,016 --> 00:25:47,596
+in your app are towards the end
+of the Call Tree, so that kind
+
+
+502
+00:25:47,596 --> 00:25:48,916
+of helps you narrow in on that.
+
+
+503
+00:25:48,916 --> 00:25:51,356
+And another thing that makes
+this nice is I can see per
+
+
+504
+00:25:51,356 --> 00:25:57,186
+thread really quickly what each,
+what's the expensive calls.
+
+
+505
+00:25:58,366 --> 00:26:00,936
+So I'm here, so I'm
+spending a lot of time
+
+
+506
+00:26:01,846 --> 00:26:04,146
+in this method right here, so
+I'm going to double click on it,
+
+
+507
+00:26:04,146 --> 00:26:06,926
+and it brings it up, let me make
+this window a little bigger,
+
+
+508
+00:26:06,926 --> 00:26:10,496
+and I can see my Swift code.
+
+
+509
+00:26:11,846 --> 00:26:13,776
+Ooh, and it scrolls
+really quickly,
+
+
+510
+00:26:14,106 --> 00:26:18,866
+and thanks to this big red
+bar I can see that most
+
+
+511
+00:26:18,866 --> 00:26:22,136
+of my time is being spent on
+this particular line of code.
+
+
+512
+00:26:22,136 --> 00:26:22,916
+What is this code doing?
+
+
+513
+00:26:22,916 --> 00:26:26,256
+Well, I'm using the core image
+face detection to find faces
+
+
+514
+00:26:26,256 --> 00:26:29,426
+and then to find eyes on those
+faces, and that's where most
+
+
+515
+00:26:29,426 --> 00:26:31,906
+of my time is being spent.
+
+
+516
+00:26:31,906 --> 00:26:32,776
+What are my options here?
+
+
+517
+00:26:32,776 --> 00:26:36,776
+Well, I can either change the
+accuracy level of the detection
+
+
+518
+00:26:36,776 --> 00:26:38,426
+so it doesn't find
+faces, as well.
+
+
+519
+00:26:38,426 --> 00:26:40,666
+I can maybe turn off
+the blink detection.
+
+
+520
+00:26:40,666 --> 00:26:42,206
+Those two things
+might make it faster,
+
+
+521
+00:26:42,746 --> 00:26:44,426
+but I don't think
+they would provide
+
+
+522
+00:26:44,526 --> 00:26:47,356
+as an eyemazing experience
+
+
+523
+00:26:47,926 --> 00:26:52,306
+as having high fidelity face
+detection and getting, you know,
+
+
+524
+00:26:52,306 --> 00:26:54,496
+the googly eyes need to be
+on the closed eyes, as well.
+
+
+525
+00:26:55,466 --> 00:26:58,426
+I could maybe write
+my own face detection
+
+
+526
+00:26:58,426 --> 00:27:01,216
+and maybe that'll be
+faster than what's provided
+
+
+527
+00:27:01,216 --> 00:27:03,036
+in the kit, probably not.
+
+
+528
+00:27:04,106 --> 00:27:05,016
+So what are my choices here?
+
+
+529
+00:27:05,016 --> 00:27:09,186
+Well, I actually notice
+using the app that even
+
+
+530
+00:27:09,186 --> 00:27:11,706
+if I can't make this faster
+maybe I can change the way the
+
+
+531
+00:27:11,706 --> 00:27:12,606
+work is being done.
+
+
+532
+00:27:13,636 --> 00:27:17,576
+And to do that, I actually
+am going to change it so that
+
+
+533
+00:27:17,576 --> 00:27:24,446
+when you click on the app in
+the sidebar, when you click
+
+
+534
+00:27:24,446 --> 00:27:26,526
+on the thumbnail in the
+sidebar, we'll go ahead
+
+
+535
+00:27:26,526 --> 00:27:28,996
+and build the googly
+eye image then,
+
+
+536
+00:27:28,996 --> 00:27:30,396
+and then by the time you click
+
+
+537
+00:27:30,396 --> 00:27:33,726
+on the button it'll be
+already ready for you.
+
+
+538
+00:27:33,896 --> 00:27:39,276
+And so I'm going to scroll
+down to my didSelect,
+
+
+539
+00:27:39,746 --> 00:27:41,766
+tableViewSelectionDidChange,
+and I happen
+
+
+540
+00:27:41,766 --> 00:27:44,746
+to already be caching my googly
+eye images, but I'm now doing,
+
+
+541
+00:27:44,746 --> 00:27:46,776
+I'm currently doing it
+when you click the button.
+
+
+542
+00:27:46,776 --> 00:27:49,056
+So I'm just going to add a
+little code here to generate
+
+
+543
+00:27:49,056 --> 00:27:54,036
+that when the selection changes.
+
+
+544
+00:27:54,036 --> 00:27:55,476
+We're going to just move
+the work around here,
+
+
+545
+00:27:55,526 --> 00:27:57,616
+and I'm actually cheating
+a little bit here,
+
+
+546
+00:27:57,616 --> 00:27:58,436
+I want to point this out.
+
+
+547
+00:27:59,076 --> 00:28:04,306
+I'm using a mutable dictionary
+as my cache, and so instead
+
+
+548
+00:28:04,306 --> 00:28:07,316
+of having to deal with a mutable
+dictionary and multiple threads,
+
+
+549
+00:28:07,526 --> 00:28:10,396
+I'm actually dispatching
+this back to the main thread
+
+
+550
+00:28:10,996 --> 00:28:14,236
+so that all of my
+dictionary access happens
+
+
+551
+00:28:14,236 --> 00:28:14,926
+on the main thread.
+
+
+552
+00:28:14,926 --> 00:28:17,276
+I can do this because this
+is a fairly simple app,
+
+
+553
+00:28:17,276 --> 00:28:20,036
+it's not a lot of
+threading going on,
+
+
+554
+00:28:20,556 --> 00:28:22,686
+but if you're doing more
+complex stuff you're going
+
+
+555
+00:28:22,686 --> 00:28:26,066
+to need a more involved
+solution, but this works for me.
+
+
+556
+00:28:26,066 --> 00:28:28,786
+And if we scroll up
+to the actual-this is
+
+
+557
+00:28:29,676 --> 00:28:31,546
+when you click the button,
+
+
+558
+00:28:31,586 --> 00:28:34,796
+you can see here we basically
+get the selected row,
+
+
+559
+00:28:34,796 --> 00:28:37,186
+we see if the image
+is in the cache.
+
+
+560
+00:28:37,486 --> 00:28:39,626
+If it's not, we go ahead
+and build it and put it
+
+
+561
+00:28:39,626 --> 00:28:41,706
+in the cache, and
+then we display it.
+
+
+562
+00:28:42,146 --> 00:28:44,176
+So let's go ahead and see
+if this makes it any better.
+
+
+563
+00:28:44,886 --> 00:28:47,716
+So click the Profile button,
+you can see it profile again.
+
+
+564
+00:28:47,946 --> 00:28:50,386
+Now if you keep your eye on
+the track view you'll see
+
+
+565
+00:28:50,386 --> 00:28:53,606
+that it still does work and you
+can still see the spike, right?
+
+
+566
+00:28:54,216 --> 00:28:55,406
+But by the time I actually go
+
+
+567
+00:28:55,406 --> 00:28:58,096
+to click the button the
+work is already done,
+
+
+568
+00:28:58,766 --> 00:29:02,086
+so now there's a little
+spike, click the button, oh,
+
+
+569
+00:29:02,846 --> 00:29:06,496
+scroll down here, try this
+one, oh, I love this app,
+
+
+570
+00:29:06,496 --> 00:29:07,746
+I could do this all day.
+
+
+571
+00:29:07,746 --> 00:29:08,946
+Oh, wait, what's going on here?
+
+
+572
+00:29:09,646 --> 00:29:10,566
+Where is my scrolling?
+
+
+573
+00:29:10,676 --> 00:29:11,236
+What's going on?
+
+
+574
+00:29:11,236 --> 00:29:15,706
+Oh, it's stuttering, oh,
+this is not eyemazing.
+
+
+575
+00:29:16,856 --> 00:29:18,016
+I need to fix this.
+
+
+576
+00:29:18,016 --> 00:29:19,556
+Okay, let's see what we can do.
+
+
+577
+00:29:19,706 --> 00:29:21,726
+This is really terrible.
+
+
+578
+00:29:22,276 --> 00:29:26,016
+Fortunately, I'm still running
+Time Profiler, so I'm going
+
+
+579
+00:29:26,016 --> 00:29:28,516
+to go ahead and select some of
+these little spikes in here,
+
+
+580
+00:29:29,026 --> 00:29:32,236
+and I apply a time filter
+and hold down the Shift key,
+
+
+581
+00:29:32,936 --> 00:29:34,056
+and go ahead and zoom in.
+
+
+582
+00:29:34,306 --> 00:29:38,536
+And then if I look, I still
+have this invert Call Tree,
+
+
+583
+00:29:38,536 --> 00:29:41,406
+so if I expand my main
+thread I can see its most
+
+
+584
+00:29:41,406 --> 00:29:44,036
+expensive calls.
+
+
+585
+00:29:44,036 --> 00:29:46,866
+And right here the thing that's
+really hurting us is the scaling
+
+
+586
+00:29:46,866 --> 00:29:49,606
+the image, that's where
+we're building the thumbnail
+
+
+587
+00:29:49,606 --> 00:29:50,516
+and making it smaller.
+
+
+588
+00:29:50,516 --> 00:29:54,256
+But the other thing
+I happen to know:
+
+
+589
+00:29:55,536 --> 00:30:00,436
+that I can see the CPU spikes
+and there's a few of them,
+
+
+590
+00:30:00,796 --> 00:30:02,976
+but it doesn't really quite
+explain that much stuttering.
+
+
+591
+00:30:02,976 --> 00:30:04,226
+I would expect the CPU to
+be doing a lot more work
+
+
+592
+00:30:04,256 --> 00:30:04,976
+if I was stuttering like that.
+
+
+593
+00:30:05,046 --> 00:30:10,476
+So another thing I'm going to go
+check is I'm going to go up here
+
+
+594
+00:30:10,476 --> 00:30:14,086
+in the toolbar to our new
+strategy buttons, and I'm going
+
+
+595
+00:30:14,086 --> 00:30:15,516
+to check out the
+thread strategy,
+
+
+596
+00:30:15,516 --> 00:30:16,686
+which is this button over here.
+
+
+597
+00:30:16,686 --> 00:30:19,746
+And this is going to show me
+what each thread is doing.
+
+
+598
+00:30:19,746 --> 00:30:22,446
+So now you can see
+the whole thing.
+
+
+599
+00:30:23,286 --> 00:30:26,926
+Each of those little
+stopwatches represents a sample
+
+
+600
+00:30:27,046 --> 00:30:28,286
+that was taken on that thread.
+
+
+601
+00:30:28,856 --> 00:30:31,616
+The ones that are solid are ones
+where the thread was doing work,
+
+
+602
+00:30:31,616 --> 00:30:33,866
+and the ones that are
+translucent are the ones
+
+
+603
+00:30:33,866 --> 00:30:34,556
+where the thread idle.
+
+
+604
+00:30:34,556 --> 00:30:37,936
+So if I go ahead and click on
+one of these and you can kind
+
+
+605
+00:30:37,936 --> 00:30:41,076
+of see if you look up at the top
+it says idle call stack sample,
+
+
+606
+00:30:41,316 --> 00:30:43,436
+not running on CPU, so
+this is an idle case.
+
+
+607
+00:30:43,846 --> 00:30:46,756
+And now I want to make one
+thing clear here because, again,
+
+
+608
+00:30:46,886 --> 00:30:49,486
+this demo is well rehearsed,
+I know exactly which of these
+
+
+609
+00:30:49,486 --> 00:30:51,006
+to click on to find my problem.
+
+
+610
+00:30:51,876 --> 00:30:53,486
+When you're dealing
+with your app,
+
+
+611
+00:30:53,486 --> 00:30:55,186
+there's thousands
+of these samples.
+
+
+612
+00:30:55,186 --> 00:30:58,926
+You're going to have to use some
+detective work to really narrow
+
+
+613
+00:30:58,926 --> 00:31:01,186
+down where in your app
+you're seeing the stuttering
+
+
+614
+00:31:01,186 --> 00:31:02,826
+or you're having the problem,
+and you're probably going
+
+
+615
+00:31:02,826 --> 00:31:06,196
+to have to click through
+several of these to find
+
+
+616
+00:31:06,196 --> 00:31:07,156
+out exactly what's going on.
+
+
+617
+00:31:07,866 --> 00:31:10,146
+But in my case I can look
+through and in each of these,
+
+
+618
+00:31:10,486 --> 00:31:13,286
+I can see in here, what is this:
+
+
+619
+00:31:13,286 --> 00:31:16,576
+NSURLConnection
+sendSynchronousRequest..Whoa,
+
+
+620
+00:31:16,576 --> 00:31:20,676
+that's a big red flag;
+synchronous request, bad idea.
+
+
+621
+00:31:20,676 --> 00:31:24,576
+Synchronous request on the main
+thread-what the heck is going
+
+
+622
+00:31:24,576 --> 00:31:25,126
+on here?
+
+
+623
+00:31:25,556 --> 00:31:30,826
+So let's go back to the app,
+I know there's something going
+
+
+624
+00:31:30,826 --> 00:31:34,146
+on here, and I actually
+know associated
+
+
+625
+00:31:34,196 --> 00:31:35,516
+with building the thumbnail.
+
+
+626
+00:31:35,516 --> 00:31:40,146
+So I'm going to go into my
+photo class, and go to where-oh,
+
+
+627
+00:31:40,146 --> 00:31:42,216
+there's a little comment
+here, what does this say?
+
+
+628
+00:31:42,216 --> 00:31:44,716
+I read on the internet:
+Kris from six months ago.
+
+
+629
+00:31:44,716 --> 00:31:46,506
+I don't even need to
+read this whole thing.
+
+
+630
+00:31:46,506 --> 00:31:50,956
+That guy is a fool, if
+only there was some tool.
+
+
+631
+00:31:50,956 --> 00:31:52,276
+I'll show you a tool.
+
+
+632
+00:31:52,886 --> 00:31:55,256
+Okay, I'm just deleting
+all this code.
+
+
+633
+00:31:55,326 --> 00:31:58,966
+We don't need to
+use a URL request
+
+
+634
+00:31:58,966 --> 00:32:00,206
+to load a local resource.
+
+
+635
+00:32:00,826 --> 00:32:05,066
+I happen to know that-that's
+good-bye-that the image we're
+
+
+636
+00:32:05,066 --> 00:32:07,566
+looking for, that we're looking
+to create the thumbnail for,
+
+
+637
+00:32:07,566 --> 00:32:09,436
+if you look down here
+in my initializer,
+
+
+638
+00:32:09,436 --> 00:32:12,956
+I actually have a property that
+already contains that image.
+
+
+639
+00:32:13,766 --> 00:32:15,586
+So instead of doing
+whatever that guy
+
+
+640
+00:32:15,586 --> 00:32:17,806
+from six months ago was
+thinking, I'm just going
+
+
+641
+00:32:17,806 --> 00:32:19,176
+to use the image
+that I already have,
+
+
+642
+00:32:19,766 --> 00:32:22,886
+and that'll free
+up my block thread.
+
+
+643
+00:32:23,116 --> 00:32:25,856
+Now I also happen to know,
+this is a well rehearsed demo,
+
+
+644
+00:32:25,856 --> 00:32:27,706
+that doesn't quite
+solve the problem.
+
+
+645
+00:32:27,706 --> 00:32:31,726
+It helps a bunch, but there's
+still a little stuttering,
+
+
+646
+00:32:31,726 --> 00:32:33,136
+and to fix that we're
+actually going
+
+
+647
+00:32:33,136 --> 00:32:34,336
+to do another little cheat,
+
+
+648
+00:32:34,336 --> 00:32:35,676
+we're going to move
+some work around.
+
+
+649
+00:32:36,146 --> 00:32:38,826
+I'm actually going to go and
+pre-generate those thumbnails
+
+
+650
+00:32:38,826 --> 00:32:41,906
+when the app starts, and
+I'm going to do that here.
+
+
+651
+00:32:41,906 --> 00:32:47,106
+This, my Swift class here
+has a load photos method,
+
+
+652
+00:32:47,706 --> 00:32:50,666
+and this just goes and
+pulls all the photos
+
+
+653
+00:32:50,666 --> 00:32:53,476
+out of the bundle
+and creates a list.
+
+
+654
+00:32:53,476 --> 00:32:56,276
+And in here I'm going
+to add some code
+
+
+655
+00:32:56,276 --> 00:33:00,356
+that actually goes through, and
+just simply touches each photo,
+
+
+656
+00:33:00,356 --> 00:33:04,156
+asks for its thumbnail, and that
+gets-that causes the generation
+
+
+657
+00:33:04,156 --> 00:33:05,936
+of the thumbnail, and
+that work happens.
+
+
+658
+00:33:06,406 --> 00:33:08,806
+We're doing this in a
+background thread, basically,
+
+
+659
+00:33:08,806 --> 00:33:10,806
+as soon as you load all the
+photos the next thing we do is
+
+
+660
+00:33:10,806 --> 00:33:11,986
+we go and generate
+all the thumbnails.
+
+
+661
+00:33:12,246 --> 00:33:14,476
+This doesn't actually
+technically make my app more
+
+
+662
+00:33:14,476 --> 00:33:16,226
+efficient, it just
+moves the work around,
+
+
+663
+00:33:16,786 --> 00:33:17,876
+but I think for the user,
+
+
+664
+00:33:17,876 --> 00:33:19,716
+from the user experience
+they won't really know.
+
+
+665
+00:33:19,936 --> 00:33:22,966
+So now if I go ahead and
+profile my app again,
+
+
+666
+00:33:24,276 --> 00:33:25,876
+we take a look, you can watch.
+
+
+667
+00:33:25,926 --> 00:33:30,976
+At the beginning of the thread
+you can see it doing more work,
+
+
+668
+00:33:31,576 --> 00:33:32,776
+if you actually use the app.
+
+
+669
+00:33:33,006 --> 00:33:36,476
+I should have some nice
+buttery-smooth scrolling here.
+
+
+670
+00:33:37,176 --> 00:33:40,926
+Oh, this is a good
+one: fun at the park,
+
+
+671
+00:33:41,376 --> 00:33:43,366
+fun at the park with
+googly eyes.
+
+
+672
+00:33:44,146 --> 00:33:46,286
+So now my app is great,
+it's super responsive,
+
+
+673
+00:33:46,286 --> 00:33:50,026
+buttery-smooth scrolling,
+it's just so much better.
+
+
+674
+00:33:50,776 --> 00:33:55,536
+And that's an example
+of Time Profiler.
+
+
+675
+00:33:56,516 --> 00:34:02,356
+[ Applause ]
+
+
+676
+00:34:02,856 --> 00:34:05,416
+So to real quickly, or I
+don't know, maybe I won't be
+
+
+677
+00:34:05,416 --> 00:34:08,045
+that quick, we'll see,
+review what we've done.
+
+
+678
+00:34:08,636 --> 00:34:11,886
+We talked about the new track
+view, you can identify and zoom
+
+
+679
+00:34:11,886 --> 00:34:13,025
+in on the problem areas.
+
+
+680
+00:34:13,536 --> 00:34:17,335
+You drag and select to
+apply a time range filter.
+
+
+681
+00:34:17,496 --> 00:34:21,246
+Shift+drag zooms in, and
+control+drag will zoom you out.
+
+
+682
+00:34:22,235 --> 00:34:24,726
+We also talked about
+the new inspector panes.
+
+
+683
+00:34:24,726 --> 00:34:27,485
+There are some new
+keyboard shortcuts,
+
+
+684
+00:34:27,485 --> 00:34:29,315
+so you can quickly
+move between them.
+
+
+685
+00:34:29,536 --> 00:34:31,795
+If you're familiar
+with a certain IDE,
+
+
+686
+00:34:31,795 --> 00:34:34,786
+this should kind of ring a bell.
+
+
+687
+00:34:34,786 --> 00:34:37,556
+Command 1 is the
+record settings.
+
+
+688
+00:34:37,666 --> 00:34:38,976
+These are the settings
+that apply
+
+
+689
+00:34:38,976 --> 00:34:41,186
+to the next recording session.
+
+
+690
+00:34:42,156 --> 00:34:45,335
+Command 2 is display settings,
+so it alters how you see things,
+
+
+691
+00:34:45,335 --> 00:34:47,666
+either in the detail
+and extended detail
+
+
+692
+00:34:47,666 --> 00:34:49,025
+or in the track view itself.
+
+
+693
+00:34:49,025 --> 00:34:52,556
+And then Command 3 is
+the extended detail,
+
+
+694
+00:34:52,956 --> 00:34:55,426
+so you can see basically
+it's details
+
+
+695
+00:34:55,426 --> 00:34:58,176
+on whatever is selected
+either in your detailed view,
+
+
+696
+00:34:58,176 --> 00:34:59,596
+like the Call Tree view
+
+
+697
+00:34:59,916 --> 00:35:04,076
+or in the actual
+instruments tracks itself.
+
+
+698
+00:35:04,216 --> 00:35:07,176
+We also looked at two
+of the strategy views.
+
+
+699
+00:35:07,496 --> 00:35:10,046
+The one we didn't look
+at is the CPU strategy,
+
+
+700
+00:35:10,046 --> 00:35:11,456
+and this will show
+you what worked,
+
+
+701
+00:35:11,456 --> 00:35:14,196
+each core on your
+machine is doing.
+
+
+702
+00:35:15,236 --> 00:35:17,646
+We did see the Instrument
+strategy and a few Instruments
+
+
+703
+00:35:17,646 --> 00:35:19,546
+that all of you are probably
+familiar with this strategy.
+
+
+704
+00:35:19,546 --> 00:35:23,066
+Each track shows you what
+an individual instrument
+
+
+705
+00:35:23,066 --> 00:35:23,846
+is recording.
+
+
+706
+00:35:23,846 --> 00:35:27,206
+And then, finally,
+the thread strategy,
+
+
+707
+00:35:27,616 --> 00:35:30,976
+which shows you what
+each thread is doing.
+
+
+708
+00:35:31,116 --> 00:35:33,636
+And then just a quick reminder,
+
+
+709
+00:35:33,636 --> 00:35:36,646
+if you're in Time Profiler
+you can enable record winning
+
+
+710
+00:35:36,646 --> 00:35:38,516
+threads and see any
+blocked threads you have,
+
+
+711
+00:35:38,516 --> 00:35:40,746
+and then you can go through them
+and see maybe there's something
+
+
+712
+00:35:40,746 --> 00:35:42,876
+in your code that's
+preventing your threads
+
+
+713
+00:35:42,876 --> 00:35:44,246
+from doing work when
+they should be.
+
+
+714
+00:35:46,386 --> 00:35:48,446
+We also talked about a
+few Call Tree settings.
+
+
+715
+00:35:48,486 --> 00:35:52,926
+Since expensive calls are
+frequently near the end
+
+
+716
+00:35:52,926 --> 00:35:55,686
+of the call stack, you can
+turn on Invert Call Tree.
+
+
+717
+00:35:55,686 --> 00:35:56,936
+It's also a great way
+
+
+718
+00:35:56,936 --> 00:36:00,646
+to see what each thread is
+spending its time doing.
+
+
+719
+00:36:01,856 --> 00:36:04,746
+And then you can hide system
+libraries to help you focus
+
+
+720
+00:36:04,746 --> 00:36:08,326
+on your code and not
+really, you know,
+
+
+721
+00:36:08,326 --> 00:36:10,656
+what the frameworks are
+doing-you probably can't do a
+
+
+722
+00:36:10,656 --> 00:36:11,906
+whole lot about.
+
+
+723
+00:36:13,026 --> 00:36:15,336
+And now I want to
+discuss a couple tips.
+
+
+724
+00:36:15,336 --> 00:36:21,446
+In the Context Menu, on the
+Call Tree view, you can choose
+
+
+725
+00:36:21,446 --> 00:36:24,546
+to focus and prune
+current settings.
+
+
+726
+00:36:25,206 --> 00:36:28,386
+Charge moves the
+associated cost based
+
+
+727
+00:36:28,386 --> 00:36:29,736
+on which option you select.
+
+
+728
+00:36:31,206 --> 00:36:34,176
+Prune removes the
+associated cost,
+
+
+729
+00:36:34,176 --> 00:36:35,946
+so those things aren't
+even sort of part
+
+
+730
+00:36:35,946 --> 00:36:37,256
+of the calculation anymore.
+
+
+731
+00:36:37,836 --> 00:36:41,096
+And then focus you can think
+of as a prune everything but.
+
+
+732
+00:36:41,936 --> 00:36:48,516
+And then, finally, I want to
+talk about two more guidelines.
+
+
+733
+00:36:48,516 --> 00:36:51,506
+Some things you should always do
+when you're using Time Profiler.
+
+
+734
+00:36:52,596 --> 00:36:55,726
+First, you should always
+Profile Release builds.
+
+
+735
+00:36:55,886 --> 00:37:00,596
+The performance characteristics
+of a debug build
+
+
+736
+00:37:00,596 --> 00:37:02,766
+versus a release
+build are significant.
+
+
+737
+00:37:03,326 --> 00:37:07,486
+And profiling debug builds
+could cause you to fix problems
+
+
+738
+00:37:07,486 --> 00:37:09,596
+that aren't actually there,
+that get optimized away.
+
+
+739
+00:37:10,216 --> 00:37:15,206
+The default in Xcode is
+to profile Release builds,
+
+
+740
+00:37:15,566 --> 00:37:18,826
+but this is not necessarily
+the best option
+
+
+741
+00:37:18,826 --> 00:37:20,116
+for every Instrument.
+
+
+742
+00:37:20,116 --> 00:37:23,216
+For example, the
+Allocations Instrument
+
+
+743
+00:37:23,306 --> 00:37:25,006
+when using Objective-C Code,
+
+
+744
+00:37:25,236 --> 00:37:28,946
+the debug information provides
+it extra data it can use
+
+
+745
+00:37:28,946 --> 00:37:31,886
+to report on your allocations.
+
+
+746
+00:37:32,206 --> 00:37:34,766
+And you can change this in
+the Scheme Editor in Xcode.
+
+
+747
+00:37:34,766 --> 00:37:37,116
+You just choose the Profile
+button and you can change it
+
+
+748
+00:37:37,116 --> 00:37:38,326
+from debug to release.
+
+
+749
+00:37:38,906 --> 00:37:42,736
+And then, finally, for iOS it
+is really important for you
+
+
+750
+00:37:42,736 --> 00:37:45,066
+to profile on the device.
+
+
+751
+00:37:45,066 --> 00:37:48,576
+The simulator, for
+some things it is much,
+
+
+752
+00:37:48,576 --> 00:37:49,746
+much faster, for many things.
+
+
+753
+00:37:49,746 --> 00:37:52,466
+for some things it's actually
+much slower than the device.
+
+
+754
+00:37:53,026 --> 00:37:56,696
+It really is not a good use of
+your time to run Time Profiler
+
+
+755
+00:37:56,696 --> 00:37:58,826
+in the simulator, all right?
+
+
+756
+00:37:59,626 --> 00:38:01,546
+And, with that, I'm going to
+hand it off to my colleague,
+
+
+757
+00:38:01,546 --> 00:38:04,216
+Joe Grzywacz, who is going
+to show what options you have
+
+
+758
+00:38:04,256 --> 00:38:09,926
+when Time Profiler
+is not quite enough.
+
+
+759
+00:38:10,196 --> 00:38:11,316
+>> Thank you, Kris.
+
+
+760
+00:38:11,316 --> 00:38:12,376
+My name is Joe Grzywacz.
+
+
+761
+00:38:12,486 --> 00:38:14,046
+I'm going to talk to
+you about a few things,
+
+
+762
+00:38:14,046 --> 00:38:16,526
+starting with what are
+Performance Counters?
+
+
+763
+00:38:17,466 --> 00:38:20,796
+Each of the processors in your
+machine contain some small
+
+
+764
+00:38:20,796 --> 00:38:23,116
+number of these 64-bit
+hardware registers.
+
+
+765
+00:38:23,436 --> 00:38:27,096
+Now you have typically like 4
+to 8, some very small number,
+
+
+766
+00:38:27,096 --> 00:38:29,196
+it's a very limited resource,
+and these are separate
+
+
+767
+00:38:29,196 --> 00:38:31,666
+from the regular floating
+point and integer registers
+
+
+768
+00:38:31,666 --> 00:38:33,286
+that you may think of
+when you're talking
+
+
+769
+00:38:33,286 --> 00:38:35,386
+about your program actually
+executing and doing work.
+
+
+770
+00:38:35,606 --> 00:38:37,836
+Now what can you do
+with these registers?
+
+
+771
+00:38:38,266 --> 00:38:42,296
+Well, they're good for counting
+some small number of events,
+
+
+772
+00:38:42,726 --> 00:38:45,126
+things such as number of
+instructions you've executed.
+
+
+773
+00:38:45,126 --> 00:38:47,636
+It'll do cache misses,
+branches taken, you know,
+
+
+774
+00:38:47,636 --> 00:38:49,306
+low-level CPU-specific things.
+
+
+775
+00:38:50,266 --> 00:38:53,436
+Alternatively, you can have them
+take a call stack every time
+
+
+776
+00:38:53,436 --> 00:38:55,426
+some predetermined
+number of events occurs.
+
+
+777
+00:38:55,946 --> 00:38:57,046
+So what does that look like?
+
+
+778
+00:38:57,636 --> 00:38:59,586
+The called performance
+monitoring interrupts,
+
+
+779
+00:38:59,586 --> 00:39:00,986
+or PMIs for short.
+
+
+780
+00:39:00,986 --> 00:39:04,176
+So let's say we have a program
+is actually getting here
+
+
+781
+00:39:04,176 --> 00:39:07,446
+over time, and the blue
+bar represents the number
+
+
+782
+00:39:07,446 --> 00:39:08,776
+of branches we are executing.
+
+
+783
+00:39:09,786 --> 00:39:12,146
+And so higher means we actually
+did more in this period.
+
+
+784
+00:39:12,846 --> 00:39:15,896
+With time based sampling we just
+saw in Time Profiler we're going
+
+
+785
+00:39:15,896 --> 00:39:18,816
+to take samples at a regular
+periodic interval, 1 millisecond
+
+
+786
+00:39:18,816 --> 00:39:21,256
+by default, and this is
+true for the Time Profiler,
+
+
+787
+00:39:21,256 --> 00:39:22,756
+as well as the counters
+instrument.
+
+
+788
+00:39:23,446 --> 00:39:25,196
+But if we're really interested
+in what our program is doing
+
+
+789
+00:39:25,196 --> 00:39:28,006
+when it's being very branchy,
+what we can do is set up one
+
+
+790
+00:39:28,006 --> 00:39:31,356
+of these PMIs so that we
+actually get more samples during
+
+
+791
+00:39:31,356 --> 00:39:32,686
+the periods we cared about.
+
+
+792
+00:39:33,076 --> 00:39:36,586
+So we do, let's say, every
+10,000 branches or so,
+
+
+793
+00:39:36,586 --> 00:39:39,656
+let's actually take a
+sample, and so we get more
+
+
+794
+00:39:39,656 --> 00:39:41,956
+in the areas we care
+about, fewer everywhere else
+
+
+795
+00:39:41,956 --> 00:39:43,406
+because that's just noise to us.
+
+
+796
+00:39:43,406 --> 00:39:45,166
+And this should let us
+hone in on the problem
+
+
+797
+00:39:45,166 --> 00:39:47,076
+in our application just
+a little bit quicker.
+
+
+798
+00:39:47,576 --> 00:39:49,876
+So what else can you do
+with Performance Counters?
+
+
+799
+00:39:50,366 --> 00:39:52,056
+Well, you can get
+more information
+
+
+800
+00:39:52,056 --> 00:39:55,046
+about your app's performance
+beyond just time that we saw,
+
+
+801
+00:39:55,336 --> 00:39:57,306
+so it's sort of a Time
+Profiler on steroids,
+
+
+802
+00:39:57,306 --> 00:39:58,806
+and this is why we consider
+it maybe a little bit more
+
+
+803
+00:39:58,806 --> 00:39:59,586
+of an advanced instrument,
+
+
+804
+00:39:59,586 --> 00:40:00,976
+but it's something you should
+still have in your toolbox.
+
+
+805
+00:40:01,366 --> 00:40:04,596
+So what can you learn?
+
+
+806
+00:40:04,946 --> 00:40:07,356
+Things about how you're
+utilizing your CPU resources,
+
+
+807
+00:40:07,596 --> 00:40:10,226
+things like the various levels
+of caches in your machine,
+
+
+808
+00:40:10,456 --> 00:40:13,686
+the execution units,
+translation look aside buffers,
+
+
+809
+00:40:13,686 --> 00:40:14,626
+if you know what that is.
+
+
+810
+00:40:14,876 --> 00:40:16,606
+So you can look at all
+sorts of low-level details
+
+
+811
+00:40:16,606 --> 00:40:18,846
+that might be bottlenecks for
+your particular application.
+
+
+812
+00:40:19,866 --> 00:40:22,406
+You can also learn more about
+your application, itself.
+
+
+813
+00:40:22,666 --> 00:40:24,426
+For instance, how often
+are you branching?
+
+
+814
+00:40:24,466 --> 00:40:26,306
+How often are those
+branches mis-predicted?
+
+
+815
+00:40:26,966 --> 00:40:28,996
+You can even look at your
+instruction mix, you know,
+
+
+816
+00:40:29,036 --> 00:40:30,746
+how many integer
+operations are you doing,
+
+
+817
+00:40:30,956 --> 00:40:32,686
+how many floating point
+operations are you doing?
+
+
+818
+00:40:32,976 --> 00:40:34,866
+These are things you can't
+always determine statically
+
+
+819
+00:40:34,996 --> 00:40:37,186
+by looking at your program
+because you're depending
+
+
+820
+00:40:37,186 --> 00:40:39,236
+on some user input or
+something from the internet
+
+
+821
+00:40:39,236 --> 00:40:40,936
+of that sort of thing.
+
+
+822
+00:40:41,276 --> 00:40:43,146
+So we've had counters
+for a few years now,
+
+
+823
+00:40:43,826 --> 00:40:46,086
+but this year we've
+added a few new things.
+
+
+824
+00:40:46,666 --> 00:40:48,356
+First, you can now
+specify formulas,
+
+
+825
+00:40:48,356 --> 00:40:51,426
+so now you can get
+those raw events in,
+
+
+826
+00:40:51,546 --> 00:40:53,776
+but then actually apply
+some basic arithmetic
+
+
+827
+00:40:53,776 --> 00:40:54,836
+to them on top of that.
+
+
+828
+00:40:55,256 --> 00:40:56,576
+So you can see, we
+can generate IPC,
+
+
+829
+00:40:56,576 --> 00:40:58,356
+which is instructions per cycle.
+
+
+830
+00:40:58,686 --> 00:41:00,596
+That's a measure of how
+much work you're doing
+
+
+831
+00:41:00,596 --> 00:41:01,856
+in a given clock tick.
+
+
+832
+00:41:01,856 --> 00:41:04,116
+Generally, a higher number here
+means you're doing more work
+
+
+833
+00:41:04,116 --> 00:41:05,436
+and performing better.
+
+
+834
+00:41:05,856 --> 00:41:08,176
+You can calculate branch
+misprediction rate or things,
+
+
+835
+00:41:08,176 --> 00:41:09,986
+like your L1 cache
+miss percentage,
+
+
+836
+00:41:10,336 --> 00:41:12,796
+take the total number of loads
+to your L1 cache that missed,
+
+
+837
+00:41:12,886 --> 00:41:15,906
+add them to the total number of
+stores I missed, and then divide
+
+
+838
+00:41:15,906 --> 00:41:18,116
+that by the number of
+total loads plus the number
+
+
+839
+00:41:18,116 --> 00:41:21,246
+of total stores, and multiply it
+by 100 for a missed percentage.
+
+
+840
+00:41:22,236 --> 00:41:27,356
+Now we've had x86 support for
+a few years, and this year
+
+
+841
+00:41:27,356 --> 00:41:30,706
+with iOS 8 you can get
+64-bit ARM devices,
+
+
+842
+00:41:30,706 --> 00:41:31,646
+tab counters, as well.
+
+
+843
+00:41:31,646 --> 00:41:39,526
+And then the event profiler
+instrument, if you're familiar
+
+
+844
+00:41:39,526 --> 00:41:41,876
+with that, that's where
+you used to go for any kind
+
+
+845
+00:41:41,876 --> 00:41:44,196
+of PMI-based information
+for that kind of sampling.
+
+
+846
+00:41:44,196 --> 00:41:44,986
+You can just do that right
+
+
+847
+00:41:44,986 --> 00:41:47,526
+within the counters instrument
+now and there's actually no need
+
+
+848
+00:41:47,526 --> 00:41:48,816
+to go do two separate
+instruments.
+
+
+849
+00:41:48,816 --> 00:41:51,266
+Anything counters-related,
+head over to counters.
+
+
+850
+00:41:52,176 --> 00:41:54,136
+And, with that, we'll
+do a little demo
+
+
+851
+00:41:54,136 --> 00:41:55,266
+of iOS Performance Counters.
+
+
+852
+00:41:55,266 --> 00:41:59,356
+So I have a little basic
+Matrix Multiplication app,
+
+
+853
+00:41:59,546 --> 00:42:02,096
+so if your linear
+algebra is a bit hazy
+
+
+854
+00:42:02,096 --> 00:42:06,886
+to do a Matrix Multiplication
+of a two N by N Matrices,
+
+
+855
+00:42:06,886 --> 00:42:09,346
+for each element in your
+alpha Matrix C you have
+
+
+856
+00:42:09,346 --> 00:42:11,906
+to multiply piece by
+piece an entire row
+
+
+857
+00:42:11,906 --> 00:42:14,116
+of the input Matrix A
+times an entire column
+
+
+858
+00:42:14,426 --> 00:42:16,206
+of the input Matrix
+B, and then add each
+
+
+859
+00:42:16,206 --> 00:42:17,106
+of those parts together.
+
+
+860
+00:42:17,586 --> 00:42:20,486
+So in pseudocode it's basically
+just this triple-nested
+
+
+861
+00:42:20,486 --> 00:42:23,326
+for loop here, where all
+the work is really the sum
+
+
+862
+00:42:23,326 --> 00:42:24,416
+of products happening here.
+
+
+863
+00:42:24,926 --> 00:42:32,066
+So in Swift code, this
+does scroll fast-all right,
+
+
+864
+00:42:32,066 --> 00:42:34,666
+so we have our, basically, this
+is our triple-nested for loop,
+
+
+865
+00:42:34,936 --> 00:42:37,576
+and with all that work being
+done again and that summation
+
+
+866
+00:42:37,576 --> 00:42:39,376
+of the Matrix A times Matrix B.
+
+
+867
+00:42:40,116 --> 00:42:41,456
+And so what I want
+to do is go ahead
+
+
+868
+00:42:41,456 --> 00:42:43,176
+and profile this in Instruments.
+
+
+869
+00:42:43,336 --> 00:42:45,826
+So now this is going
+to run on my device.
+
+
+870
+00:42:46,476 --> 00:42:49,946
+I'm going to use the option
+profile, so that's just going
+
+
+871
+00:42:49,946 --> 00:42:51,556
+to launch Time Profiler,
+and it's going
+
+
+872
+00:42:51,556 --> 00:42:52,926
+to start recording on my device.
+
+
+873
+00:42:53,716 --> 00:42:56,686
+And I can tap a button, and it
+starts my Matrix Multiplication.
+
+
+874
+00:42:56,686 --> 00:42:58,296
+Now this is going to
+take a little while
+
+
+875
+00:42:58,296 --> 00:43:01,176
+because I'm multiplying two
+1,000 by 1,000 matrices,
+
+
+876
+00:43:01,176 --> 00:43:04,066
+each of them contains a
+double, so that's 8 bytes,
+
+
+877
+00:43:04,066 --> 00:43:07,306
+so it's 8 megabytes per
+matrix, 24 megabytes in total.
+
+
+878
+00:43:07,636 --> 00:43:10,836
+And so it takes us here
+about-well, it took about, what,
+
+
+879
+00:43:10,836 --> 00:43:13,916
+12 seconds to do
+that calculation.
+
+
+880
+00:43:13,916 --> 00:43:18,346
+So I'm going to go ahead and
+stop, click drag to time filter,
+
+
+881
+00:43:18,396 --> 00:43:19,736
+to the region of interest.
+
+
+882
+00:43:20,236 --> 00:43:21,516
+Let me make this
+a little bigger.
+
+
+883
+00:43:22,706 --> 00:43:25,756
+And what I want to see is
+where was my app spending time?
+
+
+884
+00:43:27,266 --> 00:43:29,876
+So if we zoom in here on
+our extended detail view,
+
+
+885
+00:43:30,546 --> 00:43:32,646
+where we can follow
+that really big number,
+
+
+886
+00:43:32,766 --> 00:43:34,036
+that's how many samples
+there were.
+
+
+887
+00:43:34,096 --> 00:43:36,316
+It gets really small
+as we drop down here,
+
+
+888
+00:43:36,596 --> 00:43:38,676
+so the problem is most of the
+samples are actually occurring
+
+
+889
+00:43:38,676 --> 00:43:40,656
+in this Matrix Multiplier
+routine.
+
+
+890
+00:43:40,996 --> 00:43:44,056
+And if we double click on
+that routine we get taken
+
+
+891
+00:43:44,056 --> 00:43:46,526
+to the source code, just
+like before, and we can see,
+
+
+892
+00:43:46,526 --> 00:43:49,486
+just as I expected, 92% of
+my time is being spent right
+
+
+893
+00:43:49,486 --> 00:43:50,466
+on that summation line.
+
+
+894
+00:43:50,916 --> 00:43:52,526
+I don't have much code,
+it's all being spent
+
+
+895
+00:43:52,526 --> 00:43:55,246
+on the one line I wrote,
+so I'm kind of at the end
+
+
+896
+00:43:55,246 --> 00:43:56,206
+of the road with Time Profiler.
+
+
+897
+00:43:56,206 --> 00:43:58,226
+I mean, I think I've done
+as much as I could do.
+
+
+898
+00:43:59,546 --> 00:44:01,466
+Well, we can actually
+dig a little bit deeper
+
+
+899
+00:44:01,496 --> 00:44:02,976
+if we're willing to go
+look at this assembly.
+
+
+900
+00:44:04,416 --> 00:44:07,936
+And what we have here is
+these ldr instructions
+
+
+901
+00:44:07,936 --> 00:44:09,656
+that are taking a bunch of time,
+
+
+902
+00:44:09,656 --> 00:44:12,706
+and an ldr is basically just
+loading a register from memory.
+
+
+903
+00:44:13,136 --> 00:44:15,476
+And so we can see these
+two ldr instructions,
+
+
+904
+00:44:15,476 --> 00:44:18,306
+one of them is loading Matrix A,
+one of them is loading Matrix B,
+
+
+905
+00:44:18,306 --> 00:44:19,486
+and they're taking a long time.
+
+
+906
+00:44:20,136 --> 00:44:21,746
+So now I can use the
+Counters Instrument
+
+
+907
+00:44:21,746 --> 00:44:23,126
+to actually go and
+figure out why.
+
+
+908
+00:44:23,126 --> 00:44:25,276
+So I'm going to start
+a new template,
+
+
+909
+00:44:26,346 --> 00:44:32,436
+select Counters, there we go.
+
+
+910
+00:44:34,276 --> 00:44:36,636
+And now I want to add
+some interesting events
+
+
+911
+00:44:36,636 --> 00:44:38,636
+to record using Counters.
+
+
+912
+00:44:39,536 --> 00:44:42,956
+And so if we choose to add
+an event, we can see the list
+
+
+913
+00:44:42,956 --> 00:44:45,636
+of all of the events that
+this device supports,
+
+
+914
+00:44:45,756 --> 00:44:48,916
+and I'm interested in my
+L2 cache, so I'm going
+
+
+915
+00:44:48,916 --> 00:44:50,866
+to add the number
+of L2 cache loads.
+
+
+916
+00:44:51,506 --> 00:44:54,386
+And I have a favorites list here
+already of the L2 cache loads
+
+
+917
+00:44:54,386 --> 00:44:58,276
+that missed, the number
+of stores, and the number
+
+
+918
+00:44:58,276 --> 00:44:59,496
+of stores that missed.
+
+
+919
+00:44:59,936 --> 00:45:00,966
+So I have those events.
+
+
+920
+00:45:00,966 --> 00:45:02,656
+I'm going to create
+a formula using them.
+
+
+921
+00:45:03,536 --> 00:45:06,126
+So I want to get
+one number that kind
+
+
+922
+00:45:06,126 --> 00:45:08,836
+of represents those four
+things, and what I'm going
+
+
+923
+00:45:08,836 --> 00:45:12,796
+to do is actually generate a
+miss rate by saying the number
+
+
+924
+00:45:12,796 --> 00:45:16,626
+of loads plus the number
+of stores that missed,
+
+
+925
+00:45:17,416 --> 00:45:22,266
+and divide that by the summation
+of the total number of loads,
+
+
+926
+00:45:22,776 --> 00:45:29,076
+which is loads plus
+stores, okay.
+
+
+927
+00:45:29,976 --> 00:45:34,866
+And if I multiply that by 100,
+now I have my missed percentage,
+
+
+928
+00:45:34,866 --> 00:45:36,936
+that's a little negative
+for me, I prefer to think
+
+
+929
+00:45:36,936 --> 00:45:39,836
+in hit percentage, so I'll
+just take 100 minus that number
+
+
+930
+00:45:40,276 --> 00:45:42,826
+and give it a name,
+L2 Hit Percentage.
+
+
+931
+00:45:42,916 --> 00:45:45,946
+Add that event, and as I
+mentioned before IPC is one
+
+
+932
+00:45:45,946 --> 00:45:47,056
+of those handy guys to have.
+
+
+933
+00:45:47,056 --> 00:45:49,876
+There's a predefined formula for
+IPC, so I'm going to go ahead
+
+
+934
+00:45:49,876 --> 00:45:51,026
+and add that, as well.
+
+
+935
+00:45:51,706 --> 00:45:53,716
+And so I'm going to
+start my recording again,
+
+
+936
+00:45:55,176 --> 00:45:58,016
+and this time I'm going
+to see the Call Tree view,
+
+
+937
+00:45:58,346 --> 00:46:01,826
+as well as the track view has a
+bunch more things being drawn,
+
+
+938
+00:46:01,826 --> 00:46:02,846
+and those are all my events.
+
+
+939
+00:46:02,846 --> 00:46:05,186
+So I'm going to start my
+Matrix Multiplication again,
+
+
+940
+00:46:05,186 --> 00:46:07,716
+you can see all those
+events going by,
+
+
+941
+00:46:07,716 --> 00:46:08,746
+and those are being calculated.
+
+
+942
+00:46:08,746 --> 00:46:13,616
+And as this wraps up we
+can actually start looking
+
+
+943
+00:46:13,616 --> 00:46:15,956
+at the information in detail.
+
+
+944
+00:46:15,956 --> 00:46:19,456
+So it just finished, and what
+we have here is the number
+
+
+945
+00:46:19,456 --> 00:46:23,216
+of L2 cache loads,
+was at 462 million.
+
+
+946
+00:46:23,686 --> 00:46:24,666
+Okay, that's a lot.
+
+
+947
+00:46:24,966 --> 00:46:26,926
+124 million of them missed,
+
+
+948
+00:46:26,926 --> 00:46:29,126
+and there's a much more
+insignificant number of stores.
+
+
+949
+00:46:29,326 --> 00:46:32,486
+Our overall hit percentage
+was 72% or so.
+
+
+950
+00:46:32,486 --> 00:46:33,906
+Okay, that's not too bad.
+
+
+951
+00:46:33,956 --> 00:46:37,336
+Our IPC was 0.6, that
+means we're doing less
+
+
+952
+00:46:37,336 --> 00:46:38,686
+than one instruction per clock.
+
+
+953
+00:46:38,686 --> 00:46:40,766
+I don't know, I think
+that sounds kind of bad,
+
+
+954
+00:46:40,766 --> 00:46:42,886
+I thought computers could
+do multiple things per clock
+
+
+955
+00:46:42,886 --> 00:46:43,396
+these days.
+
+
+956
+00:46:44,646 --> 00:46:47,026
+But the number that
+sticks out to me most is
+
+
+957
+00:46:47,026 --> 00:46:52,046
+that L2 cache load number: 462
+million loads to my L2 cache
+
+
+958
+00:46:52,396 --> 00:46:55,496
+when my input matrices are
+only 1 million elements each,
+
+
+959
+00:46:55,496 --> 00:46:56,246
+so a kind
+
+
+960
+00:46:56,246 --> 00:46:58,186
+of back-of-the-envelope
+calculation says I should only
+
+
+961
+00:46:58,186 --> 00:47:01,036
+probably do about 2
+million, so why is it so big?
+
+
+962
+00:47:01,716 --> 00:47:04,136
+Well, it turns out if
+you go online and search,
+
+
+963
+00:47:04,136 --> 00:47:06,736
+there's actually much better
+ways to do Matrix Multiplication
+
+
+964
+00:47:06,736 --> 00:47:10,056
+that are a lot more cache
+friendly for today's processors.
+
+
+965
+00:47:10,366 --> 00:47:12,956
+And one of those ways
+is actually go and block
+
+
+966
+00:47:12,956 --> 00:47:14,926
+up our Matrix Multiplication
+instead of trying
+
+
+967
+00:47:14,926 --> 00:47:17,076
+to do an entire row and
+an entire column at once,
+
+
+968
+00:47:17,076 --> 00:47:18,676
+we're going to do it
+in smaller pieces.
+
+
+969
+00:47:19,066 --> 00:47:21,296
+Because this Matrix is so
+big trying to do it all
+
+
+970
+00:47:21,296 --> 00:47:23,016
+at once means we're going
+to load in a lot of data
+
+
+971
+00:47:23,016 --> 00:47:25,366
+and then kick it back out to
+memory and then load it back
+
+
+972
+00:47:25,366 --> 00:47:26,646
+in again and kick it back out,
+
+
+973
+00:47:26,646 --> 00:47:28,426
+and that's very inefficient
+and slow.
+
+
+974
+00:47:28,866 --> 00:47:30,116
+So I have another implementation
+
+
+975
+00:47:30,116 --> 00:47:33,356
+where I actually block
+this matrix up into, oh,
+
+
+976
+00:47:33,356 --> 00:47:36,366
+like 50 by 50 pieces,
+so much smaller.
+
+
+977
+00:47:36,886 --> 00:47:39,436
+And we can see it execute here
+and there, it already finished.
+
+
+978
+00:47:40,266 --> 00:47:43,176
+So we did this in about, let's
+see, time filtered down to
+
+
+979
+00:47:43,176 --> 00:47:47,726
+that region and we can see
+where our running time now is
+
+
+980
+00:47:47,726 --> 00:47:51,566
+at 3.5 seconds, so we already
+split it up about three times
+
+
+981
+00:47:51,566 --> 00:47:54,076
+and it took about 3 lines of
+code, very straightforward.
+
+
+982
+00:47:55,366 --> 00:47:58,986
+And our L2 cache load
+number is now at 24 million,
+
+
+983
+00:47:59,286 --> 00:48:02,306
+so we went from 450
+million down to 24 million,
+
+
+984
+00:48:02,306 --> 00:48:03,516
+so that's much improved.
+
+
+985
+00:48:03,786 --> 00:48:05,896
+Cache stores are still
+somewhat insignificant,
+
+
+986
+00:48:05,896 --> 00:48:09,756
+although they're growing
+in size relative to loads.
+
+
+987
+00:48:09,756 --> 00:48:10,556
+Our L2 hit percentage,
+
+
+988
+00:48:10,606 --> 00:48:12,766
+interestingly enough,
+has come down.
+
+
+989
+00:48:12,766 --> 00:48:16,216
+We were in the low 70s
+before, now we're at 64%,
+
+
+990
+00:48:16,216 --> 00:48:17,586
+that's a little bit odd.
+
+
+991
+00:48:17,996 --> 00:48:20,756
+Our IPC, though, is much
+better, it's at 1.6.
+
+
+992
+00:48:20,756 --> 00:48:23,796
+Now we're actually doing
+1.5 instructions per cycle,
+
+
+993
+00:48:23,796 --> 00:48:25,316
+so that's a lot better.
+
+
+994
+00:48:26,096 --> 00:48:27,036
+So this is where we kind
+
+
+995
+00:48:27,036 --> 00:48:28,896
+of consider this a little
+bit more advanced instrument
+
+
+996
+00:48:28,896 --> 00:48:31,066
+because you can generate a
+lot more of these numbers,
+
+
+997
+00:48:31,066 --> 00:48:32,986
+but you have to know how
+to interpret the results.
+
+
+998
+00:48:33,336 --> 00:48:35,546
+And so our IPC got
+better, so that was great.
+
+
+999
+00:48:35,866 --> 00:48:38,636
+Our cache hit rate went
+down, but was that a problem?
+
+
+1000
+00:48:38,636 --> 00:48:41,306
+Well, no, because we actually
+did hundreds of millions
+
+
+1001
+00:48:41,306 --> 00:48:44,236
+of loads less to that cache, so
+the fact that that hit rate came
+
+
+1002
+00:48:44,236 --> 00:48:48,596
+down a little bit, not
+really that big of a deal.
+
+
+1003
+00:48:48,786 --> 00:48:51,756
+To kind of wrap up, this Matrix
+Multiplication thing you could
+
+
+1004
+00:48:51,756 --> 00:48:54,306
+continue, keep on iterating and
+try to write a better version,
+
+
+1005
+00:48:54,666 --> 00:48:56,206
+however, we've already
+done that for you.
+
+
+1006
+00:48:56,346 --> 00:48:59,856
+There's an Accelerate framework
+that has that done, and if I tap
+
+
+1007
+00:48:59,856 --> 00:49:02,516
+on that version, see it
+actually finished here
+
+
+1008
+00:49:02,516 --> 00:49:06,446
+in about 200 milliseconds
+and it's one line of code
+
+
+1009
+00:49:06,576 --> 00:49:08,006
+and it works, and it's optimized
+
+
+1010
+00:49:08,006 --> 00:49:09,806
+for multiple cores,
+multiple devices.
+
+
+1011
+00:49:09,806 --> 00:49:11,816
+A piece of cake, please
+don't go write your own
+
+
+1012
+00:49:11,816 --> 00:49:12,896
+Matrix Multiplication.
+
+
+1013
+00:49:14,866 --> 00:49:17,916
+Now the last thing to point out
+on this demo is I spend a lot
+
+
+1014
+00:49:17,916 --> 00:49:21,076
+of time over here, down
+here, adding these events,
+
+
+1015
+00:49:21,166 --> 00:49:22,156
+adding these formulas.
+
+
+1016
+00:49:22,156 --> 00:49:23,106
+They're really useful.
+
+
+1017
+00:49:23,106 --> 00:49:25,326
+I'm going to come here to this
+instrument many, many times.
+
+
+1018
+00:49:25,556 --> 00:49:28,706
+I don't want to type them
+in again, so be sure to go
+
+
+1019
+00:49:28,706 --> 00:49:32,886
+up to File > Save As a Template,
+give this some interesting name:
+
+
+1020
+00:49:32,936 --> 00:49:36,036
+L2 Hit Rate Counter,
+or something like that.
+
+
+1021
+00:49:37,156 --> 00:49:39,836
+And then save that off, and
+then the next time you go
+
+
+1022
+00:49:39,836 --> 00:49:42,136
+to the template chooser,
+use the custom filter,
+
+
+1023
+00:49:42,496 --> 00:49:44,246
+load up this template,
+you don't have to type
+
+
+1024
+00:49:44,246 --> 00:49:45,876
+that in again and
+again and again.
+
+
+1025
+00:49:46,516 --> 00:49:53,236
+[ Applause ]
+
+
+1026
+00:49:53,736 --> 00:49:54,396
+So what did we see?
+
+
+1027
+00:49:54,396 --> 00:49:57,356
+With counters you're
+basically going to collect data
+
+
+1028
+00:49:57,416 --> 00:49:59,306
+by default, similar
+to Time Profiler.
+
+
+1029
+00:49:59,616 --> 00:50:01,836
+It's a statistical sampling
+of your application.
+
+
+1030
+00:50:01,836 --> 00:50:03,596
+This is an important
+point: that basically
+
+
+1031
+00:50:03,596 --> 00:50:06,516
+for the past 1 millisecond
+by default,
+
+
+1032
+00:50:06,516 --> 00:50:08,666
+we're aggregating the
+time and all the events,
+
+
+1033
+00:50:08,666 --> 00:50:10,286
+and then we're going to
+attribute it to that one moment
+
+
+1034
+00:50:10,286 --> 00:50:12,016
+in time where we take
+a call stack sample
+
+
+1035
+00:50:12,016 --> 00:50:12,716
+of your application.
+
+
+1036
+00:50:13,296 --> 00:50:15,706
+This means you want to
+get a lot of CPU samples
+
+
+1037
+00:50:15,706 --> 00:50:17,076
+to get really an
+accurate picture
+
+
+1038
+00:50:17,076 --> 00:50:18,446
+of what your application
+is doing.
+
+
+1039
+00:50:18,496 --> 00:50:20,096
+If you're not very
+CPU-intensive,
+
+
+1040
+00:50:20,096 --> 00:50:21,726
+this isn't the instrument
+for you.
+
+
+1041
+00:50:21,766 --> 00:50:23,976
+You can tweak that slightly
+
+
+1042
+00:50:23,976 --> 00:50:26,396
+by using the Performance
+Monitoring Interrupts.
+
+
+1043
+00:50:26,396 --> 00:50:29,756
+So this allows you to vary
+the sampling rate based
+
+
+1044
+00:50:29,756 --> 00:50:31,166
+on the number of events
+that are happening.
+
+
+1045
+00:50:31,166 --> 00:50:32,786
+So if you're really
+interested in branches
+
+
+1046
+00:50:33,036 --> 00:50:36,456
+or L2 cache hit rate you
+can actually sample based
+
+
+1047
+00:50:36,456 --> 00:50:38,116
+on how many of those
+things are occurring
+
+
+1048
+00:50:38,176 --> 00:50:42,546
+and get more refined results
+on what you're looking at.
+
+
+1049
+00:50:42,546 --> 00:50:45,146
+Note that the PMI
+instructions can be slightly,
+
+
+1050
+00:50:45,146 --> 00:50:49,106
+a little bit imprecise in that,
+by the time the interrupt fires,
+
+
+1051
+00:50:49,106 --> 00:50:50,966
+let's say you take a call
+stack, a small number
+
+
+1052
+00:50:50,966 --> 00:50:54,106
+of instructions may have gone
+by, which means you won't be
+
+
+1053
+00:50:54,106 --> 00:50:56,236
+on the precise instruction that
+caused this, but you're going
+
+
+1054
+00:50:56,236 --> 00:50:57,886
+to be right in the
+neighborhood and it'll get you
+
+
+1055
+00:50:57,886 --> 00:50:59,376
+to the problem a
+lot more quickly.
+
+
+1056
+00:50:59,966 --> 00:51:02,546
+And be sure to use formulas,
+
+
+1057
+00:51:02,586 --> 00:51:04,046
+so you can gather
+all these raw events,
+
+
+1058
+00:51:04,046 --> 00:51:06,666
+but a lot of times it's a lot
+easier to generate one metric,
+
+
+1059
+00:51:06,666 --> 00:51:09,126
+that makes it a lot easier
+to see the problem at hand.
+
+
+1060
+00:51:09,476 --> 00:51:12,616
+So generate those formulas
+and then save them inside
+
+
+1061
+00:51:12,616 --> 00:51:14,926
+of a template so
+that you can get back
+
+
+1062
+00:51:14,926 --> 00:51:16,116
+to them quickly in the future.
+
+
+1063
+00:51:18,406 --> 00:51:19,656
+Changing gears entirely.
+
+
+1064
+00:51:21,176 --> 00:51:23,706
+DTrace, if you're
+unfamiliar with DTrace,
+
+
+1065
+00:51:23,796 --> 00:51:26,396
+I recommend you go
+online, there's plenty
+
+
+1066
+00:51:26,396 --> 00:51:27,446
+of information about it.
+
+
+1067
+00:51:27,746 --> 00:51:29,926
+Basically, it's a kernel-based
+recording technology,
+
+
+1068
+00:51:29,926 --> 00:51:31,336
+it'll let you get
+more information
+
+
+1069
+00:51:31,336 --> 00:51:32,586
+about your application,
+
+
+1070
+00:51:32,586 --> 00:51:34,326
+especially how it
+interacts with the kernel.
+
+
+1071
+00:51:34,326 --> 00:51:35,856
+Today we're only going to talk
+
+
+1072
+00:51:35,856 --> 00:51:38,186
+about what's new
+with OS X Yosemite.
+
+
+1073
+00:51:39,936 --> 00:51:41,676
+First, there's a
+dynamic tracemem.
+
+
+1074
+00:51:41,826 --> 00:51:43,596
+So a tracemem is a
+way to actually print
+
+
+1075
+00:51:43,596 --> 00:51:44,986
+out the contents of your memory.
+
+
+1076
+00:51:45,496 --> 00:51:48,836
+So previously you had to
+know the size of your array
+
+
+1077
+00:51:48,836 --> 00:51:51,396
+and compile time, and
+that happens to work a lot
+
+
+1078
+00:51:51,396 --> 00:51:52,716
+of the times, but not always.
+
+
+1079
+00:51:52,716 --> 00:51:55,386
+Now it'll work with
+variable size arrays.
+
+
+1080
+00:51:55,716 --> 00:51:58,476
+So say I want to trace this
+CGContextFillRects guy?
+
+
+1081
+00:51:58,836 --> 00:52:03,396
+Arg1 is a variable size rects
+array, and Arg2 is the count
+
+
+1082
+00:52:03,396 --> 00:52:04,656
+of how many things are in there.
+
+
+1083
+00:52:05,476 --> 00:52:08,046
+So you can write this DTrace
+script that upon entry
+
+
+1084
+00:52:08,216 --> 00:52:11,236
+into CGContextFillRects, what
+we're going to do is copy
+
+
+1085
+00:52:11,286 --> 00:52:14,036
+in Arg1, which is the
+array, and then the size
+
+
+1086
+00:52:14,036 --> 00:52:15,016
+of that array is the size
+
+
+1087
+00:52:15,016 --> 00:52:18,166
+of a single CGRect times
+Arg2, which is the count.
+
+
+1088
+00:52:18,586 --> 00:52:20,566
+So once you have that copied
+into the kernel we're going
+
+
+1089
+00:52:20,566 --> 00:52:23,866
+to call tracemem on that, so
+we pass the array, we pass 512,
+
+
+1090
+00:52:23,866 --> 00:52:26,106
+which is the maximum size
+we ever expect it to be
+
+
+1091
+00:52:26,596 --> 00:52:29,756
+for our application, and then
+again we pass that same count.
+
+
+1092
+00:52:29,756 --> 00:52:32,056
+So now tracemem works on
+your variable sized arrays.
+
+
+1093
+00:52:33,306 --> 00:52:35,346
+The next big improvement
+is the Histograms
+
+
+1094
+00:52:35,346 --> 00:52:36,436
+that have been improved vastly.
+
+
+1095
+00:52:36,576 --> 00:52:39,146
+There's a number of new options,
+too many to discuss here,
+
+
+1096
+00:52:39,486 --> 00:52:42,406
+but basically you'll get much
+better, improved Histograms,
+
+
+1097
+00:52:42,856 --> 00:52:45,326
+easier to read, better
+ASCII art on your terminal
+
+
+1098
+00:52:45,326 --> 00:52:46,496
+when you're generating
+these things.
+
+
+1099
+00:52:46,846 --> 00:52:49,676
+I refer you to that excellent
+blog post on DTrace.org
+
+
+1100
+00:52:49,676 --> 00:52:51,736
+that will describe to you all
+the options and all the ways
+
+
+1101
+00:52:51,736 --> 00:52:52,726
+that it will be helpful to you.
+
+
+1102
+00:52:53,276 --> 00:52:56,656
+There's a few other
+new features.
+
+
+1103
+00:52:57,016 --> 00:52:58,806
+Previously, if you wanted
+
+
+1104
+00:52:58,806 --> 00:53:01,606
+to make sure you got every
+single probe firing from DTrace,
+
+
+1105
+00:53:01,606 --> 00:53:04,016
+you might have to start
+your application as root,
+
+
+1106
+00:53:04,346 --> 00:53:06,146
+now you can actually
+ask DTrace to wait
+
+
+1107
+00:53:06,146 --> 00:53:08,096
+for the process to
+start with -W.
+
+
+1108
+00:53:08,656 --> 00:53:11,376
+So you fire up DTrace, and then
+you start your application.
+
+
+1109
+00:53:11,376 --> 00:53:13,196
+And with a little help from
+the kernel stopping your
+
+
+1110
+00:53:13,196 --> 00:53:16,196
+application, letting DTrace
+come in and install its probes,
+
+
+1111
+00:53:16,256 --> 00:53:19,646
+its hooks, then your application
+will be released by the kernel
+
+
+1112
+00:53:19,646 --> 00:53:20,816
+to run and you won't miss any
+
+
+1113
+00:53:20,816 --> 00:53:22,086
+of the probe firings
+at the beginning.
+
+
+1114
+00:53:23,876 --> 00:53:27,286
+There's also a more
+advanced feature,
+
+
+1115
+00:53:27,286 --> 00:53:29,166
+which is tunable variables.
+
+
+1116
+00:53:29,536 --> 00:53:32,596
+So if you run the sysctl
+kern.dtrace you'll get a list
+
+
+1117
+00:53:32,596 --> 00:53:34,866
+of what variables your
+current kernel supports,
+
+
+1118
+00:53:35,136 --> 00:53:37,966
+things like maximum
+buffer sizes,
+
+
+1119
+00:53:37,966 --> 00:53:40,066
+enabling additional
+static kernel probes,
+
+
+1120
+00:53:40,336 --> 00:53:42,246
+some pretty advanced
+features that you can now toy
+
+
+1121
+00:53:42,246 --> 00:53:43,476
+with that you couldn't before.
+
+
+1122
+00:53:44,326 --> 00:53:45,516
+And to learn more about them,
+
+
+1123
+00:53:45,516 --> 00:53:48,976
+all the documentation has been
+updated, so just run man dtrace
+
+
+1124
+00:53:48,976 --> 00:53:50,516
+and you'll get all that info.
+
+
+1125
+00:53:51,206 --> 00:53:55,026
+So to summarize, today
+we saw a lot of things.
+
+
+1126
+00:53:55,026 --> 00:53:58,166
+We saw Allocations, Leaks,
+Time Profiler, Counters;
+
+
+1127
+00:53:58,166 --> 00:54:01,706
+so there's a lot of tools in the
+toolbox, and you can use them
+
+
+1128
+00:54:01,706 --> 00:54:04,616
+on Swift and Objective-C
+Code alike, it'll just work.
+
+
+1129
+00:54:05,516 --> 00:54:06,746
+And we want you to be proactive.
+
+
+1130
+00:54:07,286 --> 00:54:11,186
+Use these tools throughout the
+application development process.
+
+
+1131
+00:54:11,286 --> 00:54:13,636
+Even while you're debugging
+something, maybe you see
+
+
+1132
+00:54:13,636 --> 00:54:15,216
+out of the corner of
+your eye one of those CPU
+
+
+1133
+00:54:15,216 --> 00:54:16,356
+or memory gauges spikes.
+
+
+1134
+00:54:16,356 --> 00:54:17,236
+You don't expect it.
+
+
+1135
+00:54:17,566 --> 00:54:19,716
+Go ahead and profile
+your application
+
+
+1136
+00:54:19,716 --> 00:54:21,976
+in instruments right
+then and actually try
+
+
+1137
+00:54:21,976 --> 00:54:23,856
+to improve your application
+right then
+
+
+1138
+00:54:23,856 --> 00:54:24,906
+and not just at the end.
+
+
+1139
+00:54:25,746 --> 00:54:27,796
+And while you're doing
+that remember don't assume,
+
+
+1140
+00:54:27,876 --> 00:54:30,636
+go ahead in profiler app,
+make a change in Xcode
+
+
+1141
+00:54:30,636 --> 00:54:33,116
+that you think will fix it, and
+then profile instrument again,
+
+
+1142
+00:54:33,256 --> 00:54:35,646
+and keep on iterating until
+the problem has been resolved.
+
+
+1143
+00:54:37,296 --> 00:54:39,396
+If you have any more questions,
+
+
+1144
+00:54:39,466 --> 00:54:41,936
+you can always contact Dave
+Delong, our Evangelist.
+
+
+1145
+00:54:41,936 --> 00:54:45,226
+We have documentation
+on developer.apple.com
+
+
+1146
+00:54:45,226 --> 00:54:48,406
+and there's excellent dev forums
+that you should know about,
+
+
+1147
+00:54:48,406 --> 00:54:51,066
+where you can talk to
+other instruments users,
+
+
+1148
+00:54:51,066 --> 00:54:52,306
+post questions, post answers.
+
+
+1149
+00:54:52,306 --> 00:54:54,206
+Instruments developers
+will be on there from time
+
+
+1150
+00:54:54,206 --> 00:54:55,756
+to time answering your
+questions, as well.
+
+
+1151
+00:54:57,706 --> 00:55:02,776
+There's a few related
+sessions, and we saw some stuff
+
+
+1152
+00:55:02,776 --> 00:55:05,156
+about App Extensions
+today, so you'll see that.
+
+
+1153
+00:55:05,156 --> 00:55:06,646
+There's a second talk tomorrow.
+
+
+1154
+00:55:06,786 --> 00:55:08,816
+There's some Swift talks, of
+course, all throughout the week,
+
+
+1155
+00:55:08,816 --> 00:55:10,676
+and even some interesting
+Swift debugging stuff
+
+
+1156
+00:55:10,676 --> 00:55:12,556
+with LLDB on Friday.
+
+
+1157
+00:55:13,456 --> 00:55:14,706
+And, with that, I'd like
+to thank you for coming.
+
+
+1158
+00:55:14,706 --> 00:55:15,456
+Have a great week.
+
+
+1159
+00:55:16,516 --> 00:55:24,500
+[ Applause ]
+

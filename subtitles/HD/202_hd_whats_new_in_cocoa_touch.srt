@@ -1,0 +1,5311 @@
+1
+00:00:12,516 --> 00:00:19,546
+[ Applause ]
+
+
+2
+00:00:20,046 --> 00:00:22,466
+>> Thanks so much for coming
+to What's New in Cocoa Touch.
+
+
+3
+00:00:23,236 --> 00:00:25,686
+It's really great to see
+a packed house here today.
+
+
+4
+00:00:25,736 --> 00:00:28,666
+I know that we have a
+lot of new attendees
+
+
+5
+00:00:29,136 --> 00:00:32,286
+in the house this week,
+and so for those of you
+
+
+6
+00:00:32,286 --> 00:00:35,296
+who have never been to a
+WWDC, who have never been
+
+
+7
+00:00:35,296 --> 00:00:37,426
+to a What's New in
+Cocoa Touch talk,
+
+
+8
+00:00:37,916 --> 00:00:40,586
+this is really a great
+opportunity for you
+
+
+9
+00:00:40,586 --> 00:00:44,126
+to get a taste of all of the
+new things that we're releasing
+
+
+10
+00:00:44,126 --> 00:00:48,556
+in the SDK this year, and as
+you know this is actually the
+
+
+11
+00:00:48,786 --> 00:00:52,086
+biggest SDK release
+since the SDK itself.
+
+
+12
+00:00:52,086 --> 00:00:55,936
+So this WWDC is going
+to be absolutely huge,
+
+
+13
+00:00:56,476 --> 00:00:59,196
+and this session is your
+opportunity to get a taste
+
+
+14
+00:00:59,196 --> 00:01:02,126
+of those technologies, and
+I'll be pointing throughout the
+
+
+15
+00:01:02,126 --> 00:01:04,275
+session and, again at
+the end of the session,
+
+
+16
+00:01:04,596 --> 00:01:07,826
+to all of the other related
+sessions to the technologies
+
+
+17
+00:01:07,826 --> 00:01:10,356
+that I'm talking about
+so you can get an idea
+
+
+18
+00:01:10,546 --> 00:01:13,606
+of what other talks that you
+want to see this week and one
+
+
+19
+00:01:13,606 --> 00:01:18,166
+of the labs you're going to want
+to go to and that sort of thing.
+
+
+20
+00:01:18,376 --> 00:01:22,406
+So to begin, I want to
+talk about this core idea
+
+
+21
+00:01:23,036 --> 00:01:27,146
+of what we've set up of
+what iOS 8 is really all
+
+
+22
+00:01:27,146 --> 00:01:28,966
+about from the SDK perspective,
+
+
+23
+00:01:29,226 --> 00:01:31,296
+and that's this idea
+of Adaptivity.
+
+
+24
+00:01:31,566 --> 00:01:34,936
+Adaptivity is going to
+pervade everything that we do
+
+
+25
+00:01:34,936 --> 00:01:40,066
+in Cocoa Touch in iOS 8, and
+adaptivity means several things.
+
+
+26
+00:01:41,086 --> 00:01:45,026
+On one hand, adaptivity
+is a design philosophy.
+
+
+27
+00:01:45,286 --> 00:01:48,296
+It's a way of architecting
+your app, and we're going
+
+
+28
+00:01:48,366 --> 00:01:53,156
+to give you an idea of how we
+want apps to be built from now
+
+
+29
+00:01:53,156 --> 00:01:57,876
+on using a design philosophy
+that encourages code reuse,
+
+
+30
+00:01:58,596 --> 00:02:04,836
+generic code that adapts from
+context to context and is able
+
+
+31
+00:02:04,836 --> 00:02:08,966
+to go from devices like
+iPhone and iPad seamlessly.
+
+
+32
+00:02:09,856 --> 00:02:13,446
+Additionally, adaptivity
+encompasses a whole set
+
+
+33
+00:02:13,746 --> 00:02:18,616
+of things that we are providing
+directly from UIKit to you.
+
+
+34
+00:02:19,106 --> 00:02:21,796
+Things like Adaptive
+View Controllers.
+
+
+35
+00:02:22,486 --> 00:02:25,646
+Adaptive view controllers are
+something that we have written
+
+
+36
+00:02:25,826 --> 00:02:30,126
+with the design philosophy of
+adaptivity that when you use
+
+
+37
+00:02:30,126 --> 00:02:32,086
+in your app can allow
+you to do things
+
+
+38
+00:02:32,086 --> 00:02:35,586
+like take a simple primary,
+
+
+39
+00:02:35,586 --> 00:02:38,796
+secondary view controller
+pattern, have it on iPhone,
+
+
+40
+00:02:39,396 --> 00:02:43,316
+have the same code that puts
+that on iPhone put on interface
+
+
+41
+00:02:43,316 --> 00:02:48,226
+that you'd expect on iPad and do
+that without any device checks,
+
+
+42
+00:02:48,226 --> 00:02:51,736
+and it will all be the same
+code running on both devices.
+
+
+43
+00:02:51,736 --> 00:02:52,766
+We'll show you how to do that.
+
+
+44
+00:02:53,126 --> 00:02:56,716
+Similarly we've taken the
+philosophy of adaptivity
+
+
+45
+00:02:56,716 --> 00:03:00,366
+to view controller presentations
+and we'll show you how
+
+
+46
+00:03:00,366 --> 00:03:02,536
+to build code that
+presents something
+
+
+47
+00:03:02,536 --> 00:03:05,346
+like a full screen modal
+view controller on iPhone
+
+
+48
+00:03:06,276 --> 00:03:09,926
+and something more appropriate
+like a popover on iPad.
+
+
+49
+00:03:10,216 --> 00:03:12,246
+Again, without any
+device-specific checks
+
+
+50
+00:03:12,516 --> 00:03:16,036
+because we're focusing
+on reusable adaptive code
+
+
+51
+00:03:16,316 --> 00:03:20,986
+that is the theme of
+Cocoa Touch on iOS 8.
+
+
+52
+00:03:21,996 --> 00:03:22,746
+Additionally, we're going
+
+
+53
+00:03:22,746 --> 00:03:26,336
+to be pushing a new
+user interface concept
+
+
+54
+00:03:26,336 --> 00:03:30,446
+that we want all applications
+to adopt and that's dynamic
+
+
+55
+00:03:30,446 --> 00:03:34,146
+or dynamic text and
+adapting to dynamic text.
+
+
+56
+00:03:34,726 --> 00:03:37,956
+This was actually a feature
+that was introduced in iOS 7
+
+
+57
+00:03:38,786 --> 00:03:41,016
+that users can change
+their preferred text size.
+
+
+58
+00:03:41,526 --> 00:03:45,476
+In iOS 8, we've extended the
+idea such that all apps built
+
+
+59
+00:03:45,476 --> 00:03:50,386
+into iOS respond to dynamic
+type and are adaptive to that,
+
+
+60
+00:03:50,386 --> 00:03:53,296
+and we want to show you
+how you can do that.
+
+
+61
+00:03:53,296 --> 00:03:56,376
+We recognize that one
+of the common places
+
+
+62
+00:03:56,376 --> 00:04:00,116
+that users interact with
+text is actually in lists
+
+
+63
+00:04:00,116 --> 00:04:01,336
+in the form of table views.
+
+
+64
+00:04:01,636 --> 00:04:04,956
+So we took it upon
+ourselves to make it easier
+
+
+65
+00:04:05,146 --> 00:04:07,916
+to take a simple table like
+what you would see in settings,
+
+
+66
+00:04:08,436 --> 00:04:11,116
+respond to the user's
+dynamic text choice,
+
+
+67
+00:04:11,606 --> 00:04:16,236
+make the text bigger, and
+make the rows bigger as well.
+
+
+68
+00:04:16,426 --> 00:04:20,406
+Finally, adaptivity
+refers to the ability,
+
+
+69
+00:04:20,546 --> 00:04:24,006
+this opportunity actually
+to extend the system,
+
+
+70
+00:04:24,256 --> 00:04:28,186
+to adapt the system to your
+user's needs and desires
+
+
+71
+00:04:28,186 --> 00:04:31,736
+by bringing your functionality
+into system apps as well
+
+
+72
+00:04:31,736 --> 00:04:32,866
+as other third-party apps.
+
+
+73
+00:04:32,866 --> 00:04:34,516
+We saw in the keynote
+that we can do things
+
+
+74
+00:04:34,886 --> 00:04:38,056
+like add a photo filter
+right within the Photos app
+
+
+75
+00:04:38,306 --> 00:04:40,546
+without ever having to
+go to your application.
+
+
+76
+00:04:41,406 --> 00:04:44,116
+So these are the kind of things
+that we're going to be talking
+
+
+77
+00:04:44,116 --> 00:04:45,136
+about throughout the talk.
+
+
+78
+00:04:45,406 --> 00:04:49,446
+The first part is particularly
+about the design philosophy,
+
+
+79
+00:04:50,236 --> 00:04:53,706
+and then we'll move into
+listing off a lot of the things
+
+
+80
+00:04:53,756 --> 00:04:55,726
+that are especially
+new about the API.
+
+
+81
+00:04:57,096 --> 00:04:58,586
+So to begin, we'll talk
+
+
+82
+00:04:58,586 --> 00:05:01,696
+about this design
+philosophy of Adaptive Layout.
+
+
+83
+00:05:01,696 --> 00:05:07,226
+So, I said it before
+but I'll say it again,
+
+
+84
+00:05:07,226 --> 00:05:08,236
+the key of what we mean
+
+
+85
+00:05:08,236 --> 00:05:12,306
+by adaptive layout is
+something that is reusable.
+
+
+86
+00:05:12,436 --> 00:05:14,246
+A bit of code that is generic,
+
+
+87
+00:05:14,506 --> 00:05:16,756
+that transcends device
+boundaries
+
+
+88
+00:05:17,036 --> 00:05:18,676
+and orientation boundaries.
+
+
+89
+00:05:18,676 --> 00:05:21,986
+So the first thing we want to
+talk about is the simple idea
+
+
+90
+00:05:22,226 --> 00:05:23,926
+of interface orientation.
+
+
+91
+00:05:24,916 --> 00:05:28,776
+This has been a stalwart
+concept through the API
+
+
+92
+00:05:29,136 --> 00:05:32,886
+since the SDK was introduced,
+and we actually want to move now
+
+
+93
+00:05:33,176 --> 00:05:35,846
+to a place where when
+we're writing our apps,
+
+
+94
+00:05:35,846 --> 00:05:37,286
+our layout code doesn't have
+
+
+95
+00:05:37,356 --> 00:05:40,406
+to care what the interface
+orientation is and that's going
+
+
+96
+00:05:40,406 --> 00:05:42,216
+to be the theme of what
+we're talking about now.
+
+
+97
+00:05:42,856 --> 00:05:46,096
+So we can imagine that a
+designer gave us a design
+
+
+98
+00:05:46,096 --> 00:05:50,516
+for a Photos app, and they
+say, okay, this Photos app
+
+
+99
+00:05:50,886 --> 00:05:54,456
+on portrait in an
+iPad looks like a grid
+
+
+100
+00:05:54,456 --> 00:05:56,706
+of rectangular thumbnail photos
+
+
+101
+00:05:57,266 --> 00:05:58,876
+and there's five
+columns in that grid.
+
+
+102
+00:05:59,756 --> 00:06:02,776
+Similarly, they give us the
+spec and say, if that iPad is
+
+
+103
+00:06:02,776 --> 00:06:06,716
+in landscape, show us similar,
+show similar thumbnails
+
+
+104
+00:06:06,996 --> 00:06:08,166
+but seven columns of them.
+
+
+105
+00:06:08,806 --> 00:06:12,386
+Now, the naive way to
+approach this would be, okay,
+
+
+106
+00:06:12,836 --> 00:06:17,186
+let's hard code in five
+columns of things for portrait
+
+
+107
+00:06:17,726 --> 00:06:20,836
+and seven columns of
+things for landscape.
+
+
+108
+00:06:21,576 --> 00:06:26,846
+But to become adaptive, we want
+to take a deeper understanding
+
+
+109
+00:06:26,916 --> 00:06:29,666
+of why we have five
+columns in portrait
+
+
+110
+00:06:29,666 --> 00:06:32,576
+and why we have seven
+columns in landscape.
+
+
+111
+00:06:33,336 --> 00:06:36,156
+It's pretty easy to
+understand with this example
+
+
+112
+00:06:36,156 --> 00:06:41,256
+that the reason is the portrait
+view is 768 points wide,
+
+
+113
+00:06:41,926 --> 00:06:44,616
+and based on the thumbnail
+size that we want to achieve,
+
+
+114
+00:06:44,616 --> 00:06:46,876
+it just so happens
+that we can fit five
+
+
+115
+00:06:46,876 --> 00:06:49,556
+across so we have five columns.
+
+
+116
+00:06:50,656 --> 00:06:52,876
+Similarly when we
+go to landscape,
+
+
+117
+00:06:53,046 --> 00:06:56,586
+we now have 1024 points
+in the width dimension,
+
+
+118
+00:06:56,956 --> 00:07:00,846
+and based on the thumbnail
+size that we wanted to achieve,
+
+
+119
+00:07:00,846 --> 00:07:02,546
+we can now fit seven columns.
+
+
+120
+00:07:03,456 --> 00:07:07,246
+The difference here is that when
+we take that logic that we say,
+
+
+121
+00:07:07,246 --> 00:07:11,726
+okay, we can fit this many
+columns in this space as opposed
+
+
+122
+00:07:11,726 --> 00:07:14,246
+to there are seven columns
+
+
+123
+00:07:14,246 --> 00:07:19,316
+in landscape then the actual
+interface orientation is not a
+
+
+124
+00:07:19,316 --> 00:07:22,746
+relevant thing in determining
+what your layout looks
+
+
+125
+00:07:22,746 --> 00:07:23,416
+like anymore.
+
+
+126
+00:07:23,876 --> 00:07:27,026
+All that matters is what
+the canvas size looks like.
+
+
+127
+00:07:28,436 --> 00:07:32,116
+So there's also another decision
+being made under the hood here
+
+
+128
+00:07:32,116 --> 00:07:33,776
+if we just sort of
+focus in on this view,
+
+
+129
+00:07:34,306 --> 00:07:39,856
+and that's we've made
+these rectangular spread
+
+
+130
+00:07:39,856 --> 00:07:42,096
+out thumbnails, but
+the Photos app
+
+
+131
+00:07:42,096 --> 00:07:45,496
+on the iPhone has actually
+much more compacted thumbnails
+
+
+132
+00:07:45,496 --> 00:07:46,596
+that are square in shape.
+
+
+133
+00:07:47,066 --> 00:07:48,266
+And the reason it's that way
+
+
+134
+00:07:48,266 --> 00:07:50,786
+on the iPhone is a very
+similar vein reason.
+
+
+135
+00:07:51,036 --> 00:07:53,746
+It's because the size of
+the iPhone is different.
+
+
+136
+00:07:54,366 --> 00:07:59,376
+And so, we compact the layout
+when we are in a compacted size,
+
+
+137
+00:08:00,416 --> 00:08:04,426
+and so we can actually
+think about that decision,
+
+
+138
+00:08:04,426 --> 00:08:07,286
+the compacted iPhone style
+layout versus what you see
+
+
+139
+00:08:07,286 --> 00:08:08,316
+up here-the more spread
+
+
+140
+00:08:08,316 --> 00:08:12,106
+out rectangular thumbnail
+layout-as also being determined
+
+
+141
+00:08:12,106 --> 00:08:14,276
+by the size and not
+actually based
+
+
+142
+00:08:14,276 --> 00:08:16,636
+on a device, iPhone versus iPad.
+
+
+143
+00:08:17,146 --> 00:08:19,786
+So we're now going to begin
+to think of this interface
+
+
+144
+00:08:19,836 --> 00:08:25,176
+as determined by the idea that
+it has regular-sized dimensions.
+
+
+145
+00:08:25,646 --> 00:08:28,486
+The height is regular;
+the width is regular.
+
+
+146
+00:08:29,466 --> 00:08:33,466
+And we're thinking of this
+semantic-based sizing idea
+
+
+147
+00:08:33,876 --> 00:08:36,846
+as a new thing that
+we call Size Classes.
+
+
+148
+00:08:37,765 --> 00:08:41,556
+Size classes are a
+very simple enumeration
+
+
+149
+00:08:42,186 --> 00:08:44,956
+that gets us thinking
+about canvas size
+
+
+150
+00:08:44,956 --> 00:08:48,626
+when we do layouts rather
+than interface orientation.
+
+
+151
+00:08:50,386 --> 00:08:54,116
+We have independent horizontal
+and vertical size classes,
+
+
+152
+00:08:54,116 --> 00:08:58,716
+and either one of these axis can
+be either compact or regular.
+
+
+153
+00:08:58,816 --> 00:09:01,966
+And that simple choice
+can allow us to choose
+
+
+154
+00:09:01,966 --> 00:09:04,816
+between what we may now think
+of as an iPhone style interface
+
+
+155
+00:09:05,116 --> 00:09:06,766
+and an iPad style interface.
+
+
+156
+00:09:07,156 --> 00:09:08,656
+It really isn't about
+the device.
+
+
+157
+00:09:08,716 --> 00:09:11,256
+It's about the canvas
+size that we have.
+
+
+158
+00:09:11,476 --> 00:09:12,726
+And we'll continue to talk
+
+
+159
+00:09:12,726 --> 00:09:16,506
+about this idea throughout the
+session, but part of what makes
+
+
+160
+00:09:16,506 --> 00:09:20,706
+that key is that you may
+end up in a situation
+
+
+161
+00:09:20,706 --> 00:09:24,366
+where you are showing
+something, displaying your view
+
+
+162
+00:09:24,366 --> 00:09:27,906
+on say an iPad where the size
+
+
+163
+00:09:27,906 --> 00:09:31,486
+of that canvas is actually
+comparable to that of just being
+
+
+164
+00:09:31,486 --> 00:09:35,196
+on an iPhone, and if
+you've written adaptive code
+
+
+165
+00:09:35,586 --> 00:09:38,766
+that simply uses the size
+rather than the device
+
+
+166
+00:09:38,856 --> 00:09:42,206
+to do its layout, you'll
+get an iPhone style layout
+
+
+167
+00:09:42,206 --> 00:09:46,296
+when appropriate in
+smaller spaces on an iPad.
+
+
+168
+00:09:46,296 --> 00:09:48,936
+So, the situations that
+we can end up in are
+
+
+169
+00:09:48,936 --> 00:09:51,416
+on the iPad having regular
+height and regular width.
+
+
+170
+00:09:51,416 --> 00:09:52,816
+This is true in either
+orientation.
+
+
+171
+00:09:53,786 --> 00:09:58,256
+On the iPhone, the width becomes
+compacted and using that bit
+
+
+172
+00:09:58,256 --> 00:10:00,816
+of information, the Photos
+app can choose to shrink
+
+
+173
+00:10:00,816 --> 00:10:05,286
+to its more compacted square
+thumbnail-based layout.
+
+
+174
+00:10:05,656 --> 00:10:08,426
+Similarly, when the
+iPhone goes to landscape,
+
+
+175
+00:10:08,696 --> 00:10:12,256
+it still has a compact width but
+also takes on a compact height.
+
+
+176
+00:10:12,956 --> 00:10:15,076
+So you can use both of
+those pieces of information
+
+
+177
+00:10:15,356 --> 00:10:19,886
+to decide what happens in
+your layout in your app.
+
+
+178
+00:10:20,106 --> 00:10:23,646
+So, we've wrapped up this
+concept of size classes
+
+
+179
+00:10:23,886 --> 00:10:26,636
+and are exposing it
+to you via a new class
+
+
+180
+00:10:26,636 --> 00:10:28,936
+in UIKit called UI
+Trait Collection.
+
+
+181
+00:10:30,006 --> 00:10:33,116
+UI trait collection is a
+handy bringing together
+
+
+182
+00:10:33,116 --> 00:10:34,966
+of a few pieces of
+information including the
+
+
+183
+00:10:35,016 --> 00:10:37,956
+horizontalSizeClass,
+the verticalSizeClass,
+
+
+184
+00:10:38,486 --> 00:10:41,856
+the displayScale, and
+the userInterfaceIdiom.
+
+
+185
+00:10:42,626 --> 00:10:46,666
+Now what makes trait collections
+convenient is they're hung right
+
+
+186
+00:10:46,736 --> 00:10:48,806
+as a property on
+UIViewController.
+
+
+187
+00:10:48,806 --> 00:10:50,996
+So you can access them
+from your view controller.
+
+
+188
+00:10:50,996 --> 00:10:55,276
+You can also get them from the
+current screen, and then using
+
+
+189
+00:10:55,276 --> 00:10:57,416
+that information, you
+have your size class.
+
+
+190
+00:10:57,846 --> 00:10:59,306
+You can make the determination
+
+
+191
+00:10:59,526 --> 00:11:01,656
+of what is the right
+thing to do for you.
+
+
+192
+00:11:01,916 --> 00:11:04,746
+So as a simple example, we can
+think of what we did with Photos
+
+
+193
+00:11:05,306 --> 00:11:09,966
+and implement a size
+class did change method.
+
+
+194
+00:11:10,516 --> 00:11:12,996
+And for Photos, it just needs
+
+
+195
+00:11:12,996 --> 00:11:17,036
+to consider what the
+new size class is,
+
+
+196
+00:11:17,616 --> 00:11:21,886
+and based on whether the
+horizontalSizeClass is compact
+
+
+197
+00:11:21,946 --> 00:11:24,536
+or not, the Photos
+layout chooses
+
+
+198
+00:11:24,856 --> 00:11:28,486
+to use either its compact
+squares-based layout,
+
+
+199
+00:11:28,786 --> 00:11:31,496
+if it is a compact
+horizontalSizeClass,
+
+
+200
+00:11:32,066 --> 00:11:36,336
+or otherwise it uses its
+rectangular thumbnail,
+
+
+201
+00:11:36,336 --> 00:11:37,956
+more spread out layout.
+
+
+202
+00:11:38,536 --> 00:11:41,706
+And then this particular
+snippet is modeled to be
+
+
+203
+00:11:41,706 --> 00:11:44,526
+on a collection view
+controller, so it just takes
+
+
+204
+00:11:44,526 --> 00:11:48,186
+that layout object and applies
+it to its collection view
+
+
+205
+00:11:48,436 --> 00:11:50,946
+as a new layout object.
+
+
+206
+00:11:51,046 --> 00:11:54,426
+Now, some of you may be
+noticing this unfamiliar scribe
+
+
+207
+00:11:54,476 --> 00:11:55,636
+to you on the screen.
+
+
+208
+00:11:56,546 --> 00:11:59,626
+If this is your first time
+seeing Swift, congratulations.
+
+
+209
+00:11:59,696 --> 00:12:04,466
+Here is your intro, and you
+can see just how easy it is
+
+
+210
+00:12:04,466 --> 00:12:05,536
+to understand.
+
+
+211
+00:12:05,956 --> 00:12:08,926
+And this will give you
+an idea of how easy it is
+
+
+212
+00:12:09,116 --> 00:12:10,886
+to start adopting
+Swift immediately
+
+
+213
+00:12:10,886 --> 00:12:13,116
+with all Cocoa and
+Cocoa Touch APIs.
+
+
+214
+00:12:14,486 --> 00:12:18,456
+So with that, I'll talk
+about quickly another new API
+
+
+215
+00:12:18,646 --> 00:12:21,006
+that we've added to
+support your layout
+
+
+216
+00:12:21,306 --> 00:12:23,516
+in iOS 8, which is Margins.
+
+
+217
+00:12:24,226 --> 00:12:28,946
+So margins coincide with
+an API release in iOS 7,
+
+
+218
+00:12:28,946 --> 00:12:29,826
+which is layout guides.
+
+
+219
+00:12:30,946 --> 00:12:34,756
+Layout guides help you know
+about hard lines on the screen.
+
+
+220
+00:12:34,756 --> 00:12:37,526
+In this case, the top and
+the bottom of the screen,
+
+
+221
+00:12:37,526 --> 00:12:40,036
+where the top is denoting
+there's a navigation bar there.
+
+
+222
+00:12:40,376 --> 00:12:43,626
+So the layout guide tells
+you about that navigation bar
+
+
+223
+00:12:43,626 --> 00:12:45,466
+in case you'd like to avoid it.
+
+
+224
+00:12:45,626 --> 00:12:47,376
+If there was a toolbar at
+the bottom of the screen,
+
+
+225
+00:12:47,376 --> 00:12:50,246
+your layout guide would also
+denote the top of that toolbar.
+
+
+226
+00:12:50,246 --> 00:12:52,056
+In this case, it just
+denotes the hard line
+
+
+227
+00:12:52,466 --> 00:12:53,776
+that is the bottom
+of the screen.
+
+
+228
+00:12:54,256 --> 00:12:58,576
+But there's another concept
+in this UI that isn't covered
+
+
+229
+00:12:58,576 --> 00:13:02,796
+by layout guides and that is
+the whitespace that is inset
+
+
+230
+00:13:02,796 --> 00:13:04,576
+in the content from the
+edges of the screen.
+
+
+231
+00:13:04,976 --> 00:13:08,526
+So, in iOS 8, we're
+introducing an API on UIView,
+
+
+232
+00:13:08,926 --> 00:13:12,826
+which is layout guides which
+tells you about that whitespace
+
+
+233
+00:13:12,826 --> 00:13:15,866
+and allows you to set
+whatever whitespace you want
+
+
+234
+00:13:15,866 --> 00:13:16,526
+for your layout.
+
+
+235
+00:13:16,526 --> 00:13:18,186
+So that's a property on UIView.
+
+
+236
+00:13:18,516 --> 00:13:22,246
+It also comes with native
+support for autolayout,
+
+
+237
+00:13:22,336 --> 00:13:25,136
+and that's in the form of
+new NS layout attributes,
+
+
+238
+00:13:25,136 --> 00:13:30,346
+including left, right,
+leading, trailing, et cetera.
+
+
+239
+00:13:30,346 --> 00:13:31,166
+There's a bunch of these.
+
+
+240
+00:13:31,366 --> 00:13:33,566
+If you've been using
+autolayout in your code,
+
+
+241
+00:13:33,566 --> 00:13:35,886
+you'll find this
+natural and familiar.
+
+
+242
+00:13:37,366 --> 00:13:40,916
+So, to learn more tricks about
+building adaptive layout apps,
+
+
+243
+00:13:41,016 --> 00:13:43,416
+there's going to be
+a great talk tomorrow
+
+
+244
+00:13:43,416 --> 00:13:46,636
+in the Mission called Building
+Adaptive Apps with UIKit.
+
+
+245
+00:13:48,206 --> 00:13:50,926
+So now I'm going to be moving
+on to talking about some
+
+
+246
+00:13:50,926 --> 00:13:54,636
+of the ways that we have
+adopted the philosophy
+
+
+247
+00:13:54,946 --> 00:13:59,656
+of adaptive size class-based
+design to build things
+
+
+248
+00:13:59,656 --> 00:14:02,976
+that you can use out of
+the box that are adaptive
+
+
+249
+00:14:03,166 --> 00:14:05,136
+without you having
+to do any work.
+
+
+250
+00:14:05,736 --> 00:14:08,756
+So we'll start by talking about
+Adaptive View Controllers.
+
+
+251
+00:14:08,756 --> 00:14:09,816
+This is a great new feature.
+
+
+252
+00:14:11,296 --> 00:14:14,236
+And to begin to dive into this,
+I'm actually going to go back
+
+
+253
+00:14:14,236 --> 00:14:18,706
+and talk a little bit more about
+this idea of orientation which,
+
+
+254
+00:14:18,816 --> 00:14:20,236
+or rotation, which we touched
+
+
+255
+00:14:20,776 --> 00:14:24,126
+on with the orientation
+segment of the talk.
+
+
+256
+00:14:24,766 --> 00:14:26,776
+So, now I'm going
+to have us kind
+
+
+257
+00:14:26,946 --> 00:14:31,696
+of ask ourselves this question,
+what is rotation, really?
+
+
+258
+00:14:32,106 --> 00:14:35,316
+Because asking ourselves
+that question yields a result
+
+
+259
+00:14:35,316 --> 00:14:37,156
+that helps us write
+adaptive code.
+
+
+260
+00:14:37,696 --> 00:14:42,896
+And that result is, it's
+just an animated change
+
+
+261
+00:14:42,896 --> 00:14:44,326
+of the size of the view.
+
+
+262
+00:14:45,366 --> 00:14:49,236
+So, if we consider a
+view that's onscreen,
+
+
+263
+00:14:50,546 --> 00:14:54,306
+we might have been thinking
+of when the device rotates,
+
+
+264
+00:14:54,806 --> 00:14:59,656
+that view rotates with it
+and this is a rotating view.
+
+
+265
+00:15:00,816 --> 00:15:05,156
+That perspective actually
+complicates the idea
+
+
+266
+00:15:05,156 --> 00:15:07,276
+of what we have to
+do in our layout.
+
+
+267
+00:15:07,826 --> 00:15:11,016
+And so, beginning in iOS
+8 we're encouraging you
+
+
+268
+00:15:11,016 --> 00:15:14,776
+to take a different perspective
+towards how rotation works,
+
+
+269
+00:15:15,176 --> 00:15:19,086
+which is just think of it as
+a view that happens to have,
+
+
+270
+00:15:19,636 --> 00:15:22,376
+in this case, a regular
+height and a compact width,
+
+
+271
+00:15:23,136 --> 00:15:26,956
+and when the device rotates,
+something happens to that view.
+
+
+272
+00:15:27,306 --> 00:15:28,546
+And the thing that happens
+
+
+273
+00:15:28,546 --> 00:15:32,066
+to that view is it undergoes
+an animated size change,
+
+
+274
+00:15:32,546 --> 00:15:36,526
+and perhaps it goes to a compact
+height and a regular width.
+
+
+275
+00:15:36,526 --> 00:15:41,986
+I don't want to confuse you
+in that standard on an iPhone
+
+
+276
+00:15:42,776 --> 00:15:44,836
+in landscape, the width
+is actually compact,
+
+
+277
+00:15:45,316 --> 00:15:47,026
+but this is an illustrative
+example
+
+
+278
+00:15:47,206 --> 00:15:48,756
+of what might happen
+to your view.
+
+
+279
+00:15:48,756 --> 00:15:52,936
+As your view changes size,
+it can go to any new size
+
+
+280
+00:15:52,936 --> 00:15:53,876
+and any new size class,
+
+
+281
+00:15:53,876 --> 00:15:55,456
+and that's really
+all that's happening
+
+
+282
+00:15:55,816 --> 00:15:58,176
+when you're undergoing
+a rotation.
+
+
+283
+00:15:58,556 --> 00:16:00,446
+And part of the advantage
+of thinking
+
+
+284
+00:16:00,446 --> 00:16:04,586
+about rotations this way
+is merely as size change is
+
+
+285
+00:16:04,586 --> 00:16:08,656
+that once you handle
+rotations as size changes,
+
+
+286
+00:16:09,366 --> 00:16:11,866
+any other situation
+that you might end up in
+
+
+287
+00:16:12,096 --> 00:16:15,166
+where your size changes,
+you will have handled
+
+
+288
+00:16:15,976 --> 00:16:18,666
+because you will have
+written your code in a way
+
+
+289
+00:16:18,666 --> 00:16:20,996
+that it can handle size
+changes especially those
+
+
+290
+00:16:21,286 --> 00:16:21,996
+that are animated.
+
+
+291
+00:16:22,606 --> 00:16:26,596
+So in order to move in this new
+direction, we're taking a lot
+
+
+292
+00:16:26,596 --> 00:16:31,236
+of API that used to exist in
+iOS 7 while it still exists
+
+
+293
+00:16:31,236 --> 00:16:34,136
+in iOS 8, but we're
+deprecating it.
+
+
+294
+00:16:34,346 --> 00:16:36,986
+This is just a subset
+of the rotation API
+
+
+295
+00:16:36,986 --> 00:16:38,906
+that is deprecated in iOS 8.
+
+
+296
+00:16:39,516 --> 00:16:45,616
+[ Applause ]
+
+
+297
+00:16:46,116 --> 00:16:49,576
+And what I really like is what
+we're replacing this with.
+
+
+298
+00:16:50,046 --> 00:16:52,136
+Thinking about things
+as size changes,
+
+
+299
+00:16:52,866 --> 00:16:54,626
+you can just implement
+one method.
+
+
+300
+00:16:55,376 --> 00:16:56,766
+We'll transition to size.
+
+
+301
+00:16:57,866 --> 00:17:00,036
+And since that takes a
+transition coordinator,
+
+
+302
+00:17:00,386 --> 00:17:02,566
+if there's interesting things
+you want to do-if you want
+
+
+303
+00:17:02,656 --> 00:17:05,516
+to animate along with that size
+change whether it be rotation
+
+
+304
+00:17:05,516 --> 00:17:07,786
+or anything else
+that changes the size
+
+
+305
+00:17:08,046 --> 00:17:12,476
+of your view controller-you can
+use that transition coordinator
+
+
+306
+00:17:12,836 --> 00:17:15,266
+to do an animation, and
+you just send in a block
+
+
+307
+00:17:15,665 --> 00:17:17,766
+with that transition coordinator
+
+
+308
+00:17:17,945 --> 00:17:20,465
+and those changes
+will be animated along
+
+
+309
+00:17:20,465 --> 00:17:23,066
+with the size change,
+which may be a rotation
+
+
+310
+00:17:23,376 --> 00:17:24,136
+of your view controller.
+
+
+311
+00:17:24,136 --> 00:17:26,576
+So in this case, I've
+used the size change
+
+
+312
+00:17:26,796 --> 00:17:28,636
+to simply change the
+number of columns
+
+
+313
+00:17:28,856 --> 00:17:32,116
+in my photo layout
+based on the new size.
+
+
+314
+00:17:33,836 --> 00:17:39,416
+So beyond just view controllers
+themselves with rotation,
+
+
+315
+00:17:39,666 --> 00:17:42,666
+we've built some view
+controllers that allow you
+
+
+316
+00:17:42,766 --> 00:17:47,416
+to adapt to the hierarchy
+from device to device in a way
+
+
+317
+00:17:47,416 --> 00:17:49,376
+that makes it so that
+you write less code.
+
+
+318
+00:17:51,056 --> 00:17:52,766
+And so, many of you have
+probably written something
+
+
+319
+00:17:52,766 --> 00:17:55,476
+like you see on the
+screen, a primary,
+
+
+320
+00:17:55,476 --> 00:17:57,406
+secondary view controller
+pattern
+
+
+321
+00:17:57,406 --> 00:17:59,676
+and you do this using a
+split view controller,
+
+
+322
+00:18:00,446 --> 00:18:02,986
+and then you embed a
+navigation controller
+
+
+323
+00:18:03,346 --> 00:18:07,556
+as the master view controller
+of that split view controller.
+
+
+324
+00:18:08,286 --> 00:18:11,266
+And then when you would go and
+take this same design pattern
+
+
+325
+00:18:11,266 --> 00:18:14,056
+of a primary, secondary view
+controller, you would end
+
+
+326
+00:18:14,056 --> 00:18:17,206
+up on the iPhone with
+a navigation controller
+
+
+327
+00:18:17,276 --> 00:18:18,556
+as your view controller,
+
+
+328
+00:18:19,066 --> 00:18:23,266
+and that meant you would have
+a device idiom check saying,
+
+
+329
+00:18:23,436 --> 00:18:24,546
+am I on an iPad?
+
+
+330
+00:18:24,796 --> 00:18:27,486
+If so, build this view
+controller hierarchy.
+
+
+331
+00:18:27,736 --> 00:18:31,086
+If not, build this other
+view controller hierarchy
+
+
+332
+00:18:31,086 --> 00:18:33,406
+with a navigation
+controller as an iPhone.
+
+
+333
+00:18:34,816 --> 00:18:37,506
+While on iPad just
+as we want to make it
+
+
+334
+00:18:37,506 --> 00:18:38,676
+so that you no longer need
+
+
+335
+00:18:38,676 --> 00:18:43,266
+to care what your interface
+orientation is, we also want
+
+
+336
+00:18:43,266 --> 00:18:44,696
+to make it so that
+you no longer need
+
+
+337
+00:18:44,696 --> 00:18:47,516
+to care what your
+interface idiom is.
+
+
+338
+00:18:47,856 --> 00:18:49,156
+And to do that we're making it
+
+
+339
+00:18:49,156 --> 00:18:51,086
+so that you can build this
+interface on an iPhone
+
+
+340
+00:18:51,436 --> 00:18:54,466
+with the split view controller
+as the root view controller.
+
+
+341
+00:18:55,526 --> 00:18:58,056
+And it will still contain
+a navigation controller
+
+
+342
+00:18:58,406 --> 00:18:59,986
+as its master view controller.
+
+
+343
+00:19:00,516 --> 00:19:04,266
+Then when you want to, you
+know, push another view
+
+
+344
+00:19:04,266 --> 00:19:06,956
+onto the stack, you can just
+call show view controller
+
+
+345
+00:19:06,956 --> 00:19:07,336
+on this.
+
+
+346
+00:19:07,366 --> 00:19:08,946
+It will do exactly
+what you would expect
+
+
+347
+00:19:09,066 --> 00:19:13,196
+from a navigation experience,
+pushing a view onto the stack,
+
+
+348
+00:19:13,596 --> 00:19:15,916
+and when you would
+execute something
+
+
+349
+00:19:15,916 --> 00:19:19,866
+that would be the equivalent
+of showing a detail on iPad,
+
+
+350
+00:19:19,866 --> 00:19:22,166
+you can just call show
+detail view controller.
+
+
+351
+00:19:22,576 --> 00:19:25,516
+And on the phone, it will do
+exactly what you would expect a
+
+
+352
+00:19:25,576 --> 00:19:28,876
+phone interface to
+do, which is push it
+
+
+353
+00:19:28,916 --> 00:19:30,456
+onto the navigation controller
+
+
+354
+00:19:30,456 --> 00:19:33,216
+because that's all that's
+available on the phone.
+
+
+355
+00:19:33,576 --> 00:19:35,306
+But that same set of APIs,
+
+
+356
+00:19:35,606 --> 00:19:38,436
+that same call sequence
+calling show view controller
+
+
+357
+00:19:38,566 --> 00:19:42,256
+and show detailed view
+controller on iPad,
+
+
+358
+00:19:42,606 --> 00:19:46,656
+will yield what the user
+would expect on iPad,
+
+
+359
+00:19:46,936 --> 00:19:48,366
+which is a detailed
+view controller
+
+
+360
+00:19:48,656 --> 00:19:49,936
+over on the right
+of the split view.
+
+
+361
+00:19:51,496 --> 00:19:54,796
+So, UISplitViewController
+is really a workhorse
+
+
+362
+00:19:54,886 --> 00:19:56,626
+to be used in iOS 8.
+
+
+363
+00:19:57,166 --> 00:20:00,316
+The key to it is that it's
+now available on all devices,
+
+
+364
+00:20:00,596 --> 00:20:02,976
+allowing you to build view
+controller hierarchies
+
+
+365
+00:20:03,246 --> 00:20:05,596
+that don't depend on
+what device you're on.
+
+
+366
+00:20:05,646 --> 00:20:08,946
+It's the same hierarchy
+on iPad and iPhone,
+
+
+367
+00:20:09,646 --> 00:20:12,246
+and split view controller
+will adapt for you.
+
+
+368
+00:20:12,696 --> 00:20:14,596
+So with that it handles
+the primary,
+
+
+369
+00:20:14,596 --> 00:20:17,576
+secondary controller pattern
+transparently for you,
+
+
+370
+00:20:17,876 --> 00:20:19,726
+and also to go along with this,
+
+
+371
+00:20:19,726 --> 00:20:23,646
+split view controller has
+a whole host of new updates
+
+
+372
+00:20:23,646 --> 00:20:25,046
+to its API and its release.
+
+
+373
+00:20:25,046 --> 00:20:27,676
+I can't even begin to
+talk about what they are.
+
+
+374
+00:20:27,906 --> 00:20:29,376
+If you'd like to
+learn more about them,
+
+
+375
+00:20:29,376 --> 00:20:31,956
+there will be a great talk
+tomorrow morning called View
+
+
+376
+00:20:31,956 --> 00:20:35,326
+Controller Advancements
+in iOS 8.
+
+
+377
+00:20:36,046 --> 00:20:39,206
+So, moving on to
+Adaptive Presentations.
+
+
+378
+00:20:39,526 --> 00:20:42,906
+This is another way that the
+view controller system is
+
+
+379
+00:20:43,026 --> 00:20:48,276
+helping you have code that
+is simple and device agnostic
+
+
+380
+00:20:49,116 --> 00:20:51,826
+but that does the right
+thing on each device.
+
+
+381
+00:20:52,126 --> 00:20:54,116
+We want to help you
+build something
+
+
+382
+00:20:54,116 --> 00:20:57,726
+like a full screen modal
+presentation on iPhone
+
+
+383
+00:20:57,906 --> 00:21:00,606
+and get something more
+appropriate like a form sheet
+
+
+384
+00:21:00,606 --> 00:21:05,766
+on iPad or even a popover,
+and do this without code
+
+
+385
+00:21:05,766 --> 00:21:07,416
+that checks what
+device you're on.
+
+
+386
+00:21:07,416 --> 00:21:09,726
+It'll be the same
+code on every device.
+
+
+387
+00:21:11,126 --> 00:21:13,586
+So in particular, one thing
+
+
+388
+00:21:13,586 --> 00:21:18,296
+that is really changing
+its paradigm is popovers.
+
+
+389
+00:21:19,206 --> 00:21:22,776
+Prior to iOS 8 popovers
+were only available on iPad,
+
+
+390
+00:21:23,046 --> 00:21:26,136
+and we would use them in the
+form of UI popover controller.
+
+
+391
+00:21:27,116 --> 00:21:29,476
+Well, that paradigm is
+changing significantly
+
+
+392
+00:21:29,786 --> 00:21:31,976
+because we're now no
+longer requiring the use
+
+
+393
+00:21:31,976 --> 00:21:34,306
+of UI popover controller
+to present a popover.
+
+
+394
+00:21:35,316 --> 00:21:38,096
+Instead, popovers are
+presented via the API
+
+
+395
+00:21:38,666 --> 00:21:42,976
+as a presentation style
+for view controller.
+
+
+396
+00:21:43,516 --> 00:21:48,546
+[ Applause ]
+
+
+397
+00:21:49,046 --> 00:21:51,976
+So that means if you present
+a popover or a view controller
+
+
+398
+00:21:51,976 --> 00:21:53,716
+with a popover presentation
+style
+
+
+399
+00:21:54,056 --> 00:21:57,796
+and the presenting view
+controller horizontalSizeClass
+
+
+400
+00:21:57,796 --> 00:21:59,736
+is regular, it would just appear
+
+
+401
+00:21:59,736 --> 00:22:02,356
+as you expect a popover
+to appear.
+
+
+402
+00:22:02,786 --> 00:22:05,686
+With that same code using a
+popover presentation style,
+
+
+403
+00:22:05,986 --> 00:22:07,626
+if the presenting view
+controller is compact
+
+
+404
+00:22:08,356 --> 00:22:10,776
+in the horizontal dimension
+like you would see on an iPhone,
+
+
+405
+00:22:11,176 --> 00:22:15,466
+it would just appear
+as an oversheet
+
+
+406
+00:22:16,476 --> 00:22:19,406
+so that you get what you
+would expect on iPhone.
+
+
+407
+00:22:20,066 --> 00:22:23,076
+So we're taking this,
+these concepts,
+
+
+408
+00:22:23,076 --> 00:22:26,126
+and we're bringing adaptivity
+to some other view controllers
+
+
+409
+00:22:26,126 --> 00:22:30,196
+that we ran like search results,
+which you may be thinking, well,
+
+
+410
+00:22:30,196 --> 00:22:31,076
+that's not a view controller.
+
+
+411
+00:22:31,076 --> 00:22:34,886
+Well, we're fixing that because
+UISearchDisplayController is
+
+
+412
+00:22:34,886 --> 00:22:37,156
+replaced by UISearchController,
+
+
+413
+00:22:37,886 --> 00:22:40,776
+and UISearchController is
+crucially a view controller
+
+
+414
+00:22:40,776 --> 00:22:44,796
+subclass, and that means that
+it can take advantage of all
+
+
+415
+00:22:44,796 --> 00:22:47,916
+of the power of adaptive
+hierarchies and presentations
+
+
+416
+00:22:48,166 --> 00:22:49,416
+that we've just talked about.
+
+
+417
+00:22:49,646 --> 00:22:52,956
+That's all at your fingertips
+with the new UISearchController.
+
+
+418
+00:22:54,226 --> 00:22:58,626
+This new UISearchController is
+also able to be fully customized
+
+
+419
+00:22:58,686 --> 00:23:02,176
+in the way that its UI
+appears and how it's presented
+
+
+420
+00:23:02,386 --> 00:23:05,156
+so that you can adapt
+the search controller
+
+
+421
+00:23:05,156 --> 00:23:08,106
+into your application even if
+you have a fully customized UI
+
+
+422
+00:23:08,666 --> 00:23:10,896
+like that in FaceTime,
+it will look the way
+
+
+423
+00:23:10,896 --> 00:23:11,956
+that you want it to look.
+
+
+424
+00:23:12,716 --> 00:23:15,656
+We're doing something
+similar with alerts in iOS 8,
+
+
+425
+00:23:16,036 --> 00:23:20,316
+and we're taking UIAlertView and
+UIActionSheet and replacing them
+
+
+426
+00:23:20,526 --> 00:23:21,816
+with UIAlertController.
+
+
+427
+00:23:22,516 --> 00:23:27,686
+[ Applause ]
+
+
+428
+00:23:28,186 --> 00:23:30,586
+I kind of thought you
+guys might like that one.
+
+
+429
+00:23:30,776 --> 00:23:33,976
+UIAlertController is also
+a UIViewController subclass
+
+
+430
+00:23:33,976 --> 00:23:37,496
+so that we can internally
+use all of the power
+
+
+431
+00:23:37,496 --> 00:23:41,696
+of adaptive presentations to our
+advantage and to your advantage
+
+
+432
+00:23:41,836 --> 00:23:42,996
+so that things look great.
+
+
+433
+00:23:43,196 --> 00:23:46,266
+Of course, UIAlertController
+adapts its styling
+
+
+434
+00:23:46,546 --> 00:23:50,196
+to the context so that when
+you present it on an iPhone
+
+
+435
+00:23:50,646 --> 00:23:54,226
+or on anything that has a
+compact horizontalSizeClass,
+
+
+436
+00:23:54,566 --> 00:23:56,746
+you get an action
+sheet appearance.
+
+
+437
+00:23:56,746 --> 00:23:58,116
+You can get an alert
+appearance also
+
+
+438
+00:23:58,116 --> 00:24:00,856
+but in the action sheet style,
+you get something that looks
+
+
+439
+00:24:00,856 --> 00:24:02,856
+like what you expect an
+action sheet to look like,
+
+
+440
+00:24:03,496 --> 00:24:06,876
+and the same code that presents
+that action sheet on an iPhone,
+
+
+441
+00:24:08,006 --> 00:24:11,206
+in a regular horizontalSizeClass
+like an iPad will appear
+
+
+442
+00:24:11,206 --> 00:24:12,936
+in a popover without you having
+
+
+443
+00:24:12,936 --> 00:24:14,986
+to write any device-checking
+code.
+
+
+444
+00:24:16,046 --> 00:24:18,246
+So you can learn
+more about how all
+
+
+445
+00:24:18,246 --> 00:24:21,646
+of this adaptive presentation
+machinery works by checking
+
+
+446
+00:24:21,646 --> 00:24:23,466
+out A Look Inside
+View Controllers,
+
+
+447
+00:24:23,536 --> 00:24:24,826
+Thursday morning in the Mission.
+
+
+448
+00:24:25,146 --> 00:24:26,796
+I've seen this talk
+a couple of times.
+
+
+449
+00:24:27,016 --> 00:24:28,506
+It's really great if you want
+
+
+450
+00:24:28,506 --> 00:24:31,416
+to understand the nitty-gritty
+behind how all these
+
+
+451
+00:24:31,446 --> 00:24:33,776
+presentation controllers
+work, and especially
+
+
+452
+00:24:33,776 --> 00:24:35,016
+if you're thinking, hey,
+
+
+453
+00:24:35,016 --> 00:24:37,456
+this built-in UIKit
+stuff is fantastic.
+
+
+454
+00:24:37,816 --> 00:24:40,636
+I want to build my own
+presentation controllers
+
+
+455
+00:24:40,866 --> 00:24:42,196
+that are also adaptive.
+
+
+456
+00:24:42,346 --> 00:24:45,066
+This talk will teach
+you how to do that.
+
+
+457
+00:24:45,336 --> 00:24:49,326
+So, what we've been talking
+about for a while is tools
+
+
+458
+00:24:49,326 --> 00:24:53,066
+that we're giving you via the
+API to write adaptive code,
+
+
+459
+00:24:53,666 --> 00:24:56,316
+but there's another step
+
+
+460
+00:24:56,606 --> 00:24:58,656
+to writing great code
+and that's Testing.
+
+
+461
+00:24:59,416 --> 00:25:01,896
+So we're giving you another
+great tool that we're excited
+
+
+462
+00:25:01,896 --> 00:25:06,106
+about in the iOS simulator
+and that is the ability
+
+
+463
+00:25:06,166 --> 00:25:10,296
+to resize the physical
+simulated hardware.
+
+
+464
+00:25:11,746 --> 00:25:14,056
+And, so I don't know if you
+can see it on the screen.
+
+
+465
+00:25:14,056 --> 00:25:17,526
+It's a little small, but
+you'll find in your SDK
+
+
+466
+00:25:17,526 --> 00:25:21,176
+if you haven't found it yet, and
+you launch the iOS simulator,
+
+
+467
+00:25:21,176 --> 00:25:23,536
+there are two new devices
+that you can select.
+
+
+468
+00:25:24,036 --> 00:25:27,826
+One is a resizable iPad and
+one is a resizable iPhone.
+
+
+469
+00:25:28,596 --> 00:25:32,236
+You can use these to actually
+punch in custom values
+
+
+470
+00:25:32,466 --> 00:25:35,906
+for the hardware size of
+the iPad or the iPhone
+
+
+471
+00:25:36,306 --> 00:25:40,136
+and test the adaptivity
+of your code on the fly.
+
+
+472
+00:25:41,516 --> 00:25:46,676
+[ Applause ]
+
+
+473
+00:25:47,176 --> 00:25:51,156
+We're really excited for how
+this kind of thing can make,
+
+
+474
+00:25:51,156 --> 00:25:52,876
+can change the way
+we architect apps
+
+
+475
+00:25:53,076 --> 00:25:56,316
+because we can architect
+things the way that we intend
+
+
+476
+00:25:56,316 --> 00:25:58,976
+and then test that our
+intentions are doing what we
+
+
+477
+00:25:59,036 --> 00:26:00,366
+thought that they
+were going to do.
+
+
+478
+00:26:01,096 --> 00:26:03,646
+So I actually stole this
+app you see on-screen
+
+
+479
+00:26:04,006 --> 00:26:07,176
+from the A Look Inside
+Presentation Controllers talk
+
+
+480
+00:26:07,176 --> 00:26:08,066
+that I just mentioned,
+
+
+481
+00:26:08,446 --> 00:26:12,656
+and it has a custom presentation
+controller, which is the view
+
+
+482
+00:26:12,656 --> 00:26:14,916
+that slides out from the right
+and it's designed to take
+
+
+483
+00:26:14,916 --> 00:26:16,136
+to take up a third
+of the screen.
+
+
+484
+00:26:16,476 --> 00:26:20,166
+I went and tested it in the
+resizable iPad to make sure
+
+
+485
+00:26:20,166 --> 00:26:21,696
+that if it was in
+a compact width,
+
+
+486
+00:26:22,096 --> 00:26:24,156
+it would do the right
+thing, and sure enough,
+
+
+487
+00:26:24,156 --> 00:26:26,036
+the guys who wrote
+this are really great
+
+
+488
+00:26:26,036 --> 00:26:27,366
+and it does do the right thing.
+
+
+489
+00:26:27,696 --> 00:26:30,206
+It presents as an
+OverFullScreen presentation
+
+
+490
+00:26:30,866 --> 00:26:31,996
+in the compact width.
+
+
+491
+00:26:33,036 --> 00:26:37,476
+So, let's talk about some of the
+new things in iOS 8 for UIKit
+
+
+492
+00:26:37,476 --> 00:26:39,066
+for customizing user interface.
+
+
+493
+00:26:39,676 --> 00:26:42,966
+Of a new class called
+UIVisualEffectView,
+
+
+494
+00:26:43,366 --> 00:26:45,646
+the UIView is subclass,
+and it's a view
+
+
+495
+00:26:45,646 --> 00:26:48,106
+that takes UIVisualEffectObject
+
+
+496
+00:26:48,446 --> 00:26:50,966
+that parameterizes
+custom rendering modes
+
+
+497
+00:26:50,966 --> 00:26:53,006
+for the view itself and
+the content inside it.
+
+
+498
+00:26:54,156 --> 00:26:56,266
+So we're shipping a
+couple of different effects
+
+
+499
+00:26:56,576 --> 00:27:00,656
+that you can use with the visual
+effect view to get the effect
+
+
+500
+00:27:00,656 --> 00:27:03,686
+that you want, and the first
+one is the UIBlurEffect.
+
+
+501
+00:27:04,516 --> 00:27:12,066
+[ Applause ]
+
+
+502
+00:27:12,566 --> 00:27:14,476
+Believe me I've been
+waiting for you guys to get
+
+
+503
+00:27:14,476 --> 00:27:17,426
+to be able to use this too.
+
+
+504
+00:27:17,576 --> 00:27:19,776
+So UIBlurEffect will
+give you a live blur
+
+
+505
+00:27:19,776 --> 00:27:21,716
+over the content
+where you use it.
+
+
+506
+00:27:22,316 --> 00:27:24,486
+The second effect
+that we're shipping is
+
+
+507
+00:27:24,486 --> 00:27:25,756
+the UIVibrancyEffect.
+
+
+508
+00:27:26,676 --> 00:27:29,866
+Now, a vibrancy effect if
+you don't know what that is,
+
+
+509
+00:27:30,016 --> 00:27:33,536
+that refers to the separators
+in Notification Center.
+
+
+510
+00:27:34,056 --> 00:27:36,396
+It may be a little bit
+hard to see on this screen,
+
+
+511
+00:27:36,396 --> 00:27:38,666
+but you can pull out your phone,
+pull down Notification Center.
+
+
+512
+00:27:39,016 --> 00:27:40,976
+Take a look at those
+beautiful color-changing,
+
+
+513
+00:27:40,976 --> 00:27:43,566
+color-dodging separators,
+and that's vibrancy.
+
+
+514
+00:27:44,556 --> 00:27:47,306
+Another thing-I heard a clap
+over there, thanks [laughter].
+
+
+515
+00:27:49,076 --> 00:27:52,416
+Another thing that we're
+introducing is Image Assets.
+
+
+516
+00:27:52,416 --> 00:27:55,656
+Image assets are something that
+encapsulate the 1X, the 2X,
+
+
+517
+00:27:55,776 --> 00:27:59,546
+the iPhone, the iPad
+representations of your image
+
+
+518
+00:27:59,546 --> 00:28:02,276
+in the home matrix thereof,
+and it comes with some API
+
+
+519
+00:28:02,276 --> 00:28:05,636
+that makes it really easy
+to get the right images
+
+
+520
+00:28:05,816 --> 00:28:08,396
+out of the image catalog
+because we can use something
+
+
+521
+00:28:08,396 --> 00:28:11,546
+like image named and
+add a parameter to it
+
+
+522
+00:28:11,876 --> 00:28:13,306
+that takes TraitCollection.
+
+
+523
+00:28:14,246 --> 00:28:15,976
+And since TraitCollections
+are hung right
+
+
+524
+00:28:15,976 --> 00:28:18,986
+on your view controllers, you
+can take that TraitCollection
+
+
+525
+00:28:18,986 --> 00:28:22,166
+from self and viewDidAppear or
+something and apply it directly
+
+
+526
+00:28:22,406 --> 00:28:24,636
+to an image view in
+your view controller,
+
+
+527
+00:28:24,636 --> 00:28:25,916
+and you'll have the right image.
+
+
+528
+00:28:26,186 --> 00:28:30,886
+The if statement that is implied
+in figuring out 1X, 2X, iPhone,
+
+
+529
+00:28:30,976 --> 00:28:33,846
+iPad, et cetera, is all encoded
+within the TraitCollection,
+
+
+530
+00:28:34,046 --> 00:28:35,616
+which you don't have
+to do any work for.
+
+
+531
+00:28:35,616 --> 00:28:38,026
+It comes directly with
+your view controller.
+
+
+532
+00:28:38,906 --> 00:28:39,546
+Thank you.
+
+
+533
+00:28:40,516 --> 00:28:43,636
+[ Applause ]
+
+
+534
+00:28:44,136 --> 00:28:47,436
+Another UI feature
+is Condensing Bars.
+
+
+535
+00:28:47,436 --> 00:28:51,946
+You may be familiar with this
+if you've used Safari on iOS 7,
+
+
+536
+00:28:51,946 --> 00:28:53,736
+and it has a similar concept.
+
+
+537
+00:28:53,736 --> 00:28:55,966
+When the user scrolls, the
+search bars [inaudible] shrink.
+
+
+538
+00:28:56,736 --> 00:29:01,256
+Well, we've extended that
+concept throughout the iOS 8 SDK
+
+
+539
+00:29:01,256 --> 00:29:05,066
+and given you access to that
+sort of behavior in your app.
+
+
+540
+00:29:05,326 --> 00:29:07,606
+So if you have a navigation
+bar, you can make it so that
+
+
+541
+00:29:07,606 --> 00:29:10,036
+when a user scrolls the
+navigation bar gets a little bit
+
+
+542
+00:29:10,036 --> 00:29:14,806
+smaller, or if you have a
+view that has a navigation bar
+
+
+543
+00:29:14,806 --> 00:29:17,466
+and a toolbar, you can make it
+so that when a user scrolls,
+
+
+544
+00:29:17,466 --> 00:29:18,556
+the navigation bar shrinks
+
+
+545
+00:29:18,556 --> 00:29:20,356
+and the toolbar disappears
+all together.
+
+
+546
+00:29:21,516 --> 00:29:26,546
+[ Applause ]
+
+
+547
+00:29:27,046 --> 00:29:29,026
+So to learn all about some
+great things you can do
+
+
+548
+00:29:29,126 --> 00:29:31,896
+with interface customizations,
+we have a talk
+
+
+549
+00:29:32,036 --> 00:29:35,476
+that is tomorrow called Creating
+Custom iOS User Interfaces.
+
+
+550
+00:29:36,916 --> 00:29:40,356
+So, I alluded earlier
+to a feature that is,
+
+
+551
+00:29:40,406 --> 00:29:41,876
+that we're pushing in iOS 8,
+
+
+552
+00:29:42,276 --> 00:29:43,896
+which is dynamic
+type everywhere.
+
+
+553
+00:29:44,026 --> 00:29:48,206
+All of Apple's apps have adapted
+or have adopted dynamic type
+
+
+554
+00:29:48,256 --> 00:29:52,006
+and are adapting to the changes
+that are required for that.
+
+
+555
+00:29:52,856 --> 00:29:54,256
+One of the things
+that we realize is
+
+
+556
+00:29:54,306 --> 00:29:57,636
+that table views are
+a very common place
+
+
+557
+00:29:57,636 --> 00:30:00,036
+where text is displayed and
+something that we would want
+
+
+558
+00:30:00,036 --> 00:30:03,376
+to respond to user
+text size changes.
+
+
+559
+00:30:03,846 --> 00:30:08,806
+And so we have made it easier
+in iOS 8 for you to respond
+
+
+560
+00:30:08,806 --> 00:30:11,106
+to these types of
+changes by allowing you
+
+
+561
+00:30:11,106 --> 00:30:12,726
+to have dynamic type rows
+
+
+562
+00:30:12,836 --> 00:30:14,786
+without actually
+implementing the delegate method
+
+
+563
+00:30:14,786 --> 00:30:15,966
+tableView:heightForRow
+AtIndexPath:.
+
+
+564
+00:30:16,516 --> 00:30:22,746
+[ Applause ]
+
+
+565
+00:30:23,246 --> 00:30:25,356
+I know that a lot of you
+have been asking for this
+
+
+566
+00:30:25,356 --> 00:30:27,566
+over the years, and
+so now our solution
+
+
+567
+00:30:27,566 --> 00:30:30,136
+to that is cells can
+encapsulate their size
+
+
+568
+00:30:30,136 --> 00:30:30,976
+and logic inside themselves.
+
+
+569
+00:30:31,516 --> 00:30:37,566
+[ Applause ]
+
+
+570
+00:30:38,066 --> 00:30:39,656
+It gets better, actually,
+
+
+571
+00:30:40,216 --> 00:30:44,096
+because the cells natively
+support autolayout.
+
+
+572
+00:30:45,036 --> 00:30:49,556
+So, yeah, it does
+get better, right?
+
+
+573
+00:30:49,556 --> 00:30:51,656
+And so if you have
+constraints in your cells,
+
+
+574
+00:30:51,876 --> 00:30:55,246
+UIKit can derive the appropriate
+height for those cells
+
+
+575
+00:30:55,246 --> 00:30:56,846
+from the content in
+them and the constraints
+
+
+576
+00:30:56,846 --> 00:30:57,706
+that you place on them.
+
+
+577
+00:30:58,456 --> 00:31:00,106
+You can do something like this
+
+
+578
+00:31:00,276 --> 00:31:02,036
+where I'm not implementing
+the delegate
+
+
+579
+00:31:02,036 --> 00:31:03,546
+method heightForRowAtIndexPath.
+
+
+580
+00:31:03,896 --> 00:31:07,166
+Instead in my cells initializer,
+I set some constraints.
+
+
+581
+00:31:07,526 --> 00:31:09,416
+In this particular
+cell, I have a text view
+
+
+582
+00:31:09,416 --> 00:31:10,576
+that will hold some content.
+
+
+583
+00:31:10,876 --> 00:31:13,576
+I set a vertical constraint
+that just adds some padding
+
+
+584
+00:31:13,866 --> 00:31:16,516
+around that text view using
+the visual format language.
+
+
+585
+00:31:16,676 --> 00:31:20,126
+I do the same thing on the
+horizontal axis, adding padding
+
+
+586
+00:31:20,126 --> 00:31:22,316
+on the right and left
+of that text view,
+
+
+587
+00:31:23,206 --> 00:31:24,836
+and then when this
+cell is created,
+
+
+588
+00:31:24,836 --> 00:31:26,086
+it will be populated
+with some text.
+
+
+589
+00:31:26,696 --> 00:31:28,716
+The table view will
+know how wide it is.
+
+
+590
+00:31:29,386 --> 00:31:32,056
+We'll be able to take the
+content that's in that text view
+
+
+591
+00:31:32,346 --> 00:31:34,786
+and the margins that I've
+set up with autolayout
+
+
+592
+00:31:34,786 --> 00:31:36,466
+and determine what
+the appropriate height
+
+
+593
+00:31:36,516 --> 00:31:38,566
+for that cell should be
+based on that content
+
+
+594
+00:31:38,566 --> 00:31:39,486
+and the width of the table.
+
+
+595
+00:31:40,796 --> 00:31:43,996
+If you really like to learn
+more about that or if you just
+
+
+596
+00:31:43,996 --> 00:31:47,256
+like to hear me talk, come
+back to this same room two days
+
+
+597
+00:31:47,256 --> 00:31:49,386
+from now where I'll
+be presenting along
+
+
+598
+00:31:49,386 --> 00:31:51,236
+with my very esteemed colleague,
+
+
+599
+00:31:51,236 --> 00:31:53,196
+the beloved Dr. Olivia
+Gunish [phonetic],
+
+
+600
+00:31:53,666 --> 00:31:55,566
+and we'll be telling
+you all about what's new
+
+
+601
+00:31:55,566 --> 00:31:57,226
+in table and collection views.
+
+
+602
+00:31:58,246 --> 00:32:03,806
+So moving on to my favorite
+feature of iOS 8 SDK.
+
+
+603
+00:32:03,806 --> 00:32:05,846
+It was actually kind of
+hard to wait until this part
+
+
+604
+00:32:05,846 --> 00:32:07,956
+of the presentation,
+but App Extensions.
+
+
+605
+00:32:08,426 --> 00:32:09,716
+App extensions are
+just fantastic.
+
+
+606
+00:32:10,516 --> 00:32:13,546
+[ Applause ]
+
+
+607
+00:32:14,046 --> 00:32:14,746
+You've seen this in the keynote,
+
+
+608
+00:32:14,906 --> 00:32:18,036
+but app extensions are just
+going to change the way
+
+
+609
+00:32:18,036 --> 00:32:20,186
+that we write apps and the way
+
+
+610
+00:32:20,356 --> 00:32:23,436
+that users enjoy what
+we produce for them.
+
+
+611
+00:32:23,796 --> 00:32:28,486
+We can do things like in
+Photos, taking a photo,
+
+
+612
+00:32:28,676 --> 00:32:31,346
+bringing up a sheet that shows
+the extensions that we have,
+
+
+613
+00:32:31,346 --> 00:32:34,116
+selecting your extension
+right there in Photos,
+
+
+614
+00:32:34,356 --> 00:32:36,856
+applying something like
+a filter to that photo,
+
+
+615
+00:32:37,046 --> 00:32:40,066
+and ending up in Photos
+where we always were.
+
+
+616
+00:32:40,326 --> 00:32:42,936
+We never had to leave the app.
+
+
+617
+00:32:43,366 --> 00:32:45,536
+And your content is right there
+
+
+618
+00:32:45,576 --> 00:32:47,146
+for the user at their
+fingertips.
+
+
+619
+00:32:47,886 --> 00:32:51,876
+We can also have sharing
+extensions, which allow users
+
+
+620
+00:32:51,876 --> 00:32:55,046
+to share to your
+sharing service right
+
+
+621
+00:32:55,046 --> 00:32:56,196
+from whatever app they're in.
+
+
+622
+00:32:56,196 --> 00:32:59,036
+They can share photos,
+videos, text, and other content
+
+
+623
+00:32:59,286 --> 00:33:01,646
+without having to do a
+do-si-do over to your app.
+
+
+624
+00:33:02,206 --> 00:33:03,886
+This will be a better
+experience for the user,
+
+
+625
+00:33:03,886 --> 00:33:07,896
+and it means more people
+can share to your app
+
+
+626
+00:33:08,036 --> 00:33:10,416
+because it will be less
+work for them to do so.
+
+
+627
+00:33:11,326 --> 00:33:14,636
+We also have Notification
+Center widgets.
+
+
+628
+00:33:14,966 --> 00:33:17,626
+You can write a fantastic
+Notification Center widget
+
+
+629
+00:33:17,856 --> 00:33:21,076
+that can end up on my phone
+and I can see it every day,
+
+
+630
+00:33:21,076 --> 00:33:24,766
+and I can be extremely grateful
+for you, to you for doing that.
+
+
+631
+00:33:25,696 --> 00:33:28,306
+So app extensions
+open a lot of doors.
+
+
+632
+00:33:28,866 --> 00:33:31,346
+Some of the big things in iOS 8
+
+
+633
+00:33:31,346 --> 00:33:34,016
+that you can use app extensions
+for, of course, Photos,
+
+
+634
+00:33:34,506 --> 00:33:37,136
+sharing, Notification Center.
+
+
+635
+00:33:37,476 --> 00:33:40,536
+It's also possible
+to build extensions
+
+
+636
+00:33:40,536 --> 00:33:43,366
+that don't actually have a user
+interface, and a great example
+
+
+637
+00:33:43,366 --> 00:33:46,156
+of this is the Bing
+Translate action without UI
+
+
+638
+00:33:46,726 --> 00:33:49,256
+that we saw in the keynote.
+
+
+639
+00:33:49,406 --> 00:33:52,866
+Additionally, you can build
+custom file providers.
+
+
+640
+00:33:52,866 --> 00:33:56,596
+This is something that will
+allow the user to use documents
+
+
+641
+00:33:56,596 --> 00:33:59,606
+from your cloud storage
+solution as seamlessly
+
+
+642
+00:33:59,606 --> 00:34:01,976
+as if those documents
+were on iCloud drive,
+
+
+643
+00:34:02,356 --> 00:34:06,116
+just by your extension providing
+them to apps within the system.
+
+
+644
+00:34:06,726 --> 00:34:08,795
+Additionally, iOS
+8 makes it possible
+
+
+645
+00:34:08,795 --> 00:34:10,226
+to write custom keyboards
+
+
+646
+00:34:10,226 --> 00:34:11,906
+that will be shared
+throughout the system.
+
+
+647
+00:34:12,516 --> 00:34:14,545
+[ Applause ]
+
+
+648
+00:34:15,045 --> 00:34:15,976
+The front row likes that.
+
+
+649
+00:34:16,126 --> 00:34:17,866
+Yeah. To learn more about
+building app extensions,
+
+
+650
+00:34:18,036 --> 00:34:20,806
+we have two great talks today
+and tomorrow that will explain
+
+
+651
+00:34:20,806 --> 00:34:21,906
+to you everything
+you need to know
+
+
+652
+00:34:22,146 --> 00:34:26,065
+about building upon this just
+absolutely tremendous technology
+
+
+653
+00:34:26,065 --> 00:34:28,916
+that is just going
+to-iOS 8 is the sign post.
+
+
+654
+00:34:28,916 --> 00:34:30,036
+It's different from here on out.
+
+
+655
+00:34:31,505 --> 00:34:33,466
+So some updates to
+notifications.
+
+
+656
+00:34:34,626 --> 00:34:37,846
+Notifications have changed a
+bit in particular in the way
+
+
+657
+00:34:37,846 --> 00:34:40,815
+that we model how users approve
+
+
+658
+00:34:40,815 --> 00:34:42,266
+of notifications
+that appear onscreen.
+
+
+659
+00:34:43,376 --> 00:34:45,806
+It's always been
+true that users have
+
+
+660
+00:34:45,886 --> 00:34:52,686
+to approve push notifications,
+and it wasn't true previously
+
+
+661
+00:34:52,686 --> 00:34:55,176
+that users would have to
+approve local notifications.
+
+
+662
+00:34:55,176 --> 00:34:56,496
+You could show a
+local notification
+
+
+663
+00:34:56,806 --> 00:35:00,096
+without the user
+giving approval to that.
+
+
+664
+00:35:00,096 --> 00:35:03,036
+So in iOS 8, any
+notification that shows UI
+
+
+665
+00:35:03,036 --> 00:35:04,646
+on the screen is going
+
+
+666
+00:35:04,646 --> 00:35:07,206
+to require one-time
+approval from the user.
+
+
+667
+00:35:08,016 --> 00:35:11,416
+The flip side to that is you
+can send push notifications
+
+
+668
+00:35:11,416 --> 00:35:14,966
+that don't show UI to the
+user, that simply shuttle data
+
+
+669
+00:35:14,966 --> 00:35:17,796
+to your app, and those
+will not, by default,
+
+
+670
+00:35:17,986 --> 00:35:20,216
+require user approval.
+
+
+671
+00:35:20,466 --> 00:35:22,466
+So you can just send
+notifications to your app,
+
+
+672
+00:35:22,466 --> 00:35:23,956
+and the user doesn't have to,
+doesn't have to worry about it.
+
+
+673
+00:35:24,516 --> 00:35:26,966
+[ Applause ]
+
+
+674
+00:35:27,466 --> 00:35:30,436
+Notifications can now also have
+actions associated with them.
+
+
+675
+00:35:30,926 --> 00:35:32,766
+That is, if you want
+to display something
+
+
+676
+00:35:32,766 --> 00:35:36,476
+that has a reply button or other
+actions, those can be tacked
+
+
+677
+00:35:36,656 --> 00:35:38,016
+on to your notifications,
+
+
+678
+00:35:38,016 --> 00:35:41,276
+and whatever action the user
+selects, that will be shuttled
+
+
+679
+00:35:41,276 --> 00:35:43,186
+over to your app for
+your custom logic
+
+
+680
+00:35:43,236 --> 00:35:45,216
+to be invoked based
+on that action.
+
+
+681
+00:35:46,116 --> 00:35:49,276
+Notifications can also be
+location based in iOS 8,
+
+
+682
+00:35:49,556 --> 00:35:52,466
+so you can pop up a notification
+when the user enters
+
+
+683
+00:35:52,466 --> 00:35:54,886
+or exits a significant
+area that you want
+
+
+684
+00:35:54,976 --> 00:35:55,976
+to show them a notification
+about.
+
+
+685
+00:35:56,516 --> 00:36:01,616
+[ Applause ]
+
+
+686
+00:36:02,116 --> 00:36:05,396
+Finally, we've increased
+the payload push size
+
+
+687
+00:36:05,526 --> 00:36:07,956
+from 256 bytes to 1K.
+
+
+688
+00:36:08,516 --> 00:36:11,576
+[ Applause ]
+
+
+689
+00:36:12,076 --> 00:36:13,236
+Four times the love
+for everyone.
+
+
+690
+00:36:13,586 --> 00:36:17,606
+If you want to learn more about
+this, there's a great talk,
+
+
+691
+00:36:17,606 --> 00:36:20,816
+What's New in iOS Notifications,
+tomorrow afternoon in Nob Hill.
+
+
+692
+00:36:21,766 --> 00:36:24,196
+So we're introducing
+a doc picker in iOS 8.
+
+
+693
+00:36:25,226 --> 00:36:27,246
+And it looks beautiful-looks
+like that.
+
+
+694
+00:36:27,556 --> 00:36:31,296
+It's, of course, available
+on iPad and iPhone,
+
+
+695
+00:36:31,726 --> 00:36:34,186
+and what's great about this
+is we now have system UI
+
+
+696
+00:36:34,836 --> 00:36:36,256
+for selecting documents.
+
+
+697
+00:36:37,006 --> 00:36:40,726
+You no longer have to write
+completely custom code starting
+
+
+698
+00:36:40,726 --> 00:36:43,796
+from scratch to give a user a
+document picking experience.
+
+
+699
+00:36:44,106 --> 00:36:46,216
+If you want to be able to
+interact with documents
+
+
+700
+00:36:46,486 --> 00:36:48,176
+in your application,
+you can use the
+
+
+701
+00:36:48,176 --> 00:36:51,456
+UIDocumentPickerViewController
+[inaudible] and, of course,
+
+
+702
+00:36:51,496 --> 00:36:53,946
+since it's a view controller
+it gets to take advantage
+
+
+703
+00:36:53,946 --> 00:36:56,746
+of all the adaptive presentation
+and hierarchy machinery
+
+
+704
+00:36:57,076 --> 00:36:58,246
+that we talked about earlier.
+
+
+705
+00:36:59,116 --> 00:37:02,876
+This document picker has access
+to documents in the local scope,
+
+
+706
+00:37:03,126 --> 00:37:05,516
+and seamlessly also in
+the iCloud drive scope,
+
+
+707
+00:37:06,076 --> 00:37:07,576
+and finally anybody
+
+
+708
+00:37:07,576 --> 00:37:09,836
+who is supplying a
+document provider extension
+
+
+709
+00:37:09,836 --> 00:37:12,646
+to the system, those
+documents will also appear
+
+
+710
+00:37:12,646 --> 00:37:13,746
+in the document picker.
+
+
+711
+00:37:13,926 --> 00:37:18,136
+It's all similarly completely
+seamless and easy for the user
+
+
+712
+00:37:18,556 --> 00:37:21,776
+and your application just gets
+a URL back for the document
+
+
+713
+00:37:21,776 --> 00:37:22,846
+that it needs to open.
+
+
+714
+00:37:23,696 --> 00:37:26,006
+To learn more about
+document picker support,
+
+
+715
+00:37:26,006 --> 00:37:28,136
+we've got a great talk on
+Building a Document-based App
+
+
+716
+00:37:28,136 --> 00:37:29,316
+in the Marina on Thursday.
+
+
+717
+00:37:30,376 --> 00:37:33,556
+A quick word about
+SDK Modernization.
+
+
+718
+00:37:33,876 --> 00:37:36,876
+We made a few changes throughout
+the headers in the Cocoa
+
+
+719
+00:37:36,876 --> 00:37:41,206
+and Cocoa Touch APIs, and I just
+want to give you a quick rundown
+
+
+720
+00:37:41,206 --> 00:37:43,146
+of what that's all about.
+
+
+721
+00:37:43,146 --> 00:37:46,216
+We've annotated all the
+designated initializers of class
+
+
+722
+00:37:46,366 --> 00:37:48,396
+with an
+NS-DESIGNATED-INITIALIZER
+
+
+723
+00:37:48,396 --> 00:37:49,506
+annotation so you know
+
+
+724
+00:37:49,506 --> 00:37:52,546
+which ones are the designated
+initializers, which, of course,
+
+
+725
+00:37:52,546 --> 00:37:53,566
+you need to know if you're going
+
+
+726
+00:37:53,566 --> 00:37:55,466
+to be a good subclassing
+citizen.
+
+
+727
+00:37:56,476 --> 00:37:59,646
+Additionally, all
+of the return types
+
+
+728
+00:37:59,646 --> 00:38:02,546
+for initializers have changed
+from id to instancetype.
+
+
+729
+00:38:04,516 --> 00:38:06,586
+[ Applause ]
+
+
+730
+00:38:07,086 --> 00:38:09,556
+That will make some of
+our autocomplete better.
+
+
+731
+00:38:09,556 --> 00:38:12,256
+And we've introduced
+additional properties in place
+
+
+732
+00:38:12,256 --> 00:38:14,786
+of classic Cocoa
+methods, in particular
+
+
+733
+00:38:14,786 --> 00:38:17,956
+like the NS object protocol
+where hash used to be a method.
+
+
+734
+00:38:17,956 --> 00:38:20,916
+Hash is now a property
+for NS object.
+
+
+735
+00:38:21,396 --> 00:38:24,936
+And these changes enhance
+the experience for use
+
+
+736
+00:38:24,936 --> 00:38:28,056
+with the Cocoa and Cocoa Touch
+APIs, both in Objective C and,
+
+
+737
+00:38:28,056 --> 00:38:30,006
+in particularly, with Swift.
+
+
+738
+00:38:31,666 --> 00:38:38,106
+So, Handoff is an opportunity
+for your app to participate
+
+
+739
+00:38:38,396 --> 00:38:40,106
+in a feature that we talked
+
+
+740
+00:38:40,106 --> 00:38:43,876
+about in the keynote,
+which is continuity.
+
+
+741
+00:38:44,116 --> 00:38:49,256
+Continuity is the thing that
+allows users to do something
+
+
+742
+00:38:49,256 --> 00:38:54,206
+like start an email on their
+phone, go to their computer,
+
+
+743
+00:38:55,076 --> 00:38:57,936
+finish that email, and it's
+all seamless experience.
+
+
+744
+00:38:58,546 --> 00:39:02,106
+Well, with handoff, we're
+giving you the opportunity
+
+
+745
+00:39:02,286 --> 00:39:05,596
+to have user activities of
+your own so that they can do
+
+
+746
+00:39:05,596 --> 00:39:09,696
+that not just with mail or
+with other built-in activities,
+
+
+747
+00:39:10,046 --> 00:39:12,006
+but with your activities
+as well.
+
+
+748
+00:39:13,106 --> 00:39:17,776
+So handoff has a built-in
+support for activities in AppKit
+
+
+749
+00:39:17,956 --> 00:39:20,896
+and UIKit, both natively
+support activities
+
+
+750
+00:39:20,896 --> 00:39:26,816
+in their document
+classes, and you'll be able
+
+
+751
+00:39:26,816 --> 00:39:28,176
+to use that out of the box.
+
+
+752
+00:39:28,406 --> 00:39:31,846
+To learn more about handoff,
+check out the Adopting Handoff
+
+
+753
+00:39:31,846 --> 00:39:34,036
+in iOS talk tomorrow
+in the Mission.
+
+
+754
+00:39:35,196 --> 00:39:39,336
+So, there's a whole lot of
+stuff that has changed here.
+
+
+755
+00:39:40,646 --> 00:39:42,166
+Lots of new things.
+
+
+756
+00:39:42,166 --> 00:39:46,966
+We also have several
+brand-new frameworks in iOS 8,
+
+
+757
+00:39:47,246 --> 00:39:50,376
+and I don't really have time
+to talk in any kind of depth
+
+
+758
+00:39:50,376 --> 00:39:53,316
+about these things, but I
+want to give you an idea,
+
+
+759
+00:39:53,316 --> 00:39:57,556
+a taste of what is out there so
+you can see what other sessions
+
+
+760
+00:39:57,556 --> 00:39:58,696
+that you'd like to attend
+
+
+761
+00:39:58,736 --> 00:40:00,866
+because these frameworks
+allow you to build apps
+
+
+762
+00:40:00,896 --> 00:40:04,006
+that you simply could
+not build before iOS 8.
+
+
+763
+00:40:04,336 --> 00:40:05,136
+And that's fantastic.
+
+
+764
+00:40:05,826 --> 00:40:08,246
+So, of course, first is one
+that we've already touched on.
+
+
+765
+00:40:08,526 --> 00:40:12,856
+Notification Center will
+support you building extensions
+
+
+766
+00:40:12,856 --> 00:40:15,296
+that add widgets to the
+Notification Center on iOS.
+
+
+767
+00:40:15,346 --> 00:40:17,666
+So that's
+notificationcenter.framework,
+
+
+768
+00:40:18,006 --> 00:40:20,666
+and you can learn
+about that by checking
+
+
+769
+00:40:20,666 --> 00:40:23,366
+out the Building
+App Extensions talk.
+
+
+770
+00:40:24,546 --> 00:40:26,646
+We also have a brand-new
+Photos framework.
+
+
+771
+00:40:27,186 --> 00:40:30,136
+This will give you
+complete read/write access
+
+
+772
+00:40:30,526 --> 00:40:32,176
+to the photos library.
+
+
+773
+00:40:32,726 --> 00:40:36,166
+This means you can do whatever
+your application needs to do
+
+
+774
+00:40:36,346 --> 00:40:38,866
+to provide the best user
+experience possible.
+
+
+775
+00:40:39,256 --> 00:40:40,536
+It can delete photos.
+
+
+776
+00:40:40,676 --> 00:40:42,096
+It can do non-destructive edits.
+
+
+777
+00:40:42,096 --> 00:40:44,196
+It can do whatever
+it needs to do
+
+
+778
+00:40:44,416 --> 00:40:46,196
+so that the user
+gets what they need.
+
+
+779
+00:40:47,416 --> 00:40:50,736
+While this isn't actually
+in the Photos talk
+
+
+780
+00:40:51,316 --> 00:40:54,356
+or in the Photos framework, I
+do want to take this opportunity
+
+
+781
+00:40:54,356 --> 00:40:57,516
+to point out that iOS 8 also
+brings custom Core Image
+
+
+782
+00:40:57,586 --> 00:41:01,026
+filters, and so you'll be able
+to use these on your photos
+
+
+783
+00:41:01,256 --> 00:41:02,976
+as well as videos in iOS 8.
+
+
+784
+00:41:03,516 --> 00:41:09,546
+[ Applause ]
+
+
+785
+00:41:10,046 --> 00:41:11,596
+With brand-new framework
+called CloudKit,
+
+
+786
+00:41:12,186 --> 00:41:14,766
+and this framework is
+absolutely spectacular.
+
+
+787
+00:41:14,766 --> 00:41:17,536
+I really can't say enough
+good things about it.
+
+
+788
+00:41:17,836 --> 00:41:20,686
+It gives you more control than
+you ever had over the data
+
+
+789
+00:41:20,686 --> 00:41:22,296
+that you put in the cloud.
+
+
+790
+00:41:23,316 --> 00:41:27,306
+And what really makes this
+spectacular is you can use
+
+
+791
+00:41:27,306 --> 00:41:30,636
+CloudKit to build a
+client server application
+
+
+792
+00:41:30,866 --> 00:41:32,156
+without building
+the server side.
+
+
+793
+00:41:32,826 --> 00:41:35,436
+You can define that
+on the client side
+
+
+794
+00:41:35,436 --> 00:41:37,486
+and let Apple take
+care of it for you.
+
+
+795
+00:41:38,196 --> 00:41:40,126
+So, you know, I can't even wait
+
+
+796
+00:41:40,126 --> 00:41:42,386
+to see what startups
+come out of this.
+
+
+797
+00:41:42,386 --> 00:41:45,886
+This will be fantastic, and
+we love CloudKit so much
+
+
+798
+00:41:46,246 --> 00:41:48,466
+that we built iCloud
+Drive and Photos
+
+
+799
+00:41:48,466 --> 00:41:50,016
+in the cloud on top of it.
+
+
+800
+00:41:50,206 --> 00:41:51,726
+It's a fantastic technology,
+
+
+801
+00:41:51,726 --> 00:41:54,736
+and you'll love building
+your apps on top of it.
+
+
+802
+00:41:54,976 --> 00:41:56,866
+Another new framework
+is HealthKit.
+
+
+803
+00:41:57,226 --> 00:42:00,466
+HealthKit brings all of
+the biometric information
+
+
+804
+00:42:00,466 --> 00:42:01,696
+from the various devices
+
+
+805
+00:42:01,696 --> 00:42:04,276
+that your user has
+all into one place.
+
+
+806
+00:42:04,276 --> 00:42:08,696
+So this information is shared
+across apps rather than siloed
+
+
+807
+00:42:08,696 --> 00:42:12,436
+into one app that has one
+biometric device information
+
+
+808
+00:42:12,436 --> 00:42:15,236
+and another app that has another
+biometric device information.
+
+
+809
+00:42:15,536 --> 00:42:16,346
+It's all shared.
+
+
+810
+00:42:16,406 --> 00:42:21,116
+So you can use that to
+create a perfect experience
+
+
+811
+00:42:21,116 --> 00:42:23,906
+for your user based on
+all of the biometric data
+
+
+812
+00:42:23,906 --> 00:42:26,386
+that is available from
+all of their accessories.
+
+
+813
+00:42:27,466 --> 00:42:30,136
+Similarly, we are
+introducing a HomeKit,
+
+
+814
+00:42:30,576 --> 00:42:33,186
+which does the same thing
+for connected home devices.
+
+
+815
+00:42:33,456 --> 00:42:36,356
+It puts all of that
+information in one place
+
+
+816
+00:42:36,696 --> 00:42:39,336
+so that you can build an
+app that does everything
+
+
+817
+00:42:39,336 --> 00:42:43,316
+that a user needs for their
+connected home, accessing all
+
+
+818
+00:42:43,316 --> 00:42:44,956
+of those things in one place.
+
+
+819
+00:42:44,956 --> 00:42:48,646
+We also have a new local
+authentication framework.
+
+
+820
+00:42:49,806 --> 00:42:51,626
+This allows you to
+leverage the power
+
+
+821
+00:42:51,626 --> 00:42:54,976
+of biometric authentication
+in your own app.
+
+
+822
+00:42:55,156 --> 00:42:57,426
+And as you probably know from
+having watched the keynote,
+
+
+823
+00:42:57,616 --> 00:42:58,656
+this means that you get
+
+
+824
+00:42:58,656 --> 00:43:01,356
+to use Touch ID right
+inside your application.
+
+
+825
+00:43:01,666 --> 00:43:03,926
+That's great and we have a
+talk that you can go check
+
+
+826
+00:43:04,446 --> 00:43:06,386
+out to learn more
+about how to do that.
+
+
+827
+00:43:07,296 --> 00:43:10,226
+We're also bringing
+SceneKit to iOS 8.
+
+
+828
+00:43:11,086 --> 00:43:14,506
+SceneKit is a great framework
+for building 3D renderings,
+
+
+829
+00:43:14,916 --> 00:43:17,136
+and we've had it on
+the Mac for a year.
+
+
+830
+00:43:17,376 --> 00:43:18,826
+We're now bringing it to iOS.
+
+
+831
+00:43:18,826 --> 00:43:21,236
+Now we have a great
+cross-platform solution
+
+
+832
+00:43:21,476 --> 00:43:22,906
+for doing 3D rendering.
+
+
+833
+00:43:23,116 --> 00:43:25,406
+Those of you who have already
+used SceneKit, you're going
+
+
+834
+00:43:25,406 --> 00:43:26,816
+to love this; those
+of you who haven't,
+
+
+835
+00:43:27,086 --> 00:43:28,686
+you're also going to love it.
+
+
+836
+00:43:29,656 --> 00:43:32,426
+Everybody is going to love it.
+
+
+837
+00:43:32,426 --> 00:43:33,966
+So that's all the
+brand new frameworks.
+
+
+838
+00:43:34,036 --> 00:43:35,586
+That's not all the
+changes though.
+
+
+839
+00:43:35,586 --> 00:43:37,556
+I'll point out one
+other framework
+
+
+840
+00:43:37,596 --> 00:43:40,486
+that has made some significant
+changes, which is Core Location.
+
+
+841
+00:43:40,906 --> 00:43:43,516
+Core location now
+makes it possible
+
+
+842
+00:43:43,756 --> 00:43:46,716
+to get the user's
+location details indoors,
+
+
+843
+00:43:47,046 --> 00:43:50,496
+and by that I mean, you can
+get what floor the user is on,
+
+
+844
+00:43:50,736 --> 00:43:51,976
+not just where they are.
+
+
+845
+00:43:52,516 --> 00:43:57,646
+[ Applause ]
+
+
+846
+00:43:58,146 --> 00:43:59,226
+Isn't it great to build apps
+
+
+847
+00:43:59,226 --> 00:44:00,936
+that you just have
+never built before?
+
+
+848
+00:44:01,426 --> 00:44:03,376
+I'm excited.
+
+
+849
+00:44:03,796 --> 00:44:05,556
+We also have new APIs
+and core location
+
+
+850
+00:44:05,556 --> 00:44:08,416
+that will make it
+easier to save power
+
+
+851
+00:44:08,416 --> 00:44:10,746
+when getting significant
+location updates.
+
+
+852
+00:44:10,746 --> 00:44:12,306
+So that'll be better
+for everyone.
+
+
+853
+00:44:12,306 --> 00:44:14,326
+I'm a big power magnet myself,
+
+
+854
+00:44:14,646 --> 00:44:17,206
+so using these will enhance
+everyone's experience.
+
+
+855
+00:44:17,666 --> 00:44:20,866
+We're also changing
+the user approval model
+
+
+856
+00:44:20,866 --> 00:44:24,816
+around core location so
+that users can now choose
+
+
+857
+00:44:24,816 --> 00:44:28,486
+to approve your app either
+all the time for location use,
+
+
+858
+00:44:28,656 --> 00:44:30,576
+or only give it,
+you can just request
+
+
+859
+00:44:30,626 --> 00:44:32,386
+to be approved only
+when you're in use.
+
+
+860
+00:44:32,386 --> 00:44:34,246
+So the user can rest assured
+
+
+861
+00:44:34,486 --> 00:44:37,086
+that your app is
+not using location
+
+
+862
+00:44:37,236 --> 00:44:40,236
+and not draining the battery,
+not stealing any secrets
+
+
+863
+00:44:40,376 --> 00:44:42,076
+when your app is not in use.
+
+
+864
+00:44:43,186 --> 00:44:44,576
+So that's a change
+to core location.
+
+
+865
+00:44:45,926 --> 00:44:51,176
+So, to finish up here I
+want to reiterate some ideas
+
+
+866
+00:44:51,176 --> 00:44:56,226
+about the design philosophy
+because, really, iOS 8 is a mark
+
+
+867
+00:44:56,226 --> 00:45:00,116
+in the sand for how we think
+about building apps in addition
+
+
+868
+00:45:00,336 --> 00:45:01,726
+to all of its new API.
+
+
+869
+00:45:03,156 --> 00:45:06,836
+So, we're going to be centered
+around building reusable code
+
+
+870
+00:45:06,836 --> 00:45:11,106
+that is device agnostic, that is
+interface orientation agnostic,
+
+
+871
+00:45:11,476 --> 00:45:16,046
+that is adaptive, so we can use
+the tools that are presented
+
+
+872
+00:45:16,126 --> 00:45:19,676
+in iOS 8 to simplify our
+layout by using things
+
+
+873
+00:45:19,676 --> 00:45:21,856
+like size classes so
+we're not worrying
+
+
+874
+00:45:21,856 --> 00:45:24,446
+about what the specific
+size of things are.
+
+
+875
+00:45:24,696 --> 00:45:27,496
+We use a size class to make
+a determination whether it's
+
+
+876
+00:45:27,496 --> 00:45:30,286
+compact or regular, and
+we can test those things
+
+
+877
+00:45:30,286 --> 00:45:32,396
+out using the resizable
+simulator.
+
+
+878
+00:45:33,986 --> 00:45:39,546
+We can use the iPhone and
+iPad code in a unified way
+
+
+879
+00:45:39,856 --> 00:45:42,916
+so that we only have one bit of
+code that does the right thing
+
+
+880
+00:45:42,916 --> 00:45:45,696
+on all devices, and we're
+bringing adaptive view
+
+
+881
+00:45:45,696 --> 00:45:48,666
+controller technology to you
+that will allow you to do that.
+
+
+882
+00:45:49,476 --> 00:45:52,726
+You can integrate into the
+system now using app extensions
+
+
+883
+00:45:52,996 --> 00:45:56,196
+so that the user can do
+more things in more places
+
+
+884
+00:45:56,196 --> 00:45:59,336
+than ever before, and your
+app can be more useful
+
+
+885
+00:45:59,336 --> 00:46:00,576
+for them than it's ever done.
+
+
+886
+00:46:01,236 --> 00:46:04,056
+And finally, as we just covered
+
+
+887
+00:46:04,056 --> 00:46:06,476
+since we've introduced
+several brand new frameworks,
+
+
+888
+00:46:06,476 --> 00:46:08,386
+there are things that you
+just could never do before
+
+
+889
+00:46:08,386 --> 00:46:09,476
+that now you can do.
+
+
+890
+00:46:09,736 --> 00:46:12,406
+You can expand your
+toolset using all
+
+
+891
+00:46:12,406 --> 00:46:14,206
+of these brand-new things.
+
+
+892
+00:46:14,966 --> 00:46:18,306
+So, if you want more information
+about anything in this talk,
+
+
+893
+00:46:18,946 --> 00:46:19,926
+you can always talk
+
+
+894
+00:46:19,926 --> 00:46:23,376
+to our inimitable frameworks
+evangelist Jake Behrens.
+
+
+895
+00:46:23,926 --> 00:46:26,596
+Check out our documentation
+on developer.apple.com,
+
+
+896
+00:46:26,596 --> 00:46:28,226
+or hit up the dev
+forms where people
+
+
+897
+00:46:28,226 --> 00:46:29,626
+like me can answer
+your questions.
+
+
+898
+00:46:30,286 --> 00:46:34,136
+I have a whole bunch of related
+sessions that you can check out.
+
+
+899
+00:46:34,136 --> 00:46:35,276
+I'll get out of your way.
+
+
+900
+00:46:35,456 --> 00:46:38,606
+I don't want to block anyone
+from writing this down.
+
+
+901
+00:46:38,606 --> 00:46:41,966
+There's actually another screen
+after this for anyone who wants
+
+
+902
+00:46:41,966 --> 00:46:45,106
+to check out more
+related sessions.
+
+
+903
+00:46:45,106 --> 00:46:47,006
+I don't see too many
+people using pencil.
+
+
+904
+00:46:47,946 --> 00:46:49,776
+These are the additional
+related sessions.
+
+
+905
+00:46:50,306 --> 00:46:54,726
+And we also have a lot of labs.
+
+
+906
+00:46:54,846 --> 00:46:57,586
+Of course, WWDC is
+packed with labs all week,
+
+
+907
+00:46:58,736 --> 00:47:02,456
+more than I could ever
+even bother to call out,
+
+
+908
+00:47:02,456 --> 00:47:05,656
+but Cocoa Touch Labs are-the
+next three days you'll be able
+
+
+909
+00:47:05,656 --> 00:47:08,206
+to find me and a couple
+dozen of my colleagues
+
+
+910
+00:47:08,256 --> 00:47:10,246
+to answer all your
+questions related
+
+
+911
+00:47:10,246 --> 00:47:12,566
+to building UIKit applications.
+
+
+912
+00:47:13,046 --> 00:47:17,426
+And I really hope you're able to
+get an idea of all that we have
+
+
+913
+00:47:17,426 --> 00:47:19,246
+to offer in this WWDC, and I
+hope you have a fantastic week.
+
+
+914
+00:47:19,376 --> 00:47:19,926
+Thanks for coming.
+
+
+915
+00:47:20,516 --> 00:47:24,500
+[ Applause ]
+

@@ -1,0 +1,5227 @@
+1
+00:00:00,506 --> 00:00:11,796
+[ Silence ]
+
+
+2
+00:00:12,296 --> 00:00:12,976
+>> Good morning.
+
+
+3
+00:00:13,516 --> 00:00:18,546
+[ Applause ]
+
+
+4
+00:00:19,046 --> 00:00:19,236
+All right.
+
+
+5
+00:00:19,416 --> 00:00:20,346
+You're happy to see me.
+
+
+6
+00:00:20,346 --> 00:00:20,776
+That's good.
+
+
+7
+00:00:20,956 --> 00:00:24,996
+My name's Will Turner and with
+my colleague, Brooke Callahan,
+
+
+8
+00:00:24,996 --> 00:00:28,376
+we'll be talking to you
+about testing in Xcode 6.
+
+
+9
+00:00:29,396 --> 00:00:31,286
+And let's get started.
+
+
+10
+00:00:32,006 --> 00:00:34,066
+So we're going to cover
+several topics today.
+
+
+11
+00:00:34,066 --> 00:00:36,996
+To start off, to just
+kind of motivate this.
+
+
+12
+00:00:37,436 --> 00:00:38,866
+Think about the benefits
+of testing.
+
+
+13
+00:00:38,866 --> 00:00:40,626
+Why should we bother
+in the first place?
+
+
+14
+00:00:41,266 --> 00:00:45,166
+Then we'll get into what it
+takes to add test to a project.
+
+
+15
+00:00:45,356 --> 00:00:47,226
+Maybe you have old projects
+that don't have tests.
+
+
+16
+00:00:47,226 --> 00:00:52,386
+And then we'll talk about
+some new features in Xcode 6
+
+
+17
+00:00:52,756 --> 00:00:55,136
+which allow you to test
+asynchronous systems
+
+
+18
+00:00:55,176 --> 00:00:57,636
+and then also testing
+features that allow you
+
+
+19
+00:00:57,636 --> 00:00:59,866
+to catch performance
+regressions.
+
+
+20
+00:01:02,646 --> 00:01:06,876
+So why should we test?
+
+
+21
+00:01:07,096 --> 00:01:10,886
+Obviously, every moment we spend
+developing is an investment
+
+
+22
+00:01:10,886 --> 00:01:11,596
+of a resource.
+
+
+23
+00:01:11,596 --> 00:01:14,216
+Our resource is time
+and our colleagues
+
+
+24
+00:01:14,216 --> 00:01:16,866
+for maintaining the code
+base that we create.
+
+
+25
+00:01:17,976 --> 00:01:18,706
+So the obvious thing
+
+
+26
+00:01:18,706 --> 00:01:21,106
+about testing is it
+helps you find bugs
+
+
+27
+00:01:21,106 --> 00:01:24,476
+and there's many classes of
+bugs that you find with testing.
+
+
+28
+00:01:24,776 --> 00:01:26,996
+They are regressions so cases
+
+
+29
+00:01:26,996 --> 00:01:30,036
+where you've shipped your
+product, you make a code change,
+
+
+30
+00:01:30,036 --> 00:01:33,236
+add a feature and in the
+process something breaks
+
+
+31
+00:01:33,236 --> 00:01:36,356
+and now your 1.1
+or 1.2 has a bug
+
+
+32
+00:01:36,356 --> 00:01:37,796
+and your customers are unhappy.
+
+
+33
+00:01:38,346 --> 00:01:39,476
+We hate regressions.
+
+
+34
+00:01:40,036 --> 00:01:41,506
+Tests are a fantastic way
+
+
+35
+00:01:41,506 --> 00:01:43,936
+to ensure your code ships
+without regressions.
+
+
+36
+00:01:44,656 --> 00:01:47,246
+There's also bugs where
+performance changes.
+
+
+37
+00:01:47,246 --> 00:01:49,016
+You make a change in your code
+
+
+38
+00:01:49,016 --> 00:01:51,326
+and now suddenly something
+is taking a lot more time
+
+
+39
+00:01:51,326 --> 00:01:54,856
+to execute and maybe that's only
+on some devices and not others.
+
+
+40
+00:01:55,326 --> 00:01:57,806
+So tests again can
+be a great way
+
+
+41
+00:01:57,876 --> 00:01:59,546
+to catch performance
+regressions.
+
+
+42
+00:02:00,176 --> 00:02:04,036
+The other sort of less talked
+about and less obvious benefit
+
+
+43
+00:02:04,036 --> 00:02:06,836
+of testing is that it
+codifies the requirements
+
+
+44
+00:02:07,286 --> 00:02:08,776
+of your project.
+
+
+45
+00:02:09,026 --> 00:02:11,696
+So especially if you're
+sharing code with engineers,
+
+
+46
+00:02:11,696 --> 00:02:16,136
+you create classes as classes
+have APIs and a lot of times
+
+
+47
+00:02:16,176 --> 00:02:18,666
+because Objective-C and
+Swift are great languages
+
+
+48
+00:02:18,666 --> 00:02:23,786
+for expressing the API,
+semantics of the API,
+
+
+49
+00:02:24,476 --> 00:02:25,866
+they're self-documenting.
+
+
+50
+00:02:25,866 --> 00:02:27,656
+We think, okay, our job is done.
+
+
+51
+00:02:28,086 --> 00:02:30,486
+But in truth, they
+don't really account
+
+
+52
+00:02:30,486 --> 00:02:32,276
+for all the possible
+permutations
+
+
+53
+00:02:32,276 --> 00:02:34,076
+of inputs to those functions.
+
+
+54
+00:02:34,506 --> 00:02:35,666
+So if you write tests,
+
+
+55
+00:02:36,526 --> 00:02:39,616
+those tests help codify the
+requirements of those APIs.
+
+
+56
+00:02:39,616 --> 00:02:41,066
+So another engineer
+can come along.
+
+
+57
+00:02:41,476 --> 00:02:43,066
+They can make code
+changes in that area
+
+
+58
+00:02:43,066 --> 00:02:45,646
+and the tests helps them
+understand what the expected
+
+
+59
+00:02:45,646 --> 00:02:46,576
+behavior is.
+
+
+60
+00:02:47,526 --> 00:02:51,956
+So to get started with
+tests, you may have a project
+
+
+61
+00:02:52,096 --> 00:02:53,816
+that doesn't have test already.
+
+
+62
+00:02:53,976 --> 00:02:55,886
+So you want to add
+test to that project
+
+
+63
+00:02:55,886 --> 00:02:57,856
+and then the obvious
+thing to do is make sure
+
+
+64
+00:02:57,856 --> 00:02:59,456
+that those tests pass.
+
+
+65
+00:03:00,706 --> 00:03:02,986
+Alternatively, you may
+start with a new project.
+
+
+66
+00:03:03,086 --> 00:03:05,756
+And in that case, you have the
+option of a different workflow
+
+
+67
+00:03:06,106 --> 00:03:08,916
+where you create tests first.
+
+
+68
+00:03:09,326 --> 00:03:11,996
+And then you write code
+that passes those tests
+
+
+69
+00:03:12,346 --> 00:03:15,416
+and that's sometimes referred
+to as test-driven development.
+
+
+70
+00:03:16,986 --> 00:03:19,376
+So now you're set up.
+
+
+71
+00:03:19,376 --> 00:03:20,126
+You've got your test.
+
+
+72
+00:03:20,126 --> 00:03:20,996
+They're passing.
+
+
+73
+00:03:21,166 --> 00:03:23,136
+You can go into a workflow
+that we talked about.
+
+
+74
+00:03:23,136 --> 00:03:25,876
+We consider continuous
+integration workflow.
+
+
+75
+00:03:26,186 --> 00:03:27,656
+And you start off
+in a green state
+
+
+76
+00:03:27,656 --> 00:03:31,316
+where everything is working
+and you're making code changes.
+
+
+77
+00:03:31,316 --> 00:03:33,246
+You're adding features,
+fixing bugs.
+
+
+78
+00:03:33,656 --> 00:03:37,396
+And at some point, one of these
+code changes introduces a bug.
+
+
+79
+00:03:37,776 --> 00:03:39,706
+And so now, your
+continuous integration
+
+
+80
+00:03:39,706 --> 00:03:42,206
+because you've written
+tests identifies that bug
+
+
+81
+00:03:42,206 --> 00:03:45,696
+and you know right away, right
+after that first code change,
+
+
+82
+00:03:46,006 --> 00:03:47,646
+you know that the bug
+has been introduced.
+
+
+83
+00:03:48,156 --> 00:03:50,706
+So then you can take the
+necessary steps to fix the bug
+
+
+84
+00:03:50,706 --> 00:03:52,476
+and return to a green state.
+
+
+85
+00:03:52,766 --> 00:03:53,686
+And what you really
+want to think,
+
+
+86
+00:03:53,686 --> 00:03:56,816
+s a green state represents
+known quality.
+
+
+87
+00:03:57,276 --> 00:04:00,476
+And having tests and having
+continuous integration ensures
+
+
+88
+00:04:00,476 --> 00:04:03,696
+that your projects
+remain in a known state
+
+
+89
+00:04:03,696 --> 00:04:07,356
+of quality all the time.
+
+
+90
+00:04:07,546 --> 00:04:09,186
+So to get started, let's talk
+
+
+91
+00:04:09,186 --> 00:04:12,036
+about how testing
+works in Xcode.
+
+
+92
+00:04:12,576 --> 00:04:15,236
+Xcode ships with a
+framework called XCTest
+
+
+93
+00:04:15,746 --> 00:04:17,766
+and this is framework
+for testing.
+
+
+94
+00:04:17,766 --> 00:04:20,586
+It provides a set of APIs
+that lets you create tests,
+
+
+95
+00:04:21,196 --> 00:04:24,256
+run the tests, express
+expectations,
+
+
+96
+00:04:24,256 --> 00:04:25,406
+passes and failures.
+
+
+97
+00:04:26,136 --> 00:04:29,736
+It all starts with the
+base class XCTestCase.
+
+
+98
+00:04:30,156 --> 00:04:33,476
+And to create test,
+you subclass XCTestCase
+
+
+99
+00:04:33,596 --> 00:04:35,416
+and then you add test methods.
+
+
+100
+00:04:35,416 --> 00:04:38,536
+And these test methods
+follow a naming convention.
+
+
+101
+00:04:38,976 --> 00:04:40,116
+They return void.
+
+
+102
+00:04:41,036 --> 00:04:44,456
+They're prefixed with the
+word, "test" in lowercase
+
+
+103
+00:04:45,076 --> 00:04:46,626
+and they take no parameters.
+
+
+104
+00:04:47,096 --> 00:04:50,586
+The remainder of the method
+name is at your discretion.
+
+
+105
+00:04:50,586 --> 00:04:56,576
+It should be sort of a name that
+conveys the purpose of the test.
+
+
+106
+00:04:56,756 --> 00:04:58,016
+Inside these test methods,
+
+
+107
+00:04:58,016 --> 00:05:01,996
+you can use assertion APIs we
+provide to report failures.
+
+
+108
+00:05:02,206 --> 00:05:07,536
+For example, XCTAssertEqual
+compares two scalar values
+
+
+109
+00:05:07,676 --> 00:05:10,586
+and if they don't match,
+it outputs a string
+
+
+110
+00:05:10,586 --> 00:05:14,256
+and reports a failure
+to the test harness.
+
+
+111
+00:05:15,976 --> 00:05:19,106
+So in Xcode, we manage
+a lot of different parts
+
+
+112
+00:05:19,106 --> 00:05:20,626
+of our projects through targets.
+
+
+113
+00:05:20,626 --> 00:05:22,776
+And we have test targets
+for managing tests.
+
+
+114
+00:05:23,676 --> 00:05:25,556
+Test targets build bundles
+
+
+115
+00:05:25,846 --> 00:05:29,436
+and these bundles contain
+the compiled test code
+
+
+116
+00:05:29,946 --> 00:05:32,486
+and also resources that you
+would want to use in the test.
+
+
+117
+00:05:32,486 --> 00:05:34,816
+Maybe you have data files
+that drive your tests.
+
+
+118
+00:05:35,426 --> 00:05:37,536
+These go in your test bundle
+but you don't really want
+
+
+119
+00:05:37,536 --> 00:05:39,316
+to ship those with
+your application.
+
+
+120
+00:05:39,316 --> 00:05:40,166
+You go and ship them with --
+
+
+121
+00:05:40,166 --> 00:05:41,616
+though you don't want
+to ship them at all.
+
+
+122
+00:05:41,616 --> 00:05:43,336
+You want them to be
+with your test bundle.
+
+
+123
+00:05:44,056 --> 00:05:48,076
+So these are -- test targets
+are automatically included
+
+
+124
+00:05:48,076 --> 00:05:49,056
+in new projects.
+
+
+125
+00:05:49,056 --> 00:05:51,206
+If I go today and I
+create a new application,
+
+
+126
+00:05:51,886 --> 00:05:56,556
+you'll see there's a test target
+and a test class already there
+
+
+127
+00:05:56,556 --> 00:05:59,256
+to start me off, get me right
+in test from the beginning.
+
+
+128
+00:06:00,386 --> 00:06:03,716
+You can also add test
+targets to existing projects.
+
+
+129
+00:06:04,256 --> 00:06:07,216
+And this may be something
+you want to do to a project
+
+
+130
+00:06:07,216 --> 00:06:09,976
+that has no test or it
+also be a step you take
+
+
+131
+00:06:09,976 --> 00:06:13,796
+to help organize your
+tests because you can have
+
+
+132
+00:06:13,796 --> 00:06:17,316
+as many test targets as you
+want and it's useful sometimes
+
+
+133
+00:06:17,316 --> 00:06:20,116
+that you will run just this
+test target or that test target
+
+
+134
+00:06:20,446 --> 00:06:21,726
+or you can run them
+all together.
+
+
+135
+00:06:21,896 --> 00:06:28,666
+So let's think about a
+moment about how tests run.
+
+
+136
+00:06:28,666 --> 00:06:31,176
+Because they are bundles,
+these are not executables
+
+
+137
+00:06:31,176 --> 00:06:32,666
+that can be launched themselves.
+
+
+138
+00:06:33,126 --> 00:06:37,046
+So instead, we need to host
+them in an executable process.
+
+
+139
+00:06:38,796 --> 00:06:41,456
+Generally, we inject
+these into your apps.
+
+
+140
+00:06:41,696 --> 00:06:44,386
+So your test can be written
+against your application
+
+
+141
+00:06:44,386 --> 00:06:46,786
+and it can access all the
+code in your application,
+
+
+142
+00:06:47,146 --> 00:06:48,736
+which means when
+we run the test,
+
+
+143
+00:06:48,736 --> 00:06:51,106
+we run it in the context
+of your application.
+
+
+144
+00:06:52,656 --> 00:06:54,686
+Alternatively, you can run them
+
+
+145
+00:06:54,686 --> 00:06:59,126
+in a hosting process
+that's provided by Xcode.
+
+
+146
+00:06:59,656 --> 00:07:02,036
+Resources for tests,
+as I mentioned before,
+
+
+147
+00:07:02,036 --> 00:07:04,026
+are not in the main bundle.
+
+
+148
+00:07:04,026 --> 00:07:05,256
+They're in your test bundle.
+
+
+149
+00:07:05,616 --> 00:07:09,666
+So when you go to load them,
+don't use NSBundle mainBundle.
+
+
+150
+00:07:09,666 --> 00:07:11,246
+This is something
+that trips people up.
+
+
+151
+00:07:11,246 --> 00:07:14,146
+I think a lot of us just kind
+of have NSBundle mainBundle
+
+
+152
+00:07:14,146 --> 00:07:15,956
+on autocomplete in our heads.
+
+
+153
+00:07:16,406 --> 00:07:20,496
+But instead, we want to
+use NSBundle bundleForClass
+
+
+154
+00:07:20,496 --> 00:07:22,216
+and pass your test class.
+
+
+155
+00:07:22,516 --> 00:07:25,146
+That ensures that you're
+going into the test bundle
+
+
+156
+00:07:25,146 --> 00:07:26,516
+to locate that resource.
+
+
+157
+00:07:29,416 --> 00:07:33,276
+So running tests, Xcode lets you
+run tests in a number of ways.
+
+
+158
+00:07:33,486 --> 00:07:35,706
+The simplest way is Command-U
+
+
+159
+00:07:35,706 --> 00:07:38,356
+and this takes your active
+scheme and runs the tests
+
+
+160
+00:07:38,356 --> 00:07:40,056
+that are associated
+with that scheme.
+
+
+161
+00:07:41,616 --> 00:07:45,786
+You also have buttons and the
+Source Editor's [Inaudible] next
+
+
+162
+00:07:45,786 --> 00:07:49,656
+to the test method that lets you
+run just that test or the class
+
+
+163
+00:07:49,756 --> 00:07:51,256
+and all of the tests
+in that class.
+
+
+164
+00:07:52,336 --> 00:07:55,366
+So you have a similar set of
+buttons in the Test Navigator.
+
+
+165
+00:07:55,996 --> 00:08:00,116
+And you can also run tests using
+xcodebuild so if you have a set
+
+
+166
+00:08:00,116 --> 00:08:02,696
+of scripts that you've used
+to create your own kind
+
+
+167
+00:08:02,696 --> 00:08:05,646
+of automation setup,
+you can use xcodebuild.
+
+
+168
+00:08:06,436 --> 00:08:10,576
+And you pass at the test action
+and you pass your project.
+
+
+169
+00:08:11,646 --> 00:08:13,476
+Tell it which scheme
+-- this is essential
+
+
+170
+00:08:13,476 --> 00:08:15,516
+because your project
+may have many schemes --
+
+
+171
+00:08:16,256 --> 00:08:17,866
+and the destination.
+
+
+172
+00:08:18,146 --> 00:08:20,366
+And you can have multiple
+destinations so if you want
+
+
+173
+00:08:20,366 --> 00:08:23,806
+to run on multiple devices,
+you can pass these all
+
+
+174
+00:08:23,806 --> 00:08:29,636
+with distinct destination flags
+and xcodebuild will run them.
+
+
+175
+00:08:30,046 --> 00:08:32,326
+When your tests are done,
+where do you see the results?
+
+
+176
+00:08:32,496 --> 00:08:33,796
+Again, there's a
+number of places
+
+
+177
+00:08:33,796 --> 00:08:35,586
+where we display the
+results of the tests.
+
+
+178
+00:08:36,076 --> 00:08:37,726
+The first is at Test Navigator.
+
+
+179
+00:08:37,785 --> 00:08:42,916
+We will see a green checkmark
+or red icon indicating failure.
+
+
+180
+00:08:43,876 --> 00:08:45,496
+Also in the Issue Navigator.
+
+
+181
+00:08:45,696 --> 00:08:49,486
+If you hit a test failure,
+you'll see not only the failure
+
+
+182
+00:08:49,486 --> 00:08:50,986
+but the reason it failed and so
+
+
+183
+00:08:50,986 --> 00:08:53,346
+if you've used our insertion
+macros, this is where you'll see
+
+
+184
+00:08:53,346 --> 00:08:57,896
+that error string that says, you
+know, 50 was not equal to zero
+
+
+185
+00:08:57,896 --> 00:09:00,256
+or whatever the assertion
+you were testing.
+
+
+186
+00:09:02,126 --> 00:09:04,266
+They also show in the
+Source Editor's gutter
+
+
+187
+00:09:04,266 --> 00:09:08,146
+and then finally, most
+useful is the Test Reports
+
+
+188
+00:09:08,146 --> 00:09:12,436
+where we show all the tests that
+have run and the logs associated
+
+
+189
+00:09:12,436 --> 00:09:14,756
+with them and some
+additional data that we'll get
+
+
+190
+00:09:14,756 --> 00:09:16,056
+to later in the presentation.
+
+
+191
+00:09:18,216 --> 00:09:19,276
+So let's get started.
+
+
+192
+00:09:19,276 --> 00:09:23,006
+See what it looks like to add
+tests to an existing project.
+
+
+193
+00:09:24,666 --> 00:09:28,486
+Let's take a look at how
+this is put together.
+
+
+194
+00:09:28,706 --> 00:09:32,156
+To simplify this for the demo,
+I've tweaked it a little bit
+
+
+195
+00:09:32,216 --> 00:09:33,736
+from the sample code
+that's online.
+
+
+196
+00:09:33,896 --> 00:09:40,086
+But basically the guts of this
+app is this NSOperation subclass
+
+
+197
+00:09:40,166 --> 00:09:42,286
+that parses the XML data.
+
+
+198
+00:09:42,706 --> 00:09:48,426
+And NSOperation, as you know, is
+designed to provide concurrency
+
+
+199
+00:09:48,476 --> 00:09:51,496
+and be run in the background.
+
+
+200
+00:09:51,496 --> 00:09:54,096
+This class has a Delegate
+that it calls back
+
+
+201
+00:09:54,286 --> 00:09:56,676
+with certain events
+when parsing is done,
+
+
+202
+00:09:56,676 --> 00:09:58,606
+when it's parsed a
+certain number of objects
+
+
+203
+00:09:58,606 --> 00:09:59,976
+or if it encounters
+any kind of error.
+
+
+204
+00:10:02,166 --> 00:10:06,026
+So we have this property
+here, parsedEarthquakes,
+
+
+205
+00:10:06,026 --> 00:10:08,906
+and that's something you can
+access safely at any time
+
+
+206
+00:10:08,906 --> 00:10:12,146
+to see the array of
+parsedEarthquake objects.
+
+
+207
+00:10:12,736 --> 00:10:15,896
+So I'd like to write
+a test that validates
+
+
+208
+00:10:16,066 --> 00:10:18,636
+that this parsed
+operation behaves correctly.
+
+
+209
+00:10:19,536 --> 00:10:21,546
+So let's start clean.
+
+
+210
+00:10:21,726 --> 00:10:28,556
+We have -- not a
+clean slate here.
+
+
+211
+00:10:33,596 --> 00:10:40,716
+We're going to reset
+this a little bit
+
+
+212
+00:10:40,716 --> 00:10:46,056
+so you can see what it
+looks like to add test
+
+
+213
+00:10:46,056 --> 00:10:47,096
+to an existing project.
+
+
+214
+00:10:47,826 --> 00:10:52,806
+So we have our project
+and at this point,
+
+
+215
+00:10:52,806 --> 00:10:53,776
+there's no test target.
+
+
+216
+00:10:54,316 --> 00:10:57,636
+So to add a test, I'm going
+to go to the file menu
+
+
+217
+00:10:58,206 --> 00:10:59,776
+and will select a new target.
+
+
+218
+00:10:59,776 --> 00:11:04,706
+I'm going to select under
+other CoCotest testing.
+
+
+219
+00:11:06,326 --> 00:11:08,066
+And I'm going to
+name this target.
+
+
+220
+00:11:08,236 --> 00:11:12,866
+I'm going to call it
+two just to be safe.
+
+
+221
+00:11:13,386 --> 00:11:15,996
+And now we've noticed
+a few things.
+
+
+222
+00:11:16,296 --> 00:11:17,606
+We see a new group here.
+
+
+223
+00:11:18,176 --> 00:11:21,976
+Inside of that, we see
+a template test file
+
+
+224
+00:11:23,006 --> 00:11:26,886
+and if we look at the
+scheme, we'll also notice
+
+
+225
+00:11:27,316 --> 00:11:32,306
+that under the test action, we
+have this one that I removed
+
+
+226
+00:11:32,416 --> 00:11:34,596
+but more importantly,
+we have this new one
+
+
+227
+00:11:34,656 --> 00:11:37,696
+that just got added.
+
+
+228
+00:11:37,956 --> 00:11:40,826
+So there's a few
+template methods in here.
+
+
+229
+00:11:40,826 --> 00:11:44,016
+I'm just going to remove
+these so we can start clean
+
+
+230
+00:11:44,016 --> 00:11:45,126
+and build our test out.
+
+
+231
+00:11:45,916 --> 00:11:47,736
+So the first thing, to recap,
+
+
+232
+00:11:47,786 --> 00:11:49,386
+what I want to do
+is write a test
+
+
+233
+00:11:49,386 --> 00:11:50,966
+for this operation subclass.
+
+
+234
+00:11:51,486 --> 00:11:53,716
+So I'm going to import
+the header
+
+
+235
+00:11:54,536 --> 00:11:56,336
+so that I can access the APIs.
+
+
+236
+00:11:56,336 --> 00:12:01,056
+The next thing to do is I'm
+going to add a test method.
+
+
+237
+00:12:01,796 --> 00:12:03,576
+And just to reiterate
+from earlier,
+
+
+238
+00:12:03,576 --> 00:12:05,056
+this method returns void.
+
+
+239
+00:12:05,776 --> 00:12:10,356
+It is prefixed with test and
+there are no other parameters.
+
+
+240
+00:12:11,196 --> 00:12:13,916
+The rest of the name is just
+a name that I've come up with
+
+
+241
+00:12:14,016 --> 00:12:18,916
+that to me represents
+what this test is for.
+
+
+242
+00:12:19,136 --> 00:12:21,676
+Now, I like to sometimes
+go through
+
+
+243
+00:12:21,676 --> 00:12:23,596
+and outline the steps
+I'm going to take
+
+
+244
+00:12:23,596 --> 00:12:25,586
+as comments before
+I write the code.
+
+
+245
+00:12:25,586 --> 00:12:26,976
+It helps me organize
+my thoughts.
+
+
+246
+00:12:27,206 --> 00:12:30,736
+So just hear the summary of
+what the test is going to do.
+
+
+247
+00:12:31,276 --> 00:12:35,346
+We're going to get a URL to
+a resource and that's going
+
+
+248
+00:12:35,346 --> 00:12:38,076
+to be a resource of XML
+data that's in the bundle.
+
+
+249
+00:12:38,436 --> 00:12:40,146
+We're going to load
+that into memory.
+
+
+250
+00:12:40,886 --> 00:12:44,306
+We're going to create the parse
+operation then we'll run the
+
+
+251
+00:12:44,306 --> 00:12:45,716
+operation directly.
+
+
+252
+00:12:46,526 --> 00:12:48,986
+And finally, we'll check
+the number of earthquakes
+
+
+253
+00:12:48,986 --> 00:12:50,066
+and see if it's correct.
+
+
+254
+00:12:50,066 --> 00:12:53,846
+So if I'm going to get a
+resource to the bundle,
+
+
+255
+00:12:53,846 --> 00:12:55,646
+I need to add the file.
+
+
+256
+00:12:55,646 --> 00:13:03,876
+Well, I've had this file
+here that is, let's see,
+
+
+257
+00:13:04,556 --> 00:13:13,096
+I'm going to copy this file
+into my project as a resource.
+
+
+258
+00:13:13,626 --> 00:13:15,716
+I'll copy it in.
+
+
+259
+00:13:16,326 --> 00:13:21,286
+And this is just some data
+that I downloaded in advance
+
+
+260
+00:13:21,316 --> 00:13:23,716
+because I want to take the
+network out of the equation
+
+
+261
+00:13:23,716 --> 00:13:24,696
+when I write my tests.
+
+
+262
+00:13:24,776 --> 00:13:26,576
+There's nothing wrong
+with testing the network,
+
+
+263
+00:13:26,576 --> 00:13:29,986
+but in general if you keep your
+tests simpler, when they fail,
+
+
+264
+00:13:29,986 --> 00:13:31,896
+it'll be easier to figure
+out why they failed.
+
+
+265
+00:13:32,246 --> 00:13:33,996
+So in this test,
+I'm not interested
+
+
+266
+00:13:33,996 --> 00:13:35,416
+in validating if
+the network works.
+
+
+267
+00:13:35,416 --> 00:13:37,296
+I'm validating the
+parsing works.
+
+
+268
+00:13:37,886 --> 00:13:42,386
+So by having this in my bundle,
+I eliminate that as a concern.
+
+
+269
+00:13:42,936 --> 00:13:47,726
+So to get the URL, I'm
+going to go into the bundle
+
+
+270
+00:13:48,466 --> 00:13:52,976
+and get a resource URL,
+and then the next thing
+
+
+271
+00:13:52,976 --> 00:13:56,746
+that I do is just load
+that as an NSData.
+
+
+272
+00:13:57,416 --> 00:14:00,256
+The next step is to
+create the parse operation.
+
+
+273
+00:14:00,756 --> 00:14:04,246
+So that is the class that
+we are trying to test here.
+
+
+274
+00:14:04,246 --> 00:14:07,626
+I'm going to create it with
+this data and I'm not going
+
+
+275
+00:14:07,626 --> 00:14:10,036
+to set a Delegate because in
+this test, I don't need to.
+
+
+276
+00:14:11,196 --> 00:14:13,666
+The next thing is to run
+the operation directly.
+
+
+277
+00:14:13,866 --> 00:14:16,396
+Now, we know that
+NSOperation is designed
+
+
+278
+00:14:16,396 --> 00:14:17,496
+to be run in the background.
+
+
+279
+00:14:17,786 --> 00:14:20,556
+But operations allow you
+to invoke them directly
+
+
+280
+00:14:20,556 --> 00:14:22,816
+and synchronously by
+just calling start.
+
+
+281
+00:14:23,186 --> 00:14:25,846
+That means when we call
+start, it's going to run
+
+
+282
+00:14:25,846 --> 00:14:28,526
+and when we return,
+it's finished running.
+
+
+283
+00:14:29,506 --> 00:14:33,146
+So at that point, I can
+check the results and see
+
+
+284
+00:14:33,496 --> 00:14:35,206
+if they are what I expected.
+
+
+285
+00:14:35,836 --> 00:14:38,206
+Now, I have zero here.
+
+
+286
+00:14:38,306 --> 00:14:42,056
+I actually know that there
+is more than zero but I'd
+
+
+287
+00:14:42,056 --> 00:14:44,296
+like to run this and let
+you see what a failure looks
+
+
+288
+00:14:44,296 --> 00:14:45,886
+like before we go any further.
+
+
+289
+00:14:46,216 --> 00:14:49,666
+So I'm hitting Command-U
+to run the test.
+
+
+290
+00:14:51,196 --> 00:14:55,526
+It ran quickly and you can
+see here's this message,
+
+
+291
+00:14:55,646 --> 00:15:01,286
+parse operation zero failed,
+55 is not equal to zero.
+
+
+292
+00:15:01,286 --> 00:15:05,866
+Okay, so there are 55
+earthquakes in there.
+
+
+293
+00:15:07,016 --> 00:15:08,166
+So let's run this again.
+
+
+294
+00:15:08,166 --> 00:15:12,726
+And now we've passed our test.
+
+
+295
+00:15:12,726 --> 00:15:15,866
+And again you see that
+same pass indicator there
+
+
+296
+00:15:15,866 --> 00:15:21,396
+in the Test Navigator and we
+see it here in the Test Log
+
+
+297
+00:15:22,216 --> 00:15:24,016
+that we parsed and succeeded.
+
+
+298
+00:15:25,056 --> 00:15:27,466
+So that's what it takes
+to add test to a project.
+
+
+299
+00:15:27,466 --> 00:15:29,956
+We created a new test
+target and then we go in
+
+
+300
+00:15:29,956 --> 00:15:31,126
+and we added the test code.
+
+
+301
+00:15:31,126 --> 00:15:34,166
+We create test methods
+and we used the assertions
+
+
+302
+00:15:34,166 --> 00:15:36,236
+to validate the state
+that we expect.
+
+
+303
+00:15:36,926 --> 00:15:39,056
+So I'm going to switch
+back to slides now.
+
+
+304
+00:15:40,426 --> 00:15:43,696
+Okay, so let's get on to
+what's new in Xcode 6.
+
+
+305
+00:15:43,916 --> 00:15:46,616
+We have new APIs and
+improvements to our tools.
+
+
+306
+00:15:47,206 --> 00:15:50,706
+So the first thing I want
+
+
+307
+00:15:50,706 --> 00:15:54,826
+to mention is we've added
+some improvements that help
+
+
+308
+00:15:54,826 --> 00:15:56,376
+with the compatibility story.
+
+
+309
+00:15:56,956 --> 00:15:59,856
+And I'll get into more detail
+but this basically means
+
+
+310
+00:15:59,856 --> 00:16:03,656
+which versions of our OS
+you can target using XCTest.
+
+
+311
+00:16:04,996 --> 00:16:07,586
+We've also added instruments
+integration for tests
+
+
+312
+00:16:07,836 --> 00:16:10,656
+and Brooke will talk to you
+more about that later on.
+
+
+313
+00:16:12,116 --> 00:16:15,386
+Finally, we've got new APIs
+and as I mentioned earlier,
+
+
+314
+00:16:15,716 --> 00:16:17,816
+these are both for
+asynchronous testing
+
+
+315
+00:16:17,816 --> 00:16:19,266
+and for performance testing.
+
+
+316
+00:16:20,586 --> 00:16:24,226
+So first, XCTest on
+older iOS versions.
+
+
+317
+00:16:24,896 --> 00:16:27,096
+Originally XCTest
+shipped and it was part
+
+
+318
+00:16:27,096 --> 00:16:28,746
+of the iOS release itself.
+
+
+319
+00:16:29,066 --> 00:16:31,936
+So it meant when we shipped
+it, you could only run it
+
+
+320
+00:16:32,206 --> 00:16:34,496
+on versions of iOS that had it.
+
+
+321
+00:16:34,696 --> 00:16:35,816
+We've changed now.
+
+
+322
+00:16:35,976 --> 00:16:38,696
+Now we're shipping
+XCTest with Xcode itself.
+
+
+323
+00:16:39,206 --> 00:16:42,416
+So this means that as we
+add new features to XCTest,
+
+
+324
+00:16:42,416 --> 00:16:45,066
+you don't have to worry about
+whether or not they're going
+
+
+325
+00:16:45,066 --> 00:16:46,946
+to be available where
+you're running your tests
+
+
+326
+00:16:46,946 --> 00:16:48,436
+because you're always
+going to be testing
+
+
+327
+00:16:48,436 --> 00:16:50,336
+with the current version
+that's in the Xcode.
+
+
+328
+00:16:50,916 --> 00:16:56,656
+And this also means that we can
+target older versions of iOS.
+
+
+329
+00:16:56,656 --> 00:17:00,846
+So anywhere that Xcode supports,
+XCTest will also support.
+
+
+330
+00:17:00,846 --> 00:17:03,376
+And this means iOS 6 and later.
+
+
+331
+00:17:04,516 --> 00:17:08,776
+[ Applause ]
+
+
+332
+00:17:09,276 --> 00:17:12,046
+So that's probably a good
+time to just mention OCUnit
+
+
+333
+00:17:12,046 --> 00:17:16,336
+which is the legacy technology
+that XCTest was derived from.
+
+
+334
+00:17:17,766 --> 00:17:21,086
+In Xcode 5.1, we
+deprecated OCUnit.
+
+
+335
+00:17:21,086 --> 00:17:23,246
+We're not adding
+new features to it
+
+
+336
+00:17:23,316 --> 00:17:28,606
+and we really think the time
+is now to move to XCTest
+
+
+337
+00:17:28,606 --> 00:17:32,076
+because we've added new features
+to it, integration is better
+
+
+338
+00:17:32,466 --> 00:17:37,136
+and OCUnit is no longer where
+we're focusing our energies.
+
+
+339
+00:17:39,566 --> 00:17:42,626
+If you have existing targets
+that you want to switch
+
+
+340
+00:17:42,626 --> 00:17:45,646
+from XCTest, we recommend
+you use a migrator
+
+
+341
+00:17:45,646 --> 00:17:46,976
+in Xcode to do so.
+
+
+342
+00:17:47,676 --> 00:17:50,356
+The reason for this
+and also to do this,
+
+
+343
+00:17:50,356 --> 00:17:51,846
+you just go to the Edit menu
+
+
+344
+00:17:51,846 --> 00:17:54,656
+and select Refactor,
+Convert to XCTest.
+
+
+345
+00:17:54,976 --> 00:17:58,106
+And it will update the
+project settings and also all
+
+
+346
+00:17:58,106 --> 00:18:00,506
+of your test classes
+will get updated.
+
+
+347
+00:18:02,256 --> 00:18:04,406
+The reason for this is
+some of the build settings
+
+
+348
+00:18:04,406 --> 00:18:07,246
+that are associated with
+this are not accessible
+
+
+349
+00:18:07,246 --> 00:18:08,306
+in the Xcode UI.
+
+
+350
+00:18:08,706 --> 00:18:11,426
+So some people in
+the past have tried
+
+
+351
+00:18:11,426 --> 00:18:14,776
+to do the migration manually
+and you know, you end up --
+
+
+352
+00:18:14,776 --> 00:18:17,596
+you're not able to
+do it 100% by hand.
+
+
+353
+00:18:18,136 --> 00:18:20,886
+If you are, if you really
+do want to do it yourself,
+
+
+354
+00:18:22,046 --> 00:18:25,016
+there's a different way which is
+just to create a new test target
+
+
+355
+00:18:25,016 --> 00:18:27,696
+which is guaranteed to have
+exactly the right settings
+
+
+356
+00:18:28,026 --> 00:18:30,386
+and just move your existing
+tests into it manually.
+
+
+357
+00:18:31,236 --> 00:18:35,606
+So now, let's talk about
+Asynchronous Testing,
+
+
+358
+00:18:35,806 --> 00:18:38,216
+one of our new APIs in Xcode 6.
+
+
+359
+00:18:39,376 --> 00:18:40,356
+So more and more APIs
+
+
+360
+00:18:40,356 --> 00:18:43,436
+on our platform themselves
+are asynchronous.
+
+
+361
+00:18:43,696 --> 00:18:46,566
+They have block invocations
+when they're done
+
+
+362
+00:18:46,896 --> 00:18:48,696
+that may get run in
+different queues.
+
+
+363
+00:18:49,236 --> 00:18:50,616
+They have Delegate callbacks
+
+
+364
+00:18:50,616 --> 00:18:52,646
+that may be deferred
+by the run loop.
+
+
+365
+00:18:52,986 --> 00:18:54,956
+They may make network requests,
+
+
+366
+00:18:54,956 --> 00:18:57,706
+which we absolutely know should
+be handled asynchronously.
+
+
+367
+00:18:58,396 --> 00:19:00,506
+Or they're doing
+background processing
+
+
+368
+00:19:00,506 --> 00:19:02,206
+like our NSOperation here.
+
+
+369
+00:19:03,026 --> 00:19:04,986
+So this creates a challenge
+
+
+370
+00:19:04,986 --> 00:19:08,416
+because tests themselves
+run synchronously.
+
+
+371
+00:19:08,886 --> 00:19:12,186
+And so, to help you with
+that, we've added APIs
+
+
+372
+00:19:12,186 --> 00:19:16,486
+that will allow you to create
+asynchronous control flow
+
+
+373
+00:19:17,186 --> 00:19:19,336
+that manages asynchronous
+activities.
+
+
+374
+00:19:19,956 --> 00:19:23,476
+And we do this through what
+we call expectation objects,
+
+
+375
+00:19:23,476 --> 00:19:27,056
+and these describe events
+in your test that you expect
+
+
+376
+00:19:27,056 --> 00:19:29,846
+to happen at some
+point in the future,
+
+
+377
+00:19:30,146 --> 00:19:31,456
+hopefully not too distant.
+
+
+378
+00:19:32,646 --> 00:19:38,176
+With these objects, XCTest
+has an API that would wait
+
+
+379
+00:19:38,176 --> 00:19:39,416
+for them to be fulfilled.
+
+
+380
+00:19:40,766 --> 00:19:42,286
+And that takes a timeout
+
+
+381
+00:19:42,286 --> 00:19:44,466
+and a completion handler
+that's called either
+
+
+382
+00:19:44,466 --> 00:19:48,256
+when the timeout hits or when
+all the events are fulfilled.
+
+
+383
+00:19:48,396 --> 00:19:49,186
+And you can be waiting
+
+
+384
+00:19:49,186 --> 00:19:52,336
+on multiple asynchronous
+events at the same time.
+
+
+385
+00:19:53,756 --> 00:19:55,286
+So let's look at a code example.
+
+
+386
+00:19:56,266 --> 00:20:01,086
+UIDocument, as you may know, has
+an open with completion handler
+
+
+387
+00:20:01,086 --> 00:20:03,666
+that is an asynchronous
+opening and that's great
+
+
+388
+00:20:03,666 --> 00:20:06,466
+because if a large document
+might take a little bit of time
+
+
+389
+00:20:06,466 --> 00:20:07,466
+to open and you don't want
+
+
+390
+00:20:07,466 --> 00:20:11,416
+to stall the user's interactive
+experience while you're waiting
+
+
+391
+00:20:11,416 --> 00:20:11,806
+for that.
+
+
+392
+00:20:12,476 --> 00:20:14,166
+So let's write a test for that.
+
+
+393
+00:20:14,166 --> 00:20:16,256
+The first thing I do is
+I create an expectation.
+
+
+394
+00:20:16,256 --> 00:20:20,006
+And these expectation
+creation methods take a string
+
+
+395
+00:20:20,006 --> 00:20:22,486
+which is simply a
+description for your benefit.
+
+
+396
+00:20:22,486 --> 00:20:24,706
+It tells you if we
+had a timeout,
+
+
+397
+00:20:25,556 --> 00:20:27,476
+it tells you what
+we were waiting for.
+
+
+398
+00:20:27,746 --> 00:20:29,726
+And so the more descriptive
+you make that,
+
+
+399
+00:20:29,836 --> 00:20:33,046
+the easier your life will be.
+
+
+400
+00:20:33,756 --> 00:20:36,846
+Then we create a document
+which I'm not showing here.
+
+
+401
+00:20:36,846 --> 00:20:38,846
+And we call the
+openwithCompletionHandler.
+
+
+402
+00:20:38,846 --> 00:20:41,076
+And you notice I haven't filled
+out the CompletionHandler.
+
+
+403
+00:20:41,076 --> 00:20:42,926
+It's just an empty
+block at this point.
+
+
+404
+00:20:44,356 --> 00:20:45,476
+We'll get back to
+it in a moment.
+
+
+405
+00:20:45,476 --> 00:20:48,476
+And then finally, I
+call waitForExpectations
+
+
+406
+00:20:48,476 --> 00:20:49,896
+with a 5-second timeout.
+
+
+407
+00:20:50,276 --> 00:20:54,296
+Probably a little on the long
+side but just to be safe here.
+
+
+408
+00:20:54,736 --> 00:20:57,046
+So what we have now
+is a synchronous flow.
+
+
+409
+00:20:57,046 --> 00:21:00,616
+We have create expectation,
+set up the document,
+
+
+410
+00:21:01,236 --> 00:21:03,386
+open it and then wait.
+
+
+411
+00:21:03,736 --> 00:21:05,636
+And this is asynchronous
+flow within the test.
+
+
+412
+00:21:05,856 --> 00:21:10,156
+Asynchronously later, that
+block will be called back.
+
+
+413
+00:21:10,156 --> 00:21:12,136
+Inside the handler, I'm
+going to do two things.
+
+
+414
+00:21:12,136 --> 00:21:13,666
+I'm going to use
+one of our asserts
+
+
+415
+00:21:14,096 --> 00:21:16,546
+to validate this
+opening was successful.
+
+
+416
+00:21:17,596 --> 00:21:20,896
+On top of that, I'm going
+to call expectation fulfill
+
+
+417
+00:21:20,896 --> 00:21:23,946
+which will cause the
+waitForExpectations to return
+
+
+418
+00:21:23,946 --> 00:21:24,816
+because now all
+
+
+419
+00:21:24,816 --> 00:21:27,626
+of the expectations I have
+created have been fulfilled.
+
+
+420
+00:21:29,246 --> 00:21:32,716
+So let's see what that
+looks like if we add
+
+
+421
+00:21:32,716 --> 00:21:34,976
+that to our seismic XML tests.
+
+
+422
+00:21:44,166 --> 00:21:49,606
+Okay, so we go back to our test.
+
+
+423
+00:21:49,856 --> 00:21:50,756
+It's right here.
+
+
+424
+00:21:50,756 --> 00:21:57,066
+And the first thing we do is I'm
+going to just rename this to,
+
+
+425
+00:21:57,426 --> 00:21:59,516
+let's say,
+ParsingInTheBackground
+
+
+426
+00:22:00,356 --> 00:22:06,926
+because that's closer to our
+actual real-world usage anyway.
+
+
+427
+00:22:08,506 --> 00:22:10,106
+So the first part of
+the test stays the same.
+
+
+428
+00:22:10,106 --> 00:22:10,776
+We're still going to use
+
+
+429
+00:22:10,776 --> 00:22:13,906
+that same resource file,
+load it into memory.
+
+
+430
+00:22:14,616 --> 00:22:19,116
+Now before we create our parse
+operation, we'll need to --
+
+
+431
+00:22:19,116 --> 00:22:21,066
+this is where things are
+going to change a little bit.
+
+
+432
+00:22:21,196 --> 00:22:26,656
+So if you think about
+it, we have here,
+
+
+433
+00:22:26,656 --> 00:22:28,646
+we're running the parse
+operation directly.
+
+
+434
+00:22:29,256 --> 00:22:34,126
+Instead of that, let's run
+it in an OperationQueue.
+
+
+435
+00:22:34,886 --> 00:22:37,376
+So that looks like
+create an OperationQueue
+
+
+436
+00:22:37,916 --> 00:22:39,406
+and add the operation to it.
+
+
+437
+00:22:39,406 --> 00:22:42,056
+And that means the
+operation is going
+
+
+438
+00:22:42,056 --> 00:22:43,856
+to start running
+immediately but it's going
+
+
+439
+00:22:43,856 --> 00:22:45,276
+to do so in the background.
+
+
+440
+00:22:46,336 --> 00:22:48,146
+Now if I leave the test as is,
+
+
+441
+00:22:48,876 --> 00:22:51,326
+because that running is
+happening in the background
+
+
+442
+00:22:52,136 --> 00:22:54,046
+and our test is just
+continuing on,
+
+
+443
+00:22:54,046 --> 00:22:55,386
+it's not stopping or waiting.
+
+
+444
+00:22:55,636 --> 00:22:56,776
+It's just ready to go.
+
+
+445
+00:22:57,256 --> 00:23:00,606
+If we run this test now,
+what we're going to see is
+
+
+446
+00:23:00,606 --> 00:23:02,186
+that we failed because
+at the point
+
+
+447
+00:23:02,186 --> 00:23:05,066
+where we're evaluating
+this, parsing isn't done.
+
+
+448
+00:23:05,226 --> 00:23:06,686
+It's off in the background
+somewhere
+
+
+449
+00:23:06,686 --> 00:23:09,086
+and we don't know
+whether it's finished yet.
+
+
+450
+00:23:09,576 --> 00:23:12,746
+So what we want to
+do is wait for it
+
+
+451
+00:23:12,746 --> 00:23:15,896
+to be finished before we check.
+
+
+452
+00:23:15,896 --> 00:23:18,796
+And I'm just using a
+2-second timeout here.
+
+
+453
+00:23:18,996 --> 00:23:22,126
+These timeouts are
+largely at your discretion.
+
+
+454
+00:23:22,446 --> 00:23:26,226
+If you make them really, really
+small then you may have cases
+
+
+455
+00:23:26,226 --> 00:23:28,146
+where something takes
+a little longer to run
+
+
+456
+00:23:28,146 --> 00:23:30,546
+and you get a failure
+that's not really a failure.
+
+
+457
+00:23:30,856 --> 00:23:34,936
+So those are just kind
+of at your discretion.
+
+
+458
+00:23:35,496 --> 00:23:39,276
+So now, we can wait
+but before we wait,
+
+
+459
+00:23:39,276 --> 00:23:41,216
+we also need an expectation
+
+
+460
+00:23:41,346 --> 00:23:43,126
+that describes what
+we're waiting for.
+
+
+461
+00:23:43,666 --> 00:23:46,496
+So think about the operation.
+
+
+462
+00:23:46,576 --> 00:23:47,546
+How do we know it's done?
+
+
+463
+00:23:47,546 --> 00:23:50,116
+Well, it has this Delegate
+API with callbacks.
+
+
+464
+00:23:50,116 --> 00:23:51,816
+So let's look at what
+those were like again.
+
+
+465
+00:23:52,126 --> 00:23:56,826
+So ParseOperation, the Delegate
+callbacks, we have DidParse,
+
+
+466
+00:23:57,586 --> 00:23:59,886
+DidFinish, DidFailWithError.
+
+
+467
+00:24:00,146 --> 00:24:02,646
+Well, DidFinish looks
+like exactly what I want.
+
+
+468
+00:24:02,826 --> 00:24:07,076
+So going back into my test, if
+I'm going to be the Delegate,
+
+
+469
+00:24:07,176 --> 00:24:10,856
+I need my test itself to conform
+to the Delegate Protocol.
+
+
+470
+00:24:11,346 --> 00:24:16,036
+And then I need to implement
+the DidFinish method.
+
+
+471
+00:24:16,626 --> 00:24:20,896
+Now inside that, I'm going
+to operate on some kind
+
+
+472
+00:24:20,896 --> 00:24:22,986
+of expectation and report
+that it's fulfilled.
+
+
+473
+00:24:22,986 --> 00:24:26,456
+But since we're here and we're
+not in the same context here,
+
+
+474
+00:24:26,456 --> 00:24:30,066
+we'll need to track that
+operation as a property.
+
+
+475
+00:24:30,066 --> 00:24:35,886
+So we'll just add an expectation
+property to our test.
+
+
+476
+00:24:35,986 --> 00:24:39,246
+We'll set it up before we
+create the ParseOperation.
+
+
+477
+00:24:39,586 --> 00:24:41,636
+So we've created
+our expectation.
+
+
+478
+00:24:41,946 --> 00:24:43,926
+"Parsing finished" is what
+we're calling it here.
+
+
+479
+00:24:44,776 --> 00:24:50,486
+And then inside our
+operation, we will fulfill it.
+
+
+480
+00:24:50,596 --> 00:24:51,616
+So let's just run this.
+
+
+481
+00:24:52,246 --> 00:24:53,216
+Now, secret.
+
+
+482
+00:24:53,216 --> 00:24:55,546
+This is actually going to fail
+because I've left something
+
+
+483
+00:24:55,546 --> 00:24:58,586
+out intentionally but I want
+you to see what failure looks
+
+
+484
+00:24:58,586 --> 00:25:00,676
+like when we hit a timeout.
+
+
+485
+00:25:00,926 --> 00:25:04,836
+And asynchronous wait failed.
+
+
+486
+00:25:05,046 --> 00:25:06,736
+Exceeded timeout of 2 seconds
+
+
+487
+00:25:06,736 --> 00:25:09,626
+with unfulfilled
+expectations "parsing finished".
+
+
+488
+00:25:09,856 --> 00:25:12,696
+So we never fulfilled
+our expectation.
+
+
+489
+00:25:12,826 --> 00:25:14,746
+Well, the reason
+is pretty simple.
+
+
+490
+00:25:14,746 --> 00:25:18,276
+I forgot actually to say that
+this object is the delegate.
+
+
+491
+00:25:19,176 --> 00:25:22,366
+So once we hook that
+up, we run again.
+
+
+492
+00:25:23,136 --> 00:25:26,706
+This time, everything passes
+because we get the callback,
+
+
+493
+00:25:26,706 --> 00:25:31,316
+we fulfill the expectation, we
+unwind from the wait and then
+
+
+494
+00:25:31,316 --> 00:25:34,406
+when we evaluate the number of
+parsed earthquakes, it's 55.
+
+
+495
+00:25:35,376 --> 00:25:39,736
+So just walking through this
+again, we used an expectation
+
+
+496
+00:25:40,246 --> 00:25:41,956
+to describe a future event.
+
+
+497
+00:25:43,416 --> 00:25:46,286
+We wait for the expectation
+here.
+
+
+498
+00:25:46,286 --> 00:25:50,076
+And then when that event
+occurs, which in this case is
+
+
+499
+00:25:50,076 --> 00:25:52,946
+in a delegate callback that
+could be inside a block handler
+
+
+500
+00:25:52,946 --> 00:25:55,276
+or some other context,
+we fulfill it.
+
+
+501
+00:25:55,716 --> 00:25:57,256
+That causes wait to return.
+
+
+502
+00:25:57,636 --> 00:26:01,046
+So this allows us to handle
+an asynchronous activity
+
+
+503
+00:26:01,466 --> 00:26:02,636
+in a synchronous fashion.
+
+
+504
+00:26:03,426 --> 00:26:04,576
+It's fine for testing.
+
+
+505
+00:26:05,216 --> 00:26:07,176
+I wouldn't recommend you
+do this on the main thread
+
+
+506
+00:26:07,176 --> 00:26:08,286
+of your application
+code [laughter].
+
+
+507
+00:26:09,086 --> 00:26:12,266
+Okay, so let's switch back.
+
+
+508
+00:26:13,256 --> 00:26:19,426
+So that's what it looks like
+to write an asynchronous test
+
+
+509
+00:26:19,796 --> 00:26:21,946
+with the new APIs in Xcode 6.
+
+
+510
+00:26:22,896 --> 00:26:26,916
+Now, Brooke's going to talk to
+you about performance testing.
+
+
+511
+00:26:27,516 --> 00:26:30,746
+[ Applause ]
+
+
+512
+00:26:31,246 --> 00:26:32,256
+>> Thanks, Will.
+
+
+513
+00:26:32,446 --> 00:26:35,696
+So it can be easy to introduce
+performance regressions
+
+
+514
+00:26:35,696 --> 00:26:36,166
+in your code.
+
+
+515
+00:26:37,176 --> 00:26:40,536
+And historically, finding these
+issues can be time consuming
+
+
+516
+00:26:40,536 --> 00:26:41,676
+and expensive because you need
+
+
+517
+00:26:41,676 --> 00:26:44,756
+to manually use your
+application to find them.
+
+
+518
+00:26:44,866 --> 00:26:46,156
+Now Apple has some great tools
+
+
+519
+00:26:46,156 --> 00:26:47,836
+for investigating
+performance issues.
+
+
+520
+00:26:48,926 --> 00:26:51,596
+And performance testing
+is just a way to tell you
+
+
+521
+00:26:51,596 --> 00:26:52,776
+when to do that investigation.
+
+
+522
+00:26:56,416 --> 00:26:59,516
+So we'll look at some
+new APIs that we've added
+
+
+523
+00:26:59,516 --> 00:27:02,386
+to help you measure performance
+and detect regressions.
+
+
+524
+00:27:03,116 --> 00:27:05,826
+We'll also see how
+the measurements
+
+
+525
+00:27:05,826 --> 00:27:08,346
+that these APIs make are surface
+
+
+526
+00:27:08,346 --> 00:27:12,796
+and Xcode's UI including
+those test failures due
+
+
+527
+00:27:12,796 --> 00:27:13,766
+to regressions.
+
+
+528
+00:27:14,626 --> 00:27:18,086
+And now that Xcode is going to
+be reporting performance issues
+
+
+529
+00:27:18,616 --> 00:27:21,466
+as failures, it ought to
+give you an easy way to do
+
+
+530
+00:27:21,466 --> 00:27:23,676
+that investigation so you
+can now profile your test
+
+
+531
+00:27:23,676 --> 00:27:24,346
+with Instruments.
+
+
+532
+00:27:24,906 --> 00:27:29,896
+The easiest way to do this is
+to use the new measureBlock API.
+
+
+533
+00:27:30,246 --> 00:27:31,416
+This takes a block of code
+
+
+534
+00:27:31,936 --> 00:27:36,716
+and runs it 10 times measuring
+the duration each time
+
+
+535
+00:27:37,976 --> 00:27:39,336
+and showing the results
+in Xcode.
+
+
+536
+00:27:43,376 --> 00:27:48,486
+So for example, I've got a
+test here that I'm writing
+
+
+537
+00:27:48,486 --> 00:27:50,976
+that I want to measure
+the performance
+
+
+538
+00:27:50,976 --> 00:27:51,816
+of using a fileHandle.
+
+
+539
+00:27:52,406 --> 00:27:53,836
+So I'll call self measureBlock
+
+
+540
+00:27:54,936 --> 00:27:55,996
+and then the code
+I want to measure.
+
+
+541
+00:27:56,376 --> 00:27:58,356
+It's creating a fileHandle,
+using it
+
+
+542
+00:27:58,356 --> 00:27:59,546
+and then closing the fileHandle.
+
+
+543
+00:28:04,296 --> 00:28:06,816
+Now that I've got this test,
+I'm going to want to profile it
+
+
+544
+00:28:07,316 --> 00:28:09,086
+in the case that Xcode tells
+me something went wrong.
+
+
+545
+00:28:10,176 --> 00:28:13,246
+And you can do this from Xcode
+Source Editor or Test Navigator
+
+
+546
+00:28:13,736 --> 00:28:15,076
+from their context menus.
+
+
+547
+00:28:16,376 --> 00:28:23,946
+And there's also a Command for
+this under the Product menu.
+
+
+548
+00:28:24,326 --> 00:28:27,756
+It's important to keep in mind
+that when you profile your test,
+
+
+549
+00:28:28,046 --> 00:28:29,916
+this uses settings from
+the Scheme Profile Action.
+
+
+550
+00:28:32,226 --> 00:28:34,946
+The most obvious
+difference here is
+
+
+551
+00:28:34,946 --> 00:28:36,656
+that when you're just
+running your test
+
+
+552
+00:28:36,856 --> 00:28:38,856
+that it uses a Debug
+configuration by default.
+
+
+553
+00:28:39,226 --> 00:28:41,316
+But Profiling will use
+a Release configuration
+
+
+554
+00:28:41,316 --> 00:28:43,686
+and there may be some
+difference in behavior there.
+
+
+555
+00:28:44,626 --> 00:28:47,856
+Let's take a look at the demo.
+
+
+556
+00:28:48,626 --> 00:28:50,466
+So here, I have a Mac
+version of the project
+
+
+557
+00:28:50,466 --> 00:28:51,296
+that Will showed you earlier.
+
+
+558
+00:28:52,656 --> 00:28:54,016
+And I've already got
+a couple of tests
+
+
+559
+00:28:54,266 --> 00:28:55,616
+that used the measureBlock API.
+
+
+560
+00:28:55,616 --> 00:28:56,926
+I'm just going to
+run my test now.
+
+
+561
+00:29:04,416 --> 00:29:07,766
+So I don't know if you can see
+this, but Xcode is telling me
+
+
+562
+00:29:07,766 --> 00:29:11,146
+that this test is doing 4000%
+worse than it did before.
+
+
+563
+00:29:11,676 --> 00:29:13,876
+So that's not so great.
+
+
+564
+00:29:14,446 --> 00:29:19,456
+So how am I going to figure
+out what's gone wrong here?
+
+
+565
+00:29:19,456 --> 00:29:22,046
+I could look at the test
+itself to see, you know,
+
+
+566
+00:29:22,096 --> 00:29:24,016
+is there anything obvious
+that the test is doing wrong?
+
+
+567
+00:29:24,016 --> 00:29:27,396
+Well, it appears to be loading
+its file from the test bundle.
+
+
+568
+00:29:27,816 --> 00:29:33,026
+Parsing it and then validating
+that the earthquakes are right.
+
+
+569
+00:29:33,026 --> 00:29:34,816
+I could look and see if
+there are any local changes
+
+
+570
+00:29:34,816 --> 00:29:36,496
+in my project?
+
+
+571
+00:29:36,906 --> 00:29:37,466
+No, there aren't.
+
+
+572
+00:29:38,486 --> 00:29:40,886
+I could look and see
+how this test compares
+
+
+573
+00:29:40,886 --> 00:29:42,296
+to all the other
+tests in my project.
+
+
+574
+00:29:43,086 --> 00:29:45,346
+And actually, this one's
+doing a little bit --
+
+
+575
+00:29:45,346 --> 00:29:48,056
+this one's doing bad but
+the other one's doing a
+
+
+576
+00:29:48,056 --> 00:29:48,716
+little better.
+
+
+577
+00:29:50,196 --> 00:29:52,556
+So it looks like I'm just
+going to have to profile it.
+
+
+578
+00:29:52,556 --> 00:29:55,176
+And I can do that by
+right-clicking on this button
+
+
+579
+00:29:55,176 --> 00:29:56,936
+in the Source Editor
+and selecting Profile,
+
+
+580
+00:29:58,116 --> 00:30:03,446
+or I can also do that from the
+Test Navigator by right-clicking
+
+
+581
+00:30:03,446 --> 00:30:05,976
+on my test and selecting
+Profile.
+
+
+582
+00:30:10,736 --> 00:30:12,886
+I'll select Time
+Profile from Instruments
+
+
+583
+00:30:13,776 --> 00:30:14,886
+and I'll click Record.
+
+
+584
+00:30:15,646 --> 00:30:21,086
+Now, Instruments has
+launched my application
+
+
+585
+00:30:21,086 --> 00:30:22,436
+and it's run my tests
+and it's done.
+
+
+586
+00:30:23,506 --> 00:30:26,166
+So I'll zoom in a bit
+so you can see this.
+
+
+587
+00:30:27,036 --> 00:30:32,726
+I'm just going to invert the
+call tree and expand this.
+
+
+588
+00:30:33,536 --> 00:30:39,256
+And from here, I can see
+my test is being called.
+
+
+589
+00:30:40,496 --> 00:30:42,526
+XCTest is eventually calling
+the block that I've given it
+
+
+590
+00:30:43,346 --> 00:30:44,866
+and it's calling this
+validateProperties
+
+
+591
+00:30:44,866 --> 00:30:46,596
+which is calling some
+really expensive function.
+
+
+592
+00:30:46,716 --> 00:30:48,256
+Well, that's probably
+not what I want.
+
+
+593
+00:30:48,836 --> 00:30:51,346
+So let's look into that.
+
+
+594
+00:30:51,606 --> 00:30:53,616
+I'm going to right-click
+on validateProperties
+
+
+595
+00:30:53,616 --> 00:30:58,866
+and use Reveal on
+Xcode and zoom out.
+
+
+596
+00:30:59,536 --> 00:31:00,196
+Yeah, yeah.
+
+
+597
+00:31:00,196 --> 00:31:01,056
+It is expensive.
+
+
+598
+00:31:01,086 --> 00:31:04,416
+Okay, so let's just
+get rid of this.
+
+
+599
+00:31:04,676 --> 00:31:07,736
+I'm just going to delete
+that and run my test again.
+
+
+600
+00:31:07,786 --> 00:31:13,556
+And it passed, great.
+
+
+601
+00:31:15,166 --> 00:31:17,686
+So what you've just seen is you
+can use a new measureBlock API
+
+
+602
+00:31:18,056 --> 00:31:20,506
+to measure performance
+and detect regressions.
+
+
+603
+00:31:21,666 --> 00:31:23,526
+You can view these results
+in the Source Editor
+
+
+604
+00:31:23,526 --> 00:31:26,506
+and the Test Report and you
+can also Profile your test
+
+
+605
+00:31:27,126 --> 00:31:27,786
+with Instruments.
+
+
+606
+00:31:28,236 --> 00:31:30,646
+So you've just gotten a taste
+
+
+607
+00:31:30,646 --> 00:31:32,746
+of how Performance
+Testing works with Xcode.
+
+
+608
+00:31:32,746 --> 00:31:34,496
+Now let's go into details.
+
+
+609
+00:31:34,666 --> 00:31:36,106
+First of all, setting Baselines.
+
+
+610
+00:31:36,386 --> 00:31:40,026
+For XCTest to report a test as
+failing due to a regression,
+
+
+611
+00:31:40,066 --> 00:31:41,916
+it needs a fixed point
+to compare against.
+
+
+612
+00:31:42,386 --> 00:31:43,536
+And the Baselines
+let us do that.
+
+
+613
+00:31:44,116 --> 00:31:47,336
+And the Standard Deviation,
+
+
+614
+00:31:49,366 --> 00:31:51,336
+XCTest should only report
+a performance regression
+
+
+615
+00:31:51,336 --> 00:31:52,726
+when something's
+actually gotten worse.
+
+
+616
+00:31:53,866 --> 00:31:57,096
+XCTest uses Standard Deviation
+to determine the spread
+
+
+617
+00:31:57,096 --> 00:31:59,266
+of the measurements, to tell
+us how reliable they are.
+
+
+618
+00:31:59,976 --> 00:32:03,056
+And finally, measuring
+precisely.
+
+
+619
+00:32:03,356 --> 00:32:04,396
+We have some additional APIs
+
+
+620
+00:32:04,396 --> 00:32:06,576
+that let you be even
+more precise
+
+
+621
+00:32:06,576 --> 00:32:07,566
+about what you want to measure.
+
+
+622
+00:32:08,326 --> 00:32:11,426
+So let's look at the Baselines.
+
+
+623
+00:32:11,556 --> 00:32:13,816
+The Baseline is the
+Average from a previous run
+
+
+624
+00:32:13,816 --> 00:32:16,306
+that you've specifically
+selected for comparison.
+
+
+625
+00:32:17,896 --> 00:32:20,606
+Once you've set a Baseline,
+XCTest will use this
+
+
+626
+00:32:20,896 --> 00:32:21,856
+to detect regressions.
+
+
+627
+00:32:22,356 --> 00:32:27,906
+It will fail a test if the
+new Average has increased
+
+
+628
+00:32:27,906 --> 00:32:29,746
+from the Baseline
+Average by 10% or more
+
+
+629
+00:32:30,736 --> 00:32:32,586
+and it will ignore
+regressions of less
+
+
+630
+00:32:32,586 --> 00:32:33,436
+than a tenth of a second.
+
+
+631
+00:32:34,016 --> 00:32:36,346
+This is to eliminate a
+source of false positives.
+
+
+632
+00:32:36,916 --> 00:32:41,496
+The Baselines are stored in
+source where you commit them
+
+
+633
+00:32:41,496 --> 00:32:43,946
+to your repository and show
+them on routine numbers.
+
+
+634
+00:32:45,236 --> 00:32:47,966
+And they're stored per
+device configuration.
+
+
+635
+00:32:47,966 --> 00:32:50,946
+So when I run tests on my
+iPhone 5S, they're going
+
+
+636
+00:32:50,946 --> 00:32:52,296
+to be using the same Baselines
+
+
+637
+00:32:52,576 --> 00:32:57,166
+that when Will runs the same
+test on his iPhone 5S are used.
+
+
+638
+00:32:58,626 --> 00:33:01,676
+But at the same time, if
+I were to run these tests
+
+
+639
+00:33:01,876 --> 00:33:05,996
+in a simulated iPhone 5S, it
+would not use those Baselines
+
+
+640
+00:33:05,996 --> 00:33:07,676
+because that would be a
+different device configuration.
+
+
+641
+00:33:11,476 --> 00:33:14,526
+So let's talk about how you
+set the Baselines with Xcode.
+
+
+642
+00:33:15,076 --> 00:33:18,326
+The first time I run a test,
+I'm going to see an annotation
+
+
+643
+00:33:18,326 --> 00:33:21,316
+like this with this gray
+diamond with a white dot
+
+
+644
+00:33:21,316 --> 00:33:23,656
+on it telling me there's
+no Baseline for the test.
+
+
+645
+00:33:24,886 --> 00:33:27,806
+And that lets me know that it
+didn't do any comparison at all
+
+
+646
+00:33:28,036 --> 00:33:30,236
+and it's just showing
+me the average
+
+
+647
+00:33:30,506 --> 00:33:34,136
+that the time that
+the test took.
+
+
+648
+00:33:34,526 --> 00:33:35,856
+If I click on that annotation,
+
+
+649
+00:33:36,396 --> 00:33:37,996
+I'll get the performance
+result to pop over.
+
+
+650
+00:33:38,086 --> 00:33:39,316
+And I can get this
+from the Source Editor
+
+
+651
+00:33:39,316 --> 00:33:40,506
+or from the new Test Report.
+
+
+652
+00:33:41,406 --> 00:33:43,516
+From here I can see the
+current average from the test,
+
+
+653
+00:33:43,926 --> 00:33:46,106
+and I can also see how the
+individual measurements
+
+
+654
+00:33:46,316 --> 00:33:48,056
+that were taken differ
+from that average.
+
+
+655
+00:33:48,456 --> 00:33:49,366
+So here I can see
+
+
+656
+00:33:50,176 --> 00:33:53,266
+that measurement number
+8 was the longest one.
+
+
+657
+00:33:55,616 --> 00:33:58,096
+Now when I'm running too,
+I can click Set Baseline
+
+
+658
+00:33:58,176 --> 00:34:01,636
+and Xcode will use, will
+copy the current average
+
+
+659
+00:34:01,796 --> 00:34:02,456
+to the Baseline.
+
+
+660
+00:34:02,936 --> 00:34:13,755
+And if I need to set this
+again, I can click Edit
+
+
+661
+00:34:14,505 --> 00:34:18,286
+and either accept the new
+current average or type
+
+
+662
+00:34:18,286 --> 00:34:20,266
+in whatever I want
+as the Baseline
+
+
+663
+00:34:20,266 --> 00:34:24,866
+and I can also edit the maximum
+Standard Deviation from here.
+
+
+664
+00:34:25,376 --> 00:34:28,706
+In order to set the Baseline,
+the next time I run my test,
+
+
+665
+00:34:29,235 --> 00:34:31,866
+I'll see a different annotation
+with this gray diamond
+
+
+666
+00:34:31,866 --> 00:34:33,186
+with the checkmark in it.
+
+
+667
+00:34:33,186 --> 00:34:36,466
+And it's telling me that
+this test is doing 4% worse
+
+
+668
+00:34:36,656 --> 00:34:38,096
+than the Baseline that
+it's compared against.
+
+
+669
+00:34:38,676 --> 00:34:44,985
+If the test were to do a lot
+worse, the test would fail
+
+
+670
+00:34:45,096 --> 00:34:48,376
+and I'd get an annotation like
+this telling me that, you know,
+
+
+671
+00:34:48,596 --> 00:34:50,346
+it's 68% worse in this case.
+
+
+672
+00:34:50,866 --> 00:34:56,866
+And I can also see these results
+from that new Test Report.
+
+
+673
+00:34:57,446 --> 00:35:00,746
+Also from the Test Report, I can
+get the performance result pop
+
+
+674
+00:35:00,746 --> 00:35:03,646
+over by clicking under the time
+call on those measurements.
+
+
+675
+00:35:06,356 --> 00:35:10,316
+If you want to get at the
+raw values that Xcode gets
+
+
+676
+00:35:10,316 --> 00:35:11,576
+from XCTest, those are available
+
+
+677
+00:35:11,576 --> 00:35:13,136
+on the logs tab of
+the Test Report.
+
+
+678
+00:35:14,606 --> 00:35:19,826
+So let's talk about how XCTest
+uses the Baseline Average.
+
+
+679
+00:35:20,836 --> 00:35:24,166
+Here I have a dataset
+from one run of a test.
+
+
+680
+00:35:24,796 --> 00:35:27,426
+There are 10 measurements for
+the 10 indications of the block.
+
+
+681
+00:35:28,146 --> 00:35:31,016
+And they're all -- it comes
+around that 1-second mark
+
+
+682
+00:35:31,936 --> 00:35:33,096
+with a 1-second average.
+
+
+683
+00:35:33,556 --> 00:35:38,806
+I'll set the Baseline for my
+test, which fixes that in place.
+
+
+684
+00:35:39,506 --> 00:35:42,856
+Now the next time I run my
+test, if I were to get a dataset
+
+
+685
+00:35:42,856 --> 00:35:45,946
+like this, the average would
+be 1 second at 1.5 seconds
+
+
+686
+00:35:46,916 --> 00:35:50,786
+and the test would fail because
+that 1.5 seconds is well outside
+
+
+687
+00:35:50,786 --> 00:35:52,666
+the bounds of the
+allowed 10% regression.
+
+
+688
+00:35:54,116 --> 00:35:55,816
+So XCTest is going
+to fail the test
+
+
+689
+00:35:56,386 --> 00:35:59,686
+if the new average has increased
+from the Baseline by more
+
+
+690
+00:35:59,686 --> 00:36:02,106
+than 10% but it's going
+to ignore regressions less
+
+
+691
+00:36:02,106 --> 00:36:03,126
+than a tenth of a second.
+
+
+692
+00:36:05,126 --> 00:36:06,776
+But is the average enough?
+
+
+693
+00:36:06,776 --> 00:36:10,376
+Let's look at that
+same dataset again.
+
+
+694
+00:36:11,406 --> 00:36:14,196
+All the values come through on 1
+second with a 1-second average.
+
+
+695
+00:36:16,276 --> 00:36:19,246
+If I were to run this test again
+and get a dataset like this,
+
+
+696
+00:36:20,486 --> 00:36:21,506
+it hasn't really regressed.
+
+
+697
+00:36:21,506 --> 00:36:23,786
+The average is still 1 second
+but there's some values
+
+
+698
+00:36:23,876 --> 00:36:26,376
+over 1.5 seconds and
+some under 0.5 second.
+
+
+699
+00:36:27,676 --> 00:36:30,946
+So it isn't a true regression
+in terms of the average
+
+
+700
+00:36:30,986 --> 00:36:32,276
+but something's gotten worse.
+
+
+701
+00:36:32,276 --> 00:36:35,116
+There is something that if I
+were to get a dataset like this,
+
+
+702
+00:36:35,166 --> 00:36:36,986
+I would want to investigate it.
+
+
+703
+00:36:37,716 --> 00:36:40,996
+So the average just doesn't
+tell the whole story.
+
+
+704
+00:36:41,146 --> 00:36:43,196
+And XCTest is going to
+use the Standard Deviation
+
+
+705
+00:36:43,636 --> 00:36:45,636
+to indicate the spread
+of the measurements.
+
+
+706
+00:36:46,216 --> 00:36:51,116
+If we look at that first
+dataset one more time,
+
+
+707
+00:36:51,766 --> 00:36:53,356
+we see that the Standard
+Deviation is set
+
+
+708
+00:36:53,356 --> 00:36:55,576
+for these numbers tightly
+[inaudible] around 1 second
+
+
+709
+00:36:55,576 --> 00:36:58,476
+at 6% while the Standard
+Deviation
+
+
+710
+00:36:59,026 --> 00:37:02,266
+for the much more
+spread-out dataset is 40%.
+
+
+711
+00:37:02,886 --> 00:37:06,896
+And the way XCTest is
+going to use this is
+
+
+712
+00:37:07,146 --> 00:37:13,446
+if the Standard Deviation for
+the new dataset is more than 10%
+
+
+713
+00:37:13,446 --> 00:37:15,636
+of the current average,
+which you can adjust
+
+
+714
+00:37:15,746 --> 00:37:18,666
+from that popover, it will fail.
+
+
+715
+00:37:19,156 --> 00:37:20,786
+But again, just like
+the average,
+
+
+716
+00:37:21,556 --> 00:37:23,786
+it will ignore Standard
+Deviation of less than a tenth
+
+
+717
+00:37:23,786 --> 00:37:28,806
+of a second, again, to
+avoid false positives.
+
+
+718
+00:37:29,166 --> 00:37:31,946
+So what causes excessive
+Standard Deviation?
+
+
+719
+00:37:33,466 --> 00:37:36,126
+Well, one thing is if the block
+
+
+720
+00:37:36,126 --> 00:37:38,446
+that you're measuring is
+doing network I/O or file I/O,
+
+
+721
+00:37:38,666 --> 00:37:41,556
+that tends to vary
+pretty wildly.
+
+
+722
+00:37:42,256 --> 00:37:48,796
+Another thing that can cause
+high Standard Deviation is
+
+
+723
+00:37:49,066 --> 00:37:51,976
+if the block just isn't trying
+to do the same work each time.
+
+
+724
+00:37:51,976 --> 00:37:55,626
+So for example, if the block
+that's being measured does some
+
+
+725
+00:37:55,626 --> 00:37:58,946
+-- sets up some expensive global
+state the first time through
+
+
+726
+00:37:58,946 --> 00:38:02,586
+and then never again or the
+block might just be affected
+
+
+727
+00:38:02,586 --> 00:38:03,866
+by an uninitialized variables.
+
+
+728
+00:38:04,856 --> 00:38:07,046
+And lastly, another thing
+
+
+729
+00:38:07,096 --> 00:38:10,686
+that can cause high
+Standard Deviation is
+
+
+730
+00:38:10,686 --> 00:38:12,666
+if the system is just
+busy with other processes
+
+
+731
+00:38:12,846 --> 00:38:17,596
+and short-running tests are
+especially sensitive to this.
+
+
+732
+00:38:17,826 --> 00:38:21,166
+So how does XCTest
+detect issues?
+
+
+733
+00:38:22,036 --> 00:38:24,646
+First of all, if there's no
+Baseline Average, it's done.
+
+
+734
+00:38:24,646 --> 00:38:27,416
+It's not going to try and do any
+analysis of the measurements.
+
+
+735
+00:38:28,216 --> 00:38:31,096
+If there is a Baseline Average,
+first it will check to see
+
+
+736
+00:38:31,096 --> 00:38:33,866
+if that Standard Deviation is
+more than a tenth of a second
+
+
+737
+00:38:34,616 --> 00:38:37,076
+and more than 10% of
+the current average.
+
+
+738
+00:38:37,216 --> 00:38:39,476
+If it is, it'll fail for that.
+
+
+739
+00:38:39,476 --> 00:38:43,736
+Otherwise, it'll check to see if
+the average is increased by more
+
+
+740
+00:38:43,736 --> 00:38:47,826
+than a tenth of a second and
+more than 10% of the Baseline.
+
+
+741
+00:38:48,826 --> 00:38:49,876
+And if it is, it'll
+fail for that.
+
+
+742
+00:38:50,446 --> 00:38:52,346
+And otherwise, it'll pass.
+
+
+743
+00:38:54,376 --> 00:38:56,786
+So how can we minimize
+Standard Deviation?
+
+
+744
+00:38:56,786 --> 00:39:00,156
+Well, one way is to only measure
+the code that's important
+
+
+745
+00:39:00,156 --> 00:39:00,286
+to you.
+
+
+746
+00:39:01,626 --> 00:39:04,596
+So let's look at how we can do
+that with that previous example.
+
+
+747
+00:39:05,206 --> 00:39:08,926
+Here, this test is doing
+the work of setting
+
+
+748
+00:39:08,926 --> 00:39:10,496
+up a FileHandle using it
+
+
+749
+00:39:10,496 --> 00:39:13,396
+and then closing the FileHandle
+each time we run the block.
+
+
+750
+00:39:13,996 --> 00:39:16,376
+But if I only want
+to measure the time
+
+
+751
+00:39:16,376 --> 00:39:21,476
+of using the FileHandle, what I
+might do is just move the set up
+
+
+752
+00:39:21,476 --> 00:39:23,346
+and tear down work
+outside of the block.
+
+
+753
+00:39:24,286 --> 00:39:25,256
+But what if I can't do that?
+
+
+754
+00:39:25,936 --> 00:39:27,456
+Sometimes, the work
+that you want
+
+
+755
+00:39:27,456 --> 00:39:29,876
+to measure requires some
+set of work that needs
+
+
+756
+00:39:29,876 --> 00:39:31,646
+to be done each time
+before the measurement.
+
+
+757
+00:39:31,736 --> 00:39:34,206
+And for that, we have
+some additional APIs;
+
+
+758
+00:39:35,066 --> 00:39:37,886
+measureMetrics automatically
+start measuring with a block.
+
+
+759
+00:39:38,376 --> 00:39:39,716
+You can use this to
+measure just part
+
+
+760
+00:39:39,716 --> 00:39:41,436
+of the block that's
+being called.
+
+
+761
+00:39:44,256 --> 00:39:47,836
+This API expects an array
+of metrics to measure
+
+
+762
+00:39:48,706 --> 00:39:50,686
+and currently only
+time is supported.
+
+
+763
+00:39:51,376 --> 00:39:54,866
+We'll also need two more APIs,
+
+
+764
+00:39:54,866 --> 00:39:56,396
+startMeasuring and
+stopMeasuring.
+
+
+765
+00:39:56,676 --> 00:39:58,156
+You can use these
+to isolate what part
+
+
+766
+00:39:58,196 --> 00:39:58,976
+of the block you
+want to measure.
+
+
+767
+00:39:59,226 --> 00:40:02,826
+You can call these once
+per block invocation.
+
+
+768
+00:40:04,256 --> 00:40:05,806
+And if you're going to
+call startMeasuring,
+
+
+769
+00:40:05,806 --> 00:40:08,486
+you need to pass NO for
+automatically startMeasuring.
+
+
+770
+00:40:09,126 --> 00:40:13,856
+So let's see how that would
+work with our previous example.
+
+
+771
+00:40:15,736 --> 00:40:18,376
+First, we'd change the method
+
+
+772
+00:40:18,376 --> 00:40:21,396
+to call it measureMetrics
+passing time as the metric
+
+
+773
+00:40:21,956 --> 00:40:23,656
+and NO for automatically
+startMeasuring.
+
+
+774
+00:40:25,176 --> 00:40:27,926
+It calls startMeasuring right
+before you use FileHandle
+
+
+775
+00:40:27,926 --> 00:40:29,486
+and stopMeasuring
+immediately afterwards.
+
+
+776
+00:40:30,376 --> 00:40:33,066
+So now this block is
+doing the work of setting
+
+
+777
+00:40:33,066 --> 00:40:35,726
+up the FileHandle and
+turning it down each time
+
+
+778
+00:40:35,726 --> 00:40:38,816
+but it's only actually
+measuring the duration spent
+
+
+779
+00:40:38,816 --> 00:40:39,716
+in UseFileHandle.
+
+
+780
+00:40:40,326 --> 00:40:43,906
+So let's look at
+this in practice.
+
+
+781
+00:40:44,586 --> 00:40:46,626
+So despite the name of this
+project, I'm actually thinking
+
+
+782
+00:40:46,626 --> 00:40:50,686
+about adding a JSON parser
+to it and I've got a test
+
+
+783
+00:40:50,686 --> 00:40:55,886
+that I'm running here that's
+loading this file from the web
+
+
+784
+00:40:57,296 --> 00:40:59,846
+and parsing it with
+NSJSONSerialization.
+
+
+785
+00:41:00,866 --> 00:41:02,366
+I think I'd actually
+like to turn this
+
+
+786
+00:41:02,366 --> 00:41:05,666
+into a performance test
+just for my own sake.
+
+
+787
+00:41:06,236 --> 00:41:11,016
+And I'll do that now
+by calling measureBlock
+
+
+788
+00:41:11,846 --> 00:41:15,726
+and then pasting in the code.
+
+
+789
+00:41:15,936 --> 00:41:18,026
+And I'll click to run my test.
+
+
+790
+00:41:22,336 --> 00:41:27,186
+So here we can see that it took,
+it says on average 1.91 seconds
+
+
+791
+00:41:27,416 --> 00:41:29,576
+with 114% Standard Deviation
+
+
+792
+00:41:29,576 --> 00:41:34,716
+and it's telling me there's no
+Baseline Average for this test.
+
+
+793
+00:41:35,246 --> 00:41:37,056
+Well, that's not bad but I know
+
+
+794
+00:41:37,056 --> 00:41:38,586
+that since it's doing
+this expensive work
+
+
+795
+00:41:38,586 --> 00:41:41,256
+of loading this file
+from the web each time,
+
+
+796
+00:41:41,256 --> 00:41:42,436
+I actually don't
+want to measure that.
+
+
+797
+00:41:42,436 --> 00:41:44,756
+I just want to measure the time
+spent in NSJSONSerialization.
+
+
+798
+00:41:45,446 --> 00:41:47,236
+So what I'll do is
+I'll delete this
+
+
+799
+00:41:47,326 --> 00:41:50,426
+and call measure
+time measureMetrics
+
+
+800
+00:41:50,996 --> 00:41:54,816
+which is passing time
+as my metric and NO
+
+
+801
+00:41:54,816 --> 00:41:55,896
+for automaticallyStartMeasuring.
+
+
+802
+00:41:57,366 --> 00:42:02,296
+Then all I need to do is call
+startMeasuring right before
+
+
+803
+00:42:02,396 --> 00:42:09,716
+NSJSONSerialization
+and I can run my test.
+
+
+804
+00:42:09,896 --> 00:42:13,376
+Great! So previously, it
+was taking 1.91 seconds
+
+
+805
+00:42:13,686 --> 00:42:15,486
+and now it appears to be
+taking no time at all.
+
+
+806
+00:42:15,486 --> 00:42:19,356
+So that's pretty
+good [laughter].
+
+
+807
+00:42:19,666 --> 00:42:26,256
+I wish all my APIs
+were that quick.
+
+
+808
+00:42:28,076 --> 00:42:31,356
+But I actually want this to
+measure something, you know,
+
+
+809
+00:42:31,636 --> 00:42:35,036
+something that Xcode will
+report, something significant
+
+
+810
+00:42:35,036 --> 00:42:36,526
+so what I'm going
+to do is I'm going
+
+
+811
+00:42:36,526 --> 00:42:38,516
+to change this to
+use a larger file.
+
+
+812
+00:42:39,196 --> 00:42:40,906
+So we actually get
+some values here.
+
+
+813
+00:42:48,046 --> 00:42:49,276
+And this is going to
+take a little bit longer
+
+
+814
+00:42:49,276 --> 00:42:52,016
+because what it's actually
+doing is it's going
+
+
+815
+00:42:52,016 --> 00:42:56,536
+to be calling this block
+10 times, loading the file
+
+
+816
+00:42:56,536 --> 00:42:59,986
+from the web each time
+and then parsing it.
+
+
+817
+00:43:01,956 --> 00:43:05,336
+So now the test is taking,
+it looks like 1.21 seconds
+
+
+818
+00:43:05,336 --> 00:43:09,996
+and it's got a very low Standard
+Deviation, which is pretty good.
+
+
+819
+00:43:10,506 --> 00:43:14,016
+So I'm going to click to
+set this as my new Baseline
+
+
+820
+00:43:14,726 --> 00:43:18,336
+and since that seemed to take
+a little while, I'm just going
+
+
+821
+00:43:18,766 --> 00:43:20,236
+to move this out of the block.
+
+
+822
+00:43:20,626 --> 00:43:23,896
+Since the data that it's
+loading is actually immutable,
+
+
+823
+00:43:23,896 --> 00:43:24,866
+I don't need to do
+this every time.
+
+
+824
+00:43:24,866 --> 00:43:26,916
+So I'm just going
+to do that once
+
+
+825
+00:43:27,376 --> 00:43:28,636
+when the test initially starts.
+
+
+826
+00:43:29,386 --> 00:43:30,596
+I'll click through
+on my test again.
+
+
+827
+00:43:35,186 --> 00:43:38,206
+And it still got a result
+around the same ballpark
+
+
+828
+00:43:38,206 --> 00:43:40,096
+and still got a pretty
+reasonable Standard Deviation.
+
+
+829
+00:43:40,656 --> 00:43:42,766
+Well, now that I'm not
+actually doing any work before
+
+
+830
+00:43:42,766 --> 00:43:44,046
+startMeasuring, I
+don't need all this.
+
+
+831
+00:43:44,706 --> 00:43:47,206
+So I'm just going to delete that
+
+
+832
+00:43:47,406 --> 00:43:49,866
+and change this back
+to call measureBlock.
+
+
+833
+00:43:50,476 --> 00:43:55,676
+I'll run it again.
+
+
+834
+00:43:55,676 --> 00:43:58,796
+And I should get similar results
+and yeah, it looks like I do.
+
+
+835
+00:43:59,586 --> 00:44:02,276
+So the last thing I'd
+like to do with this is
+
+
+836
+00:44:02,276 --> 00:44:03,226
+like Will showed us earlier.
+
+
+837
+00:44:03,226 --> 00:44:05,896
+We kind of want our test
+to be self-contained.
+
+
+838
+00:44:05,896 --> 00:44:09,906
+We don't want it to be
+loading files from the network.
+
+
+839
+00:44:09,906 --> 00:44:11,226
+So I'm just going to change this
+
+
+840
+00:44:11,226 --> 00:44:14,016
+since I've actually
+already got a copy
+
+
+841
+00:44:14,136 --> 00:44:15,326
+of this file in my project.
+
+
+842
+00:44:15,326 --> 00:44:17,876
+I'm going to use
+NSBundle bundleForClass
+
+
+843
+00:44:17,986 --> 00:44:21,846
+to load this all-month
+file from my test project.
+
+
+844
+00:44:23,066 --> 00:44:23,806
+I'll run it again.
+
+
+845
+00:44:27,996 --> 00:44:28,826
+And here we go.
+
+
+846
+00:44:29,116 --> 00:44:31,656
+So now I've got a new
+performance test that's
+
+
+847
+00:44:31,656 --> 00:44:34,316
+measuring the time that
+it takes to run this
+
+
+848
+00:44:34,386 --> 00:44:37,936
+and if something were
+to change, I'd find out.
+
+
+849
+00:44:39,036 --> 00:44:44,416
+The last thing I want to do is
+I want to commit my changes.
+
+
+850
+00:44:44,416 --> 00:44:46,886
+So here we can see the
+changes that I've made so far.
+
+
+851
+00:44:46,886 --> 00:44:48,756
+I got rid of that really
+expensive function.
+
+
+852
+00:44:49,166 --> 00:44:52,806
+I changed my test to
+be a performance test
+
+
+853
+00:44:53,366 --> 00:44:56,256
+and we can also see the
+Baseline that I've added here.
+
+
+854
+00:44:57,036 --> 00:44:58,196
+So I don't think you
+can tell from this,
+
+
+855
+00:44:58,256 --> 00:45:00,446
+but this is actually a file
+that's stored inside the project
+
+
+856
+00:45:00,446 --> 00:45:00,976
+bundle itself.
+
+
+857
+00:45:08,296 --> 00:45:09,346
+So I'll commit that.
+
+
+858
+00:45:09,806 --> 00:45:13,936
+And now it's saved there
+for the next time I need it,
+
+
+859
+00:45:14,966 --> 00:45:15,936
+the next time I need it, okay.
+
+
+860
+00:45:16,516 --> 00:45:23,206
+[ Applause ]
+
+
+861
+00:45:23,706 --> 00:45:24,586
+So what you've just seen is
+
+
+862
+00:45:24,586 --> 00:45:26,896
+that you can use the
+new measureBlock APIs
+
+
+863
+00:45:26,946 --> 00:45:28,996
+to measure performance
+and to detect regressions.
+
+
+864
+00:45:29,726 --> 00:45:32,526
+You can tell Xcode
+what the Baseline is
+
+
+865
+00:45:32,526 --> 00:45:36,466
+to specify what constitutes
+a regression for your test.
+
+
+866
+00:45:36,846 --> 00:45:41,806
+And it will -- XCTest will use a
+Standard Deviation to inform you
+
+
+867
+00:45:41,806 --> 00:45:43,056
+of the spread of
+the measurements.
+
+
+868
+00:45:43,826 --> 00:45:46,746
+And finally, when
+something does go wrong,
+
+
+869
+00:45:46,836 --> 00:45:48,766
+you can always use Instruments
+to profile your test.
+
+
+870
+00:45:49,526 --> 00:45:50,856
+Now I'd like to invite
+Will back up.
+
+
+871
+00:45:51,516 --> 00:45:54,896
+[ Applause ]
+
+
+872
+00:45:55,396 --> 00:45:56,076
+>> Okay great.
+
+
+873
+00:45:56,076 --> 00:45:59,486
+So just to kind of go back
+through everything we've talked
+
+
+874
+00:45:59,486 --> 00:46:02,776
+about today, we started off
+with thinking about, you know,
+
+
+875
+00:46:02,906 --> 00:46:04,336
+why should we test
+in the first place?
+
+
+876
+00:46:04,406 --> 00:46:05,346
+What are the benefits?
+
+
+877
+00:46:05,876 --> 00:46:08,546
+You know, it helps us
+identify bugs before we ship.
+
+
+878
+00:46:08,546 --> 00:46:13,096
+It also helps us to describe and
+really think about the impact
+
+
+879
+00:46:13,096 --> 00:46:15,226
+of the APIs we're
+presenting in our project.
+
+
+880
+00:46:16,376 --> 00:46:19,626
+And then we talked about how
+do you add tests and also how
+
+
+881
+00:46:19,626 --> 00:46:23,526
+to organize test into targets in
+your project, the test methods,
+
+
+882
+00:46:23,976 --> 00:46:26,496
+loading resources
+from the test bundle
+
+
+883
+00:46:26,866 --> 00:46:29,586
+and using the assertions
+inside your test.
+
+
+884
+00:46:29,926 --> 00:46:33,066
+And then we talked about the
+new asynchronous testing API,
+
+
+885
+00:46:33,496 --> 00:46:37,296
+which allows you to get a
+synchronous control flow
+
+
+886
+00:46:37,526 --> 00:46:39,696
+around asynchronous tasks.
+
+
+887
+00:46:40,536 --> 00:46:43,686
+And then Brooke took you
+through performance testing
+
+
+888
+00:46:43,946 --> 00:46:46,846
+and also the instruments
+integration
+
+
+889
+00:46:47,206 --> 00:46:49,146
+that lets you profile your test.
+
+
+890
+00:46:49,146 --> 00:46:50,856
+And that's a really
+powerful feature
+
+
+891
+00:46:51,386 --> 00:46:54,786
+because your test code is going
+to be executing critical paths
+
+
+892
+00:46:54,786 --> 00:46:58,006
+in your project and then
+to easily be able to hop
+
+
+893
+00:46:58,006 --> 00:47:01,496
+in Instruments and
+analyze time profiles
+
+
+894
+00:47:01,496 --> 00:47:03,946
+or object alloc profiles.
+
+
+895
+00:47:03,946 --> 00:47:07,246
+It's a really great
+tool for you to have.
+
+
+896
+00:47:07,246 --> 00:47:11,596
+And if you have questions,
+we encourage you
+
+
+897
+00:47:11,596 --> 00:47:14,286
+to contact Dave DeLong,
+our Tools Evangelist
+
+
+898
+00:47:14,856 --> 00:47:17,546
+and there's a few
+related sessions.
+
+
+899
+00:47:17,546 --> 00:47:18,646
+You know, early on, I talked
+
+
+900
+00:47:18,646 --> 00:47:20,896
+about this continuous
+integration workflow
+
+
+901
+00:47:21,416 --> 00:47:25,116
+and XCTest combined with the
+Xcode server makes that possible
+
+
+902
+00:47:25,116 --> 00:47:28,476
+where you can set up a
+server that will on commit
+
+
+903
+00:47:28,476 --> 00:47:31,946
+or schedules, check out your
+code, and run all of your tests
+
+
+904
+00:47:31,946 --> 00:47:33,086
+and report the results.
+
+
+905
+00:47:33,706 --> 00:47:36,706
+So there's a session on that
+later this afternoon right here
+
+
+906
+00:47:36,706 --> 00:47:37,206
+in this room.
+
+
+907
+00:47:37,206 --> 00:47:38,186
+And that's it.
+
+
+908
+00:47:38,186 --> 00:47:38,976
+Thanks a lot, folks.
+
+
+909
+00:47:39,516 --> 00:47:47,130
+[ Applause ]
+

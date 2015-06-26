@@ -1,0 +1,6129 @@
+1
+00:00:00,506 --> 00:00:10,906
+[ Silence ]
+
+
+2
+00:00:11,406 --> 00:00:11,966
+>> Alright.
+
+
+3
+00:00:12,546 --> 00:00:14,536
+Hello and welcome to
+the Advanced Graphics
+
+
+4
+00:00:14,536 --> 00:00:16,486
+and Animations for
+iOS Apps talk.
+
+
+5
+00:00:17,056 --> 00:00:18,506
+I'm Axel. Mike is over there.
+
+
+6
+00:00:18,506 --> 00:00:20,956
+He will take over in
+the middle of the talk.
+
+
+7
+00:00:21,366 --> 00:00:22,796
+And with today's
+talk we're going
+
+
+8
+00:00:22,796 --> 00:00:24,116
+to cover the following topics.
+
+
+9
+00:00:24,196 --> 00:00:26,126
+The first part we'll be talking
+
+
+10
+00:00:26,126 --> 00:00:27,526
+about the Core Animation
+pipeline
+
+
+11
+00:00:27,526 --> 00:00:28,996
+and how it interacts
+with the application.
+
+
+12
+00:00:29,086 --> 00:00:31,726
+After this I'll introduce
+a few rendering concepts
+
+
+13
+00:00:31,726 --> 00:00:34,416
+that are required to
+understand our new two classes,
+
+
+14
+00:00:34,416 --> 00:00:36,216
+UIBlurEffect and
+UIVibrancyEffect
+
+
+15
+00:00:36,916 --> 00:00:39,466
+and after this Mike will
+take over and walk you
+
+
+16
+00:00:39,466 --> 00:00:40,896
+through existing Profiling Tools
+
+
+17
+00:00:40,896 --> 00:00:42,716
+and demonstrate a
+few case studies.
+
+
+18
+00:00:43,256 --> 00:00:45,906
+To iterate the frameworks
+that we'll be looking
+
+
+19
+00:00:45,906 --> 00:00:48,916
+at in this talk, in the first
+part of the talk we're looking
+
+
+20
+00:00:48,916 --> 00:00:51,486
+at Core Animation and how
+it interacts with OpenGL
+
+
+21
+00:00:51,486 --> 00:00:53,686
+or some hardware with metal,
+the graphics hardware.
+
+
+22
+00:00:54,666 --> 00:00:57,096
+And then in the second
+half of my part I will talk
+
+
+23
+00:00:57,096 --> 00:00:59,186
+about the UIBlurEffect
+and UIVibrancyEffect
+
+
+24
+00:00:59,186 --> 00:01:00,196
+that are a part of UIKit.
+
+
+25
+00:01:01,096 --> 00:01:03,986
+So let's get started with
+the Core Animation pipeline.
+
+
+26
+00:01:04,646 --> 00:01:07,466
+So it all starts
+in the application.
+
+
+27
+00:01:07,466 --> 00:01:09,126
+The application builds
+a view hierarchy.
+
+
+28
+00:01:09,346 --> 00:01:12,366
+These are indirectly with UIKit
+or directly with Core Animation.
+
+
+29
+00:01:13,156 --> 00:01:15,196
+One thing worth noticing now is
+
+
+30
+00:01:15,196 --> 00:01:18,156
+that the application process is
+actually not doing the actual
+
+
+31
+00:01:18,156 --> 00:01:19,316
+rendering work for
+Core Animation.
+
+
+32
+00:01:19,886 --> 00:01:23,206
+Instead this view hierarchy is
+committed to the render server
+
+
+33
+00:01:23,206 --> 00:01:24,556
+which is a separate process
+
+
+34
+00:01:24,966 --> 00:01:26,876
+and this render server
+has a server side version
+
+
+35
+00:01:26,876 --> 00:01:28,876
+of Core Animation that
+receives this view hierarchy.
+
+
+36
+00:01:29,316 --> 00:01:32,476
+The view hierarchy is then
+rendered with Core Animation
+
+
+37
+00:01:32,506 --> 00:01:35,266
+with OpenGL or metal,
+that's the GPU.
+
+
+38
+00:01:35,356 --> 00:01:36,416
+It's GPU accelerated.
+
+
+39
+00:01:37,186 --> 00:01:39,786
+And then once the view hierarchy
+is being rendered we can finally
+
+
+40
+00:01:39,786 --> 00:01:40,646
+display it to the user.
+
+
+41
+00:01:41,886 --> 00:01:44,566
+So the interesting part
+is now how does this look
+
+
+42
+00:01:44,566 --> 00:01:46,126
+like time wise within
+the application?
+
+
+43
+00:01:46,126 --> 00:01:48,316
+So, therefore, I would like to
+introduce the following grid.
+
+
+44
+00:01:49,366 --> 00:01:52,066
+The vertical lines represent
+particular blanking interrupts
+
+
+45
+00:01:52,066 --> 00:01:55,026
+and since you're rendering at
+60 hertz of UI the distance
+
+
+46
+00:01:55,026 --> 00:01:58,096
+between those vertical
+lines is 16.67ms.
+
+
+47
+00:01:59,366 --> 00:02:01,636
+So, the first thing that
+happens in the application,
+
+
+48
+00:02:01,786 --> 00:02:04,526
+you receive an event
+probably because of a touch,
+
+
+49
+00:02:04,666 --> 00:02:08,175
+and therefore, the usual case,
+I mean to handling this case is
+
+
+50
+00:02:08,175 --> 00:02:09,856
+that we want to update
+a view hierarchy.
+
+
+51
+00:02:10,866 --> 00:02:12,096
+And this happens in a phase
+
+
+52
+00:02:12,096 --> 00:02:13,986
+that we call the commit
+transaction phase.
+
+
+53
+00:02:13,986 --> 00:02:15,536
+It is in our application.
+
+
+54
+00:02:16,476 --> 00:02:19,896
+At the end of this phase the
+view hierarchy is then encoded
+
+
+55
+00:02:19,896 --> 00:02:20,916
+and sent to the render server.
+
+
+56
+00:02:20,916 --> 00:02:23,646
+The first thing that the
+render server then asks is
+
+
+57
+00:02:23,646 --> 00:02:24,716
+to decode this view hierarchy.
+
+
+58
+00:02:25,996 --> 00:02:28,516
+The render server then has
+to wait for the next resync
+
+
+59
+00:02:28,656 --> 00:02:31,976
+in order to wait for buffers
+to get back from a display
+
+
+60
+00:02:31,976 --> 00:02:34,206
+that they can actually render to
+
+
+61
+00:02:34,206 --> 00:02:37,796
+and then it finally starts
+issuing draw calls for the GPU,
+
+
+62
+00:02:38,066 --> 00:02:40,656
+this OpenGL or metal again.
+
+
+63
+00:02:41,106 --> 00:02:43,106
+Then once this is
+completed hopefully
+
+
+64
+00:02:43,106 --> 00:02:45,866
+with the review sources now
+available it can finally start
+
+
+65
+00:02:45,866 --> 00:02:48,916
+rendering and so the GPU starts
+doing its rendering work.
+
+
+66
+00:02:49,816 --> 00:02:52,636
+Hopefully this rendering work
+finishes before the next resync
+
+
+67
+00:02:52,916 --> 00:02:56,156
+because then we can
+swap in the frame buffer
+
+
+68
+00:02:56,156 --> 00:02:57,586
+and show the view
+hierarchy to the user.
+
+
+69
+00:02:58,516 --> 00:03:00,986
+As you can these various steps
+span over multiple frames.
+
+
+70
+00:03:00,986 --> 00:03:02,426
+In this case it's three frames
+
+
+71
+00:03:02,926 --> 00:03:05,106
+and let's say we
+would now continue
+
+
+72
+00:03:05,106 --> 00:03:06,906
+with the next handler event
+and Commit Transaction
+
+
+73
+00:03:06,906 --> 00:03:09,726
+after the display then we would
+only be able to render 20 hertz.
+
+
+74
+00:03:09,726 --> 00:03:10,676
+I know that's 60 hertz.
+
+
+75
+00:03:10,866 --> 00:03:13,786
+So, therefore, what we're
+doing is we are overlaying
+
+
+76
+00:03:13,956 --> 00:03:14,576
+these stages.
+
+
+77
+00:03:14,576 --> 00:03:16,296
+So in parallel with
+the draw codes
+
+
+78
+00:03:16,296 --> 00:03:18,886
+that you can see here we will
+do the next handler event,
+
+
+79
+00:03:19,076 --> 00:03:21,976
+handler event and commit
+transaction and so at the end
+
+
+80
+00:03:21,976 --> 00:03:23,706
+of this flowing step diagram.
+
+
+81
+00:03:24,016 --> 00:03:27,406
+In the next few slides
+I would like to focus
+
+
+82
+00:03:27,406 --> 00:03:28,726
+on the commit transaction stage
+
+
+83
+00:03:28,726 --> 00:03:31,326
+because that's what affects
+application developers the most.
+
+
+84
+00:03:32,396 --> 00:03:34,676
+So let's take a look
+at commit transaction.
+
+
+85
+00:03:35,056 --> 00:03:37,436
+Commit transaction itself
+consists of four phases.
+
+
+86
+00:03:37,436 --> 00:03:39,156
+The first phase is
+the layout phase.
+
+
+87
+00:03:39,156 --> 00:03:41,136
+This is where we
+set up the views.
+
+
+88
+00:03:41,586 --> 00:03:43,446
+Then the next phase
+is the display phase.
+
+
+89
+00:03:43,446 --> 00:03:44,626
+This is where we draw the views.
+
+
+90
+00:03:45,386 --> 00:03:47,576
+The third phase is the
+prepare commit phase
+
+
+91
+00:03:47,576 --> 00:03:49,826
+where we do some additional
+Core Animation work
+
+
+92
+00:03:50,396 --> 00:03:53,556
+and the last phase is where we
+actually package up the layers
+
+
+93
+00:03:53,556 --> 00:03:55,476
+and send them to the
+render server in the commit.
+
+
+94
+00:03:56,906 --> 00:03:59,176
+So let's look in detail
+at those four phases.
+
+
+95
+00:03:59,336 --> 00:04:00,976
+First the layout phase.
+
+
+96
+00:04:01,726 --> 00:04:03,646
+In the Layout phase the
+layoutSubviews overrides
+
+
+97
+00:04:03,646 --> 00:04:04,216
+are invoked.
+
+
+98
+00:04:04,216 --> 00:04:05,896
+This is where view
+creation happens.
+
+
+99
+00:04:05,976 --> 00:04:07,876
+This is where we add
+layers to the view hierarchy
+
+
+100
+00:04:07,876 --> 00:04:10,756
+with addSubview and this
+is where populate content
+
+
+101
+00:04:10,756 --> 00:04:12,516
+and do some lightweight
+database lookups.
+
+
+102
+00:04:12,516 --> 00:04:14,236
+And I'm saying lightweight
+because we don't want
+
+
+103
+00:04:14,236 --> 00:04:15,096
+to stall here too long.
+
+
+104
+00:04:15,656 --> 00:04:17,786
+The lightweights could be,
+for example, localized strings
+
+
+105
+00:04:17,786 --> 00:04:19,516
+because we need them
+at this point in order
+
+
+106
+00:04:19,516 --> 00:04:20,986
+to do our label layout.
+
+
+107
+00:04:21,976 --> 00:04:25,366
+Because of this, this phase is
+usually CPU bound or I/O bound.
+
+
+108
+00:04:27,016 --> 00:04:28,336
+The second phase is
+the Display phase.
+
+
+109
+00:04:28,336 --> 00:04:30,626
+This is where the draw
+contents this drawRect
+
+
+110
+00:04:30,626 --> 00:04:32,286
+if it's overridden
+or do string drawing.
+
+
+111
+00:04:32,816 --> 00:04:37,986
+One thing worth noting here is
+that this phase is actually CPU
+
+
+112
+00:04:37,986 --> 00:04:39,696
+or memory bound, because the
+rendering is [inaudible].
+
+
+113
+00:04:39,806 --> 00:04:42,516
+We use here the core
+graphics for this rendering.
+
+
+114
+00:04:43,026 --> 00:04:45,666
+And so we usually do this
+rendering with CG context.
+
+
+115
+00:04:45,666 --> 00:04:48,666
+So the point is here that
+we want to minimize the work
+
+
+116
+00:04:48,666 --> 00:04:50,176
+that we do with core graphics
+
+
+117
+00:04:50,456 --> 00:04:53,246
+to avoid a large
+performance set in this stage.
+
+
+118
+00:04:53,776 --> 00:04:55,906
+The next phase is
+the Prepare phase.
+
+
+119
+00:04:55,906 --> 00:04:58,146
+This is where image decoding
+and image conversion happens.
+
+
+120
+00:04:58,936 --> 00:05:00,476
+Image decoding should
+be straightforward.
+
+
+121
+00:05:00,476 --> 00:05:01,726
+This happens if you
+have any images
+
+
+122
+00:05:01,726 --> 00:05:04,046
+and in your view
+hierarchy and these JPEGs
+
+
+123
+00:05:04,046 --> 00:05:05,936
+or PNGs are getting
+decoded at this point.
+
+
+124
+00:05:07,036 --> 00:05:09,366
+Image conversation is not
+quite so straightforward.
+
+
+125
+00:05:09,636 --> 00:05:11,896
+What happens here is
+that we might have images
+
+
+126
+00:05:11,926 --> 00:05:15,006
+that are not supported
+by the GPU.
+
+
+127
+00:05:15,866 --> 00:05:17,686
+And, therefore, we need
+to convert these images.
+
+
+128
+00:05:17,686 --> 00:05:20,366
+A good example for this could
+be index bitmap so you want
+
+
+129
+00:05:20,366 --> 00:05:21,776
+to avoid certain image formats.
+
+
+130
+00:05:23,196 --> 00:05:26,676
+In the last phase the Commit
+phase, we package up the layers
+
+
+131
+00:05:26,676 --> 00:05:28,846
+and send them to
+the render server.
+
+
+132
+00:05:28,846 --> 00:05:29,936
+This process is recursive.
+
+
+133
+00:05:29,936 --> 00:05:31,516
+You have to reiterate
+over the whole layer tree
+
+
+134
+00:05:31,516 --> 00:05:32,486
+and this is expensive.
+
+
+135
+00:05:32,486 --> 00:05:33,546
+The layer tree is complex.
+
+
+136
+00:05:33,546 --> 00:05:35,846
+So this is why we want to
+keep the layer tree as flat
+
+
+137
+00:05:35,846 --> 00:05:39,076
+as possible to make sure
+that this part of the phase
+
+
+138
+00:05:39,076 --> 00:05:43,136
+and as efficient as it can be.
+
+
+139
+00:05:43,266 --> 00:05:45,376
+So let's take a look with how
+this works with animation.
+
+
+140
+00:05:45,506 --> 00:05:47,716
+Animations themselves are
+a three stage process.
+
+
+141
+00:05:47,716 --> 00:05:50,226
+Two of those happen
+inside the application
+
+
+142
+00:05:50,226 --> 00:05:51,786
+and the last stage happens
+on the render server.
+
+
+143
+00:05:51,786 --> 00:05:55,586
+The first stage is where
+we create the animation,
+
+
+144
+00:05:55,586 --> 00:05:56,486
+update view hierarchy.
+
+
+145
+00:05:56,486 --> 00:05:58,706
+This happens usually with
+the animate restoration
+
+
+146
+00:05:58,706 --> 00:05:59,616
+animations method.
+
+
+147
+00:06:00,746 --> 00:06:03,006
+Then the second stage
+is where we prepare
+
+
+148
+00:06:03,006 --> 00:06:04,206
+and commit your animation.
+
+
+149
+00:06:04,476 --> 00:06:07,176
+This is where layoutSubview
+is being called drawRect
+
+
+150
+00:06:07,176 --> 00:06:08,736
+and that probably
+sounds familiar.
+
+
+151
+00:06:08,736 --> 00:06:11,376
+And it is, because these are
+the four phases we were just
+
+
+152
+00:06:11,376 --> 00:06:12,466
+looking at.
+
+
+153
+00:06:13,116 --> 00:06:14,536
+The only difference here is
+
+
+154
+00:06:14,536 --> 00:06:16,106
+that with the commit
+we don't just commit
+
+
+155
+00:06:16,106 --> 00:06:16,916
+to the view hierarchy.
+
+
+156
+00:06:16,916 --> 00:06:18,236
+We commit as well the animation.
+
+
+157
+00:06:18,826 --> 00:06:20,106
+And that's for a
+reason, because we would
+
+
+158
+00:06:20,106 --> 00:06:22,316
+like to handle the animation
+work to render server
+
+
+159
+00:06:22,316 --> 00:06:26,626
+so that we can continue
+to update your animation
+
+
+160
+00:06:26,666 --> 00:06:28,996
+without using interprocess
+communication to talk back
+
+
+161
+00:06:28,996 --> 00:06:31,126
+to the application or force
+them back to the application.
+
+
+162
+00:06:32,156 --> 00:06:34,276
+So that's for efficiency
+reasons.
+
+
+163
+00:06:34,726 --> 00:06:39,656
+So, let's take a look at a few
+rendering concepts that require
+
+
+164
+00:06:39,656 --> 00:06:41,926
+to understand the
+new visual effects
+
+
+165
+00:06:41,926 --> 00:06:43,666
+that we are providing
+you with in iOS 8.
+
+
+166
+00:06:44,666 --> 00:06:47,326
+So in this part of the talk
+I'm covering three areas;
+
+
+167
+00:06:47,326 --> 00:06:49,706
+first tile based rendering
+is how all GPUs work.
+
+
+168
+00:06:50,576 --> 00:06:52,956
+Then I'm going to introduce
+the concept of render passes
+
+
+169
+00:06:53,126 --> 00:06:55,406
+because our new effects
+they use render passes.
+
+
+170
+00:06:56,196 --> 00:06:58,076
+And then I'm doing
+a first example
+
+
+171
+00:06:58,076 --> 00:07:00,506
+by showing you how masking
+works with render passes.
+
+
+172
+00:07:01,876 --> 00:07:04,486
+So let's take a look at
+tile based rendering.
+
+
+173
+00:07:04,486 --> 00:07:06,066
+With tile based rendering,
+the screen is split
+
+
+174
+00:07:06,066 --> 00:07:07,696
+into tiles of NxN pixels.
+
+
+175
+00:07:08,196 --> 00:07:10,196
+I've put here a screenshot
+together and overlaid it
+
+
+176
+00:07:10,196 --> 00:07:12,926
+with a grid where you can see
+actually what a tile size would
+
+
+177
+00:07:12,926 --> 00:07:13,446
+be like.
+
+
+178
+00:07:14,266 --> 00:07:18,026
+The tile size is chosen so that
+it fits into the SoC cache.
+
+
+179
+00:07:18,766 --> 00:07:21,006
+And the idea here is that
+the geometry is split
+
+
+180
+00:07:21,006 --> 00:07:22,006
+into tile buckets.
+
+
+181
+00:07:22,006 --> 00:07:24,016
+And I would like
+to demonstrate this
+
+
+182
+00:07:24,016 --> 00:07:26,516
+by using the phone
+icon as an example.
+
+
+183
+00:07:27,066 --> 00:07:29,966
+As you can see the phone
+icon spans multiple tiles
+
+
+184
+00:07:30,306 --> 00:07:32,936
+and the phone icon itself
+is rendered as a CA layer.
+
+
+185
+00:07:33,036 --> 00:07:35,506
+And the CA layer in
+CA is two triangles.
+
+
+186
+00:07:36,406 --> 00:07:38,406
+And if you look at the two
+triangles they are still
+
+
+187
+00:07:38,406 --> 00:07:40,916
+spanning multiple
+triangles, multiple tiles.
+
+
+188
+00:07:41,816 --> 00:07:44,936
+And so what a GP will do now,
+it will now start splitting
+
+
+189
+00:07:44,936 --> 00:07:47,606
+up those triangles, where
+we committed the tile
+
+
+190
+00:07:47,606 --> 00:07:49,506
+so that each tile can be
+rendered individually.
+
+
+191
+00:07:50,656 --> 00:07:52,746
+The idea is here that
+we do this process now
+
+
+192
+00:07:52,746 --> 00:07:55,196
+for the hue geometries so at
+some point we have the geometry
+
+
+193
+00:07:55,196 --> 00:07:57,676
+for each tile collected and
+then we can make decisions
+
+
+194
+00:07:57,676 --> 00:07:59,006
+on what pixels are visible
+
+
+195
+00:07:59,006 --> 00:08:01,236
+and then decide what
+pixel shade to run.
+
+
+196
+00:08:01,236 --> 00:08:04,626
+So we run each pixel
+shade only once per pixel.
+
+
+197
+00:08:04,716 --> 00:08:07,446
+Obviously if you do blending
+this doesn't quite work.
+
+
+198
+00:08:07,616 --> 00:08:09,646
+Then we still have the
+problem of overdraw.
+
+
+199
+00:08:12,636 --> 00:08:16,106
+So, let's take a look at what
+type of rendering passes are.
+
+
+200
+00:08:16,346 --> 00:08:18,796
+So let's assume application
+has built a view hierarchy
+
+
+201
+00:08:18,796 --> 00:08:19,936
+with Core Animation.
+
+
+202
+00:08:19,936 --> 00:08:22,296
+It's committed to render server
+
+
+203
+00:08:22,296 --> 00:08:25,736
+and Core Animation has decoded
+it and now it needs to render it
+
+
+204
+00:08:25,736 --> 00:08:27,696
+and it will use OpenGL or metal.
+
+
+205
+00:08:27,696 --> 00:08:28,846
+In the slide I'm
+just saying metal
+
+
+206
+00:08:28,846 --> 00:08:31,336
+for simplicity to render it.
+
+
+207
+00:08:31,336 --> 00:08:34,066
+And it will generate
+with OpenGL command
+
+
+208
+00:08:34,066 --> 00:08:35,626
+but it is then submitted
+to a GPU.
+
+
+209
+00:08:36,006 --> 00:08:38,525
+And the GPU will receive
+this command buffer
+
+
+210
+00:08:38,525 --> 00:08:39,956
+and then start doing its work.
+
+
+211
+00:08:40,456 --> 00:08:43,806
+The first thing that GPU will
+do is vertex processing is
+
+
+212
+00:08:43,806 --> 00:08:44,806
+where the vertex shader runs.
+
+
+213
+00:08:44,806 --> 00:08:47,176
+And the idea here is that
+you transform all of vertices
+
+
+214
+00:08:47,176 --> 00:08:48,386
+into screen space at this stage
+
+
+215
+00:08:49,056 --> 00:08:51,006
+so that we can then
+do the second stage,
+
+
+216
+00:08:51,006 --> 00:08:52,366
+which is the actual tiling.
+
+
+217
+00:08:52,366 --> 00:08:54,596
+Where we actually tile the
+geometry for our tile buckets.
+
+
+218
+00:08:55,566 --> 00:08:58,406
+And this part of the stage
+is called the tiler stage.
+
+
+219
+00:08:58,446 --> 00:09:00,476
+You will be able to find
+this in the instruments,
+
+
+220
+00:09:00,596 --> 00:09:03,146
+in the OpenGL ES
+driver instrument
+
+
+221
+00:09:03,146 --> 00:09:04,296
+and the tiler utilization.
+
+
+222
+00:09:05,876 --> 00:09:07,836
+The output of this
+stage is written
+
+
+223
+00:09:07,836 --> 00:09:09,136
+in something called
+the parameter buffer
+
+
+224
+00:09:09,766 --> 00:09:12,166
+and the next stage is
+not starting immediately.
+
+
+225
+00:09:12,166 --> 00:09:15,676
+Instead we wait now until all
+geometry is processed and sits
+
+
+226
+00:09:15,676 --> 00:09:18,086
+in the parameter buffer or until
+the parameter buffer is full.
+
+
+227
+00:09:18,086 --> 00:09:19,176
+Because the problem is
+
+
+228
+00:09:19,176 --> 00:09:20,886
+if the parameter buffer is
+full we have to flush it.
+
+
+229
+00:09:21,486 --> 00:09:24,596
+And that's actually performance
+it because then we need to start
+
+
+230
+00:09:24,596 --> 00:09:26,166
+at the vertex processing and get
+
+
+231
+00:09:26,166 --> 00:09:28,116
+and frontload pixel
+share at work.
+
+
+232
+00:09:29,526 --> 00:09:34,376
+And next stage is as I said
+the pixel shader stage.
+
+
+233
+00:09:34,816 --> 00:09:36,546
+This stage is actually
+called the renderer stage
+
+
+234
+00:09:36,546 --> 00:09:37,766
+and you can find this again
+
+
+235
+00:09:37,766 --> 00:09:39,866
+in the instruments
+OpenGL ES driver tool
+
+
+236
+00:09:40,276 --> 00:09:42,236
+under the name renderer
+utilization.
+
+
+237
+00:09:42,766 --> 00:09:44,306
+And the output of
+this stage is written
+
+
+238
+00:09:44,306 --> 00:09:45,796
+to something called
+the render buffer.
+
+
+239
+00:09:45,796 --> 00:09:50,346
+Okay, so next let's take a
+look at a practical example
+
+
+240
+00:09:50,346 --> 00:09:51,426
+by looking at masking.
+
+
+241
+00:09:52,616 --> 00:09:54,696
+So let's assume our view
+hierarchy is ready to go.
+
+
+242
+00:09:54,696 --> 00:09:56,946
+The command buffer is
+sitting with the GPU
+
+
+243
+00:09:56,946 --> 00:09:58,316
+and we can stop processing.
+
+
+244
+00:09:58,836 --> 00:10:01,436
+So the first thing happens
+in the first pass is
+
+
+245
+00:10:01,436 --> 00:10:03,886
+that we render the
+layer mask to a texture.
+
+
+246
+00:10:04,046 --> 00:10:05,496
+In this case it's
+this camera icon.
+
+
+247
+00:10:06,726 --> 00:10:09,416
+Then in the second pass if
+you render the layer content
+
+
+248
+00:10:09,416 --> 00:10:12,486
+to a texture and in this case
+it's this kind of blue material.
+
+
+249
+00:10:13,546 --> 00:10:14,826
+And then in the last pass
+
+
+250
+00:10:14,826 --> 00:10:17,566
+that we call the compositing
+pass we apply the mass
+
+
+251
+00:10:17,566 --> 00:10:20,256
+to the content texture and
+composite to the reside
+
+
+252
+00:10:20,256 --> 00:10:22,516
+to screen and end up with
+this light blue camera icon.
+
+
+253
+00:10:24,966 --> 00:10:27,286
+So let's take a look
+at UIBlurEffect.
+
+
+254
+00:10:27,286 --> 00:10:30,436
+For those that don't know
+UIBlurEffect can be used
+
+
+255
+00:10:30,436 --> 00:10:33,896
+with UIVisualEffect view
+and this now a public API.
+
+
+256
+00:10:34,266 --> 00:10:37,906
+Since iOS 8, it basically
+allows you to use the Blurs
+
+
+257
+00:10:37,906 --> 00:10:39,436
+that we introduced as iOS 7.
+
+
+258
+00:10:39,436 --> 00:10:42,626
+And if we are providing you
+with three different Blur styles
+
+
+259
+00:10:42,626 --> 00:10:43,646
+that I want to demonstrate here.
+
+
+260
+00:10:43,646 --> 00:10:45,916
+I took this regular
+iOS wallpaper
+
+
+261
+00:10:45,916 --> 00:10:48,296
+and applied three
+different BlurEffects to it,
+
+
+262
+00:10:48,396 --> 00:10:49,666
+extra light, light and dark.
+
+
+263
+00:10:51,236 --> 00:10:53,876
+So let's take a look how
+this looks performance wise.
+
+
+264
+00:10:53,876 --> 00:10:57,116
+I'm using here the dark
+style as an example
+
+
+265
+00:10:57,116 --> 00:10:58,116
+for the rendering passes.
+
+
+266
+00:10:58,116 --> 00:11:00,096
+The dark style is actually
+using the lowest amount
+
+
+267
+00:11:00,096 --> 00:11:01,036
+of render passes.
+
+
+268
+00:11:01,036 --> 00:11:04,146
+And you also need to keep in
+mind this render pass depends
+
+
+269
+00:11:04,146 --> 00:11:06,476
+on the fact that we did
+certain optimizations
+
+
+270
+00:11:06,476 --> 00:11:07,736
+for certain passer hardware.
+
+
+271
+00:11:07,736 --> 00:11:12,046
+So in the first pass
+we render the content
+
+
+272
+00:11:12,566 --> 00:11:14,386
+that is going to be blurred.
+
+
+273
+00:11:15,296 --> 00:11:17,306
+Then in the second pass
+we captured the content
+
+
+274
+00:11:17,306 --> 00:11:18,156
+and downscale it.
+
+
+275
+00:11:18,156 --> 00:11:20,396
+The downscale depends
+on the hardware
+
+
+276
+00:11:20,526 --> 00:11:22,996
+so in this slide I kept
+it at a certain size
+
+
+277
+00:11:22,996 --> 00:11:23,666
+so it's still readable.
+
+
+278
+00:11:24,666 --> 00:11:27,366
+Then in the next two passes
+we applied the actual blur
+
+
+279
+00:11:27,366 --> 00:11:30,226
+algorithm, which is separated so
+we do first the horizontal blur
+
+
+280
+00:11:30,226 --> 00:11:31,406
+and then the vertical blur.
+
+
+281
+00:11:31,956 --> 00:11:34,096
+There's actually a
+common blur optimization.
+
+
+282
+00:11:34,306 --> 00:11:35,636
+We could do this
+in a single pass
+
+
+283
+00:11:35,636 --> 00:11:38,946
+but let's assume our blur
+corner would be 11x11.
+
+
+284
+00:11:38,946 --> 00:11:41,766
+This would mean we would
+need 121 samples per pixel
+
+
+285
+00:11:42,426 --> 00:11:44,086
+and by separating we only need
+
+
+286
+00:11:44,086 --> 00:11:46,386
+to read 11 samples per
+pixel in each pass.
+
+
+287
+00:11:47,456 --> 00:11:50,766
+So after the fourth pass
+we have this horizontally
+
+
+288
+00:11:50,766 --> 00:11:53,026
+and vertically blurred
+small tiny area.
+
+
+289
+00:11:53,416 --> 00:11:55,436
+And so what's left in the
+last pass is that we need
+
+
+290
+00:11:55,436 --> 00:11:57,016
+to upscale this blur
+and tint it.
+
+
+291
+00:11:57,126 --> 00:11:59,806
+In this case we end up
+then with our dark blur.
+
+
+292
+00:12:00,666 --> 00:12:03,616
+So that looks fine, but let's
+take a look how this looks
+
+
+293
+00:12:03,616 --> 00:12:04,626
+like performance wise.
+
+
+294
+00:12:05,976 --> 00:12:08,846
+So what I did as I test, I
+created a fullscreen layer
+
+
+295
+00:12:08,846 --> 00:12:13,126
+and applied the UIBlurEffect to
+it and measured the performance.
+
+
+296
+00:12:13,126 --> 00:12:14,826
+In this diagram you
+can see three rows.
+
+
+297
+00:12:14,826 --> 00:12:17,046
+The first row represents
+a tile activity,
+
+
+298
+00:12:17,046 --> 00:12:20,746
+the second row a render
+activity and the last row I put
+
+
+299
+00:12:20,746 --> 00:12:21,546
+in the VBlank interrupt
+
+
+300
+00:12:21,546 --> 00:12:24,306
+and we can actually see what
+our frame boundaries are.
+
+
+301
+00:12:24,306 --> 00:12:26,636
+And again, we are
+running at 60 hertz UI.
+
+
+302
+00:12:27,156 --> 00:12:30,456
+So, the time you
+have is 16.67ms.
+
+
+303
+00:12:31,376 --> 00:12:33,736
+So let's focus on
+a single frame.
+
+
+304
+00:12:33,826 --> 00:12:38,856
+As you can see as a first look
+here the first tiler pass is
+
+
+305
+00:12:38,856 --> 00:12:40,776
+happening before the first
+render pass and that's
+
+
+306
+00:12:40,776 --> 00:12:43,356
+because the tiler needs to
+pull this whole geometry,
+
+
+307
+00:12:43,356 --> 00:12:45,746
+so it's emphasized in what we
+just saw on previous slides.
+
+
+308
+00:12:46,386 --> 00:12:48,936
+So let's go quickly
+over the passes again.
+
+
+309
+00:12:48,976 --> 00:12:51,036
+So the first pass
+is the content pass.
+
+
+310
+00:12:51,706 --> 00:12:54,996
+The time for this really
+depends on the view hierarchy.
+
+
+311
+00:12:54,996 --> 00:12:56,846
+In this case it's
+just a simple image
+
+
+312
+00:12:56,846 --> 00:12:59,646
+so it might take longer
+if we involve the UI.
+
+
+313
+00:13:01,156 --> 00:13:03,436
+Then in the second
+pass we downscale
+
+
+314
+00:13:03,436 --> 00:13:04,766
+and capture the content.
+
+
+315
+00:13:05,716 --> 00:13:07,256
+It's actually fairly fast.
+
+
+316
+00:13:07,256 --> 00:13:08,456
+This is pretty much
+constant cost.
+
+
+317
+00:13:09,596 --> 00:13:11,806
+Then the subpass is
+the horizontal blur.
+
+
+318
+00:13:11,846 --> 00:13:13,606
+Again it's constant cost
+which is pretty fast
+
+
+319
+00:13:13,606 --> 00:13:15,576
+because we only apply
+it on a very small area.
+
+
+320
+00:13:15,576 --> 00:13:18,856
+And then in the fourth pass
+we do the vertical Blur,
+
+
+321
+00:13:19,146 --> 00:13:22,526
+again very fast and we end
+up with our blurred region.
+
+
+322
+00:13:23,416 --> 00:13:26,356
+And then in the last pass we
+upscale and tint the blur.
+
+
+323
+00:13:27,916 --> 00:13:30,316
+So one thing you will
+notice now are those gaps
+
+
+324
+00:13:30,316 --> 00:13:31,136
+between those passes.
+
+
+325
+00:13:31,136 --> 00:13:32,276
+I've marked them here in orange.
+
+
+326
+00:13:33,046 --> 00:13:35,606
+And those gaps are actually
+[inaudible] and they happen
+
+
+327
+00:13:35,606 --> 00:13:39,266
+because we do here run a
+contact switch on the GPU.
+
+
+328
+00:13:39,996 --> 00:13:42,076
+And this can actually
+add up quite quickly
+
+
+329
+00:13:42,076 --> 00:13:43,296
+because the time spent here
+
+
+330
+00:13:43,296 --> 00:13:46,816
+in idle time is passable
+at 0.1 to 0.2ms.
+
+
+331
+00:13:47,266 --> 00:13:50,426
+So in this case with four passes
+we have about idle time of 0.4
+
+
+332
+00:13:50,426 --> 00:13:53,626
+to 0.8ms, which is a
+good significant chunk
+
+
+333
+00:13:53,626 --> 00:13:55,556
+of our 16.67ms.
+
+
+334
+00:13:57,016 --> 00:13:59,336
+So let's take a look
+how the blur performs
+
+
+335
+00:13:59,336 --> 00:14:00,306
+on the various devices.
+
+
+336
+00:14:00,306 --> 00:14:04,586
+So again this is the fullscreen
+blur that I used before
+
+
+337
+00:14:04,586 --> 00:14:07,146
+and I met it as well on
+iPad 3, 3rd generation.
+
+
+338
+00:14:08,296 --> 00:14:10,836
+And as you can see the iPad 3rd
+generation performs much worse
+
+
+339
+00:14:10,836 --> 00:14:12,526
+than the iPad Air.
+
+
+340
+00:14:12,816 --> 00:14:18,526
+In the case of the extra light
+blur the timing is 18.15ms,
+
+
+341
+00:14:18,526 --> 00:14:21,446
+so we can't render at 60 hertz
+this type of blur on iPad Air.
+
+
+342
+00:14:22,026 --> 00:14:25,516
+And for light and dark we are
+around 14.5ms, which leaves us
+
+
+343
+00:14:25,636 --> 00:14:28,886
+about 2ms for UI, which
+is not really enough
+
+
+344
+00:14:28,886 --> 00:14:30,026
+for rendering any compelling UI.
+
+
+345
+00:14:31,006 --> 00:14:33,286
+So the decision we
+made on iOS 7 RA was
+
+
+346
+00:14:33,286 --> 00:14:35,516
+that we would disable the
+blur on certain devices
+
+
+347
+00:14:35,666 --> 00:14:37,686
+and the iPad 3rd generation
+is one of these devices.
+
+
+348
+00:14:37,686 --> 00:14:39,176
+And this -- the performance
+
+
+349
+00:14:39,176 --> 00:14:41,156
+on the iPad 3rd generation
+changes to this.
+
+
+350
+00:14:41,826 --> 00:14:43,736
+You basically just apply
+a tint layer on top
+
+
+351
+00:14:43,736 --> 00:14:46,176
+so that we can make sure
+that legibility is the same
+
+
+352
+00:14:46,176 --> 00:14:47,866
+as without the BlurEffect.
+
+
+353
+00:14:49,266 --> 00:14:53,296
+So, and to reiterate on
+what devices we don't blur
+
+
+354
+00:14:53,296 --> 00:14:56,306
+and that we only do the
+tinting on the iPad 2
+
+
+355
+00:14:56,306 --> 00:14:58,766
+and iPad 3rd generation,
+we just apply the tint
+
+
+356
+00:14:58,766 --> 00:15:00,076
+and we skip the blur steps.
+
+
+357
+00:15:00,756 --> 00:15:03,296
+On iPad 4th generation,
+iPad Air, iPad Mini,
+
+
+358
+00:15:03,456 --> 00:15:06,016
+iPad Mini with retina
+display, iPhones
+
+
+359
+00:15:06,016 --> 00:15:10,046
+and the iPod touch we do both
+the blur and the tinting.
+
+
+360
+00:15:10,676 --> 00:15:13,436
+So, in summary for
+the UIVisualEffectView
+
+
+361
+00:15:13,436 --> 00:15:16,756
+with UIBlurEffect, UIBlurEffect
+have multiple onscreen passes
+
+
+362
+00:15:16,756 --> 00:15:17,736
+depending on the style.
+
+
+363
+00:15:18,796 --> 00:15:20,226
+Only dirty regions are redrawn.
+
+
+364
+00:15:20,376 --> 00:15:23,576
+So it's actually fine if
+you have a large blur area
+
+
+365
+00:15:23,576 --> 00:15:24,986
+and you don't have
+the content behind it,
+
+
+366
+00:15:24,986 --> 00:15:26,546
+because we only applied
+the blur once.
+
+
+367
+00:15:27,176 --> 00:15:30,816
+The effect is very costly so
+UI can be easily GPU bound.
+
+
+368
+00:15:31,156 --> 00:15:32,856
+So, therefore, you
+should keep the bounds
+
+
+369
+00:15:32,856 --> 00:15:34,366
+of the view as small
+as possible.
+
+
+370
+00:15:35,086 --> 00:15:37,106
+And, therefore, as well
+you should make sure
+
+
+371
+00:15:37,106 --> 00:15:40,516
+to budget for effect.
+
+
+372
+00:15:40,696 --> 00:15:43,616
+So, next let's take a look
+at the UIVibrancyEffect.
+
+
+373
+00:15:43,616 --> 00:15:45,946
+UIVibrancyEffect is an
+effect that's used on the top
+
+
+374
+00:15:45,946 --> 00:15:47,706
+of the blur and it's meant
+to be used for contents
+
+
+375
+00:15:47,706 --> 00:15:49,636
+which can make sure
+that content stands out
+
+
+376
+00:15:49,636 --> 00:15:51,246
+and doesn't go under
+with the blurs.
+
+
+377
+00:15:51,686 --> 00:15:53,776
+So, let's take a look
+how this looks like.
+
+
+378
+00:15:53,776 --> 00:15:55,436
+This is our three
+blur styles again.
+
+
+379
+00:15:55,696 --> 00:15:58,646
+And let's assume we want
+to render the camera icon
+
+
+380
+00:15:58,646 --> 00:16:01,016
+from our masking example
+from before on top.
+
+
+381
+00:16:01,896 --> 00:16:03,526
+And this could look like this
+
+
+382
+00:16:03,526 --> 00:16:05,006
+if you don't use
+any VibrancyEffect.
+
+
+383
+00:16:05,006 --> 00:16:07,896
+And as you can see with the
+light style there might be some
+
+
+384
+00:16:07,896 --> 00:16:10,766
+legibility issues because
+the gray starts bleeding out.
+
+
+385
+00:16:11,646 --> 00:16:14,906
+So, what we decided is that
+we edit some VibrancyEffect
+
+
+386
+00:16:14,906 --> 00:16:17,466
+and VibrancyEffect is a punch
+through and then you end
+
+
+387
+00:16:17,466 --> 00:16:18,636
+up with this nice vibrant look.
+
+
+388
+00:16:20,376 --> 00:16:22,916
+So, let's take a look how
+this affects performance.
+
+
+389
+00:16:23,686 --> 00:16:25,606
+So, back to our render
+pass diagram.
+
+
+390
+00:16:26,496 --> 00:16:28,836
+The first five passes
+are in this case
+
+
+391
+00:16:28,836 --> 00:16:30,426
+for the dark blur,
+the blur cost.
+
+
+392
+00:16:31,306 --> 00:16:33,866
+And then in a sixth pass
+we render the layer content
+
+
+393
+00:16:33,866 --> 00:16:34,486
+to a texture.
+
+
+394
+00:16:34,566 --> 00:16:38,496
+And then in the final
+compositing pass we take the
+
+
+395
+00:16:38,496 --> 00:16:40,426
+layer content and apply filter
+
+
+396
+00:16:40,426 --> 00:16:41,856
+and composite it
+on top of the blur.
+
+
+397
+00:16:42,836 --> 00:16:43,856
+Don't be fooled here.
+
+
+398
+00:16:43,856 --> 00:16:46,476
+The filter content is actually
+quite expensive and I want
+
+
+399
+00:16:46,476 --> 00:16:48,196
+to show this in the
+next couple of slides.
+
+
+400
+00:16:50,566 --> 00:16:52,436
+So this is our diagram
+from before.
+
+
+401
+00:16:52,436 --> 00:16:55,826
+This is the steps for the blur
+and let's add on now the steps
+
+
+402
+00:16:55,826 --> 00:16:56,916
+for the VibrancyEffect.
+
+
+403
+00:16:57,806 --> 00:17:00,346
+So, in pass six I'm adding
+in here some content,
+
+
+404
+00:17:00,346 --> 00:17:01,306
+you saw a camera icon.
+
+
+405
+00:17:02,196 --> 00:17:05,636
+And then obviously the
+cost for this pass depends
+
+
+406
+00:17:05,636 --> 00:17:08,746
+on what you're rendering there,
+what view hierarchy looks like.
+
+
+407
+00:17:08,846 --> 00:17:12,006
+And then the last pass
+we apply the filter.
+
+
+408
+00:17:12,006 --> 00:17:14,425
+And as you can see the filter
+cost is actually very expensive.
+
+
+409
+00:17:14,516 --> 00:17:16,665
+It's actually the most
+expensive pass we have here.
+
+
+410
+00:17:17,606 --> 00:17:19,695
+One thing to keep
+in mind here is
+
+
+411
+00:17:19,695 --> 00:17:22,226
+that I apply the VibrancyEffect
+to a fullscreen area.
+
+
+412
+00:17:22,965 --> 00:17:25,526
+The recommendation is to
+not apply the VibrancyEffect
+
+
+413
+00:17:25,526 --> 00:17:27,455
+to a fullscreen area,
+instead to only apply it
+
+
+414
+00:17:27,455 --> 00:17:30,656
+to small content areas to avoid
+this huge performance penalty.
+
+
+415
+00:17:30,656 --> 00:17:36,176
+As well to emphasize -- we
+have now is way more gaps
+
+
+416
+00:17:36,176 --> 00:17:37,566
+because we have more
+render passes.
+
+
+417
+00:17:37,566 --> 00:17:40,326
+So, the GPU idle time
+has increased as well.
+
+
+418
+00:17:40,326 --> 00:17:45,136
+We have now six gaps and this
+can add up to 0.6 to 1.2ms
+
+
+419
+00:17:45,136 --> 00:17:46,806
+of idle time in our GPU.
+
+
+420
+00:17:48,516 --> 00:17:50,506
+So, let's take a
+look how this looks
+
+
+421
+00:17:50,506 --> 00:17:52,356
+on iPad 3rd generation
+and iPad Air.
+
+
+422
+00:17:52,356 --> 00:17:56,666
+There is the base cost
+from before, 4.59ms.
+
+
+423
+00:17:56,666 --> 00:18:01,206
+For the iPad 3rd generation we
+don't blur and different times
+
+
+424
+00:18:01,206 --> 00:18:02,786
+for the iPad Air
+depending on the blur style.
+
+
+425
+00:18:03,396 --> 00:18:05,986
+So, let's add this on
+and what we can see is
+
+
+426
+00:18:05,986 --> 00:18:08,056
+for the fullscreen effect
+is that we are spending
+
+
+427
+00:18:08,056 --> 00:18:11,396
+on iPad 3rd generation
+about 27 to 26ms just
+
+
+428
+00:18:11,706 --> 00:18:13,256
+for applying the VibrancyEffect.
+
+
+429
+00:18:14,446 --> 00:18:18,186
+On the iPad Air we
+spend about 17.48ms
+
+
+430
+00:18:18,186 --> 00:18:21,646
+for the extra light style and
+around 14ms for light and dark.
+
+
+431
+00:18:21,646 --> 00:18:24,156
+So you don't have a lot of
+time left there on the GPU
+
+
+432
+00:18:24,156 --> 00:18:25,226
+to do any other rendering.
+
+
+433
+00:18:25,226 --> 00:18:27,076
+I mean 2ms is the
+best case here.
+
+
+434
+00:18:27,726 --> 00:18:30,056
+So to emphasize again, we
+should really restrict the
+
+
+435
+00:18:30,056 --> 00:18:33,076
+VibrancyEffect on a small area
+to avoid this huge GPU overhead.
+
+
+436
+00:18:34,556 --> 00:18:38,926
+So, in summary, UIVibrancyEffect
+adds two offscreen passes.
+
+
+437
+00:18:39,426 --> 00:18:41,376
+UIVibrancyEffect uses expensive,
+
+
+438
+00:18:41,376 --> 00:18:43,436
+uses expensive compositing
+filter for content.
+
+
+439
+00:18:43,436 --> 00:18:46,226
+So, therefore, you should
+only use the UIVibrancyEffect
+
+
+440
+00:18:46,226 --> 00:18:47,496
+on small regions.
+
+
+441
+00:18:47,496 --> 00:18:50,746
+Again likeness to blur only
+dirty regions are redrawn
+
+
+442
+00:18:51,536 --> 00:18:54,496
+and the UIVibrancyEffect is
+very costly on all devices.
+
+
+443
+00:18:54,696 --> 00:18:58,716
+So with the blurs UI can easily
+be GPU bound, keep the bounds
+
+
+444
+00:18:58,716 --> 00:19:01,246
+of the view as small as
+possible and make sure
+
+
+445
+00:19:01,246 --> 00:19:04,356
+to budget for the effects.
+
+
+446
+00:19:04,356 --> 00:19:05,876
+So, next I would
+like to give a couple
+
+
+447
+00:19:05,876 --> 00:19:08,186
+of automization techniques
+on the way.
+
+
+448
+00:19:08,186 --> 00:19:09,486
+One is rasterization.
+
+
+449
+00:19:09,576 --> 00:19:11,326
+Rasterization can
+be used to composite
+
+
+450
+00:19:11,326 --> 00:19:12,676
+to image once with the GPU.
+
+
+451
+00:19:13,556 --> 00:19:14,256
+This can be enabled
+
+
+452
+00:19:14,256 --> 00:19:16,426
+with shouldRasterize
+property on a CAlayer.
+
+
+453
+00:19:16,426 --> 00:19:18,996
+And there are a few things to
+keep in mind when doing this.
+
+
+454
+00:19:18,996 --> 00:19:21,786
+First extra offscreen
+passes are created
+
+
+455
+00:19:21,786 --> 00:19:22,976
+when we update the contents.
+
+
+456
+00:19:22,976 --> 00:19:24,826
+We should only use this
+for static content.
+
+
+457
+00:19:25,616 --> 00:19:28,226
+Secondly you should not overuse
+it because the cache size
+
+
+458
+00:19:28,226 --> 00:19:31,296
+for rasterization is limited to
+25.5 times of the screen size.
+
+
+459
+00:19:31,296 --> 00:19:33,756
+So if you start setting
+the rasterize property
+
+
+460
+00:19:33,756 --> 00:19:36,756
+of the last part of your view
+hierarchy you might blow the
+
+
+461
+00:19:36,756 --> 00:19:43,126
+cache flow over and over and end
+up as a lot of offscreen passes.
+
+
+462
+00:19:43,126 --> 00:19:45,096
+Last the rasterized images
+are evicted from the cache
+
+
+463
+00:19:45,096 --> 00:19:47,726
+if they are unused
+for more than 100ms.
+
+
+464
+00:19:47,846 --> 00:19:49,796
+So you want to make sure that
+you use this only for images
+
+
+465
+00:19:49,796 --> 00:19:52,476
+that are consistently used and
+not for infrequently used images
+
+
+466
+00:19:52,476 --> 00:19:54,916
+because then you will incur
+every time an onscreen pass.
+
+
+467
+00:19:56,206 --> 00:19:58,196
+So typically use cases are
+
+
+468
+00:19:58,196 --> 00:20:01,286
+to avoid redrawing expensive
+effects for static content
+
+
+469
+00:20:01,286 --> 00:20:02,906
+so you could rasterize,
+for example, a blur.
+
+
+470
+00:20:03,756 --> 00:20:05,396
+And the other thing
+is the redrawing
+
+
+471
+00:20:05,396 --> 00:20:07,846
+of complex view hierarchies
+so we could rasterize
+
+
+472
+00:20:07,846 --> 00:20:09,626
+for view hierarchy
+and composite on top
+
+
+473
+00:20:09,626 --> 00:20:12,406
+of a blur or under a blur.
+
+
+474
+00:20:13,186 --> 00:20:15,866
+So the last thing I have
+here is group opacity.
+
+
+475
+00:20:16,196 --> 00:20:17,386
+Group opacity can be disabled
+
+
+476
+00:20:17,386 --> 00:20:19,756
+because it allows GroupOpacity
+property on a CALayer.
+
+
+477
+00:20:20,196 --> 00:20:22,896
+Group Opacity will actually
+introduce offscreen passes
+
+
+478
+00:20:22,896 --> 00:20:23,946
+if a layer is not opaque.
+
+
+479
+00:20:23,946 --> 00:20:26,996
+So this means the opacity
+property is not equal to 1.0.
+
+
+480
+00:20:27,756 --> 00:20:29,436
+And if a layer has
+nontrivial content
+
+
+481
+00:20:29,706 --> 00:20:32,056
+that means it has child
+layers or a background image.
+
+
+482
+00:20:32,556 --> 00:20:35,016
+And what this means in turn is
+that sub view hierarchy needs
+
+
+483
+00:20:35,016 --> 00:20:37,016
+to be composited before
+its being blended.
+
+
+484
+00:20:38,006 --> 00:20:38,956
+Therefore my recommendation is
+
+
+485
+00:20:38,956 --> 00:20:40,636
+to always turn it off
+if it's not needed.
+
+
+486
+00:20:40,906 --> 00:20:41,956
+Be very careful with this.
+
+
+487
+00:20:42,826 --> 00:20:44,476
+And with this I would
+like to turn it
+
+
+488
+00:20:44,476 --> 00:20:45,996
+over to Mike for the Tools.
+
+
+489
+00:20:47,516 --> 00:20:51,626
+[ Applause ]
+
+
+490
+00:20:52,126 --> 00:20:53,866
+>> So, I am Mike Ingrassia.
+
+
+491
+00:20:54,046 --> 00:20:56,926
+I am a software engineer
+in the iOS performance team
+
+
+492
+00:20:56,926 --> 00:20:59,136
+and the first thing I want
+to talk about are Tools.
+
+
+493
+00:21:00,996 --> 00:21:02,746
+So before I get into
+Tools though,
+
+
+494
+00:21:02,746 --> 00:21:04,326
+I do want to mention
+the performance
+
+
+495
+00:21:04,326 --> 00:21:05,626
+investigation mindset.
+
+
+496
+00:21:05,626 --> 00:21:07,346
+So basically, what are
+the questions running
+
+
+497
+00:21:07,346 --> 00:21:10,376
+through my head when I encounter
+a performance issue and want
+
+
+498
+00:21:10,376 --> 00:21:13,046
+to start tracking down
+the source of that?
+
+
+499
+00:21:13,046 --> 00:21:15,516
+So, first thing I want to know
+is what is the frame rate?
+
+
+500
+00:21:15,826 --> 00:21:16,816
+You know it's always
+good to know
+
+
+501
+00:21:16,816 --> 00:21:18,406
+where you're starting
+performance wise
+
+
+502
+00:21:18,406 --> 00:21:20,656
+so that you can gauge how
+the changes you make are
+
+
+503
+00:21:20,656 --> 00:21:21,526
+affecting performance.
+
+
+504
+00:21:21,926 --> 00:21:24,256
+So our goal is always 60 fps.
+
+
+505
+00:21:24,256 --> 00:21:27,256
+We want to ensure that
+we have smooth scrolling
+
+
+506
+00:21:27,256 --> 00:21:30,006
+and nice smooth animations to
+provide a good user experience.
+
+
+507
+00:21:30,416 --> 00:21:32,586
+So, our target should
+always be 60 fps.
+
+
+508
+00:21:34,016 --> 00:21:36,896
+Next up I want to know
+are we CPU or GPU bound?
+
+
+509
+00:21:37,716 --> 00:21:40,686
+You know obviously the lower
+the utilization the better
+
+
+510
+00:21:40,686 --> 00:21:42,556
+because it will let us hit
+our performance targets
+
+
+511
+00:21:42,556 --> 00:21:44,966
+and also give us
+better battery life.
+
+
+512
+00:21:44,966 --> 00:21:49,926
+Next thing you want to know,
+are there any unnecessary,
+
+
+513
+00:21:50,046 --> 00:21:51,696
+is there any unnecessary
+CPU rendering?
+
+
+514
+00:21:52,126 --> 00:21:55,116
+So basically are we
+overriding drawRect somewhere
+
+
+515
+00:21:55,116 --> 00:21:57,116
+where we really shouldn't
+be you know and kind
+
+
+516
+00:21:57,116 --> 00:21:58,546
+of understanding
+what we're rendering
+
+
+517
+00:21:58,546 --> 00:21:59,566
+and how we're rendering it.
+
+
+518
+00:21:59,636 --> 00:22:02,276
+We want the GPU to do as
+much of this as makes sense.
+
+
+519
+00:22:02,276 --> 00:22:06,256
+Next thing I want to know
+is do we have too many
+
+
+520
+00:22:06,256 --> 00:22:07,166
+offscreen passes?
+
+
+521
+00:22:07,526 --> 00:22:11,676
+As Axel pointed out previously
+offscreen passes basically give
+
+
+522
+00:22:11,676 --> 00:22:14,176
+the GPU idle time because it
+has to do contact switches
+
+
+523
+00:22:14,456 --> 00:22:16,526
+so we want to have
+fewer offscreen passes,
+
+
+524
+00:22:16,526 --> 00:22:18,066
+you know the fewer the better.
+
+
+525
+00:22:18,066 --> 00:22:21,906
+Next up I want to know is there
+too much blending in the UI?
+
+
+526
+00:22:21,906 --> 00:22:24,606
+We obviously want
+to do less blending
+
+
+527
+00:22:24,606 --> 00:22:26,816
+because blending is more
+expensive for the GPU
+
+
+528
+00:22:26,816 --> 00:22:29,666
+to than rendering just
+a normal opaque player.
+
+
+529
+00:22:30,096 --> 00:22:31,716
+So, less blending is better.
+
+
+530
+00:22:31,716 --> 00:22:35,686
+Next I want to know is are
+there any strange image formats
+
+
+531
+00:22:35,686 --> 00:22:36,446
+or sizes?
+
+
+532
+00:22:36,716 --> 00:22:38,106
+Basically we want to avoid
+
+
+533
+00:22:38,106 --> 00:22:41,166
+on the fly conversion
+of image formats.
+
+
+534
+00:22:41,456 --> 00:22:45,346
+As Axel pointed out previously
+if you are rendering an image
+
+
+535
+00:22:45,346 --> 00:22:47,376
+that is not, in a color
+format that is not supported
+
+
+536
+00:22:47,376 --> 00:22:50,946
+by the GPU then it has to
+be converted by the CPU.
+
+
+537
+00:22:51,226 --> 00:22:53,936
+And so we want to try and avoid
+anything on-the-fly like that.
+
+
+538
+00:22:53,936 --> 00:22:58,496
+Next up I want to know are there
+any expensive views or effects?
+
+
+539
+00:22:58,886 --> 00:23:00,796
+Blur and Vibrancy are
+awesome but we want
+
+
+540
+00:23:00,796 --> 00:23:02,956
+to make sure we're using
+them sparingly in a way
+
+
+541
+00:23:03,226 --> 00:23:05,486
+that will give us the scrolling
+performance that we want.
+
+
+542
+00:23:06,756 --> 00:23:09,506
+And lastly, I want to know
+is there anything unexpected
+
+
+543
+00:23:09,506 --> 00:23:10,326
+in the view hierarchy?
+
+
+544
+00:23:11,166 --> 00:23:13,596
+You know if you have a situation
+where you're constantly adding
+
+
+545
+00:23:13,596 --> 00:23:16,056
+or removing views you know
+you could introduce a bug
+
+
+546
+00:23:16,056 --> 00:23:19,156
+accidentally that say you know
+inserts animation and forgets
+
+
+547
+00:23:19,156 --> 00:23:21,606
+to remove them or you
+know you're adding views
+
+
+548
+00:23:21,606 --> 00:23:23,156
+to your hierarchy and
+forgetting to remove them.
+
+
+549
+00:23:23,486 --> 00:23:25,566
+You know you want to make sure
+that you only have the views
+
+
+550
+00:23:25,566 --> 00:23:29,076
+that you really need you know in
+your hierarchy because you want
+
+
+551
+00:23:29,076 --> 00:23:31,666
+to avoid excessive CPU
+use of backboard D.
+
+
+552
+00:23:33,016 --> 00:23:35,176
+So, now let's get
+into some of the tools
+
+
+553
+00:23:35,176 --> 00:23:36,946
+that will give us the
+answers to these questions.
+
+
+554
+00:23:37,266 --> 00:23:39,236
+So first off I want to
+talk about instruments
+
+
+555
+00:23:39,236 --> 00:23:40,436
+and particularly we'll talk
+
+
+556
+00:23:40,436 --> 00:23:42,296
+about the Core Animation
+instrument
+
+
+557
+00:23:42,296 --> 00:23:43,846
+and the OpenGL ES
+Driver instrument.
+
+
+558
+00:23:43,846 --> 00:23:47,056
+Then I will say a few
+things about the simulator
+
+
+559
+00:23:47,056 --> 00:23:48,616
+that you can do with
+color debug options
+
+
+560
+00:23:48,616 --> 00:23:52,316
+and then I will briefly talk
+about a new feature in Xcode
+
+
+561
+00:23:52,586 --> 00:23:55,006
+for live view debugging
+on device.
+
+
+562
+00:23:56,506 --> 00:23:59,936
+So first up, if you
+launch instruments
+
+
+563
+00:23:59,966 --> 00:24:01,696
+and select the Core
+Animation template
+
+
+564
+00:24:03,496 --> 00:24:04,816
+that will give you a document
+
+
+565
+00:24:04,816 --> 00:24:06,956
+that contains a Core
+Animation instrument
+
+
+566
+00:24:07,026 --> 00:24:08,686
+and a time profiler instrument.
+
+
+567
+00:24:09,536 --> 00:24:13,656
+If you select the Core Animation
+instrument you can then choose
+
+
+568
+00:24:13,656 --> 00:24:15,016
+which statistics
+you want to show.
+
+
+569
+00:24:15,316 --> 00:24:17,876
+In this case it's only fps.
+
+
+570
+00:24:18,486 --> 00:24:20,476
+So we'll choose that and then
+
+
+571
+00:24:20,476 --> 00:24:22,926
+when you take a trace it will
+show you your frame rate.
+
+
+572
+00:24:23,136 --> 00:24:25,626
+So you can see in the column
+here it shows you the fps
+
+
+573
+00:24:26,226 --> 00:24:28,726
+for each interval that
+this trace was running.
+
+
+574
+00:24:28,726 --> 00:24:30,166
+So you see this in
+sample intervals.
+
+
+575
+00:24:31,576 --> 00:24:34,996
+Likewise if you want to see what
+the CPU is doing you can select
+
+
+576
+00:24:34,996 --> 00:24:36,636
+the time profiler instrument.
+
+
+577
+00:24:36,676 --> 00:24:40,966
+And so you select it and then
+you can then see an aggregated
+
+
+578
+00:24:40,966 --> 00:24:44,586
+call stack of what the CPU is
+doing while you were taking
+
+
+579
+00:24:44,586 --> 00:24:45,176
+your trace.
+
+
+580
+00:24:45,276 --> 00:24:46,596
+So this is where you would look
+
+
+581
+00:24:46,596 --> 00:24:48,996
+for you know am I
+overriding drawRect?
+
+
+582
+00:24:48,996 --> 00:24:50,126
+Am I spending too much time
+
+
+583
+00:24:50,206 --> 00:24:52,396
+in main thread doing
+things that I shouldn't be?
+
+
+584
+00:24:52,396 --> 00:24:56,796
+Next up let's talk about some
+of the color debug options
+
+
+585
+00:24:56,796 --> 00:24:58,476
+that are part of the Core
+Animation Instrument.
+
+
+586
+00:24:59,026 --> 00:25:02,376
+So if you select the Core
+Animation Instrument you can see
+
+
+587
+00:25:02,376 --> 00:25:04,336
+the color debug options
+over here on the right.
+
+
+588
+00:25:05,226 --> 00:25:08,136
+So let's go through
+what those are.
+
+
+589
+00:25:08,136 --> 00:25:10,326
+First up we have
+color blended layers
+
+
+590
+00:25:10,636 --> 00:25:14,026
+and so this will tint
+layers green that are opaque
+
+
+591
+00:25:14,026 --> 00:25:16,176
+and tint layers red
+that have to be blended.
+
+
+592
+00:25:16,616 --> 00:25:19,126
+As we said previously,
+you know layers that have
+
+
+593
+00:25:19,156 --> 00:25:21,016
+to be blended is more
+work for the GPU.
+
+
+594
+00:25:21,386 --> 00:25:26,286
+And so you ideally want to see
+less red you know and more green
+
+
+595
+00:25:26,286 --> 00:25:28,286
+but there are going to be
+cases where you can avoid it.
+
+
+596
+00:25:28,446 --> 00:25:32,446
+For example, in this particular
+case we have a white table view
+
+
+597
+00:25:33,076 --> 00:25:35,436
+with white table view
+cells and we notice
+
+
+598
+00:25:35,436 --> 00:25:39,016
+that our labels are you know
+having to be blended here.
+
+
+599
+00:25:39,016 --> 00:25:42,856
+So if we made our labels in this
+case opaque then we wouldn't
+
+
+600
+00:25:42,856 --> 00:25:44,456
+have to worry about
+doing the blending
+
+
+601
+00:25:44,926 --> 00:25:46,906
+so that would be one
+optimization we could make
+
+
+602
+00:25:46,906 --> 00:25:47,886
+in this particular case.
+
+
+603
+00:25:47,886 --> 00:25:52,116
+Next up color hit
+screens and misses red.
+
+
+604
+00:25:52,366 --> 00:25:54,056
+This shows you how you're using
+
+
+605
+00:25:54,056 --> 00:25:58,466
+or abusing the should
+rasterize property on CALayer.
+
+
+606
+00:25:58,466 --> 00:26:02,596
+So what this will do is it
+will tint cache hit screen
+
+
+607
+00:26:02,596 --> 00:26:03,916
+and cache misses red.
+
+
+608
+00:26:04,566 --> 00:26:07,016
+So as Axel pointed out
+previously keep in mind
+
+
+609
+00:26:07,016 --> 00:26:10,096
+that your cache size is only
+two and a half times the size
+
+
+610
+00:26:10,096 --> 00:26:13,606
+of the screen and items
+are evicted from the cache
+
+
+611
+00:26:13,606 --> 00:26:15,306
+if they're not used
+within 100ms.
+
+
+612
+00:26:15,306 --> 00:26:16,396
+So, you know it's good
+
+
+613
+00:26:16,396 --> 00:26:18,976
+to use this particular
+coloring debug option
+
+
+614
+00:26:18,976 --> 00:26:22,126
+to see how you're
+utilizing the cache
+
+
+615
+00:26:22,456 --> 00:26:25,926
+with you know what you have
+set should rasterized on.
+
+
+616
+00:26:27,086 --> 00:26:29,336
+When you first launch your
+app you're going to see a lot
+
+
+617
+00:26:29,336 --> 00:26:30,926
+of flashing red because
+you obviously have
+
+
+618
+00:26:30,926 --> 00:26:32,566
+to render it once
+before it can be cached.
+
+
+619
+00:26:33,026 --> 00:26:35,206
+But after that you don't want
+to see a whole lot of flashes
+
+
+620
+00:26:35,206 --> 00:26:37,496
+of red because you know
+as we said previously,
+
+
+621
+00:26:37,496 --> 00:26:39,436
+you know anything
+you're doing is going
+
+
+622
+00:26:39,436 --> 00:26:41,796
+to incur offscreen passes
+when you have to render it
+
+
+623
+00:26:41,796 --> 00:26:44,326
+and then stick it in the cache.
+
+
+624
+00:26:44,526 --> 00:26:47,156
+So, next item is
+color copied images.
+
+
+625
+00:26:48,196 --> 00:26:50,636
+As we said before if an
+image is in a format,
+
+
+626
+00:26:50,636 --> 00:26:53,276
+is in the color format that
+the GPU can't work directly
+
+
+627
+00:26:53,276 --> 00:26:55,466
+with it will have to be
+converted by the CPU.
+
+
+628
+00:26:56,386 --> 00:26:59,576
+So in this particular example
+you know this is just a simple
+
+
+629
+00:26:59,576 --> 00:27:02,156
+photo browsing app.
+
+
+630
+00:27:02,256 --> 00:27:04,426
+We're just getting images
+from an online source.
+
+
+631
+00:27:04,426 --> 00:27:07,386
+We're not really checking their
+size or their color format.
+
+
+632
+00:27:07,386 --> 00:27:10,426
+So in this particular
+case we're getting images
+
+
+633
+00:27:10,426 --> 00:27:11,806
+that are 16 bits per component.
+
+
+634
+00:27:12,056 --> 00:27:14,126
+And so you can see that
+they are tinted cyan here.
+
+
+635
+00:27:14,696 --> 00:27:17,506
+That is telling us that these
+images had to be converted
+
+
+636
+00:27:17,506 --> 00:27:20,456
+by the CPU in the commit phase
+before they could actually
+
+
+637
+00:27:20,456 --> 00:27:20,846
+be rendered.
+
+
+638
+00:27:21,226 --> 00:27:24,116
+So, you know for this particular
+case we don't want to do this
+
+
+639
+00:27:24,116 --> 00:27:27,896
+on the fly because it will
+affect scrolling performance.
+
+
+640
+00:27:27,896 --> 00:27:32,866
+So you can beforehand you know
+convert your images to the size
+
+
+641
+00:27:32,866 --> 00:27:34,446
+and the color format
+that you're expecting.
+
+
+642
+00:27:34,816 --> 00:27:37,206
+And it's best to do this in,
+you know in the background
+
+
+643
+00:27:37,206 --> 00:27:38,426
+so you're not eating up time
+
+
+644
+00:27:38,426 --> 00:27:40,206
+on the main thread while
+you're trying to scroll
+
+
+645
+00:27:40,206 --> 00:27:42,396
+or doing other things.
+
+
+646
+00:27:42,586 --> 00:27:44,896
+So the next option is
+color misaligned images.
+
+
+647
+00:27:45,556 --> 00:27:48,946
+This will tint images
+yellow that are being scaled
+
+
+648
+00:27:48,946 --> 00:27:51,366
+and tint images purple
+that are not pixel aligned.
+
+
+649
+00:27:51,756 --> 00:27:54,166
+You know as I said previously
+it's always good to make sure
+
+
+650
+00:27:54,166 --> 00:27:55,916
+that images are in the
+color format and the size
+
+
+651
+00:27:55,916 --> 00:27:57,846
+that you want because
+the last thing you want
+
+
+652
+00:27:57,846 --> 00:28:00,386
+to be doing is you know
+doing conversions in scaling
+
+
+653
+00:28:00,746 --> 00:28:02,236
+on the fly while
+you're scrolling.
+
+
+654
+00:28:02,396 --> 00:28:03,926
+So the same principles
+we applied
+
+
+655
+00:28:04,206 --> 00:28:06,436
+in the previous slide we would
+also apply here to get rid
+
+
+656
+00:28:06,436 --> 00:28:09,176
+of the scaling on-the-fly.
+
+
+657
+00:28:09,776 --> 00:28:12,276
+So, next up is color
+offscreen yellow.
+
+
+658
+00:28:12,526 --> 00:28:15,556
+So this will tint layers
+yellow based on the number
+
+
+659
+00:28:15,556 --> 00:28:18,076
+of offscreen passes
+that each layer occurs.
+
+
+660
+00:28:18,606 --> 00:28:21,686
+So, the more yellow you see the
+more offscreen passes we have.
+
+
+661
+00:28:22,626 --> 00:28:26,306
+If you notice the nav bar and
+the tool bar are tinted yellow,
+
+
+662
+00:28:26,516 --> 00:28:28,886
+that's because there are
+blurs with these layers
+
+
+663
+00:28:28,956 --> 00:28:31,036
+that are actually blurring
+the content behind it.
+
+
+664
+00:28:31,036 --> 00:28:33,486
+So we expect those, but
+I do find it curious
+
+
+665
+00:28:33,486 --> 00:28:36,126
+that the images are
+having offscreen passes.
+
+
+666
+00:28:36,126 --> 00:28:38,746
+So we'll take a look at that
+later on in the presentation
+
+
+667
+00:28:38,746 --> 00:28:40,036
+and see how to work
+around this issue.
+
+
+668
+00:28:41,826 --> 00:28:44,866
+So next is color
+OpenGL fast path blue.
+
+
+669
+00:28:45,186 --> 00:28:47,836
+And so what this will do is
+this will tint layers blue
+
+
+670
+00:28:47,836 --> 00:28:49,746
+that are being blended
+by the display hardware.
+
+
+671
+00:28:50,306 --> 00:28:52,306
+This is actually a good
+thing you want to see
+
+
+672
+00:28:52,866 --> 00:28:55,566
+because if we have content
+that's being blended
+
+
+673
+00:28:55,566 --> 00:28:57,996
+by the display hardware
+then that's less work
+
+
+674
+00:28:57,996 --> 00:28:59,166
+for the GPU to have to do.
+
+
+675
+00:28:59,166 --> 00:29:00,756
+So in this case if
+you see something show
+
+
+676
+00:29:00,756 --> 00:29:03,876
+up in blue that's a good thing.
+
+
+677
+00:29:04,786 --> 00:29:07,266
+Last option is flash
+updated regions.
+
+
+678
+00:29:07,556 --> 00:29:09,396
+And so what this will do
+is it will flash parts
+
+
+679
+00:29:09,396 --> 00:29:11,496
+of the screen yellow
+that are being updated.
+
+
+680
+00:29:11,496 --> 00:29:13,356
+This particular example is
+
+
+681
+00:29:13,356 --> 00:29:15,766
+with the clocks app
+that shifts in iOS.
+
+
+682
+00:29:16,506 --> 00:29:19,726
+You notice that the
+yellow regions here are the
+
+
+683
+00:29:19,906 --> 00:29:21,286
+second hand.
+
+
+684
+00:29:21,286 --> 00:29:25,316
+Ideally you only want to see
+parts of the screen flash yellow
+
+
+685
+00:29:25,316 --> 00:29:26,506
+that you're actually updating.
+
+
+686
+00:29:26,696 --> 00:29:28,916
+Again because this means
+less work for this GPU
+
+
+687
+00:29:28,916 --> 00:29:30,006
+and less work for the CPU.
+
+
+688
+00:29:30,756 --> 00:29:33,566
+So, if you turn this on
+you don't want to see a lot
+
+
+689
+00:29:33,566 --> 00:29:35,846
+of flashing yellow unless
+you actually are updating
+
+
+690
+00:29:36,376 --> 00:29:37,276
+that much of the screen.
+
+
+691
+00:29:39,026 --> 00:29:41,676
+So, in summary some
+of the questions
+
+
+692
+00:29:41,676 --> 00:29:44,536
+that the Core Animation
+Instrument will help you get to,
+
+
+693
+00:29:44,946 --> 00:29:46,946
+it will help you figure
+out what the frame rate is,
+
+
+694
+00:29:47,436 --> 00:29:49,326
+is there any unnecessary
+CPU rendering
+
+
+695
+00:29:49,326 --> 00:29:52,426
+because it does include the
+time profiler instrument.
+
+
+696
+00:29:53,116 --> 00:29:56,556
+And also with the color debug
+options you can see things
+
+
+697
+00:29:56,556 --> 00:29:58,106
+like are there too
+many offscreen passes?
+
+
+698
+00:29:58,106 --> 00:29:59,266
+How much blending is going on?
+
+
+699
+00:29:59,556 --> 00:30:02,246
+And do you have any strange
+image formats or sizes
+
+
+700
+00:30:02,246 --> 00:30:02,966
+that you're not expecting?
+
+
+701
+00:30:04,676 --> 00:30:08,236
+And so one additional point
+on the coloring options some
+
+
+702
+00:30:08,236 --> 00:30:10,766
+of the coloring options are
+available in the iOS simulator
+
+
+703
+00:30:10,866 --> 00:30:12,486
+so you can see the example here.
+
+
+704
+00:30:12,926 --> 00:30:14,686
+A few things to point
+out with this,
+
+
+705
+00:30:15,506 --> 00:30:19,086
+the colors might be slightly
+different because the version
+
+
+706
+00:30:19,086 --> 00:30:22,256
+of CA that's running inside the
+simulator is actually a version
+
+
+707
+00:30:22,256 --> 00:30:24,226
+of CA that's on OS
+X, not on iOS.
+
+
+708
+00:30:24,546 --> 00:30:26,966
+So if you see any discrepancies
+always trust what you see
+
+
+709
+00:30:26,966 --> 00:30:29,766
+on device, because that's what
+your customer is actually going
+
+
+710
+00:30:29,766 --> 00:30:30,186
+to be using.
+
+
+711
+00:30:31,326 --> 00:30:33,606
+So, this is a good future
+because you can have
+
+
+712
+00:30:33,606 --> 00:30:36,576
+like say your testing team go
+off and hook around your app
+
+
+713
+00:30:36,576 --> 00:30:39,036
+and see if you have any
+unexpected offscreen passes
+
+
+714
+00:30:39,036 --> 00:30:41,826
+or any conversion or anything
+that looks suspicious.
+
+
+715
+00:30:43,716 --> 00:30:45,676
+So next topic, I want to talk
+
+
+716
+00:30:45,676 --> 00:30:47,316
+about the OpenGL ES
+driver instrument.
+
+
+717
+00:30:47,746 --> 00:30:49,266
+So if you launch instruments
+
+
+718
+00:30:49,646 --> 00:30:51,916
+and select the OpenGL
+ES driver template
+
+
+719
+00:30:52,406 --> 00:30:53,486
+that will give you a document
+
+
+720
+00:30:53,486 --> 00:30:55,666
+that contains the OpenGL
+ES driver instrument
+
+
+721
+00:30:55,966 --> 00:30:57,846
+and a time profiler instrument.
+
+
+722
+00:30:58,576 --> 00:31:03,196
+So if you select the OpenGL ES
+driver instrument you can choose
+
+
+723
+00:31:03,196 --> 00:31:06,606
+from which statistics you
+want to actually collect.
+
+
+724
+00:31:06,606 --> 00:31:08,946
+When I'm investigating
+things I tend to go
+
+
+725
+00:31:08,946 --> 00:31:10,746
+for device utilization,
+
+
+726
+00:31:10,746 --> 00:31:13,626
+which will show you how much the
+GPU is in use during the trace.
+
+
+727
+00:31:14,466 --> 00:31:17,696
+Render and tiler utilization,
+those correspond to the renderer
+
+
+728
+00:31:17,986 --> 00:31:20,716
+and tiler phases that Axel
+was talking about previously.
+
+
+729
+00:31:21,166 --> 00:31:23,676
+And then, of course, the Core
+Animation fps because I want
+
+
+730
+00:31:23,676 --> 00:31:27,276
+to know what the actual frame
+rate is that we're seeing.
+
+
+731
+00:31:27,496 --> 00:31:32,126
+So, if you take a trace
+and then select the core,
+
+
+732
+00:31:32,286 --> 00:31:36,146
+the OpenGL ES driver
+instrument you can then look
+
+
+733
+00:31:36,146 --> 00:31:39,846
+at the statistics and see,
+for example in this case,
+
+
+734
+00:31:39,846 --> 00:31:44,116
+we are hitting 60 fps and
+our device utilization is
+
+
+735
+00:31:44,116 --> 00:31:46,346
+in like the mid lower 70s.
+
+
+736
+00:31:46,846 --> 00:31:50,146
+So, you know it depends
+on while you're rendering
+
+
+737
+00:31:50,146 --> 00:31:52,386
+so you know you may want
+to investigate this,
+
+
+738
+00:31:52,576 --> 00:31:54,616
+like if it all boils down to
+what you're actually rendering
+
+
+739
+00:31:54,616 --> 00:31:55,236
+for this case.
+
+
+740
+00:31:56,536 --> 00:31:59,656
+And likewise since we have the
+time profiler instrument here
+
+
+741
+00:31:59,656 --> 00:32:01,036
+you can see what
+the CPU is doing.
+
+
+742
+00:32:01,466 --> 00:32:04,386
+So, if you select that
+you can then again look
+
+
+743
+00:32:04,386 --> 00:32:06,296
+at aggregated call
+stacks of what was going
+
+
+744
+00:32:06,296 --> 00:32:08,296
+on in the CPU during this time.
+
+
+745
+00:32:08,296 --> 00:32:10,386
+So this is always useful because
+you can highlight certain
+
+
+746
+00:32:10,386 --> 00:32:12,846
+regions you know if you notice
+that you're dropping frames
+
+
+747
+00:32:12,846 --> 00:32:14,576
+or you notice a lot of
+activity you can zoom in
+
+
+748
+00:32:14,576 --> 00:32:17,206
+and see what the CPU is doing
+during that particular time.
+
+
+749
+00:32:19,846 --> 00:32:22,856
+So in summary, with OpenGL ES
+driver instrument you know this
+
+
+750
+00:32:22,856 --> 00:32:24,096
+will give you answers
+to questions
+
+
+751
+00:32:24,096 --> 00:32:25,066
+like what is your frame rate?
+
+
+752
+00:32:25,516 --> 00:32:27,776
+You can see what the
+CPU and CPU are doing
+
+
+753
+00:32:28,136 --> 00:32:30,506
+and you can also use the
+time profiler instrument
+
+
+754
+00:32:30,746 --> 00:32:34,756
+to see are there any unnecessary
+CPU rendering going on?
+
+
+755
+00:32:35,656 --> 00:32:39,346
+So next up is a really cool
+feature that was added in Xcode
+
+
+756
+00:32:39,486 --> 00:32:41,746
+for live view debugging
+on device.
+
+
+757
+00:32:42,126 --> 00:32:45,246
+So if you open your object
+in Xcode and then run it
+
+
+758
+00:32:45,986 --> 00:32:48,406
+and then click this little
+button on the bottom here,
+
+
+759
+00:32:48,956 --> 00:32:51,856
+what it will actually do is it
+will grab the view hierarchy off
+
+
+760
+00:32:51,856 --> 00:32:53,996
+the device and you
+can then go poking
+
+
+761
+00:32:53,996 --> 00:32:54,996
+around in your view hierarchy
+
+
+762
+00:32:54,996 --> 00:32:57,746
+and see what exact
+views are in your UI.
+
+
+763
+00:32:58,346 --> 00:33:00,796
+So this is always good because
+you can inspect to see as I said
+
+
+764
+00:33:00,796 --> 00:33:04,226
+if there's anything unexpected
+there you know maybe something
+
+
+765
+00:33:04,226 --> 00:33:06,356
+is building up or you have
+a leak of say animations
+
+
+766
+00:33:06,356 --> 00:33:07,696
+or something or constraints.
+
+
+767
+00:33:08,006 --> 00:33:10,646
+So this is good to actually
+see what the view hierarchy is
+
+
+768
+00:33:10,646 --> 00:33:13,646
+on your device versus say what
+you conceptually think it is
+
+
+769
+00:33:13,646 --> 00:33:14,556
+when you're writing your code.
+
+
+770
+00:33:14,556 --> 00:33:18,146
+If you select an individual item
+
+
+771
+00:33:18,236 --> 00:33:21,576
+or an individual view you can
+look at the properties for it.
+
+
+772
+00:33:21,576 --> 00:33:25,096
+So in this case we selected a
+UI view and you can see details
+
+
+773
+00:33:25,096 --> 00:33:27,596
+about what property and what
+image is currently being
+
+
+774
+00:33:27,646 --> 00:33:28,526
+rendered by that view.
+
+
+775
+00:33:30,696 --> 00:33:34,876
+So summary for Xcode view
+debugging this will let you poke
+
+
+776
+00:33:34,876 --> 00:33:36,046
+around in your view hierarchy
+
+
+777
+00:33:36,046 --> 00:33:37,786
+to see what's actually
+being rendered on device,
+
+
+778
+00:33:38,106 --> 00:33:39,626
+you know which is helpful
+because you can see
+
+
+779
+00:33:39,626 --> 00:33:41,116
+if you have any expensive views.
+
+
+780
+00:33:41,696 --> 00:33:43,626
+You know looking at their
+properties you know seeing what
+
+
+781
+00:33:43,626 --> 00:33:44,596
+your bounds are and whatnot.
+
+
+782
+00:33:45,246 --> 00:33:47,346
+Also good to see if you
+have anything building
+
+
+783
+00:33:47,346 --> 00:33:48,846
+up unexpectedly in
+your view hierarchy.
+
+
+784
+00:33:49,046 --> 00:33:53,626
+So next up let's talk
+about some case studies.
+
+
+785
+00:33:54,066 --> 00:33:56,316
+So what I want to do with this
+is I want to talk about a couple
+
+
+786
+00:33:56,316 --> 00:33:58,716
+of different scenarios
+and measure performance
+
+
+787
+00:33:58,716 --> 00:33:59,846
+across different devices.
+
+
+788
+00:34:00,236 --> 00:34:02,246
+And then we'll figure
+out how we can work
+
+
+789
+00:34:02,246 --> 00:34:03,556
+around these performance
+problems
+
+
+790
+00:34:04,026 --> 00:34:05,736
+and keep the same
+visual appearance,
+
+
+791
+00:34:05,736 --> 00:34:10,116
+but you know get the
+performance gain that we want.
+
+
+792
+00:34:10,116 --> 00:34:12,545
+So first up, let's talk about
+a fictitious photo application.
+
+
+793
+00:34:12,886 --> 00:34:15,326
+So this is just a simple
+application with a table view
+
+
+794
+00:34:15,606 --> 00:34:18,866
+where each table view cell has
+an image and a couple of lines
+
+
+795
+00:34:18,866 --> 00:34:22,426
+of text and there's also a
+small shadow behind each image.
+
+
+796
+00:34:22,966 --> 00:34:26,106
+So, if we take this and
+we measure the performance
+
+
+797
+00:34:26,146 --> 00:34:29,815
+on an iPhone 5s using the
+OpenGL ES driver instrument.
+
+
+798
+00:34:30,396 --> 00:34:32,346
+You know we can see that
+we're hitting 60 fps.
+
+
+799
+00:34:32,966 --> 00:34:35,255
+So, that's good; 60
+fps is our target.
+
+
+800
+00:34:35,295 --> 00:34:37,565
+So, awesome, ship it.
+
+
+801
+00:34:38,206 --> 00:34:39,676
+Not just yet.
+
+
+802
+00:34:39,906 --> 00:34:42,815
+We you know actually love all
+of our customers and we want
+
+
+803
+00:34:42,815 --> 00:34:45,176
+to make sure everybody has a
+good user experience regardless
+
+
+804
+00:34:45,176 --> 00:34:46,126
+of what device they're on.
+
+
+805
+00:34:46,436 --> 00:34:49,065
+So, let's take a look at
+some of the other devices
+
+
+806
+00:34:49,136 --> 00:34:52,206
+that we support in iOS 8 to see
+how the performance stacks up.
+
+
+807
+00:34:52,946 --> 00:34:55,366
+So, first off let's
+look at the iPod touch.
+
+
+808
+00:34:55,795 --> 00:34:59,026
+So I'm curious what scrolling
+feels like on an iPod touch.
+
+
+809
+00:34:59,116 --> 00:35:01,626
+So, you know again we'll
+take our iPod touch
+
+
+810
+00:35:01,626 --> 00:35:03,706
+and we'll use the OpenGL
+ES driver instrument
+
+
+811
+00:35:04,296 --> 00:35:07,776
+and you know sure enough
+we notice our frame rate is
+
+
+812
+00:35:07,776 --> 00:35:10,846
+in the mid 30s, which is
+nowhere near our target.
+
+
+813
+00:35:10,846 --> 00:35:12,746
+So that would be a lousy
+scrolling experience.
+
+
+814
+00:35:13,816 --> 00:35:17,006
+And if we look at the
+device utilization we see
+
+
+815
+00:35:17,006 --> 00:35:20,266
+that you know this is
+like mid to high 70s.
+
+
+816
+00:35:21,256 --> 00:35:22,996
+This strikes me as
+really kind of odd
+
+
+817
+00:35:23,046 --> 00:35:24,946
+because all we're doing is
+just scrolling around a couple
+
+
+818
+00:35:24,946 --> 00:35:27,226
+of image thumbnails
+and some text.
+
+
+819
+00:35:27,226 --> 00:35:30,726
+So I don't really expect
+this much GPU activity.
+
+
+820
+00:35:31,356 --> 00:35:33,486
+So let's see if we can figure
+out what's going on here.
+
+
+821
+00:35:33,486 --> 00:35:36,956
+So, first thing I want to
+know is you know what's
+
+
+822
+00:35:36,956 --> 00:35:37,696
+in my view hierarchy.
+
+
+823
+00:35:37,696 --> 00:35:38,906
+Is there anything
+unexpected here?
+
+
+824
+00:35:39,266 --> 00:35:41,926
+So we use the Xcode
+debugging feature.
+
+
+825
+00:35:42,396 --> 00:35:43,496
+We grab the view hierarchy.
+
+
+826
+00:35:44,306 --> 00:35:45,946
+I don't really see
+anything surprising here
+
+
+827
+00:35:45,946 --> 00:35:48,876
+so we've got you know table
+view cell with an image view
+
+
+828
+00:35:49,176 --> 00:35:52,576
+and two labels, nothing
+out of the ordinary here.
+
+
+829
+00:35:52,576 --> 00:35:54,946
+So, let's see if we can
+figure out something else.
+
+
+830
+00:35:55,936 --> 00:35:59,046
+So if we use the Core Animation
+instrument you know remembering
+
+
+831
+00:35:59,046 --> 00:36:00,456
+that offscreen passes
+are expensive,
+
+
+832
+00:36:00,456 --> 00:36:02,286
+let's see if we have
+any offscreen passes
+
+
+833
+00:36:02,286 --> 00:36:03,036
+that are unexpected.
+
+
+834
+00:36:03,466 --> 00:36:04,726
+And sure enough this
+is the slide
+
+
+835
+00:36:04,726 --> 00:36:05,916
+that I referenced previously.
+
+
+836
+00:36:06,616 --> 00:36:10,376
+So you know we have offscreen
+passes for the images,
+
+
+837
+00:36:10,376 --> 00:36:12,246
+which again strikes
+me as curious.
+
+
+838
+00:36:12,246 --> 00:36:14,566
+Let's just take a look at the
+code and see what we're doing,
+
+
+839
+00:36:14,566 --> 00:36:15,676
+how are we setting this up.
+
+
+840
+00:36:16,236 --> 00:36:20,976
+So, as I said each image
+thumbnail has a shadow.
+
+
+841
+00:36:21,356 --> 00:36:22,616
+How are we generating
+that shadow?
+
+
+842
+00:36:23,036 --> 00:36:25,196
+So in this case we are
+asking Core Animation
+
+
+843
+00:36:25,196 --> 00:36:26,436
+to generate the shadow for us.
+
+
+844
+00:36:26,796 --> 00:36:28,806
+And we're doing that just
+by setting shadowRadius,
+
+
+845
+00:36:28,806 --> 00:36:31,156
+shadowOffset you know
+and other properties.
+
+
+846
+00:36:32,176 --> 00:36:34,756
+Basically when we're doing this
+Core Animation has to figure
+
+
+847
+00:36:34,756 --> 00:36:36,956
+out what the shape of
+the shadow looks like.
+
+
+848
+00:36:37,466 --> 00:36:40,126
+And when it does this it
+has to take offscreen passes
+
+
+849
+00:36:40,126 --> 00:36:42,696
+to render the content and
+then look at the alpha channel
+
+
+850
+00:36:42,696 --> 00:36:43,936
+of what it just rendered
+to figure
+
+
+851
+00:36:43,936 --> 00:36:45,786
+out where the shadow
+belongs and then go
+
+
+852
+00:36:45,786 --> 00:36:49,076
+through all the extra work
+of doing the shadow itself.
+
+
+853
+00:36:49,736 --> 00:36:50,546
+Is there a better way?
+
+
+854
+00:36:50,546 --> 00:36:52,266
+Is there something that
+we can do to avoid this
+
+
+855
+00:36:52,496 --> 00:36:53,576
+and it turns out there is.
+
+
+856
+00:36:54,296 --> 00:36:55,906
+If we add the following line,
+
+
+857
+00:36:55,906 --> 00:36:59,206
+so there is the shadowPath
+property you know we're only
+
+
+858
+00:36:59,206 --> 00:37:00,346
+scrolling image thumbnail,
+
+
+859
+00:37:00,346 --> 00:37:02,496
+so just basically
+Rects of various sizes.
+
+
+860
+00:37:02,896 --> 00:37:05,486
+We can easily figure out
+you know what the shape
+
+
+861
+00:37:05,486 --> 00:37:07,306
+of the shadow needs to
+look like because again,
+
+
+862
+00:37:07,306 --> 00:37:09,516
+they're all just
+various sized rectangles.
+
+
+863
+00:37:10,226 --> 00:37:13,926
+So if we take advantage of the
+shadow path property and add
+
+
+864
+00:37:14,226 --> 00:37:17,806
+that to our code then Core
+Animation doesn't have to eat
+
+
+865
+00:37:17,806 --> 00:37:21,176
+up any offscreen passes to
+actually generate these shadows.
+
+
+866
+00:37:21,526 --> 00:37:23,156
+So, let's-- you know
+let's make this change.
+
+
+867
+00:37:23,156 --> 00:37:25,426
+We'll add this line
+and let's take a look
+
+
+868
+00:37:25,426 --> 00:37:27,376
+with the Core Animation
+instrument to see
+
+
+869
+00:37:27,706 --> 00:37:29,566
+if this really did get rid
+of our offscreen passes
+
+
+870
+00:37:29,566 --> 00:37:30,806
+and sure enough it did.
+
+
+871
+00:37:31,576 --> 00:37:32,856
+So, this is great.
+
+
+872
+00:37:32,856 --> 00:37:35,926
+Less offscreen passes means you
+know less idle time on the GPU.
+
+
+873
+00:37:36,356 --> 00:37:38,756
+So, let's take a trace and see
+what our scrolling performance
+
+
+874
+00:37:38,756 --> 00:37:39,096
+looks like.
+
+
+875
+00:37:39,736 --> 00:37:43,026
+So, again looking at an iPod
+touch we'll use the OpenGL ES
+
+
+876
+00:37:43,026 --> 00:37:45,636
+driver instrument and we notice
+
+
+877
+00:37:45,636 --> 00:37:47,376
+that we are indeed
+hitting 60 fps.
+
+
+878
+00:37:48,276 --> 00:37:48,966
+That's great.
+
+
+879
+00:37:50,106 --> 00:37:53,206
+And check out the device
+utilization, you know we are now
+
+
+880
+00:37:53,206 --> 00:37:57,986
+in like the mid 30s as opposed
+to you know the mid 70s before.
+
+
+881
+00:37:58,406 --> 00:38:03,006
+So this is great, you know less
+GPU work means we are hitting
+
+
+882
+00:38:03,006 --> 00:38:05,846
+our performance targets and it
+also means better battery life.
+
+
+883
+00:38:05,976 --> 00:38:07,416
+So, that's a good thing.
+
+
+884
+00:38:08,626 --> 00:38:10,666
+So, awesome, can we ship it now?
+
+
+885
+00:38:11,196 --> 00:38:14,906
+Well not just yet; we still
+have one more device we should
+
+
+886
+00:38:14,906 --> 00:38:15,256
+look at.
+
+
+887
+00:38:15,816 --> 00:38:18,226
+So, let's take a
+look at an iPhone 4s
+
+
+888
+00:38:18,596 --> 00:38:21,126
+and see how scrolling is
+with our new changes now.
+
+
+889
+00:38:22,216 --> 00:38:24,606
+So, we are in fact
+hitting 60 fps.
+
+
+890
+00:38:25,216 --> 00:38:28,936
+That's good and again device
+utilization seems same.
+
+
+891
+00:38:28,936 --> 00:38:31,176
+You know 30 percent is a
+lot better than mid 70s.
+
+
+892
+00:38:32,046 --> 00:38:37,466
+So, to summarize when we
+had Core Animation doing
+
+
+893
+00:38:38,296 --> 00:38:40,206
+and figuring out
+rendering the shadow
+
+
+894
+00:38:40,206 --> 00:38:43,246
+for us you notice
+there's a drop off
+
+
+895
+00:38:43,246 --> 00:38:44,746
+when you look at older devices.
+
+
+896
+00:38:45,066 --> 00:38:47,506
+So the iPhone 5s can
+handle this no problem.
+
+
+897
+00:38:47,946 --> 00:38:50,876
+But as you look at the iPhone
+5, the iPhone 4s and the iPhone,
+
+
+898
+00:38:50,876 --> 00:38:53,716
+iPod touch you notice
+that performance drops off
+
+
+899
+00:38:53,766 --> 00:38:56,396
+because again, older devices
+can't handle the amount
+
+
+900
+00:38:56,396 --> 00:38:59,216
+of offscreen passes
+that newer devices can.
+
+
+901
+00:38:59,216 --> 00:39:01,146
+And when we make this
+change and take advantage
+
+
+902
+00:39:01,146 --> 00:39:03,906
+of the shadowPath property you
+know notice we're hitting our
+
+
+903
+00:39:03,906 --> 00:39:05,526
+targets everywhere for 60 fps.
+
+
+904
+00:39:06,056 --> 00:39:06,936
+So, this is good.
+
+
+905
+00:39:06,996 --> 00:39:09,076
+We can ship this and
+have happy customers.
+
+
+906
+00:39:09,076 --> 00:39:12,286
+So, awesome we can
+finally ship it.
+
+
+907
+00:39:12,536 --> 00:39:16,126
+So, in summary, offscreen
+passes are expensive.
+
+
+908
+00:39:16,506 --> 00:39:18,786
+You know you always want to
+use Core Animation instruments
+
+
+909
+00:39:18,786 --> 00:39:22,036
+to find out if you have any
+unnecessary offscreen passes
+
+
+910
+00:39:22,036 --> 00:39:24,436
+and know the APIs and view
+hierarchy that you're using
+
+
+911
+00:39:24,846 --> 00:39:26,966
+to understand if there's
+things you can do to avoid it.
+
+
+912
+00:39:26,966 --> 00:39:28,916
+In this case it was
+using shadowPath.
+
+
+913
+00:39:30,246 --> 00:39:31,926
+And as always you know
+measure your performance
+
+
+914
+00:39:31,926 --> 00:39:33,146
+across multiple devices.
+
+
+915
+00:39:33,566 --> 00:39:36,856
+You know you can see what the
+GPU utilization is by looking
+
+
+916
+00:39:36,856 --> 00:39:38,596
+at the openGL ES
+driver instrument
+
+
+917
+00:39:39,056 --> 00:39:40,726
+and you can see what
+the CPU is up to
+
+
+918
+00:39:40,726 --> 00:39:42,686
+by using the time
+profiler instrument.
+
+
+919
+00:39:43,526 --> 00:39:45,676
+And as always you know,
+know your view hierarchy,
+
+
+920
+00:39:45,676 --> 00:39:47,596
+know if there's any hidden
+costs for what you're,
+
+
+921
+00:39:47,596 --> 00:39:49,586
+for what you're trying
+to render.
+
+
+922
+00:39:49,796 --> 00:39:51,886
+And this is especially true
+for things that we have inside
+
+
+923
+00:39:51,886 --> 00:39:53,966
+of table view cells
+because we want to ensure
+
+
+924
+00:39:53,966 --> 00:39:55,076
+that we have smooth scrolling.
+
+
+925
+00:39:55,076 --> 00:39:57,896
+So it's particularly important
+with a view hierarchy you build
+
+
+926
+00:39:57,896 --> 00:39:58,796
+up in a table view cell.
+
+
+927
+00:40:00,226 --> 00:40:02,396
+So, next case study
+I want to look
+
+
+928
+00:40:02,596 --> 00:40:04,726
+at is a fictitious
+contacts application.
+
+
+929
+00:40:05,146 --> 00:40:07,156
+So, again this is just
+a simple table view.
+
+
+930
+00:40:07,766 --> 00:40:09,806
+We have you know
+a round thumbnail
+
+
+931
+00:40:10,166 --> 00:40:11,886
+and we have a line of text.
+
+
+932
+00:40:11,886 --> 00:40:13,696
+So, not a whole lot
+going on here.
+
+
+933
+00:40:14,786 --> 00:40:17,776
+So, if we look at performance
+across different devices.
+
+
+934
+00:40:18,176 --> 00:40:19,916
+We notice that you
+know the iPhone 5s
+
+
+935
+00:40:19,916 --> 00:40:22,586
+and the iPhone 5 are
+hitting 60 fps that's good.
+
+
+936
+00:40:23,056 --> 00:40:26,206
+But the iPhone 4s and the
+iPod touch aren't quite there.
+
+
+937
+00:40:26,206 --> 00:40:28,326
+So you know again,
+we want everybody
+
+
+938
+00:40:28,326 --> 00:40:29,986
+to have good user
+experience regardless
+
+
+939
+00:40:29,986 --> 00:40:31,136
+of the hardware that
+they're using.
+
+
+940
+00:40:31,136 --> 00:40:34,406
+So let's take a look at this
+and see why we're not getting
+
+
+941
+00:40:34,406 --> 00:40:36,316
+with the target frame
+rate on these devices.
+
+
+942
+00:40:37,496 --> 00:40:40,396
+So, the first thing I want
+to do is take an OpenGL,
+
+
+943
+00:40:40,396 --> 00:40:43,186
+use the OpenGL ES driver
+instrument and take a trace.
+
+
+944
+00:40:43,186 --> 00:40:44,856
+You know it's always good to
+know where you're starting
+
+
+945
+00:40:44,856 --> 00:40:46,876
+so you understand how
+the changes you make are
+
+
+946
+00:40:46,876 --> 00:40:47,706
+affecting performance.
+
+
+947
+00:40:48,216 --> 00:40:50,106
+So take a trace.
+
+
+948
+00:40:50,206 --> 00:40:52,236
+Notice that our scrolling
+is you know only
+
+
+949
+00:40:52,236 --> 00:40:54,396
+in the mid 40s; it's not good.
+
+
+950
+00:40:55,146 --> 00:40:56,676
+And look at the device
+utilization.
+
+
+951
+00:40:56,676 --> 00:40:58,526
+The device utilization
+is really high here.
+
+
+952
+00:40:59,776 --> 00:41:01,616
+That's rather interesting again
+
+
+953
+00:41:01,616 --> 00:41:02,986
+because we're just
+rendering a couple
+
+
+954
+00:41:02,986 --> 00:41:05,406
+of those you know
+images and some text.
+
+
+955
+00:41:05,506 --> 00:41:07,616
+So that looks suspicious to me.
+
+
+956
+00:41:08,246 --> 00:41:09,436
+So let's take a closer look.
+
+
+957
+00:41:09,436 --> 00:41:11,426
+Again you know we'll use the
+Core Animation instrument
+
+
+958
+00:41:11,926 --> 00:41:13,526
+and see if there's
+any unnecessary
+
+
+959
+00:41:13,526 --> 00:41:15,056
+or unexpected offscreen passes.
+
+
+960
+00:41:15,716 --> 00:41:19,276
+So you know we notice the
+images here are incurring
+
+
+961
+00:41:19,276 --> 00:41:20,046
+offscreen passes.
+
+
+962
+00:41:20,046 --> 00:41:21,826
+So, just kind of curious.
+
+
+963
+00:41:21,826 --> 00:41:24,746
+Let's take a look at how we are
+rendering and how we are setting
+
+
+964
+00:41:24,746 --> 00:41:25,946
+up these round thumbnails.
+
+
+965
+00:41:28,856 --> 00:41:31,386
+So, basically what we're
+doing is we're starting off
+
+
+966
+00:41:31,386 --> 00:41:32,266
+with this particular case.
+
+
+967
+00:41:32,516 --> 00:41:34,326
+We're starting off
+with square thumbnails
+
+
+968
+00:41:34,606 --> 00:41:36,846
+and we are on-the-fly
+asking Core Animation
+
+
+969
+00:41:36,846 --> 00:41:38,006
+to round them off for us.
+
+
+970
+00:41:38,276 --> 00:41:41,376
+And we're doing this by using
+cornerRadius and masking.
+
+
+971
+00:41:41,376 --> 00:41:43,506
+So this is where the offscreen
+passes are coming from.
+
+
+972
+00:41:43,506 --> 00:41:45,686
+So, you know again
+anything that we can do
+
+
+973
+00:41:45,686 --> 00:41:48,566
+to avoid offscreen passes you
+know will improve performance
+
+
+974
+00:41:48,566 --> 00:41:49,606
+across all devices.
+
+
+975
+00:41:50,676 --> 00:41:53,176
+So, is there a better
+way to do this?
+
+
+976
+00:41:53,546 --> 00:41:57,216
+Ideally if you can pregenerate
+your thumbnails round then
+
+
+977
+00:41:57,216 --> 00:41:58,916
+that would be great, because
+then you'd just be rendering
+
+
+978
+00:41:58,916 --> 00:42:01,916
+images and you wouldn't be
+trying to do all of this masking
+
+
+979
+00:42:02,146 --> 00:42:04,746
+and having all these
+offscreen passes on-the-fly.
+
+
+980
+00:42:05,126 --> 00:42:08,036
+So, you know if you can
+pregenerate them that's great.
+
+
+981
+00:42:08,866 --> 00:42:13,296
+If you can't then another trick
+you could do is remember this UI
+
+
+982
+00:42:13,296 --> 00:42:16,216
+was just a white table view
+with white table view cells
+
+
+983
+00:42:16,216 --> 00:42:17,506
+and just you know
+white background.
+
+
+984
+00:42:17,836 --> 00:42:19,286
+So we could fake
+it in this case.
+
+
+985
+00:42:19,596 --> 00:42:21,616
+You know we could
+render the square content
+
+
+986
+00:42:22,076 --> 00:42:25,256
+or the square thumbnail and then
+render a white inverted circle
+
+
+987
+00:42:25,256 --> 00:42:26,736
+on top of it to kind of you know
+
+
+988
+00:42:26,736 --> 00:42:28,876
+in essence cut away
+the rest of the image.
+
+
+989
+00:42:28,876 --> 00:42:31,416
+This would be reducing
+our offscreen passes
+
+
+990
+00:42:31,416 --> 00:42:32,966
+but increasing the
+amount of blending.
+
+
+991
+00:42:32,966 --> 00:42:36,126
+You know but this still turns
+out to be a net performance win
+
+
+992
+00:42:36,416 --> 00:42:38,786
+because the GPU can
+blend a lot faster
+
+
+993
+00:42:38,786 --> 00:42:40,366
+than it can do offscreen passes.
+
+
+994
+00:42:40,696 --> 00:42:44,466
+So, let's make this change
+of just doing the, you know,
+
+
+995
+00:42:44,466 --> 00:42:47,146
+faking it and see how
+that affects performance.
+
+
+996
+00:42:48,276 --> 00:42:50,206
+So, we'll take an
+OpenGL ES driver.
+
+
+997
+00:42:50,206 --> 00:42:52,346
+We'll take a trace using the
+OpenGL ES driver instrument
+
+
+998
+00:42:52,346 --> 00:42:53,446
+and see what our frame rate is
+
+
+999
+00:42:53,956 --> 00:42:55,826
+and sure enough we're
+hitting 60 fps.
+
+
+1000
+00:42:56,806 --> 00:42:59,886
+And notice how much less
+the device utilization is.
+
+
+1001
+00:42:59,886 --> 00:43:03,276
+So again, we're 30 percent
+versus mid to upper 80s.
+
+
+1002
+00:43:03,756 --> 00:43:05,606
+One quick word on this,
+
+
+1003
+00:43:06,246 --> 00:43:08,496
+you notice before we
+were actually GPU bound
+
+
+1004
+00:43:08,496 --> 00:43:10,806
+but we weren't actually at
+100 percent for GPU time.
+
+
+1005
+00:43:11,236 --> 00:43:13,526
+That's because you know when you
+have offscreen passes there is
+
+
+1006
+00:43:13,526 --> 00:43:15,476
+that idle time when the GPU has
+
+
+1007
+00:43:15,536 --> 00:43:18,046
+to change contacts
+or switch contacts.
+
+
+1008
+00:43:18,386 --> 00:43:20,666
+So, you know you still
+might be GPU bound,
+
+
+1009
+00:43:20,906 --> 00:43:23,416
+but not quite hitting
+100 percent GPU usage
+
+
+1010
+00:43:23,446 --> 00:43:26,066
+because of the situation
+with offscreen passes,
+
+
+1011
+00:43:26,066 --> 00:43:27,466
+so that's something
+to keep in mind.
+
+
+1012
+00:43:28,946 --> 00:43:30,486
+So, if we summarize performance
+
+
+1013
+00:43:30,486 --> 00:43:34,146
+across all the devices you
+know before we were just using
+
+
+1014
+00:43:34,146 --> 00:43:36,626
+masking we noticed that there
+was a performance drop off
+
+
+1015
+00:43:36,626 --> 00:43:37,466
+on older devices.
+
+
+1016
+00:43:37,846 --> 00:43:41,996
+After we made this change and
+we made the tradeoff of doing,
+
+
+1017
+00:43:41,996 --> 00:43:45,096
+having more blending for less
+offscreen passes we are now
+
+
+1018
+00:43:45,096 --> 00:43:47,876
+hitting 60 fps everywhere
+which is good.
+
+
+1019
+00:43:47,876 --> 00:43:50,086
+This is what we want.
+
+
+1020
+00:43:50,256 --> 00:43:53,016
+So, in summary, notice
+there's a theme here.
+
+
+1021
+00:43:53,466 --> 00:43:55,346
+Offscreen passes are expensive,
+
+
+1022
+00:43:55,466 --> 00:43:58,616
+so again you can use
+Core Animation to find
+
+
+1023
+00:43:58,656 --> 00:44:00,896
+where you have any
+unexpected offscreen passes
+
+
+1024
+00:44:01,346 --> 00:44:03,176
+and you know it's always
+good to know you're API
+
+
+1025
+00:44:03,396 --> 00:44:04,426
+and what user you're using
+
+
+1026
+00:44:04,426 --> 00:44:05,716
+if there's anything you
+can do to avoid them.
+
+
+1027
+00:44:05,716 --> 00:44:08,496
+And, of course, always
+measure your performance
+
+
+1028
+00:44:08,496 --> 00:44:11,036
+across different devices,
+you know OpenGL ES,
+
+
+1029
+00:44:11,156 --> 00:44:14,616
+OpenGL ES driver instrument
+will give you GPU activity
+
+
+1030
+00:44:14,876 --> 00:44:17,656
+and time profiler instrument
+will show you CPU activity.
+
+
+1031
+00:44:18,376 --> 00:44:21,416
+And again always know what
+view hierarchy is you know
+
+
+1032
+00:44:21,416 --> 00:44:22,896
+if you have any kind of strange
+
+
+1033
+00:44:23,246 --> 00:44:25,746
+or bizarre looking
+performance issues.
+
+
+1034
+00:44:27,216 --> 00:44:30,276
+So overall summary, you
+know what were the question,
+
+
+1035
+00:44:30,276 --> 00:44:32,466
+our original questions and
+what tools have we used
+
+
+1036
+00:44:32,466 --> 00:44:35,046
+to actually find these answers?
+
+
+1037
+00:44:35,396 --> 00:44:39,676
+So here's a nice little table
+that shows what we actually used
+
+
+1038
+00:44:39,946 --> 00:44:41,136
+to get down to the questions.
+
+
+1039
+00:44:41,136 --> 00:44:43,596
+So, this is always a good
+starting point for figuring
+
+
+1040
+00:44:43,596 --> 00:44:45,146
+out before you start
+digging in your code to try
+
+
+1041
+00:44:45,146 --> 00:44:46,096
+to figure out what's going on.
+
+
+1042
+00:44:46,096 --> 00:44:48,286
+It's good to see what's
+actually happening on device.
+
+
+1043
+00:44:50,516 --> 00:44:54,786
+So overall summary, Axel talked
+
+
+1044
+00:44:54,786 --> 00:44:57,016
+about the Core Animation
+pipeline and talked
+
+
+1045
+00:44:57,016 --> 00:44:59,086
+about some rendering
+concepts and then talked
+
+
+1046
+00:44:59,086 --> 00:45:03,216
+about some new UIKit features
+for Blur and Vibrancy effects.
+
+
+1047
+00:45:03,826 --> 00:45:05,566
+And then I went over
+profiling tools
+
+
+1048
+00:45:05,566 --> 00:45:08,026
+and then did some
+example case studies.
+
+
+1049
+00:45:09,296 --> 00:45:11,256
+So if you have any
+questions feel free
+
+
+1050
+00:45:11,256 --> 00:45:13,736
+to contact either the
+Apps Frameworks Evangelist
+
+
+1051
+00:45:13,736 --> 00:45:15,016
+or the Developer
+Tools Evangelist.
+
+
+1052
+00:45:15,366 --> 00:45:17,196
+So feel free to contact
+Jake or Dave.
+
+
+1053
+00:45:17,196 --> 00:45:20,856
+If you're curious about Core
+Animation documentation that's
+
+
+1054
+00:45:20,856 --> 00:45:22,616
+available online as well
+
+
+1055
+00:45:22,616 --> 00:45:24,626
+as the Developer Forums
+is a great resource.
+
+
+1056
+00:45:26,236 --> 00:45:28,406
+And other related
+sessions that are happening
+
+
+1057
+00:45:28,406 --> 00:45:30,976
+at WWDC you now you might
+find these interesting.
+
+
+1058
+00:45:30,976 --> 00:45:34,146
+So these might be
+worth checking out.
+
+
+1059
+00:45:34,446 --> 00:45:36,726
+So thanks and have
+a wonderful WWDC.
+
+
+1060
+00:45:36,726 --> 00:45:37,000
+[ Applause ]
+

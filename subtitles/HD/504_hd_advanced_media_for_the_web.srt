@@ -1,0 +1,5553 @@
+1
+00:00:00,506 --> 00:00:10,616
+[ Pause ]
+
+
+2
+00:00:11,116 --> 00:00:13,376
+>> Hello, and welcome to
+Advanced Media for the Web.
+
+
+3
+00:00:13,796 --> 00:00:15,676
+My name is Jer Noble
+and I'm an engineer
+
+
+4
+00:00:15,676 --> 00:00:17,576
+on the Safari Layout
+and Rendering Team.
+
+
+5
+00:00:17,656 --> 00:00:20,326
+And today we're going to talk
+about what's new with audio
+
+
+6
+00:00:20,326 --> 00:00:23,836
+and video in Safari and
+how media integrates
+
+
+7
+00:00:23,836 --> 00:00:25,196
+with today's modern web.
+
+
+8
+00:00:25,286 --> 00:00:29,286
+So this is the <video>
+element, it's the heart
+
+
+9
+00:00:29,286 --> 00:00:31,006
+and soul of web-based media.
+
+
+10
+00:00:31,386 --> 00:00:35,356
+On one hand it's a container for
+some truly advanced technology,
+
+
+11
+00:00:35,466 --> 00:00:38,676
+but <video> elements are also
+just another brick in the DOM.
+
+
+12
+00:00:38,746 --> 00:00:42,866
+They can participate in
+layout and rendering.
+
+
+13
+00:00:43,196 --> 00:00:47,766
+They can be styled with CSS.
+
+
+14
+00:00:47,766 --> 00:00:49,966
+With the <video> element,
+media can now be integrated
+
+
+15
+00:00:49,966 --> 00:00:51,476
+into the same responsive,
+
+
+16
+00:00:51,476 --> 00:00:53,996
+dynamic designs being
+written for the modern web.
+
+
+17
+00:00:55,376 --> 00:00:57,356
+Video now helps tell
+stories rather
+
+
+18
+00:00:57,356 --> 00:00:58,566
+than being the story itself.
+
+
+19
+00:00:59,176 --> 00:01:01,886
+A modern example, such as New
+York Times' snowfall article,
+
+
+20
+00:01:01,886 --> 00:01:04,206
+show how you can weave video
+
+
+21
+00:01:04,206 --> 00:01:06,616
+into a rich storytelling
+experience.
+
+
+22
+00:01:07,496 --> 00:01:10,236
+And video can add emotion
+and energy to a page,
+
+
+23
+00:01:10,236 --> 00:01:13,116
+even to something already as
+exciting as the new Mac Pro.
+
+
+24
+00:01:13,486 --> 00:01:15,646
+And it can still
+take center stage.
+
+
+25
+00:01:16,366 --> 00:01:18,006
+But things weren't
+always this easy.
+
+
+26
+00:01:18,436 --> 00:01:19,616
+Let's take a look back
+
+
+27
+00:01:19,616 --> 00:01:21,856
+at how the <video>
+element became a part
+
+
+28
+00:01:21,856 --> 00:01:24,076
+of this exciting modern web.
+
+
+29
+00:01:24,326 --> 00:01:28,796
+So in 1999 this was how you
+added video to your website.
+
+
+30
+00:01:29,576 --> 00:01:30,556
+The QuickTime plug-in,
+
+
+31
+00:01:30,996 --> 00:01:33,096
+and at the time the
+QuickTime plug-in was amazing.
+
+
+32
+00:01:33,856 --> 00:01:35,696
+It could decode high
+bit rate video
+
+
+33
+00:01:35,696 --> 00:01:38,186
+and it exposed a rich
+API to JavaScript.
+
+
+34
+00:01:38,186 --> 00:01:40,526
+For a while, plug-ins
+were the only way
+
+
+35
+00:01:40,866 --> 00:01:42,776
+to add video to your website.
+
+
+36
+00:01:42,776 --> 00:01:45,176
+Now fast forward seven years
+
+
+37
+00:01:45,176 --> 00:01:48,656
+and in 2006 this was how you
+added video to your website:
+
+
+38
+00:01:48,916 --> 00:01:50,776
+the QuickTime plug-in, again.
+
+
+39
+00:01:50,776 --> 00:01:55,676
+By now the QuickTime plug-in
+supported the H.264 codec
+
+
+40
+00:01:55,926 --> 00:01:58,166
+and it delivered even
+higher quality video,
+
+
+41
+00:01:58,476 --> 00:02:01,046
+but it was still a
+plug-in, one which users had
+
+
+42
+00:02:01,046 --> 00:02:03,296
+to find, download and install.
+
+
+43
+00:02:03,506 --> 00:02:07,386
+Well, not you Mac users, of
+course, but it wasn't something
+
+
+44
+00:02:07,386 --> 00:02:10,306
+which website authors could
+depend upon being available
+
+
+45
+00:02:10,416 --> 00:02:12,066
+across all their
+entire audience.
+
+
+46
+00:02:12,196 --> 00:02:15,486
+In 2007, though,
+this all changed
+
+
+47
+00:02:15,686 --> 00:02:17,416
+when the <video>
+tag was introduced.
+
+
+48
+00:02:17,816 --> 00:02:19,456
+This was an amazing
+breakthrough.
+
+
+49
+00:02:19,656 --> 00:02:21,276
+No longer did web
+developers have
+
+
+50
+00:02:21,276 --> 00:02:23,206
+to depend upon a
+proprietary plug-in
+
+
+51
+00:02:23,206 --> 00:02:24,656
+to deliver video in their pages.
+
+
+52
+00:02:24,926 --> 00:02:27,916
+Video is now integrated
+directly into the web layer,
+
+
+53
+00:02:28,596 --> 00:02:32,606
+and as an HTML5 specification
+the <video> element provided a
+
+
+54
+00:02:32,606 --> 00:02:35,146
+constant or a consistent
+experience in API
+
+
+55
+00:02:35,146 --> 00:02:37,196
+across all browsers
+and platforms.
+
+
+56
+00:02:37,996 --> 00:02:41,356
+Browsers could build on,
+improve and add video features
+
+
+57
+00:02:41,356 --> 00:02:43,006
+without waiting for
+plug-in developers,
+
+
+58
+00:02:43,116 --> 00:02:45,516
+and this triggered a
+virtuous cycle of innovation.
+
+
+59
+00:02:45,516 --> 00:02:53,516
+In 2009 the <video> tag came to
+mobile browsers in iPhone OS 3,
+
+
+60
+00:02:53,716 --> 00:02:56,056
+when support for the <video>
+element was added to Safari.
+
+
+61
+00:02:57,256 --> 00:02:59,996
+Previously, the primary way
+users of Safari would interact
+
+
+62
+00:02:59,996 --> 00:03:02,546
+with a video was by clicking
+on a YouTube.com link,
+
+
+63
+00:03:02,546 --> 00:03:04,156
+which would open
+up the YouTube app,
+
+
+64
+00:03:04,656 --> 00:03:07,036
+but now video was a
+first class member
+
+
+65
+00:03:07,036 --> 00:03:08,406
+of mobile browsers as well.
+
+
+66
+00:03:08,786 --> 00:03:13,786
+And today's iOS devices
+are almost as powerful,
+
+
+67
+00:03:13,786 --> 00:03:18,616
+if not more powerful than
+desktop computers sold in 2009.
+
+
+68
+00:03:18,616 --> 00:03:22,136
+We've talked a lot about the
+<video> element at past WWDCs.
+
+
+69
+00:03:22,506 --> 00:03:24,826
+All the videos are at
+developer.apple.com
+
+
+70
+00:03:24,826 --> 00:03:27,096
+or on the WWDC app you
+have on your phone.
+
+
+71
+00:03:27,196 --> 00:03:30,966
+In 2010 we covered the basics
+
+
+72
+00:03:31,266 --> 00:03:33,566
+of adding a <video>
+element to your web page.
+
+
+73
+00:03:33,786 --> 00:03:37,126
+In 2011 we talked about how
+to take that <video> element
+
+
+74
+00:03:37,396 --> 00:03:38,846
+and add CSS and JavaScript
+
+
+75
+00:03:38,846 --> 00:03:41,116
+to make your own custom
+media controllers.
+
+
+76
+00:03:41,396 --> 00:03:43,516
+And in 2012 we showed you how
+
+
+77
+00:03:43,516 --> 00:03:45,666
+to play back multiple
+media elements synchronized
+
+
+78
+00:03:45,666 --> 00:03:49,846
+with one another, how to do
+advanced low latency effects
+
+
+79
+00:03:49,846 --> 00:03:51,756
+with the web audio API and how
+
+
+80
+00:03:51,756 --> 00:03:54,606
+to take your JavaScript-based
+controls into full screen
+
+
+81
+00:03:54,606 --> 00:03:56,306
+with the full screen API.
+
+
+82
+00:03:57,766 --> 00:04:00,676
+So what will you
+learn at WWDC 2014?
+
+
+83
+00:04:01,956 --> 00:04:04,876
+You'll learn how we've narrowed
+the differences between Safari
+
+
+84
+00:04:04,976 --> 00:04:07,196
+on iOS and Safari
+on OS X and what
+
+
+85
+00:04:07,196 --> 00:04:08,536
+that means for your web pages.
+
+
+86
+00:04:09,626 --> 00:04:12,196
+You'll learn the best way
+to stream adaptive media
+
+
+87
+00:04:12,466 --> 00:04:16,606
+on your websites,
+how to use less power
+
+
+88
+00:04:16,606 --> 00:04:19,336
+when playing back video and how
+
+
+89
+00:04:19,476 --> 00:04:21,986
+to coordinate your media's
+timeline with elements
+
+
+90
+00:04:21,986 --> 00:04:23,926
+in your page with a
+timed metadata API.
+
+
+91
+00:04:25,326 --> 00:04:26,546
+But before we get started,
+
+
+92
+00:04:27,256 --> 00:04:28,686
+let's talk a little
+bit about plug-ins.
+
+
+93
+00:04:29,226 --> 00:04:33,616
+Now how good is the
+<video> element on iOS?
+
+
+94
+00:04:33,616 --> 00:04:37,276
+It is so good that whenever
+I encounter a page on Safari
+
+
+95
+00:04:37,276 --> 00:04:40,626
+on OS X that insists that I
+need to use the Flash plug-in
+
+
+96
+00:04:40,626 --> 00:04:43,046
+to view its content,
+the first thing I try is
+
+
+97
+00:04:43,046 --> 00:04:44,616
+to turn the user agent to iPad.
+
+
+98
+00:04:45,666 --> 00:04:46,866
+Most of the time it works.
+
+
+99
+00:04:47,726 --> 00:04:48,616
+What's that all about?
+
+
+100
+00:04:49,146 --> 00:04:53,046
+Well, I know that no one here
+would deliberately write a page
+
+
+101
+00:04:53,046 --> 00:04:57,586
+that insisted on using a plug-in
+when HTML5 video was available.
+
+
+102
+00:04:57,586 --> 00:04:59,746
+I'm just going to assume
+you've updated your iPad sites
+
+
+103
+00:04:59,746 --> 00:05:02,836
+recently, but please update
+your desktop site as well.
+
+
+104
+00:05:03,346 --> 00:05:05,096
+Plug-ins have a time
+and a place,
+
+
+105
+00:05:05,566 --> 00:05:08,146
+but as web standards
+evolve and browsers improve,
+
+
+106
+00:05:08,146 --> 00:05:11,366
+those times are getting fewer
+and the places further between,
+
+
+107
+00:05:11,366 --> 00:05:14,596
+and that's a good thing.
+
+
+108
+00:05:14,716 --> 00:05:16,026
+So speaking of browsers
+improving,
+
+
+109
+00:05:16,026 --> 00:05:17,806
+let's talk about how we've
+narrowed the differences
+
+
+110
+00:05:17,806 --> 00:05:22,966
+between Safari on iOS and OS X.
+
+
+111
+00:05:23,116 --> 00:05:24,436
+We've removed some
+of the distinctions
+
+
+112
+00:05:24,436 --> 00:05:27,006
+between the platforms by
+giving you more control
+
+
+113
+00:05:27,006 --> 00:05:29,996
+over media loading with the
+preload attribute on iOS
+
+
+114
+00:05:31,206 --> 00:05:32,886
+and by allowing the
+<video> element
+
+
+115
+00:05:32,886 --> 00:05:35,076
+to fully participate
+in CSS layering.
+
+
+116
+00:05:37,676 --> 00:05:39,596
+But first the preload attribute.
+
+
+117
+00:05:40,216 --> 00:05:43,326
+The <video> element's preload
+attribute lets page authors
+
+
+118
+00:05:43,466 --> 00:05:46,316
+control when and how their
+media's data is loaded.
+
+
+119
+00:05:46,726 --> 00:05:50,196
+A preload value of "none"
+instructs the browser
+
+
+120
+00:05:50,196 --> 00:05:51,906
+to preload no metadata.
+
+
+121
+00:05:52,766 --> 00:05:55,536
+A value of "metadata"
+asks the browser
+
+
+122
+00:05:55,536 --> 00:05:57,786
+to only download
+enough media data
+
+
+123
+00:05:57,786 --> 00:06:02,336
+to determine the media's width,
+height, duration et cetera.
+
+
+124
+00:06:03,336 --> 00:06:06,886
+And a value of "auto" means
+begin loading media data
+
+
+125
+00:06:06,886 --> 00:06:08,436
+sufficient to begin playback.
+
+
+126
+00:06:08,656 --> 00:06:13,216
+Now in the early days of
+iOS, there was a lot of media
+
+
+127
+00:06:13,216 --> 00:06:15,746
+on the internet which couldn't
+be played by iOS devices.
+
+
+128
+00:06:16,146 --> 00:06:19,666
+So in order to be able to
+tell users whether the media
+
+
+129
+00:06:19,666 --> 00:06:21,276
+in the page was playable or not,
+
+
+130
+00:06:21,596 --> 00:06:24,856
+Safari would download enough
+media data to check playability.
+
+
+131
+00:06:25,686 --> 00:06:27,726
+But in order to keep
+users' data costs down,
+
+
+132
+00:06:28,056 --> 00:06:30,686
+it would ignore the
+preload attribute and behave
+
+
+133
+00:06:30,686 --> 00:06:32,176
+as if it was set
+to preload="none".
+
+
+134
+00:06:33,066 --> 00:06:36,726
+In 2014, unplayable web media
+is much less of a problem,
+
+
+135
+00:06:37,176 --> 00:06:40,986
+so new in iOS 8, Safari will
+honor two preload values:
+
+
+136
+00:06:41,766 --> 00:06:45,596
+"metadata", which is the
+new default, and "none".
+
+
+137
+00:06:45,746 --> 00:06:47,386
+Why is this the right
+thing to do?
+
+
+138
+00:06:47,986 --> 00:06:51,986
+Most sites will see no change in
+behavior, either in the browser
+
+
+139
+00:06:51,986 --> 00:06:58,016
+or on their server, but even
+loading just metadata can load
+
+
+140
+00:06:58,016 --> 00:07:00,196
+up for sites with a lot
+of <video> elements.
+
+
+141
+00:07:00,316 --> 00:07:03,596
+So now the preload value
+of "none" will be honored.
+
+
+142
+00:07:03,596 --> 00:07:08,926
+Now it's still true that on iOS
+loading beyond metadata will
+
+
+143
+00:07:08,926 --> 00:07:11,796
+still require user interaction,
+and we still believe
+
+
+144
+00:07:12,126 --> 00:07:15,836
+that this restriction is in
+the user's best interest,
+
+
+145
+00:07:16,756 --> 00:07:19,366
+but it does get rid of one
+frustrating distinction
+
+
+146
+00:07:19,366 --> 00:07:21,546
+between Safari on OS X and iOS.
+
+
+147
+00:07:23,846 --> 00:07:25,446
+So why is this important?
+
+
+148
+00:07:26,106 --> 00:07:29,366
+For <video> elements which
+don't explicitly specify preload
+
+
+149
+00:07:29,366 --> 00:07:32,566
+of "none", they will begin
+admitting new events,
+
+
+150
+00:07:32,606 --> 00:07:34,396
+specifically the
+"loadedmetadata" event.
+
+
+151
+00:07:35,206 --> 00:07:38,206
+Now, during development, we
+came across a certain site,
+
+
+152
+00:07:38,556 --> 00:07:40,336
+which had the following
+on their mobile page.
+
+
+153
+00:07:41,636 --> 00:07:44,806
+They had a <video> element with
+default controls enabled that,
+
+
+154
+00:07:44,806 --> 00:07:46,606
+when it receives
+the loaded metadata,
+
+
+155
+00:07:46,606 --> 00:07:48,426
+the event would hide
+those controls.
+
+
+156
+00:07:48,626 --> 00:07:53,546
+And it did so to enforce users
+watching their pre-roll ads.
+
+
+157
+00:07:54,946 --> 00:07:58,756
+So in iOS 7, when the
+<video> element was shown,
+
+
+158
+00:07:59,946 --> 00:08:00,906
+nothing would happen.
+
+
+159
+00:08:01,166 --> 00:08:03,686
+And when they hit "play",
+loading would progress,
+
+
+160
+00:08:03,976 --> 00:08:05,546
+the loaded metadata
+then would fire
+
+
+161
+00:08:05,546 --> 00:08:06,426
+and the controls would hide.
+
+
+162
+00:08:08,236 --> 00:08:11,286
+In iOS 8, as soon as the
+video was added to the page,
+
+
+163
+00:08:11,496 --> 00:08:14,246
+loading would begin, the loaded
+metadata event would fire,
+
+
+164
+00:08:14,246 --> 00:08:16,536
+and the controls would hide,
+leaving the users no way
+
+
+165
+00:08:16,536 --> 00:08:18,056
+of actually playing the video.
+
+
+166
+00:08:18,506 --> 00:08:20,976
+Now how could they fix this?
+
+
+167
+00:08:21,536 --> 00:08:24,106
+What they shouldn't do is
+revert to the old behavior
+
+
+168
+00:08:24,106 --> 00:08:26,536
+by adding preload="none",
+that just leaves
+
+
+169
+00:08:26,536 --> 00:08:27,986
+in place the implicit assumption
+
+
+170
+00:08:27,986 --> 00:08:31,406
+that loadedmetadata means
+the video has begun playing.
+
+
+171
+00:08:31,456 --> 00:08:34,076
+Instead they should
+listen for the onplay event
+
+
+172
+00:08:34,696 --> 00:08:37,976
+and hide the controls when that
+occurs, letting the users play.
+
+
+173
+00:08:41,606 --> 00:08:44,256
+So that's new in loading.
+
+
+174
+00:08:44,356 --> 00:08:47,546
+Let's talk about layering.
+
+
+175
+00:08:48,386 --> 00:08:51,306
+In previous versions of iOS, the
+<video> element was implemented
+
+
+176
+00:08:51,306 --> 00:08:55,006
+as a UI view, which was
+placed on top of web content.
+
+
+177
+00:08:56,986 --> 00:09:00,736
+New in iOS 8, we have integrated
+in the <video> element directly
+
+
+178
+00:09:00,736 --> 00:09:02,186
+as a native part of
+the rendered tree,
+
+
+179
+00:09:02,286 --> 00:09:04,026
+just as it is on OS X Safari.
+
+
+180
+00:09:04,456 --> 00:09:07,836
+And, as a result, the <video>
+element will now fully respect
+
+
+181
+00:09:07,836 --> 00:09:08,766
+CSS layering rules.
+
+
+182
+00:09:11,666 --> 00:09:13,236
+However, there is a caveat:
+
+
+183
+00:09:14,056 --> 00:09:17,016
+websites which did not
+exclusively place their video
+
+
+184
+00:09:17,166 --> 00:09:20,086
+topmost with the CSS
+z-index property may see some
+
+
+185
+00:09:20,086 --> 00:09:21,016
+weird behavior.
+
+
+186
+00:09:21,506 --> 00:09:23,796
+They could have their video
+appear below other layers
+
+
+187
+00:09:23,826 --> 00:09:25,186
+that it didn't appear
+below before.
+
+
+188
+00:09:25,796 --> 00:09:28,066
+Or other layers appearing
+transparently on top
+
+
+189
+00:09:28,066 --> 00:09:30,876
+of the video layer could
+intercept touch events,
+
+
+190
+00:09:31,096 --> 00:09:31,976
+leaving the users no way
+
+
+191
+00:09:31,976 --> 00:09:33,746
+of actually playing the
+video in that case either.
+
+
+192
+00:09:34,026 --> 00:09:35,166
+So please be on the lookout
+
+
+193
+00:09:35,166 --> 00:09:37,946
+for these breaking
+changes in your websites.
+
+
+194
+00:09:38,046 --> 00:09:39,386
+That was platform differences.
+
+
+195
+00:09:39,386 --> 00:09:40,986
+Now let's talk about
+how the best way
+
+
+196
+00:09:40,986 --> 00:09:43,226
+to add adaptive streaming
+to your websites.
+
+
+197
+00:09:43,336 --> 00:09:46,006
+So today's web devices
+run the gamut
+
+
+198
+00:09:46,006 --> 00:09:48,276
+from small battery-powered
+mobile devices,
+
+
+199
+00:09:48,686 --> 00:09:50,786
+to desktop computers,
+to big screen TVs.
+
+
+200
+00:09:50,786 --> 00:09:54,696
+And that has led to a movement
+called responsive web design,
+
+
+201
+00:09:55,266 --> 00:09:57,836
+whose goal is to provide an
+optimal viewing experience
+
+
+202
+00:09:57,836 --> 00:10:02,396
+across a wide variety of devices
+by tailoring a page to respond
+
+
+203
+00:10:02,396 --> 00:10:04,256
+to different characteristics
+of the device
+
+
+204
+00:10:04,256 --> 00:10:04,966
+on which it's running.
+
+
+205
+00:10:06,516 --> 00:10:11,026
+Now most responsive web design
+concerns itself with the size
+
+
+206
+00:10:11,026 --> 00:10:12,956
+of the viewport in
+which the page is shown.
+
+
+207
+00:10:12,956 --> 00:10:17,976
+But, for video, other properties
+of the device are as important.
+
+
+208
+00:10:18,936 --> 00:10:23,346
+So, yes, what screen size
+is available on your device,
+
+
+209
+00:10:23,566 --> 00:10:26,576
+but also what video resolution
+can the device decode?
+
+
+210
+00:10:27,136 --> 00:10:29,826
+What codecs and profiles
+does the device support?
+
+
+211
+00:10:30,416 --> 00:10:32,936
+And how much bandwidth
+does the device's internet
+
+
+212
+00:10:32,936 --> 00:10:33,746
+connection provide?
+
+
+213
+00:10:35,776 --> 00:10:38,286
+At its most basic, a
+<video> element points
+
+
+214
+00:10:38,286 --> 00:10:39,956
+to a single file
+on a web server.
+
+
+215
+00:10:40,426 --> 00:10:43,606
+With only a single file,
+a page author is left
+
+
+216
+00:10:43,606 --> 00:10:46,046
+with the unenviable task
+of picking a single version
+
+
+217
+00:10:46,046 --> 00:10:48,046
+that will apply to
+all of their viewers.
+
+
+218
+00:10:50,356 --> 00:10:52,076
+So perhaps a desktop device
+
+
+219
+00:10:52,076 --> 00:10:55,166
+with a fat internet connection
+should get a high bit rate
+
+
+220
+00:10:55,166 --> 00:10:59,456
+stream, while a mobile
+device on wireless
+
+
+221
+00:10:59,456 --> 00:11:03,576
+or on cellular might need a
+small, lower bit rate version.
+
+
+222
+00:11:03,576 --> 00:11:06,206
+But that same device,
+plugged in and on Wi-Fi,
+
+
+223
+00:11:06,206 --> 00:11:07,896
+should get the large
+bit rate version, too.
+
+
+224
+00:11:08,866 --> 00:11:09,946
+None of this is easy
+
+
+225
+00:11:09,946 --> 00:11:11,576
+with a single file
+sitting on your server.
+
+
+226
+00:11:12,686 --> 00:11:16,236
+Instead, this is a job for
+HTTP Live Streaming, or HLS.
+
+
+227
+00:11:16,236 --> 00:11:20,346
+So HTTP Live Streaming
+is a mechanism
+
+
+228
+00:11:20,346 --> 00:11:24,226
+for delivering multiple streams
+in a single manifest file.
+
+
+229
+00:11:25,366 --> 00:11:28,126
+The master playlist,
+or manifest,
+
+
+230
+00:11:28,256 --> 00:11:31,346
+describes the characteristics
+of each substream and the URL
+
+
+231
+00:11:31,346 --> 00:11:33,026
+where that stream
+can be accessed.
+
+
+232
+00:11:33,516 --> 00:11:36,316
+And the browser picks the
+appropriate stream based
+
+
+233
+00:11:36,316 --> 00:11:38,236
+on the characteristics
+of the current device.
+
+
+234
+00:11:39,246 --> 00:11:45,446
+Now Safari on OS X and iOS use
+the AV Foundation Framework
+
+
+235
+00:11:45,536 --> 00:11:49,526
+to play HLS streams so you get
+the same high quality streaming
+
+
+236
+00:11:49,526 --> 00:11:50,926
+experience as the native apps.
+
+
+237
+00:11:50,996 --> 00:11:54,276
+And AV Foundation will
+seamlessly switch streams
+
+
+238
+00:11:54,596 --> 00:11:57,026
+when conditions of the
+network or the device change.
+
+
+239
+00:11:58,546 --> 00:12:01,626
+To show you how easy it is
+to create an HLS playlist
+
+
+240
+00:12:01,626 --> 00:12:03,666
+with multiple streams of
+different characteristics,
+
+
+241
+00:12:04,116 --> 00:12:05,286
+my colleague, Brent Fulgham,
+
+
+242
+00:12:05,286 --> 00:12:06,406
+will walk you through
+the process.
+
+
+243
+00:12:07,346 --> 00:12:07,606
+Brent?
+
+
+244
+00:12:09,736 --> 00:12:10,326
+>> Thank you, Jer.
+
+
+245
+00:12:11,416 --> 00:12:14,056
+My name is Brent Fuljam,
+and I'm also an engineer
+
+
+246
+00:12:14,056 --> 00:12:15,706
+in the WebKit Layout
+and Rendering Team.
+
+
+247
+00:12:16,486 --> 00:12:22,046
+And today I wanted to show
+you a few examples of HLS
+
+
+248
+00:12:22,226 --> 00:12:24,556
+and how it might make
+your life better.
+
+
+249
+00:12:26,096 --> 00:12:28,436
+Now I'm sure that,
+getting up here,
+
+
+250
+00:12:28,436 --> 00:12:31,626
+the first thing you thought
+was, "This guy is a skater."
+
+
+251
+00:12:32,216 --> 00:12:33,956
+Right? I mean, I love it.
+
+
+252
+00:12:34,256 --> 00:12:39,576
+I film it and I had some great
+video that I wanted to show off
+
+
+253
+00:12:40,266 --> 00:12:41,506
+that we filmed in Utah.
+
+
+254
+00:12:41,986 --> 00:12:45,416
+It's high-fidelity video,
+beautiful cinematography,
+
+
+255
+00:12:45,416 --> 00:12:46,666
+if I do say so myself.
+
+
+256
+00:12:47,026 --> 00:12:49,996
+Wonderful, wonderful content.
+
+
+257
+00:12:49,996 --> 00:12:53,166
+And I wanted to share this
+with my friends and family,
+
+
+258
+00:12:53,166 --> 00:12:54,506
+who couldn't be there that day.
+
+
+259
+00:12:54,906 --> 00:12:58,296
+So what I wanted to do
+was put together a website
+
+
+260
+00:12:59,416 --> 00:13:02,616
+that would show this content.
+
+
+261
+00:13:02,616 --> 00:13:06,146
+Let me return to this.
+
+
+262
+00:13:06,336 --> 00:13:10,326
+All right, so now I have a
+single source element playing
+
+
+263
+00:13:10,326 --> 00:13:10,846
+a video.
+
+
+264
+00:13:10,846 --> 00:13:13,756
+This is the content
+that I showed you
+
+
+265
+00:13:13,756 --> 00:13:15,636
+in QuickTime Player
+just a second ago.
+
+
+266
+00:13:16,576 --> 00:13:17,716
+And let's take a look at what
+
+
+267
+00:13:17,716 --> 00:13:19,976
+that would look like
+for our viewers.
+
+
+268
+00:13:20,626 --> 00:13:22,756
+Great, it looks exactly
+the same as what I did
+
+
+269
+00:13:22,756 --> 00:13:26,236
+in QuickTime Player,
+so I'm done, right?
+
+
+270
+00:13:26,236 --> 00:13:29,426
+All my friends can look at this
+and tell me how great I am?
+
+
+271
+00:13:30,026 --> 00:13:33,476
+Well, no, it turns out that a
+number of people were trying
+
+
+272
+00:13:33,476 --> 00:13:36,916
+to view this with lower
+resolution devices: iPhones
+
+
+273
+00:13:36,916 --> 00:13:42,336
+and iPads and things that don't
+have the full pixel content
+
+
+274
+00:13:42,336 --> 00:13:45,796
+of a giant display
+projection system like this.
+
+
+275
+00:13:46,216 --> 00:13:48,116
+And it turns out they
+didn't even watch it
+
+
+276
+00:13:48,116 --> 00:13:50,196
+because it just took
+too long to play.
+
+
+277
+00:13:50,966 --> 00:13:53,196
+Going back to the original
+video, we can kind of see why
+
+
+278
+00:13:53,196 --> 00:13:57,766
+that is, it's about 150
+megabytes for eight seconds
+
+
+279
+00:13:57,806 --> 00:14:02,036
+of video, and that's not
+going to make many people want
+
+
+280
+00:14:02,036 --> 00:14:04,256
+to stick around and
+wait for that.
+
+
+281
+00:14:04,256 --> 00:14:04,906
+So what do I do?
+
+
+282
+00:14:04,906 --> 00:14:07,616
+Well, the first thing
+I would want
+
+
+283
+00:14:07,616 --> 00:14:10,376
+to do is take this
+original video
+
+
+284
+00:14:10,376 --> 00:14:13,956
+and create multiple encodings
+that are targeted or optimized
+
+
+285
+00:14:13,956 --> 00:14:14,906
+for different devices.
+
+
+286
+00:14:14,906 --> 00:14:18,526
+So if I have iPhones and
+iPads that I want to support,
+
+
+287
+00:14:18,526 --> 00:14:22,116
+I want video streams
+that are more suitable
+
+
+288
+00:14:22,116 --> 00:14:23,236
+or optimized for that.
+
+
+289
+00:14:23,656 --> 00:14:26,366
+And so you could do this
+using a variety of tools.
+
+
+290
+00:14:26,366 --> 00:14:29,996
+We have iMovie; we
+have Final Cut Pro.
+
+
+291
+00:14:30,176 --> 00:14:31,766
+If you're doing a lot of
+these you might want to look
+
+
+292
+00:14:31,766 --> 00:14:33,666
+into Compressor, which
+is a great application
+
+
+293
+00:14:33,666 --> 00:14:34,346
+for doing this.
+
+
+294
+00:14:34,876 --> 00:14:38,416
+We all have QuickTime Player
+installed on our computers,
+
+
+295
+00:14:38,846 --> 00:14:40,976
+and so let me just show
+you what we would do here.
+
+
+296
+00:14:40,976 --> 00:14:44,346
+In QuickTime Player,
+we can export the video
+
+
+297
+00:14:44,596 --> 00:14:45,686
+in a variety of formats.
+
+
+298
+00:14:45,686 --> 00:14:50,666
+So we have 1080p, 720p, and
+we have a set of presets
+
+
+299
+00:14:51,576 --> 00:14:54,466
+that are already laid out for
+different types of devices.
+
+
+300
+00:14:54,966 --> 00:14:58,186
+And so in QuickTime Player
+I would have to go to each
+
+
+301
+00:14:58,186 --> 00:15:02,556
+of these presets individually
+and output a 1080p version
+
+
+302
+00:15:03,266 --> 00:15:07,736
+and output an iPhone 3GS
+version, and so forth.
+
+
+303
+00:15:07,736 --> 00:15:09,606
+Now I'm not going
+to make you wait
+
+
+304
+00:15:09,606 --> 00:15:14,056
+around while I export
+these, since that's boring,
+
+
+305
+00:15:14,056 --> 00:15:18,906
+but what I will show
+you is the set
+
+
+306
+00:15:18,906 --> 00:15:23,426
+of video encodings
+that I wound up with.
+
+
+307
+00:15:23,486 --> 00:15:28,776
+And since I was running through
+this briefly before we did this,
+
+
+308
+00:15:28,776 --> 00:15:31,116
+I have stuff here that
+you don't need to see yet.
+
+
+309
+00:15:31,116 --> 00:15:33,536
+All right, so I have these video
+encodings, I've created a bunch
+
+
+310
+00:15:33,536 --> 00:15:35,806
+of different versions that
+support the different types
+
+
+311
+00:15:35,806 --> 00:15:39,466
+of devices that I
+want to support.
+
+
+312
+00:15:39,466 --> 00:15:43,696
+I've got high resolution
+for broadband users.
+
+
+313
+00:15:43,696 --> 00:15:46,176
+I've got lower resolutions
+for people on cellular.
+
+
+314
+00:15:46,176 --> 00:15:48,946
+I've got a broadband
+Wi-Fi version.
+
+
+315
+00:15:49,546 --> 00:15:52,106
+And so now I'm all set.
+
+
+316
+00:15:52,106 --> 00:15:54,276
+Once I've uploaded
+these to the web server,
+
+
+317
+00:15:55,546 --> 00:15:57,416
+then I'm pretty much
+ready to go, except I need
+
+
+318
+00:15:57,416 --> 00:15:59,006
+to make some changes
+to my webpage.
+
+
+319
+00:15:59,616 --> 00:16:03,386
+So if I go back to
+my web page example,
+
+
+320
+00:16:04,556 --> 00:16:08,816
+instead of just having
+this one <video> element
+
+
+321
+00:16:08,816 --> 00:16:12,006
+or this one video
+<source> element
+
+
+322
+00:16:12,006 --> 00:16:15,616
+that is giving me my
+high-quality video
+
+
+323
+00:16:15,616 --> 00:16:20,556
+or my ProRes video, I
+need to add a version
+
+
+324
+00:16:20,946 --> 00:16:24,416
+that supports, say, my iPad Air.
+
+
+325
+00:16:24,856 --> 00:16:26,646
+So I have a Retina iPad.
+
+
+326
+00:16:26,966 --> 00:16:31,976
+I have a source that is a
+slightly different location,
+
+
+327
+00:16:32,376 --> 00:16:34,436
+a different file encoding,
+
+
+328
+00:16:34,436 --> 00:16:36,406
+so in this case I'm
+driving the broadband media,
+
+
+329
+00:16:37,016 --> 00:16:43,776
+and I'm using a CSS media
+selector that limits the clients
+
+
+330
+00:16:43,776 --> 00:16:47,756
+that are going to receive this
+video to items that have a 1024
+
+
+331
+00:16:47,756 --> 00:16:50,696
+by 768 resolution, like
+you would have on an iPad,
+
+
+332
+00:16:50,696 --> 00:16:52,336
+and a device pixel ratio of 2.
+
+
+333
+00:16:52,526 --> 00:16:56,876
+And so I say, "Okay, this is my
+iPad Air and, while I'm at it,
+
+
+334
+00:16:56,876 --> 00:17:01,226
+I probably want to have
+something for iPhones 5 and 5S
+
+
+335
+00:17:01,926 --> 00:17:04,165
+and maybe something for
+a bunch of older stuff.
+
+
+336
+00:17:04,606 --> 00:17:10,705
+And pretty soon we have a pretty
+large set of sources for us
+
+
+337
+00:17:10,705 --> 00:17:12,935
+to serve from this web server.
+
+
+338
+00:17:13,316 --> 00:17:21,356
+Okay, so if we look at this
+now, you refresh the page,
+
+
+339
+00:17:22,356 --> 00:17:23,036
+what does it look like?
+
+
+340
+00:17:23,036 --> 00:17:27,756
+Well, it looks exactly the same.
+
+
+341
+00:17:27,996 --> 00:17:29,746
+I'm getting the same
+stream that I had before
+
+
+342
+00:17:29,746 --> 00:17:33,816
+because I'm still connecting to
+this with a high-quality, well,
+
+
+343
+00:17:34,086 --> 00:17:37,596
+a loopback network
+and I'm showing it
+
+
+344
+00:17:37,596 --> 00:17:39,406
+on a giant screen
+with lots of pixels.
+
+
+345
+00:17:39,406 --> 00:17:40,936
+I'm still getting
+what I expected.
+
+
+346
+00:17:42,316 --> 00:17:43,456
+So I should be done now, right?
+
+
+347
+00:17:43,456 --> 00:17:45,636
+I mean I'm able to
+deliver the right content
+
+
+348
+00:17:45,636 --> 00:17:47,506
+to all these different
+people on different devices.
+
+
+349
+00:17:48,156 --> 00:17:49,906
+Time to go home and
+put my feet up
+
+
+350
+00:17:49,906 --> 00:17:52,336
+and get the congratulatory
+e-mails
+
+
+351
+00:17:52,336 --> 00:17:53,736
+from everyone, I assume, right?
+
+
+352
+00:17:54,766 --> 00:17:55,816
+Well, it turns
+
+
+353
+00:17:55,816 --> 00:17:58,456
+out my brother-in-law was
+camping the weekend I posted
+
+
+354
+00:17:58,456 --> 00:18:02,266
+this and had really spotty
+internet connectivity.
+
+
+355
+00:18:02,266 --> 00:18:04,306
+He was, I think, on the
+Edge network or something.
+
+
+356
+00:18:04,356 --> 00:18:07,186
+So I asked him what he thought
+of it, and he said, "Well,
+
+
+357
+00:18:07,186 --> 00:18:10,016
+I didn't even bother watching
+it because it took too long
+
+
+358
+00:18:10,016 --> 00:18:13,156
+to download and it never
+made any progress."
+
+
+359
+00:18:13,866 --> 00:18:17,246
+And I realized, well, we've
+dealt with the resolution here,
+
+
+360
+00:18:17,246 --> 00:18:20,156
+but we haven't talked, at
+all, about network bandwidth,
+
+
+361
+00:18:20,796 --> 00:18:22,566
+and that plays a role, as well.
+
+
+362
+00:18:23,016 --> 00:18:26,696
+Now as a web developer what
+would we do in this case?
+
+
+363
+00:18:26,786 --> 00:18:32,286
+I could write some kind of
+network sniffing algorithm
+
+
+364
+00:18:32,286 --> 00:18:34,946
+to try to figure out how
+much bandwidth is being used
+
+
+365
+00:18:34,946 --> 00:18:36,886
+and the download rates
+and this, but it seems
+
+
+366
+00:18:36,886 --> 00:18:38,976
+like that'd be really
+hard to do properly
+
+
+367
+00:18:38,976 --> 00:18:40,566
+and it would be really
+easy to get wrong
+
+
+368
+00:18:40,866 --> 00:18:42,656
+and would have to be maintained.
+
+
+369
+00:18:43,206 --> 00:18:45,316
+But what about this
+HLS technology
+
+
+370
+00:18:45,316 --> 00:18:47,186
+that Jer just finished
+telling us about?
+
+
+371
+00:18:47,256 --> 00:18:49,386
+In theory that should
+take care of everything.
+
+
+372
+00:18:49,386 --> 00:18:53,276
+Well, it seems like
+a good solution.
+
+
+373
+00:18:54,256 --> 00:18:57,666
+I already have all my encoded
+video here, so there's really --
+
+
+374
+00:18:58,006 --> 00:18:59,516
+I've already done the hard work
+
+
+375
+00:18:59,516 --> 00:19:00,646
+of creating the different
+encodings
+
+
+376
+00:19:00,646 --> 00:19:03,076
+for the different device
+types, so now all I need
+
+
+377
+00:19:03,076 --> 00:19:10,236
+to do is generate the HLS
+master manifest and information
+
+
+378
+00:19:10,236 --> 00:19:12,476
+that HLS will use to
+display this content.
+
+
+379
+00:19:12,476 --> 00:19:15,916
+Now to do this we need
+to use the dynamic duo
+
+
+380
+00:19:16,136 --> 00:19:20,296
+of Media File Segmenter and
+Variant Playlist Creator.
+
+
+381
+00:19:20,916 --> 00:19:23,196
+And these are fantastic
+tools that you can download
+
+
+382
+00:19:23,196 --> 00:19:29,556
+from our website but, as you
+might imagine from these names,
+
+
+383
+00:19:29,996 --> 00:19:34,416
+they have a dizzying array
+of flags and entry points
+
+
+384
+00:19:34,416 --> 00:19:37,896
+that you have to provide, and so
+it's very difficult to remember.
+
+
+385
+00:19:37,896 --> 00:19:42,386
+We ended up just creating a
+shell script to do this for us.
+
+
+386
+00:19:42,386 --> 00:19:48,666
+And so let me just put
+this up here and, okay,
+
+
+387
+00:19:48,736 --> 00:19:52,116
+and then let me give you a
+minute to write that down?
+
+
+388
+00:19:52,626 --> 00:19:56,456
+And then-oh, well, that's
+probably not a great idea.
+
+
+389
+00:19:56,726 --> 00:19:58,896
+How about if you come by
+our lab later this week,
+
+
+390
+00:19:58,896 --> 00:20:00,666
+and we'll be happy to
+give you a copy of this?
+
+
+391
+00:20:01,196 --> 00:20:03,426
+All right, so what does this
+look like when we run it?
+
+
+392
+00:20:03,426 --> 00:20:08,446
+Well, what I do is-I'll run
+this, make an HLS script.
+
+
+393
+00:20:08,556 --> 00:20:13,266
+I'll provide us with-I'll
+feed it the input
+
+
+394
+00:20:13,266 --> 00:20:16,076
+of the various files
+that we want to use,
+
+
+395
+00:20:16,076 --> 00:20:17,716
+and we process each
+of the files.
+
+
+396
+00:20:18,306 --> 00:20:19,356
+And what that ends up looking
+
+
+397
+00:20:19,356 --> 00:20:22,876
+like is I have this
+magic index.m3u8,
+
+
+398
+00:20:22,876 --> 00:20:26,556
+which is the master manifest
+file, and I have a series
+
+
+399
+00:20:26,556 --> 00:20:29,096
+of transport streams
+that have been generated
+
+
+400
+00:20:29,096 --> 00:20:29,976
+for each of my encodings.
+
+
+401
+00:20:30,736 --> 00:20:36,856
+So in this case I have a
+broadband high-bandwidth rate
+
+
+402
+00:20:37,046 --> 00:20:40,886
+version of this, and I've done
+the same-and the script has done
+
+
+403
+00:20:40,886 --> 00:20:42,526
+the same thing for all
+the different options.
+
+
+404
+00:20:42,526 --> 00:20:47,096
+So what I need to do is upload
+all of this stuff to my website,
+
+
+405
+00:20:47,096 --> 00:20:49,476
+so I'd upload the
+different transport streams
+
+
+406
+00:20:49,476 --> 00:20:53,996
+in my m3u8 file, and at that
+point I'm basically done,
+
+
+407
+00:20:53,996 --> 00:20:57,996
+except for one change that
+I need to make to my video,
+
+
+408
+00:20:58,826 --> 00:20:59,616
+I mean, to my website.
+
+
+409
+00:20:59,616 --> 00:21:08,906
+What I need to do is get rid of
+all of this stuff, all of it,
+
+
+410
+00:21:08,906 --> 00:21:11,656
+and replace it with one line,
+
+
+411
+00:21:12,316 --> 00:21:14,296
+the line that I gave you a
+sneak peek of at the beginning.
+
+
+412
+00:21:15,066 --> 00:21:18,986
+This is the index.m3u8, this
+is what we're calling --
+
+
+413
+00:21:19,186 --> 00:21:23,866
+this is our Manifest, our
+Master Manifest file for HLS,
+
+
+414
+00:21:25,116 --> 00:21:29,976
+and let's just make
+this say "best".
+
+
+415
+00:21:33,766 --> 00:21:35,676
+All right, and let's see
+what that looks like.
+
+
+416
+00:21:36,266 --> 00:21:36,926
+I bet you can guess.
+
+
+417
+00:21:37,046 --> 00:21:43,766
+It looks exactly the same, but
+now we're streaming this content
+
+
+418
+00:21:44,816 --> 00:21:48,176
+in an adaptive fashion, where
+it will change and adapt
+
+
+419
+00:21:48,176 --> 00:21:51,376
+to the type of devices that
+are being used and it'll change
+
+
+420
+00:21:51,376 --> 00:21:52,776
+and adapt to the
+network conditions.
+
+
+421
+00:21:52,996 --> 00:21:56,136
+So if I were to start playing
+this eight-second video
+
+
+422
+00:21:56,536 --> 00:22:01,076
+and leave the room, in theory,
+it would-the speed would drop,
+
+
+423
+00:22:01,076 --> 00:22:05,456
+it would degrade to a
+lower bandwidth version.
+
+
+424
+00:22:05,706 --> 00:22:07,976
+And if I were to
+return to an area
+
+
+425
+00:22:07,976 --> 00:22:10,206
+where I had high bandwidth
+it could then pick it back up
+
+
+426
+00:22:10,206 --> 00:22:13,196
+and return to this beautiful,
+high-resolution imagery.
+
+
+427
+00:22:14,456 --> 00:22:22,116
+So I think that-so I hope that
+this brief demo and this example
+
+
+428
+00:22:22,116 --> 00:22:24,976
+of how simple it is on your
+website will show you why we're
+
+
+429
+00:22:24,976 --> 00:22:27,516
+so excited about this
+technology and why we hope
+
+
+430
+00:22:27,516 --> 00:22:29,706
+that you'll try it for
+your next projects.
+
+
+431
+00:22:31,356 --> 00:22:31,676
+Thank you.
+
+
+432
+00:22:32,166 --> 00:22:33,086
+>> Thanks, Brent.
+
+
+433
+00:22:33,346 --> 00:22:34,526
+That was great.
+
+
+434
+00:22:35,216 --> 00:22:39,476
+So for more information about
+how to use HTTP Live Streaming
+
+
+435
+00:22:39,476 --> 00:22:41,876
+and how specifically
+to encode your videos
+
+
+436
+00:22:41,876 --> 00:22:44,396
+for all the wide
+variety of iOS devices,
+
+
+437
+00:22:44,696 --> 00:22:46,766
+take a look at Tech Note 2224,
+
+
+438
+00:22:47,026 --> 00:22:50,216
+which specifies all the settings
+you'd need in Compressor
+
+
+439
+00:22:50,216 --> 00:22:52,706
+to generate multiple
+encodings of your video
+
+
+440
+00:22:52,706 --> 00:22:54,826
+for a variety of Apple devices.
+
+
+441
+00:22:55,316 --> 00:22:58,166
+And, also, you can download
+the Variant Playlist Creator
+
+
+442
+00:22:58,166 --> 00:23:00,086
+and Media File Segmenter
+Tools as part
+
+
+443
+00:23:00,086 --> 00:23:02,516
+of the HTTP Live
+Streaming toolset
+
+
+444
+00:23:02,676 --> 00:23:04,446
+from developer.apple.com.
+
+
+445
+00:23:04,696 --> 00:23:06,576
+And we have a live
+streaming developer page,
+
+
+446
+00:23:06,576 --> 00:23:07,836
+where you can learn
+all about HLS
+
+
+447
+00:23:08,136 --> 00:23:10,116
+in webpages and in native apps.
+
+
+448
+00:23:11,126 --> 00:23:15,676
+But new in Safari
+on OS X is support
+
+
+449
+00:23:15,676 --> 00:23:18,816
+for a media streaming technology
+called Media Source Extensions,
+
+
+450
+00:23:18,816 --> 00:23:19,906
+or MSE.
+
+
+451
+00:23:20,986 --> 00:23:23,926
+This is an extension to
+the HTML5 specification,
+
+
+452
+00:23:24,446 --> 00:23:27,136
+where a <video> element
+source is replaced
+
+
+453
+00:23:27,136 --> 00:23:31,026
+by a <mediasource> object,
+which requires the page
+
+
+454
+00:23:31,026 --> 00:23:33,966
+to completely control
+loading of media data.
+
+
+455
+00:23:35,266 --> 00:23:39,196
+Now MSE is primarily
+intended for only the largest
+
+
+456
+00:23:39,196 --> 00:23:41,786
+of video providers, who have
+large and complicated CVNs
+
+
+457
+00:23:41,786 --> 00:23:44,586
+and who need to micromanage
+every aspect
+
+
+458
+00:23:44,586 --> 00:23:46,256
+of their network stack.
+
+
+459
+00:23:47,626 --> 00:23:50,226
+We built support
+for MSE into Safari,
+
+
+460
+00:23:50,526 --> 00:23:52,896
+but for most websites we
+don't actually recommend
+
+
+461
+00:23:52,896 --> 00:23:53,606
+that you use it.
+
+
+462
+00:23:53,606 --> 00:23:55,836
+And let's talk a little
+bit about why that is.
+
+
+463
+00:23:57,276 --> 00:24:01,836
+With great power comes great
+responsibility-except I remember
+
+
+464
+00:24:01,836 --> 00:24:02,676
+it being someone else.
+
+
+465
+00:24:03,006 --> 00:24:03,676
+Oh, that's right.
+
+
+466
+00:24:05,776 --> 00:24:09,346
+The MSE API will accept
+raw data, demux it,
+
+
+467
+00:24:09,426 --> 00:24:11,886
+parse it into the samples,
+decode those samples
+
+
+468
+00:24:11,886 --> 00:24:13,766
+and cube the samples for
+display, but that's it.
+
+
+469
+00:24:13,866 --> 00:24:14,826
+That's all you get.
+
+
+470
+00:24:15,346 --> 00:24:21,106
+For everything else, your
+website has to do it manually.
+
+
+471
+00:24:21,106 --> 00:24:22,736
+The browser will not
+fetch data for you.
+
+
+472
+00:24:22,956 --> 00:24:26,406
+It must be fetched explicitly
+by your page through XHR.
+
+
+473
+00:24:27,946 --> 00:24:30,546
+The browser will not
+preload metadata for you.
+
+
+474
+00:24:30,546 --> 00:24:31,586
+You have to do that yourself
+
+
+475
+00:24:31,586 --> 00:24:33,436
+to make sure playback
+buffers don't run dry.
+
+
+476
+00:24:33,786 --> 00:24:35,166
+And once you've done
+these two steps,
+
+
+477
+00:24:35,286 --> 00:24:37,666
+you will have reproduced
+basic video playback,
+
+
+478
+00:24:37,886 --> 00:24:39,786
+but then again the <video>
+element could do that already.
+
+
+479
+00:24:39,856 --> 00:24:42,296
+For all of the benefits
+of streaming media,
+
+
+480
+00:24:43,236 --> 00:24:45,036
+your page must implement
+it manually.
+
+
+481
+00:24:45,596 --> 00:24:49,306
+So your page must monitor
+network conditions to make sure
+
+
+482
+00:24:49,306 --> 00:24:51,396
+that your user's device can keep
+
+
+483
+00:24:51,396 --> 00:24:52,936
+up with the bit rate
+that you are serving.
+
+
+484
+00:24:54,596 --> 00:24:59,246
+You also have to monitor whether
+your users are dropping frames
+
+
+485
+00:24:59,246 --> 00:25:01,616
+if their hardware can't keep
+
+
+486
+00:25:01,616 --> 00:25:04,076
+up with the media
+that you are serving.
+
+
+487
+00:25:05,246 --> 00:25:10,226
+And when conditions change you
+have to manually switch streams
+
+
+488
+00:25:10,226 --> 00:25:11,676
+by pre-fetching and
+then starting
+
+
+489
+00:25:11,676 --> 00:25:14,036
+over for a more appropriate
+stream.
+
+
+490
+00:25:16,416 --> 00:25:19,436
+And you have to do all of this
+without detailed information
+
+
+491
+00:25:19,436 --> 00:25:22,456
+about the current state of
+the device whereas, with HLS,
+
+
+492
+00:25:22,916 --> 00:25:26,366
+it can use its detailed view
+over the device's current state
+
+
+493
+00:25:26,366 --> 00:25:28,006
+to make better adaptation
+decisions.
+
+
+494
+00:25:28,626 --> 00:25:31,746
+So, for example, HLS knows what
+other processes might be running
+
+
+495
+00:25:31,746 --> 00:25:34,136
+on the device and knows
+whether the device is
+
+
+496
+00:25:34,136 --> 00:25:36,386
+on a metered cellular
+connection or on Wi-Fi.
+
+
+497
+00:25:36,806 --> 00:25:39,496
+HLS is aware of the
+current battery conditions
+
+
+498
+00:25:39,496 --> 00:25:41,056
+of the device, and it knows
+
+
+499
+00:25:41,056 --> 00:25:43,386
+about the current memory
+pressure the system is under.
+
+
+500
+00:25:46,396 --> 00:25:49,486
+So writing an MSE player
+involves re-implementing an
+
+
+501
+00:25:49,486 --> 00:25:54,726
+entire streaming media stack in
+JavaScript, whereas HLS has all
+
+
+502
+00:25:54,726 --> 00:25:57,486
+of this data available
+and yet writing a player
+
+
+503
+00:25:57,486 --> 00:25:59,786
+for HLS requires a
+single line of HTML.
+
+
+504
+00:26:00,606 --> 00:26:03,416
+And what's more MSE is
+only available on OS X.
+
+
+505
+00:26:03,576 --> 00:26:05,786
+So, to reach iOS users,
+you're likely to have to set
+
+
+506
+00:26:05,786 --> 00:26:06,946
+up an HLS stream anyway.
+
+
+507
+00:26:07,336 --> 00:26:10,486
+For almost every conceivable
+situation, HLS is going
+
+
+508
+00:26:10,696 --> 00:26:12,676
+to be a better choice
+for streaming media.
+
+
+509
+00:26:14,516 --> 00:26:16,226
+Okay, what about
+cross-browser support?
+
+
+510
+00:26:16,826 --> 00:26:19,246
+HLS is supported
+across all versions
+
+
+511
+00:26:19,246 --> 00:26:22,736
+of Safari on iOS and OS X.
+
+
+512
+00:26:22,736 --> 00:26:26,456
+MSE is only supported
+on Safari on OS X.
+
+
+513
+00:26:26,526 --> 00:26:29,356
+The Android browser and
+Android Chrome both support HLS,
+
+
+514
+00:26:29,546 --> 00:26:30,346
+but not MSE.
+
+
+515
+00:26:31,306 --> 00:26:33,526
+IE 11 supports MSE, but not HLS.
+
+
+516
+00:26:34,386 --> 00:26:36,716
+Google Chrome supports
+media source extensions,
+
+
+517
+00:26:37,006 --> 00:26:41,016
+but apparently its developers
+are investigating implementing
+
+
+518
+00:26:41,016 --> 00:26:43,126
+HLS on top of MSE as JavaScript.
+
+
+519
+00:26:43,266 --> 00:26:47,866
+And Firefox only supports
+MSE in its nightly builds,
+
+
+520
+00:26:48,256 --> 00:26:51,976
+but they are also looking
+at adding support for HLS
+
+
+521
+00:26:52,156 --> 00:26:53,536
+through MSE implementation.
+
+
+522
+00:26:57,276 --> 00:27:01,446
+So, as you can see, the
+web hasn't really settled
+
+
+523
+00:27:01,446 --> 00:27:03,606
+on a single streaming
+media technology yet.
+
+
+524
+00:27:03,756 --> 00:27:05,826
+So, if you take nothing
+else away,
+
+
+525
+00:27:06,376 --> 00:27:08,416
+for your Safari users, use HLS.
+
+
+526
+00:27:09,726 --> 00:27:11,626
+Okay, that was streaming,
+now let's talk
+
+
+527
+00:27:11,626 --> 00:27:12,976
+about power efficiency.
+
+
+528
+00:27:14,296 --> 00:27:16,716
+At Apple we care
+deeply about power.
+
+
+529
+00:27:16,856 --> 00:27:19,856
+We make devices with
+simply amazing battery life.
+
+
+530
+00:27:20,276 --> 00:27:24,026
+But it's not just
+about batteries.
+
+
+531
+00:27:24,526 --> 00:27:29,336
+We care about the impact our
+devices have on the environment
+
+
+532
+00:27:29,336 --> 00:27:31,806
+as a whole, and that's evident
+
+
+533
+00:27:31,956 --> 00:27:33,566
+in how much performance
+we can squeeze
+
+
+534
+00:27:33,566 --> 00:27:35,266
+out of a single watt
+of power use.
+
+
+535
+00:27:36,976 --> 00:27:39,446
+We've done this through
+a combination of hardware
+
+
+536
+00:27:39,446 --> 00:27:43,666
+and software engineering, but
+the last mile is up to you.
+
+
+537
+00:27:46,226 --> 00:27:50,226
+It's easy to do this wrong and
+drain your users' batteries.
+
+
+538
+00:27:50,316 --> 00:27:52,716
+And a user with a dead
+battery is one that's not using
+
+
+539
+00:27:52,716 --> 00:27:53,306
+your website.
+
+
+540
+00:27:53,456 --> 00:27:57,796
+So today we're going to show
+you how to minimize the amount
+
+
+541
+00:27:57,796 --> 00:28:01,156
+of power you use when
+playing back video in Safari.
+
+
+542
+00:28:02,726 --> 00:28:06,556
+So, first, we're going to talk
+about using fullscreen mode
+
+
+543
+00:28:06,926 --> 00:28:07,926
+and we're going to talk
+
+
+544
+00:28:07,926 --> 00:28:11,056
+about how sleep cycles
+affect battery life.
+
+
+545
+00:28:12,056 --> 00:28:13,066
+But, first, fullscreen.
+
+
+546
+00:28:14,076 --> 00:28:15,606
+It may sound counterintuitive,
+
+
+547
+00:28:16,516 --> 00:28:19,016
+but going into fullscreen mode
+can dramatically reduce the
+
+
+548
+00:28:19,016 --> 00:28:21,196
+amount of power your
+system uses as a whole.
+
+
+549
+00:28:22,006 --> 00:28:25,216
+Apps which are hidden behind a
+fullscreen browser window can go
+
+
+550
+00:28:25,216 --> 00:28:29,016
+into a low-power mode called
+App Nap, and you can learn more
+
+
+551
+00:28:29,016 --> 00:28:31,876
+about App Nap specifically
+at-I believe there's a session
+
+
+552
+00:28:31,876 --> 00:28:36,376
+on Thursday, something
+about programming,
+
+
+553
+00:28:36,636 --> 00:28:38,726
+low-power programming
+and, anyway, look it up.
+
+
+554
+00:28:38,726 --> 00:28:40,346
+It's Thursday at 10:30.
+
+
+555
+00:28:41,236 --> 00:28:48,576
+But, in addition, when
+the system determines
+
+
+556
+00:28:48,576 --> 00:28:52,206
+that it can composite video
+without-well, it doesn't have
+
+
+557
+00:28:52,206 --> 00:28:54,106
+to do compositing to
+get video on screen,
+
+
+558
+00:28:54,106 --> 00:28:57,156
+it can go through a low power
+mode, but to explain how
+
+
+559
+00:28:57,156 --> 00:28:58,726
+that works we're
+first going to have
+
+
+560
+00:28:58,726 --> 00:29:00,226
+to talk about pixel formats.
+
+
+561
+00:29:01,746 --> 00:29:04,796
+So every web developer
+should be familiar with RGB.
+
+
+562
+00:29:05,086 --> 00:29:07,556
+The web platform is
+written in RGB values,
+
+
+563
+00:29:07,916 --> 00:29:11,006
+where every pixel is broken into
+a red, green and blue component,
+
+
+564
+00:29:11,356 --> 00:29:13,736
+and each component is
+given eight bits of depth.
+
+
+565
+00:29:15,946 --> 00:29:18,566
+But video is different,
+video is decoded
+
+
+566
+00:29:18,566 --> 00:29:24,296
+into a pixel format called YUV,
+where Y is a luminance plane,
+
+
+567
+00:29:24,596 --> 00:29:26,756
+and U and V are two
+color planes.
+
+
+568
+00:29:27,186 --> 00:29:31,126
+The Y plane actually encodes
+the green and brightness values,
+
+
+569
+00:29:31,476 --> 00:29:34,496
+and the U and V planes
+encode the blue, or the red
+
+
+570
+00:29:34,496 --> 00:29:35,506
+and the blue, respectively.
+
+
+571
+00:29:35,716 --> 00:29:40,596
+And typically the Y plane
+is given twice as much depth
+
+
+572
+00:29:41,026 --> 00:29:45,296
+as the U and V planes, which
+is why we call it YUV 422
+
+
+573
+00:29:45,296 --> 00:29:47,626
+or other formats, like YUV 411.
+
+
+574
+00:29:47,846 --> 00:29:51,646
+All of those describe the ratio
+of the bit depths between the Y
+
+
+575
+00:29:51,646 --> 00:29:52,566
+and the U and V planes.
+
+
+576
+00:29:53,106 --> 00:29:56,126
+And we give the Y
+plane more depth
+
+
+577
+00:29:56,206 --> 00:29:59,896
+because the human visual system
+is much better at distinguishing
+
+
+578
+00:29:59,896 --> 00:30:02,866
+between values of green and
+values of light and dark
+
+
+579
+00:30:03,946 --> 00:30:05,926
+than it is between
+values of red and blue.
+
+
+580
+00:30:06,276 --> 00:30:08,846
+So if you're a mantis shrimp,
+then this makes total sense
+
+
+581
+00:30:08,846 --> 00:30:12,406
+to you-if you're a mantis
+shrimp who longboards, that is.
+
+
+582
+00:30:16,416 --> 00:30:21,386
+But so YUV 422 only requires
+about 16 bits per pixel
+
+
+583
+00:30:22,046 --> 00:30:25,636
+to encode, whereas an RGB with
+an alpha channel requires 32.
+
+
+584
+00:30:26,636 --> 00:30:28,986
+And since there's typically
+less variance in the U
+
+
+585
+00:30:28,986 --> 00:30:31,636
+and the V planes, they can
+be compressed much easier
+
+
+586
+00:30:31,636 --> 00:30:33,746
+than RGB values.
+
+
+587
+00:30:33,976 --> 00:30:36,976
+And this is why video
+prefers to use YUV over RGB.
+
+
+588
+00:30:37,046 --> 00:30:42,336
+The side effect, though, of
+all these decisions is that,
+
+
+589
+00:30:42,606 --> 00:30:46,006
+since the web platform was
+written in RGB and video was
+
+
+590
+00:30:46,006 --> 00:30:49,006
+in YUV, we have to convert from
+one to the other when we need
+
+
+591
+00:30:49,006 --> 00:30:50,346
+to draw on top of the video.
+
+
+592
+00:30:50,636 --> 00:30:51,656
+That's how this works.
+
+
+593
+00:30:51,656 --> 00:30:55,446
+It's called compositing, where
+layers are drawn together,
+
+
+594
+00:30:55,766 --> 00:30:56,716
+top to bottom, in order
+
+
+595
+00:30:56,716 --> 00:30:59,516
+to present the actual webpage
+your viewers are going to see.
+
+
+596
+00:31:00,316 --> 00:31:02,216
+So typically it works like this,
+
+
+597
+00:31:02,216 --> 00:31:06,006
+you start with coded video
+frames, you decode those frames
+
+
+598
+00:31:06,216 --> 00:31:13,326
+into YUV, and then convert them
+into RGB, draw your web content
+
+
+599
+00:31:13,326 --> 00:31:15,756
+on top of them and
+then send them
+
+
+600
+00:31:15,756 --> 00:31:17,246
+out to the video
+card to be displayed.
+
+
+601
+00:31:18,686 --> 00:31:19,446
+Simple, right?
+
+
+602
+00:31:19,446 --> 00:31:22,336
+Now if the system determines
+
+
+603
+00:31:22,336 --> 00:31:24,106
+that it can display a
+video frame without having
+
+
+604
+00:31:24,106 --> 00:31:27,346
+to draw anything on top
+of it, it can skip all
+
+
+605
+00:31:27,346 --> 00:31:30,096
+of these format conversion
+steps and go straight
+
+
+606
+00:31:30,096 --> 00:31:32,166
+from YUV directly
+to the video card.
+
+
+607
+00:31:34,636 --> 00:31:36,536
+It dramatically reduces
+the amount
+
+
+608
+00:31:36,536 --> 00:31:38,726
+of power required
+to display video.
+
+
+609
+00:31:38,846 --> 00:31:42,056
+It does have a few
+prerequisites, though.
+
+
+610
+00:31:42,286 --> 00:31:44,666
+For one you must support
+the Fullscreen API.
+
+
+611
+00:31:45,166 --> 00:31:47,976
+If you have JavaScript custom
+controls, you should have
+
+
+612
+00:31:47,976 --> 00:31:50,946
+at least one that uses the
+requestFullscreen method
+
+
+613
+00:31:50,946 --> 00:31:56,116
+to bring your controls and your
+video into fullscreen mode.
+
+
+614
+00:31:56,206 --> 00:31:57,636
+Black is the new black.
+
+
+615
+00:31:58,506 --> 00:32:01,256
+You should only have a black
+background visible behind
+
+
+616
+00:32:01,256 --> 00:32:01,816
+your video.
+
+
+617
+00:32:04,656 --> 00:32:07,536
+And no DOM element should be
+visible on top of your video
+
+
+618
+00:32:07,536 --> 00:32:10,196
+as well, and this is
+tricky because elements
+
+
+619
+00:32:10,196 --> 00:32:13,066
+which have an opacity of zero
+are still technically visible.
+
+
+620
+00:32:13,736 --> 00:32:15,516
+So don't hide your
+controls with opacity
+
+
+621
+00:32:15,516 --> 00:32:17,736
+or at least don't only
+hide them with opacity;
+
+
+622
+00:32:17,986 --> 00:32:19,276
+use "display:none" as well.
+
+
+623
+00:32:22,256 --> 00:32:25,226
+And everything that's not
+currently being displayed
+
+
+624
+00:32:25,226 --> 00:32:28,026
+in fullscreen mode won't
+ever be visible, so you might
+
+
+625
+00:32:28,026 --> 00:32:29,076
+as well hide it as well.
+
+
+626
+00:32:29,296 --> 00:32:32,106
+And we'll show you a quick
+little snippet of CSS
+
+
+627
+00:32:32,106 --> 00:32:34,626
+that will hide all of your
+non-fullscreen elements
+
+
+628
+00:32:34,986 --> 00:32:36,886
+when your video is
+in fullscreen mode.
+
+
+629
+00:32:38,076 --> 00:32:39,646
+So, first, the Fullscreen API.
+
+
+630
+00:32:39,646 --> 00:32:42,086
+Now we've talked about
+this at a previous session,
+
+
+631
+00:32:42,086 --> 00:32:44,876
+so for more information about
+how the Fullscreen API works,
+
+
+632
+00:32:45,326 --> 00:32:47,806
+check out-I think it's
+the 2011 video session.
+
+
+633
+00:32:48,466 --> 00:32:50,716
+But, really quickly, if
+you just call this method
+
+
+634
+00:32:50,716 --> 00:32:54,476
+from like a fullscreen button
+handler it will toggle back
+
+
+635
+00:32:54,476 --> 00:32:56,146
+and forth between
+fullscreen mode.
+
+
+636
+00:32:58,546 --> 00:33:01,986
+To hide everything that's
+not in fullscreen we're going
+
+
+637
+00:33:01,986 --> 00:33:03,826
+to give you a little
+snippet of CSS to use.
+
+
+638
+00:33:04,446 --> 00:33:06,596
+So, first, for a
+fullscreen element,
+
+
+639
+00:33:06,646 --> 00:33:09,846
+all of its ancestors are
+given a pseudo-class called
+
+
+640
+00:33:09,846 --> 00:33:10,816
+"full-screen-ancestor".
+
+
+641
+00:33:11,176 --> 00:33:14,556
+So this will select every child
+
+
+642
+00:33:14,556 --> 00:33:17,446
+of a fullscreen ancestor
+that's not an ancestor itself
+
+
+643
+00:33:17,936 --> 00:33:21,716
+and is not the fullscreen
+element itself, and hide it.
+
+
+644
+00:33:25,696 --> 00:33:28,556
+So just add this line
+of CSS to your websites.
+
+
+645
+00:33:28,806 --> 00:33:32,386
+None of the objects that are not
+in fullscreen mode when the rest
+
+
+646
+00:33:32,386 --> 00:33:35,426
+of your content is
+will be visible or,
+
+
+647
+00:33:35,426 --> 00:33:37,286
+if they won't be visible, they
+won't be in the render tree
+
+
+648
+00:33:37,286 --> 00:33:39,156
+and wasting CPU cycles
+in memory.
+
+
+649
+00:33:41,146 --> 00:33:42,786
+Okay, so that was compositing.
+
+
+650
+00:33:43,226 --> 00:33:46,766
+Now let's talk about how video
+playback affects your sleep.
+
+
+651
+00:33:47,816 --> 00:33:49,756
+Something you should
+be aware of is the way
+
+
+652
+00:33:49,756 --> 00:33:54,336
+that media playback affects
+your user system's sleep cycles.
+
+
+653
+00:33:54,976 --> 00:33:57,746
+When Safari plays a video it
+will conditionally block the
+
+
+654
+00:33:57,746 --> 00:34:00,106
+display from sleeping
+using a sleep assertion,
+
+
+655
+00:34:00,296 --> 00:34:02,666
+and it does this to avoid
+the annoying behavior
+
+
+656
+00:34:02,666 --> 00:34:05,886
+of your display going to sleep
+halfway through an episode
+
+
+657
+00:34:06,106 --> 00:34:08,136
+of "Orange Is the New
+Black" or whatever.
+
+
+658
+00:34:10,045 --> 00:34:13,136
+Safari will only block
+this sleep from happening
+
+
+659
+00:34:13,216 --> 00:34:14,806
+under certain conditions,
+though.
+
+
+660
+00:34:16,016 --> 00:34:21,016
+So, the video must have an
+audio track and a video track.
+
+
+661
+00:34:21,815 --> 00:34:25,706
+It has to be playing and
+it must not be looping.
+
+
+662
+00:34:25,786 --> 00:34:27,596
+If any of these conditions
+are not met,
+
+
+663
+00:34:27,596 --> 00:34:29,426
+we won't keep the
+system from sleeping.
+
+
+664
+00:34:30,295 --> 00:34:34,956
+However, this has kind of
+a dramatic failure mode.
+
+
+665
+00:34:35,666 --> 00:34:37,525
+So there was a website
+we came across.
+
+
+666
+00:34:38,496 --> 00:34:40,036
+They were trying to
+do something very cool
+
+
+667
+00:34:40,036 --> 00:34:40,896
+with the <video> elements.
+
+
+668
+00:34:40,896 --> 00:34:44,516
+They used a full-page <video>
+element as the backdrop
+
+
+669
+00:34:44,516 --> 00:34:46,946
+of their landing page and,
+
+
+670
+00:34:47,196 --> 00:34:49,906
+in order to do a fancy
+CSS transition at the end
+
+
+671
+00:34:49,906 --> 00:34:52,436
+of the video, they
+didn't use looping.
+
+
+672
+00:34:52,585 --> 00:34:57,646
+They had two <video> elements
+that they faded between and,
+
+
+673
+00:34:57,846 --> 00:35:00,416
+even though their video wasn't
+entirely silent, it was silent
+
+
+674
+00:35:00,416 --> 00:35:02,476
+because it had a
+silent audio track.
+
+
+675
+00:35:03,266 --> 00:35:04,996
+So if you loaded this
+page and you walked away
+
+
+676
+00:35:04,996 --> 00:35:07,436
+from your computer, you
+came back in a few hours,
+
+
+677
+00:35:07,436 --> 00:35:11,586
+it would be completely
+dead because, to Safari,
+
+
+678
+00:35:11,586 --> 00:35:14,036
+this looks like the user
+is just watching a playlist
+
+
+679
+00:35:14,036 --> 00:35:14,936
+of different videos.
+
+
+680
+00:35:15,476 --> 00:35:17,266
+So how could they fix this?
+
+
+681
+00:35:17,516 --> 00:35:19,456
+Well, for one they could
+strip the audio track,
+
+
+682
+00:35:19,566 --> 00:35:21,436
+the silent audio track,
+out of their media.
+
+
+683
+00:35:22,576 --> 00:35:26,336
+They could also burn the fade
+effect into the video itself,
+
+
+684
+00:35:26,336 --> 00:35:29,286
+the video media itself,
+and use the loop property
+
+
+685
+00:35:29,286 --> 00:35:31,696
+to loop the video
+over and over again.
+
+
+686
+00:35:31,756 --> 00:35:34,156
+Either one of those would
+let the display sleep again.
+
+
+687
+00:35:36,796 --> 00:35:40,556
+But we have also updated
+our requirements in Safari.
+
+
+688
+00:35:40,806 --> 00:35:42,736
+In addition to the <video>
+element having an audio
+
+
+689
+00:35:42,736 --> 00:35:45,276
+and video track, not
+looping, and playing,
+
+
+690
+00:35:45,736 --> 00:35:47,076
+it must also be visible.
+
+
+691
+00:35:47,636 --> 00:35:49,896
+That means it must be
+in the foreground tab
+
+
+692
+00:35:50,216 --> 00:35:53,496
+in the visible window
+and on the current space.
+
+
+693
+00:35:53,836 --> 00:35:57,606
+If the <video> element
+is in a background tab
+
+
+694
+00:35:57,606 --> 00:36:00,706
+or the window is hidden, it
+will let the system sleep again.
+
+
+695
+00:36:00,866 --> 00:36:03,156
+So, with these changes, even
+if you do the wrong thing,
+
+
+696
+00:36:04,136 --> 00:36:06,586
+your page will still keep the
+system from sleeping but only
+
+
+697
+00:36:06,586 --> 00:36:08,256
+when your page is
+actually visible.
+
+
+698
+00:36:09,326 --> 00:36:10,776
+Okay, that was power efficiency.
+
+
+699
+00:36:10,956 --> 00:36:13,026
+Now let's talk about how
+to use timed metadata
+
+
+700
+00:36:13,026 --> 00:36:14,636
+to coordinate events
+in your page.
+
+
+701
+00:36:14,996 --> 00:36:16,596
+So what is timed metadata?
+
+
+702
+00:36:17,846 --> 00:36:20,726
+Timed metadata is data
+delivered alongside your video
+
+
+703
+00:36:20,726 --> 00:36:24,916
+and your audio data where each
+piece of data has a start time
+
+
+704
+00:36:24,916 --> 00:36:27,106
+and an end time that's
+in the media's timeline.
+
+
+705
+00:36:28,246 --> 00:36:31,086
+But, Jer, I can hear you
+asking, that sounds a lot
+
+
+706
+00:36:31,086 --> 00:36:33,086
+like text tracks,
+and that's true.
+
+
+707
+00:36:33,866 --> 00:36:36,396
+Text tracks are one
+kind of timed metadata,
+
+
+708
+00:36:36,396 --> 00:36:39,946
+but metadata isn't limited to
+text and other text-like things.
+
+
+709
+00:36:40,276 --> 00:36:43,116
+You can include arbitrary
+binary information;
+
+
+710
+00:36:43,116 --> 00:36:45,566
+you can include geolocation
+information; you can control,
+
+
+711
+00:36:45,696 --> 00:36:48,436
+add images, you can
+include text;
+
+
+712
+00:36:48,736 --> 00:36:50,986
+you can include anything
+you'd like in a metadata track
+
+
+713
+00:36:51,226 --> 00:36:55,116
+and have that be available
+through the Timed Metadata API.
+
+
+714
+00:36:55,116 --> 00:36:58,916
+Now, timed metadata has been
+available to native apps
+
+
+715
+00:36:58,916 --> 00:37:03,336
+in API form on iOS and OS X for
+some time, but new in Safari
+
+
+716
+00:37:03,336 --> 00:37:07,236
+on iOS and OS X, it's easy to
+use from JavaScript as well.
+
+
+717
+00:37:08,096 --> 00:37:10,296
+It appears in the <video>
+element as a text track,
+
+
+718
+00:37:10,766 --> 00:37:14,636
+just like the caption tracks we
+talked about at previous WWDCs.
+
+
+719
+00:37:15,166 --> 00:37:16,646
+These tracks will be
+a kind of metadata,
+
+
+720
+00:37:16,646 --> 00:37:18,886
+meaning they won't be
+displayed by the browser.
+
+
+721
+00:37:20,116 --> 00:37:23,826
+Instead they'll be available to
+your script running in the page,
+
+
+722
+00:37:23,966 --> 00:37:26,756
+and you can use the same
+Text Track APIs to watch
+
+
+723
+00:37:26,756 --> 00:37:30,626
+for incoming metadata
+events as text track cues.
+
+
+724
+00:37:31,366 --> 00:37:34,156
+Now TextTrack contains
+a list of cues,
+
+
+725
+00:37:34,156 --> 00:37:36,616
+each one has a start
+time and an end time.
+
+
+726
+00:37:37,956 --> 00:37:40,346
+You can add event
+handlers to these objects
+
+
+727
+00:37:40,616 --> 00:37:43,096
+that will get fired as
+the media timeline goes
+
+
+728
+00:37:43,096 --> 00:37:45,486
+into the cue and leaves.
+
+
+729
+00:37:46,926 --> 00:37:53,626
+Now a WebKitDataCue is a
+subclass of a TextTrackCue and,
+
+
+730
+00:37:53,626 --> 00:37:55,336
+because this interface
+is experimental,
+
+
+731
+00:37:55,556 --> 00:37:56,816
+it has a WebKit prefix.
+
+
+732
+00:37:57,016 --> 00:38:00,286
+So this is not in
+the HTML5 spec yet.
+
+
+733
+00:38:01,286 --> 00:38:03,616
+Be prepared for this
+interface to change.
+
+
+734
+00:38:03,686 --> 00:38:04,696
+That said, we're pushing
+
+
+735
+00:38:04,696 --> 00:38:06,776
+to get these proposed
+changes into the spec soon.
+
+
+736
+00:38:08,376 --> 00:38:11,946
+So each cue will have a type
+property, which allows you
+
+
+737
+00:38:11,946 --> 00:38:14,976
+to interpret the value
+property correctly.
+
+
+738
+00:38:15,306 --> 00:38:16,346
+So what does a type look like?
+
+
+739
+00:38:16,656 --> 00:38:20,046
+Well, the metadata cue type
+indicates the source the
+
+
+740
+00:38:20,076 --> 00:38:21,016
+metadata came from.
+
+
+741
+00:38:21,276 --> 00:38:23,736
+So metadata can be found in
+QuickTime user data atoms;
+
+
+742
+00:38:24,196 --> 00:38:26,456
+they can be found in
+QuickTime metadata atoms;
+
+
+743
+00:38:26,516 --> 00:38:29,666
+it could have been inserted
+by iTunes; it could be found
+
+
+744
+00:38:29,666 --> 00:38:32,556
+in the MP4 metadata
+box; or, finally,
+
+
+745
+00:38:32,586 --> 00:38:35,546
+metadata can be inserted
+as ID3 frames directly
+
+
+746
+00:38:35,546 --> 00:38:36,386
+into your media stream.
+
+
+747
+00:38:38,686 --> 00:38:41,616
+So these values allow you to
+interpret the value property,
+
+
+748
+00:38:41,616 --> 00:38:42,886
+which looks like this.
+
+
+749
+00:38:43,376 --> 00:38:46,306
+Each value has a key and,
+between the key and the type,
+
+
+750
+00:38:47,366 --> 00:38:50,136
+you can uniquely identify
+the meaning of the data value
+
+
+751
+00:38:50,136 --> 00:38:53,856
+or the data property, which can
+be a string, an array, a number,
+
+
+752
+00:38:53,856 --> 00:38:55,746
+an array buffer,
+any JavaScript type.
+
+
+753
+00:38:55,746 --> 00:38:59,376
+And the value may optionally
+have a locale so you can choose
+
+
+754
+00:38:59,376 --> 00:39:03,716
+between a variety of available
+cues for the current time based
+
+
+755
+00:39:03,716 --> 00:39:05,456
+on the user's current
+system locale.
+
+
+756
+00:39:06,346 --> 00:39:09,006
+So what would you use this for?
+
+
+757
+00:39:09,436 --> 00:39:13,046
+An extremely simple example
+would be displaying the title
+
+
+758
+00:39:13,546 --> 00:39:15,876
+of a song in a long-playing
+audio stream.
+
+
+759
+00:39:16,656 --> 00:39:20,086
+Another example would be to
+add entry and exit points
+
+
+760
+00:39:20,306 --> 00:39:23,036
+to various places in your
+media stream so you can track
+
+
+761
+00:39:23,036 --> 00:39:24,166
+where the users, say,
+
+
+762
+00:39:24,486 --> 00:39:27,126
+watch through an entire
+ad or skipped over it.
+
+
+763
+00:39:28,506 --> 00:39:31,196
+But because you can package
+any type of binary data you
+
+
+764
+00:39:31,196 --> 00:39:35,566
+like in an HLS stream or a
+media file, the possibilities
+
+
+765
+00:39:35,566 --> 00:39:37,566
+for this API are
+functionally endless.
+
+
+766
+00:39:38,996 --> 00:39:41,166
+And so Brent has an amazing
+demo showing what kind
+
+
+767
+00:39:41,166 --> 00:39:43,066
+of awesome things you can
+do with timed metadata.
+
+
+768
+00:39:43,716 --> 00:39:43,956
+Brent?
+
+
+769
+00:39:44,336 --> 00:39:44,826
+>> Thank you.
+
+
+770
+00:39:47,576 --> 00:39:51,406
+So let's get back
+to longboarding.
+
+
+771
+00:39:51,406 --> 00:39:58,996
+I have some more footage here
+of a really nice day in Utah,
+
+
+772
+00:39:59,336 --> 00:40:04,126
+and we thought it would be
+really neat to take advantage
+
+
+773
+00:40:04,126 --> 00:40:07,106
+of some of the metadata that
+can be encoded in these videos.
+
+
+774
+00:40:07,566 --> 00:40:10,746
+Now our iDevices can already
+collect a lot of things,
+
+
+775
+00:40:10,746 --> 00:40:15,566
+such as geolocation data
+and, with newer devices,
+
+
+776
+00:40:15,566 --> 00:40:17,466
+we can now collect motion data.
+
+
+777
+00:40:17,466 --> 00:40:20,016
+There are a variety of
+applications that you can use
+
+
+778
+00:40:20,016 --> 00:40:25,446
+that will encode other types
+of data that are related
+
+
+779
+00:40:25,446 --> 00:40:28,806
+to other devices and things
+that you may work with.
+
+
+780
+00:40:29,066 --> 00:40:31,006
+This can all be encoded together
+
+
+781
+00:40:31,006 --> 00:40:32,976
+and brought along as
+part of the media.
+
+
+782
+00:40:32,976 --> 00:40:35,026
+And so I thought it'd
+be really interesting
+
+
+783
+00:40:35,026 --> 00:40:36,806
+to see what we could
+do with that.
+
+
+784
+00:40:36,986 --> 00:40:41,716
+Now, in this video, we had
+some content that was embedded
+
+
+785
+00:40:42,686 --> 00:40:46,406
+in the media stream as ID3 tags,
+
+
+786
+00:40:46,406 --> 00:40:50,796
+so they contain a text
+entry that's a JSON object
+
+
+787
+00:40:50,866 --> 00:40:52,656
+or an encoded JSON object.
+
+
+788
+00:40:52,896 --> 00:40:55,916
+And I wanted to get a feel
+for what that looked like,
+
+
+789
+00:40:55,916 --> 00:41:00,986
+so I put together a page
+
+
+790
+00:41:00,986 --> 00:41:04,636
+that showed the same
+longboarding video
+
+
+791
+00:41:06,026 --> 00:41:07,966
+with the metadata
+displayed on the side.
+
+
+792
+00:41:08,056 --> 00:41:11,366
+And so you can see some
+of the types of content
+
+
+793
+00:41:11,366 --> 00:41:12,116
+that would be in here.
+
+
+794
+00:41:12,116 --> 00:41:17,166
+Now this content was from a
+specific use case, so it's going
+
+
+795
+00:41:17,166 --> 00:41:19,686
+to vary depending on where your
+media comes from and what kinds
+
+
+796
+00:41:19,686 --> 00:41:21,486
+of tools are being used
+to put it together.
+
+
+797
+00:41:21,486 --> 00:41:25,306
+But, in this case, we have a
+speed; we have an ordered list
+
+
+798
+00:41:25,306 --> 00:41:27,836
+of skaters; we've
+got a notes field.
+
+
+799
+00:41:27,836 --> 00:41:28,896
+So I thought it'd be interesting
+
+
+800
+00:41:28,896 --> 00:41:30,836
+to see what we could
+do with that.
+
+
+801
+00:41:30,836 --> 00:41:35,266
+Now let me just briefly
+show you what I did
+
+
+802
+00:41:35,266 --> 00:41:39,526
+to get this data to display.
+
+
+803
+00:41:42,106 --> 00:41:47,726
+Okay, so just like before,
+we have a video source
+
+
+804
+00:41:48,096 --> 00:41:54,136
+that in this case is
+another .m3u8 encoded video.
+
+
+805
+00:41:54,376 --> 00:41:58,746
+When the video starts, I've
+added an onloadstart handler
+
+
+806
+00:41:58,746 --> 00:42:02,346
+so that, when the stream starts
+playing, we can do something.
+
+
+807
+00:42:02,826 --> 00:42:09,226
+And what we do is, we need
+to register an event listener
+
+
+808
+00:42:09,226 --> 00:42:11,466
+for the add track event
+so that we can know
+
+
+809
+00:42:11,676 --> 00:42:13,416
+when tracks are being
+added to the streams.
+
+
+810
+00:42:13,416 --> 00:42:15,586
+So the metadata-the
+video will start playing
+
+
+811
+00:42:15,586 --> 00:42:19,446
+and then the metadata will
+be recognized by the system,
+
+
+812
+00:42:19,446 --> 00:42:21,226
+and it'll fire this event.
+
+
+813
+00:42:22,376 --> 00:42:24,116
+When the track has been added,
+
+
+814
+00:42:25,596 --> 00:42:28,026
+I want to add another event
+listener for 'cuechange'.
+
+
+815
+00:42:28,026 --> 00:42:32,036
+This is the part where WebKit
+will be firing these cue change
+
+
+816
+00:42:32,036 --> 00:42:35,076
+events as this metadata is
+encountered in the playback.
+
+
+817
+00:42:36,426 --> 00:42:40,676
+Very important is this, where
+we set the mode to 'hidden'.
+
+
+818
+00:42:41,236 --> 00:42:46,756
+Now the tracks in the system
+come through in a default state
+
+
+819
+00:42:46,756 --> 00:42:50,236
+of disabled, which means
+that you will not get events.
+
+
+820
+00:42:51,866 --> 00:42:54,006
+We set it to 'hidden'
+because we don't really want
+
+
+821
+00:42:54,006 --> 00:42:56,216
+to see this content,
+and we don't want WebKit
+
+
+822
+00:42:56,216 --> 00:42:59,056
+to necessarily do anything
+with it, but we do want
+
+
+823
+00:42:59,056 --> 00:43:02,216
+to receive events when
+these cues are encountered
+
+
+824
+00:43:02,216 --> 00:43:03,406
+so that we can do
+something with that.
+
+
+825
+00:43:03,406 --> 00:43:06,086
+And so, finally,
+the meat of this is
+
+
+826
+00:43:06,086 --> 00:43:11,126
+in the 'cuechange' event
+handler where, because I know
+
+
+827
+00:43:11,126 --> 00:43:15,166
+that this data is JSON, I was
+able to just take the data cue,
+
+
+828
+00:43:15,256 --> 00:43:19,416
+which is a WebKit
+data track object
+
+
+829
+00:43:19,416 --> 00:43:22,386
+that like Jer just
+told us about,
+
+
+830
+00:43:22,386 --> 00:43:25,076
+and retrieve the
+data portion of that
+
+
+831
+00:43:25,076 --> 00:43:26,976
+and parse it as a JSON object.
+
+
+832
+00:43:28,076 --> 00:43:31,046
+Once I did that, obviously, the
+first thing I did was to take
+
+
+833
+00:43:31,046 --> 00:43:37,466
+that reconstituted JSON object
+and immediately re-stringify it.
+
+
+834
+00:43:37,506 --> 00:43:40,206
+Why? Because I just wanted to
+pre-print it for the screen
+
+
+835
+00:43:40,206 --> 00:43:41,916
+and I didn't want to have to
+like write anything to do that.
+
+
+836
+00:43:41,916 --> 00:43:45,016
+So JSON.stringify will do
+that for you and then you end
+
+
+837
+00:43:45,016 --> 00:43:49,166
+up with something that looks
+a little bit like this.
+
+
+838
+00:43:49,676 --> 00:43:52,426
+And that's great, we're getting
+metadata that's firing a few
+
+
+839
+00:43:52,426 --> 00:43:55,336
+times a second and we have this
+information we can do something
+
+
+840
+00:43:55,336 --> 00:43:58,836
+with, but it's not really
+that compelling an example.
+
+
+841
+00:43:58,836 --> 00:43:59,996
+It wasn't that interesting,
+so I thought,
+
+
+842
+00:43:59,996 --> 00:44:01,546
+"What else could we do this?"
+
+
+843
+00:44:01,546 --> 00:44:02,666
+Well, we have a speed.
+
+
+844
+00:44:02,906 --> 00:44:07,816
+What if we modified it so
+that I could show a HUD
+
+
+845
+00:44:07,906 --> 00:44:09,096
+with a speed indicator on it?
+
+
+846
+00:44:09,096 --> 00:44:10,536
+That would be kind of
+cool, we could kind
+
+
+847
+00:44:10,536 --> 00:44:15,176
+of see how fast people were
+going, so to do that we need
+
+
+848
+00:44:15,176 --> 00:44:16,366
+to make a few changes.
+
+
+849
+00:44:16,816 --> 00:44:18,666
+First, I'm going to
+go ahead and get rid
+
+
+850
+00:44:18,666 --> 00:44:21,486
+of this brief little style
+sheet I put in here just to kind
+
+
+851
+00:44:21,486 --> 00:44:23,986
+of get things on the
+screen, and replace it
+
+
+852
+00:44:23,986 --> 00:44:27,536
+with a more full-featured
+style sheet.
+
+
+853
+00:44:28,646 --> 00:44:31,786
+And I'm going to modify
+the 'cuechange' event.
+
+
+854
+00:44:32,096 --> 00:44:36,526
+I don't need to re-stringify the
+JSON object now that I have it.
+
+
+855
+00:44:37,606 --> 00:44:40,466
+All I need to do is grab the
+speed out of the JSON payload
+
+
+856
+00:44:40,466 --> 00:44:47,336
+and stick it in a <div>
+that I just named "speed",
+
+
+857
+00:44:47,336 --> 00:44:53,246
+and then I'm going to
+go ahead and add a <div>
+
+
+858
+00:44:53,926 --> 00:44:57,806
+to hold the HUD for that.
+
+
+859
+00:44:59,876 --> 00:45:05,196
+We'll call this "AWEsome-er".
+
+
+860
+00:45:05,196 --> 00:45:07,646
+All right, so what
+would this look like?
+
+
+861
+00:45:07,646 --> 00:45:11,016
+So now we have our little
+HUD on the top of the screen.
+
+
+862
+00:45:11,076 --> 00:45:13,656
+And, if I begin video playback,
+
+
+863
+00:45:13,656 --> 00:45:17,716
+now we have a little
+speedometer running.
+
+
+864
+00:45:17,716 --> 00:45:21,886
+So now we have live overlay
+in this video playback.
+
+
+865
+00:45:21,886 --> 00:45:27,866
+We've got content that's being
+written by us and added by us,
+
+
+866
+00:45:27,866 --> 00:45:33,026
+live on the web page, and
+this is kind of an example
+
+
+867
+00:45:33,026 --> 00:45:35,396
+of what you can do with
+this kind of information.
+
+
+868
+00:45:35,756 --> 00:45:37,046
+Well, I thought this
+was kind of fun,
+
+
+869
+00:45:37,046 --> 00:45:38,776
+but we could probably do more.
+
+
+870
+00:45:38,866 --> 00:45:41,856
+There was other content
+there; there was a notes field
+
+
+871
+00:45:41,856 --> 00:45:44,456
+that had information
+that called out things
+
+
+872
+00:45:44,456 --> 00:45:48,876
+that they might be doing on
+screen; and we had information
+
+
+873
+00:45:48,876 --> 00:45:50,656
+about the ordered
+list of the skaters.
+
+
+874
+00:45:50,656 --> 00:45:55,836
+So I thought, "Well, why
+don't we make a leaderboard
+
+
+875
+00:45:55,836 --> 00:45:58,466
+that showed kind of who is in
+what position and maybe call
+
+
+876
+00:45:58,466 --> 00:46:00,676
+out any tracks or other
+information like that."
+
+
+877
+00:46:00,676 --> 00:46:03,416
+So what we need to
+do is, in addition,
+
+
+878
+00:46:03,416 --> 00:46:04,716
+in my 'cuechange' event handler,
+
+
+879
+00:46:04,716 --> 00:46:06,316
+in addition to the
+speed indicator,
+
+
+880
+00:46:07,456 --> 00:46:11,026
+I want to have a method that
+will show the skaters in order
+
+
+881
+00:46:11,026 --> 00:46:13,806
+and I want to have a method
+that will display the tricks
+
+
+882
+00:46:13,806 --> 00:46:14,846
+that are being done on screen.
+
+
+883
+00:46:15,086 --> 00:46:18,766
+I'm not going to
+go into much detail
+
+
+884
+00:46:19,066 --> 00:46:24,846
+about how this works except to
+say that, to show the skaters
+
+
+885
+00:46:24,846 --> 00:46:28,206
+in order, I basically have
+a first, second, third,
+
+
+886
+00:46:28,206 --> 00:46:32,226
+fourth CSS class that I
+set up in the style sheet.
+
+
+887
+00:46:32,446 --> 00:46:34,916
+And I just iterate through that
+list of ordered skaters and,
+
+
+888
+00:46:34,916 --> 00:46:37,456
+as the skater names come
+in, I styled the <div>
+
+
+889
+00:46:37,456 --> 00:46:39,756
+that has the name of that
+skater in first, second,
+
+
+890
+00:46:39,756 --> 00:46:40,796
+third or fourth position.
+
+
+891
+00:46:40,956 --> 00:46:46,226
+Likewise, I'm going to have
+some code to show the tricks
+
+
+892
+00:46:46,226 --> 00:46:49,516
+as they come in, and here
+I'm just going to add a <div>
+
+
+893
+00:46:49,516 --> 00:46:52,556
+to the page that is styled
+with the "trick" style.
+
+
+894
+00:46:53,136 --> 00:47:00,236
+With a little bit of CSS
+animation, we should be done.
+
+
+895
+00:47:01,006 --> 00:47:03,596
+Then let me go ahead
+and add some <div>'s
+
+
+896
+00:47:03,596 --> 00:47:04,876
+to hold all the skaters.
+
+
+897
+00:47:04,876 --> 00:47:07,356
+I've given the <div>'s
+the names of the skaters
+
+
+898
+00:47:07,356 --> 00:47:10,066
+and that makes it easy
+for setting this all up.
+
+
+899
+00:47:10,966 --> 00:47:12,336
+Now let's take a look
+at what that looks like.
+
+
+900
+00:47:13,046 --> 00:47:16,026
+So now I've got a HUD, I've
+got the skaters in the top,
+
+
+901
+00:47:16,026 --> 00:47:18,156
+I've freeze framed a few things
+
+
+902
+00:47:18,156 --> 00:47:20,056
+and grabbed some
+snapshots to show them off.
+
+
+903
+00:47:20,616 --> 00:47:23,706
+Let's go ahead and
+get it started.
+
+
+904
+00:47:24,666 --> 00:47:28,346
+There we go and so now we're
+getting live playback on top
+
+
+905
+00:47:28,346 --> 00:47:29,946
+of the video with the skaters.
+
+
+906
+00:47:30,656 --> 00:47:33,656
+And let me just point out that
+these guys look really good,
+
+
+907
+00:47:33,656 --> 00:47:35,436
+but imagine the skill it takes
+
+
+908
+00:47:35,436 --> 00:47:38,636
+to be skating backwards filming
+this, and I think you'll agree
+
+
+909
+00:47:38,636 --> 00:47:41,536
+that a lot of the magic
+is happening offscreen.
+
+
+910
+00:47:42,416 --> 00:47:46,966
+So here, timed metadata
+events are firing,
+
+
+911
+00:47:47,176 --> 00:47:51,236
+we're seeing speed changes,
+we're seeing tricks being called
+
+
+912
+00:47:51,236 --> 00:47:52,726
+out as they're moving along,
+
+
+913
+00:47:52,726 --> 00:47:55,186
+and this is all happening
+live-I'm not baking this
+
+
+914
+00:47:55,186 --> 00:47:56,066
+into the video.
+
+
+915
+00:47:56,066 --> 00:47:58,436
+I could have done that, but
+then we wouldn't be able
+
+
+916
+00:47:58,436 --> 00:48:00,816
+to modify this, change
+colors and whatever else.
+
+
+917
+00:48:01,546 --> 00:48:03,506
+And this is the good part here.
+
+
+918
+00:48:03,506 --> 00:48:08,326
+This guy, Alan, he saw
+something, he just slid away.
+
+
+919
+00:48:08,326 --> 00:48:11,336
+Here we are, he's going
+to notice something.
+
+
+920
+00:48:11,336 --> 00:48:12,286
+Danger is spotted.
+
+
+921
+00:48:12,286 --> 00:48:13,466
+He's going to bail out.
+
+
+922
+00:48:13,766 --> 00:48:17,316
+Poor Fred, ah, he hit the
+pothole, had to get off.
+
+
+923
+00:48:17,316 --> 00:48:18,626
+He's now out of the race.
+
+
+924
+00:48:18,626 --> 00:48:20,806
+He's got an X and he falls away.
+
+
+925
+00:48:21,426 --> 00:48:23,966
+And our last skater ends,
+
+
+926
+00:48:23,966 --> 00:48:25,686
+and we get the positions
+of the skaters.
+
+
+927
+00:48:27,006 --> 00:48:30,446
+And so that's just a brief
+example of what you can do
+
+
+928
+00:48:30,446 --> 00:48:35,316
+with these kinds of metadata
+events and a little bit of CSS
+
+
+929
+00:48:35,316 --> 00:48:37,966
+and JavaScript on top
+of the live video.
+
+
+930
+00:48:38,316 --> 00:48:41,736
+I hope you guys understand
+why we think this is
+
+
+931
+00:48:41,736 --> 00:48:45,536
+such an exciting technology,
+and I can't wait to see what all
+
+
+932
+00:48:45,536 --> 00:48:47,016
+of you will do with
+this in the future.
+
+
+933
+00:48:47,406 --> 00:48:49,166
+Thank you very much
+and, back to you, Jer.
+
+
+934
+00:48:49,716 --> 00:48:50,166
+>> Thanks, Brent.
+
+
+935
+00:48:50,166 --> 00:48:53,136
+That was some amazing
+backwards cinematography there.
+
+
+936
+00:48:53,756 --> 00:48:55,536
+So let's sum up what you
+guys have heard today.
+
+
+937
+00:48:56,206 --> 00:49:03,316
+Video in Safari on iOS and OS
+X are now closer in behavior
+
+
+938
+00:49:03,516 --> 00:49:06,286
+by supporting the
+preload attribute on iOS
+
+
+939
+00:49:06,286 --> 00:49:07,996
+and allowing the <video> element
+
+
+940
+00:49:07,996 --> 00:49:10,216
+to fully participate
+in CSS layering.
+
+
+941
+00:49:10,866 --> 00:49:12,536
+You've also seen how to use HLS
+
+
+942
+00:49:12,536 --> 00:49:14,826
+to add adaptive streaming
+support to your pages,
+
+
+943
+00:49:15,716 --> 00:49:16,836
+and you've learned how
+
+
+944
+00:49:16,836 --> 00:49:19,266
+to improve your user's
+power efficiency
+
+
+945
+00:49:19,476 --> 00:49:21,306
+by playing back video
+in your pages.
+
+
+946
+00:49:21,846 --> 00:49:24,126
+And you've also seen how
+to use timed metadata
+
+
+947
+00:49:24,126 --> 00:49:27,006
+to coordinate events in your
+page with your media's timeline.
+
+
+948
+00:49:28,966 --> 00:49:32,226
+So, for more information, please
+contact our Evangelism Team
+
+
+949
+00:49:32,706 --> 00:49:35,516
+and see the Safari for
+Developers documentation
+
+
+950
+00:49:35,516 --> 00:49:37,006
+on developer.apple.com.
+
+
+951
+00:49:37,226 --> 00:49:39,676
+And don't forget about the
+Apple Developer Forums.
+
+
+952
+00:49:40,656 --> 00:49:42,626
+Other sessions you
+might be interested in:
+
+
+953
+00:49:42,896 --> 00:49:48,496
+"Harnessing Metadata in
+Audiovisual Media" later today,
+
+
+954
+00:49:49,156 --> 00:49:51,376
+"Writing Energy Efficient
+Code", parts one and two,
+
+
+955
+00:49:51,376 --> 00:49:53,926
+will happen on Wednesday,
+
+
+956
+00:49:54,336 --> 00:49:57,366
+and stop by the "Designing
+Responsive Web Experiences"
+
+
+957
+00:49:57,466 --> 00:49:59,516
+for more information on
+responsive web design.
+
+
+958
+00:49:59,576 --> 00:50:00,726
+And that's it.
+
+
+959
+00:50:00,726 --> 00:50:04,226
+Have a great WWDC.
+

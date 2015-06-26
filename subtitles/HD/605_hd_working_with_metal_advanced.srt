@@ -1,0 +1,6840 @@
+1
+00:00:13,216 --> 00:00:15,566
+>> Hello. Welcome to
+the Advanced Session
+
+
+2
+00:00:15,566 --> 00:00:16,566
+on Working with Metal.
+
+
+3
+00:00:17,126 --> 00:00:18,616
+My name is Gokhan Avkarogullari.
+
+
+4
+00:00:18,996 --> 00:00:20,826
+My colleagues, Aaftab
+Munshi and Serhat Tekin,
+
+
+5
+00:00:20,826 --> 00:00:22,236
+and I will be presenting
+this session.
+
+
+6
+00:00:23,456 --> 00:00:26,186
+This is the third session that
+we have about Metal today.
+
+
+7
+00:00:26,746 --> 00:00:28,916
+In the first session, Jeremy
+introduced Metal to us.
+
+
+8
+00:00:29,256 --> 00:00:32,625
+He talked about the motivation
+behind Metal, the structures
+
+
+9
+00:00:32,625 --> 00:00:35,866
+that we build the Metal on,
+and concluded it with a demo
+
+
+10
+00:00:36,056 --> 00:00:39,316
+from Crytek on collectibles
+with thousands of draw calls.
+
+
+11
+00:00:39,906 --> 00:00:42,066
+We followed up with the
+second session where we talked
+
+
+12
+00:00:42,066 --> 00:00:44,056
+about fundamentals of Metal.
+
+
+13
+00:00:44,786 --> 00:00:47,846
+We talked about creating your
+first application with Metal,
+
+
+14
+00:00:48,366 --> 00:00:51,296
+drawing an animated triangle
+on the screen, and followed it
+
+
+15
+00:00:51,296 --> 00:00:54,206
+up with the details about
+the shading language.
+
+
+16
+00:00:55,116 --> 00:00:57,606
+In this session, we're going
+to do a more deeper dive
+
+
+17
+00:00:57,906 --> 00:01:00,976
+into creating a full blown
+graphics application with Metal.
+
+
+18
+00:01:01,456 --> 00:01:03,656
+We'll follow it up with
+data-parallel computing
+
+
+19
+00:01:03,656 --> 00:01:06,996
+on the GPU using Metal and
+finally, we'll have a demo
+
+
+20
+00:01:07,526 --> 00:01:10,026
+of the developer tools
+that we build from Metal.
+
+
+21
+00:01:11,326 --> 00:01:15,706
+Ok, so let's talk about
+why multi-pass applications
+
+
+22
+00:01:15,706 --> 00:01:16,276
+are relevant.
+
+
+23
+00:01:16,976 --> 00:01:19,736
+The modern graphics applications
+are very complicated pieces
+
+
+24
+00:01:19,736 --> 00:01:20,326
+of software.
+
+
+25
+00:01:20,966 --> 00:01:23,716
+They're built on using
+many, many advanced graphics
+
+
+26
+00:01:23,716 --> 00:01:27,606
+and computer algorithms and they
+do them in a piecewise manner.
+
+
+27
+00:01:27,706 --> 00:01:30,716
+Basically they're built on many,
+many hundreds of texture passes
+
+
+28
+00:01:30,716 --> 00:01:32,396
+and compute passes
+and blip passes
+
+
+29
+00:01:32,746 --> 00:01:35,546
+to generate a final great
+looking image on the screen.
+
+
+30
+00:01:36,476 --> 00:01:38,116
+So we're going to go and
+talk about a little bit how
+
+
+31
+00:01:38,116 --> 00:01:39,146
+to do that using Metal.
+
+
+32
+00:01:40,146 --> 00:01:43,326
+We will talk about multiple
+frame buffer configurations,
+
+
+33
+00:01:43,826 --> 00:01:48,116
+rendering to off-screen and
+on-screen textures, using meshes
+
+
+34
+00:01:48,116 --> 00:01:50,026
+and different things
+with different states
+
+
+35
+00:01:50,026 --> 00:01:51,856
+and in different configurations,
+
+
+36
+00:01:52,296 --> 00:01:54,086
+and how to set up
+multiple encoders.
+
+
+37
+00:01:55,416 --> 00:01:58,536
+We'll use a deferred lighting
+with a shadow map example
+
+
+38
+00:01:59,096 --> 00:02:01,046
+to basically walk through
+these code examples.
+
+
+39
+00:02:01,096 --> 00:02:04,546
+This is a two-pass
+application that we built
+
+
+40
+00:02:04,686 --> 00:02:06,386
+for this particular
+presentation.
+
+
+41
+00:02:06,886 --> 00:02:08,985
+In the first pass, we
+have a shadow map pass
+
+
+42
+00:02:08,985 --> 00:02:11,476
+where we rendered the
+scene from the perspective
+
+
+43
+00:02:11,476 --> 00:02:13,606
+of the directional
+light to a depth buffer.
+
+
+44
+00:02:13,936 --> 00:02:17,456
+And in the second pass we set
+up a G-buffer, fat G-buffer,
+
+
+45
+00:02:17,606 --> 00:02:18,976
+through multiple render targets.
+
+
+46
+00:02:19,486 --> 00:02:21,276
+We generate attributes
+in that G-buffer
+
+
+47
+00:02:21,756 --> 00:02:24,716
+and we apply the point light
+volumes onto that G-buffer
+
+
+48
+00:02:24,716 --> 00:02:26,366
+to find out which
+pixels are affected.
+
+
+49
+00:02:26,786 --> 00:02:28,936
+And finally, using
+the framebuffer fetch,
+
+
+50
+00:02:29,616 --> 00:02:31,876
+create light accumulation
+information and then merge
+
+
+51
+00:02:31,876 --> 00:02:34,136
+with the albedo textures
+to generate a final image.
+
+
+52
+00:02:34,946 --> 00:02:37,616
+Having said that, we're
+not really interested
+
+
+53
+00:02:37,616 --> 00:02:40,706
+in describing the example in
+here; it's just a vehicle for us
+
+
+54
+00:02:40,706 --> 00:02:42,036
+to basically talk
+about the APIs.
+
+
+55
+00:02:42,036 --> 00:02:45,416
+On top of that, the example
+is actually published
+
+
+56
+00:02:45,416 --> 00:02:48,446
+as a sample code on
+the developer website
+
+
+57
+00:02:48,446 --> 00:02:50,426
+so you can go ahead and
+download it and take a look
+
+
+58
+00:02:50,426 --> 00:02:53,576
+at it later if you
+would like to.
+
+
+59
+00:02:53,776 --> 00:02:55,666
+The way the example
+is structured is
+
+
+60
+00:02:55,666 --> 00:02:56,846
+that it has two passes.
+
+
+61
+00:02:57,266 --> 00:02:59,786
+Both of them are
+RenderCommandEncoder passes.
+
+
+62
+00:03:00,226 --> 00:03:02,856
+The first one is for shadow
+map and the second one is
+
+
+63
+00:03:02,856 --> 00:03:04,066
+for the deferred lighting pass.
+
+
+64
+00:03:04,636 --> 00:03:06,576
+They're all encoded
+into a single buffer
+
+
+65
+00:03:06,576 --> 00:03:09,446
+which is...and the
+single command buffer goes
+
+
+66
+00:03:09,446 --> 00:03:10,406
+into a command queue.
+
+
+67
+00:03:10,736 --> 00:03:13,676
+So this is kind of what most
+applications will look like;
+
+
+68
+00:03:14,016 --> 00:03:16,666
+multiple render texture passes
+going into a command encoder
+
+
+69
+00:03:16,666 --> 00:03:19,006
+on a frame boundary that's
+sent to the command queue.
+
+
+70
+00:03:19,926 --> 00:03:22,096
+I'll give a demo
+of the application.
+
+
+71
+00:03:23,516 --> 00:03:27,576
+[ Pause ]
+
+
+72
+00:03:28,076 --> 00:03:31,556
+Ok, I have it here.
+
+
+73
+00:03:31,766 --> 00:03:33,836
+So this is the upload
+of the first pass
+
+
+74
+00:03:33,836 --> 00:03:36,096
+where we are rendering
+basically through that buffer
+
+
+75
+00:03:36,096 --> 00:03:38,566
+from the perspective of
+the directional light.
+
+
+76
+00:03:39,956 --> 00:03:42,566
+And this is how our
+G-buffer is laid out.
+
+
+77
+00:03:42,566 --> 00:03:44,506
+On the top left we normally
+have albedo texture,
+
+
+78
+00:03:44,506 --> 00:03:47,336
+but we're showing basically the
+combined image that is going
+
+
+79
+00:03:47,336 --> 00:03:49,886
+to go to the screen
+when we're actually done
+
+
+80
+00:03:49,886 --> 00:03:50,846
+with our entire rendering.
+
+
+81
+00:03:51,266 --> 00:03:53,046
+And there's a normal
+buffer, and a depth buffer,
+
+
+82
+00:03:53,046 --> 00:03:54,326
+and a light accumulation buffer,
+
+
+83
+00:03:54,716 --> 00:03:58,346
+four-color buffers basically
+attached to a framebuffer
+
+
+84
+00:03:58,706 --> 00:04:00,356
+and depth and stencil
+buffers as well.
+
+
+85
+00:04:01,376 --> 00:04:02,386
+This is the light accumulation;
+
+
+86
+00:04:02,386 --> 00:04:04,436
+there's also the light
+accumulation pass.
+
+
+87
+00:04:04,986 --> 00:04:06,396
+And these are the visualization
+
+
+88
+00:04:06,396 --> 00:04:08,926
+of the lights basically
+using light volumes.
+
+
+89
+00:04:09,116 --> 00:04:10,566
+They're mapped onto the screen.
+
+
+90
+00:04:11,816 --> 00:04:15,176
+And finally this is the final
+image that goes to the display.
+
+
+91
+00:04:15,176 --> 00:04:17,745
+It looks a lot better on the
+device than on the presentation.
+
+
+92
+00:04:18,046 --> 00:04:23,296
+Ok, let's go back
+to our presentation.
+
+
+93
+00:04:24,816 --> 00:04:29,306
+Ok, so how do we set up
+an application like this
+
+
+94
+00:04:29,306 --> 00:04:31,516
+or more complicated
+ones that you have seen
+
+
+95
+00:04:31,846 --> 00:04:35,036
+in the demos using Metal?
+
+
+96
+00:04:35,616 --> 00:04:37,576
+Just like Jeremy talked about
+in the first session and looked
+
+
+97
+00:04:37,576 --> 00:04:40,226
+at the things that...at what
+frequency things are done
+
+
+98
+00:04:40,226 --> 00:04:42,156
+and moved the most heavy ones
+
+
+99
+00:04:42,156 --> 00:04:44,496
+to the least frequently
+done stages.
+
+
+100
+00:04:44,886 --> 00:04:47,916
+An application has a lot of
+things that are done once
+
+
+101
+00:04:48,366 --> 00:04:50,296
+and there are things that
+are done at low-level times
+
+
+102
+00:04:50,296 --> 00:04:53,576
+or streaming time, and there
+are things done every frame
+
+
+103
+00:04:53,716 --> 00:04:55,496
+and in an application
+there are also things
+
+
+104
+00:04:55,496 --> 00:04:56,606
+that are render to textures.
+
+
+105
+00:04:56,606 --> 00:04:58,996
+So we're going to look at
+each category and figure
+
+
+106
+00:04:58,996 --> 00:05:01,556
+out what is done in these
+categories and figure out how
+
+
+107
+00:05:01,556 --> 00:05:02,416
+to do those with Metal.
+
+
+108
+00:05:03,706 --> 00:05:05,446
+Let's start with the
+things that are done once.
+
+
+109
+00:05:05,896 --> 00:05:06,816
+Creating a device.
+
+
+110
+00:05:06,816 --> 00:05:09,426
+They are the only ones you queue
+on the system so you're going
+
+
+111
+00:05:09,426 --> 00:05:12,616
+to get a GPU and are
+handled through the GPU,
+
+
+112
+00:05:12,966 --> 00:05:15,636
+and creating a command queue
+on the GPU is only done once
+
+
+113
+00:05:16,076 --> 00:05:17,686
+in most of the applications.
+
+
+114
+00:05:18,086 --> 00:05:20,176
+And Richard told you something
+about this; I'm not going
+
+
+115
+00:05:20,176 --> 00:05:22,076
+to talk about that
+in this session.
+
+
+116
+00:05:23,076 --> 00:05:24,596
+There are things
+we do as needed.
+
+
+117
+00:05:25,086 --> 00:05:27,096
+For example, we know
+up front in all
+
+
+118
+00:05:27,196 --> 00:05:29,286
+of our applications
+what our render
+
+
+119
+00:05:29,286 --> 00:05:30,696
+to texture stages will be.
+
+
+120
+00:05:30,696 --> 00:05:33,826
+There are usually a set of
+render to texture passes,
+
+
+121
+00:05:33,826 --> 00:05:36,166
+that are known up front for
+like an indoor environment
+
+
+122
+00:05:36,466 --> 00:05:38,576
+or an outdoor environment and
+they might change if there's
+
+
+123
+00:05:38,576 --> 00:05:41,146
+like wetnesses included
+or something like that
+
+
+124
+00:05:41,146 --> 00:05:42,776
+but most of them are up front.
+
+
+125
+00:05:42,776 --> 00:05:45,466
+You know as an application
+developer what your render
+
+
+126
+00:05:45,466 --> 00:05:47,896
+to texture passes will be,
+in what order they're going
+
+
+127
+00:05:47,896 --> 00:05:50,236
+to be done, and what kind of
+framebuffers that are going
+
+
+128
+00:05:50,236 --> 00:05:50,756
+to be used with those.
+
+
+129
+00:05:50,756 --> 00:05:53,456
+So we can actually
+define...create the framebuffer
+
+
+130
+00:05:53,456 --> 00:05:54,796
+textures for those passes
+
+
+131
+00:05:54,796 --> 00:05:56,456
+and define what those
+textures are going to look
+
+
+132
+00:05:56,456 --> 00:05:58,216
+like up front at once.
+
+
+133
+00:05:58,786 --> 00:06:00,476
+And at level load time,
+
+
+134
+00:06:00,476 --> 00:06:03,996
+we can download our assets
+including our meshes, textures
+
+
+135
+00:06:04,416 --> 00:06:07,616
+and then basically our shaders
+and associate with those shaders
+
+
+136
+00:06:07,616 --> 00:06:10,016
+to create pipeline objects,
+and the pipeline objects.
+
+
+137
+00:06:10,496 --> 00:06:13,506
+And of course we can
+create our uniform buffers
+
+
+138
+00:06:13,506 --> 00:06:14,376
+up front as well.
+
+
+139
+00:06:15,476 --> 00:06:17,966
+These are the things that we
+do either at level load time
+
+
+140
+00:06:18,456 --> 00:06:21,676
+at once or depending on if we're
+going to stream load or not,
+
+
+141
+00:06:22,116 --> 00:06:24,406
+at other times as well
+but only as needed.
+
+
+142
+00:06:24,956 --> 00:06:28,866
+In our example, we're using
+a single command buffer
+
+
+143
+00:06:28,866 --> 00:06:31,256
+to submit a set of
+render to texture passes
+
+
+144
+00:06:31,486 --> 00:06:34,366
+to basically have the results
+of our render to texture passes
+
+
+145
+00:06:34,366 --> 00:06:35,476
+to show up on the screen
+
+
+146
+00:06:35,476 --> 00:06:38,616
+so that's basically a
+frame boundary operation.
+
+
+147
+00:06:38,616 --> 00:06:41,036
+Every time you want to have
+something to go to the screen,
+
+
+148
+00:06:41,036 --> 00:06:43,096
+we're going to basically create
+a command buffer and use it
+
+
+149
+00:06:43,096 --> 00:06:44,866
+to encode our render
+to texture passes
+
+
+150
+00:06:44,866 --> 00:06:46,906
+so this is something
+we do every frame.
+
+
+151
+00:06:47,436 --> 00:06:50,016
+Of course there are uniform
+buffers that need to be updated
+
+
+152
+00:06:50,016 --> 00:06:52,386
+on frame boundaries; that's
+where you do it as well.
+
+
+153
+00:06:52,976 --> 00:06:57,126
+And finally the things we do
+every render to texture pass
+
+
+154
+00:06:57,126 --> 00:07:00,576
+such as encoding the command
+so that GPU can understand.
+
+
+155
+00:07:00,926 --> 00:07:02,576
+Setting up the states
+and resources,
+
+
+156
+00:07:02,576 --> 00:07:03,856
+and initiating draw calls.
+
+
+157
+00:07:03,916 --> 00:07:06,236
+And then finally,
+finishing the encoding
+
+
+158
+00:07:06,236 --> 00:07:07,576
+so you can go to
+the next encoder.
+
+
+159
+00:07:08,796 --> 00:07:10,846
+So these are the things we do
+every render to texture pass
+
+
+160
+00:07:10,846 --> 00:07:12,956
+and we're going to basically
+look at each one of them
+
+
+161
+00:07:12,956 --> 00:07:15,966
+and understand how Metal is
+used to do these operations.
+
+
+162
+00:07:18,446 --> 00:07:23,236
+Ok, let's start with the
+things that we do as needed
+
+
+163
+00:07:23,606 --> 00:07:27,296
+and understand how we can setup
+information for our render
+
+
+164
+00:07:27,296 --> 00:07:29,176
+to texture passes
+up front so that
+
+
+165
+00:07:29,176 --> 00:07:31,106
+when we create our
+encoders; all the information
+
+
+166
+00:07:31,106 --> 00:07:33,456
+that is necessary for
+that encoding is ready.
+
+
+167
+00:07:34,626 --> 00:07:37,026
+But before we go there, I'd
+like to speak a little bit
+
+
+168
+00:07:37,026 --> 00:07:39,616
+about descriptors because all
+of the code examples have lots
+
+
+169
+00:07:39,616 --> 00:07:42,356
+of descriptors and I'd
+like to establish that all
+
+
+170
+00:07:42,356 --> 00:07:44,236
+of the descriptor...that all
+
+
+171
+00:07:44,236 --> 00:07:47,076
+of the descriptors are
+defining how an object is going
+
+
+172
+00:07:47,076 --> 00:07:47,716
+to be created.
+
+
+173
+00:07:47,716 --> 00:07:49,826
+It's like the blueprint and just
+
+
+174
+00:07:49,826 --> 00:07:52,336
+like the blueprints
+you basically use
+
+
+175
+00:07:52,336 --> 00:07:55,266
+to build a house from,
+once a house is built,
+
+
+176
+00:07:55,266 --> 00:07:57,236
+you don't have actually
+a connection back
+
+
+177
+00:07:57,236 --> 00:07:57,946
+to the blueprint.
+
+
+178
+00:07:57,946 --> 00:08:00,706
+You cannot change the blueprint
+and see in fact a change
+
+
+179
+00:08:00,996 --> 00:08:02,126
+on an already built house.
+
+
+180
+00:08:02,536 --> 00:08:05,036
+You cannot change a
+descriptor and expect a change
+
+
+181
+00:08:05,066 --> 00:08:06,756
+to the built object
+from that descriptor.
+
+
+182
+00:08:06,756 --> 00:08:10,136
+Descriptors are there to define
+what objects are going to be,
+
+
+183
+00:08:10,136 --> 00:08:12,136
+but once they're created,
+the connection is lost.
+
+
+184
+00:08:12,936 --> 00:08:15,826
+But just like a blueprint as
+well, a descriptor can be used
+
+
+185
+00:08:15,826 --> 00:08:18,916
+to create more instances
+of the same kind of object
+
+
+186
+00:08:19,356 --> 00:08:21,926
+or they can modify it a little
+bit to create a different kind
+
+
+187
+00:08:21,926 --> 00:08:25,726
+of object that shares
+some of the personality
+
+
+188
+00:08:25,726 --> 00:08:26,926
+of the previous object.
+
+
+189
+00:08:28,256 --> 00:08:32,346
+And as Jeremy pointed out
+before, everything except
+
+
+190
+00:08:32,346 --> 00:08:33,916
+for a few states
+that you can set
+
+
+191
+00:08:33,916 --> 00:08:35,986
+on the render encoders
+are actually built
+
+
+192
+00:08:36,306 --> 00:08:38,986
+into the state objects
+and the resources
+
+
+193
+00:08:38,986 --> 00:08:42,015
+and they are immutable, which
+gives us the opportunity acutely
+
+
+194
+00:08:42,346 --> 00:08:45,486
+to avoid the state
+validation at the draw time.
+
+
+195
+00:08:46,016 --> 00:08:49,116
+So a descriptor built an
+object and pretty much
+
+
+196
+00:08:49,116 --> 00:08:51,416
+that object is immutable
+after that point.
+
+
+197
+00:08:51,796 --> 00:08:54,356
+That basically makes the
+Metal a lower overhead API
+
+
+198
+00:08:54,416 --> 00:08:57,686
+by avoiding all the state
+tracking, all the state changes,
+
+
+199
+00:08:57,956 --> 00:08:59,406
+and reflecting them
+at the draw time.
+
+
+200
+00:09:00,046 --> 00:09:00,976
+Ok, let's go back
+
+
+201
+00:09:00,976 --> 00:09:04,496
+to our framebuffer
+configuration,
+
+
+202
+00:09:04,496 --> 00:09:05,316
+how we set up that.
+
+
+203
+00:09:06,806 --> 00:09:09,366
+Ok, so for
+RenderCommandEncoders,
+
+
+204
+00:09:09,366 --> 00:09:12,006
+we need to know about the
+nature of the framebuffer,
+
+
+205
+00:09:12,256 --> 00:09:14,366
+like how many color
+detections there are,
+
+
+206
+00:09:14,366 --> 00:09:16,436
+what kind of pixel types
+there are, the depth
+
+
+207
+00:09:16,436 --> 00:09:18,516
+and stencil attachment;
+things of that sort.
+
+
+208
+00:09:18,996 --> 00:09:21,656
+And those are defined through
+a RenderPassDescriptor.
+
+
+209
+00:09:22,156 --> 00:09:25,396
+We are allowed up to four color
+attachments that are allowed
+
+
+210
+00:09:25,396 --> 00:09:27,676
+on Metal and we can
+attach a depth
+
+
+211
+00:09:27,676 --> 00:09:29,266
+and stencil buffer as well.
+
+
+212
+00:09:29,776 --> 00:09:32,056
+And the attachments
+themselves are also described
+
+
+213
+00:09:32,056 --> 00:09:34,136
+to in other descriptor
+that's embedded
+
+
+214
+00:09:34,136 --> 00:09:35,526
+into the RenderPassDescriptor,
+
+
+215
+00:09:35,526 --> 00:09:38,656
+which is
+RenderPassAttachmentDescriptor.
+
+
+216
+00:09:38,936 --> 00:09:42,526
+In this descriptor, we basically
+define what kind of load
+
+
+217
+00:09:42,526 --> 00:09:45,956
+and store actions clear
+values and what kind of slice
+
+
+218
+00:09:46,056 --> 00:09:48,686
+or mid-level that we're
+going to render into;
+
+
+219
+00:09:48,936 --> 00:09:50,806
+all of these are
+basically defined here.
+
+
+220
+00:09:51,876 --> 00:09:55,166
+And it also points to the
+texture that we're going
+
+
+221
+00:09:55,166 --> 00:09:56,376
+to use to render into.
+
+
+222
+00:09:57,036 --> 00:09:59,636
+So this pass descriptor
+basically has all
+
+
+223
+00:09:59,636 --> 00:09:59,976
+the information
+
+
+224
+00:10:00,136 --> 00:10:00,716
+necessary
+
+
+225
+00:10:00,716 --> 00:10:03,036
+for a RenderCommandEncoder
+to get going.
+
+
+226
+00:10:03,036 --> 00:10:06,316
+And we're going to look at
+the two passes that we have;
+
+
+227
+00:10:06,746 --> 00:10:10,266
+the shadow pass and the deferred
+lighting pass in our example
+
+
+228
+00:10:10,266 --> 00:10:12,826
+and build render pass
+descriptors for those.
+
+
+229
+00:10:13,486 --> 00:10:15,326
+So let's start with
+the shadowRenderPass.
+
+
+230
+00:10:15,986 --> 00:10:18,306
+In this case we only
+have a depth buffer;
+
+
+231
+00:10:18,576 --> 00:10:21,296
+we don't have any color buffers
+attached because all we want is
+
+
+232
+00:10:21,296 --> 00:10:23,916
+to create a shadow map
+buffer that we can use later
+
+
+233
+00:10:24,086 --> 00:10:27,476
+to basically see if a
+pixel is all clear or not.
+
+
+234
+00:10:28,736 --> 00:10:31,816
+So we're going to start with
+creating the texture for that
+
+
+235
+00:10:31,816 --> 00:10:36,016
+and what we have in here is
+basically a 1k by 1k texture
+
+
+236
+00:10:36,016 --> 00:10:40,826
+with no mipmapping, a
+depth for 32 texture.
+
+
+237
+00:10:41,436 --> 00:10:46,286
+It is created on the device as
+we talked extensively before.
+
+
+238
+00:10:46,286 --> 00:10:51,136
+There's no concept of context or
+shared groups like GL on Metal.
+
+
+239
+00:10:52,176 --> 00:10:54,936
+Every resource is created on
+the device, they are visible
+
+
+240
+00:10:54,936 --> 00:10:58,796
+by the GPU, and also you can
+independently modify them,
+
+
+241
+00:10:59,426 --> 00:11:02,596
+not the objects themselves,
+but like the texture data
+
+
+242
+00:11:02,596 --> 00:11:06,726
+or the buffer data, read that in
+a requirement of bind to modify.
+
+
+243
+00:11:07,236 --> 00:11:10,496
+You can modify them any time you
+want as long as you're careful
+
+
+244
+00:11:10,496 --> 00:11:12,916
+that they are not modified
+while the GPU is accessing them
+
+
+245
+00:11:13,336 --> 00:11:15,346
+and as long as you make sure
+that memory coincident rules
+
+
+246
+00:11:15,346 --> 00:11:17,406
+at the command buffer
+boundaries is followed.
+
+
+247
+00:11:17,516 --> 00:11:21,626
+After we have our texture,
+
+
+248
+00:11:21,896 --> 00:11:23,626
+we can create our
+render pass descriptor.
+
+
+249
+00:11:24,196 --> 00:11:28,176
+We're going to assign this
+texture to the depth detector
+
+
+250
+00:11:28,176 --> 00:11:29,406
+of render pass descriptor
+
+
+251
+00:11:29,406 --> 00:11:31,326
+because it has only
+a single attachment.
+
+
+252
+00:11:32,496 --> 00:11:35,696
+And then define the properties
+such as the clear value,
+
+
+253
+00:11:35,696 --> 00:11:36,976
+load and store actions.
+
+
+254
+00:11:37,286 --> 00:11:39,586
+We talked extensively about
+load and store actions before.
+
+
+255
+00:11:39,906 --> 00:11:41,786
+They're very important
+in terms of performance
+
+
+256
+00:11:42,106 --> 00:11:43,206
+so you should really
+pay attention
+
+
+257
+00:11:43,206 --> 00:11:45,226
+to setting them correctly
+and most
+
+
+258
+00:11:45,226 --> 00:11:47,656
+of the time the default values
+are the most sensible values.
+
+
+259
+00:11:47,976 --> 00:11:52,676
+Ok, let's go to our second pass.
+
+
+260
+00:11:52,676 --> 00:11:55,886
+We need to also create a
+descriptor for our second pass;
+
+
+261
+00:11:55,886 --> 00:11:58,126
+we're going to actually do the
+second render command encoding.
+
+
+262
+00:11:58,506 --> 00:12:00,256
+That information will
+be available up front.
+
+
+263
+00:12:00,516 --> 00:12:02,326
+Those textures are created
+up front so we don't have
+
+
+264
+00:12:02,326 --> 00:12:05,206
+to pay the penalty of doing
+those at the draw time.
+
+
+265
+00:12:05,976 --> 00:12:09,936
+In this example, we
+have four color buffers,
+
+
+266
+00:12:09,936 --> 00:12:11,226
+one of them is actually
+interesting;
+
+
+267
+00:12:11,226 --> 00:12:12,226
+the one on the top left.
+
+
+268
+00:12:12,716 --> 00:12:15,596
+It is a buffer that we're going
+to render into and then go
+
+
+269
+00:12:15,596 --> 00:12:16,706
+and send it to the display.
+
+
+270
+00:12:17,136 --> 00:12:20,456
+So that texture we cannot create
+up front; we need to get it
+
+
+271
+00:12:20,456 --> 00:12:22,006
+from the Metal layer,
+the CAMetal layer.
+
+
+272
+00:12:22,286 --> 00:12:24,396
+And we talked extensively about
+this in the second session.
+
+
+273
+00:12:24,396 --> 00:12:27,756
+Richard basically had a sample
+code showing how we can get
+
+
+274
+00:12:27,756 --> 00:12:28,966
+that texture from
+the Metal layer.
+
+
+275
+00:12:29,776 --> 00:12:32,066
+The other three color
+textures though and the depth
+
+
+276
+00:12:32,066 --> 00:12:34,656
+and stencil texture are
+things that we know up front.
+
+
+277
+00:12:34,656 --> 00:12:36,716
+They are structures and we
+can create them up front
+
+
+278
+00:12:36,986 --> 00:12:38,186
+and we don't have
+to do them later
+
+
+279
+00:12:39,006 --> 00:12:40,276
+so let's go ahead and do that.
+
+
+280
+00:12:40,876 --> 00:12:44,926
+Ok, we're going to start again
+with a texture descriptor
+
+
+281
+00:12:44,926 --> 00:12:46,896
+to define how our texture
+is going to look like.
+
+
+282
+00:12:47,206 --> 00:12:49,296
+In this example I'm
+going to create only two
+
+
+283
+00:12:49,296 --> 00:12:51,456
+of the color textures
+and then the rest
+
+
+284
+00:12:51,456 --> 00:12:52,466
+of them are very similar.
+
+
+285
+00:12:53,636 --> 00:12:56,686
+So we basically need to create
+something that has a width
+
+
+286
+00:12:56,686 --> 00:12:59,196
+and height of the
+displayable surface
+
+
+287
+00:12:59,696 --> 00:13:02,166
+and there is no mapping
+required.
+
+
+288
+00:13:02,166 --> 00:13:04,726
+So we create our first
+texture using this descriptor,
+
+
+289
+00:13:04,726 --> 00:13:05,636
+texture descriptor.
+
+
+290
+00:13:06,106 --> 00:13:08,186
+Now as I said before,
+the descriptors are kind
+
+
+291
+00:13:08,186 --> 00:13:11,306
+of blueprints so we can
+actually use the same descriptor
+
+
+292
+00:13:11,926 --> 00:13:14,546
+and create the second
+texture out of that as well.
+
+
+293
+00:13:14,876 --> 00:13:16,506
+This is what we're going
+to do as well in here.
+
+
+294
+00:13:16,946 --> 00:13:18,926
+Basically we modify
+the descriptor
+
+
+295
+00:13:19,286 --> 00:13:21,786
+to change the pixel format and
+everything like width, height,
+
+
+296
+00:13:22,096 --> 00:13:24,166
+the mipmapping properties were
+the same so we didn't have
+
+
+297
+00:13:24,166 --> 00:13:27,396
+to modify those, and then create
+the second texture with that.
+
+
+298
+00:13:27,396 --> 00:13:30,746
+So you can see that we basically
+have one descriptor creating two
+
+
+299
+00:13:30,746 --> 00:13:31,616
+different textures.
+
+
+300
+00:13:32,546 --> 00:13:34,436
+So now that...and
+we're going to do this
+
+
+301
+00:13:34,436 --> 00:13:37,006
+for the third color
+attachment, depth and stencil.
+
+
+302
+00:13:37,006 --> 00:13:39,116
+Now that we have done all
+of those, we can go ahead
+
+
+303
+00:13:39,116 --> 00:13:40,726
+and create our
+RenderPassDescriptor
+
+
+304
+00:13:41,026 --> 00:13:43,566
+so that we can use it later to
+create our RenderCommandEncoder.
+
+
+305
+00:13:44,946 --> 00:13:46,206
+We first create it.
+
+
+306
+00:13:47,306 --> 00:13:49,436
+What is interesting in
+here as I explained before:
+
+
+307
+00:13:49,826 --> 00:13:53,366
+the first color attachment we
+actually don't have a texture
+
+
+308
+00:13:53,366 --> 00:13:54,486
+up front ready for it.
+
+
+309
+00:13:54,666 --> 00:13:57,466
+We'll have it when we actually
+start setting up our frame.
+
+
+310
+00:13:58,136 --> 00:14:02,146
+So it's set to "no" initially
+and eventually we'll get it
+
+
+311
+00:14:02,146 --> 00:14:04,786
+from the drawable when we
+create our RenderCommandEncoder.
+
+
+312
+00:14:05,456 --> 00:14:09,266
+But despite not having
+a texture,
+
+
+313
+00:14:09,716 --> 00:14:11,836
+we know actually
+the actions up front
+
+
+314
+00:14:11,836 --> 00:14:14,766
+so we can define the clear
+value, load and store actions
+
+
+315
+00:14:14,766 --> 00:14:16,466
+on the attachment
+descriptor up front.
+
+
+316
+00:14:17,396 --> 00:14:20,276
+And we can go ahead and do it
+for the second color attachment.
+
+
+317
+00:14:20,676 --> 00:14:24,276
+As you can see in this one, I
+used the texture that we created
+
+
+318
+00:14:24,276 --> 00:14:26,336
+in the previous slide
+as an attachment.
+
+
+319
+00:14:26,976 --> 00:14:30,116
+And we can also define
+the clear value,
+
+
+320
+00:14:30,116 --> 00:14:31,976
+load and store actions
+up front over here.
+
+
+321
+00:14:33,246 --> 00:14:35,266
+I'd like to point
+out the difference
+
+
+322
+00:14:35,266 --> 00:14:37,226
+between the store
+actions between these two;
+
+
+323
+00:14:37,626 --> 00:14:40,576
+for the first buffer
+attachment, we'd like it to end
+
+
+324
+00:14:40,576 --> 00:14:43,856
+up on the screen so we'd like
+it to be stored into the memory.
+
+
+325
+00:14:44,426 --> 00:14:46,486
+But the second, third, and
+fourth, color attachments,
+
+
+326
+00:14:46,536 --> 00:14:49,236
+depth and stencil buffers,
+they can be discarded;
+
+
+327
+00:14:49,236 --> 00:14:51,266
+they're just intermediate
+values that we used
+
+
+328
+00:14:51,266 --> 00:14:53,436
+to generate the first
+attachment's values.
+
+
+329
+00:14:53,826 --> 00:14:56,476
+So we don't really need to store
+them into memory; we don't want
+
+
+330
+00:14:56,476 --> 00:14:58,556
+to lose memory bandwidth
+and GP cycles
+
+
+331
+00:14:58,556 --> 00:15:01,446
+for that expensive operation
+so we set them as "don't care"
+
+
+332
+00:15:01,446 --> 00:15:04,406
+and let the driver figure out
+the best kind of operation
+
+
+333
+00:15:04,406 --> 00:15:06,116
+for the particular GP
+that you're working on.
+
+
+334
+00:15:07,476 --> 00:15:11,316
+Ok, so that covers how we
+create render pass descriptors
+
+
+335
+00:15:11,626 --> 00:15:14,166
+that we want and the textures
+associated with the framebuffers
+
+
+336
+00:15:14,166 --> 00:15:15,656
+that we are going to use later
+
+
+337
+00:15:15,656 --> 00:15:17,376
+for creating render
+command encoders
+
+
+338
+00:15:17,696 --> 00:15:19,276
+when we do render
+to texture passes.
+
+
+339
+00:15:20,726 --> 00:15:23,736
+Let's look at now the textures,
+buffers, and state objects,
+
+
+340
+00:15:23,736 --> 00:15:27,396
+and specifically the pipeline
+state objects that we're going
+
+
+341
+00:15:27,396 --> 00:15:30,126
+to create at level load
+time so that we don't have
+
+
+342
+00:15:30,126 --> 00:15:31,276
+to basically deal
+with them later.
+
+
+343
+00:15:33,196 --> 00:15:35,046
+We've already seen
+how to create textures
+
+
+344
+00:15:35,046 --> 00:15:36,706
+from texture descriptors;
+I am not going
+
+
+345
+00:15:36,706 --> 00:15:37,806
+to go into details of that.
+
+
+346
+00:15:37,806 --> 00:15:40,486
+I just want to point out
+that there are multiple ways
+
+
+347
+00:15:40,486 --> 00:15:41,936
+to upload data into
+your texture.
+
+
+348
+00:15:42,536 --> 00:15:45,076
+This is one of them:
+basically a CPU copy.
+
+
+349
+00:15:45,706 --> 00:15:47,616
+And you can also use
+boot command encoder
+
+
+350
+00:15:47,616 --> 00:15:50,936
+to upload data inline through
+the GPU to do that as well.
+
+
+351
+00:15:52,956 --> 00:15:54,676
+We talked about buffers before.
+
+
+352
+00:15:55,176 --> 00:15:56,236
+We don't have a concept
+
+
+353
+00:15:56,236 --> 00:15:58,836
+of a vertex buffer
+or a uniform buffer.
+
+
+354
+00:15:59,126 --> 00:16:00,766
+Buffers are buffers;
+they are raw data.
+
+
+355
+00:16:01,106 --> 00:16:02,906
+You can create them
+for anything you want
+
+
+356
+00:16:02,906 --> 00:16:05,896
+and then reach them...you
+know, access them through a GPU
+
+
+357
+00:16:06,446 --> 00:16:10,386
+in your shaders when you
+specify them as inputs.
+
+
+358
+00:16:10,846 --> 00:16:14,556
+All we're doing here is creating
+one with the information about,
+
+
+359
+00:16:14,946 --> 00:16:16,556
+you know, the size
+and the options.
+
+
+360
+00:16:17,606 --> 00:16:22,066
+And as I said before, you can
+modify these really easily while
+
+
+361
+00:16:22,726 --> 00:16:26,216
+your GPU is working on,
+for example another section
+
+
+362
+00:16:26,216 --> 00:16:28,296
+of your buffer, you can
+modify this section of buffer.
+
+
+363
+00:16:28,506 --> 00:16:31,506
+You need to take care of the
+synchronization and you need
+
+
+364
+00:16:31,506 --> 00:16:34,286
+to follow the memory coincident
+rules, but you don't have
+
+
+365
+00:16:34,286 --> 00:16:37,126
+to do anything like locking the
+buffer or getting the pointer
+
+
+366
+00:16:37,126 --> 00:16:38,976
+to do...both pointers are
+always available to you.
+
+
+367
+00:16:38,976 --> 00:16:41,676
+You have the freedom to modify
+however you want whenever you
+
+
+368
+00:16:41,676 --> 00:16:45,536
+want and as long as you
+basically pay attention to GPU
+
+
+369
+00:16:45,536 --> 00:16:48,336
+and CPU synchronization
+issues, it will work correctly.
+
+
+370
+00:16:48,896 --> 00:16:53,386
+And finally one other example
+of a depth stencil state,
+
+
+371
+00:16:53,866 --> 00:16:56,916
+I showed this one; I don't have
+much to say about it except
+
+
+372
+00:16:56,916 --> 00:16:58,286
+that it is an interesting one
+
+
+373
+00:16:58,446 --> 00:17:01,896
+that it has an embedded
+descriptor, internal descriptor.
+
+
+374
+00:17:01,896 --> 00:17:04,146
+Basically that stencil
+descriptor has a stencil
+
+
+375
+00:17:04,146 --> 00:17:05,425
+descriptor defined within it.
+
+
+376
+00:17:05,896 --> 00:17:10,715
+But you can create all of your
+depth stencil states up front
+
+
+377
+00:17:10,715 --> 00:17:12,935
+because just like you know
+your render to texture state,
+
+
+378
+00:17:13,286 --> 00:17:15,276
+you actually know how
+your objects are going
+
+
+379
+00:17:15,276 --> 00:17:17,185
+to be rendered into
+those textures.
+
+
+380
+00:17:17,536 --> 00:17:21,086
+You know that, for example
+in the shadow map pass,
+
+
+381
+00:17:21,476 --> 00:17:23,915
+you don't really need to
+write into stencil buffer,
+
+
+382
+00:17:23,915 --> 00:17:26,836
+so you can basically say
+that information here
+
+
+383
+00:17:26,836 --> 00:17:27,685
+or you don't use that.
+
+
+384
+00:17:28,016 --> 00:17:30,176
+Or when you have
+something that is opaque,
+
+
+385
+00:17:30,556 --> 00:17:31,986
+you can basically
+update the depth buffer,
+
+
+386
+00:17:31,986 --> 00:17:34,686
+but if you're going to do
+something that is blended
+
+
+387
+00:17:34,686 --> 00:17:37,576
+for example, you might choose
+to not update the depth buffer
+
+
+388
+00:17:37,576 --> 00:17:40,436
+and then you can actually, if
+you know all the sates up front,
+
+
+389
+00:17:40,436 --> 00:17:41,356
+you can actually
+create them up front
+
+
+390
+00:17:41,356 --> 00:17:44,016
+and don't pay the penalty
+during the draw time.
+
+
+391
+00:17:44,646 --> 00:17:45,856
+Ok so we're going to talk
+
+
+392
+00:17:45,856 --> 00:17:48,786
+about next the render
+pipeline state objects
+
+
+393
+00:17:48,786 --> 00:17:52,496
+but before we go there, I'd
+like to revisit the kind
+
+
+394
+00:17:53,226 --> 00:17:57,936
+of the OpenGL view of the GPU.
+
+
+395
+00:17:58,526 --> 00:18:01,676
+And then go and basically talk
+about what's the motivation
+
+
+396
+00:18:01,676 --> 00:18:04,676
+of RenderPipelineState objects
+and what is included in them.
+
+
+397
+00:18:05,296 --> 00:18:08,356
+So this is kind of how it
+looks to basically, in general,
+
+
+398
+00:18:08,356 --> 00:18:11,036
+OpenGL, but there's actually
+a separate vertex shader state
+
+
+399
+00:18:11,416 --> 00:18:14,106
+and a fragment shader state
+and all the other operations
+
+
+400
+00:18:14,106 --> 00:18:15,166
+that are all that looks
+
+
+401
+00:18:15,166 --> 00:18:17,316
+like fixed function
+hardware-controlled
+
+
+402
+00:18:17,316 --> 00:18:20,156
+through basically
+state-changing APIs.
+
+
+403
+00:18:20,666 --> 00:18:23,126
+Unfortunately the modern
+hardware doesn't really work
+
+
+404
+00:18:23,126 --> 00:18:23,516
+that way.
+
+
+405
+00:18:24,236 --> 00:18:26,066
+If you think about
+it, for example,
+
+
+406
+00:18:26,276 --> 00:18:28,956
+when your vertex layout
+doesn't match your vertex shader
+
+
+407
+00:18:28,956 --> 00:18:29,826
+because they're separate,
+
+
+408
+00:18:29,826 --> 00:18:32,256
+the meshes are all
+altered separately
+
+
+409
+00:18:32,256 --> 00:18:33,476
+than your vertex shaders,
+
+
+410
+00:18:33,806 --> 00:18:35,676
+there has to be some
+code running somewhere;
+
+
+411
+00:18:36,106 --> 00:18:39,596
+either a de-imaging code or
+a vertex fetch shader code
+
+
+412
+00:18:39,866 --> 00:18:41,056
+that needs to bridge that gap
+
+
+413
+00:18:41,056 --> 00:18:43,096
+between these 2 layout
+differences.
+
+
+414
+00:18:43,706 --> 00:18:47,436
+Or in some GPUs we have
+tile-based deferred render
+
+
+415
+00:18:47,436 --> 00:18:49,046
+so most of the frame
+buffer actually is
+
+
+416
+00:18:49,046 --> 00:18:51,716
+on the GPU while you're
+working on it, so the blending
+
+
+417
+00:18:51,716 --> 00:18:53,666
+or write mask is
+basically a read, modify,
+
+
+418
+00:18:53,666 --> 00:18:55,496
+write operation on the tile.
+
+
+419
+00:18:55,976 --> 00:18:58,686
+And we do that by creating
+actually a shader code running
+
+
+420
+00:18:58,686 --> 00:19:01,036
+on the shader core;
+it's not really a state.
+
+
+421
+00:19:01,036 --> 00:19:04,226
+So when you actually make a
+draw call with one blending mode
+
+
+422
+00:19:04,626 --> 00:19:07,886
+for compiled shaders and
+then change your blend state
+
+
+423
+00:19:07,956 --> 00:19:11,176
+and make another draw call
+with the same compiled shaders.
+
+
+424
+00:19:11,416 --> 00:19:12,856
+Well we find out
+that we actually have
+
+
+425
+00:19:12,856 --> 00:19:15,576
+to generate new code for this
+new framebuffer configuration
+
+
+426
+00:19:15,606 --> 00:19:18,456
+because we have never seen
+it before and we're going
+
+
+427
+00:19:18,456 --> 00:19:21,006
+to do this fixed-function
+looking-like operation
+
+
+428
+00:19:21,006 --> 00:19:22,556
+in the shader core and we end
+
+
+429
+00:19:22,556 --> 00:19:24,476
+up recompiling your
+shader causing a hitch
+
+
+430
+00:19:24,746 --> 00:19:25,696
+in your application.
+
+
+431
+00:19:26,256 --> 00:19:29,666
+So recognizing the differences
+between how the API looks
+
+
+432
+00:19:29,666 --> 00:19:32,466
+on OpenGL and how
+actually a GPU behaves,
+
+
+433
+00:19:32,466 --> 00:19:35,596
+we decided to basically
+put everything in the GPU
+
+
+434
+00:19:35,596 --> 00:19:39,296
+that closes shader code and has
+an impact on the shader code
+
+
+435
+00:19:39,296 --> 00:19:42,276
+in one place that's called
+"render pipeline state object."
+
+
+436
+00:19:42,986 --> 00:19:44,316
+So let's look at
+what we have in it.
+
+
+437
+00:19:44,896 --> 00:19:47,616
+We basically have the vertex
+fetch basically information
+
+
+438
+00:19:47,616 --> 00:19:50,396
+about your vertex layout
+that we talked about before.
+
+
+439
+00:19:50,396 --> 00:19:51,906
+I actually gave a
+good example of it.
+
+
+440
+00:19:51,906 --> 00:19:54,326
+Aaftab gave a good example of
+it in his talk about language.
+
+
+441
+00:19:55,436 --> 00:19:59,056
+Obviously, we have the
+shaders included in it.
+
+
+442
+00:19:59,236 --> 00:19:59,776
+We have
+
+
+443
+00:20:00,316 --> 00:20:03,836
+framebuffer configurations like
+number of the rendered targets,
+
+
+444
+00:20:03,836 --> 00:20:07,286
+the pixel format, sample count,
+write mask, blend information,
+
+
+445
+00:20:07,716 --> 00:20:11,276
+actually, and depth
+and stencil state.
+
+
+446
+00:20:12,246 --> 00:20:15,396
+Now we didn't go all the
+way to including everything
+
+
+447
+00:20:15,456 --> 00:20:18,136
+in the GPU state in the
+render pipeline state object
+
+
+448
+00:20:18,136 --> 00:20:21,106
+because if we had done that,
+you would be creating millions
+
+
+449
+00:20:21,106 --> 00:20:21,876
+and millions of them
+
+
+450
+00:20:21,876 --> 00:20:24,456
+and actually there would
+be only a few unique ones
+
+
+451
+00:20:24,456 --> 00:20:25,256
+of these around.
+
+
+452
+00:20:25,476 --> 00:20:29,486
+So basically anything that
+is...that can easily be updated
+
+
+453
+00:20:29,736 --> 00:20:32,326
+or that's really truly fixed
+function hardware is not
+
+
+454
+00:20:32,326 --> 00:20:36,726
+in the render pipeline state
+object such as the inputs.
+
+
+455
+00:20:37,046 --> 00:20:39,166
+We need to know the layout
+of the buffer for example,
+
+
+456
+00:20:39,466 --> 00:20:40,566
+but we don't really need to know
+
+
+457
+00:20:40,566 --> 00:20:41,936
+which particular
+buffer you're using.
+
+
+458
+00:20:41,936 --> 00:20:43,706
+It's really easy to
+update the pointer pointing
+
+
+459
+00:20:43,706 --> 00:20:45,466
+to the buffer and the hardware.
+
+
+460
+00:20:46,696 --> 00:20:48,846
+The same goes true
+for buffers as outputs
+
+
+461
+00:20:48,846 --> 00:20:50,566
+or the framebuffer textures.
+
+
+462
+00:20:50,996 --> 00:20:53,246
+We need to know how they're
+configured, but we don't need
+
+
+463
+00:20:53,246 --> 00:20:55,516
+to know specifically which
+ones are used at any time.
+
+
+464
+00:20:55,596 --> 00:20:59,316
+Or the primitive setup
+states like the cull mode,
+
+
+465
+00:20:59,436 --> 00:21:03,136
+facing orientation, or
+information like viewport
+
+
+466
+00:21:03,136 --> 00:21:05,806
+and scissor information, depth
+bias and clamp and slope.
+
+
+467
+00:21:06,346 --> 00:21:07,476
+So those are not included
+
+
+468
+00:21:07,476 --> 00:21:09,536
+in your render pipeline
+state objects, but everything
+
+
+469
+00:21:09,536 --> 00:21:11,296
+that affects your
+cost is included
+
+
+470
+00:21:11,296 --> 00:21:12,776
+in your pipeline state object
+
+
+471
+00:21:13,076 --> 00:21:14,826
+so everything you
+create is explicit
+
+
+472
+00:21:15,296 --> 00:21:18,026
+and everything you create is
+basically you pay the cost
+
+
+473
+00:21:18,026 --> 00:21:18,446
+up front.
+
+
+474
+00:21:18,446 --> 00:21:19,706
+There are no hidden codes,
+
+
+475
+00:21:19,706 --> 00:21:21,866
+there are no deferred
+state validation,
+
+
+476
+00:21:21,866 --> 00:21:23,826
+no later compilation in Metal.
+
+
+477
+00:21:23,826 --> 00:21:26,486
+So what you do, you know
+you do it, you're doing it,
+
+
+478
+00:21:26,766 --> 00:21:29,186
+why you're doing it, and
+the cost is paid up front
+
+
+479
+00:21:29,186 --> 00:21:30,176
+when you are actually doing it.
+
+
+480
+00:21:31,336 --> 00:21:32,836
+So let's go and create
+a few of those.
+
+
+481
+00:21:33,616 --> 00:21:36,216
+Basically there's a render
+pipeline sate object associated
+
+
+482
+00:21:36,216 --> 00:21:37,206
+with every draw call.
+
+
+483
+00:21:37,516 --> 00:21:40,576
+And in our example, for example
+under rendering the mesh,
+
+
+484
+00:21:40,576 --> 00:21:43,346
+the mesh for the temple, we're
+going to render it twice;
+
+
+485
+00:21:43,346 --> 00:21:45,346
+one we're creating the depth
+buffer for the shadowMap
+
+
+486
+00:21:45,686 --> 00:21:47,506
+and then one; we are
+basically doing light
+
+
+487
+00:21:47,506 --> 00:21:49,126
+accumulation...deferred
+lighting pass.
+
+
+488
+00:21:49,506 --> 00:21:51,576
+So we're going to create two of
+them; I'm going to give examples
+
+
+489
+00:21:51,576 --> 00:21:53,156
+of how to create them.
+
+
+490
+00:21:53,796 --> 00:21:55,566
+We create a new one,
+a descriptor.
+
+
+491
+00:21:55,676 --> 00:21:57,416
+As we talked before,
+
+
+492
+00:21:57,676 --> 00:22:00,676
+you hopefully basically
+compiled your shaders on Xcode
+
+
+493
+00:22:00,676 --> 00:22:02,656
+on the host-side or in
+a library so we can go
+
+
+494
+00:22:02,656 --> 00:22:05,106
+and get your vertex
+shader from the library.
+
+
+495
+00:22:05,786 --> 00:22:10,116
+And now I'm basically setting
+the rest of the sates here;
+
+
+496
+00:22:10,116 --> 00:22:11,716
+basically we're setting
+the vertex function,
+
+
+497
+00:22:12,066 --> 00:22:14,176
+we're setting depthWriteEnabled
+to "true"
+
+
+498
+00:22:14,176 --> 00:22:16,036
+because you actually want
+to update that buffer.
+
+
+499
+00:22:16,966 --> 00:22:19,306
+Interestingly since there's
+no color buffer attached,
+
+
+500
+00:22:19,746 --> 00:22:21,426
+you can set your
+fragment shader to "no."
+
+
+501
+00:22:21,496 --> 00:22:22,286
+There is not really going
+
+
+502
+00:22:22,286 --> 00:22:23,846
+to be a fragment
+shader operation going
+
+
+503
+00:22:23,846 --> 00:22:26,846
+on for this configuration
+for this drawing.
+
+
+504
+00:22:27,386 --> 00:22:30,816
+And once you have
+that information,
+
+
+505
+00:22:30,816 --> 00:22:32,316
+you can use that descriptor
+
+
+506
+00:22:32,316 --> 00:22:35,676
+to create our render pipeline
+state object for our temple mesh
+
+
+507
+00:22:35,806 --> 00:22:37,196
+for our shadowMap pass.
+
+
+508
+00:22:38,236 --> 00:22:40,686
+Let's do the same thing for
+the deferred lighting pass.
+
+
+509
+00:22:41,226 --> 00:22:43,856
+Well the deferred lighting
+pass is a little bit more rich
+
+
+510
+00:22:43,856 --> 00:22:46,966
+in terms of the stream buffer
+configuration and terms
+
+
+511
+00:22:46,966 --> 00:22:48,496
+of the actions that
+are taking place.
+
+
+512
+00:22:48,806 --> 00:22:51,316
+So we're going to have both
+the vertex and fragment shader
+
+
+513
+00:22:51,826 --> 00:22:53,876
+and we're going to
+define the pixel formats
+
+
+514
+00:22:54,226 --> 00:22:55,656
+for all attachments.
+
+
+515
+00:22:56,426 --> 00:23:01,876
+So we have now basically defined
+our render pass descriptors.
+
+
+516
+00:23:02,276 --> 00:23:05,866
+We created our buffers
+for meshes, for uniforms;
+
+
+517
+00:23:06,146 --> 00:23:09,096
+we created our textures
+and uploaded them;
+
+
+518
+00:23:09,346 --> 00:23:12,666
+we created our render pipeline
+state objects.Well I think we
+
+
+519
+00:23:12,666 --> 00:23:15,286
+can now get into the business
+of drawing things on the screen.
+
+
+520
+00:23:16,216 --> 00:23:19,166
+So...well Richard
+did a great job
+
+
+521
+00:23:19,166 --> 00:23:22,436
+in explaining how the command
+buffers are formed and used,
+
+
+522
+00:23:22,436 --> 00:23:27,626
+so I'm going to, you know, visit
+it for just a bit to remind you.
+
+
+523
+00:23:27,836 --> 00:23:31,286
+So we have a single command
+queue that is our channel
+
+
+524
+00:23:31,286 --> 00:23:33,666
+to the GPU and we
+get a commandBuffer
+
+
+525
+00:23:33,666 --> 00:23:36,736
+from the commandQueue
+and that's how we do it:
+
+
+526
+00:23:36,836 --> 00:23:39,216
+ask the commandQueue to give
+us a new command buffer.
+
+
+527
+00:23:39,286 --> 00:23:42,976
+And then once we basically go
+ahead and encode all our render
+
+
+528
+00:23:42,976 --> 00:23:45,586
+to texture passes, we're
+going to be ready to send it
+
+
+529
+00:23:45,586 --> 00:23:49,286
+to the GPU so that's how we do
+it, by issuing a commit call.
+
+
+530
+00:23:49,286 --> 00:23:52,706
+And then finally,
+commandBuffers are not reused.
+
+
+531
+00:23:52,916 --> 00:23:55,856
+Once they're used, we get rid
+of them and then the next step,
+
+
+532
+00:23:56,016 --> 00:23:58,446
+next frame, we're going to get
+a new one so we set it to "new"
+
+
+533
+00:23:58,446 --> 00:23:59,496
+and that takes care of it.
+
+
+534
+00:24:00,476 --> 00:24:02,326
+One thing I like to point
+out just as Richard did
+
+
+535
+00:24:02,326 --> 00:24:05,266
+in the previous session: if
+you like to get the results
+
+
+536
+00:24:05,266 --> 00:24:07,946
+of your command buffer's
+operations to show
+
+
+537
+00:24:07,946 --> 00:24:09,436
+up on the screen, you need
+
+
+538
+00:24:09,436 --> 00:24:12,376
+to schedule the operation before
+committing your command buffer
+
+
+539
+00:24:12,756 --> 00:24:15,686
+so that you basically call
+the addPresent API to schedule
+
+
+540
+00:24:15,686 --> 00:24:18,286
+that so when the command
+buffer is executed by the GPU,
+
+
+541
+00:24:18,576 --> 00:24:20,086
+the display will
+basically know about it
+
+
+542
+00:24:20,086 --> 00:24:22,596
+and it will show your
+image on the display.
+
+
+543
+00:24:24,176 --> 00:24:29,196
+Ok, now is an exciting part:
+creating the command encoders
+
+
+544
+00:24:29,506 --> 00:24:31,786
+and actually encoding stuff.
+
+
+545
+00:24:32,146 --> 00:24:35,396
+Well, it is exciting, but
+there's actually not much left
+
+
+546
+00:24:35,396 --> 00:24:37,836
+to do at this point because you
+have done everything up front.
+
+
+547
+00:24:38,536 --> 00:24:40,216
+So all we're going to
+do is create an encoder
+
+
+548
+00:24:40,216 --> 00:24:41,406
+from the commandBuffer
+this time.
+
+
+549
+00:24:41,716 --> 00:24:43,316
+There can only be one
+command encoder active
+
+
+550
+00:24:43,316 --> 00:24:44,636
+at any time on a commandBuffer.
+
+
+551
+00:24:45,036 --> 00:24:46,246
+There's one exception to this:
+
+
+552
+00:24:46,246 --> 00:24:48,766
+this is a parallel
+RenderCommandEncoder.
+
+
+553
+00:24:48,886 --> 00:24:51,566
+I'd like you to take a look
+at the programming guide
+
+
+554
+00:24:51,566 --> 00:24:52,656
+to understand when it's used.
+
+
+555
+00:24:52,656 --> 00:24:55,506
+It's mostly when you have a
+huge render to texture pass
+
+
+556
+00:24:55,506 --> 00:24:57,636
+and you want to basically
+paralyze operations
+
+
+557
+00:24:57,636 --> 00:24:59,576
+on multiple CPUs; that's
+the only time you're going
+
+
+558
+00:24:59,576 --> 00:25:00,026
+to use it.
+
+
+559
+00:25:00,636 --> 00:25:04,066
+But for most applications, there
+will be one render encoder,
+
+
+560
+00:25:04,506 --> 00:25:06,796
+RenderCommandEncoder or
+a blip command encoder
+
+
+561
+00:25:06,796 --> 00:25:09,606
+or a compute command
+encoder active at any time.
+
+
+562
+00:25:10,426 --> 00:25:13,276
+So we created one in here;
+it's a RenderCommandEncoder
+
+
+563
+00:25:13,276 --> 00:25:15,316
+for our shadowMap pass
+
+
+564
+00:25:15,686 --> 00:25:18,246
+and we create it using the
+shadowMap pass descriptor
+
+
+565
+00:25:18,556 --> 00:25:20,776
+that we created just
+a few minutes ago.
+
+
+566
+00:25:20,956 --> 00:25:23,826
+It has all the information
+about the depth attachment
+
+
+567
+00:25:24,316 --> 00:25:26,846
+and the structure of the depth
+attachment and how it's defined
+
+
+568
+00:25:26,846 --> 00:25:29,056
+and all the information
+necessary
+
+
+569
+00:25:29,056 --> 00:25:30,066
+for creating this encoder.
+
+
+570
+00:25:30,136 --> 00:25:33,476
+And then what we do
+is just set the sates;
+
+
+571
+00:25:33,746 --> 00:25:36,256
+they're all baked before so we
+don't have to validate them.
+
+
+572
+00:25:37,016 --> 00:25:41,736
+And we set the buffers as inputs
+for texture samples as inputs
+
+
+573
+00:25:41,736 --> 00:25:45,096
+to our draw calls, and then
+finally issue our draw calls.
+
+
+574
+00:25:45,096 --> 00:25:47,976
+And then repeat this hopefully
+thousands and thousands of times
+
+
+575
+00:25:48,466 --> 00:25:50,716
+and in each one you will
+basically be using a different
+
+
+576
+00:25:50,716 --> 00:25:51,416
+kind of state.
+
+
+577
+00:25:51,636 --> 00:25:54,446
+But the driver will be able to
+just go ahead and fetch them
+
+
+578
+00:25:54,796 --> 00:25:57,476
+from a pre-baked place instead
+of creating them on the fly
+
+
+579
+00:25:57,476 --> 00:25:58,766
+or validating them on the fly,
+
+
+580
+00:25:59,136 --> 00:26:01,996
+which makes Metal significantly
+faster than the alternative app.
+
+
+581
+00:26:01,996 --> 00:26:05,366
+And once you're done,
+you finish your encoding
+
+
+582
+00:26:05,366 --> 00:26:07,566
+by calling end encoding.
+
+
+583
+00:26:08,326 --> 00:26:11,726
+And at this point, the
+commands are just created
+
+
+584
+00:26:11,726 --> 00:26:12,576
+in the command buffer,
+
+
+585
+00:26:12,926 --> 00:26:14,986
+but they're not really
+submitted to the GPU.
+
+
+586
+00:26:15,266 --> 00:26:18,776
+They cannot be executed on the
+GPU yet because that's only done
+
+
+587
+00:26:18,856 --> 00:26:20,346
+when you submit your
+command buffer,
+
+
+588
+00:26:20,646 --> 00:26:22,586
+not when you finish
+your encoding.
+
+
+589
+00:26:23,096 --> 00:26:25,876
+Let's go create the
+encoding for the second pass
+
+
+590
+00:26:25,876 --> 00:26:28,006
+because it has an
+interesting feature
+
+
+591
+00:26:28,006 --> 00:26:30,886
+that we couldn't finish
+completing our vendor pass
+
+
+592
+00:26:30,886 --> 00:26:34,006
+descriptor early enough because
+we didn't have the texture
+
+
+593
+00:26:34,336 --> 00:26:36,436
+for our drawable at that point.
+
+
+594
+00:26:37,016 --> 00:26:40,436
+So just in the previous session
+if you saw that how we can get
+
+
+595
+00:26:40,436 --> 00:26:42,486
+that texture, if you
+remember doing that,
+
+
+596
+00:26:42,486 --> 00:26:45,186
+and then assigning it our
+first color attachment
+
+
+597
+00:26:45,186 --> 00:26:48,696
+to the texture point of
+our first color attachment.
+
+
+598
+00:26:49,336 --> 00:26:52,186
+The rest of the descriptor
+was well defined before;
+
+
+599
+00:26:52,186 --> 00:26:55,746
+we knew what textures to use
+and how many textures there were
+
+
+600
+00:26:56,066 --> 00:26:58,306
+and so we don't actually
+need to modify that part.
+
+
+601
+00:26:58,306 --> 00:26:59,946
+We're just going to
+basically update this part
+
+
+602
+00:26:59,946 --> 00:27:02,236
+of the descriptor and
+are going to use that one
+
+
+603
+00:27:02,236 --> 00:27:04,586
+to create our
+RenderCommandEncoder
+
+
+604
+00:27:04,586 --> 00:27:06,826
+for our deferred lighting pass.
+
+
+605
+00:27:07,516 --> 00:27:11,456
+We do the usual, just issue
+draw calls and finally end
+
+
+606
+00:27:11,456 --> 00:27:14,076
+up finishing our draw calls
+
+
+607
+00:27:14,476 --> 00:27:16,486
+and closing our encoder
+by "End encoding".
+
+
+608
+00:27:16,826 --> 00:27:19,366
+And at this point for this
+particular application
+
+
+609
+00:27:19,756 --> 00:27:21,176
+since you have only two passes,
+
+
+610
+00:27:21,486 --> 00:27:24,026
+we just call the command
+buffer commit and it will go
+
+
+611
+00:27:24,026 --> 00:27:27,126
+to the GPU, and the GPU will
+start executing the commands we
+
+
+612
+00:27:27,126 --> 00:27:27,836
+encoded just now.
+
+
+613
+00:27:29,286 --> 00:27:31,266
+Ok, so that's all I
+wanted to talk about;
+
+
+614
+00:27:31,266 --> 00:27:33,576
+how to structure your
+application to take advantage
+
+
+615
+00:27:33,576 --> 00:27:36,866
+of Metal and we're going
+to go into a really,
+
+
+616
+00:27:36,866 --> 00:27:40,186
+really interesting and new
+feature that we have on iOS:
+
+
+617
+00:27:40,526 --> 00:27:42,676
+data-parallel computing
+on the GPU with Metal
+
+
+618
+00:27:43,026 --> 00:27:44,656
+so Aaftab will talk about that.
+
+
+619
+00:27:44,656 --> 00:27:44,836
+Thank you.
+
+
+620
+00:27:45,516 --> 00:27:49,716
+[ Applause ]
+
+
+621
+00:27:50,216 --> 00:27:50,836
+>> Thanks Gokhan.
+
+
+622
+00:27:51,586 --> 00:27:54,516
+All right, I'm back.
+
+
+623
+00:27:54,516 --> 00:27:57,576
+All right, so I have
+15 minutes to talk
+
+
+624
+00:27:57,576 --> 00:27:59,176
+about data-parallel
+computing so I want to focus
+
+
+625
+00:27:59,176 --> 00:28:01,466
+on the key points I
+wanted to get across.
+
+
+626
+00:28:01,466 --> 00:28:05,746
+So we'll first talk about...and
+give a very high level overview
+
+
+627
+00:28:05,746 --> 00:28:07,096
+of what is data-parallel
+computing,
+
+
+628
+00:28:07,666 --> 00:28:12,246
+how Metal does data-parallel
+computing, and then we'll look
+
+
+629
+00:28:12,246 --> 00:28:17,536
+at how to write kernels in
+metal and how to execute them.
+
+
+630
+00:28:17,616 --> 00:28:18,826
+And we'll actually
+take an example,
+
+
+631
+00:28:18,826 --> 00:28:21,536
+a post-processing example,
+and show how you do that.
+
+
+632
+00:28:22,106 --> 00:28:23,356
+All right, so let's start.
+
+
+633
+00:28:23,766 --> 00:28:25,146
+So what is data-parallel
+computing?
+
+
+634
+00:28:25,486 --> 00:28:27,896
+So imagine if you have a piece
+of code, let's say a function,
+
+
+635
+00:28:28,546 --> 00:28:34,036
+that we can execute all elements
+of your data; so maybe elements
+
+
+636
+00:28:34,036 --> 00:28:36,466
+in an array or pixels
+of an image.
+
+
+637
+00:28:37,806 --> 00:28:41,436
+And these computations are
+independent to each other.
+
+
+638
+00:28:41,856 --> 00:28:44,036
+So that means if I have,
+you know, multiple threads
+
+
+639
+00:28:44,036 --> 00:28:46,676
+of execution, I can run
+them all in parallel
+
+
+640
+00:28:46,796 --> 00:28:49,096
+so that's what I mean by
+data-parallel computing.
+
+
+641
+00:28:49,096 --> 00:28:51,166
+So this is actually
+a very simple form
+
+
+642
+00:28:51,166 --> 00:28:54,436
+of data-parallel computing and
+I'll talk a little bit more
+
+
+643
+00:28:54,436 --> 00:28:58,436
+about additional things
+you can do in Metal
+
+
+644
+00:28:58,436 --> 00:28:59,496
+with data-parallel computing.
+
+
+645
+00:28:59,496 --> 00:29:04,026
+So a classic example of this
+data-parallel computing is
+
+
+646
+00:29:04,026 --> 00:29:05,366
+blurring an image, right?
+
+
+647
+00:29:05,366 --> 00:29:08,376
+So for example you
+have an image.
+
+
+648
+00:29:08,376 --> 00:29:11,356
+For each pixel you're
+looking at a nearby region
+
+
+649
+00:29:11,356 --> 00:29:12,366
+and you are applying a filter.
+
+
+650
+00:29:12,586 --> 00:29:14,366
+Well, I could execute
+these in parallel.
+
+
+651
+00:29:14,366 --> 00:29:16,536
+So if I had let's
+say a 1k by 1k image
+
+
+652
+00:29:16,896 --> 00:29:18,056
+and I had a million threads,
+
+
+653
+00:29:18,306 --> 00:29:21,446
+I could execute each
+pixel in parallel, right?
+
+
+654
+00:29:21,886 --> 00:29:23,956
+So how does that work in Metal?
+
+
+655
+00:29:24,426 --> 00:29:27,716
+So the code that you're
+going to execute in parallel,
+
+
+656
+00:29:28,236 --> 00:29:29,436
+we call that a kernel.
+
+
+657
+00:29:30,056 --> 00:29:32,396
+And the thing that actually
+executes independently,
+
+
+658
+00:29:32,716 --> 00:29:33,596
+we call that a work-item.
+
+
+659
+00:29:33,716 --> 00:29:38,066
+So on a GPU, a thread may
+actually contain multiple
+
+
+660
+00:29:38,066 --> 00:29:41,496
+work-items because now a thread
+actually may execute multiple
+
+
+661
+00:29:41,496 --> 00:29:42,896
+such things in a SIMD fashion
+
+
+662
+00:29:42,896 --> 00:29:44,146
+and then you have
+multiple threads.
+
+
+663
+00:29:44,586 --> 00:29:46,006
+So the work-item is the thing
+
+
+664
+00:29:46,006 --> 00:29:48,726
+that identifies each
+independent execution instance.
+
+
+665
+00:29:49,036 --> 00:29:52,636
+So you're going stop me
+right there and say, "Hey,
+
+
+666
+00:29:52,636 --> 00:29:55,256
+that looks just like a
+fragment shader," right?
+
+
+667
+00:29:55,256 --> 00:29:57,556
+Because that's what
+fragment shaders do, right?
+
+
+668
+00:29:57,856 --> 00:29:59,976
+You execute the shader
+in parallel
+
+
+669
+00:30:00,046 --> 00:30:02,886
+or multiple fragments; they
+don't talk to each other.
+
+
+670
+00:30:03,056 --> 00:30:04,436
+Like they are in
+their own world.
+
+
+671
+00:30:04,436 --> 00:30:06,166
+They take inputs;
+produce outputs.
+
+
+672
+00:30:06,686 --> 00:30:08,126
+So what is this
+data-parallelism?
+
+
+673
+00:30:08,626 --> 00:30:11,716
+So that is indeed; we
+call it SIMD parallelism
+
+
+674
+00:30:11,716 --> 00:30:15,326
+and that is a data-parallelism
+model supported in Metal.
+
+
+675
+00:30:15,666 --> 00:30:19,776
+And the only benefit here
+is that you no longer have
+
+
+676
+00:30:19,776 --> 00:30:21,496
+to create a graphics pipeline;
+
+
+677
+00:30:21,496 --> 00:30:25,236
+you don't specify a vertex
+shader and a fragment shader
+
+
+678
+00:30:25,236 --> 00:30:26,256
+and state and things like that.
+
+
+679
+00:30:26,256 --> 00:30:27,846
+You just say, "Here
+is my function,
+
+
+680
+00:30:27,986 --> 00:30:29,506
+here is my problem size,
+
+
+681
+00:30:29,706 --> 00:30:31,746
+go execute this function
+over there."
+
+
+682
+00:30:31,826 --> 00:30:35,166
+But there's more to it than that
+because, in data-parallelism,
+
+
+683
+00:30:35,426 --> 00:30:38,926
+you can actually tell
+a number of algorithms
+
+
+684
+00:30:38,926 --> 00:30:41,636
+where you actually
+want these work-items
+
+
+685
+00:30:41,996 --> 00:30:43,466
+to communicate with each other.
+
+
+686
+00:30:43,566 --> 00:30:45,006
+Let's take an example;
+let's say I want to --
+
+
+687
+00:30:45,106 --> 00:30:48,186
+a very simple example -- I want
+to sum elements of an array.
+
+
+688
+00:30:48,216 --> 00:30:51,026
+It's referred to as a
+classic problem of reduction.
+
+
+689
+00:30:51,556 --> 00:30:54,716
+So in that case, you now we
+have these work-items generating
+
+
+690
+00:30:54,766 --> 00:30:57,506
+partial results and
+you keep looking
+
+
+691
+00:30:57,506 --> 00:31:00,316
+over until you finally have
+you know two partial sums
+
+
+692
+00:31:00,316 --> 00:31:01,446
+and then you get the final sum.
+
+
+693
+00:31:01,656 --> 00:31:04,996
+But in order to make this
+work, these work-items need
+
+
+694
+00:31:05,036 --> 00:31:08,746
+to know the results generated by
+other work-items, so they need
+
+
+695
+00:31:08,746 --> 00:31:11,116
+to be able to talk and you
+know talk is always good.
+
+
+696
+00:31:11,526 --> 00:31:14,476
+So what you can do in
+Metal is you can say, "Hey,
+
+
+697
+00:31:14,476 --> 00:31:17,166
+these work-items, they
+work together," ok?
+
+
+698
+00:31:17,166 --> 00:31:18,696
+And we call that a work-group.
+
+
+699
+00:31:19,456 --> 00:31:20,866
+And these work-items
+
+
+700
+00:31:20,866 --> 00:31:23,366
+in the work-group can
+actually share data
+
+
+701
+00:31:23,926 --> 00:31:25,986
+through what we call
+local memory.
+
+
+702
+00:31:25,986 --> 00:31:28,026
+Remember we talked in the
+previous session about global
+
+
+703
+00:31:28,026 --> 00:31:30,536
+and constant and
+so, for kernels,
+
+
+704
+00:31:30,706 --> 00:31:32,666
+you get an additional
+high-bandwidth,
+
+
+705
+00:31:33,106 --> 00:31:34,946
+low-latency memory we
+call "local memory."
+
+
+706
+00:31:34,946 --> 00:31:36,796
+Think of it just as
+a user-managed cache.
+
+
+707
+00:31:36,896 --> 00:31:37,516
+that's all it is.
+
+
+708
+00:31:37,516 --> 00:31:39,886
+And then they can
+synchronize because now
+
+
+709
+00:31:40,196 --> 00:31:43,276
+when these threads want...or
+work-items want to communicate,
+
+
+710
+00:31:43,276 --> 00:31:45,536
+they need to make sure they
+arrive at a place together
+
+
+711
+00:31:45,616 --> 00:31:46,766
+so they can exchange data.
+
+
+712
+00:31:47,196 --> 00:31:50,706
+So you get all of that with
+data-parallelism in Metal.
+
+
+713
+00:31:50,856 --> 00:31:51,806
+So let's...
+
+
+714
+00:31:53,206 --> 00:31:55,926
+Ok? So I wrote my code
+that can do all of this,
+
+
+715
+00:31:56,086 --> 00:31:57,746
+but how do I describe
+my problem?
+
+
+716
+00:31:58,326 --> 00:32:01,736
+So the thing is we called it a
+computation domain so depending
+
+
+717
+00:32:01,736 --> 00:32:05,506
+on what thing you're going to
+execute this function over,
+
+
+718
+00:32:05,506 --> 00:32:07,686
+if it's an array, your
+problem is one-dimensional.
+
+
+719
+00:32:08,156 --> 00:32:10,366
+If it's an image, your
+problem is two-dimensional.
+
+
+720
+00:32:11,036 --> 00:32:13,386
+So I've specified
+the dimensions,
+
+
+721
+00:32:13,476 --> 00:32:14,926
+but what else do
+I need to specify?
+
+
+722
+00:32:15,096 --> 00:32:17,586
+Well, now I need to tell
+you how many work items are
+
+
+723
+00:32:17,586 --> 00:32:20,456
+in my work-group and then how
+many work-groups do I have?
+
+
+724
+00:32:20,826 --> 00:32:22,726
+So that describes the
+number of work-items
+
+
+725
+00:32:23,276 --> 00:32:24,806
+in the work-group times
+the number of work-groups
+
+
+726
+00:32:24,806 --> 00:32:26,136
+that describes the total problem
+
+
+727
+00:32:26,136 --> 00:32:28,046
+that will be executed
+in parallel.
+
+
+728
+00:32:28,416 --> 00:32:30,926
+So choose the dimensions that
+are best for your algorithm.
+
+
+729
+00:32:30,926 --> 00:32:32,326
+So if you're doing
+an image processing,
+
+
+730
+00:32:32,326 --> 00:32:34,456
+a post-processing effect,
+you know you're going
+
+
+731
+00:32:34,456 --> 00:32:35,666
+to operate on textures.
+
+
+732
+00:32:35,666 --> 00:32:39,366
+Use 2D. Yeah, you could do it
+in 1D, but who wants to do all
+
+
+733
+00:32:39,366 --> 00:32:41,346
+that work to turn that 2D to 1D?
+
+
+734
+00:32:41,416 --> 00:32:42,886
+And you shouldn't have to.
+
+
+735
+00:32:43,316 --> 00:32:46,346
+And the work-items you
+have in your work-group,
+
+
+736
+00:32:46,496 --> 00:32:48,196
+how many they are,
+it's going to depend
+
+
+737
+00:32:48,196 --> 00:32:49,696
+on the algorithm you're using.
+
+
+738
+00:32:49,696 --> 00:32:52,386
+It's going to depend on how many
+load store operations you're
+
+
+739
+00:32:52,386 --> 00:32:56,146
+doing and how much
+computations: a ratio of memory
+
+
+740
+00:32:56,146 --> 00:32:58,816
+to computations and
+so play with that.
+
+
+741
+00:32:58,816 --> 00:32:59,706
+Choose the right dimensions.
+
+
+742
+00:33:00,286 --> 00:33:02,376
+You have the flexibility
+because you can specify these.
+
+
+743
+00:33:03,306 --> 00:33:04,766
+All right, so let's
+take an example.
+
+
+744
+00:33:04,966 --> 00:33:08,356
+We'll look at how to take
+pseudo-code C, C++ code,
+
+
+745
+00:33:08,356 --> 00:33:09,486
+and make it into shaders.
+
+
+746
+00:33:09,826 --> 00:33:11,606
+We'll look at how we do that
+for calls and we're going
+
+
+747
+00:33:11,606 --> 00:33:13,246
+to take a really,
+really simple example.
+
+
+748
+00:33:13,246 --> 00:33:16,836
+So this function takes an
+input, squares the result
+
+
+749
+00:33:16,836 --> 00:33:19,006
+for each element,
+and writes it out.
+
+
+750
+00:33:19,306 --> 00:33:21,296
+And remember ah,
+
+
+751
+00:33:21,296 --> 00:33:23,416
+it has the...the
+function is not complete.
+
+
+752
+00:33:24,356 --> 00:33:26,716
+So we include the standard
+library just like we did
+
+
+753
+00:33:26,716 --> 00:33:28,846
+for shaders and we use
+the Metal namespace.
+
+
+754
+00:33:29,196 --> 00:33:32,036
+So remember, we're going
+to execute this function
+
+
+755
+00:33:32,036 --> 00:33:35,376
+for each index in
+parallel, but first,
+
+
+756
+00:33:35,666 --> 00:33:38,366
+I need to tell the compiler that
+this is a data-parallel function
+
+
+757
+00:33:38,486 --> 00:33:39,826
+so that's what the
+kernel is going
+
+
+758
+00:33:39,826 --> 00:33:41,276
+to do; that's the qualifier.
+
+
+759
+00:33:41,396 --> 00:33:45,526
+All right, I'm passing
+pointers so I need
+
+
+760
+00:33:45,526 --> 00:33:48,806
+to specify these buffers, what
+indices they're going to be in
+
+
+761
+00:33:48,806 --> 00:33:50,856
+and that they're in the
+global address space.
+
+
+762
+00:33:50,856 --> 00:33:51,646
+Remember we talked
+
+
+763
+00:33:51,756 --> 00:33:53,446
+in the previous session
+about address spaces?
+
+
+764
+00:33:53,446 --> 00:33:56,286
+So these are coming in
+global and then I need
+
+
+765
+00:33:56,286 --> 00:33:59,526
+to tell the compiler that
+this ID to I'm going to use
+
+
+766
+00:33:59,526 --> 00:34:03,226
+to index is unique for each
+instance and so in this case,
+
+
+767
+00:34:03,226 --> 00:34:05,326
+I call that a "global ID," ok?
+
+
+768
+00:34:05,606 --> 00:34:07,726
+So we have a vertex
+ID and compute.
+
+
+769
+00:34:08,186 --> 00:34:09,696
+You have global IDs, ok?
+
+
+770
+00:34:09,835 --> 00:34:12,585
+So pretty simple,
+pretty straightforward.
+
+
+771
+00:34:12,786 --> 00:34:14,446
+Well, let's say if
+I'm using textures,
+
+
+772
+00:34:14,446 --> 00:34:15,926
+how would I write a kernel?
+
+
+773
+00:34:16,016 --> 00:34:20,306
+So let's say I'm trying to just
+mirror an image horizontally,
+
+
+774
+00:34:20,505 --> 00:34:24,906
+so this was my image and I
+want to...remember what I said,
+
+
+775
+00:34:25,255 --> 00:34:26,206
+"Use the right dimensions?"
+
+
+776
+00:34:26,505 --> 00:34:28,156
+So since I'm operating
+on an image,
+
+
+777
+00:34:28,246 --> 00:34:31,025
+I really want my global ID to
+be two-dimensional in nature
+
+
+778
+00:34:31,326 --> 00:34:32,476
+and that's what I'm doing here.
+
+
+779
+00:34:32,956 --> 00:34:35,626
+And I want to read
+from my input texture
+
+
+780
+00:34:36,045 --> 00:34:37,446
+after I have mirrored
+the coordinate
+
+
+781
+00:34:37,446 --> 00:34:38,876
+and then I want to write it out.
+
+
+782
+00:34:39,366 --> 00:34:42,196
+So you're going to
+find writing kernels,
+
+
+783
+00:34:43,016 --> 00:34:45,686
+just like writing
+shaders, it's really easy.
+
+
+784
+00:34:45,985 --> 00:34:48,835
+Its C++ code; it's
+standard with information
+
+
+785
+00:34:48,835 --> 00:34:51,636
+so that a compiler knows
+what you are trying to do.
+
+
+786
+00:34:52,106 --> 00:34:55,356
+Ok, remember we talked
+about built-in variables?
+
+
+787
+00:34:55,686 --> 00:34:59,606
+You had a special attribute
+to say position, front-facing,
+
+
+788
+00:34:59,606 --> 00:35:00,866
+and things like that
+for graphics?
+
+
+789
+00:35:01,336 --> 00:35:03,706
+Well, we have something
+similar for kernels too.
+
+
+790
+00:35:04,576 --> 00:35:07,636
+Well, global ID; you guys
+already know it is now, right?
+
+
+791
+00:35:08,336 --> 00:35:12,186
+So in this case, my example, I'm
+actually using...I'm operating
+
+
+792
+00:35:12,186 --> 00:35:15,016
+on a texture so my global
+ID is two-dimensional.
+
+
+793
+00:35:15,236 --> 00:35:17,936
+So it can be a ushort2 or uint2
+
+
+794
+00:35:18,466 --> 00:35:20,196
+so use the right
+dimensions you want.
+
+
+795
+00:35:20,556 --> 00:35:24,096
+Now so that's great if I'm
+only operating on textures
+
+
+796
+00:35:24,306 --> 00:35:27,126
+in my kernel, but what if
+I'm passing in buffers too?
+
+
+797
+00:35:27,596 --> 00:35:29,226
+So when I access my texture,
+
+
+798
+00:35:29,266 --> 00:35:31,226
+I'm going to use my
+two-dimensional global ID,
+
+
+799
+00:35:31,226 --> 00:35:34,416
+but if I access a buffer, I need
+to create a one-dimensional ID.
+
+
+800
+00:35:34,536 --> 00:35:38,006
+So we're trying to help you
+not have to write all that code
+
+
+801
+00:35:38,006 --> 00:35:40,156
+because there may be bugs;
+we fixed that for you.
+
+
+802
+00:35:40,276 --> 00:35:41,556
+So that's the global linear ID.
+
+
+803
+00:35:42,006 --> 00:35:44,696
+So now remember we said,
+
+
+804
+00:35:44,696 --> 00:35:46,236
+"Work-items work
+in a work-group?"
+
+
+805
+00:35:46,716 --> 00:35:47,936
+So within that work-group,
+
+
+806
+00:35:47,936 --> 00:35:49,846
+I need to know which
+instance I am.
+
+
+807
+00:35:50,266 --> 00:35:53,506
+So I have global ID; we
+call this the "local id."
+
+
+808
+00:35:54,186 --> 00:35:56,436
+And just like you can have
+a two-dimensional local ID,
+
+
+809
+00:35:57,016 --> 00:35:58,156
+there's also a one-dimensional.
+
+
+810
+00:35:59,096 --> 00:36:00,326
+We call that that the
+"local linear ID."
+
+
+811
+00:36:00,326 --> 00:36:03,166
+So you just specify these
+attributes for the arguments
+
+
+812
+00:36:03,166 --> 00:36:06,516
+to your kernel function and
+the compiler will generate the
+
+
+813
+00:36:06,516 --> 00:36:07,066
+right code.
+
+
+814
+00:36:07,556 --> 00:36:10,646
+And finally we call this
+the "work-group ID."
+
+
+815
+00:36:10,646 --> 00:36:12,156
+And so why do I care about this?
+
+
+816
+00:36:12,476 --> 00:36:17,006
+Well, remember you specify
+the number of work-items
+
+
+817
+00:36:17,586 --> 00:36:19,166
+in the work-group and
+number of work-groups?
+
+
+818
+00:36:19,596 --> 00:36:22,486
+So let's take...for an example,
+I'm generating a histogram.
+
+
+819
+00:36:22,806 --> 00:36:26,346
+So each work-group...one way you
+could do this is each work-group
+
+
+820
+00:36:26,346 --> 00:36:28,666
+could generate a partial
+histogram, so a histogram
+
+
+821
+00:36:28,666 --> 00:36:30,056
+for the things it's working on.
+
+
+822
+00:36:30,446 --> 00:36:31,646
+And then you will
+run another kernel
+
+
+823
+00:36:31,646 --> 00:36:33,486
+that could sum these
+partial histograms
+
+
+824
+00:36:33,486 --> 00:36:34,736
+and generate a final histogram.
+
+
+825
+00:36:35,996 --> 00:36:38,006
+Well, so that means I
+need to write the results
+
+
+826
+00:36:38,006 --> 00:36:41,096
+of these partial histograms
+to some buffer, right?
+
+
+827
+00:36:41,516 --> 00:36:43,906
+Well I don't want to create
+a buffer for each work-group
+
+
+828
+00:36:43,906 --> 00:36:45,996
+so I just want to
+allocate one buffer
+
+
+829
+00:36:46,096 --> 00:36:49,566
+so guess what index
+would I use to write?
+
+
+830
+00:36:49,936 --> 00:36:51,176
+That would be my work-group ID
+
+
+831
+00:36:51,176 --> 00:36:54,326
+so that's how you
+would use it, ok?
+
+
+832
+00:36:54,966 --> 00:36:57,346
+All right, so let's see
+how to execute kernels.
+
+
+833
+00:36:57,346 --> 00:37:01,276
+What commands do I
+encode to send work
+
+
+834
+00:37:01,276 --> 00:37:02,606
+to the GPU to execute a kernel?
+
+
+835
+00:37:02,606 --> 00:37:04,606
+And we're going to take
+a post-processing example
+
+
+836
+00:37:04,606 --> 00:37:06,566
+so this is going to do
+some highlights, shadows,
+
+
+837
+00:37:06,566 --> 00:37:08,006
+vignette effects
+and things like that
+
+
+838
+00:37:08,006 --> 00:37:09,476
+and I'll actually demo
+that for you guys.
+
+
+839
+00:37:09,856 --> 00:37:11,706
+So let's look at the source.
+
+
+840
+00:37:11,706 --> 00:37:13,436
+I'm not going to give the
+details of the source;
+
+
+841
+00:37:13,436 --> 00:37:15,936
+just give a very high-level
+picture of what's happening.
+
+
+842
+00:37:15,986 --> 00:37:18,836
+So it takes a number of
+images and some information.
+
+
+843
+00:37:19,066 --> 00:37:21,956
+It's going to take the
+global ID and transform
+
+
+844
+00:37:21,956 --> 00:37:24,356
+that using some matrix;
+an affine matrix.
+
+
+845
+00:37:24,816 --> 00:37:26,326
+It's going to sample
+from an image
+
+
+846
+00:37:26,636 --> 00:37:28,596
+and then apply a
+post-processing effect,
+
+
+847
+00:37:28,996 --> 00:37:30,896
+and then write to an image, ok?
+
+
+848
+00:37:30,896 --> 00:37:33,096
+And then you're going
+to say, "That looks just
+
+
+849
+00:37:33,096 --> 00:37:33,936
+like a fragment shader."
+
+
+850
+00:37:34,646 --> 00:37:36,506
+Well in this case, yes it does.
+
+
+851
+00:37:37,096 --> 00:37:40,716
+But remember, the number
+of work-items times number
+
+
+852
+00:37:40,716 --> 00:37:43,526
+of work-groups make up the total
+problem domain you're going
+
+
+853
+00:37:43,526 --> 00:37:44,066
+to operate on.
+
+
+854
+00:37:44,536 --> 00:37:45,566
+There is no such requirement
+
+
+855
+00:37:45,566 --> 00:37:48,086
+that each work-item must only
+operate on only one pixel;
+
+
+856
+00:37:48,546 --> 00:37:50,146
+it could actually
+operate on many pixels.
+
+
+857
+00:37:50,566 --> 00:37:52,996
+And depending on what you
+are doing in your code,
+
+
+858
+00:37:52,996 --> 00:37:57,356
+again that computation to memory
+ratio, you may find its better
+
+
+859
+00:37:57,356 --> 00:37:59,736
+to do more work than less work.
+
+
+860
+00:38:00,326 --> 00:38:02,376
+So when we do this, we
+actually modify this kernel.
+
+
+861
+00:38:02,536 --> 00:38:04,386
+So we had a crack
+team working on it
+
+
+862
+00:38:04,896 --> 00:38:07,386
+and what they did
+is they changed it
+
+
+863
+00:38:07,716 --> 00:38:09,306
+to four pixels per work-item.
+
+
+864
+00:38:10,756 --> 00:38:12,636
+It's like...it was
+actually faster.
+
+
+865
+00:38:13,106 --> 00:38:14,616
+And so we like faster, don't we?
+
+
+866
+00:38:16,056 --> 00:38:19,066
+So that's what it's
+doing; it's for...so and so
+
+
+867
+00:38:19,066 --> 00:38:22,256
+in fact each work-group is doing
+the work of four work-groups.
+
+
+868
+00:38:22,256 --> 00:38:25,306
+So we don't need to look at this
+code, but it's straightforward.
+
+
+869
+00:38:25,306 --> 00:38:26,896
+It's going to loop
+over these things
+
+
+870
+00:38:26,896 --> 00:38:28,186
+that the compiler
+is going to unroll.
+
+
+871
+00:38:28,576 --> 00:38:32,556
+But the point here is that
+there is no requirement
+
+
+872
+00:38:32,556 --> 00:38:35,416
+of one-to-one mapping; you
+can have one-to-end mapping.
+
+
+873
+00:38:35,686 --> 00:38:37,976
+And so you have a lot
+of flexibility, ok?
+
+
+874
+00:38:37,976 --> 00:38:41,066
+And that can actually
+help...really help you tune your
+
+
+875
+00:38:41,066 --> 00:38:42,936
+code; your data-parallel
+function that you want
+
+
+876
+00:38:42,936 --> 00:38:43,916
+to execute on the GPU.
+
+
+877
+00:38:45,196 --> 00:38:47,626
+All right, so let's talk about
+the compute command encoder.
+
+
+878
+00:38:47,836 --> 00:38:49,846
+So this is what you
+need to send commands
+
+
+879
+00:38:50,126 --> 00:38:51,656
+to execute kernels on the GPU.
+
+
+880
+00:38:52,106 --> 00:38:54,316
+So just like the
+RenderCommandEncoder
+
+
+881
+00:38:54,486 --> 00:38:56,716
+for compute, we have this
+compute command encoder
+
+
+882
+00:38:56,716 --> 00:38:58,096
+but first things first.
+
+
+883
+00:38:58,636 --> 00:39:00,266
+Remember I compiled my kernel
+
+
+884
+00:39:00,736 --> 00:39:02,616
+and so I have created
+a Metal library.
+
+
+885
+00:39:03,086 --> 00:39:04,086
+And so I'm going to load that
+
+
+886
+00:39:04,086 --> 00:39:05,396
+and I'm going to
+load that kernel.
+
+
+887
+00:39:06,236 --> 00:39:07,826
+The next thing I'm
+going to do is I'm going
+
+
+888
+00:39:07,826 --> 00:39:08,936
+to create my compute state.
+
+
+889
+00:39:09,106 --> 00:39:10,736
+Just like we had the
+render pipeline state,
+
+
+890
+00:39:11,006 --> 00:39:12,396
+there's the compute
+pipeline state.
+
+
+891
+00:39:12,606 --> 00:39:15,496
+And all it takes in this
+case is just the function.
+
+
+892
+00:39:16,296 --> 00:39:17,976
+The compute doesn't
+have a lot of states.
+
+
+893
+00:39:18,686 --> 00:39:19,976
+So at this point in time,
+
+
+894
+00:39:20,116 --> 00:39:23,226
+remember in the Metal library
+the information we compiled
+
+
+895
+00:39:23,226 --> 00:39:27,606
+from your source to Metal
+IR, an LLVM-based IR,
+
+
+896
+00:39:27,606 --> 00:39:28,906
+we're going to take that
+
+
+897
+00:39:28,906 --> 00:39:30,836
+and when you create a new
+compute pipeline state,
+
+
+898
+00:39:30,836 --> 00:39:33,566
+we're going to compile it
+to the actual GPU binary
+
+
+899
+00:39:33,566 --> 00:39:35,506
+that the GPU is going
+to execute, ok?
+
+
+900
+00:39:36,296 --> 00:39:38,776
+I'm going to create my
+compute command encoder.
+
+
+901
+00:39:40,516 --> 00:39:42,046
+I'm ready to send commands now.
+
+
+902
+00:39:43,266 --> 00:39:46,066
+So the first thing I'm going
+to do is set my compute state.
+
+
+903
+00:39:46,446 --> 00:39:49,446
+So then I'm going to set my
+resources my kernel uses;
+
+
+904
+00:39:49,446 --> 00:39:50,946
+remember the buffers
+and textures.
+
+
+905
+00:39:51,496 --> 00:39:54,506
+And then I'm going to execute
+"ready to encode the command"
+
+
+906
+00:39:54,506 --> 00:39:55,526
+to execute the kernel.
+
+
+907
+00:39:55,836 --> 00:39:56,736
+So in order to do that,
+
+
+908
+00:39:57,286 --> 00:39:59,966
+I need to first set the number
+work-items in the work-group,
+
+
+909
+00:40:00,056 --> 00:40:01,176
+and how many work-groups
+there are.
+
+
+910
+00:40:01,326 --> 00:40:03,956
+So in this example,
+I use a 16 by 16.
+
+
+911
+00:40:04,036 --> 00:40:05,366
+Remember they are
+two-dimensional problems;
+
+
+912
+00:40:05,366 --> 00:40:07,986
+I'm going to give it
+two-dimensional work-group size.
+
+
+913
+00:40:08,436 --> 00:40:11,276
+And so I know the
+output image dimensions,
+
+
+914
+00:40:11,456 --> 00:40:13,076
+I know my work-group
+size, so I'm going
+
+
+915
+00:40:13,076 --> 00:40:15,476
+to know...calculate how many
+work-groups there are going
+
+
+916
+00:40:15,476 --> 00:40:15,796
+to be.
+
+
+917
+00:40:17,186 --> 00:40:20,686
+And now, I encode the
+command to execute the kernel.
+
+
+918
+00:40:20,686 --> 00:40:22,976
+So two things I specify:
+the work-group size
+
+
+919
+00:40:22,976 --> 00:40:24,736
+and how many work-groups
+there are, ok?
+
+
+920
+00:40:24,736 --> 00:40:27,216
+And then I'm done encoding.
+
+
+921
+00:40:27,786 --> 00:40:33,176
+So at this point in time,
+commands have been encoded
+
+
+922
+00:40:33,866 --> 00:40:35,396
+but the GPU hasn't
+received them.
+
+
+923
+00:40:35,546 --> 00:40:38,066
+So just like we talked
+about sending commands,
+
+
+924
+00:40:38,066 --> 00:40:40,246
+you have to commit the command
+buffer and when you do that,
+
+
+925
+00:40:40,586 --> 00:40:43,136
+the GPU will start
+executing this kernel, ok?
+
+
+926
+00:40:43,336 --> 00:40:46,216
+So let me show you a demo of
+these filtering operations.
+
+
+927
+00:40:47,026 --> 00:40:49,096
+All right, so that's
+applying and we know the fact
+
+
+928
+00:40:49,096 --> 00:40:49,976
+that we can do shadows.
+
+
+929
+00:40:50,516 --> 00:40:54,546
+[ Applause ]
+
+
+930
+00:40:55,046 --> 00:40:56,686
+Ok, so that's the
+highlights and shadows filter,
+
+
+931
+00:40:56,856 --> 00:40:58,276
+but I can actually
+do a tune filter.
+
+
+932
+00:40:58,276 --> 00:41:01,836
+And so this is actually...what
+it's doing is its taking your
+
+
+933
+00:41:01,836 --> 00:41:03,376
+input image and
+applying...converting it
+
+
+934
+00:41:03,376 --> 00:41:05,276
+into a what we'll
+call the LAB space
+
+
+935
+00:41:05,276 --> 00:41:08,936
+which approximates human vision,
+then does a bilateral filter,
+
+
+936
+00:41:08,936 --> 00:41:10,346
+and then actually
+does the tune filter,
+
+
+937
+00:41:10,346 --> 00:41:12,186
+and then converts
+it back to RGB.
+
+
+938
+00:41:12,186 --> 00:41:14,076
+Or let's say I want to
+sharpen it so I want
+
+
+939
+00:41:14,076 --> 00:41:15,186
+to apply a sharpen filter.
+
+
+940
+00:41:15,746 --> 00:41:19,306
+So you can see we adjusted the
+image, it's getting sharpened.
+
+
+941
+00:41:19,306 --> 00:41:22,796
+Hopefully you do see regions of
+the image getting sharpened, ok?
+
+
+942
+00:41:22,976 --> 00:41:24,226
+So these are some of the filters
+
+
+943
+00:41:24,456 --> 00:41:25,976
+and these are really,
+really easy to write.
+
+
+944
+00:41:25,976 --> 00:41:29,596
+Because in effect what you're
+doing now is you're just writing
+
+
+945
+00:41:29,596 --> 00:41:32,946
+your code, your algorithm,
+just as a set of functions.
+
+
+946
+00:41:33,346 --> 00:41:34,826
+And saying, "Execute
+this function
+
+
+947
+00:41:34,826 --> 00:41:36,776
+or this problem domain."
+
+
+948
+00:41:36,776 --> 00:41:39,006
+Really, really simple
+to think about.
+
+
+949
+00:41:39,006 --> 00:41:40,236
+So focus more on the algorithm
+
+
+950
+00:41:40,236 --> 00:41:42,926
+and that's what data-parallel
+computing allows you to do, ok?
+
+
+951
+00:41:43,956 --> 00:41:46,486
+So that's all I could...that's
+all I'm going to say
+
+
+952
+00:41:46,486 --> 00:41:48,196
+about data-parallel
+computing and next,
+
+
+953
+00:41:48,406 --> 00:41:49,706
+we're going to have Serhat come
+
+
+954
+00:41:49,706 --> 00:41:51,416
+and show you the
+amazing tools we have
+
+
+955
+00:41:51,416 --> 00:41:54,596
+and show you how you can debug
+profile Metal applications
+
+
+956
+00:41:54,596 --> 00:41:55,976
+in Xcode, so Serhat.
+
+
+957
+00:41:56,516 --> 00:42:03,566
+[ Applause ]
+
+
+958
+00:42:04,066 --> 00:42:05,956
+>> Well, thank you
+Aaftab and hello everyone.
+
+
+959
+00:42:07,086 --> 00:42:09,846
+Now I'm going to show off the
+great developer tools we have
+
+
+960
+00:42:10,286 --> 00:42:12,106
+in Xcode for your Metal apps.
+
+
+961
+00:42:12,956 --> 00:42:15,316
+We'll be focusing
+on some combinations
+
+
+962
+00:42:15,406 --> 00:42:19,426
+such as state setup, shader
+compilation, and performance,
+
+
+963
+00:42:20,046 --> 00:42:22,866
+and how you can use the tools
+to address these issues.
+
+
+964
+00:42:24,076 --> 00:42:28,166
+So I have the same app that
+Gokhan showed you earlier here.
+
+
+965
+00:42:28,646 --> 00:42:31,576
+The shadow buffer
+pass has been modified
+
+
+966
+00:42:31,576 --> 00:42:34,236
+to use percentage closer
+filtering for softer shadows,
+
+
+967
+00:42:34,236 --> 00:42:37,226
+but my app has a few issues
+that I'm going to fix live.
+
+
+968
+00:42:38,166 --> 00:42:41,086
+So let's go ahead and run it.
+
+
+969
+00:42:41,336 --> 00:42:44,776
+Ok as you can see,
+I've got some compilers
+
+
+970
+00:42:44,996 --> 00:42:49,266
+and Xcode is pointing right
+here at my G-buffer shader code.
+
+
+971
+00:42:49,786 --> 00:42:52,506
+So one of the great things
+with Metal is its support
+
+
+972
+00:42:52,506 --> 00:42:54,946
+for pre-compiled shaders
+right here in Xcode.
+
+
+973
+00:42:55,626 --> 00:42:59,496
+So in addition to the improved
+initialization time for my app
+
+
+974
+00:42:59,496 --> 00:43:03,576
+and other benefits, I also
+get to see the compilers
+
+
+975
+00:43:03,576 --> 00:43:06,296
+and warnings right here
+in Xcode at build time
+
+
+976
+00:43:06,436 --> 00:43:07,356
+as opposed to run time.
+
+
+977
+00:43:08,286 --> 00:43:09,926
+Let's go in and fix
+this real quick.
+
+
+978
+00:43:10,926 --> 00:43:14,906
+Let's define user
+variables and launch the app.
+
+
+979
+00:43:14,906 --> 00:43:19,226
+Now you can imagine this offers
+a much more productive workflow
+
+
+980
+00:43:19,226 --> 00:43:20,286
+for shader development.
+
+
+981
+00:43:21,366 --> 00:43:23,666
+Also using it is pretty
+easy, all you have
+
+
+982
+00:43:23,666 --> 00:43:26,026
+to do is you add your
+.mil shader files,
+
+
+983
+00:43:26,026 --> 00:43:30,096
+your Xcode project, and
+Xcode takes care of the rest.
+
+
+984
+00:43:30,096 --> 00:43:32,996
+Ok so my app is running now,
+but there's something wrong
+
+
+985
+00:43:32,996 --> 00:43:33,926
+with what I'm rendering.
+
+
+986
+00:43:34,536 --> 00:43:37,076
+Now I'm going to take a
+frame capture and bring
+
+
+987
+00:43:37,076 --> 00:43:39,696
+up the frame developer so that
+you can see the issue as well
+
+
+988
+00:43:39,696 --> 00:43:42,666
+and to do that, I'm going to
+click on this camera icon here
+
+
+989
+00:43:42,666 --> 00:43:45,246
+in the Debug bar and
+trigger a capture.
+
+
+990
+00:43:46,396 --> 00:43:47,676
+When I trigger a capture,
+
+
+991
+00:43:48,036 --> 00:43:50,856
+the frame debugger harvests
+all the Metal commands
+
+
+992
+00:43:50,856 --> 00:43:54,726
+that your application
+uses in the frame along
+
+
+993
+00:43:54,726 --> 00:43:57,056
+with all the other
+resources that it uses
+
+
+994
+00:43:57,056 --> 00:43:59,326
+as buffers, textures
+and shaders.
+
+
+995
+00:43:59,786 --> 00:44:03,146
+With these we can reconstruct
+the frame and you can replay
+
+
+996
+00:44:03,146 --> 00:44:05,606
+to any particular Metal
+command that we choose.
+
+
+997
+00:44:06,306 --> 00:44:08,106
+So this is what I was seeing
+
+
+998
+00:44:08,406 --> 00:44:10,816
+and you can see my scene
+is completely in shadow
+
+
+999
+00:44:12,106 --> 00:44:13,676
+and I'm missing my
+directional light.
+
+
+1000
+00:44:14,356 --> 00:44:17,326
+So let's use the frame debugger
+to figure out the problem.
+
+
+1001
+00:44:18,576 --> 00:44:21,336
+Well the first thing
+I want to do is I want
+
+
+1002
+00:44:21,336 --> 00:44:23,486
+to check my commands and make
+sure everything is in order.
+
+
+1003
+00:44:24,246 --> 00:44:26,726
+For that, I'm going to use
+the debug navigator here
+
+
+1004
+00:44:26,726 --> 00:44:28,616
+on the left-hand side
+of the Xcode window.
+
+
+1005
+00:44:29,836 --> 00:44:32,756
+This is where the debugger
+shows the old Metal commands
+
+
+1006
+00:44:33,636 --> 00:44:34,986
+that were executing
+in the frame.
+
+
+1007
+00:44:35,596 --> 00:44:38,346
+You can see that it also
+reflects the natural hierarchy
+
+
+1008
+00:44:38,346 --> 00:44:40,036
+of your command encoders
+
+
+1009
+00:44:40,036 --> 00:44:43,086
+within your command buffers
+that's making it a lot easier
+
+
+1010
+00:44:43,086 --> 00:44:44,256
+for you to navigate your frame.
+
+
+1011
+00:44:45,436 --> 00:44:47,366
+Well one thing to keep
+in mind here though is,
+
+
+1012
+00:44:47,366 --> 00:44:50,016
+the order you see
+here, is the order
+
+
+1013
+00:44:50,016 --> 00:44:52,136
+that the GPU executes
+these commands.
+
+
+1014
+00:44:52,136 --> 00:44:53,796
+So it's a bit different
+than CPU debugging.
+
+
+1015
+00:44:54,116 --> 00:44:57,906
+You can also see that most
+
+
+1016
+00:44:57,906 --> 00:45:00,046
+of my objects here have
+human-readable names,
+
+
+1017
+00:45:00,046 --> 00:45:01,586
+not just draw pointer values.
+
+
+1018
+00:45:02,346 --> 00:45:05,946
+Metal class has a label
+property that lets you set this
+
+
+1019
+00:45:06,026 --> 00:45:08,076
+and I highly recommend
+taking advantage of it
+
+
+1020
+00:45:08,076 --> 00:45:09,666
+as it's a great aid
+in debugging.
+
+
+1021
+00:45:11,136 --> 00:45:12,396
+Within the encoders,
+
+
+1022
+00:45:13,116 --> 00:45:16,596
+I can further annotate my
+command stream using debug
+
+
+1023
+00:45:16,596 --> 00:45:19,556
+groups shown in the navigator
+as these folder icons.
+
+
+1024
+00:45:20,996 --> 00:45:26,076
+Well, I can do this by using the
+push and pop debug group APIs
+
+
+1025
+00:45:26,236 --> 00:45:28,196
+and the debug groups are great
+
+
+1026
+00:45:28,196 --> 00:45:30,866
+for bracketing related commands
+together here in the navigator.
+
+
+1027
+00:45:31,556 --> 00:45:34,116
+Now let's investigate the
+G-buffer pass and figure
+
+
+1028
+00:45:34,116 --> 00:45:35,286
+out what's wrong
+with the shadows.
+
+
+1029
+00:45:35,286 --> 00:45:38,016
+I'm going to click on
+this structure debug group
+
+
+1030
+00:45:38,066 --> 00:45:41,796
+to navigate there; there you go.
+
+
+1031
+00:45:42,016 --> 00:45:44,036
+And as I navigate my frame,
+
+
+1032
+00:45:44,086 --> 00:45:47,036
+Xcode's main editor
+area is going to update
+
+
+1033
+00:45:47,176 --> 00:45:50,066
+and show me all the attachments
+for the current framebuffer.
+
+
+1034
+00:45:50,686 --> 00:45:53,846
+The assistant editor is
+where I see all my textures,
+
+
+1035
+00:45:54,146 --> 00:45:55,766
+buffers and functions.
+
+
+1036
+00:45:56,576 --> 00:45:59,456
+Currently, it's in bound GPU
+objects so it's only going
+
+
+1037
+00:45:59,456 --> 00:46:01,216
+to show me the objects
+that are bound
+
+
+1038
+00:46:01,216 --> 00:46:03,006
+to the current command encoder.
+
+
+1039
+00:46:03,686 --> 00:46:07,536
+All right, so I can see that my
+debuffer attachments look more
+
+
+1040
+00:46:07,536 --> 00:46:08,876
+or less correct except
+for the color.
+
+
+1041
+00:46:09,516 --> 00:46:11,186
+But if I look at the assistant,
+
+
+1042
+00:46:12,006 --> 00:46:15,316
+I see that my shadow texture
+bound to my fragment shader,
+
+
+1043
+00:46:15,546 --> 00:46:17,056
+here labeled as "shadow",
+is all black.
+
+
+1044
+00:46:18,176 --> 00:46:22,216
+So that explains why my scene
+was completely in shadow,
+
+
+1045
+00:46:22,296 --> 00:46:24,756
+but it also means that my shadow
+buffer passes aren't working
+
+
+1046
+00:46:24,756 --> 00:46:27,606
+properly, so let's just
+go there and investigate.
+
+
+1047
+00:46:28,476 --> 00:46:32,276
+So I'm going to just expand this
+and click on the encoder itself.
+
+
+1048
+00:46:33,376 --> 00:46:35,566
+Now looking at this
+I can see right away
+
+
+1049
+00:46:35,736 --> 00:46:37,096
+that the depth attachment
+
+
+1050
+00:46:37,096 --> 00:46:39,236
+for this pass isn't
+cleared when it starts.
+
+
+1051
+00:46:40,446 --> 00:46:41,886
+As Gokhan explained earlier,
+
+
+1052
+00:46:41,886 --> 00:46:44,346
+you control your
+framebuffer attachment clears
+
+
+1053
+00:46:44,346 --> 00:46:46,636
+with the load action
+property of the attachment.
+
+
+1054
+00:46:48,536 --> 00:46:52,096
+Now not only that, but this
+don't look like it was rendered
+
+
+1055
+00:46:52,096 --> 00:46:55,296
+from the point of light either
+but if I step through my frame
+
+
+1056
+00:46:55,596 --> 00:46:58,796
+to see my geometry,
+that looks proper.
+
+
+1057
+00:47:00,036 --> 00:47:03,646
+So let's look at the
+framebuffer state and figure
+
+
+1058
+00:47:03,646 --> 00:47:04,616
+out what the problem is there.
+
+
+1059
+00:47:05,226 --> 00:47:06,676
+I can investigate this state
+
+
+1060
+00:47:06,676 --> 00:47:09,236
+of "any Metal object
+using the variables view,"
+
+
+1061
+00:47:09,236 --> 00:47:10,016
+here at the bottom.
+
+
+1062
+00:47:10,056 --> 00:47:11,956
+I'll expand that a
+little bit [inaudible].
+
+
+1063
+00:47:11,956 --> 00:47:16,786
+On the right-hand side, I have
+a list of all my Metal objects.
+
+
+1064
+00:47:17,276 --> 00:47:20,216
+But I like to use the Auto
+View you see on the left.
+
+
+1065
+00:47:20,216 --> 00:47:23,336
+This is where you see all the
+relevant objects and their state
+
+
+1066
+00:47:23,766 --> 00:47:25,816
+for the current selected
+command only.
+
+
+1067
+00:47:26,506 --> 00:47:28,256
+So I know what I'm looking for.
+
+
+1068
+00:47:29,136 --> 00:47:30,596
+My framebuffer state
+is going to be
+
+
+1069
+00:47:30,596 --> 00:47:33,176
+under the RenderCommandEncoder
+so I'm going to disclose that
+
+
+1070
+00:47:33,176 --> 00:47:35,366
+and search for framebuffer.
+
+
+1071
+00:47:35,886 --> 00:47:40,646
+And yeah, as I suspected, my
+load action is not set to clear.
+
+
+1072
+00:47:40,646 --> 00:47:44,966
+And not only that, the attached
+texture here is actually depth;
+
+
+1073
+00:47:45,116 --> 00:47:47,556
+the texture I was looking at
+earlier was labeled "shadow."
+
+
+1074
+00:47:48,686 --> 00:47:52,946
+Now if I disclose my framebuffer
+setup that I prepared earlier,
+
+
+1075
+00:47:52,946 --> 00:47:56,236
+I can see that I already
+have a shadow frame buffer
+
+
+1076
+00:47:56,236 --> 00:47:58,386
+but I'm using debug
+framebuffer here.
+
+
+1077
+00:47:58,386 --> 00:48:01,836
+So that explains why I
+was getting a blank shadow
+
+
+1078
+00:48:01,836 --> 00:48:02,466
+buffer texture.
+
+
+1079
+00:48:02,846 --> 00:48:06,386
+I can quickly fix this by
+using the debug navigator
+
+
+1080
+00:48:06,386 --> 00:48:07,766
+to take me straight
+to the problem.
+
+
+1081
+00:48:08,666 --> 00:48:12,296
+And I can do that by going
+back to the navigator.
+
+
+1082
+00:48:13,006 --> 00:48:14,796
+Now you setup your framebuffer
+
+
+1083
+00:48:14,796 --> 00:48:16,516
+when you're creating your
+RenderCommandEncoder.
+
+
+1084
+00:48:16,676 --> 00:48:18,616
+I can disclose the back-trace
+
+
+1085
+00:48:19,106 --> 00:48:21,026
+where I create the
+RenderCommandEncoder and use
+
+
+1086
+00:48:21,026 --> 00:48:23,306
+that to jump straight
+to the source.
+
+
+1087
+00:48:24,236 --> 00:48:25,936
+So let me go ahead and
+fix this real quick.
+
+
+1088
+00:48:29,756 --> 00:48:30,886
+It should be shadow.
+
+
+1089
+00:48:31,026 --> 00:48:33,956
+I'd like to stop my
+app and re-launch it
+
+
+1090
+00:48:34,926 --> 00:48:36,636
+and make sure everything
+is running properly.
+
+
+1091
+00:48:37,516 --> 00:48:43,086
+[ Pause ]
+
+
+1092
+00:48:43,586 --> 00:48:47,686
+All right, so my scene
+looks great now but looking
+
+
+1093
+00:48:47,686 --> 00:48:49,466
+at the frames per
+second tray here,
+
+
+1094
+00:48:50,216 --> 00:48:52,216
+I can see that I'm not really
+getting the performance
+
+
+1095
+00:48:52,216 --> 00:48:52,846
+I expect.
+
+
+1096
+00:48:52,846 --> 00:48:55,006
+I'm going to click
+on this tray to bring
+
+
+1097
+00:48:55,006 --> 00:48:57,476
+up the graphics performance
+report.
+
+
+1098
+00:48:58,846 --> 00:49:02,746
+Now I'm getting about
+35-ish frames per second;
+
+
+1099
+00:49:02,746 --> 00:49:04,036
+I was getting 60 earlier.
+
+
+1100
+00:49:05,066 --> 00:49:08,366
+Now looking at the report, I can
+tell my GPU is heavily utilized
+
+
+1101
+00:49:08,366 --> 00:49:10,176
+with most of the work
+coming from the render
+
+
+1102
+00:49:10,216 --> 00:49:11,736
+or the fragment shader stage.
+
+
+1103
+00:49:13,086 --> 00:49:14,836
+Ok, to get a more
+detailed picture,
+
+
+1104
+00:49:14,836 --> 00:49:16,796
+let's take another frame capture
+
+
+1105
+00:49:17,196 --> 00:49:19,626
+and see what the Shader
+Profiler has to say about it.
+
+
+1106
+00:49:20,106 --> 00:49:23,556
+And the Shader Profiler
+is at Sampling Profiler.
+
+
+1107
+00:49:24,036 --> 00:49:25,216
+That's going to automatically
+
+
+1108
+00:49:25,216 --> 00:49:27,116
+and repeatedly run
+all my shaders
+
+
+1109
+00:49:27,116 --> 00:49:28,146
+in my frame for sampling.
+
+
+1110
+00:49:28,846 --> 00:49:31,626
+This may take a bit longer
+for a more complicated scene,
+
+
+1111
+00:49:31,626 --> 00:49:34,266
+but that small amount of time
+is well worth the investment
+
+
+1112
+00:49:34,266 --> 00:49:36,886
+as it offers an in-depth
+performance analysis
+
+
+1113
+00:49:36,886 --> 00:49:38,716
+that I otherwise
+wouldn't be able to get.
+
+
+1114
+00:49:40,046 --> 00:49:41,936
+Ok, when the Shader
+Profiler is done,
+
+
+1115
+00:49:42,546 --> 00:49:45,906
+I'm going to get this
+program performance table here
+
+
+1116
+00:49:45,906 --> 00:49:46,466
+in the report.
+
+
+1117
+00:49:46,996 --> 00:49:51,276
+In this table, I get a breakdown
+of the performance cost
+
+
+1118
+00:49:51,276 --> 00:49:54,576
+of all my render
+pipelines in the frame along
+
+
+1119
+00:49:54,576 --> 00:49:57,836
+with all the draw calls
+that use these pipelines.
+
+
+1120
+00:49:57,836 --> 00:49:59,366
+I can disclose this
+so you see that.
+
+
+1121
+00:50:00,466 --> 00:50:03,366
+Another great way to look
+at this is to again go back
+
+
+1122
+00:50:03,366 --> 00:50:06,986
+to the navigator and
+switch it to use the
+
+
+1123
+00:50:06,986 --> 00:50:08,236
+"View Frame by Program" mode.
+
+
+1124
+00:50:09,696 --> 00:50:11,206
+Now the nice thing about this is
+
+
+1125
+00:50:11,206 --> 00:50:14,676
+that I can both navigate my
+frame and see my shader profiler
+
+
+1126
+00:50:14,716 --> 00:50:16,096
+and results at the same time.
+
+
+1127
+00:50:16,836 --> 00:50:20,236
+So let's look at the
+most expensive draw call
+
+
+1128
+00:50:20,346 --> 00:50:22,426
+and the most expensive
+pipeline real quick.
+
+
+1129
+00:50:22,916 --> 00:50:27,586
+I'm going to hide my
+draw call highlight
+
+
+1130
+00:50:27,586 --> 00:50:29,986
+so that I can see my
+attachments better.
+
+
+1131
+00:50:30,396 --> 00:50:32,036
+And in the Assistant,
+I'm going to bring
+
+
+1132
+00:50:32,036 --> 00:50:34,546
+up that costly fragment shader,
+so that I can look at this
+
+
+1133
+00:50:34,546 --> 00:50:36,036
+for us, make some
+more room here.
+
+
+1134
+00:50:36,596 --> 00:50:36,686
+Oops.
+
+
+1135
+00:50:39,176 --> 00:50:41,816
+Ok, now as I look at my code,
+
+
+1136
+00:50:43,116 --> 00:50:47,636
+I can see line-by-line profiling
+data right alongside my code
+
+
+1137
+00:50:47,716 --> 00:50:48,386
+here in the editor.
+
+
+1138
+00:50:48,816 --> 00:50:50,336
+And if I keep scrolling down,
+
+
+1139
+00:50:51,156 --> 00:50:54,986
+I see that the most expensive
+parts of my shader by far is
+
+
+1140
+00:50:54,986 --> 00:50:57,176
+where I'm doing the
+shadow sampling loop.
+
+
+1141
+00:50:58,076 --> 00:50:59,636
+So this many samples
+is an overkill.
+
+
+1142
+00:50:59,636 --> 00:51:05,116
+Let's reduce it to just a 2
+by 2 grid and Save: Command+S.
+
+
+1143
+00:51:05,366 --> 00:51:08,146
+Now when I do that, my shader
+is going to get recompiled
+
+
+1144
+00:51:08,706 --> 00:51:10,656
+and my changes will
+take effect immediately.
+
+
+1145
+00:51:11,776 --> 00:51:14,436
+And once the shader
+profiler is done analyzing,
+
+
+1146
+00:51:14,576 --> 00:51:17,586
+I'm going to get updated
+performance numbers as well.
+
+
+1147
+00:51:18,906 --> 00:51:22,006
+And I can see that my
+attachments look more
+
+
+1148
+00:51:22,006 --> 00:51:23,416
+or less unaffected; that's good.
+
+
+1149
+00:51:23,796 --> 00:51:26,706
+And now I'm spending far less
+time in the expensive part
+
+
+1150
+00:51:26,706 --> 00:51:28,576
+of my shader source
+and that's great.
+
+
+1151
+00:51:28,846 --> 00:51:33,856
+And if I scroll all the way to
+the end, this is my end result.
+
+
+1152
+00:51:34,776 --> 00:51:39,276
+Now I can go ahead and resume
+my app and I see a nice,
+
+
+1153
+00:51:39,276 --> 00:51:40,596
+smooth 60 frames per second.
+
+
+1154
+00:51:40,986 --> 00:51:41,436
+Excellent.
+
+
+1155
+00:51:42,066 --> 00:51:45,006
+With that, my work here
+is done and it's time
+
+
+1156
+00:51:45,006 --> 00:51:46,366
+to leave the stage
+back to Aaftab.
+
+
+1157
+00:51:46,366 --> 00:51:46,926
+Thank you.
+
+
+1158
+00:51:47,516 --> 00:51:53,936
+[ Applause ]
+
+
+1159
+00:51:54,436 --> 00:51:56,066
+All right, so let's
+summarize, ok?
+
+
+1160
+00:51:56,486 --> 00:52:01,586
+So Gokhan, you know, took you
+deeper into how Metal works.
+
+
+1161
+00:52:02,056 --> 00:52:05,336
+You know we talked about how
+you structure the application.
+
+
+1162
+00:52:05,336 --> 00:52:08,776
+The descriptors and state
+objects; how do you create them
+
+
+1163
+00:52:09,096 --> 00:52:11,796
+and when to do what, like
+for example: things you want
+
+
+1164
+00:52:11,796 --> 00:52:15,656
+to do once, like creating
+your command queue.
+
+
+1165
+00:52:16,276 --> 00:52:18,576
+Things you need to create
+whenever you need to,
+
+
+1166
+00:52:18,576 --> 00:52:22,026
+like resources, and things
+you must create every frame
+
+
+1167
+00:52:22,156 --> 00:52:24,206
+and every pass, right?
+
+
+1168
+00:52:24,206 --> 00:52:29,946
+And he showed you how you can do
+multi-pass encoding with Metal.
+
+
+1169
+00:52:30,546 --> 00:52:34,286
+Then I gave you a
+small, brief teaser
+
+
+1170
+00:52:34,286 --> 00:52:36,046
+into data-parallel
+computing, ok?
+
+
+1171
+00:52:36,196 --> 00:52:40,086
+And then finally we showed you
+the amazing tools that we have
+
+
+1172
+00:52:40,086 --> 00:52:42,846
+in Metal that you can use to
+write amazing applications.
+
+
+1173
+00:52:44,026 --> 00:52:44,766
+That was it.
+
+
+1174
+00:52:45,256 --> 00:52:49,186
+So for more information,
+any questions, you know,
+
+
+1175
+00:52:49,186 --> 00:52:51,756
+Philip Iliescu and Allan
+Schaffer are evangelists.
+
+
+1176
+00:52:51,756 --> 00:52:53,076
+You know their emails are there.
+
+
+1177
+00:52:53,686 --> 00:52:55,416
+And documentation
+is on our website.
+
+
+1178
+00:52:55,416 --> 00:52:59,696
+You know you can post questions,
+emails on the developer forums.
+
+
+1179
+00:53:00,916 --> 00:53:03,056
+The first two sessions
+that happened this morning,
+
+
+1180
+00:53:03,056 --> 00:53:04,266
+so these are the ones.
+
+
+1181
+00:53:04,886 --> 00:53:05,466
+Thank you guys.
+
+
+1182
+00:53:06,508 --> 00:53:08,508
+[ Applause ]
+

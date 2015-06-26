@@ -1,0 +1,7713 @@
+1
+00:00:11,206 --> 00:00:13,596
+>> Hi. Welcome to
+Swift Playgrounds.
+
+
+2
+00:00:13,926 --> 00:00:16,315
+I'm Rick Ballard and with
+me today is my colleague
+
+
+3
+00:00:16,315 --> 00:00:17,086
+Connor Wakamo.
+
+
+4
+00:00:17,356 --> 00:00:18,956
+We're both Engineers
+in the Xcode Team
+
+
+5
+00:00:18,956 --> 00:00:21,136
+and we've been working hard
+to bring Playgrounds to life.
+
+
+6
+00:00:22,406 --> 00:00:24,496
+We introduced Playgrounds
+to the world Monday morning
+
+
+7
+00:00:24,496 --> 00:00:25,606
+and you saw a little bit more
+
+
+8
+00:00:25,606 --> 00:00:27,766
+about them Monday
+afternoon and yesterday.
+
+
+9
+00:00:28,156 --> 00:00:30,216
+Well, today we're going to
+go into a lot more depth.
+
+
+10
+00:00:30,496 --> 00:00:33,626
+We're going to start out today
+with some conceptual background,
+
+
+11
+00:00:33,906 --> 00:00:36,916
+what Playgrounds actually are
+and what you can use them for.
+
+
+12
+00:00:37,096 --> 00:00:39,236
+And then we'll show you examples
+of how to use Playgrounds
+
+
+13
+00:00:39,236 --> 00:00:42,196
+for learning, exploration,
+and visualization
+
+
+14
+00:00:42,196 --> 00:00:43,296
+of the results of your code.
+
+
+15
+00:00:44,206 --> 00:00:46,836
+We'll show you how you can
+use your own custom resources
+
+
+16
+00:00:46,836 --> 00:00:49,526
+with your Playgrounds,
+and how to use Playgrounds
+
+
+17
+00:00:49,526 --> 00:00:51,346
+for algorithm development
+and development
+
+
+18
+00:00:51,346 --> 00:00:52,946
+of other separable
+pieces of code.
+
+
+19
+00:00:53,896 --> 00:00:56,046
+We'll introduce the
+XCPlayground framework
+
+
+20
+00:00:56,196 --> 00:00:58,516
+which includes some
+really powerful utilities
+
+
+21
+00:00:58,516 --> 00:01:00,276
+that you can use to
+enhance your Playgrounds.
+
+
+22
+00:01:00,836 --> 00:01:03,376
+And we'll show you how you can
+develop your own Custom Quick
+
+
+23
+00:01:03,376 --> 00:01:06,906
+Looks, so that you can visualize
+your own classes the same way
+
+
+24
+00:01:06,906 --> 00:01:09,466
+you visualize the classes
+that come with the frameworks.
+
+
+25
+00:01:10,596 --> 00:01:11,996
+Next, we'll show
+you a great demo
+
+
+26
+00:01:11,996 --> 00:01:15,046
+of how awesome Playgrounds are
+for developing custom views
+
+
+27
+00:01:15,226 --> 00:01:17,136
+and in any other kind
+of custom drawing
+
+
+28
+00:01:17,516 --> 00:01:20,286
+and we'll show you how you can
+use your own asynchronous code
+
+
+29
+00:01:20,286 --> 00:01:21,116
+with Playgrounds.
+
+
+30
+00:01:22,046 --> 00:01:24,026
+Finally, we'll finish up
+today with a little bit
+
+
+31
+00:01:24,026 --> 00:01:26,136
+about the limitations that
+Playgrounds have today.
+
+
+32
+00:01:28,196 --> 00:01:29,936
+So what exactly are Playgrounds?
+
+
+33
+00:01:30,516 --> 00:01:33,716
+Playgrounds are a new type of
+document introduced in Xcode 6
+
+
+34
+00:01:33,716 --> 00:01:36,516
+and they're actually a file
+wrapper containing a few
+
+
+35
+00:01:36,516 --> 00:01:37,306
+useful things.
+
+
+36
+00:01:37,946 --> 00:01:39,546
+First of all is your Swift code.
+
+
+37
+00:01:39,736 --> 00:01:42,516
+The code that would be
+run and the result are,
+
+
+38
+00:01:42,516 --> 00:01:45,436
+and generate results to display
+automatically every time you
+
+
+39
+00:01:45,436 --> 00:01:46,526
+edit your Playground file.
+
+
+40
+00:01:47,696 --> 00:01:50,016
+Swift Playgrounds also
+can contain a folder
+
+
+41
+00:01:50,016 --> 00:01:52,946
+of embedded resources which
+are made available to your code
+
+
+42
+00:01:53,316 --> 00:01:55,526
+or your Playground can
+reference resources elsewhere
+
+
+43
+00:01:55,526 --> 00:01:57,046
+on your system you
+want to make available.
+
+
+44
+00:01:58,146 --> 00:02:01,006
+Finally, your Playground
+can contain a timeline full
+
+
+45
+00:02:01,006 --> 00:02:03,716
+of timeline items that
+provide useful visualization
+
+
+46
+00:02:03,716 --> 00:02:06,266
+of your results beyond what
+you see in the sidebar.
+
+
+47
+00:02:08,015 --> 00:02:09,756
+When you first open
+a Playground,
+
+
+48
+00:02:09,756 --> 00:02:12,616
+we show the Playground Editor
+with your Swift code on the left
+
+
+49
+00:02:12,616 --> 00:02:15,836
+and the results sidebar on
+the right showing the result
+
+
+50
+00:02:15,836 --> 00:02:17,526
+of every expression
+in your code.
+
+
+51
+00:02:18,606 --> 00:02:21,986
+Every time you edit your source,
+we rerun your Playground source
+
+
+52
+00:02:21,986 --> 00:02:25,266
+from the top to the bottom
+and present the new results
+
+
+53
+00:02:25,306 --> 00:02:27,106
+from that run in the sidebar.
+
+
+54
+00:02:28,256 --> 00:02:29,606
+This is the basic editor mode.
+
+
+55
+00:02:30,356 --> 00:02:33,516
+But if you go into the assistant
+editor mode we'll show the
+
+
+56
+00:02:33,516 --> 00:02:35,866
+Timeline Assistant by
+default which allows you
+
+
+57
+00:02:35,866 --> 00:02:37,906
+to visualize your
+results in more detail.
+
+
+58
+00:02:38,456 --> 00:02:40,766
+For example, you can
+display the value history
+
+
+59
+00:02:40,986 --> 00:02:42,156
+from a line in your code.
+
+
+60
+00:02:42,516 --> 00:02:44,516
+In this case, since
+it's a numeric value,
+
+
+61
+00:02:44,676 --> 00:02:47,266
+we'll draw a graph of
+that value over time
+
+
+62
+00:02:47,336 --> 00:02:49,806
+since it was iterated
+multiple times in a loop.
+
+
+63
+00:02:50,486 --> 00:02:53,316
+If you're looking for console
+output like that from Print Man,
+
+
+64
+00:02:53,346 --> 00:02:55,356
+you'll also find that in
+the Timeline Assistant.
+
+
+65
+00:02:56,126 --> 00:02:58,296
+There are a couple
+other useful things you,
+
+
+66
+00:02:58,296 --> 00:02:59,296
+I want to call out here.
+
+
+67
+00:02:59,636 --> 00:03:02,046
+In the lower right hand
+corner, there's a time-stepper.
+
+
+68
+00:03:02,086 --> 00:03:05,506
+And this controls how long your
+Playground will continue to run
+
+
+69
+00:03:05,746 --> 00:03:07,426
+after the top of a
+source is finished
+
+
+70
+00:03:07,726 --> 00:03:10,676
+if you're using live views
+or indefinite execution.
+
+
+71
+00:03:10,936 --> 00:03:13,346
+And I'll explain what both of
+those are a little later on.
+
+
+72
+00:03:14,826 --> 00:03:18,266
+There's also a slider which
+allows you to go back in time
+
+
+73
+00:03:18,526 --> 00:03:20,916
+and view results in the
+timeline from a specific point
+
+
+74
+00:03:20,916 --> 00:03:22,286
+in your Playground execution.
+
+
+75
+00:03:22,596 --> 00:03:25,426
+So here, you can see we're
+viewing a numeric result
+
+
+76
+00:03:25,626 --> 00:03:27,296
+from partway through the
+Playground execution.
+
+
+77
+00:03:27,656 --> 00:03:30,056
+But you'll find this is
+very useful with live views
+
+
+78
+00:03:30,056 --> 00:03:32,356
+as it allows you to scrub
+back through the recording
+
+
+79
+00:03:32,356 --> 00:03:35,086
+of that view and see exactly
+what your animation was doing
+
+
+80
+00:03:35,086 --> 00:03:36,356
+at a specific point in time.
+
+
+81
+00:03:36,466 --> 00:03:39,766
+So that's what Playgrounds are.
+
+
+82
+00:03:39,766 --> 00:03:42,106
+Let's talk a little bit about
+what you can use them for.
+
+
+83
+00:03:42,756 --> 00:03:44,066
+We think your first great use
+
+
+84
+00:03:44,066 --> 00:03:45,656
+of Playgrounds is
+going to be learning.
+
+
+85
+00:03:45,846 --> 00:03:48,406
+We've introduced a brand new
+language for you to learn
+
+
+86
+00:03:48,476 --> 00:03:50,966
+and we think the best way to
+get started is just to open
+
+
+87
+00:03:50,966 --> 00:03:53,506
+up a Playground and
+dive in and play around.
+
+
+88
+00:03:53,576 --> 00:03:58,496
+Our documentation also includes
+a special interactive Playground
+
+
+89
+00:03:58,496 --> 00:03:59,696
+called the Swift Tour.
+
+
+90
+00:03:59,846 --> 00:04:02,436
+This allows you to
+see documentation
+
+
+91
+00:04:02,666 --> 00:04:05,856
+and Playground Editor side
+by side in the same editor.
+
+
+92
+00:04:05,856 --> 00:04:08,396
+So you can read about how
+to do something and try it
+
+
+93
+00:04:08,396 --> 00:04:10,306
+out right there without
+leaving the editor.
+
+
+94
+00:04:11,756 --> 00:04:14,696
+Finally, we think Playgrounds
+are a fantastic way for people
+
+
+95
+00:04:14,696 --> 00:04:16,426
+to learn how to program
+in the first place.
+
+
+96
+00:04:16,856 --> 00:04:19,826
+Beginners don't have to learn
+how to configure a project
+
+
+97
+00:04:19,826 --> 00:04:21,906
+and target and build
+and run and debug.
+
+
+98
+00:04:22,146 --> 00:04:24,456
+They can just type code
+into a Playground Editor
+
+
+99
+00:04:24,586 --> 00:04:26,006
+and immediately see the results.
+
+
+100
+00:04:26,006 --> 00:04:28,766
+So if you know anyone who
+wants to learn how to program,
+
+
+101
+00:04:28,766 --> 00:04:31,256
+we encourage you to suggest
+trying it in a Playground.
+
+
+102
+00:04:31,736 --> 00:04:33,146
+We think Playgrounds
+are also going to be
+
+
+103
+00:04:33,146 --> 00:04:35,066
+in indispensable
+tool in your toolbox
+
+
+104
+00:04:35,216 --> 00:04:36,836
+for everyday code development.
+
+
+105
+00:04:37,436 --> 00:04:39,026
+If you're developing
+an algorithm
+
+
+106
+00:04:39,026 --> 00:04:40,686
+or any other separable
+chunk of code,
+
+
+107
+00:04:41,126 --> 00:04:42,976
+you should consider
+starting it on a Playground,
+
+
+108
+00:04:43,226 --> 00:04:45,226
+working on it there until
+you have it how you want it,
+
+
+109
+00:04:45,226 --> 00:04:47,916
+and then dragging that
+code into your project
+
+
+110
+00:04:48,166 --> 00:04:49,496
+for use in your application.
+
+
+111
+00:04:50,786 --> 00:04:53,266
+Any sort of drawing code
+you want to do is also great
+
+
+112
+00:04:53,266 --> 00:04:55,796
+in a Playground because you
+can immediately see the visual
+
+
+113
+00:04:55,796 --> 00:04:57,606
+result of what your
+code is doing.
+
+
+114
+00:04:57,826 --> 00:04:59,346
+And every time you
+change your code,
+
+
+115
+00:04:59,496 --> 00:05:02,216
+you can immediately see how
+that affects the visual result.
+
+
+116
+00:05:03,266 --> 00:05:06,726
+Finally, processing code like
+value transformers or a sequence
+
+
+117
+00:05:06,726 --> 00:05:08,826
+of image filters are
+great in Playgrounds
+
+
+118
+00:05:08,826 --> 00:05:11,496
+because you can visualize
+the result at every step
+
+
+119
+00:05:11,496 --> 00:05:12,916
+of the transformation process.
+
+
+120
+00:05:12,986 --> 00:05:15,086
+And when you change
+something, you can see how
+
+
+121
+00:05:15,086 --> 00:05:17,466
+that change ripples
+through all your results.
+
+
+122
+00:05:18,436 --> 00:05:19,236
+We think you'll find
+
+
+123
+00:05:19,236 --> 00:05:22,206
+that Playgrounds are fertile
+ground for experimentation.
+
+
+124
+00:05:22,386 --> 00:05:24,556
+And in particular,
+any time you're trying
+
+
+125
+00:05:24,556 --> 00:05:26,966
+to learn some new
+API, you should try it
+
+
+126
+00:05:26,966 --> 00:05:29,496
+out on a Playground because you
+can immediately see how it works
+
+
+127
+00:05:29,496 --> 00:05:30,706
+and what results it gives you.
+
+
+128
+00:05:31,346 --> 00:05:34,146
+You don't need a project, you
+don't need to build and run.
+
+
+129
+00:05:34,446 --> 00:05:37,536
+You just open up even a
+standalone Playground document,
+
+
+130
+00:05:37,776 --> 00:05:39,796
+type in your code,
+and see what happens.
+
+
+131
+00:05:40,436 --> 00:05:42,666
+I'm sure all of you
+have many a time gone
+
+
+132
+00:05:42,666 --> 00:05:45,646
+to create a new project from
+the application template,
+
+
+133
+00:05:45,836 --> 00:05:48,216
+and gone to find
+applicationDidFinishLaunching,
+
+
+134
+00:05:48,216 --> 00:05:50,346
+just to put a line of
+code and to try some API.
+
+
+135
+00:05:50,346 --> 00:05:52,916
+Oh, and then you probably
+have to NSLog it too
+
+
+136
+00:05:52,916 --> 00:05:54,116
+so you can see what happened.
+
+
+137
+00:05:54,336 --> 00:05:55,786
+You don't have to
+do that anymore.
+
+
+138
+00:05:55,986 --> 00:05:58,236
+Now you can just open
+up a Playground and try
+
+
+139
+00:05:58,236 --> 00:05:59,616
+out the API you want to try.
+
+
+140
+00:06:00,736 --> 00:06:03,126
+In fact, we'd recommend you
+consider keeping a Playground
+
+
+141
+00:06:03,126 --> 00:06:05,076
+in your doc at all
+times for quick access.
+
+
+142
+00:06:05,356 --> 00:06:06,056
+So anytime you want
+
+
+143
+00:06:06,056 --> 00:06:08,066
+to try something it's right
+there at your fingertips.
+
+
+144
+00:06:09,196 --> 00:06:12,196
+So with all that said, let's
+dive in and take a look
+
+
+145
+00:06:12,196 --> 00:06:13,306
+in an actual Playground.
+
+
+146
+00:06:13,486 --> 00:06:16,186
+To do that, I'm going to invite
+my colleague Connor up on stage.
+
+
+147
+00:06:17,316 --> 00:06:17,946
+>> Thank you, Rick.
+
+
+148
+00:06:18,236 --> 00:06:19,076
+Hello everyone.
+
+
+149
+00:06:19,216 --> 00:06:20,016
+My name is Connor.
+
+
+150
+00:06:20,186 --> 00:06:21,926
+I'm an Engineer on
+the Xcode Team.
+
+
+151
+00:06:22,126 --> 00:06:24,156
+And today I'll be talking to
+you about how you can work
+
+
+152
+00:06:24,156 --> 00:06:26,436
+with Playgrounds as well
+as some of the things
+
+
+153
+00:06:26,436 --> 00:06:28,496
+which we think Playgrounds
+will be really great for.
+
+
+154
+00:06:29,636 --> 00:06:30,906
+Now, Rick has already
+covered many
+
+
+155
+00:06:30,906 --> 00:06:32,766
+of the basic concepts
+behind Playgrounds.
+
+
+156
+00:06:33,196 --> 00:06:35,176
+And so I think really the best
+way to show you how to work
+
+
+157
+00:06:35,176 --> 00:06:36,616
+with Playgrounds
+is actually just
+
+
+158
+00:06:36,616 --> 00:06:37,976
+by jumping straight into a demo.
+
+
+159
+00:06:38,286 --> 00:06:39,426
+So, let's go ahead and do that.
+
+
+160
+00:06:40,246 --> 00:06:42,356
+So here I am at the demo
+machine and I'm just going
+
+
+161
+00:06:42,356 --> 00:06:44,096
+to go ahead and launch Xcode.
+
+
+162
+00:06:46,276 --> 00:06:48,796
+Now you'll notice here
+that on the Welcome window
+
+
+163
+00:06:48,796 --> 00:06:51,446
+for Xcode we've added this
+brand new "Get started
+
+
+164
+00:06:51,446 --> 00:06:52,506
+with a Playground" button.
+
+
+165
+00:06:52,686 --> 00:06:54,866
+It's that way we want to
+make it really easy for you
+
+
+166
+00:06:54,866 --> 00:06:55,976
+to just get started with one.
+
+
+167
+00:06:56,236 --> 00:06:57,316
+So I'll just click on that.
+
+
+168
+00:06:58,226 --> 00:07:00,106
+We'll create a Playground
+and I'll just give it a name
+
+
+169
+00:07:00,106 --> 00:07:00,976
+and a place to save it.
+
+
+170
+00:07:01,036 --> 00:07:02,626
+So "MyPlayground"
+is fine and putting
+
+
+171
+00:07:02,626 --> 00:07:03,826
+on the desktop is fine as well.
+
+
+172
+00:07:03,966 --> 00:07:08,136
+So let's say create, and then we
+have here our Playground itself.
+
+
+173
+00:07:08,136 --> 00:07:10,446
+So, you notice that
+we're importing Cocoa,
+
+
+174
+00:07:10,536 --> 00:07:12,566
+so we have full access
+to the Cocoa APIs.
+
+
+175
+00:07:12,566 --> 00:07:15,626
+And then we are also
+creating a string
+
+
+176
+00:07:16,116 --> 00:07:17,666
+and we're assigning
+the value, "Hello,
+
+
+177
+00:07:17,666 --> 00:07:21,106
+Playground" to that string.
+
+
+178
+00:07:21,436 --> 00:07:24,446
+You'll notice that in the result
+sidebar we're seeing the result
+
+
+179
+00:07:24,446 --> 00:07:24,746
+of that.
+
+
+180
+00:07:24,746 --> 00:07:27,246
+So in this case we're seeing
+the string, "Hello, Playground".
+
+
+181
+00:07:27,866 --> 00:07:30,106
+So OK. So that's kind
+of the basic idea.
+
+
+182
+00:07:30,416 --> 00:07:31,946
+Let's try something
+with numbers.
+
+
+183
+00:07:32,566 --> 00:07:37,576
+So let's say, for i in 0 to
+10, let's just say, i times i.
+
+
+184
+00:07:37,936 --> 00:07:41,016
+You see there that
+we execute the code
+
+
+185
+00:07:41,016 --> 00:07:43,756
+and we're getting an
+indicator in the result sidebar
+
+
+186
+00:07:43,956 --> 00:07:45,696
+that we've executed
+that code 10 times.
+
+
+187
+00:07:46,196 --> 00:07:48,526
+So, OK, let's try
+bumping that up to 100.
+
+
+188
+00:07:48,966 --> 00:07:50,746
+We'll let it run
+and we'll see there
+
+
+189
+00:07:50,746 --> 00:07:52,296
+that we immediately
+get an indication
+
+
+190
+00:07:52,296 --> 00:07:54,316
+that this code has
+executed 100 times.
+
+
+191
+00:07:55,226 --> 00:07:57,156
+Now, knowing that is
+very useful information
+
+
+192
+00:07:57,156 --> 00:07:59,426
+but sometimes you actually
+want to see the value there.
+
+
+193
+00:07:59,706 --> 00:08:01,066
+And we have support
+for that as well.
+
+
+194
+00:08:02,036 --> 00:08:04,596
+So OK, I'll just hover over
+this result, and you'll see
+
+
+195
+00:08:04,596 --> 00:08:06,216
+that we're highlighting
+the line of code
+
+
+196
+00:08:06,376 --> 00:08:07,966
+with which it is associated.
+
+
+197
+00:08:08,446 --> 00:08:10,006
+And we're also showing
+this button here.
+
+
+198
+00:08:10,246 --> 00:08:12,106
+That's called the
+Value History button.
+
+
+199
+00:08:12,496 --> 00:08:13,636
+And if I go ahead
+and click on it,
+
+
+200
+00:08:13,996 --> 00:08:16,726
+we'll open up the assistant
+editor into the timeline mode.
+
+
+201
+00:08:16,836 --> 00:08:19,836
+This is the place where you can
+see results over time as well
+
+
+202
+00:08:19,836 --> 00:08:21,476
+as a place for you to
+store results which you
+
+
+203
+00:08:21,476 --> 00:08:22,566
+like to see persistently.
+
+
+204
+00:08:22,966 --> 00:08:26,386
+So in this case, we're showing
+the graph for i times i.
+
+
+205
+00:08:26,716 --> 00:08:28,516
+And we've seen this, you know,
+this nice little curve here.
+
+
+206
+00:08:28,916 --> 00:08:33,525
+So OK, so that's kind of the
+basics of using the timeline
+
+
+207
+00:08:33,576 --> 00:08:35,456
+and calculating numbers.
+
+
+208
+00:08:35,456 --> 00:08:37,346
+Let's try something a
+little bit more interesting.
+
+
+209
+00:08:37,496 --> 00:08:40,256
+Let's go ahead and do
+something with AppKit.
+
+
+210
+00:08:40,256 --> 00:08:41,936
+So let's first start
+up by creating a color.
+
+
+211
+00:08:42,216 --> 00:08:46,526
+So you let color equals
+NSColor.blueColor.
+
+
+212
+00:08:47,036 --> 00:08:49,496
+You'll see there that
+we're now showing
+
+
+213
+00:08:49,496 --> 00:08:52,286
+in the result sidebar a color
+swatch indicating what the color
+
+
+214
+00:08:52,286 --> 00:08:54,986
+is as well as indicators
+of all of the components
+
+
+215
+00:08:55,086 --> 00:08:55,986
+which make up that color.
+
+
+216
+00:08:56,536 --> 00:08:58,826
+So I can, you know,
+take this color
+
+
+217
+00:08:58,826 --> 00:09:00,466
+and let's create another
+attributed string using it.
+
+
+218
+00:09:00,556 --> 00:09:05,016
+So let's say, let attrStr
+equals NSAttributedString.
+
+
+219
+00:09:05,846 --> 00:09:09,436
+And we'll pass it in the string
+in an attributes dictionary.
+
+
+220
+00:09:09,756 --> 00:09:11,116
+So we'll use the
+string we already have
+
+
+221
+00:09:12,086 --> 00:09:13,386
+and we'll create a dictionary.
+
+
+222
+00:09:14,016 --> 00:09:17,656
+So we'll say
+NSForegroundColorAttributeName
+
+
+223
+00:09:17,656 --> 00:09:19,006
+and we'll pass it
+the color we have.
+
+
+224
+00:09:19,326 --> 00:09:22,576
+And then I'll say,
+NSFontAttributeName,
+
+
+225
+00:09:22,816 --> 00:09:24,126
+I'll just pass it a font.
+
+
+226
+00:09:24,126 --> 00:09:26,496
+So I'll say, NSFont,
+systemFontOfSize
+
+
+227
+00:09:26,496 --> 00:09:28,636
+and then let's go to something
+fairly big, so I'll just put
+
+
+228
+00:09:28,636 --> 00:09:30,126
+in 42, see what that looks like.
+
+
+229
+00:09:31,026 --> 00:09:32,636
+So, OK. So here, you notice
+
+
+230
+00:09:32,636 --> 00:09:34,066
+that we're getting a
+result for this as well.
+
+
+231
+00:09:34,066 --> 00:09:36,676
+You're seeing that we're showing
+the plain text representation
+
+
+232
+00:09:36,676 --> 00:09:38,616
+of this, as well as
+an icon indicating
+
+
+233
+00:09:38,876 --> 00:09:40,696
+that it is an attributed string.
+
+
+234
+00:09:41,726 --> 00:09:42,606
+Now, that's great.
+
+
+235
+00:09:42,606 --> 00:09:44,216
+You know, we know that
+this code is executed.
+
+
+236
+00:09:44,746 --> 00:09:46,636
+But I really want to see what
+the actual value is there.
+
+
+237
+00:09:46,636 --> 00:09:48,676
+See how the attributed
+string looks itself
+
+
+238
+00:09:49,086 --> 00:09:50,226
+and we support that as well.
+
+
+239
+00:09:50,446 --> 00:09:53,006
+So I can just hover over
+the result and in addition
+
+
+240
+00:09:53,006 --> 00:09:54,296
+to the Value History button,
+
+
+241
+00:09:54,596 --> 00:09:56,006
+you'll see that we have
+a Quick Look button.
+
+
+242
+00:09:56,126 --> 00:09:59,376
+And so if I go ahead and click
+on that we'll show a Quick Look
+
+
+243
+00:09:59,376 --> 00:10:02,786
+of that value to show you
+the full representation of it
+
+
+244
+00:10:02,786 --> 00:10:04,616
+as it was created in
+the Playground source.
+
+
+245
+00:10:05,816 --> 00:10:08,016
+So, OK, that's colors
+and strings.
+
+
+246
+00:10:08,016 --> 00:10:09,306
+Let's try something with images.
+
+
+247
+00:10:09,426 --> 00:10:10,316
+Let's actually start
+
+
+248
+00:10:10,316 --> 00:10:11,866
+up by creating an
+array of image names.
+
+
+249
+00:10:12,016 --> 00:10:14,736
+So I'll say, let
+imageNames equals,
+
+
+250
+00:10:14,796 --> 00:10:17,536
+we'll put in an array there
+and, I know it's something to do
+
+
+251
+00:10:17,536 --> 00:10:20,426
+with like NSImageNameUser
+or accounts
+
+
+252
+00:10:20,426 --> 00:10:21,436
+or something in that line.
+
+
+253
+00:10:21,436 --> 00:10:24,226
+So I'm just going to create
+an array with imageNames
+
+
+254
+00:10:24,226 --> 00:10:27,516
+that I think it could
+be, the ImageNameUser,
+
+
+255
+00:10:28,676 --> 00:10:34,346
+NameUserAccounts,
+NSImageNameUserGroup.
+
+
+256
+00:10:34,476 --> 00:10:37,906
+It's OK. We run the
+code and you notice
+
+
+257
+00:10:37,936 --> 00:10:39,536
+that we now have an
+array of strings.
+
+
+258
+00:10:39,656 --> 00:10:42,386
+We actually want to
+see an array of images
+
+
+259
+00:10:42,506 --> 00:10:43,576
+and that's very easy to do.
+
+
+260
+00:10:43,576 --> 00:10:44,506
+I can just say something like,
+
+
+261
+00:10:44,996 --> 00:10:47,686
+let images equals
+imageNames.map.
+
+
+262
+00:10:48,346 --> 00:10:51,796
+I'll pass it a trailing closure
+to just say, NSImage named,
+
+
+263
+00:10:51,796 --> 00:10:54,736
+pass it the positional
+argument $0.
+
+
+264
+00:10:54,736 --> 00:10:57,646
+And you'll notice there that
+we're now seeing that this line
+
+
+265
+00:10:57,646 --> 00:10:59,186
+of code executed 4 times.
+
+
+266
+00:10:59,696 --> 00:11:01,336
+And so, basically
+we can see that,
+
+
+267
+00:11:01,336 --> 00:11:02,766
+you know, OK, that makes sense.
+
+
+268
+00:11:02,846 --> 00:11:04,866
+We're executing this
+line of code 3 times
+
+
+269
+00:11:04,866 --> 00:11:06,136
+for the trailing closure itself.
+
+
+270
+00:11:06,556 --> 00:11:09,066
+Then we're executing it once
+for the assignment to images.
+
+
+271
+00:11:09,876 --> 00:11:12,286
+Actually, I only want to
+see the images array itself
+
+
+272
+00:11:12,286 --> 00:11:14,516
+and we have a nice little trick
+for doing that in a Playground.
+
+
+273
+00:11:15,016 --> 00:11:16,736
+You just go ahead and put
+the thing that you want
+
+
+274
+00:11:16,736 --> 00:11:18,146
+to see on a line by itself.
+
+
+275
+00:11:18,476 --> 00:11:20,886
+So there you see, you know,
+we've put images there,
+
+
+276
+00:11:20,966 --> 00:11:24,626
+we rerun the code, and we're
+seeing the images array.
+
+
+277
+00:11:24,706 --> 00:11:27,336
+I can Quick Look that and
+I can see, "Oh, you know,
+
+
+278
+00:11:27,476 --> 00:11:28,646
+here's the image that
+I'm looking for."
+
+
+279
+00:11:29,076 --> 00:11:32,126
+And so, I'll just get
+that image and say,
+
+
+280
+00:11:32,126 --> 00:11:35,666
+let image equals images at 0.
+
+
+281
+00:11:35,786 --> 00:11:36,386
+We'll rerun it.
+
+
+282
+00:11:36,386 --> 00:11:38,696
+I'll Quick Look to make sure
+it's OK and in fact, yeah,
+
+
+283
+00:11:38,696 --> 00:11:39,696
+that's the one that
+I'm looking for.
+
+
+284
+00:11:40,996 --> 00:11:43,066
+Let's go ahead and put
+this into an image view.
+
+
+285
+00:11:43,386 --> 00:11:47,436
+So I'll say, let
+imageView equal NSImageView.
+
+
+286
+00:11:48,666 --> 00:11:51,106
+We'll pass our self a
+frame, so let's say NSRect.
+
+
+287
+00:11:52,166 --> 00:11:54,246
+We'll say 0 for the origin
+
+
+288
+00:11:54,246 --> 00:11:55,566
+because we don't
+really care about that.
+
+
+289
+00:11:55,986 --> 00:11:58,656
+Then we'll also say 512
+by 512 for the size.
+
+
+290
+00:11:59,096 --> 00:12:01,546
+Now I'm going to go ahead
+and put this ImageView
+
+
+291
+00:12:01,546 --> 00:12:02,536
+on its own line as well.
+
+
+292
+00:12:02,976 --> 00:12:05,796
+So I can show this
+result in the timeline.
+
+
+293
+00:12:06,756 --> 00:12:08,886
+And this is a neat little
+way of building something up.
+
+
+294
+00:12:08,926 --> 00:12:12,036
+You take the, you start
+creating the object
+
+
+295
+00:12:12,536 --> 00:12:15,276
+and then you put another line
+where we show it as a result.
+
+
+296
+00:12:15,536 --> 00:12:17,156
+Anyway, I can add some
+code in between there
+
+
+297
+00:12:17,156 --> 00:12:18,926
+to see how it builds
+up over time.
+
+
+298
+00:12:19,486 --> 00:12:20,676
+So you see here that
+we're starting
+
+
+299
+00:12:20,676 --> 00:12:22,186
+out with just this empty
+imageView, you know,
+
+
+300
+00:12:22,186 --> 00:12:23,386
+we're not seeing any
+interesting there.
+
+
+301
+00:12:23,456 --> 00:12:26,226
+So let's go ahead add our
+image to the imageView.
+
+
+302
+00:12:26,846 --> 00:12:29,866
+So let's say, imageView.image
+equals image.
+
+
+303
+00:12:30,376 --> 00:12:33,686
+And we'll re-execute and
+we'll see here now that we're
+
+
+304
+00:12:33,686 --> 00:12:34,886
+in fact showing the image there
+
+
+305
+00:12:34,886 --> 00:12:36,566
+but it's not filling
+the full imageView.
+
+
+306
+00:12:36,656 --> 00:12:37,616
+It's not doing what we expect.
+
+
+307
+00:12:37,616 --> 00:12:40,606
+That's because we haven't set up
+the image scaling appropriately.
+
+
+308
+00:12:41,026 --> 00:12:42,116
+So we'll set that as well.
+
+
+309
+00:12:44,956 --> 00:12:49,866
+Say imageScaling equals
+ImageScaleProportionally
+
+
+310
+00:12:49,866 --> 00:12:54,396
+UpOrDown. And we'll
+re-execute and now you'll see
+
+
+311
+00:12:54,396 --> 00:12:56,916
+that we're seeing the image
+at full size in the imageView.
+
+
+312
+00:12:56,996 --> 00:12:57,966
+We're seeing what we expect.
+
+
+313
+00:12:58,756 --> 00:12:59,546
+And it's OK.
+
+
+314
+00:12:59,626 --> 00:13:01,866
+That's how you can work
+with system resources.
+
+
+315
+00:13:02,396 --> 00:13:04,166
+But I'm sure you have many
+resources of your own that you'd
+
+
+316
+00:13:04,166 --> 00:13:05,356
+like to use in Playgrounds
+as well.
+
+
+317
+00:13:05,656 --> 00:13:06,636
+And we support that too.
+
+
+318
+00:13:06,896 --> 00:13:08,836
+So I'm just going to
+go ahead and I'm going
+
+
+319
+00:13:08,836 --> 00:13:10,586
+to show the final inspector.
+
+
+320
+00:13:11,136 --> 00:13:14,896
+It will slide in on the
+right hand of my Playground.
+
+
+321
+00:13:15,326 --> 00:13:16,576
+And you'll notice
+here that we're,
+
+
+322
+00:13:16,696 --> 00:13:18,826
+we have this new section
+called Playground Settings
+
+
+323
+00:13:18,826 --> 00:13:21,316
+which is shown whenever you're
+viewing a Playground document.
+
+
+324
+00:13:21,976 --> 00:13:23,006
+You can select the platform
+
+
+325
+00:13:23,006 --> 00:13:24,886
+against which the
+Playground should execute.
+
+
+326
+00:13:24,886 --> 00:13:26,756
+And, you know, OS X is
+what we're doing right now.
+
+
+327
+00:13:26,756 --> 00:13:27,916
+But we also support iOS.
+
+
+328
+00:13:28,726 --> 00:13:31,116
+And you can select a
+path for resources.
+
+
+329
+00:13:31,596 --> 00:13:33,566
+This defaults to none
+but you can select one
+
+
+330
+00:13:33,566 --> 00:13:35,406
+if you have resources
+that you're interested in.
+
+
+331
+00:13:35,906 --> 00:13:39,196
+In this case, I'm just going to
+say I have a folder of resources
+
+
+332
+00:13:39,196 --> 00:13:40,736
+on my desktop so I'm
+just going to say,
+
+
+333
+00:13:41,166 --> 00:13:42,806
+let's use the Absolute
+Path option.
+
+
+334
+00:13:43,406 --> 00:13:45,176
+I can then go ahead
+and choose that.
+
+
+335
+00:13:46,476 --> 00:13:48,916
+So let's say here's my resources
+folder, I'll choose that.
+
+
+336
+00:13:49,516 --> 00:13:53,466
+And then once I made that choice
+I'm actually going to go ahead
+
+
+337
+00:13:53,466 --> 00:13:55,686
+and hide the Utilities area.
+
+
+338
+00:13:56,266 --> 00:13:59,976
+And to access the images
+themselves, I just use,
+
+
+339
+00:13:59,976 --> 00:14:02,446
+you know, NSBundle API, you
+know, the resources show
+
+
+340
+00:14:02,446 --> 00:14:03,946
+up as resources for
+the main bundle.
+
+
+341
+00:14:04,026 --> 00:14:08,776
+So I can say something like "let
+myImage equals NSImage, named".
+
+
+342
+00:14:09,086 --> 00:14:10,866
+I have an image in
+here that's just called
+
+
+343
+00:14:11,016 --> 00:14:14,406
+"Xcode" so let's grab that.
+
+
+344
+00:14:14,546 --> 00:14:16,006
+We'll re-execute
+and you'll notice
+
+
+345
+00:14:16,006 --> 00:14:18,136
+that now we're getting
+the image result here.
+
+
+346
+00:14:18,536 --> 00:14:20,806
+And click, click to confirm
+that it's what I think it is.
+
+
+347
+00:14:20,806 --> 00:14:23,076
+And in fact, it is, we're
+seeing the Xcode icon there.
+
+
+348
+00:14:23,076 --> 00:14:24,886
+And now I'm just going to have
+
+
+349
+00:14:24,886 --> 00:14:26,886
+that imageView show
+the Xcode icon instead.
+
+
+350
+00:14:27,056 --> 00:14:30,806
+So, I'll say, "imageView.image
+equals myImage".
+
+
+351
+00:14:32,056 --> 00:14:34,846
+We'll re-execute and now
+you're seeing this new result,
+
+
+352
+00:14:34,846 --> 00:14:36,166
+let's add it to the
+timeline as well.
+
+
+353
+00:14:37,036 --> 00:14:39,556
+So you can see here that
+we have what we expected.
+
+
+354
+00:14:39,656 --> 00:14:41,796
+The Xcode icon is showing
+up in our imageView.
+
+
+355
+00:14:42,156 --> 00:14:43,596
+You'll probably also notice
+
+
+356
+00:14:43,626 --> 00:14:45,476
+that we're still seeing
+the older version here
+
+
+357
+00:14:45,846 --> 00:14:47,906
+with the user icon
+in the imageView.
+
+
+358
+00:14:48,356 --> 00:14:51,276
+And that's because Playgrounds
+actually capture results
+
+
+359
+00:14:51,276 --> 00:14:52,706
+on every single line
+of execution.
+
+
+360
+00:14:52,706 --> 00:14:54,806
+So you can do these
+kinds of comparisons.
+
+
+361
+00:14:55,066 --> 00:14:57,006
+So like for instance, you know,
+let's look at the imageView
+
+
+362
+00:14:57,006 --> 00:14:57,856
+when we first create it.
+
+
+363
+00:14:57,966 --> 00:14:58,626
+And it's empty.
+
+
+364
+00:14:59,376 --> 00:15:01,836
+Then I added the
+user icon to there.
+
+
+365
+00:15:01,916 --> 00:15:03,656
+And so, we see that
+earlier version that we saw
+
+
+366
+00:15:03,656 --> 00:15:05,296
+where it's small in the center.
+
+
+367
+00:15:06,336 --> 00:15:08,056
+Then I set the image
+scaling appropriately
+
+
+368
+00:15:08,336 --> 00:15:09,916
+and it's now filling
+full image view.
+
+
+369
+00:15:10,646 --> 00:15:12,786
+Finally, I updated it to
+use myImage and we're seeing
+
+
+370
+00:15:12,786 --> 00:15:14,266
+that it's showing
+the Xcode icon.
+
+
+371
+00:15:14,556 --> 00:15:16,476
+And that's great, so that you
+don't have, you know, go back
+
+
+372
+00:15:16,476 --> 00:15:18,196
+and see what happened
+at a particular point.
+
+
+373
+00:15:18,196 --> 00:15:20,796
+We're capturing the data for
+you as your Playground executes.
+
+
+374
+00:15:20,856 --> 00:15:24,066
+So I think that about covers
+the basics, so let's go back
+
+
+375
+00:15:24,066 --> 00:15:26,576
+to slides and talk a little
+bit more about Playgrounds.
+
+
+376
+00:15:27,236 --> 00:15:29,126
+So one of the key ideas
+that you saw there is
+
+
+377
+00:15:29,126 --> 00:15:31,066
+that Playgrounds will
+automatically execute.
+
+
+378
+00:15:31,436 --> 00:15:33,536
+You just type in some code
+and you'll see the results
+
+
+379
+00:15:33,536 --> 00:15:34,586
+in a sidebar on the right.
+
+
+380
+00:15:36,206 --> 00:15:38,576
+Additionally, you saw that
+we can add a value history
+
+
+381
+00:15:38,576 --> 00:15:39,346
+to the timeline.
+
+
+382
+00:15:39,696 --> 00:15:42,296
+So here we have a line of
+code which executed 100 times.
+
+
+383
+00:15:42,376 --> 00:15:43,916
+And if I hover over that result,
+
+
+384
+00:15:44,196 --> 00:15:45,436
+you'll see this Value
+History button.
+
+
+385
+00:15:46,076 --> 00:15:48,046
+If I click it, we'll switch
+into the assistant editor
+
+
+386
+00:15:48,046 --> 00:15:50,146
+and we'll show that as
+a history of that value.
+
+
+387
+00:15:51,456 --> 00:15:54,236
+Additionally, many values in
+the Playground have Quick Looks.
+
+
+388
+00:15:54,366 --> 00:15:54,946
+All right.
+
+
+389
+00:15:54,946 --> 00:15:56,786
+So in this case we have
+an attributed string.
+
+
+390
+00:15:56,896 --> 00:15:59,196
+We don't see the full
+representation of the sidebar,
+
+
+391
+00:15:59,196 --> 00:16:00,416
+just kind of the
+plain text of it.
+
+
+392
+00:16:00,926 --> 00:16:02,356
+But if I click on the
+Quick Look button,
+
+
+393
+00:16:02,426 --> 00:16:04,666
+we'll see the attributed
+string as it was created
+
+
+394
+00:16:04,666 --> 00:16:05,756
+in the Playground source.
+
+
+395
+00:16:07,186 --> 00:16:08,366
+We support many different types
+
+
+396
+00:16:08,396 --> 00:16:09,596
+for Quick Looks in
+the Playground.
+
+
+397
+00:16:09,596 --> 00:16:14,356
+We support colors, strings --
+both plain text and attributed.
+
+
+398
+00:16:15,326 --> 00:16:18,016
+We can show images, views,
+
+
+399
+00:16:18,246 --> 00:16:20,526
+in this case we'll capture
+a snapshot of the view
+
+
+400
+00:16:20,526 --> 00:16:21,976
+at that point in time.
+
+
+401
+00:16:22,426 --> 00:16:24,066
+We can show arrays
+and dictionaries
+
+
+402
+00:16:24,506 --> 00:16:26,446
+as we'll show a structured
+version of the array
+
+
+403
+00:16:26,446 --> 00:16:28,046
+or dictionary, ah,
+like you might see
+
+
+404
+00:16:28,046 --> 00:16:29,336
+in the variables
+view on the debugger.
+
+
+405
+00:16:30,676 --> 00:16:32,526
+We can show points,
+rects, and sizes.
+
+
+406
+00:16:32,526 --> 00:16:34,666
+We'll kind of create a graphical
+representation of those.
+
+
+407
+00:16:35,766 --> 00:16:38,966
+We can show Bézier paths, so
+both NSBezierPath on the Mac
+
+
+408
+00:16:38,966 --> 00:16:41,466
+and UIBezierPath on iOS.
+
+
+409
+00:16:42,036 --> 00:16:45,546
+We can show URLs, for this we'll
+take the plain text of the URL
+
+
+410
+00:16:45,546 --> 00:16:46,186
+and show it in the sidebar.
+
+
+411
+00:16:46,186 --> 00:16:48,396
+But if you Quick Look, it
+will show you a web view
+
+
+412
+00:16:48,396 --> 00:16:49,696
+with the contents of that URL.
+
+
+413
+00:16:50,076 --> 00:16:52,266
+And finally, for types
+
+
+414
+00:16:52,266 --> 00:16:54,196
+if we don't have a native
+Quick Look representation,
+
+
+415
+00:16:54,516 --> 00:16:57,626
+we can usually get a
+structured view of it, again,
+
+
+416
+00:16:57,626 --> 00:16:59,756
+like you would see in the
+variables view in the debugger.
+
+
+417
+00:17:00,276 --> 00:17:02,686
+So here I have an
+object of a class
+
+
+418
+00:17:02,686 --> 00:17:03,886
+that I created in
+the Playground.
+
+
+419
+00:17:04,336 --> 00:17:06,586
+And it is, it has a
+couple of properties,
+
+
+420
+00:17:06,586 --> 00:17:08,226
+a foo property and
+a bar property.
+
+
+421
+00:17:08,435 --> 00:17:10,106
+And you're seeing the
+values of those at that line
+
+
+422
+00:17:10,106 --> 00:17:11,266
+of code when it executed.
+
+
+423
+00:17:11,516 --> 00:17:15,086
+In this demo, I also showed
+you how you can use your own
+
+
+424
+00:17:15,086 --> 00:17:16,346
+resources with Playgrounds.
+
+
+425
+00:17:16,516 --> 00:17:17,766
+And this is actually
+fairly easy.
+
+
+426
+00:17:17,945 --> 00:17:20,606
+So you just go ahead and
+show the file inspector.
+
+
+427
+00:17:21,665 --> 00:17:24,236
+You select a location
+for Playground resources.
+
+
+428
+00:17:24,236 --> 00:17:25,626
+And for this we have
+three options.
+
+
+429
+00:17:26,165 --> 00:17:29,266
+We've got an Absolute Path
+option which basically says,
+
+
+430
+00:17:29,326 --> 00:17:31,166
+"OK, I've got this folder
+of resources somewhere
+
+
+431
+00:17:31,166 --> 00:17:32,826
+on my computer and
+I'd like to show it
+
+
+432
+00:17:32,826 --> 00:17:34,226
+and use it with the Playground."
+
+
+433
+00:17:34,776 --> 00:17:38,346
+We have a Relative to
+Playground path option.
+
+
+434
+00:17:38,746 --> 00:17:39,816
+And this is really great
+
+
+435
+00:17:39,816 --> 00:17:41,606
+if you're checking your
+Playground into SCM.
+
+
+436
+00:17:41,606 --> 00:17:44,006
+Because you can say, "Oh, you
+know, here's this Playground
+
+
+437
+00:17:44,006 --> 00:17:46,086
+and here's this folder of
+resources that's next to it,
+
+
+438
+00:17:46,306 --> 00:17:48,546
+I can set this up and then when
+you use other people to check
+
+
+439
+00:17:48,546 --> 00:17:52,486
+out your repository, then it
+will automatically be able
+
+
+440
+00:17:52,486 --> 00:17:54,046
+to use the Playground
+with its resources."
+
+
+441
+00:17:54,726 --> 00:17:57,696
+Finally, we support an
+Inside Playground option.
+
+
+442
+00:17:57,696 --> 00:17:58,956
+And this is great
+if you're sharing
+
+
+443
+00:17:58,956 --> 00:18:00,436
+in ways other than via SCM.
+
+
+444
+00:18:00,436 --> 00:18:03,796
+Because you can just say, "I
+want to store my resources
+
+
+445
+00:18:03,796 --> 00:18:06,286
+in my Playground" and you can
+email that out to other people
+
+
+446
+00:18:06,476 --> 00:18:08,466
+and see, when they open
+it, they'll be able
+
+
+447
+00:18:08,466 --> 00:18:10,246
+to see those resources
+immediately.
+
+
+448
+00:18:12,526 --> 00:18:14,506
+Once you have made
+the selection,
+
+
+449
+00:18:14,776 --> 00:18:17,406
+to access these resources
+in your Playground source,
+
+
+450
+00:18:17,516 --> 00:18:18,966
+you just use things like,
+
+
+451
+00:18:18,966 --> 00:18:21,706
+NSBundle.pathForResource
+ofType and NSImage named.
+
+
+452
+00:18:22,086 --> 00:18:24,416
+The resources just show
+up as the resources
+
+
+453
+00:18:24,416 --> 00:18:26,766
+for the main bundle during
+Playground execution.
+
+
+454
+00:18:27,066 --> 00:18:31,816
+So, now that we have the
+basics out of the way,
+
+
+455
+00:18:32,256 --> 00:18:34,016
+I think I'd like to start
+talking to you about some
+
+
+456
+00:18:34,016 --> 00:18:35,836
+of the use cases for
+which Playgrounds would be
+
+
+457
+00:18:35,836 --> 00:18:36,256
+really great.
+
+
+458
+00:18:36,626 --> 00:18:38,746
+And the first of these
+is Experimentation.
+
+
+459
+00:18:39,256 --> 00:18:42,026
+I'm sure that all of you
+out there have a folder
+
+
+460
+00:18:42,026 --> 00:18:43,656
+on your computer which
+looks something like this.
+
+
+461
+00:18:43,656 --> 00:18:46,046
+It's just a bunch of
+Xcode projects created
+
+
+462
+00:18:46,046 --> 00:18:49,056
+from the template that are,
+you know, maybe 1 or 2 changes
+
+
+463
+00:18:49,056 --> 00:18:51,376
+to see how something works
+or to test out an idea.
+
+
+464
+00:18:52,236 --> 00:18:54,016
+It's actually isn't
+that easy of a process.
+
+
+465
+00:18:54,016 --> 00:18:55,216
+You know, you have to
+do many different --
+
+
+466
+00:18:55,216 --> 00:18:58,676
+you have to first choose the
+right project template then find
+
+
+467
+00:18:58,676 --> 00:19:01,706
+the right file in that project
+to edit which may be easy
+
+
+468
+00:19:01,706 --> 00:19:03,646
+or maybe not depending on
+which template you chose.
+
+
+469
+00:19:04,356 --> 00:19:06,666
+You'd have to do what you're
+trying to do in the first place,
+
+
+470
+00:19:06,666 --> 00:19:07,636
+and that's write some code.
+
+
+471
+00:19:08,726 --> 00:19:10,016
+Once you've written
+something, you then have
+
+
+472
+00:19:10,056 --> 00:19:11,156
+to build your project.
+
+
+473
+00:19:11,906 --> 00:19:13,756
+You then run whatever you built.
+
+
+474
+00:19:13,926 --> 00:19:15,936
+And for iOS that may
+involve deploying
+
+
+475
+00:19:15,936 --> 00:19:17,306
+to a simulator or to a device.
+
+
+476
+00:19:18,476 --> 00:19:20,356
+And if you didn't get it right
+the first time, you'd then have
+
+
+477
+00:19:20,396 --> 00:19:22,556
+to redo this, stop in
+the debugger and step
+
+
+478
+00:19:22,556 --> 00:19:25,416
+through your code to figure out
+where things are going wrong.
+
+
+479
+00:19:25,416 --> 00:19:27,726
+We think Playgrounds can
+handle this a whole lot better.
+
+
+480
+00:19:28,056 --> 00:19:29,896
+That's because there's
+really only 2 steps.
+
+
+481
+00:19:29,896 --> 00:19:31,596
+You would just, say, get started
+
+
+482
+00:19:31,596 --> 00:19:33,856
+with a Playground
+and write your code.
+
+
+483
+00:19:34,406 --> 00:19:35,806
+Once you start writing
+your code,
+
+
+484
+00:19:35,806 --> 00:19:38,326
+we'll automatically execute it
+for you and show you the results
+
+
+485
+00:19:38,326 --> 00:19:40,516
+in the sidebar so you can see
+where things are going wrong.
+
+
+486
+00:19:40,926 --> 00:19:44,296
+So now, I think I'd
+like to show you a demo
+
+
+487
+00:19:44,296 --> 00:19:45,136
+of what this looks like.
+
+
+488
+00:19:45,136 --> 00:19:46,516
+So let's go back to
+the demo machine.
+
+
+489
+00:19:46,836 --> 00:19:47,396
+So here I am.
+
+
+490
+00:19:47,396 --> 00:19:49,576
+I'm going to go ahead and
+just launch Xcode again.
+
+
+491
+00:19:50,896 --> 00:19:53,166
+And this time I'm going to
+create an iOS-based Playground.
+
+
+492
+00:19:53,226 --> 00:19:59,686
+So I'll say, File, New File,
+and I'll say, iOS Playground.
+
+
+493
+00:20:00,306 --> 00:20:02,356
+And I want to actually test
+
+
+494
+00:20:02,356 --> 00:20:04,846
+out how the UITableViewCell
+style API works.
+
+
+495
+00:20:05,086 --> 00:20:07,206
+So, I'm just going to call
+and create this Playground
+
+
+496
+00:20:07,206 --> 00:20:10,296
+and call it TestTableViewCell.
+
+
+497
+00:20:10,806 --> 00:20:13,376
+Save it to the desktop, and OK.
+
+
+498
+00:20:13,376 --> 00:20:15,066
+So, here we have
+our iOS Playground.
+
+
+499
+00:20:15,626 --> 00:20:18,796
+It's, you know, importing UIKit,
+but otherwise, it's the same,
+
+
+500
+00:20:18,796 --> 00:20:20,776
+we're just creating a string
+and assigning it to a variable.
+
+
+501
+00:20:22,086 --> 00:20:24,766
+So, if I want to use a
+UITableViewCell style,
+
+
+502
+00:20:25,016 --> 00:20:26,486
+I need a UITableViewCell.
+
+
+503
+00:20:26,696 --> 00:20:29,256
+And the best way to show
+that is with a UITableView.
+
+
+504
+00:20:29,656 --> 00:20:31,226
+In order to get those cells
+
+
+505
+00:20:31,226 --> 00:20:33,266
+into my UITableView,
+I need a data source.
+
+
+506
+00:20:33,566 --> 00:20:35,626
+So, let's just go ahead and
+implement a data source.
+
+
+507
+00:20:36,096 --> 00:20:38,926
+So I'll say "class DataSource".
+
+
+508
+00:20:40,046 --> 00:20:42,766
+We'll inherit from
+NSObject and we'll conform
+
+
+509
+00:20:42,766 --> 00:20:45,756
+to the UITableViewDataSource
+protocol.
+
+
+510
+00:20:46,006 --> 00:20:50,046
+Notice now that we're getting
+an issue here and that's
+
+
+511
+00:20:50,046 --> 00:20:52,256
+because the DataSource we've
+created does not actually
+
+
+512
+00:20:52,256 --> 00:20:54,036
+conform to
+UITableViewDataSource.
+
+
+513
+00:20:54,606 --> 00:20:55,806
+And, you know, that's expected.
+
+
+514
+00:20:55,806 --> 00:20:57,386
+We haven't actually
+implemented any methods yet.
+
+
+515
+00:20:58,196 --> 00:21:01,106
+So, I'm actually going to
+jump to the declaration
+
+
+516
+00:21:01,106 --> 00:21:04,216
+of UITableViewDataSource by
+command-option-clicking on it.
+
+
+517
+00:21:05,066 --> 00:21:06,766
+We see that we then open
+the assistant editor.
+
+
+518
+00:21:07,196 --> 00:21:09,486
+And instead of showing
+you UITableView.h,
+
+
+519
+00:21:09,706 --> 00:21:13,576
+we're going to show you a
+Swift version of that header.
+
+
+520
+00:21:14,166 --> 00:21:16,246
+So, in this case, we're seeing,
+you know, here's our protocol.
+
+
+521
+00:21:16,486 --> 00:21:18,926
+We're seeing that we need to
+implement these two methods.
+
+
+522
+00:21:19,426 --> 00:21:22,226
+And so, OK, I'm just going to
+take this one, this first one
+
+
+523
+00:21:22,446 --> 00:21:25,226
+to tell the TableView the
+number of rows per section.
+
+
+524
+00:21:25,226 --> 00:21:27,636
+I'm going to copy
+and paste it in here.
+
+
+525
+00:21:28,186 --> 00:21:31,616
+And then I'm just going to start
+things out, return 1 from this.
+
+
+526
+00:21:33,146 --> 00:21:34,676
+So, OK. So that's
+the number of rows.
+
+
+527
+00:21:34,906 --> 00:21:38,976
+Let's also provide the cell.
+
+
+528
+00:21:39,196 --> 00:21:42,086
+And OK, let's just go ahead
+and create our UITableViewCell.
+
+
+529
+00:21:42,706 --> 00:21:45,966
+Let's say let cell
+equals UITableViewCell.
+
+
+530
+00:21:47,026 --> 00:21:48,746
+I need to fix this typo.
+
+
+531
+00:21:50,286 --> 00:21:54,596
+Here, we'll say the style, we'll
+just say the default style.
+
+
+532
+00:21:55,136 --> 00:21:56,646
+And then for the
+reuseIdentifier,
+
+
+533
+00:21:56,836 --> 00:21:59,256
+we aren't actually going
+to be reusing these cells
+
+
+534
+00:21:59,256 --> 00:22:01,416
+so we can just pass
+nil for this parameter.
+
+
+535
+00:22:01,416 --> 00:22:03,986
+And OK, so there
+we have our cell.
+
+
+536
+00:22:04,116 --> 00:22:05,706
+Let's go ahead and configure it.
+
+
+537
+00:22:06,086 --> 00:22:11,816
+So, I can say something like
+cell.textLabel.text equals Text.
+
+
+538
+00:22:12,836 --> 00:22:14,376
+OK. So that's the text label.
+
+
+539
+00:22:14,376 --> 00:22:15,436
+We'll see what that looks like.
+
+
+540
+00:22:16,026 --> 00:22:18,926
+UITableViewCell may also
+have a detail text label.
+
+
+541
+00:22:18,976 --> 00:22:20,426
+But that's not guaranteed
+to be the case.
+
+
+542
+00:22:20,516 --> 00:22:22,396
+So I'm going to explicitly
+handle the fact
+
+
+543
+00:22:22,396 --> 00:22:23,136
+that it's an optional.
+
+
+544
+00:22:23,296 --> 00:22:24,316
+So, I can say something like
+
+
+545
+00:22:24,786 --> 00:22:30,156
+"if let detailTextLabel
+equals cell.DetailTextLabel".
+
+
+546
+00:22:30,676 --> 00:22:34,846
+And so, if the code inside
+of this "if" executes,
+
+
+547
+00:22:34,846 --> 00:22:36,716
+then we'll know that we
+have a detailTextLabel.
+
+
+548
+00:22:36,816 --> 00:22:37,796
+So, I can say something like,
+
+
+549
+00:22:38,366 --> 00:22:43,516
+detailTextLabel.text
+equals Detail Text,
+
+
+550
+00:22:43,776 --> 00:22:45,186
+and we know that this is safe.
+
+
+551
+00:22:45,186 --> 00:22:47,866
+We're not going to accidentally
+try to assign a property to nil.
+
+
+552
+00:22:48,336 --> 00:22:50,646
+So now that we've configured
+our UITableViewCell,
+
+
+553
+00:22:50,646 --> 00:22:51,916
+I can just go ahead
+and return that.
+
+
+554
+00:22:52,536 --> 00:22:55,966
+You can see now that we
+no longer have an issue
+
+
+555
+00:22:56,036 --> 00:22:56,846
+in our Playground.
+
+
+556
+00:22:57,156 --> 00:22:59,366
+But we're also not getting
+any results in the sidebar.
+
+
+557
+00:22:59,406 --> 00:23:01,806
+That's because we haven't
+actually instantiated our
+
+
+558
+00:23:01,936 --> 00:23:02,466
+data source.
+
+
+559
+00:23:02,666 --> 00:23:06,466
+So, I'll just say something like
+DataSource equals DataSource
+
+
+560
+00:23:07,086 --> 00:23:09,896
+and then I can, you know,
+I'll just create a TableView
+
+
+561
+00:23:09,936 --> 00:23:11,746
+and tell it to use
+our DataSource.
+
+
+562
+00:23:13,026 --> 00:23:15,986
+So, let tableView
+equals UITableView.
+
+
+563
+00:23:16,546 --> 00:23:20,296
+We'll pass it a frame
+so, CGRect.
+
+
+564
+00:23:21,236 --> 00:23:23,326
+Again, we don't care
+about the origin.
+
+
+565
+00:23:23,906 --> 00:23:25,436
+I'll pass 320 for the width,
+
+
+566
+00:23:25,436 --> 00:23:27,166
+and for the height we just
+need enough to be able
+
+
+567
+00:23:27,166 --> 00:23:29,556
+to show all the cells
+we care about.
+
+
+568
+00:23:29,556 --> 00:23:30,786
+So, I'll just say
+something like 240.
+
+
+569
+00:23:31,736 --> 00:23:33,336
+Finally, we'll pass
+a style of Plain.
+
+
+570
+00:23:33,806 --> 00:23:37,026
+We'll then tell the tableView
+to use our DataSource.
+
+
+571
+00:23:37,546 --> 00:23:42,036
+And then, we will tell the
+tableView to reload data.
+
+
+572
+00:23:42,666 --> 00:23:44,996
+Let that Playground execute.
+
+
+573
+00:23:45,226 --> 00:23:49,616
+And once it's finished
+executing, we'll be able
+
+
+574
+00:23:49,616 --> 00:23:51,336
+to see the tableView
+we've created.
+
+
+575
+00:23:51,416 --> 00:23:53,376
+So, I'm going to just go ahead
+and add this to the timeline.
+
+
+576
+00:23:53,406 --> 00:23:56,286
+We can see here that we've
+created our tableView, you know,
+
+
+577
+00:23:56,286 --> 00:23:57,566
+we're seeing the
+cell that we want,
+
+
+578
+00:23:57,766 --> 00:23:58,786
+with the text that we want.
+
+
+579
+00:23:59,676 --> 00:24:01,556
+So, OK. So that, you know,
+gets us up and running.
+
+
+580
+00:24:01,556 --> 00:24:04,456
+But actually I want
+to see the styles
+
+
+581
+00:24:04,516 --> 00:24:05,966
+for all the styles that we have.
+
+
+582
+00:24:06,436 --> 00:24:08,856
+So, I'm going to jump
+back to the declaration
+
+
+583
+00:24:08,856 --> 00:24:10,306
+of UITableViewCell style.
+
+
+584
+00:24:10,616 --> 00:24:12,766
+And you can see here
+that there are 4 options.
+
+
+585
+00:24:12,856 --> 00:24:16,036
+So I'm going to change this
+1 to a 4, so if 4 rows.
+
+
+586
+00:24:16,186 --> 00:24:18,386
+Instead of always
+passing the default style,
+
+
+587
+00:24:18,386 --> 00:24:20,206
+I'm going to conditionalize
+it based on the row
+
+
+588
+00:24:20,206 --> 00:24:21,056
+that we're currently at.
+
+
+589
+00:24:21,666 --> 00:24:25,126
+So, I'll say let row
+equals IndexPath.row.
+
+
+590
+00:24:25,126 --> 00:24:29,146
+And I'll say something
+like let style equals
+
+
+591
+00:24:29,146 --> 00:24:33,306
+UITableViewCellStyle.fromRaw.
+
+
+592
+00:24:34,376 --> 00:24:35,116
+I'll pass the row.
+
+
+593
+00:24:35,836 --> 00:24:40,606
+This fromRaw will convert the
+UITable, the raw row integer
+
+
+594
+00:24:40,836 --> 00:24:42,896
+into a UITableViewCell
+style optional.
+
+
+595
+00:24:43,456 --> 00:24:46,506
+And we confirm that by using
+quick help and we can say that,
+
+
+596
+00:24:46,506 --> 00:24:48,456
+"Oh, yes in fact, this
+style is an optional
+
+
+597
+00:24:48,456 --> 00:24:49,716
+UITableViewCell style."
+
+
+598
+00:24:50,206 --> 00:24:51,526
+If we were to pass
+this directly here,
+
+
+599
+00:24:51,526 --> 00:24:55,716
+we would get an error
+as you can see here.
+
+
+600
+00:24:55,716 --> 00:24:58,376
+We need to explicitly handle
+the fact that this could be nil.
+
+
+601
+00:24:58,446 --> 00:25:02,136
+You know, the UITableViewCell
+initializer doesn't expect that.
+
+
+602
+00:25:02,586 --> 00:25:04,606
+So, let's go ahead
+and check that.
+
+
+603
+00:25:04,606 --> 00:25:07,306
+So we'll say, if we have
+a style, let's unwrap it,
+
+
+604
+00:25:07,976 --> 00:25:09,796
+otherwise you just
+use the default style.
+
+
+605
+00:25:10,846 --> 00:25:12,636
+It's OK. Now that
+we've handled that,
+
+
+606
+00:25:13,026 --> 00:25:15,626
+let the Playground
+re-execute and let's jump back
+
+
+607
+00:25:15,626 --> 00:25:16,936
+to the timeline using
+the jump bar.
+
+
+608
+00:25:17,496 --> 00:25:20,836
+And once it's re-executed,
+we'll notice here
+
+
+609
+00:25:20,836 --> 00:25:24,976
+that we're now seeing all the
+different UITableViewCell styles
+
+
+610
+00:25:25,036 --> 00:25:25,786
+in our tableView.
+
+
+611
+00:25:26,226 --> 00:25:27,916
+And so now, I have a Playground
+which I can, you know,
+
+
+612
+00:25:27,916 --> 00:25:29,956
+share with my co-workers or
+just keep it as a reference
+
+
+613
+00:25:29,956 --> 00:25:32,216
+for myself to see what
+each UITableViewCell style
+
+
+614
+00:25:32,216 --> 00:25:32,606
+looks like.
+
+
+615
+00:25:33,176 --> 00:25:34,346
+Let's go back to slides now.
+
+
+616
+00:25:34,556 --> 00:25:36,916
+So that showed you how
+great Playgrounds are
+
+
+617
+00:25:36,916 --> 00:25:37,916
+for experimentation.
+
+
+618
+00:25:37,956 --> 00:25:39,686
+You just get started
+with an idea,
+
+
+619
+00:25:39,946 --> 00:25:41,606
+write some code, and
+see how it works.
+
+
+620
+00:25:41,676 --> 00:25:44,356
+And now I'd like to invite
+Rick back on stage to talk
+
+
+621
+00:25:44,356 --> 00:25:46,326
+about another great idea
+we have for Playgrounds
+
+
+622
+00:25:46,326 --> 00:25:47,946
+and that's Algorithm
+Development.
+
+
+623
+00:25:48,186 --> 00:25:48,386
+Rick?
+
+
+624
+00:25:49,056 --> 00:25:51,296
+>> Thanks, Connor.
+
+
+625
+00:25:51,786 --> 00:25:55,586
+Developing algorithms and any
+other separable pieces of code
+
+
+626
+00:25:55,586 --> 00:25:57,386
+in a Playground is
+a great way to go.
+
+
+627
+00:25:57,596 --> 00:26:00,136
+And so to show you that, I'm
+going to dive right into a demo.
+
+
+628
+00:26:00,356 --> 00:26:03,456
+So what we're going to do today
+is implement insertion sort,
+
+
+629
+00:26:03,456 --> 00:26:04,796
+a fairly straightforward sort.
+
+
+630
+00:26:04,796 --> 00:26:07,246
+We're going to create a brand
+new Playground to do that.
+
+
+631
+00:26:07,246 --> 00:26:09,716
+So I'll just say get
+started with a Playground,
+
+
+632
+00:26:09,876 --> 00:26:12,086
+and we'll call the
+Playground InsertionSort
+
+
+633
+00:26:13,456 --> 00:26:14,486
+and save it on the desktop.
+
+
+634
+00:26:15,636 --> 00:26:17,486
+If you're not familiar
+with insertion sort,
+
+
+635
+00:26:17,586 --> 00:26:19,886
+imagine that you have a hand of
+cards and you want to put them
+
+
+636
+00:26:19,886 --> 00:26:21,916
+in order with the
+lowest values in the left
+
+
+637
+00:26:22,176 --> 00:26:23,536
+and the highest values
+on the right.
+
+
+638
+00:26:23,956 --> 00:26:26,216
+One way you might do that
+is, start with the second
+
+
+639
+00:26:26,216 --> 00:26:29,076
+to leftmost card and compare
+its value to the leftmost card.
+
+
+640
+00:26:29,486 --> 00:26:31,256
+If it's less, you'd
+swap the position
+
+
+641
+00:26:31,256 --> 00:26:32,376
+of the two cards in your hand.
+
+
+642
+00:26:33,106 --> 00:26:35,406
+You'd then look at the third
+to leftmost card and compare it
+
+
+643
+00:26:35,406 --> 00:26:36,556
+to the second to leftmost.
+
+
+644
+00:26:36,866 --> 00:26:39,596
+If it's less, you'd swap it,
+compare it to the leftmost card,
+
+
+645
+00:26:39,836 --> 00:26:43,136
+swap it if needed, and go
+on doing this for every card
+
+
+646
+00:26:43,136 --> 00:26:45,646
+in your hand until every
+card had reached the correct,
+
+
+647
+00:26:45,646 --> 00:26:46,376
+sorted position.
+
+
+648
+00:26:46,706 --> 00:26:48,306
+When you're done, your
+hand will be in order.
+
+
+649
+00:26:49,256 --> 00:26:51,756
+So, let's implement
+that in a Playground.
+
+
+650
+00:26:52,016 --> 00:26:53,606
+To start with, we
+need some random data
+
+
+651
+00:26:53,606 --> 00:26:54,586
+that we're going to sort.
+
+
+652
+00:26:55,006 --> 00:26:56,836
+So, I'm going to go
+ahead and I'm going
+
+
+653
+00:26:56,836 --> 00:26:58,346
+to declare an array of data.
+
+
+654
+00:26:58,506 --> 00:27:00,506
+I'm going to use var
+because this needs
+
+
+655
+00:27:00,506 --> 00:27:03,126
+to be a mutable array, so I
+can add to it and sort it.
+
+
+656
+00:27:03,126 --> 00:27:06,786
+And we'll just make an empty
+array of ints to start with.
+
+
+657
+00:27:07,156 --> 00:27:09,926
+And I could say for
+i in 0 through 20,
+
+
+658
+00:27:09,926 --> 00:27:11,506
+because maybe I want
+20 data points.
+
+
+659
+00:27:11,666 --> 00:27:14,436
+I can say data.append
+to add a new element.
+
+
+660
+00:27:14,436 --> 00:27:17,776
+And let's use the
+arc4random function
+
+
+661
+00:27:17,776 --> 00:27:19,116
+to generate a random number.
+
+
+662
+00:27:19,616 --> 00:27:21,376
+That doesn't return a
+Swift Int, so we're going
+
+
+663
+00:27:21,376 --> 00:27:23,286
+to cast it explicitly
+to a Swift Int.
+
+
+664
+00:27:23,726 --> 00:27:27,536
+And we'll modulus it by 100 to
+get a number between 0 and 99.
+
+
+665
+00:27:28,246 --> 00:27:29,646
+So if I look at data here,
+
+
+666
+00:27:29,986 --> 00:27:31,776
+you can see I have a
+result here on the right.
+
+
+667
+00:27:32,306 --> 00:27:35,396
+Here's an array of what look
+like pretty random numbers.
+
+
+668
+00:27:35,796 --> 00:27:37,966
+You'll also notice if I edit
+the Playground source again it
+
+
+669
+00:27:37,966 --> 00:27:40,626
+reruns and I get a different
+array of random numbers.
+
+
+670
+00:27:41,356 --> 00:27:42,716
+Ah, OK, so that's great.
+
+
+671
+00:27:43,176 --> 00:27:46,156
+Well, it's nice to be able
+to generate random data
+
+
+672
+00:27:46,156 --> 00:27:47,636
+but I probably don't
+want it to change
+
+
+673
+00:27:47,636 --> 00:27:49,296
+on me every time I edit
+the Playground source
+
+
+674
+00:27:49,296 --> 00:27:51,276
+because that might make it
+hard to develop my algorithm.
+
+
+675
+00:27:51,276 --> 00:27:54,866
+So, let's grab this random
+data and use it every time.
+
+
+676
+00:27:55,516 --> 00:27:57,806
+To do that, I'm going to
+click over the result sidebar
+
+
+677
+00:27:57,956 --> 00:28:02,836
+and use command-A to select
+this data, command-C to copy it,
+
+
+678
+00:28:03,246 --> 00:28:06,156
+and then I'm just going to paste
+this in here as array literal.
+
+
+679
+00:28:06,286 --> 00:28:09,186
+And now I can work off the
+same random data every time.
+
+
+680
+00:28:10,256 --> 00:28:12,496
+OK. So, let's start
+implementing our algorithm.
+
+
+681
+00:28:12,896 --> 00:28:14,386
+The first thing we
+need is a function
+
+
+682
+00:28:14,386 --> 00:28:16,926
+to swap two points
+of data in our array.
+
+
+683
+00:28:17,206 --> 00:28:19,176
+There actually is a
+built-in function called swap
+
+
+684
+00:28:19,176 --> 00:28:19,826
+for this already.
+
+
+685
+00:28:19,826 --> 00:28:22,186
+But for the sake of argument,
+we'll implement it ourselves.
+
+
+686
+00:28:22,296 --> 00:28:23,596
+So, I'm going to say func.
+
+
+687
+00:28:23,596 --> 00:28:25,136
+I'll call mine exchange.
+
+
+688
+00:28:25,496 --> 00:28:29,376
+You know, we're going to make
+this a generic because, well,
+
+
+689
+00:28:29,376 --> 00:28:30,526
+we have an array of ints.
+
+
+690
+00:28:30,976 --> 00:28:34,016
+Our insertion sort should
+be able to work on any type.
+
+
+691
+00:28:34,016 --> 00:28:37,006
+So, any type at least as
+long as it's comparable.
+
+
+692
+00:28:37,006 --> 00:28:39,296
+One element can be
+compared as greater
+
+
+693
+00:28:39,296 --> 00:28:40,346
+than or less than another.
+
+
+694
+00:28:40,816 --> 00:28:43,036
+So, we'll mostly work on
+comparable types here,
+
+
+695
+00:28:43,296 --> 00:28:45,046
+the exchange function
+can work on any type
+
+
+696
+00:28:45,086 --> 00:28:46,396
+because we just are
+swapping types.
+
+
+697
+00:28:46,476 --> 00:28:48,816
+So this is an exchange
+using a type D.
+
+
+698
+00:28:48,816 --> 00:28:55,336
+And it's going to take an
+array of T and two indexes
+
+
+699
+00:28:55,956 --> 00:28:58,206
+which we're going to
+exchange in the array.
+
+
+700
+00:28:58,936 --> 00:29:02,066
+So, the simplest way to exchange
+these objects is to assign one
+
+
+701
+00:29:02,066 --> 00:29:04,636
+to a temporary variable,
+assign the second to the first,
+
+
+702
+00:29:04,636 --> 00:29:06,726
+and assign the temporary
+variable to the second.
+
+
+703
+00:29:06,796 --> 00:29:09,866
+So, we can say let
+temp equals data of i.
+
+
+704
+00:29:09,866 --> 00:29:13,226
+Data of i equals data of j.
+
+
+705
+00:29:13,296 --> 00:29:15,786
+And data of j equals temp.
+
+
+706
+00:29:17,156 --> 00:29:18,776
+OK. I think we've
+implemented this correctly
+
+
+707
+00:29:18,776 --> 00:29:20,266
+but let's try it and find out.
+
+
+708
+00:29:20,266 --> 00:29:23,606
+I can say exchange,
+pass my data array
+
+
+709
+00:29:24,286 --> 00:29:27,246
+and we'll say exchange the 0th
+element with the second element.
+
+
+710
+00:29:27,506 --> 00:29:29,526
+And then we'll take a look
+at our array when we're done.
+
+
+711
+00:29:30,186 --> 00:29:34,006
+So, before, element 0 was
+12, and element 2 was 15,
+
+
+712
+00:29:34,406 --> 00:29:37,126
+now element 0 is 15
+and element 2 is 12.
+
+
+713
+00:29:37,186 --> 00:29:39,346
+So, it looks like
+exchange works properly.
+
+
+714
+00:29:40,466 --> 00:29:43,666
+OK. The next thing we need is
+a function to, given an index,
+
+
+715
+00:29:43,766 --> 00:29:45,176
+look at the data
+point of that index,
+
+
+716
+00:29:45,486 --> 00:29:48,486
+compare it to the data point
+to its left; if it's less,
+
+
+717
+00:29:48,486 --> 00:29:51,096
+exchange them and keep
+comparing and exchanging
+
+
+718
+00:29:51,096 --> 00:29:53,316
+until it reaches the correct
+position in the array.
+
+
+719
+00:29:53,956 --> 00:29:56,796
+So, let's call this
+function swapLeft.
+
+
+720
+00:29:59,296 --> 00:30:00,936
+Again, it's a generic
+but this time we need
+
+
+721
+00:30:00,936 --> 00:30:01,956
+to actually do a comparison.
+
+
+722
+00:30:02,076 --> 00:30:06,546
+So, we're going to say our type
+D is comparable and we're going
+
+
+723
+00:30:06,546 --> 00:30:11,086
+to pass an array of T and an
+index of the data point we want
+
+
+724
+00:30:11,086 --> 00:30:12,196
+to start swapping left.
+
+
+725
+00:30:13,236 --> 00:30:15,726
+OK. So, let's implement
+this, we're going to start
+
+
+726
+00:30:15,726 --> 00:30:18,006
+with our index and go
+back to position 1,
+
+
+727
+00:30:18,376 --> 00:30:20,946
+not 0 because there's nothing
+to the left of 0 to swap.
+
+
+728
+00:30:20,946 --> 00:30:24,136
+So, I'm going to say
+for i in, and, you know,
+
+
+729
+00:30:24,176 --> 00:30:26,366
+I could do a range
+from 1 to index
+
+
+730
+00:30:26,716 --> 00:30:28,596
+but what I really
+want is index to 1.
+
+
+731
+00:30:28,596 --> 00:30:32,716
+So I'm going to reverse
+the range with reverse 1.
+
+
+732
+00:30:33,126 --> 00:30:35,686
+3 dots makes it a
+fully closed range
+
+
+733
+00:30:35,686 --> 00:30:37,586
+which means it will go
+all the way to index.
+
+
+734
+00:30:38,056 --> 00:30:41,116
+So, since I'm reversing this, it
+goes from index and ends at 1.
+
+
+735
+00:30:42,256 --> 00:30:44,936
+And for each of these data
+points, I'm just going to say
+
+
+736
+00:30:44,936 --> 00:30:49,476
+if data of i is less
+than data of i minus 1,
+
+
+737
+00:30:51,796 --> 00:30:56,616
+exchange data i and i minus 1.
+
+
+738
+00:30:57,266 --> 00:31:00,056
+OK. If it's not less
+than data of i minus 1,
+
+
+739
+00:31:00,186 --> 00:31:02,046
+it must have reached the
+correct sort of position
+
+
+740
+00:31:02,046 --> 00:31:03,406
+in the array, so
+we can stop there.
+
+
+741
+00:31:03,786 --> 00:31:05,286
+So, let's say else break.
+
+
+742
+00:31:06,526 --> 00:31:08,236
+OK. Let's try this function out.
+
+
+743
+00:31:08,696 --> 00:31:13,716
+I'm going to go ahead and
+say swapLeft, pass data,
+
+
+744
+00:31:14,006 --> 00:31:17,396
+and let's pass element
+1, 2, 3, 4, 5, 6.
+
+
+745
+00:31:17,396 --> 00:31:19,206
+Let's pass element 6 left.
+
+
+746
+00:31:19,506 --> 00:31:23,666
+Oops! And look at our data.
+
+
+747
+00:31:23,666 --> 00:31:25,596
+And you can see the 0
+has moved all the way
+
+
+748
+00:31:25,596 --> 00:31:27,956
+from the 6th position to
+the beginning of the array
+
+
+749
+00:31:27,956 --> 00:31:29,546
+and everything's been
+moved to the right.
+
+
+750
+00:31:29,546 --> 00:31:31,776
+So it looks like this
+function is working great too.
+
+
+751
+00:31:32,566 --> 00:31:35,516
+OK. The last thing we need is
+to actually implement the sort,
+
+
+752
+00:31:35,596 --> 00:31:36,666
+so this should be pretty simple.
+
+
+753
+00:31:36,976 --> 00:31:38,506
+We'll call our function isort,
+
+
+754
+00:31:38,996 --> 00:31:41,566
+works again on type
+T that is comparable.
+
+
+755
+00:31:42,046 --> 00:31:43,946
+And we can just pass
+an array of T
+
+
+756
+00:31:44,026 --> 00:31:45,406
+and it will sort
+the whole array.
+
+
+757
+00:31:45,866 --> 00:31:49,426
+To do this, I'm just going to
+say for i in 1 (we're starting
+
+
+758
+00:31:49,426 --> 00:31:52,016
+at 1 because there's nothing
+to the left of 0 to sort to)
+
+
+759
+00:31:52,826 --> 00:32:01,476
+to data.count, swapLeft,
+data and i.
+
+
+760
+00:32:02,356 --> 00:32:06,606
+So, let's try it
+out, isort data.
+
+
+761
+00:32:06,796 --> 00:32:08,646
+And we'll look our data
+array when we're done.
+
+
+762
+00:32:09,016 --> 00:32:11,286
+And you can see it did a whole
+bunch of assignments up here.
+
+
+763
+00:32:11,576 --> 00:32:14,476
+And now here's our
+final array and it looks
+
+
+764
+00:32:14,476 --> 00:32:15,816
+like this is in sorted order.
+
+
+765
+00:32:16,056 --> 00:32:18,156
+So, we've correctly
+implemented insertion sort.
+
+
+766
+00:32:18,376 --> 00:32:21,556
+So, this is great for a simple
+algorithm like insertion sort.
+
+
+767
+00:32:21,556 --> 00:32:22,356
+That wasn't too hard.
+
+
+768
+00:32:22,656 --> 00:32:24,786
+But you know if I was doing
+something more complicated,
+
+
+769
+00:32:24,966 --> 00:32:26,806
+it might be nice to
+have more visibility
+
+
+770
+00:32:26,806 --> 00:32:28,456
+into exactly what's
+going on here.
+
+
+771
+00:32:28,716 --> 00:32:31,076
+So, let's look at how we
+might visualize our results
+
+
+772
+00:32:31,076 --> 00:32:31,866
+in more detail.
+
+
+773
+00:32:32,586 --> 00:32:35,456
+Well to start out with, let's
+draw a graph of the results
+
+
+774
+00:32:35,486 --> 00:32:37,106
+of the data at the beginning.
+
+
+775
+00:32:37,466 --> 00:32:40,036
+To do that, I'm just going to
+say for x in data (to iterate
+
+
+776
+00:32:40,036 --> 00:32:42,836
+through every data point)
+and just print out x.
+
+
+777
+00:32:44,116 --> 00:32:46,346
+And so, you'll see there
+are 20 data points here.
+
+
+778
+00:32:46,346 --> 00:32:47,866
+So this line executed 20 times.
+
+
+779
+00:32:48,176 --> 00:32:50,156
+And if I click on the
+Value History button,
+
+
+780
+00:32:51,106 --> 00:32:54,216
+I get a nice graph here showing
+my data at the beginning and,
+
+
+781
+00:32:54,216 --> 00:32:55,736
+boy, that does look random.
+
+
+782
+00:32:56,456 --> 00:33:00,506
+OK. So, now I want
+to try to print
+
+
+783
+00:33:00,506 --> 00:33:03,136
+out another graph every
+time swapLeft is called,
+
+
+784
+00:33:03,136 --> 00:33:05,196
+so I can see what's
+happening to the graph
+
+
+785
+00:33:05,456 --> 00:33:07,176
+over iterations of swapLeft.
+
+
+786
+00:33:07,666 --> 00:33:09,596
+And I could put this
+"for" statement in the end
+
+
+787
+00:33:09,596 --> 00:33:12,096
+of swapLeft again and
+show the Value History.
+
+
+788
+00:33:12,486 --> 00:33:15,036
+But again, in Value History
+Timeline item for given,
+
+
+789
+00:33:15,036 --> 00:33:18,036
+a line is going to show all
+the data from that line.
+
+
+790
+00:33:18,346 --> 00:33:19,886
+So, each time swapLeft
+is called,
+
+
+791
+00:33:19,886 --> 00:33:22,606
+its data would be
+appended to the same graph.
+
+
+792
+00:33:22,896 --> 00:33:23,736
+That's not what I want.
+
+
+793
+00:33:23,736 --> 00:33:25,476
+I want a new graph,
+every time it's called.
+
+
+794
+00:33:25,886 --> 00:33:28,406
+So to do that, we're going to
+need a new tool in our toolbox.
+
+
+795
+00:33:28,576 --> 00:33:30,576
+I'm going to go back to
+slides and show you that.
+
+
+796
+00:33:31,026 --> 00:33:33,096
+With Playgrounds, we're
+shipping a new framework called
+
+
+797
+00:33:33,096 --> 00:33:36,156
+XCPlayground and it contains
+some very useful utilities
+
+
+798
+00:33:36,206 --> 00:33:37,766
+for enhancing your Playgrounds.
+
+
+799
+00:33:38,506 --> 00:33:42,136
+Right now, we have API for
+manually capturing values
+
+
+800
+00:33:42,166 --> 00:33:45,566
+to display in timeline items,
+showing your views live
+
+
+801
+00:33:46,006 --> 00:33:48,496
+and extending execution
+for asynchronous code.
+
+
+802
+00:33:49,536 --> 00:33:51,076
+Right now, we're
+going to use the API
+
+
+803
+00:33:51,076 --> 00:33:52,826
+for manually capturing values.
+
+
+804
+00:33:53,796 --> 00:33:56,436
+That API is called
+XCPCaptureValue.
+
+
+805
+00:33:56,976 --> 00:34:00,006
+It's a function that takes an
+identifier, which is a string,
+
+
+806
+00:34:00,416 --> 00:34:02,156
+and your value, which
+is of any type.
+
+
+807
+00:34:03,416 --> 00:34:06,286
+When you pass it -- your value
+-- it will take that value
+
+
+808
+00:34:06,286 --> 00:34:08,206
+and put it in a timeline
+item for you.
+
+
+809
+00:34:08,826 --> 00:34:12,996
+So, the identifier that you pass
+it identifies what timeline item
+
+
+810
+00:34:12,996 --> 00:34:14,545
+you want that value to go to.
+
+
+811
+00:34:15,056 --> 00:34:17,186
+If you call this function
+on different lines
+
+
+812
+00:34:17,186 --> 00:34:18,786
+but pass the same identifier,
+
+
+813
+00:34:19,106 --> 00:34:20,735
+the values from those
+different lines will go
+
+
+814
+00:34:20,735 --> 00:34:22,076
+to the same timeline item.
+
+
+815
+00:34:22,676 --> 00:34:25,775
+Conversely, and what we want
+here, if you have one line
+
+
+816
+00:34:25,775 --> 00:34:28,786
+that calls XCPCaptureValue
+but it's called multiple times
+
+
+817
+00:34:28,786 --> 00:34:29,886
+with different identifiers
+
+
+818
+00:34:29,886 --> 00:34:31,556
+and it passes those
+different identifiers,
+
+
+819
+00:34:31,876 --> 00:34:34,396
+that one line can generate
+multiple different timeline
+
+
+820
+00:34:34,396 --> 00:34:36,045
+items (or grabs, in our case).
+
+
+821
+00:34:36,735 --> 00:34:40,005
+That identifier is also shown
+as the name of the timeline item
+
+
+822
+00:34:40,005 --> 00:34:42,156
+so you can easily see
+what data is what.
+
+
+823
+00:34:43,005 --> 00:34:45,436
+The value pass can be
+anything, because it's a generic
+
+
+824
+00:34:45,696 --> 00:34:48,126
+but it helps if it's a type
+of value that we know how
+
+
+825
+00:34:48,126 --> 00:34:49,255
+to Quick Look appropriately.
+
+
+826
+00:34:50,076 --> 00:34:51,716
+So, let's go back
+and give this a shot.
+
+
+827
+00:34:51,746 --> 00:34:54,606
+So to start out with, I
+need to import XCPlayground
+
+
+828
+00:34:54,606 --> 00:34:59,946
+to make this API available
+and I'm going to go ahead
+
+
+829
+00:34:59,946 --> 00:35:01,186
+and define a new function.
+
+
+830
+00:35:02,586 --> 00:35:04,506
+I'll call it visualize
+and it's a generic.
+
+
+831
+00:35:04,856 --> 00:35:09,776
+And it will take an array of
+type T and I'm going to use this
+
+
+832
+00:35:09,776 --> 00:35:11,806
+"for" loop in it, so
+I'll just indent that
+
+
+833
+00:35:11,806 --> 00:35:12,796
+and close the function.
+
+
+834
+00:35:13,516 --> 00:35:15,726
+But instead of just
+printing out x, what we want
+
+
+835
+00:35:15,726 --> 00:35:16,946
+to do is capture that value.
+
+
+836
+00:35:16,946 --> 00:35:18,836
+So, I'll call XCPCaptureValue.
+
+
+837
+00:35:19,456 --> 00:35:21,826
+I need an identifier, so
+let's add one to our function.
+
+
+838
+00:35:21,826 --> 00:35:26,616
+So, identifier is a
+string and we could pass
+
+
+839
+00:35:26,616 --> 00:35:30,466
+that identifier,
+and our value is x.
+
+
+840
+00:35:31,386 --> 00:35:34,656
+OK. So let's try this function
+out and visualize the data
+
+
+841
+00:35:34,656 --> 00:35:38,026
+at the start of our sort
+and we'll label it Start
+
+
+842
+00:35:38,026 --> 00:35:39,976
+as the identifier just
+so we know what's what.
+
+
+843
+00:35:39,976 --> 00:35:44,196
+And here you can see it ran and
+here's our data at the start.
+
+
+844
+00:35:44,196 --> 00:35:45,946
+So that's a good start.
+
+
+845
+00:35:46,866 --> 00:35:49,316
+So now, we're going to go
+ahead and visualize our data
+
+
+846
+00:35:49,316 --> 00:35:51,356
+after every iteration
+of swapLeft.
+
+
+847
+00:35:51,356 --> 00:35:55,106
+So, I can call visualize,
+I'll pass data as it is
+
+
+848
+00:35:55,106 --> 00:35:56,496
+after this iteration
+of swapLeft.
+
+
+849
+00:35:56,946 --> 00:36:00,736
+And for our identifier, let's
+label it after the iteration,
+
+
+850
+00:36:01,056 --> 00:36:02,906
+the number of times
+that swapLeft is called,
+
+
+851
+00:36:03,816 --> 00:36:05,716
+which is the index parameter.
+
+
+852
+00:36:06,096 --> 00:36:08,556
+And so, I'm going
+to let this run now.
+
+
+853
+00:36:08,866 --> 00:36:11,326
+And you can see that it's
+generated multiple graphs
+
+
+854
+00:36:11,606 --> 00:36:14,036
+labeled after the
+iteration that we're on.
+
+
+855
+00:36:14,316 --> 00:36:15,976
+So, now we can just
+scroll through here
+
+
+856
+00:36:15,976 --> 00:36:20,456
+and see what's happening to our
+data over time as swapLeft runs
+
+
+857
+00:36:20,496 --> 00:36:21,906
+and the sort completes.
+
+
+858
+00:36:22,036 --> 00:36:24,706
+You can see it looks like our
+data is getting sorted piece
+
+
+859
+00:36:24,706 --> 00:36:25,326
+by piece.
+
+
+860
+00:36:26,366 --> 00:36:28,876
+And so, at the end, we
+have a nicely-sorted array.
+
+
+861
+00:36:29,396 --> 00:36:32,606
+So there, we can easily
+visualize exactly what's going
+
+
+862
+00:36:32,606 --> 00:36:33,656
+on with our algorithm.
+
+
+863
+00:36:33,946 --> 00:36:35,746
+We think you'll find
+this very, very useful.
+
+
+864
+00:36:37,886 --> 00:36:39,886
+OK. Let's move on
+to another example.
+
+
+865
+00:36:39,886 --> 00:36:42,606
+I've got a heap Playground
+I made here earlier.
+
+
+866
+00:36:43,136 --> 00:36:45,346
+And it's got this
+HeapGrapher class at the top
+
+
+867
+00:36:45,346 --> 00:36:46,416
+which I'll explain in a moment.
+
+
+868
+00:36:46,726 --> 00:36:49,756
+But the meat of this class
+is my heap class which,
+
+
+869
+00:36:49,886 --> 00:36:52,356
+if you're not familiar with
+a heap, a heap is a type
+
+
+870
+00:36:52,356 --> 00:36:55,176
+of balanced binary
+tree where the value
+
+
+871
+00:36:55,176 --> 00:36:57,416
+of every node is
+greater than or equal
+
+
+872
+00:36:57,416 --> 00:36:58,766
+to the value of its children.
+
+
+873
+00:37:00,286 --> 00:37:02,526
+Heaps are often used to
+implement priority queues,
+
+
+874
+00:37:02,526 --> 00:37:03,616
+because it's very efficient
+
+
+875
+00:37:03,616 --> 00:37:05,606
+to remove the highest
+priority item, that's the top
+
+
+876
+00:37:05,606 --> 00:37:08,466
+of the tree, and it's also
+efficient to insert new items
+
+
+877
+00:37:08,466 --> 00:37:10,776
+into the correct position of
+the tree for their priority.
+
+
+878
+00:37:11,906 --> 00:37:14,706
+We're implementing our heap
+with an underlying array
+
+
+879
+00:37:14,706 --> 00:37:16,046
+to represent the tree.
+
+
+880
+00:37:16,286 --> 00:37:20,386
+And in our array, the tree
+noted index i has children
+
+
+881
+00:37:20,386 --> 00:37:23,576
+at indexes i times 2
+and i times 2 plus 1.
+
+
+882
+00:37:24,696 --> 00:37:25,746
+So you can see down here
+
+
+883
+00:37:25,746 --> 00:37:27,756
+at the bottom we've
+got some random data
+
+
+884
+00:37:27,756 --> 00:37:28,906
+that we seeded ourselves with.
+
+
+885
+00:37:29,386 --> 00:37:31,756
+And we've created a new
+heap with that data.
+
+
+886
+00:37:31,756 --> 00:37:35,036
+And we "heapified the heap,"
+which is to say, put that data
+
+
+887
+00:37:35,036 --> 00:37:36,696
+into correctly heap-sorted
+order.
+
+
+888
+00:37:37,786 --> 00:37:39,876
+On the right, in
+the results sidebar,
+
+
+889
+00:37:40,206 --> 00:37:42,236
+you can see our default
+treatment
+
+
+890
+00:37:42,236 --> 00:37:44,816
+of this custom class is to
+show the name of the class
+
+
+891
+00:37:44,866 --> 00:37:45,956
+and show its properties.
+
+
+892
+00:37:45,956 --> 00:37:47,866
+In this case, it has
+one property which is
+
+
+893
+00:37:47,866 --> 00:37:50,996
+that heap array and here it
+is before it's been heapified,
+
+
+894
+00:37:50,996 --> 00:37:52,136
+when it's not a correct heap.
+
+
+895
+00:37:52,856 --> 00:37:54,536
+And here it is after
+it's been heapified,
+
+
+896
+00:37:54,536 --> 00:37:56,146
+when it's purportedly
+a correct heap.
+
+
+897
+00:37:56,456 --> 00:37:59,206
+But you know, it's really
+hard to tell looking
+
+
+898
+00:37:59,206 --> 00:38:01,456
+at this array whether
+that's a correct heap.
+
+
+899
+00:38:01,456 --> 00:38:03,726
+This array represents
+a tree and, you know,
+
+
+900
+00:38:03,726 --> 00:38:05,666
+not so good at visualizing,
+"Hh, well, here's I,
+
+
+901
+00:38:05,666 --> 00:38:07,806
+and here's i times 2,
+and yeah, that's less..."
+
+
+902
+00:38:07,986 --> 00:38:11,016
+Wouldn't it be much better if
+I could just visualize this
+
+
+903
+00:38:11,226 --> 00:38:13,746
+as a tree everywhere
+my heap is referenced
+
+
+904
+00:38:13,746 --> 00:38:14,716
+to my Playground source?
+
+
+905
+00:38:15,426 --> 00:38:16,626
+So let's see how to do that.
+
+
+906
+00:38:17,286 --> 00:38:19,366
+In order to visualize
+my own custom class,
+
+
+907
+00:38:19,656 --> 00:38:22,026
+we're going to implement
+Custom Quick Look Support
+
+
+908
+00:38:22,176 --> 00:38:23,146
+for this class.
+
+
+909
+00:38:23,446 --> 00:38:27,706
+Our Custom Quick Look Support
+allows you to add Quick Looks
+
+
+910
+00:38:27,936 --> 00:38:31,436
+for subclasses of
+NSObject only (right now).
+
+
+911
+00:38:31,876 --> 00:38:35,486
+And to do it, you implement
+the debugQuickLookObject method
+
+
+912
+00:38:36,086 --> 00:38:37,466
+which takes no parameters
+
+
+913
+00:38:37,706 --> 00:38:39,716
+and returns any object
+as an optional.
+
+
+914
+00:38:39,716 --> 00:38:42,806
+And you're going to return
+the value that you want
+
+
+915
+00:38:42,806 --> 00:38:44,796
+to represent your
+object as its Quick Look.
+
+
+916
+00:38:45,676 --> 00:38:49,526
+So, right now, that
+value (the values
+
+
+917
+00:38:49,526 --> 00:38:53,726
+that we support here) are
+colors, strings (both plain
+
+
+918
+00:38:53,726 --> 00:38:57,516
+and attributed),
+images, and Bézier paths.
+
+
+919
+00:38:57,516 --> 00:39:00,256
+So, for your Custom Quick Looks
+you can use any of these types.
+
+
+920
+00:39:01,196 --> 00:39:04,076
+So, let's try it out.
+
+
+921
+00:39:04,336 --> 00:39:07,716
+OK. So I mentioned before I
+had a little HeapGrapher class
+
+
+922
+00:39:07,716 --> 00:39:08,246
+that I wrote.
+
+
+923
+00:39:08,446 --> 00:39:10,626
+That's a little class that knows
+how to take an array and draw it
+
+
+924
+00:39:10,626 --> 00:39:11,916
+as a tree, so we're
+going to use that.
+
+
+925
+00:39:12,426 --> 00:39:15,736
+We'll implement our
+debugQuickLookObject method.
+
+
+926
+00:39:16,086 --> 00:39:20,996
+It takes any, or returns
+any object as an optional
+
+
+927
+00:39:20,996 --> 00:39:25,726
+and we're just going to create
+one of our HeapGraphers.
+
+
+928
+00:39:25,846 --> 00:39:30,696
+And this HeapGrapher knows
+how to generate an NSImage
+
+
+929
+00:39:30,696 --> 00:39:33,256
+which is one of the Custom Quick
+Look types, supported types.
+
+
+930
+00:39:33,356 --> 00:39:35,556
+So, we're just going to
+return the image it generates
+
+
+931
+00:39:35,556 --> 00:39:39,066
+with g.graphHeap and
+pass self.heaparray.
+
+
+932
+00:39:40,376 --> 00:39:42,536
+And now, when this runs, instead
+
+
+933
+00:39:42,536 --> 00:39:44,916
+of showing the default
+representation for our class,
+
+
+934
+00:39:45,206 --> 00:39:47,536
+it shows our custom Quick
+Look representation,
+
+
+935
+00:39:47,536 --> 00:39:48,286
+which is an image.
+
+
+936
+00:39:48,656 --> 00:39:50,176
+And so when I click
+the Quick Look button,
+
+
+937
+00:39:50,486 --> 00:39:53,786
+you can see here it's
+drawing my heap as a tree.
+
+
+938
+00:39:54,146 --> 00:39:56,346
+This is before it's been
+heapified when you can see,
+
+
+939
+00:39:56,346 --> 00:39:59,096
+for example, 78 is less than 89.
+
+
+940
+00:39:59,096 --> 00:39:59,976
+So this is not a correct heap.
+
+
+941
+00:40:00,766 --> 00:40:03,776
+But if I Quick Look it
+after it's been heapified,
+
+
+942
+00:40:04,066 --> 00:40:07,976
+I can now go, oh great, 91
+is greater than 86 and 89,
+
+
+943
+00:40:08,266 --> 00:40:12,176
+86 is greater than 84 and
+79, and so on and so forth,
+
+
+944
+00:40:12,176 --> 00:40:14,576
+and I can really
+easily visually verify
+
+
+945
+00:40:14,776 --> 00:40:15,926
+that this is a correct heap.
+
+
+946
+00:40:16,136 --> 00:40:19,666
+So that's how you can Quick Look
+your own classes in Playgrounds
+
+
+947
+00:40:19,666 --> 00:40:21,406
+and we think you'll
+find that very useful.
+
+
+948
+00:40:21,406 --> 00:40:22,026
+All right.
+
+
+949
+00:40:22,116 --> 00:40:24,796
+Next, we'd like to move on to
+showing you how great it is
+
+
+950
+00:40:24,796 --> 00:40:26,366
+to do Custom View Development
+
+
+951
+00:40:26,366 --> 00:40:28,476
+and other drawing
+development in Playground.
+
+
+952
+00:40:28,676 --> 00:40:30,656
+And to do that, I'm going
+to hand it over to Connor.
+
+
+953
+00:40:31,256 --> 00:40:31,876
+>> Thank you, Rick.
+
+
+954
+00:40:32,206 --> 00:40:36,396
+Another great use case we
+think Playgrounds will be used
+
+
+955
+00:40:36,396 --> 00:40:37,846
+for is Custom View Development.
+
+
+956
+00:40:38,236 --> 00:40:40,536
+And that's because you can
+just start writing some code
+
+
+957
+00:40:40,716 --> 00:40:43,366
+and see the actual view
+as it's being drawn
+
+
+958
+00:40:43,366 --> 00:40:45,106
+and as you're starting to
+build up your drawing code.
+
+
+959
+00:40:45,426 --> 00:40:47,536
+So for this I have a goal.
+
+
+960
+00:40:47,626 --> 00:40:49,206
+I want to take this
+Playground icon
+
+
+961
+00:40:49,206 --> 00:40:50,386
+and add some animation to it.
+
+
+962
+00:40:50,936 --> 00:40:52,756
+The icon that we
+have is really great.
+
+
+963
+00:40:52,876 --> 00:40:54,746
+It conveys the playfulness
+of Playgrounds.
+
+
+964
+00:40:54,786 --> 00:40:57,556
+But unlike Playgrounds
+themselves, it's static.
+
+
+965
+00:40:57,616 --> 00:40:59,476
+There's nothing dynamic
+about it.
+
+
+966
+00:40:59,906 --> 00:41:02,336
+And so, I'm going to try
+to add animation to this.
+
+
+967
+00:41:02,476 --> 00:41:04,026
+And what better way
+to do it than when
+
+
+968
+00:41:04,026 --> 00:41:04,996
+in a Playground itself?
+
+
+969
+00:41:05,076 --> 00:41:06,916
+So, let's jump over to the demo.
+
+
+970
+00:41:07,616 --> 00:41:11,016
+So OK, here I'm going to go
+ahead and open up a Playground
+
+
+971
+00:41:11,016 --> 00:41:11,826
+that I've already started.
+
+
+972
+00:41:12,376 --> 00:41:16,686
+So, OK. So here we've
+got a Playground.
+
+
+973
+00:41:16,686 --> 00:41:19,576
+We've got our subclass of NSView
+called PlaygroundIconView.
+
+
+974
+00:41:20,186 --> 00:41:22,416
+It has a few layers.
+
+
+975
+00:41:23,106 --> 00:41:26,636
+It's got these three instance,
+er, these three instance methods
+
+
+976
+00:41:26,636 --> 00:41:28,506
+which actually do the
+setup of those layers.
+
+
+977
+00:41:28,586 --> 00:41:30,066
+You see that they're
+unimplemented right now
+
+
+978
+00:41:30,066 --> 00:41:31,346
+and we'll come back
+to that in a moment.
+
+
+979
+00:41:31,766 --> 00:41:36,266
+I also have an extension of
+NSColor which defines a couple
+
+
+980
+00:41:36,266 --> 00:41:38,506
+of colors for the
+Playground icon itself.
+
+
+981
+00:41:39,016 --> 00:41:43,956
+I then have a helper function
+to convert an NSBezierPath
+
+
+982
+00:41:44,306 --> 00:41:46,596
+to a CGPath for use
+with CAShapeLayer.
+
+
+983
+00:41:47,256 --> 00:41:49,616
+Finally, I just go ahead
+and create an instance
+
+
+984
+00:41:49,616 --> 00:41:50,786
+of my PlaygroundIconView.
+
+
+985
+00:41:51,276 --> 00:41:52,646
+And then, I put it
+on a separate line
+
+
+986
+00:41:52,646 --> 00:41:53,936
+so I can add some stuff later.
+
+
+987
+00:41:54,316 --> 00:41:57,026
+Let's go ahead and show
+that in the timeline.
+
+
+988
+00:41:58,306 --> 00:41:59,566
+So, OK. So you'll see now
+
+
+989
+00:41:59,566 --> 00:42:01,246
+that we've just got
+ourselves an empty view here.
+
+
+990
+00:42:04,096 --> 00:42:05,636
+So yes, we have an
+empty view here.
+
+
+991
+00:42:06,986 --> 00:42:08,736
+We actually just
+now need to go ahead
+
+
+992
+00:42:08,736 --> 00:42:10,536
+and implement these
+setup functions.
+
+
+993
+00:42:11,026 --> 00:42:12,716
+So let's go ahead and do that.
+
+
+994
+00:42:13,126 --> 00:42:14,616
+So we'll start out
+by creating the path
+
+
+995
+00:42:14,846 --> 00:42:15,986
+for the background layer.
+
+
+996
+00:42:19,516 --> 00:42:22,026
+So you can see here we're
+creating NSBezierPath
+
+
+997
+00:42:22,026 --> 00:42:24,006
+and we can Quick Look it to
+make sure it looks right.
+
+
+998
+00:42:24,006 --> 00:42:25,766
+And in fact, yeah,
+that looks more or less
+
+
+999
+00:42:25,766 --> 00:42:26,936
+like the Playground icon.
+
+
+1000
+00:42:27,496 --> 00:42:29,326
+So let's tell, let's
+setup our layer.
+
+
+1001
+00:42:29,986 --> 00:42:33,456
+So OK, now we're
+setting up the layer.
+
+
+1002
+00:42:33,866 --> 00:42:35,296
+You can see here in the timeline
+
+
+1003
+00:42:35,296 --> 00:42:38,236
+that we're now drawing the
+layer where, you know...
+
+
+1004
+00:42:38,236 --> 00:42:40,016
+We have the background, we've
+got the little border there,
+
+
+1005
+00:42:40,016 --> 00:42:41,806
+and so, OK, we've got
+our background set up.
+
+
+1006
+00:42:42,546 --> 00:42:45,476
+Let's also do the seesaw base
+and we'll do the same thing.
+
+
+1007
+00:42:45,526 --> 00:42:49,556
+We'll create a path for that.
+
+
+1008
+00:42:49,556 --> 00:42:51,506
+And we'll let it execute
+and we'll see here,
+
+
+1009
+00:42:51,506 --> 00:42:52,676
+let's Quick Look, make sure...
+
+
+1010
+00:42:52,846 --> 00:42:54,426
+Yeah, that looks more or
+less like the little base
+
+
+1011
+00:42:54,466 --> 00:42:56,446
+that we have for the
+play- ...for the seesaw.
+
+
+1012
+00:42:57,266 --> 00:42:59,406
+So let's set up the
+layer itself as well.
+
+
+1013
+00:42:59,916 --> 00:43:02,656
+And there, we just
+make that change
+
+
+1014
+00:43:02,656 --> 00:43:04,686
+and immediately get the feedback
+of seeing what that looks
+
+
+1015
+00:43:04,686 --> 00:43:06,046
+like when drawn in our view.
+
+
+1016
+00:43:06,606 --> 00:43:08,796
+Let's also do the seesaw layer.
+
+
+1017
+00:43:08,876 --> 00:43:10,436
+I've got some code here
+to set that up as well.
+
+
+1018
+00:43:11,376 --> 00:43:14,346
+You see here that we're just,
+you know, have a closure
+
+
+1019
+00:43:14,346 --> 00:43:15,966
+which will create the
+child layer itself.
+
+
+1020
+00:43:15,966 --> 00:43:19,626
+We then create a couple
+of layers for the children
+
+
+1021
+00:43:19,626 --> 00:43:23,366
+on each side of the seesaw, and
+then we set up the bench itself
+
+
+1022
+00:43:23,366 --> 00:43:25,646
+and then add those layers
+to our seesaw layer.
+
+
+1023
+00:43:26,016 --> 00:43:28,806
+So, OK. So now we've
+got ourselves something
+
+
+1024
+00:43:28,806 --> 00:43:30,546
+that looks kind of like
+the Playground icon.
+
+
+1025
+00:43:31,056 --> 00:43:33,426
+But like the icon itself,
+it's not animating.
+
+
+1026
+00:43:33,666 --> 00:43:35,446
+So let's go ahead and
+add support for animation
+
+
+1027
+00:43:35,446 --> 00:43:36,546
+to our PlaygroundIconView.
+
+
+1028
+00:43:37,296 --> 00:43:40,476
+I have a snippet
+for that as well.
+
+
+1029
+00:43:40,586 --> 00:43:42,186
+And so, let's walk
+through what this is doing.
+
+
+1030
+00:43:43,016 --> 00:43:46,006
+I define a constant for the
+maximum angle of the seesaw.
+
+
+1031
+00:43:46,066 --> 00:43:47,546
+I've, you know, worked
+through this and I think pi
+
+
+1032
+00:43:47,546 --> 00:43:48,636
+over 12 is about right.
+
+
+1033
+00:43:49,136 --> 00:43:52,456
+I also have a property for the
+current angle of the seesaw
+
+
+1034
+00:43:52,456 --> 00:43:54,096
+after any pending
+animation is finished.
+
+
+1035
+00:43:54,586 --> 00:43:57,756
+And then have a property
+which determines whether
+
+
+1036
+00:43:57,756 --> 00:43:58,856
+or not it should be animating.
+
+
+1037
+00:43:58,896 --> 00:44:01,356
+It starts out as false
+but we have this code here
+
+
+1038
+00:44:01,356 --> 00:44:03,946
+which executes whenever
+this is set to say, "Well,
+
+
+1039
+00:44:03,946 --> 00:44:06,576
+if the animation state
+has changed and we're told
+
+
+1040
+00:44:06,576 --> 00:44:08,706
+to animate, then just
+start animating depending
+
+
+1041
+00:44:08,706 --> 00:44:10,766
+on the current angle
+of the seesaw."
+
+
+1042
+00:44:11,626 --> 00:44:12,986
+I then have this helper method
+
+
+1043
+00:44:13,046 --> 00:44:15,666
+for actually performing
+the animation itself.
+
+
+1044
+00:44:15,666 --> 00:44:18,386
+So we just, you know, go ahead
+and create a CABasicAnimation,
+
+
+1045
+00:44:18,386 --> 00:44:20,976
+set a couple of values,
+set our timing function
+
+
+1046
+00:44:20,976 --> 00:44:23,096
+to match what a seesaw
+would actually look like.
+
+
+1047
+00:44:23,096 --> 00:44:26,186
+Set the duration to what
+was passed in which defaults
+
+
+1048
+00:44:26,186 --> 00:44:29,296
+to 1-1/2 seconds, but can
+be customized depending
+
+
+1049
+00:44:29,296 --> 00:44:30,816
+on the angle of the seesaw.
+
+
+1050
+00:44:31,356 --> 00:44:34,596
+We then add the animation
+to our seesaw layer.
+
+
+1051
+00:44:35,156 --> 00:44:37,696
+We set the underlying transform
+property of that seesaw layer,
+
+
+1052
+00:44:37,696 --> 00:44:40,156
+so that once the animation
+completes it looks correct.
+
+
+1053
+00:44:40,756 --> 00:44:42,466
+And then we update our
+current seesaw angle
+
+
+1054
+00:44:42,466 --> 00:44:43,466
+property accordingly.
+
+
+1055
+00:44:44,566 --> 00:44:47,416
+Finally, we have, uh, we
+implement the "animationDidStop,
+
+
+1056
+00:44:47,416 --> 00:44:48,846
+finished" delegate callback.
+
+
+1057
+00:44:48,846 --> 00:44:50,906
+Or basically say
+that if we finished
+
+
+1058
+00:44:50,906 --> 00:44:52,556
+and we're still supposed
+to still be animating,
+
+
+1059
+00:44:52,906 --> 00:44:54,886
+then just go ahead and
+animate to the opposite angle
+
+
+1060
+00:44:54,886 --> 00:44:57,336
+of what we currently are at.
+
+
+1061
+00:44:57,336 --> 00:45:00,026
+So, OK. Let's go ahead and tell
+this view to start animating.
+
+
+1062
+00:45:04,766 --> 00:45:07,646
+So we'll do that and you'll
+notice that after it reruns,
+
+
+1063
+00:45:08,146 --> 00:45:10,326
+we seeing the view update
+it's look, you know,
+
+
+1064
+00:45:10,326 --> 00:45:12,336
+so we see that it
+tilted over to the side.
+
+
+1065
+00:45:12,336 --> 00:45:14,206
+We're not seeing the
+animation itself.
+
+
+1066
+00:45:14,586 --> 00:45:15,876
+And for that, we're
+going to need some help
+
+
+1067
+00:45:15,926 --> 00:45:17,166
+from the XCPlayground framework.
+
+
+1068
+00:45:17,266 --> 00:45:18,476
+So, let's switch back the slides
+
+
+1069
+00:45:18,536 --> 00:45:19,396
+to see what that
+could look like.
+
+
+1070
+00:45:20,036 --> 00:45:21,646
+So the second piece
+of functionality
+
+
+1071
+00:45:21,646 --> 00:45:24,056
+which the XCPlayground framework
+provides is the ability
+
+
+1072
+00:45:24,056 --> 00:45:25,776
+to show live views
+in the timeline.
+
+
+1073
+00:45:26,616 --> 00:45:29,336
+And you do that by calling
+this XCPShowView function.
+
+
+1074
+00:45:29,646 --> 00:45:32,186
+It takes an identifier and the
+view that you want to show.
+
+
+1075
+00:45:32,716 --> 00:45:34,996
+After calling it, we'll show the
+view live while the Playground
+
+
+1076
+00:45:34,996 --> 00:45:36,956
+executes and then
+we'll record frames
+
+
+1077
+00:45:36,956 --> 00:45:38,016
+as the Playground executes
+
+
+1078
+00:45:38,086 --> 00:45:40,606
+so you can play them back
+once execution finishes.
+
+
+1079
+00:45:41,216 --> 00:45:44,606
+The identifier you pass to this
+function must be unique inside
+
+
+1080
+00:45:44,606 --> 00:45:45,276
+of the Playground.
+
+
+1081
+00:45:45,556 --> 00:45:46,686
+That's because this
+is how we refer
+
+
+1082
+00:45:46,686 --> 00:45:48,486
+to the live view
+internally in Xcode.
+
+
+1083
+00:45:48,906 --> 00:45:51,356
+And it is also what
+we'd show as the title
+
+
+1084
+00:45:51,356 --> 00:45:52,816
+for the live view
+in the timeline.
+
+
+1085
+00:45:54,056 --> 00:45:56,306
+The view pass must also
+not have a superview.
+
+
+1086
+00:45:56,306 --> 00:45:58,926
+This is because we will add
+it to our own view hierarchy
+
+
+1087
+00:45:59,246 --> 00:46:01,086
+and it would generally not
+produce the results you're
+
+
+1088
+00:46:01,086 --> 00:46:01,596
+looking for.
+
+
+1089
+00:46:02,976 --> 00:46:05,426
+So with this in our toolbox,
+let's jump back to the demo
+
+
+1090
+00:46:05,426 --> 00:46:06,246
+and see how it's used.
+
+
+1091
+00:46:06,246 --> 00:46:08,906
+So I'm going to go
+ahead and just go ahead
+
+
+1092
+00:46:08,906 --> 00:46:10,116
+and import XCPlayground.
+
+
+1093
+00:46:10,676 --> 00:46:15,976
+And then down here, instead
+of just having this view item,
+
+
+1094
+00:46:15,976 --> 00:46:17,626
+I'm going to remove
+that from the timeline.
+
+
+1095
+00:46:17,896 --> 00:46:21,646
+I'm going to say
+something like XCPShowView
+
+
+1096
+00:46:22,246 --> 00:46:23,296
+and pass an identifier.
+
+
+1097
+00:46:23,296 --> 00:46:25,136
+It can be anything as
+long as it's unique.
+
+
+1098
+00:46:25,136 --> 00:46:28,916
+So I'll say Playground
+Icon View.
+
+
+1099
+00:46:29,326 --> 00:46:30,966
+And then I'll pass the
+view that we've created.
+
+
+1100
+00:46:32,296 --> 00:46:33,786
+So, we'll just let
+that re-execute.
+
+
+1101
+00:46:34,286 --> 00:46:35,616
+And you see there
+that in the timeline,
+
+
+1102
+00:46:35,616 --> 00:46:37,836
+we're showing the view
+live as it's animating.
+
+
+1103
+00:46:37,836 --> 00:46:41,556
+You-all also probably noticed
+this little timeout field
+
+
+1104
+00:46:41,556 --> 00:46:41,946
+down here.
+
+
+1105
+00:46:42,086 --> 00:46:44,666
+And that lets us specify
+the amount of time
+
+
+1106
+00:46:44,666 --> 00:46:46,526
+which we'll let the
+Playground continue executing
+
+
+1107
+00:46:46,526 --> 00:46:48,906
+after we reach the end of
+execution of the top of a code.
+
+
+1108
+00:46:49,746 --> 00:46:52,476
+Now, it defaults to 30 seconds
+but I'm going to adjust this
+
+
+1109
+00:46:52,516 --> 00:46:54,166
+down since I know my
+animation only takes
+
+
+1110
+00:46:54,166 --> 00:46:55,536
+about a second and a half.
+
+
+1111
+00:46:55,536 --> 00:46:57,886
+So I'll do 10 seconds to
+get a few times around.
+
+
+1112
+00:46:58,206 --> 00:47:00,886
+After we edit that,
+we'll rerun it.
+
+
+1113
+00:47:01,506 --> 00:47:03,366
+And so that's great, you
+know, we see it running there.
+
+
+1114
+00:47:03,526 --> 00:47:06,516
+And I'd like to show how you
+can integrate XCPShowView
+
+
+1115
+00:47:06,516 --> 00:47:09,186
+with the XCPCaptureValue
+API we mentioned earlier.
+
+
+1116
+00:47:10,346 --> 00:47:13,526
+And so, what I'm going to do,
+I'm going to capture the angle
+
+
+1117
+00:47:13,526 --> 00:47:15,566
+of the seesaw, or
+of the left edge
+
+
+1118
+00:47:15,566 --> 00:47:19,516
+of the seesaw as
+we're animating.
+
+
+1119
+00:47:19,766 --> 00:47:22,346
+So here, I'm just going
+to say XCPCaptureValue.
+
+
+1120
+00:47:23,226 --> 00:47:28,086
+I'll pass Left Seesaw
+Position and I'll just pass 0
+
+
+1121
+00:47:28,086 --> 00:47:29,626
+because we know at
+this point that it's,
+
+
+1122
+00:47:29,686 --> 00:47:31,326
+you know, it's flat on there.
+
+
+1123
+00:47:32,436 --> 00:47:34,266
+Then you can take this and
+I'm going to put it in our
+
+
+1124
+00:47:34,266 --> 00:47:36,016
+"animationDidStop,
+finished" callback.
+
+
+1125
+00:47:36,126 --> 00:47:40,356
+Now I'm going to just pass the
+negative currentSeesawAngle.
+
+
+1126
+00:47:41,366 --> 00:47:43,296
+That's just because that's
+what we need to do in order
+
+
+1127
+00:47:43,296 --> 00:47:45,806
+to get the left position
+of the seesaw.
+
+
+1128
+00:47:45,906 --> 00:47:47,756
+That is how the angle works
+out for the transform.
+
+
+1129
+00:47:48,216 --> 00:47:50,716
+So you see here that
+as we're executing,
+
+
+1130
+00:47:50,716 --> 00:47:52,616
+we're getting the graph kind
+of building up over time.
+
+
+1131
+00:47:53,046 --> 00:47:54,646
+And then once execution
+finishes,
+
+
+1132
+00:47:54,776 --> 00:47:56,476
+the graph will snap
+back into place and kind
+
+
+1133
+00:47:56,476 --> 00:47:59,166
+of show you the best view of
+the data that it collected.
+
+
+1134
+00:48:00,196 --> 00:48:02,606
+It's OK. You probably
+also noticed this slider
+
+
+1135
+00:48:02,606 --> 00:48:03,276
+became active.
+
+
+1136
+00:48:03,746 --> 00:48:05,296
+And so, I can just go
+ahead and take that
+
+
+1137
+00:48:05,296 --> 00:48:06,786
+and drag it through here.
+
+
+1138
+00:48:07,206 --> 00:48:09,596
+And you'll notice that we're
+updating the graph at the bottom
+
+
+1139
+00:48:09,596 --> 00:48:11,656
+but we're also showing you
+the animation, you know,
+
+
+1140
+00:48:11,756 --> 00:48:12,936
+as it went through in time.
+
+
+1141
+00:48:13,006 --> 00:48:15,296
+So this is, you know, a
+fairly basic animation
+
+
+1142
+00:48:15,296 --> 00:48:17,296
+and it's doing what we
+expected but, you know,
+
+
+1143
+00:48:17,556 --> 00:48:19,086
+if you had something
+more complex and you want
+
+
+1144
+00:48:19,086 --> 00:48:21,056
+to just kind of take a look
+at just a small portion
+
+
+1145
+00:48:21,056 --> 00:48:23,066
+of your animation, you
+could do that as well.
+
+
+1146
+00:48:23,666 --> 00:48:25,486
+And I can also do
+something like, you know,
+
+
+1147
+00:48:25,536 --> 00:48:26,996
+click on one of these points.
+
+
+1148
+00:48:26,996 --> 00:48:27,726
+So I can click there.
+
+
+1149
+00:48:27,726 --> 00:48:30,066
+We can see it, you know, that
+the two things are in sync.
+
+
+1150
+00:48:30,066 --> 00:48:30,656
+I click there.
+
+
+1151
+00:48:30,656 --> 00:48:31,516
+It updates the point.
+
+
+1152
+00:48:31,516 --> 00:48:34,256
+I can use the arrow keys to
+go through the graph's points
+
+
+1153
+00:48:34,256 --> 00:48:35,596
+and see that, OK,
+yeah, you know,
+
+
+1154
+00:48:35,596 --> 00:48:38,296
+we're doing what
+we expect it to do.
+
+
+1155
+00:48:38,526 --> 00:48:41,056
+And so, that's how you can
+show live views in the timeline
+
+
+1156
+00:48:41,306 --> 00:48:42,916
+with the XCPlayground framework.
+
+
+1157
+00:48:43,246 --> 00:48:44,206
+Let's go back to the slides now.
+
+
+1158
+00:48:44,846 --> 00:48:45,696
+Now, I'd like to talk to you
+
+
+1159
+00:48:45,696 --> 00:48:47,256
+about how you can
+use asynchronous code
+
+
+1160
+00:48:47,256 --> 00:48:48,016
+in your Playgrounds.
+
+
+1161
+00:48:48,146 --> 00:48:49,976
+You got a little taste of
+this in the demo before.
+
+
+1162
+00:48:49,976 --> 00:48:51,726
+But I'd like to go into a
+little bit more detail now.
+
+
+1163
+00:48:53,076 --> 00:48:54,306
+The third piece of functionality
+
+
+1164
+00:48:54,306 --> 00:48:57,076
+which the XCPlayground framework
+provides is the ability
+
+
+1165
+00:48:57,076 --> 00:48:58,316
+to extend execution.
+
+
+1166
+00:48:59,626 --> 00:49:02,086
+By default, execution terminates
+once all top-level code
+
+
+1167
+00:49:02,086 --> 00:49:02,836
+has executed.
+
+
+1168
+00:49:03,336 --> 00:49:05,256
+XCPlayground, though,
+provides API
+
+
+1169
+00:49:05,426 --> 00:49:07,006
+for extending execution
+indefinitely.
+
+
+1170
+00:49:07,226 --> 00:49:09,186
+That's this
+XCPSetExecutionShould
+
+
+1171
+00:49:09,186 --> 00:49:10,546
+ContinueIndefinitely function.
+
+
+1172
+00:49:10,976 --> 00:49:13,456
+You should know that this is
+actually not quite indefinite.
+
+
+1173
+00:49:13,456 --> 00:49:17,306
+The execution time is controlled
+by the timeline's timeout
+
+
+1174
+00:49:17,306 --> 00:49:18,906
+which defaults to 30 seconds.
+
+
+1175
+00:49:19,656 --> 00:49:22,786
+Additionally, execution
+will be terminated
+
+
+1176
+00:49:22,786 --> 00:49:24,686
+if you edit the Playground
+while it's running.
+
+
+1177
+00:49:25,056 --> 00:49:27,716
+This is so that we can show
+you up to date results rather
+
+
+1178
+00:49:27,716 --> 00:49:29,776
+than let, leaving you a
+stale results while we wait
+
+
+1179
+00:49:29,776 --> 00:49:31,346
+for an earlier execution
+to finish.
+
+
+1180
+00:49:32,746 --> 00:49:34,786
+Additionally, as you saw
+on the last demo, you know,
+
+
+1181
+00:49:34,786 --> 00:49:35,956
+we didn't actually
+call this function,
+
+
+1182
+00:49:35,956 --> 00:49:38,236
+but we saw that execution
+continued
+
+
+1183
+00:49:38,236 --> 00:49:40,636
+after we reached the
+end of top-level code.
+
+
+1184
+00:49:41,156 --> 00:49:43,166
+That's because XCPShowView
+implicitly
+
+
+1185
+00:49:43,166 --> 00:49:45,106
+calls XCPSetExecutionShould
+
+
+1186
+00:49:45,106 --> 00:49:46,126
+ContinueIndefinitely.
+
+
+1187
+00:49:46,326 --> 00:49:48,786
+You should just think
+about this as if nothing
+
+
+1188
+00:49:48,786 --> 00:49:50,356
+in the Playground
+source has told Xcode
+
+
+1189
+00:49:50,356 --> 00:49:51,836
+that the Playground
+used to stay alive,
+
+
+1190
+00:49:52,296 --> 00:49:54,636
+then the Playground will stop
+executing once we reach the end
+
+
+1191
+00:49:54,636 --> 00:49:55,786
+of top-level code.
+
+
+1192
+00:49:56,336 --> 00:49:58,146
+So now, I'd like to show you
+a quick demo of what it's
+
+
+1193
+00:49:58,146 --> 00:49:59,856
+like to use asynchronous
+code in Playgrounds.
+
+
+1194
+00:50:00,076 --> 00:50:02,826
+So here I am back here
+and I have a Playground
+
+
+1195
+00:50:02,826 --> 00:50:04,596
+which uses asynchronous code.
+
+
+1196
+00:50:05,316 --> 00:50:07,886
+We create, uh, we have
+our session delegate
+
+
+1197
+00:50:07,986 --> 00:50:09,666
+which is an
+NSURLSessionDelegate.
+
+
+1198
+00:50:10,216 --> 00:50:11,206
+It has a few callbacks.
+
+
+1199
+00:50:11,686 --> 00:50:13,146
+And then we also just, you know,
+
+
+1200
+00:50:13,496 --> 00:50:14,626
+create an instance
+of our delegate.
+
+
+1201
+00:50:14,626 --> 00:50:16,356
+We created an NSURLSession.
+
+
+1202
+00:50:17,036 --> 00:50:20,476
+And then create a data task
+to download the contents
+
+
+1203
+00:50:20,476 --> 00:50:21,546
+of the Apple home page.
+
+
+1204
+00:50:21,826 --> 00:50:23,886
+We then tell the
+data task to resume.
+
+
+1205
+00:50:24,736 --> 00:50:25,576
+And you noticed that, you know,
+
+
+1206
+00:50:25,576 --> 00:50:27,006
+the Playground itself
+has executed
+
+
+1207
+00:50:27,486 --> 00:50:29,506
+but we're not receiving
+any results up here.
+
+
+1208
+00:50:29,636 --> 00:50:31,846
+And if I open up the
+assistant editor, you'll notice
+
+
+1209
+00:50:33,276 --> 00:50:36,246
+that we haven't received any
+console output even though they
+
+
+1210
+00:50:36,246 --> 00:50:39,276
+were clearly logging here that
+we've received some bytes.
+
+
+1211
+00:50:40,826 --> 00:50:41,956
+And this is because nothing
+
+
+1212
+00:50:41,956 --> 00:50:43,796
+in the Playground has
+told the Playground
+
+
+1213
+00:50:43,796 --> 00:50:45,066
+that it should continue
+executing.
+
+
+1214
+00:50:45,536 --> 00:50:49,686
+So we call task.resume, we
+resume the task and then as soon
+
+
+1215
+00:50:49,686 --> 00:50:51,656
+as that finishes, we hit
+the end of top-level code
+
+
+1216
+00:50:51,996 --> 00:50:53,746
+and the Playground
+just stops executing.
+
+
+1217
+00:50:54,106 --> 00:50:57,226
+Let's go ahead and say
+import XCPlayground.
+
+
+1218
+00:50:58,226 --> 00:51:00,716
+And then we can say
+XCPSetExecution
+
+
+1219
+00:51:00,716 --> 00:51:04,676
+ShouldContinue,
+XCPSetExecutionShould
+
+
+1220
+00:51:04,676 --> 00:51:05,716
+ContinueIndefinitely.
+
+
+1221
+00:51:05,886 --> 00:51:08,346
+This takes a Bool but
+that defaults to true,
+
+
+1222
+00:51:08,486 --> 00:51:10,196
+so you typically don't need
+to pass anything there.
+
+
+1223
+00:51:10,196 --> 00:51:11,136
+And I won't do that here.
+
+
+1224
+00:51:11,956 --> 00:51:13,976
+You'll now notice that, you
+know, we were receiving results
+
+
+1225
+00:51:13,976 --> 00:51:15,936
+from here and we're also
+seeing the console output
+
+
+1226
+00:51:15,936 --> 00:51:17,776
+that we expect in the timeline.
+
+
+1227
+00:51:18,496 --> 00:51:20,696
+So OK, that's how you
+use asynchronous code
+
+
+1228
+00:51:20,696 --> 00:51:21,256
+in Playgrounds.
+
+
+1229
+00:51:21,446 --> 00:51:22,356
+Let's go back to slides now.
+
+
+1230
+00:51:23,066 --> 00:51:25,096
+There are a few alternatives
+but we really think
+
+
+1231
+00:51:25,096 --> 00:51:28,306
+that you should typically
+use XCPSetExecutionShould
+
+
+1232
+00:51:28,306 --> 00:51:29,696
+ContinueIndefinitely
+when you're trying
+
+
+1233
+00:51:29,696 --> 00:51:31,476
+to use asynchronous
+code in Playgrounds.
+
+
+1234
+00:51:31,606 --> 00:51:33,316
+If that won't work
+for you though,
+
+
+1235
+00:51:33,316 --> 00:51:34,816
+you can use other
+methods for waiting
+
+
+1236
+00:51:34,816 --> 00:51:36,566
+for asynchronous
+operations to finish.
+
+
+1237
+00:51:37,036 --> 00:51:39,086
+Basically, you just need to make
+sure you don't reach the end
+
+
+1238
+00:51:39,086 --> 00:51:41,166
+of top-level code before
+your operation completes.
+
+
+1239
+00:51:42,286 --> 00:51:44,376
+Before we leave today, I'd like
+to talk to you a little bit
+
+
+1240
+00:51:44,376 --> 00:51:46,456
+about some of the limitations
+we have with Playgrounds.
+
+
+1241
+00:51:47,696 --> 00:51:49,616
+First off, you should
+not use performance, uh,
+
+
+1242
+00:51:49,616 --> 00:51:51,386
+Playgrounds for any
+performance testing.
+
+
+1243
+00:51:51,756 --> 00:51:53,356
+That's because the
+logging of results
+
+
+1244
+00:51:53,356 --> 00:51:55,506
+in the Playground will
+generally dominate the runtime,
+
+
+1245
+00:51:55,746 --> 00:51:57,076
+not your actual code.
+
+
+1246
+00:51:57,556 --> 00:51:59,806
+This means that the performance
+will be dependent on the number
+
+
+1247
+00:51:59,806 --> 00:52:02,506
+of lines of code executed,
+not the actual performance
+
+
+1248
+00:52:02,506 --> 00:52:04,036
+of whatever it is
+you are developing.
+
+
+1249
+00:52:04,376 --> 00:52:06,456
+And that's not necessarily
+what you'd expect.
+
+
+1250
+00:52:07,706 --> 00:52:10,306
+Instead we'd suggest that
+you use the XCTest framework
+
+
+1251
+00:52:10,606 --> 00:52:12,386
+to create performance
+tests in a test bundle
+
+
+1252
+00:52:12,386 --> 00:52:14,276
+where you can get
+more accurate results.
+
+
+1253
+00:52:15,126 --> 00:52:17,556
+We have a session later this
+week called Testing in Xcode 6
+
+
+1254
+00:52:17,556 --> 00:52:18,956
+which will go into
+this in more detail.
+
+
+1255
+00:52:21,006 --> 00:52:23,186
+There are few more
+limitations with Playgrounds.
+
+
+1256
+00:52:23,606 --> 00:52:24,866
+Playgrounds cannot
+be used for things
+
+
+1257
+00:52:24,866 --> 00:52:27,036
+which require user interaction.
+
+
+1258
+00:52:27,636 --> 00:52:29,526
+So we have great support
+for showing live views
+
+
+1259
+00:52:29,776 --> 00:52:31,646
+but you can only see them,
+you can't touch them.
+
+
+1260
+00:52:31,646 --> 00:52:35,236
+We also do not support using
+Playgrounds for anything
+
+
+1261
+00:52:35,236 --> 00:52:36,726
+which require custom
+entitlements.
+
+
+1262
+00:52:38,016 --> 00:52:40,206
+For iOS Playgrounds, we
+only support executing
+
+
+1263
+00:52:40,206 --> 00:52:41,146
+against the simulator.
+
+
+1264
+00:52:41,406 --> 00:52:44,186
+So anything which requires a
+device will not be supported
+
+
+1265
+00:52:44,186 --> 00:52:44,896
+with Playgrounds.
+
+
+1266
+00:52:46,046 --> 00:52:48,556
+And finally, we do not
+support using your own app
+
+
+1267
+00:52:48,556 --> 00:52:50,956
+or framework code in a
+Playground unless it's something
+
+
+1268
+00:52:50,956 --> 00:52:53,026
+that you can just copy and paste
+into the Playground source.
+
+
+1269
+00:52:53,416 --> 00:52:55,806
+Basically, you can only use
+things in the standard library,
+
+
+1270
+00:52:56,106 --> 00:52:59,036
+in the SDK, or that's in the
+Playground source itself.
+
+
+1271
+00:52:59,516 --> 00:53:02,826
+You can get around some of these
+limitations by using the REPL.
+
+
+1272
+00:53:03,456 --> 00:53:05,766
+The REPL is the command
+line interface to Swift
+
+
+1273
+00:53:05,766 --> 00:53:09,216
+and it works this way because
+the REPL can actually execute
+
+
+1274
+00:53:09,216 --> 00:53:10,166
+in your own process.
+
+
+1275
+00:53:10,416 --> 00:53:13,216
+You just stop at a breakpoint,
+and then at the LLDB prompt,
+
+
+1276
+00:53:13,216 --> 00:53:15,926
+you execute the REPL command
+and you'll just be dropped
+
+
+1277
+00:53:15,926 --> 00:53:17,316
+down right into the Swift REPL.
+
+
+1278
+00:53:18,606 --> 00:53:21,186
+Playgrounds though provide a
+richer experience than the REPL.
+
+
+1279
+00:53:21,236 --> 00:53:23,286
+And that's because we will
+automatically execute your code
+
+
+1280
+00:53:23,286 --> 00:53:24,106
+from a known state.
+
+
+1281
+00:53:24,456 --> 00:53:27,666
+That means, you know, you make a
+single edit to a line and then,
+
+
+1282
+00:53:27,666 --> 00:53:29,096
+you know, we just
+rerun it from 0.
+
+
+1283
+00:53:29,706 --> 00:53:31,716
+Whereas with the REPL, if
+you wanted to make an edit
+
+
+1284
+00:53:31,716 --> 00:53:33,926
+to something earlier in the
+source that you had entered,
+
+
+1285
+00:53:33,926 --> 00:53:35,366
+you have to, you know,
+get the process back
+
+
+1286
+00:53:35,366 --> 00:53:37,776
+into the state then, you
+know, reenter the REPL,
+
+
+1287
+00:53:37,776 --> 00:53:39,706
+retype everything
+making that one change
+
+
+1288
+00:53:39,706 --> 00:53:41,046
+to see how it affects things.
+
+
+1289
+00:53:41,976 --> 00:53:43,856
+Playgrounds also supports some
+of these higher level futures
+
+
+1290
+00:53:43,856 --> 00:53:47,256
+like Quick Looks and a timeline
+which we do not support, uh,
+
+
+1291
+00:53:47,256 --> 00:53:48,486
+which the REPL does not support.
+
+
+1292
+00:53:49,796 --> 00:53:51,726
+If you'd like to learn
+more about the REPL,
+
+
+1293
+00:53:51,806 --> 00:53:55,066
+you can go to the Introduction
+to LLDB and the Swift REPL talk.
+
+
+1294
+00:53:55,426 --> 00:53:58,166
+And we'll go into much more
+detail about how the REPL works.
+
+
+1295
+00:53:58,736 --> 00:54:02,786
+In summary, we think Playgrounds
+are a great way to play
+
+
+1296
+00:54:02,786 --> 00:54:05,346
+with Swift, with Cocoa
+and with Cocoa Touch.
+
+
+1297
+00:54:05,846 --> 00:54:07,906
+We think you can use them
+for things like learning,
+
+
+1298
+00:54:07,986 --> 00:54:11,336
+exploration and visualization
+and frankly probably tons
+
+
+1299
+00:54:11,336 --> 00:54:12,906
+of things which we haven't
+even thought of yet.
+
+
+1300
+00:54:13,716 --> 00:54:16,316
+The XCPlayground
+framework provides APIs
+
+
+1301
+00:54:16,316 --> 00:54:18,376
+for using your Playgrounds
+for more advanced things.
+
+
+1302
+00:54:18,446 --> 00:54:20,906
+So you can do things like
+manually capture values
+
+
+1303
+00:54:20,906 --> 00:54:22,546
+with the XCPCaptureValue API.
+
+
+1304
+00:54:23,406 --> 00:54:26,696
+You can show live views in the
+timeline by calling XCPShowView.
+
+
+1305
+00:54:27,186 --> 00:54:29,046
+And then you can
+also extend execution
+
+
+1306
+00:54:29,046 --> 00:54:32,206
+for asynchronous operations
+with the XCPSetExecutionShould
+
+
+1307
+00:54:32,206 --> 00:54:33,656
+ContinueIndefinitely function.
+
+
+1308
+00:54:34,656 --> 00:54:36,616
+Finally, we'd really like to
+just encourage you to go out
+
+
+1309
+00:54:36,616 --> 00:54:37,576
+and give Playgrounds a try.
+
+
+1310
+00:54:37,576 --> 00:54:39,516
+I think, you know,
+they're really approachable
+
+
+1311
+00:54:39,756 --> 00:54:41,026
+and if you just sit
+down with them
+
+
+1312
+00:54:41,026 --> 00:54:42,796
+for a little bit you'll
+find a number of great ways
+
+
+1313
+00:54:42,796 --> 00:54:44,736
+to integrate them into
+your development process.
+
+
+1314
+00:54:46,066 --> 00:54:48,586
+For more information, you can
+contact our Developer Tools
+
+
+1315
+00:54:48,586 --> 00:54:49,686
+Evangelist, Dave DeLong.
+
+
+1316
+00:54:49,686 --> 00:54:51,466
+We also have some
+information about Playgrounds
+
+
+1317
+00:54:51,466 --> 00:54:53,286
+in the Source Editor
+Help for Xcode 6.
+
+
+1318
+00:54:53,356 --> 00:54:55,316
+You can also ask
+questions about Playgrounds
+
+
+1319
+00:54:55,316 --> 00:54:56,896
+on the Apple Developer Forums.
+
+
+1320
+00:54:57,526 --> 00:55:01,146
+We have several related
+sessions about Swift this week.
+
+
+1321
+00:55:01,146 --> 00:55:04,846
+So there was an Introduction
+to Swift session yesterday,
+
+
+1322
+00:55:04,916 --> 00:55:06,016
+which you can catch
+on the video.
+
+
+1323
+00:55:06,016 --> 00:55:08,906
+We also have an Intermediate
+Swift session later
+
+
+1324
+00:55:08,906 --> 00:55:09,626
+this afternoon.
+
+
+1325
+00:55:10,156 --> 00:55:12,946
+There's also an Advanced
+Swift session tomorrow
+
+
+1326
+00:55:12,946 --> 00:55:13,806
+which you'll be able to see.
+
+
+1327
+00:55:14,796 --> 00:55:15,896
+We had an Integrating Swift
+
+
+1328
+00:55:15,896 --> 00:55:18,716
+with Objective-C session
+earlier this morning
+
+
+1329
+00:55:18,716 --> 00:55:19,726
+which you can catch on video.
+
+
+1330
+00:55:20,046 --> 00:55:22,756
+And we also have a
+Swift Interoperability
+
+
+1331
+00:55:22,756 --> 00:55:24,576
+in Depth session
+later this afternoon.
+
+
+1332
+00:55:25,026 --> 00:55:27,176
+Finally, if you'd like to learn
+more about the Swift REPL,
+
+
+1333
+00:55:27,176 --> 00:55:28,876
+you can go to the
+Introduction to LLDB
+
+
+1334
+00:55:28,876 --> 00:55:30,016
+and the Swift REPL session.
+
+
+1335
+00:55:30,246 --> 00:55:31,236
+Thank you all for coming
+
+
+1336
+00:55:31,236 --> 00:55:33,266
+and I hope you have a
+great week here at WWDC.
+

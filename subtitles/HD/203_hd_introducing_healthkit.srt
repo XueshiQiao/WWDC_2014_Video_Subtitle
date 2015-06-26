@@ -1,0 +1,5460 @@
+1
+00:00:12,516 --> 00:00:16,596
+[ Applause ]
+
+
+2
+00:00:17,096 --> 00:00:18,166
+>> Hello everyone.
+
+
+3
+00:00:18,166 --> 00:00:20,236
+Welcome to "Introducing
+HealthKit."
+
+
+4
+00:00:20,756 --> 00:00:24,776
+My name is Justin, I'm an iOS
+engineer and I'll be joined
+
+
+5
+00:00:24,776 --> 00:00:27,106
+up here in a little while
+by my colleague, Siji.
+
+
+6
+00:00:28,006 --> 00:00:30,486
+Siji and I got to work
+together on HealthKit
+
+
+7
+00:00:30,666 --> 00:00:33,066
+and we're really excited
+to show it to you today.
+
+
+8
+00:00:34,156 --> 00:00:39,266
+So, there are a ton of
+health and fitness apps
+
+
+9
+00:00:39,446 --> 00:00:40,576
+on the app store today.
+
+
+10
+00:00:41,066 --> 00:00:43,416
+They do all sorts
+of awesome things
+
+
+11
+00:00:43,496 --> 00:00:46,796
+that let our users get
+healthy and stay healthy.
+
+
+12
+00:00:47,526 --> 00:00:49,496
+The problem is not a lot
+
+
+13
+00:00:49,496 --> 00:00:52,136
+of these apps can share
+data between each other.
+
+
+14
+00:00:53,076 --> 00:00:56,586
+This makes it really hard for
+our users to get a cohesive view
+
+
+15
+00:00:56,586 --> 00:00:57,396
+of their current health.
+
+
+16
+00:00:58,906 --> 00:01:02,576
+The few apps that can share
+data have to write all sorts
+
+
+17
+00:01:02,576 --> 00:01:06,336
+of custom code to do so, which
+means you spend your time
+
+
+18
+00:01:06,506 --> 00:01:09,706
+and energy working on
+features that aren't core
+
+
+19
+00:01:09,706 --> 00:01:11,716
+to the experience of
+your applications.
+
+
+20
+00:01:13,466 --> 00:01:17,156
+Now, we recognize that
+different applications have
+
+
+21
+00:01:17,206 --> 00:01:17,886
+different needs.
+
+
+22
+00:01:18,486 --> 00:01:20,306
+The way we see it,
+they can be grouped
+
+
+23
+00:01:20,306 --> 00:01:22,316
+into three main categories.
+
+
+24
+00:01:22,736 --> 00:01:25,226
+First, there are applications
+
+
+25
+00:01:25,226 --> 00:01:28,846
+that perform statistical
+analysis using graphs or trends.
+
+
+26
+00:01:30,496 --> 00:01:33,976
+Next there are applications that
+let users enter information.
+
+
+27
+00:01:34,496 --> 00:01:39,276
+Last, there are applications
+put out by health providers
+
+
+28
+00:01:39,396 --> 00:01:42,476
+that let users sync data with
+their personal medical record.
+
+
+29
+00:01:43,446 --> 00:01:45,716
+These are three very
+different scenarios,
+
+
+30
+00:01:45,916 --> 00:01:48,666
+but we built HealthKit so that
+it can handle all of them,
+
+
+31
+00:01:48,666 --> 00:01:52,746
+and we're going to show
+you how it does that today.
+
+
+32
+00:01:52,896 --> 00:01:55,936
+Throughout this talk we're going
+to refer to the health app.
+
+
+33
+00:01:56,756 --> 00:01:59,156
+This is talking about the
+new health application
+
+
+34
+00:01:59,156 --> 00:02:01,506
+that we're introducing
+with iOS 8.
+
+
+35
+00:02:03,156 --> 00:02:04,606
+So here's our agenda for today.
+
+
+36
+00:02:05,646 --> 00:02:07,156
+We're going to start
+off by walking you
+
+
+37
+00:02:07,156 --> 00:02:10,765
+through the HealthKit API so you
+can learn how to create data,
+
+
+38
+00:02:10,765 --> 00:02:14,636
+how to save data and how
+to ask for data as well.
+
+
+39
+00:02:15,586 --> 00:02:17,926
+Then Siji is going to come
+up here and give you a demo
+
+
+40
+00:02:18,106 --> 00:02:20,266
+so you can see how to
+incorporate HealthKit
+
+
+41
+00:02:20,356 --> 00:02:21,616
+into your own applications.
+
+
+42
+00:02:22,486 --> 00:02:25,716
+We'll finish things off with
+some HealthKit best practices.
+
+
+43
+00:02:27,896 --> 00:02:31,406
+HealthKit is a framework
+that lets you store
+
+
+44
+00:02:31,406 --> 00:02:33,996
+and retrieve health and
+fitness information.
+
+
+45
+00:02:34,326 --> 00:02:36,886
+So data is really important.
+
+
+46
+00:02:37,296 --> 00:02:39,166
+We're going to start
+off by talking
+
+
+47
+00:02:39,166 --> 00:02:42,846
+about what data is in HealthKit.
+
+
+48
+00:02:43,536 --> 00:02:47,426
+Storing health information in a
+way that can scale to work all
+
+
+49
+00:02:47,426 --> 00:02:50,816
+across the world has presented
+some challenging problems.
+
+
+50
+00:02:51,796 --> 00:02:54,996
+Every time you step on your
+scale, your weight may be pounds
+
+
+51
+00:02:54,996 --> 00:02:57,536
+in the United States,
+stones in England
+
+
+52
+00:02:57,536 --> 00:02:59,876
+or kilograms in many
+other areas.
+
+
+53
+00:03:00,836 --> 00:03:03,826
+We didn't want you to have to
+do unit conversion yourself
+
+
+54
+00:03:04,256 --> 00:03:09,226
+so we handle unit conversion
+for you right in HealthKit.
+
+
+55
+00:03:09,306 --> 00:03:11,706
+Units are handled by HKUnit,
+
+
+56
+00:03:12,216 --> 00:03:18,286
+and HKUnit represents a
+particular unit in the metric
+
+
+57
+00:03:18,536 --> 00:03:20,046
+or imperial unit system.
+
+
+58
+00:03:21,246 --> 00:03:25,286
+These can be simple, such as
+grams, or they can be complex,
+
+
+59
+00:03:25,346 --> 00:03:27,086
+like milligrams per deciliter.
+
+
+60
+00:03:28,796 --> 00:03:31,696
+Base units are classified
+into types.
+
+
+61
+00:03:32,646 --> 00:03:35,576
+Types define which units are
+compatible with each other.
+
+
+62
+00:03:36,286 --> 00:03:39,366
+For example, a mass units
+value can be converted
+
+
+63
+00:03:39,476 --> 00:03:40,716
+to any other mass unit.
+
+
+64
+00:03:41,616 --> 00:03:45,706
+Here you can see that milligrams
+per deciliter is an example
+
+
+65
+00:03:45,706 --> 00:03:47,326
+of a mass per volume unit.
+
+
+66
+00:03:47,836 --> 00:03:51,886
+We give you a couple of
+different ways to create units.
+
+
+67
+00:03:52,666 --> 00:03:56,146
+First, you can specify
+them explicitly in code.
+
+
+68
+00:03:56,886 --> 00:03:58,616
+Here we're creating a gram unit,
+
+
+69
+00:03:59,776 --> 00:04:01,966
+and then we're creating
+a deciliter unit.
+
+
+70
+00:04:02,976 --> 00:04:06,576
+and we're combining the two to
+make a grams per deciliter unit.
+
+
+71
+00:04:07,816 --> 00:04:10,016
+This works really
+well for simple units,
+
+
+72
+00:04:10,096 --> 00:04:12,536
+but as you can see, it
+gets pretty unwieldy
+
+
+73
+00:04:12,626 --> 00:04:14,566
+as we expand to more
+complex ones.
+
+
+74
+00:04:14,966 --> 00:04:16,426
+To make things easier on you,
+
+
+75
+00:04:16,646 --> 00:04:20,146
+we let you specify units
+using unit strings like so.
+
+
+76
+00:04:21,286 --> 00:04:24,016
+So this line will
+create an identical unit
+
+
+77
+00:04:24,106 --> 00:04:27,706
+to the three lines above it.
+
+
+78
+00:04:27,966 --> 00:04:30,416
+Once you have your unit, the
+next thing you're going to want
+
+
+79
+00:04:30,416 --> 00:04:32,786
+to do is create an HKQuantity.
+
+
+80
+00:04:34,046 --> 00:04:38,416
+An HKQuantity is a double value
+relative to a particular unit.
+
+
+81
+00:04:39,726 --> 00:04:41,876
+What's really cool about
+quantities, though,
+
+
+82
+00:04:42,376 --> 00:04:45,316
+is that they can be used to
+do unit conversion for you.
+
+
+83
+00:04:46,386 --> 00:04:47,676
+Let's take a look
+at how they do that.
+
+
+84
+00:04:49,066 --> 00:04:52,816
+Here we start off by making
+a quantity of 20 grams.
+
+
+85
+00:04:54,036 --> 00:04:57,506
+Next we can ask for its
+double value in kilograms.
+
+
+86
+00:04:58,006 --> 00:05:01,326
+This will give us back .02.
+
+
+87
+00:05:02,616 --> 00:05:06,226
+Unfortunately, not all
+units play nicely together.
+
+
+88
+00:05:07,056 --> 00:05:09,316
+If you ask a quantity
+for its value
+
+
+89
+00:05:09,316 --> 00:05:11,116
+in a unit it's not
+compatible with,
+
+
+90
+00:05:11,466 --> 00:05:12,986
+we're going to throw
+an exception.
+
+
+91
+00:05:13,726 --> 00:05:17,206
+You can always guard yourself
+in code by asking a quantity
+
+
+92
+00:05:17,206 --> 00:05:19,416
+if it's compatible
+with a particular unit.
+
+
+93
+00:05:20,316 --> 00:05:21,446
+So return a BOOL.
+
+
+94
+00:05:23,386 --> 00:05:25,666
+So now that you have
+your quantity,
+
+
+95
+00:05:26,106 --> 00:05:28,456
+the question you should be
+asking yourself is what is this
+
+
+96
+00:05:28,456 --> 00:05:29,976
+a quantity of?
+
+
+97
+00:05:30,286 --> 00:05:31,826
+To answer that question
+we're going
+
+
+98
+00:05:31,826 --> 00:05:35,186
+to take a look at object types.
+
+
+99
+00:05:35,376 --> 00:05:38,646
+Object types represent all of
+the different kinds of data
+
+
+100
+00:05:38,646 --> 00:05:40,496
+that we can store in HealthKit.
+
+
+101
+00:05:41,216 --> 00:05:44,006
+There are over 60
+different types.
+
+
+102
+00:05:44,836 --> 00:05:47,026
+Major groups of types
+are organized
+
+
+103
+00:05:47,096 --> 00:05:48,386
+into their own classes.
+
+
+104
+00:05:49,146 --> 00:05:52,346
+All of these classes
+inherit from HKObjectType.
+
+
+105
+00:05:55,476 --> 00:05:58,986
+Characteristic types are
+characteristics of the user
+
+
+106
+00:05:59,186 --> 00:06:01,626
+or traits that don't
+change over time.
+
+
+107
+00:06:02,806 --> 00:06:05,406
+These are things such as their
+blood type or date of birth.
+
+
+108
+00:06:07,236 --> 00:06:10,626
+Sample types, on the other
+hand, are traits of the user
+
+
+109
+00:06:10,626 --> 00:06:12,106
+that do change over time.
+
+
+110
+00:06:13,206 --> 00:06:18,286
+As such, they can be sampled
+at a particular point in time.
+
+
+111
+00:06:18,776 --> 00:06:21,456
+One kind of sample
+type is HKQuantityType.
+
+
+112
+00:06:22,856 --> 00:06:24,016
+These are the kinds of data
+
+
+113
+00:06:24,016 --> 00:06:26,536
+that can be represented
+by an HKQuantity.
+
+
+114
+00:06:27,046 --> 00:06:30,286
+They are by far the most common
+kinds of data in HealthKit
+
+
+115
+00:06:30,286 --> 00:06:33,946
+and represent everything from
+blood pressure to potassium
+
+
+116
+00:06:33,976 --> 00:06:38,036
+to the number of
+steps you've taken.
+
+
+117
+00:06:38,126 --> 00:06:40,486
+Last we have HKCategoryType.
+
+
+118
+00:06:41,466 --> 00:06:45,326
+Category types describe the kind
+of data that can be categorized
+
+
+119
+00:06:45,426 --> 00:06:47,516
+into an enumeration of values.
+
+
+120
+00:06:48,176 --> 00:06:51,366
+An example of category
+type is sleep analysis,
+
+
+121
+00:06:51,736 --> 00:06:53,966
+which is how we store
+sleep in HealthKit.
+
+
+122
+00:06:55,236 --> 00:06:58,496
+Let's talk about how you
+would create an instance
+
+
+123
+00:06:58,696 --> 00:06:59,786
+of an HKObjectType.
+
+
+124
+00:07:00,256 --> 00:07:04,036
+Every type has its
+own type identifier.
+
+
+125
+00:07:05,036 --> 00:07:08,006
+You cannot create your own
+types or type identifiers,
+
+
+126
+00:07:08,196 --> 00:07:10,936
+but it's important to understand
+how they're structured
+
+
+127
+00:07:11,266 --> 00:07:15,046
+so that you can use auto
+complete to your advantage.
+
+
+128
+00:07:15,546 --> 00:07:18,486
+Here we have our
+identifier for heart rate.
+
+
+129
+00:07:20,196 --> 00:07:22,236
+The first part of
+the identifier is
+
+
+130
+00:07:22,236 --> 00:07:25,156
+which object type
+subclass it represents.
+
+
+131
+00:07:26,096 --> 00:07:29,486
+As you can see, heart
+rate is a quantity type.
+
+
+132
+00:07:30,836 --> 00:07:34,666
+The second part of the
+identifier is the type name
+
+
+133
+00:07:34,826 --> 00:07:37,406
+or what you would call the type.
+
+
+134
+00:07:38,086 --> 00:07:40,806
+Once you have your type
+identifier, you can pass it
+
+
+135
+00:07:40,856 --> 00:07:44,026
+to one of these three
+constructors on HKObjectType.
+
+
+136
+00:07:44,556 --> 00:07:47,556
+It's important to note
+that your identifier
+
+
+137
+00:07:47,556 --> 00:07:50,186
+and your constructor
+need to match up.
+
+
+138
+00:07:50,676 --> 00:07:53,726
+So if you were to pass a
+category type identifier
+
+
+139
+00:07:54,236 --> 00:08:00,956
+to quantity type for identifier,
+you're going to get back nil.
+
+
+140
+00:08:01,166 --> 00:08:06,386
+So, now we have a quantity,
+and we have an object type.
+
+
+141
+00:08:06,836 --> 00:08:09,156
+It sounds like you're
+ready to create some data.
+
+
+142
+00:08:10,696 --> 00:08:14,846
+All data stored in HealthKit
+is a subclass of HKObject.
+
+
+143
+00:08:16,176 --> 00:08:20,436
+Here we have a diagram of
+the HKObject class hierarchy.
+
+
+144
+00:08:21,676 --> 00:08:23,726
+You might notice this
+is pretty similar
+
+
+145
+00:08:23,846 --> 00:08:26,886
+to the hierarchy we just
+saw for HKObjectType.
+
+
+146
+00:08:27,936 --> 00:08:30,186
+This is by design
+as object types
+
+
+147
+00:08:30,536 --> 00:08:33,176
+and objects are very
+closely tied together.
+
+
+148
+00:08:34,086 --> 00:08:36,596
+Let's take a look at some
+of these different classes.
+
+
+149
+00:08:37,135 --> 00:08:40,296
+We'll start with
+HKQuantitySample.
+
+
+150
+00:08:41,206 --> 00:08:44,786
+This is by far the most common
+kind of HKObject in HealthKit.
+
+
+151
+00:08:45,206 --> 00:08:47,356
+They're how we store
+quantities in the database.
+
+
+152
+00:08:47,836 --> 00:08:51,286
+Every quantity sample
+has a quantity type.
+
+
+153
+00:08:52,226 --> 00:08:55,246
+This is what kind of data
+the sample represents.
+
+
+154
+00:08:56,776 --> 00:09:00,816
+They also have a quantity, which
+is the value of the sample.
+
+
+155
+00:09:02,016 --> 00:09:04,616
+It's important to note
+that your quantity's unit
+
+
+156
+00:09:04,806 --> 00:09:06,956
+and your quantity
+type need to match up.
+
+
+157
+00:09:07,806 --> 00:09:10,876
+Every quantity type expects
+a certain kind of unit,
+
+
+158
+00:09:11,096 --> 00:09:15,906
+and if there's a mismatch here
+then we'll throw an exception.
+
+
+159
+00:09:16,096 --> 00:09:17,936
+Next we have HKCategorySample.
+
+
+160
+00:09:18,776 --> 00:09:21,726
+Category samples are very
+similar to quantity samples.
+
+
+161
+00:09:22,746 --> 00:09:26,396
+They have a category type,
+which again describes what kind
+
+
+162
+00:09:26,396 --> 00:09:29,986
+of data the sample represents,
+and they have a value.
+
+
+163
+00:09:31,666 --> 00:09:35,336
+Now, remember the category
+types are the kinds of data
+
+
+164
+00:09:35,336 --> 00:09:39,086
+that can be categorized into
+an enumeration of values.
+
+
+165
+00:09:40,146 --> 00:09:42,986
+As such, every category
+type is paired
+
+
+166
+00:09:43,296 --> 00:09:44,906
+with a corresponding enum.
+
+
+167
+00:09:45,966 --> 00:09:49,336
+This value property must be one
+of the members of that enum.
+
+
+168
+00:09:50,286 --> 00:09:54,146
+If an invalid value is provided,
+we throw an exception just
+
+
+169
+00:09:54,146 --> 00:09:56,006
+like we do for quantity samples.
+
+
+170
+00:09:58,356 --> 00:10:02,846
+Both of these inherit
+from HKSample.
+
+
+171
+00:10:02,926 --> 00:10:05,416
+Remember that samples
+are the kinds of data
+
+
+172
+00:10:05,416 --> 00:10:08,466
+that can be sampled at a
+particular point in time.
+
+
+173
+00:10:09,406 --> 00:10:12,446
+To support this, every
+sample has both a start date
+
+
+174
+00:10:12,446 --> 00:10:13,486
+and an end date.
+
+
+175
+00:10:14,656 --> 00:10:16,646
+Why both a state date and
+end date you might ask?
+
+
+176
+00:10:17,056 --> 00:10:20,286
+Well, for some kinds of
+data, such as your weight,
+
+
+177
+00:10:20,976 --> 00:10:23,146
+the reading is pretty
+instantaneous,
+
+
+178
+00:10:23,186 --> 00:10:26,206
+so your start date and end date
+should probably be the same.
+
+
+179
+00:10:26,846 --> 00:10:30,356
+For other kinds of data, though,
+your reading might take place
+
+
+180
+00:10:30,356 --> 00:10:31,616
+over a period of time.
+
+
+181
+00:10:32,346 --> 00:10:34,876
+You might want to say that
+your heart rate was an average
+
+
+182
+00:10:34,876 --> 00:10:38,186
+of 80 beats per minute over
+the course of 30 seconds.
+
+
+183
+00:10:40,116 --> 00:10:42,776
+Every sample also
+has a sample type.
+
+
+184
+00:10:43,776 --> 00:10:46,436
+This is going to be the
+same as your category type
+
+
+185
+00:10:46,566 --> 00:10:48,416
+or quantity type depending
+
+
+186
+00:10:48,466 --> 00:10:53,436
+on which subclass you
+choose to implement.
+
+
+187
+00:10:53,436 --> 00:10:55,776
+All of these inherit
+from HKObject.
+
+
+188
+00:10:57,436 --> 00:11:01,836
+Every object has a UUID,
+which is a unique identifier
+
+
+189
+00:11:01,836 --> 00:11:04,396
+that has persisted for the
+lifetime of the object.
+
+
+190
+00:11:04,736 --> 00:11:08,416
+So you can count on this
+always being the same.
+
+
+191
+00:11:08,626 --> 00:11:10,136
+They also have a source.
+
+
+192
+00:11:10,996 --> 00:11:13,726
+Because health information
+is so sensitive,
+
+
+193
+00:11:14,206 --> 00:11:15,616
+we wanted to make sure
+
+
+194
+00:11:15,616 --> 00:11:18,516
+that every object could
+identify where it came from.
+
+
+195
+00:11:19,916 --> 00:11:22,666
+Each application
+represents its own source,
+
+
+196
+00:11:22,986 --> 00:11:25,176
+but sources can also
+be pieces of hardware
+
+
+197
+00:11:25,426 --> 00:11:27,266
+such as a Bluetooth
+heart rate monitor
+
+
+198
+00:11:27,266 --> 00:11:31,526
+or the step tracker
+in your phone.
+
+
+199
+00:11:31,726 --> 00:11:35,616
+Metadata is an important part of
+the extensibility of an object.
+
+
+200
+00:11:36,736 --> 00:11:39,436
+You can create an object with
+whatever metadata you like.
+
+
+201
+00:11:40,816 --> 00:11:45,636
+Note that metadata is a regular
+NSDictionary except it can only
+
+
+202
+00:11:45,636 --> 00:11:48,446
+store strings as
+keys and strings,
+
+
+203
+00:11:48,446 --> 00:11:50,406
+numbers and dates as values.
+
+
+204
+00:11:51,436 --> 00:11:54,546
+We give you a few
+predefined metadata keys,
+
+
+205
+00:11:54,546 --> 00:11:58,876
+which we think might be
+useful, but we encourage you
+
+
+206
+00:11:58,876 --> 00:12:01,096
+to create your own
+metadata keys as well.
+
+
+207
+00:12:03,656 --> 00:12:06,036
+Now you may have
+noticed that all
+
+
+208
+00:12:06,036 --> 00:12:08,206
+of the properties you
+saw here are read only.
+
+
+209
+00:12:09,476 --> 00:12:12,616
+This is because all data
+in HealthKit is immutable.
+
+
+210
+00:12:13,206 --> 00:12:16,046
+As great as it would be to
+go back and change my height,
+
+
+211
+00:12:16,046 --> 00:12:17,876
+it really doesn't
+make any sense.
+
+
+212
+00:12:18,686 --> 00:12:21,486
+So, you can create
+objects using constructors
+
+
+213
+00:12:21,586 --> 00:12:24,776
+on HKQuantitySample
+and HKCategorySample.
+
+
+214
+00:12:25,306 --> 00:12:29,946
+This is an example of how
+you might create an object
+
+
+215
+00:12:29,946 --> 00:12:31,806
+to represent someone's
+body temperature.
+
+
+216
+00:12:33,496 --> 00:12:35,546
+First we create our
+quantity type,
+
+
+217
+00:12:35,966 --> 00:12:37,746
+which in this case
+is the quantity type
+
+
+218
+00:12:38,056 --> 00:12:39,106
+for body temperature.
+
+
+219
+00:12:39,646 --> 00:12:42,926
+Next, we create our quantity.
+
+
+220
+00:12:43,696 --> 00:12:45,896
+Let's say this person is
+feeling pretty healthy today,
+
+
+221
+00:12:46,166 --> 00:12:51,126
+so their temperature is
+98.6 degrees Fahrenheit.
+
+
+222
+00:12:51,616 --> 00:12:54,786
+Last we create some metadata.
+
+
+223
+00:12:55,376 --> 00:12:56,826
+This piece of metadata says
+
+
+224
+00:12:56,826 --> 00:12:59,736
+that the person probably took
+their body temperature using an
+
+
+225
+00:12:59,736 --> 00:13:00,476
+ear thermometer.
+
+
+226
+00:13:02,876 --> 00:13:06,246
+We can then pass all of
+this to HKQuantitySamples,
+
+
+227
+00:13:06,486 --> 00:13:09,666
+quantitySampleWithType,
+and give it a startDate
+
+
+228
+00:13:09,666 --> 00:13:13,956
+and endDate of right now.
+
+
+229
+00:13:14,266 --> 00:13:18,596
+Now that you have your data,
+what do you actually do with it?
+
+
+230
+00:13:19,106 --> 00:13:21,086
+Well, to really do
+anything with HealthKit,
+
+
+231
+00:13:21,186 --> 00:13:23,966
+the first thing you need
+is an HKHealthStore.
+
+
+232
+00:13:24,556 --> 00:13:27,086
+You can think of
+your HealthStore
+
+
+233
+00:13:27,086 --> 00:13:28,976
+as your link to the database.
+
+
+234
+00:13:29,536 --> 00:13:34,596
+It lets you save objects, and as
+we'll find out in a little bit,
+
+
+235
+00:13:34,596 --> 00:13:38,396
+it lets you ask for
+data as well.
+
+
+236
+00:13:38,396 --> 00:13:41,566
+Remember though that you really
+only need one HealthStore.
+
+
+237
+00:13:42,376 --> 00:13:45,096
+They should be long-lived, and
+you don't really get anything
+
+
+238
+00:13:45,096 --> 00:13:47,216
+out of having multiple
+ones floating around.
+
+
+239
+00:13:47,526 --> 00:13:51,986
+So create one, hold on
+to it and you're done.
+
+
+240
+00:13:52,186 --> 00:13:54,866
+Here's an example of us
+saving some data to HealthKit.
+
+
+241
+00:13:56,356 --> 00:13:58,086
+First, we create
+our HealthStore.
+
+
+242
+00:13:58,526 --> 00:14:02,176
+Next, we create a
+quantity sample.
+
+
+243
+00:14:02,756 --> 00:14:05,486
+We can then pass our sample
+
+
+244
+00:14:05,596 --> 00:14:08,926
+to our HealthStore using
+save object with completion,
+
+
+245
+00:14:09,836 --> 00:14:13,816
+and voila we have officially
+saved data in HealthKit.
+
+
+246
+00:14:14,386 --> 00:14:18,156
+So, saving data is great,
+
+
+247
+00:14:18,666 --> 00:14:21,246
+but it's not really any
+fun unless we can ask
+
+
+248
+00:14:21,246 --> 00:14:22,246
+for it back, right?
+
+
+249
+00:14:23,176 --> 00:14:27,446
+HealthKit gives you lots
+of ways to ask for data.
+
+
+250
+00:14:27,876 --> 00:14:31,286
+The easiest information to get
+are characteristics of the user.
+
+
+251
+00:14:32,206 --> 00:14:35,656
+Because these don't change
+over time, we really only care
+
+
+252
+00:14:35,656 --> 00:14:36,836
+about the current value.
+
+
+253
+00:14:36,956 --> 00:14:39,596
+So you can just ask your
+HealthStore directly.
+
+
+254
+00:14:40,136 --> 00:14:43,836
+Here's an example of us
+asking our HealthStore
+
+
+255
+00:14:43,926 --> 00:14:45,506
+for the user's date of birth.
+
+
+256
+00:14:46,996 --> 00:14:50,726
+This doesn't work for everything
+though, so to ask for the bulk
+
+
+257
+00:14:50,726 --> 00:14:53,166
+of our data, we're going to
+need something a little more
+
+
+258
+00:14:53,166 --> 00:14:53,826
+heavy duty.
+
+
+259
+00:14:55,036 --> 00:14:57,286
+This is where queries come in.
+
+
+260
+00:14:57,776 --> 00:15:01,076
+Queries provide a structured
+mechanism for you to look
+
+
+261
+00:15:01,076 --> 00:15:03,136
+at health data in
+a variety of ways.
+
+
+262
+00:15:03,656 --> 00:15:07,336
+All queries inherit
+from HKQuery.
+
+
+263
+00:15:07,936 --> 00:15:12,416
+An HKQuery has a
+sampleType, which is what kind
+
+
+264
+00:15:12,416 --> 00:15:14,026
+of data is being queried for.
+
+
+265
+00:15:15,696 --> 00:15:17,456
+They also have a predicate.
+
+
+266
+00:15:18,386 --> 00:15:21,796
+Predicate is an NSPredicate
+that filters which objects are
+
+
+267
+00:15:21,796 --> 00:15:23,246
+to be returned by the query.
+
+
+268
+00:15:24,576 --> 00:15:26,926
+You can create predicates in
+a couple of different ways.
+
+
+269
+00:15:27,866 --> 00:15:30,826
+First, you can use regular
+NSPredicate constructors,
+
+
+270
+00:15:30,866 --> 00:15:33,656
+which you may already
+be used to.
+
+
+271
+00:15:33,886 --> 00:15:36,236
+We give you a constant
+for every key path
+
+
+272
+00:15:36,236 --> 00:15:37,986
+that you can use
+with predicates.
+
+
+273
+00:15:38,476 --> 00:15:43,016
+This is a really powerful tool,
+but we wanted to make it easy
+
+
+274
+00:15:43,016 --> 00:15:46,216
+on you to create the predicates
+that are most commonly used.
+
+
+275
+00:15:47,036 --> 00:15:50,616
+So we provide some convenience
+constructors right on HKQuery.
+
+
+276
+00:15:51,856 --> 00:15:53,546
+Note that these two
+methods are going
+
+
+277
+00:15:53,546 --> 00:15:55,096
+to create identical predicates,
+
+
+278
+00:15:55,276 --> 00:15:59,996
+so you can use whichever method
+you feel more comfortable with.
+
+
+279
+00:16:00,696 --> 00:16:03,456
+Now, let's say that
+you're working
+
+
+280
+00:16:03,516 --> 00:16:05,056
+on a brand new application.
+
+
+281
+00:16:06,086 --> 00:16:08,226
+This app is for a fancy
+new health tracker
+
+
+282
+00:16:08,226 --> 00:16:10,146
+that can measure the
+user's blood sugar
+
+
+283
+00:16:10,236 --> 00:16:11,606
+and sync it to their phone.
+
+
+284
+00:16:13,096 --> 00:16:15,926
+Your app already saves
+all its data in HealthKit.
+
+
+285
+00:16:16,366 --> 00:16:17,966
+Now you want to create a screen
+
+
+286
+00:16:17,966 --> 00:16:20,996
+that will show the user their
+most recent blood sugar reading.
+
+
+287
+00:16:22,026 --> 00:16:24,316
+You can do this with
+HKSampleQuery.
+
+
+288
+00:16:24,796 --> 00:16:27,596
+Every sample query has a limit.
+
+
+289
+00:16:28,286 --> 00:16:30,446
+This defines how many
+objects are going
+
+
+290
+00:16:30,446 --> 00:16:31,846
+to be returned by the query.
+
+
+291
+00:16:32,746 --> 00:16:34,366
+If you don't want to
+limit your results,
+
+
+292
+00:16:34,496 --> 00:16:37,646
+you can specify
+HKObjectQueryNoLimit.
+
+
+293
+00:16:39,456 --> 00:16:41,216
+They also have a sort order.
+
+
+294
+00:16:42,096 --> 00:16:44,296
+This is an array of
+NSSortDescriptors
+
+
+295
+00:16:44,496 --> 00:16:45,566
+that dictates the order
+
+
+296
+00:16:45,566 --> 00:16:47,246
+for which you will
+receive your result.
+
+
+297
+00:16:47,816 --> 00:16:52,016
+Here's an example of us
+creating a sample query
+
+
+298
+00:16:52,086 --> 00:16:54,066
+to get our most recent
+blood sugar reading.
+
+
+299
+00:16:55,636 --> 00:16:57,606
+First, we create
+our quantity type,
+
+
+300
+00:16:58,146 --> 00:16:59,546
+which in this case
+is blood sugar.
+
+
+301
+00:17:01,076 --> 00:17:03,396
+Next we create our
+sort descriptor.
+
+
+302
+00:17:04,306 --> 00:17:07,596
+Because we want the most recent,
+we want to order our results
+
+
+303
+00:17:07,646 --> 00:17:10,465
+in end date in descending order.
+
+
+304
+00:17:11,665 --> 00:17:16,036
+When we create our sample query,
+we admit it with a sample type
+
+
+305
+00:17:16,036 --> 00:17:20,175
+of blood sugar, a nil
+predicate because we don't want
+
+
+306
+00:17:20,175 --> 00:17:23,746
+to filter our results,
+a limit of one
+
+
+307
+00:17:23,866 --> 00:17:25,776
+because we want the
+one most recent,
+
+
+308
+00:17:26,646 --> 00:17:30,446
+and an array containing the
+sort descriptor we just created.
+
+
+309
+00:17:31,026 --> 00:17:35,786
+In our result handler, because
+we know there's only going to be
+
+
+310
+00:17:35,786 --> 00:17:39,386
+at most one result, we
+can just ask our results
+
+
+311
+00:17:39,516 --> 00:17:40,576
+for the last object.
+
+
+312
+00:17:41,066 --> 00:17:46,116
+That worked pretty
+well, but you realize
+
+
+313
+00:17:46,176 --> 00:17:47,946
+that every time a
+new reading comes
+
+
+314
+00:17:47,946 --> 00:17:50,306
+over from your health
+tracker, nothing happens.
+
+
+315
+00:17:50,666 --> 00:17:54,146
+It will be really great if every
+time you received a new reading
+
+
+316
+00:17:54,426 --> 00:17:57,316
+the display would just
+update all by itself.
+
+
+317
+00:17:58,806 --> 00:18:01,836
+You could create some kind
+of pull mechanism to do this,
+
+
+318
+00:18:01,956 --> 00:18:05,326
+where every 30 seconds or so you
+checked what the most recent is,
+
+
+319
+00:18:05,406 --> 00:18:08,466
+but it would be a lot nicer
+if you could just be alerted
+
+
+320
+00:18:08,546 --> 00:18:09,906
+when things actually change.
+
+
+321
+00:18:10,616 --> 00:18:13,766
+This is the job of
+HKObserverQuery.
+
+
+322
+00:18:15,106 --> 00:18:16,876
+Observer queries
+are very simple.
+
+
+323
+00:18:17,286 --> 00:18:20,026
+All they do is watch for
+changes in the database.
+
+
+324
+00:18:20,536 --> 00:18:24,366
+They're a little bit different
+than sample queries in the sense
+
+
+325
+00:18:24,416 --> 00:18:25,476
+that they're long running.
+
+
+326
+00:18:25,736 --> 00:18:27,186
+So your update handler is going
+
+
+327
+00:18:27,186 --> 00:18:30,186
+to be called every time
+a new object is saved
+
+
+328
+00:18:30,186 --> 00:18:31,816
+or removed from the database.
+
+
+329
+00:18:32,336 --> 00:18:37,176
+You might notice that in
+your update handler there's a
+
+
+330
+00:18:37,176 --> 00:18:38,036
+completion handler.
+
+
+331
+00:18:38,446 --> 00:18:41,336
+This is for a feature that
+we won't have time to go
+
+
+332
+00:18:41,336 --> 00:18:43,146
+into today called
+background delivery.
+
+
+333
+00:18:44,346 --> 00:18:46,386
+If you have any questions
+about background delivery,
+
+
+334
+00:18:46,746 --> 00:18:50,936
+please come by one of our labs.
+
+
+335
+00:18:51,156 --> 00:18:53,136
+Here's us creating
+an observer query.
+
+
+336
+00:18:54,246 --> 00:18:57,576
+All we do is tell it that we
+want all blood sugar readings,
+
+
+337
+00:18:57,986 --> 00:19:01,366
+and our update handler will be
+called every time a new blood
+
+
+338
+00:19:01,366 --> 00:19:07,496
+sugar reading is saved or
+removed from the database.
+
+
+339
+00:19:07,606 --> 00:19:11,666
+Now, let's say that your
+health app, that your app,
+
+
+340
+00:19:11,666 --> 00:19:13,696
+is partnering with
+a health provider.
+
+
+341
+00:19:13,696 --> 00:19:18,226
+What it's supposed to do is take
+all the blood sugar readings
+
+
+342
+00:19:18,306 --> 00:19:21,686
+that it's created and
+sync them to the cloud.
+
+
+343
+00:19:22,396 --> 00:19:24,496
+You could do this
+using a sample query,
+
+
+344
+00:19:24,726 --> 00:19:27,896
+where every time you query for
+all the objects in the database
+
+
+345
+00:19:28,246 --> 00:19:30,226
+and figure out which ones
+you haven't sent yet,
+
+
+346
+00:19:30,706 --> 00:19:35,876
+probably using their UUID,
+but this is a lot of work
+
+
+347
+00:19:35,936 --> 00:19:38,566
+and it would be a lot nicer
+if, and it would be a waste
+
+
+348
+00:19:38,636 --> 00:19:41,696
+to pull all of the objects
+from the database just to find
+
+
+349
+00:19:41,696 --> 00:19:43,956
+out that nothing has
+actually changed.
+
+
+350
+00:19:45,116 --> 00:19:49,176
+This is the perfect job
+for HKAnchoredObjectQuery.
+
+
+351
+00:19:49,796 --> 00:19:52,926
+An anchored object
+query has a limit,
+
+
+352
+00:19:53,206 --> 00:19:55,726
+which again defines
+how many results are
+
+
+353
+00:19:55,726 --> 00:19:57,346
+to be returned by the query.
+
+
+354
+00:19:58,516 --> 00:20:04,506
+It also has an anchor,
+but what's an anchor?
+
+
+355
+00:20:05,696 --> 00:20:09,226
+Well, behind the scenes,
+every object stored
+
+
+356
+00:20:09,226 --> 00:20:12,086
+in HealthKit has its own
+anchor in the database.
+
+
+357
+00:20:12,886 --> 00:20:15,476
+Your query anchor says
+that you want everything
+
+
+358
+00:20:15,586 --> 00:20:16,776
+after a certain point.
+
+
+359
+00:20:17,796 --> 00:20:20,826
+So, if you're to provide
+a query anchor of 0,
+
+
+360
+00:20:21,446 --> 00:20:22,876
+you would get back everything.
+
+
+361
+00:20:23,806 --> 00:20:26,416
+If you were to provide
+a query anchor of 3,
+
+
+362
+00:20:27,006 --> 00:20:30,376
+you would only get back
+objects 4, 5 and 6.
+
+
+363
+00:20:31,806 --> 00:20:34,446
+So in creating an
+anchored object query,
+
+
+364
+00:20:34,896 --> 00:20:37,056
+your anchor should
+represent the last piece
+
+
+365
+00:20:37,056 --> 00:20:38,446
+of data that you've seen.
+
+
+366
+00:20:39,326 --> 00:20:43,056
+If you haven't seen any data
+yet, then you can specify 0,
+
+
+367
+00:20:43,166 --> 00:20:45,336
+which means you don't
+have an anchor.
+
+
+368
+00:20:46,636 --> 00:20:49,266
+In your callback, you
+will receive a new anchor,
+
+
+369
+00:20:49,386 --> 00:20:50,946
+which you can then use
+in subsequent queries.
+
+
+370
+00:20:54,096 --> 00:20:57,246
+Here's an example of us creating
+an anchored object query.
+
+
+371
+00:20:57,846 --> 00:21:02,086
+At some point in time,
+probably during our initializer,
+
+
+372
+00:21:02,526 --> 00:21:04,696
+we set our last anchor to be 0.
+
+
+373
+00:21:06,756 --> 00:21:08,186
+When we create our query,
+
+
+374
+00:21:08,436 --> 00:21:10,716
+we tell it that we want
+all blood sugar readings
+
+
+375
+00:21:11,256 --> 00:21:13,856
+that have occurred
+since our last anchor
+
+
+376
+00:21:14,936 --> 00:21:16,526
+and we don't want to
+limit our results.
+
+
+377
+00:21:17,876 --> 00:21:20,766
+In our completion handler, we
+will get our results as well
+
+
+378
+00:21:20,766 --> 00:21:23,686
+as a new anchor, which we can
+then use in our next query.
+
+
+379
+00:21:24,696 --> 00:21:27,306
+Let's see how this would
+look with some actual data.
+
+
+380
+00:21:28,656 --> 00:21:31,406
+Let's say our database
+has three objects in it.
+
+
+381
+00:21:31,526 --> 00:21:33,016
+Since I haven't seen
+anything yet,
+
+
+382
+00:21:33,736 --> 00:21:35,596
+we'll say my current
+anchor is 0.
+
+
+383
+00:21:36,896 --> 00:21:40,496
+When I run my query, I'll
+get back objects 1, 2 and 3,
+
+
+384
+00:21:41,046 --> 00:21:43,736
+and my current anchor
+will now be 3.
+
+
+385
+00:21:45,306 --> 00:21:50,416
+Next, two objects are
+added to the database.
+
+
+386
+00:21:50,416 --> 00:21:54,196
+When I run another query,
+I'll get back objects 4 and 5,
+
+
+387
+00:21:54,836 --> 00:22:01,056
+and my current anchor
+will now be 5.
+
+
+388
+00:22:01,266 --> 00:22:03,676
+So, I've shown you a
+few different queries
+
+
+389
+00:22:03,986 --> 00:22:07,536
+and some situations that they're
+useful in, but we haven't talked
+
+
+390
+00:22:07,536 --> 00:22:09,446
+about how to actually
+run your queries.
+
+
+391
+00:22:10,646 --> 00:22:13,516
+This is done using two
+methods on HKHealthStore,
+
+
+392
+00:22:14,076 --> 00:22:15,946
+executeQuery and stopQuery.
+
+
+393
+00:22:17,736 --> 00:22:20,256
+ExecuteQuery tells a
+query to begin running.
+
+
+394
+00:22:21,376 --> 00:22:24,156
+At any point in time
+you can call stopQuery,
+
+
+395
+00:22:24,466 --> 00:22:27,366
+which will kill your query
+and prevent any callbacks
+
+
+396
+00:22:27,366 --> 00:22:29,516
+that haven't happened yet.
+
+
+397
+00:22:30,056 --> 00:22:32,796
+You can call stopQuery as
+many times as you want.
+
+
+398
+00:22:33,126 --> 00:22:33,956
+It doesn't matter.
+
+
+399
+00:22:33,956 --> 00:22:37,136
+But you can only
+execute a query once.
+
+
+400
+00:22:37,636 --> 00:22:40,776
+This is because once
+a query is stopped,
+
+
+401
+00:22:40,776 --> 00:22:44,416
+its callbacks are invalidated
+to prevent retained cycles.
+
+
+402
+00:22:45,986 --> 00:22:47,746
+Remember, though,
+that you only need
+
+
+403
+00:22:47,746 --> 00:22:50,956
+to stop long-running queries,
+such as the observer query.
+
+
+404
+00:22:51,836 --> 00:22:55,176
+Other queries know to stop
+themselves once they've received
+
+
+405
+00:22:55,296 --> 00:22:59,256
+their initial data.
+
+
+406
+00:22:59,436 --> 00:23:01,576
+Now, all of the queries
+that we've talked
+
+
+407
+00:23:01,576 --> 00:23:05,366
+about so far let you get actual
+objects from the database,
+
+
+408
+00:23:06,076 --> 00:23:08,146
+but oftentimes we don't care
+
+
+409
+00:23:08,146 --> 00:23:10,606
+about the individual
+objects themselves.
+
+
+410
+00:23:10,606 --> 00:23:16,496
+What we really care about
+are statistics on our data.
+
+
+411
+00:23:16,666 --> 00:23:19,456
+You could use a sample
+query and iterate
+
+
+412
+00:23:19,456 --> 00:23:22,156
+over all your results summing
+their quantities together,
+
+
+413
+00:23:22,706 --> 00:23:26,686
+but this would be a lot of work
+and a lot of objects in memory,
+
+
+414
+00:23:27,046 --> 00:23:29,466
+considering all we really
+care about is the sum.
+
+
+415
+00:23:30,816 --> 00:23:32,476
+To support operations like this,
+
+
+416
+00:23:32,896 --> 00:23:37,376
+statistics are a first-class
+citizen in HealthKit.
+
+
+417
+00:23:38,486 --> 00:23:41,346
+Statistics are handled
+by HKStatistics.
+
+
+418
+00:23:41,876 --> 00:23:47,416
+An HKStatisticsObject is an
+aggregation of multiple kinds
+
+
+419
+00:23:47,416 --> 00:23:52,856
+of statistics such as
+sum, min, max and average.
+
+
+420
+00:23:53,236 --> 00:23:56,656
+You can ask for statistics
+across all data or only
+
+
+421
+00:23:56,656 --> 00:23:59,436
+for statistics that came
+from a particular source.
+
+
+422
+00:23:59,866 --> 00:24:04,416
+Because we're talking
+about numerical analysis,
+
+
+423
+00:24:04,826 --> 00:24:09,656
+statistics are only
+valid for quantity types.
+
+
+424
+00:24:10,036 --> 00:24:13,266
+Remember though that not
+all types are the same.
+
+
+425
+00:24:14,156 --> 00:24:16,516
+We care about different
+statistics depending
+
+
+426
+00:24:16,516 --> 00:24:18,476
+on what kind of data
+we're looking at.
+
+
+427
+00:24:19,646 --> 00:24:23,106
+We classify types as either
+discrete or cumulative.
+
+
+428
+00:24:25,276 --> 00:24:27,656
+Discrete types are
+things like your height,
+
+
+429
+00:24:28,066 --> 00:24:29,456
+weight or blood pressure.
+
+
+430
+00:24:30,266 --> 00:24:33,646
+They're the kinds of data where
+an individual sample has all
+
+
+431
+00:24:33,646 --> 00:24:36,556
+of the context you need to
+make sense of its quantity.
+
+
+432
+00:24:37,336 --> 00:24:39,256
+The only statistics we care
+
+
+433
+00:24:39,256 --> 00:24:42,636
+about for discrete types
+are min, max and average.
+
+
+434
+00:24:43,536 --> 00:24:45,506
+If I were to take all
+of my weight readings
+
+
+435
+00:24:45,576 --> 00:24:46,476
+and add them together,
+
+
+436
+00:24:46,956 --> 00:24:49,666
+I wouldn't get any useful
+information whatsoever.
+
+
+437
+00:24:52,256 --> 00:24:56,986
+Cumulative types are things like
+your step count or the number
+
+
+438
+00:24:56,986 --> 00:24:58,096
+of calories that you've burned.
+
+
+439
+00:24:59,286 --> 00:25:02,046
+In contrast to discrete
+types, I really don't care
+
+
+440
+00:25:02,046 --> 00:25:03,406
+about an individual sample.
+
+
+441
+00:25:04,016 --> 00:25:06,426
+What I care about is an
+aggregation of samples
+
+
+442
+00:25:06,506 --> 00:25:07,506
+over a period of time.
+
+
+443
+00:25:08,326 --> 00:25:11,006
+For example, that I
+took 7,000 steps today.
+
+
+444
+00:25:11,916 --> 00:25:13,936
+So the only statistic we care
+
+
+445
+00:25:13,936 --> 00:25:20,896
+about on cumulative
+types is sum.
+
+
+446
+00:25:21,096 --> 00:25:23,596
+So every quantity
+type is classified
+
+
+447
+00:25:23,596 --> 00:25:25,906
+as either discrete
+or cumulative.
+
+
+448
+00:25:26,086 --> 00:25:32,026
+In our type identifier's header,
+every type identifier is listed
+
+
+449
+00:25:32,166 --> 00:25:33,496
+with its aggregation style.
+
+
+450
+00:25:33,706 --> 00:25:37,646
+If you want to check
+in code though,
+
+
+451
+00:25:37,916 --> 00:25:41,076
+HKQuantityType has an
+aggregation style property
+
+
+452
+00:25:41,186 --> 00:25:44,176
+that will return either
+cumulative or discrete.
+
+
+453
+00:25:44,266 --> 00:25:47,236
+Now back to statistics.
+
+
+454
+00:25:48,436 --> 00:25:51,636
+As you may or may not
+know, generating statistics
+
+
+455
+00:25:51,766 --> 00:25:54,706
+on large amounts of data
+can be rather expensive.
+
+
+456
+00:25:56,016 --> 00:25:59,276
+Because of this, we had you
+tell us what you want ahead
+
+
+457
+00:25:59,496 --> 00:26:03,696
+of time using a bit mask
+of HKStatisticsOptions.
+
+
+458
+00:26:06,056 --> 00:26:09,296
+Average, min, max and
+sum each have their own
+
+
+459
+00:26:09,296 --> 00:26:10,266
+statistics option.
+
+
+460
+00:26:11,136 --> 00:26:13,466
+These are marked as either
+discrete or cumulative.
+
+
+461
+00:26:14,416 --> 00:26:17,756
+If you ask a cumulative
+type for discrete statistic,
+
+
+462
+00:26:17,756 --> 00:26:19,236
+we're going to throw
+an exception.
+
+
+463
+00:26:19,806 --> 00:26:23,106
+A little bit less
+straightforward is separate
+
+
+464
+00:26:23,106 --> 00:26:23,716
+by source.
+
+
+465
+00:26:24,716 --> 00:26:27,196
+This lets you ask in
+HKStatisticsObject
+
+
+466
+00:26:27,586 --> 00:26:30,626
+for the statistics that came
+from a particular source,
+
+
+467
+00:26:31,566 --> 00:26:32,826
+but why is this important?
+
+
+468
+00:26:33,366 --> 00:26:38,926
+Let's say that we have two
+sources, Source A and Source B.
+
+
+469
+00:26:39,576 --> 00:26:42,156
+Both of these sources
+are writing step data
+
+
+470
+00:26:42,156 --> 00:26:43,766
+to HealthKit at the same time.
+
+
+471
+00:26:45,036 --> 00:26:47,486
+Now let's say that I
+want to sum up my steps.
+
+
+472
+00:26:47,486 --> 00:26:50,536
+I could take all of the
+samples in the database
+
+
+473
+00:26:50,666 --> 00:26:51,646
+and add them together,
+
+
+474
+00:26:51,926 --> 00:26:56,296
+which would give me 41,
+which is also wrong.
+
+
+475
+00:26:57,036 --> 00:27:00,096
+Because these sources were
+saving data at the same time,
+
+
+476
+00:27:00,606 --> 00:27:03,036
+in many cases I was
+actually double counting.
+
+
+477
+00:27:03,706 --> 00:27:07,826
+To handle this, we let the
+user specify in the health app
+
+
+478
+00:27:08,266 --> 00:27:10,576
+which sources are
+most important to them
+
+
+479
+00:27:10,796 --> 00:27:12,806
+for a particular quantity type.
+
+
+480
+00:27:13,326 --> 00:27:15,726
+We then use this
+information to try to figure
+
+
+481
+00:27:15,726 --> 00:27:17,186
+out what actually happened.
+
+
+482
+00:27:18,676 --> 00:27:20,406
+If you don't like
+our merge strategy,
+
+
+483
+00:27:20,536 --> 00:27:24,106
+then you can always perform your
+own by separating by source.
+
+
+484
+00:27:24,636 --> 00:27:28,336
+Now back to your application.
+
+
+485
+00:27:29,256 --> 00:27:31,706
+Let's say that your health
+tracker just got an awesome
+
+
+486
+00:27:31,706 --> 00:27:32,266
+new feature.
+
+
+487
+00:27:32,496 --> 00:27:34,166
+Now it can count the user steps.
+
+
+488
+00:27:34,876 --> 00:27:37,596
+To support this, you
+want to have a new screen
+
+
+489
+00:27:37,596 --> 00:27:40,046
+that shows the user their
+total steps for the day.
+
+
+490
+00:27:41,746 --> 00:27:44,886
+This is a sum, so you know
+you want to use statistics,
+
+
+491
+00:27:45,316 --> 00:27:47,586
+but how do you actually
+generate statistics?
+
+
+492
+00:27:48,976 --> 00:27:51,686
+This is done through
+HKStatisticsQuery.
+
+
+493
+00:27:52,526 --> 00:27:56,416
+Statistics queries take a bit
+mask of statistics options
+
+
+494
+00:27:57,146 --> 00:27:59,176
+and return a statistics object.
+
+
+495
+00:28:00,166 --> 00:28:04,346
+So here's an example of us
+creating a statistics query.
+
+
+496
+00:28:06,336 --> 00:28:08,526
+First we get our quantity type,
+
+
+497
+00:28:08,896 --> 00:28:13,096
+which in this case
+is step count.
+
+
+498
+00:28:13,226 --> 00:28:15,656
+Next we perform some
+date calculations
+
+
+499
+00:28:16,086 --> 00:28:21,166
+to only return objects
+that happen today.
+
+
+500
+00:28:21,356 --> 00:28:22,986
+We create our statistics
+options,
+
+
+501
+00:28:22,986 --> 00:28:26,996
+which in this case is sum, and
+then when we create our query,
+
+
+502
+00:28:27,286 --> 00:28:29,836
+we tell it we want all
+steps that happen today,
+
+
+503
+00:28:29,966 --> 00:28:32,296
+and we want to take their sum,
+
+
+504
+00:28:33,706 --> 00:28:35,956
+and in our completion
+handler we'll be given an
+
+
+505
+00:28:35,956 --> 00:28:39,586
+HKStatisticsObject that we can
+then ask for its sum quantity.
+
+
+506
+00:28:41,476 --> 00:28:44,516
+Well, you feel like a
+rock star right now.
+
+
+507
+00:28:45,326 --> 00:28:47,796
+Using your UI code from
+your blood sugar screen,
+
+
+508
+00:28:47,796 --> 00:28:50,206
+you're able to bust this
+out in like 5 minutes.
+
+
+509
+00:28:50,936 --> 00:28:54,956
+With all of that extra time you
+decide it would be really cool
+
+
+510
+00:28:55,156 --> 00:28:58,326
+if you could show the user their
+daily step count throughout
+
+
+511
+00:28:58,326 --> 00:28:59,366
+the week.
+
+
+512
+00:29:00,776 --> 00:29:01,826
+How do you do this?
+
+
+513
+00:29:02,506 --> 00:29:05,266
+You could execute seven
+statistics queries,
+
+
+514
+00:29:05,506 --> 00:29:09,476
+one for each day, and once they
+all return use their results
+
+
+515
+00:29:09,526 --> 00:29:11,426
+to draw your chart.
+
+
+516
+00:29:11,766 --> 00:29:13,426
+This sounds like a
+lot of effort though.
+
+
+517
+00:29:14,556 --> 00:29:18,336
+This is actually the perfect
+job for HKStatisticsCollection.
+
+
+518
+00:29:19,256 --> 00:29:23,336
+From a high level statistics
+collection is just a collection
+
+
+519
+00:29:23,416 --> 00:29:24,616
+of statistics objects.
+
+
+520
+00:29:25,176 --> 00:29:29,026
+It splits time up into a
+series of time intervals
+
+
+521
+00:29:29,116 --> 00:29:31,906
+and generates statistics on
+each of those time intervals.
+
+
+522
+00:29:32,426 --> 00:29:36,976
+Let's take a look at
+how this actually works.
+
+
+523
+00:29:44,046 --> 00:29:45,846
+In this diagram, each
+
+
+524
+00:29:45,846 --> 00:29:49,676
+of our gray boxes represents
+its own HKStatisticsObject.
+
+
+525
+00:29:51,156 --> 00:29:54,156
+We call our Delta T our
+interval components,
+
+
+526
+00:29:54,396 --> 00:29:56,376
+and this is an NSDateComponents
+object.
+
+
+527
+00:29:57,326 --> 00:30:00,766
+The reason why we chose
+to use NSDateComponents is
+
+
+528
+00:30:00,766 --> 00:30:02,946
+because when we talk
+about health information
+
+
+529
+00:30:03,256 --> 00:30:06,996
+in a historical way, we tend
+to talk about it in days,
+
+
+530
+00:30:06,996 --> 00:30:08,766
+weeks, months and years.
+
+
+531
+00:30:09,516 --> 00:30:13,306
+To do this properly, you
+need to use date components.
+
+
+532
+00:30:14,726 --> 00:30:16,796
+If you're curious about
+date calculations,
+
+
+533
+00:30:16,926 --> 00:30:18,956
+please see last year's video,
+
+
+534
+00:30:19,086 --> 00:30:21,716
+"Solutions to Common Date
+and Time Challenges."
+
+
+535
+00:30:24,116 --> 00:30:26,996
+So, now let's say that we
+have an interval component
+
+
+536
+00:30:27,136 --> 00:30:27,756
+of one day.
+
+
+537
+00:30:28,806 --> 00:30:32,556
+The problem is, we don't know if
+you want your day to be midnight
+
+
+538
+00:30:32,616 --> 00:30:36,366
+to midnight, noon to noon or
+something completely different.
+
+
+539
+00:30:37,686 --> 00:30:40,166
+To handle this, we have
+you give us an anchor date.
+
+
+540
+00:30:41,446 --> 00:30:44,756
+All the anchor date does is
+tell you what the edge of one
+
+
+541
+00:30:44,756 --> 00:30:47,976
+of your time intervals
+is, and that's all we need
+
+
+542
+00:30:48,096 --> 00:30:50,416
+to create a collection
+of statistics for you.
+
+
+543
+00:30:51,536 --> 00:30:54,496
+Let's see how this would
+look with some actual data.
+
+
+544
+00:30:55,756 --> 00:30:58,526
+Once we get your anchor date
+and your interval components,
+
+
+545
+00:30:58,526 --> 00:31:01,636
+we split up all of time into
+a series of time intervals.
+
+
+546
+00:31:02,576 --> 00:31:05,746
+We can then group data into
+these different time intervals
+
+
+547
+00:31:06,276 --> 00:31:11,946
+and collect statistics on
+it, such as ask for it sum.
+
+
+548
+00:31:12,116 --> 00:31:15,036
+So, this is what a
+statistics collection is,
+
+
+549
+00:31:15,546 --> 00:31:17,936
+but how do you actually
+interact with this object?
+
+
+550
+00:31:18,656 --> 00:31:21,186
+Because we don't force you
+to give us a start date
+
+
+551
+00:31:21,186 --> 00:31:23,926
+or an end date, there's
+potentially an infinite number
+
+
+552
+00:31:23,926 --> 00:31:24,686
+of statistics.
+
+
+553
+00:31:25,256 --> 00:31:29,356
+The first thing you can do
+is ask for an array of all
+
+
+554
+00:31:29,356 --> 00:31:30,826
+of the populated statistics.
+
+
+555
+00:31:31,846 --> 00:31:33,716
+Populated statistics
+are the ones
+
+
+556
+00:31:33,716 --> 00:31:37,926
+where their time interval
+actually had data in it.
+
+
+557
+00:31:38,196 --> 00:31:39,646
+You can ask for the statistics
+
+
+558
+00:31:39,646 --> 00:31:41,166
+that occurred on
+a particular date.
+
+
+559
+00:31:42,256 --> 00:31:44,086
+What this will do is find
+
+
+560
+00:31:44,086 --> 00:31:46,306
+out which time period
+your date falls into
+
+
+561
+00:31:46,686 --> 00:31:50,106
+and give you back the statistics
+from that time period whether
+
+
+562
+00:31:50,106 --> 00:31:53,456
+or not there was any data.
+
+
+563
+00:31:53,456 --> 00:31:55,476
+Last you can enumerate
+across all
+
+
+564
+00:31:55,476 --> 00:31:57,776
+of the statistics
+between two dates.
+
+
+565
+00:31:58,566 --> 00:32:00,096
+This will return both populated
+
+
+566
+00:32:00,296 --> 00:32:02,486
+and nonpopulated
+statistics objects.
+
+
+567
+00:32:03,016 --> 00:32:07,976
+So this seems like it's
+going to work pretty well.
+
+
+568
+00:32:08,996 --> 00:32:12,006
+All you need to do is specify
+an anchor date of Sunday
+
+
+569
+00:32:12,006 --> 00:32:14,426
+at midnight and an
+interval component
+
+
+570
+00:32:14,426 --> 00:32:18,716
+of one day, and that's about it.
+
+
+571
+00:32:18,716 --> 00:32:21,866
+So, how do you actually create
+a statistics collection?
+
+
+572
+00:32:22,886 --> 00:32:25,696
+This is done with an
+HKStatisticsCollectionQuery.
+
+
+573
+00:32:28,036 --> 00:32:30,956
+These take a bit mask
+of statistics options,
+
+
+574
+00:32:31,616 --> 00:32:35,516
+an anchor date and an
+interval components object
+
+
+575
+00:32:35,626 --> 00:32:38,986
+and give you back an
+HKStatisticsCollection.
+
+
+576
+00:32:39,376 --> 00:32:41,046
+It's that easy.
+
+
+577
+00:32:42,676 --> 00:32:45,206
+Now I'm going to hand
+things over to Siji,
+
+
+578
+00:32:45,206 --> 00:32:47,546
+so that she can show you
+how to incorporate HealthKit
+
+
+579
+00:32:47,706 --> 00:32:48,946
+into your own applications.
+
+
+580
+00:32:49,736 --> 00:32:50,806
+>> Thank you, Justin.
+
+
+581
+00:32:51,226 --> 00:32:52,896
+Hey everybody, good morning.
+
+
+582
+00:32:52,896 --> 00:32:55,666
+I am Siji Rachel Tom and I'm one
+of the engineers on HealthKit.
+
+
+583
+00:32:55,796 --> 00:32:57,256
+I'm really excited
+to be here today
+
+
+584
+00:32:57,256 --> 00:32:58,646
+to give you this quick demo.
+
+
+585
+00:32:58,706 --> 00:33:01,866
+So there are three things that
+you will see in this demo.
+
+
+586
+00:33:02,926 --> 00:33:06,366
+First you'll see how you
+can leverage HealthKit
+
+
+587
+00:33:06,366 --> 00:33:09,756
+to retrieve existing information
+about the user from HealthStore.
+
+
+588
+00:33:10,366 --> 00:33:12,466
+Now this information
+might have been inserted
+
+
+589
+00:33:12,466 --> 00:33:14,706
+into HealthStore
+by some other app.
+
+
+590
+00:33:15,336 --> 00:33:17,656
+Second, you'll see
+how you can read
+
+
+591
+00:33:17,656 --> 00:33:20,696
+and write your own data objects
+into HealthStore, and third,
+
+
+592
+00:33:20,886 --> 00:33:24,456
+you'll see some examples of the
+queries that Justin spoke about.
+
+
+593
+00:33:24,456 --> 00:33:28,346
+Now for the purpose of this
+demo I'm going to walk you
+
+
+594
+00:33:28,346 --> 00:33:30,466
+through making a
+fitness tracking app.
+
+
+595
+00:33:31,216 --> 00:33:34,866
+The goal of this app would be
+to track your net energy burn
+
+
+596
+00:33:34,866 --> 00:33:37,236
+for a given day,
+and we are going
+
+
+597
+00:33:37,236 --> 00:33:40,116
+to define the net energy
+burn as a total energy burn
+
+
+598
+00:33:40,116 --> 00:33:44,076
+by activity subtracted by
+the total energy consumed.
+
+
+599
+00:33:44,696 --> 00:33:47,026
+With that in mind let's go
+take a quick look at the demo.
+
+
+600
+00:33:49,866 --> 00:33:51,916
+So we know we are going
+to be using HealthKit
+
+
+601
+00:33:51,916 --> 00:33:54,416
+for our data storage
+needs, but before we can do
+
+
+602
+00:33:54,416 --> 00:33:57,336
+that we need the user's
+permission, and this is the code
+
+
+603
+00:33:57,336 --> 00:33:59,406
+that you will write to
+get the user's permission.
+
+
+604
+00:33:59,746 --> 00:34:03,006
+So first you check whether
+HealthKit is supported
+
+
+605
+00:34:03,006 --> 00:34:06,296
+on the current iOS device, and
+this is because some devices
+
+
+606
+00:34:06,296 --> 00:34:08,996
+such as the iPad does
+not support HealthKit.
+
+
+607
+00:34:09,996 --> 00:34:12,126
+Next you create an
+instance of HealthStore
+
+
+608
+00:34:12,126 --> 00:34:15,966
+and then use HealthStore's
+authorization APIs
+
+
+609
+00:34:16,136 --> 00:34:18,436
+to request read and
+shared access
+
+
+610
+00:34:18,476 --> 00:34:20,436
+to these different
+sets of data types.
+
+
+611
+00:34:21,826 --> 00:34:24,426
+Now I have already set up
+my device to be authorized,
+
+
+612
+00:34:24,426 --> 00:34:27,366
+but the first time you run this
+piece of code, you're going
+
+
+613
+00:34:27,366 --> 00:34:28,835
+to get this dialogue sheet popup
+
+
+614
+00:34:28,835 --> 00:34:30,025
+that requests permissions
+from you.
+
+
+615
+00:34:30,025 --> 00:34:33,485
+So now let's look at the app.
+
+
+616
+00:34:35,856 --> 00:34:38,976
+Since we are dealing with
+user's specific energy burn
+
+
+617
+00:34:38,976 --> 00:34:40,636
+calculations, let's assume
+
+
+618
+00:34:40,636 --> 00:34:43,496
+that we need some user-specific
+statistics as well.
+
+
+619
+00:34:43,496 --> 00:34:46,246
+For instance the user's
+age, height and weight.
+
+
+620
+00:34:46,815 --> 00:34:47,926
+Now I've set up the app
+
+
+621
+00:34:47,985 --> 00:34:50,985
+such that the user can enter
+these details, but it will be
+
+
+622
+00:34:50,985 --> 00:34:52,996
+so much cooler if we can
+look at HealthStore and see
+
+
+623
+00:34:52,996 --> 00:34:56,226
+if these values already exist,
+and if so, just retrieve it
+
+
+624
+00:34:56,226 --> 00:34:57,886
+and display it for the
+user's confirmation.
+
+
+625
+00:34:58,806 --> 00:35:02,406
+So let's go and write
+code to do just that.
+
+
+626
+00:35:03,056 --> 00:35:04,836
+A quick note before that -
+
+
+627
+00:35:04,836 --> 00:35:06,796
+I'm not doing much edit
+handling code in this demo,
+
+
+628
+00:35:06,796 --> 00:35:08,956
+but there is sample code for
+this app uploaded online,
+
+
+629
+00:35:08,956 --> 00:35:10,246
+and that will be a
+much better guide.
+
+
+630
+00:35:11,446 --> 00:35:14,486
+Now, to get the user's
+age, we need birth date.
+
+
+631
+00:35:14,976 --> 00:35:17,866
+Birth date is a characteristic
+data type in HealthKit,
+
+
+632
+00:35:17,866 --> 00:35:20,966
+and HealthStore has this
+convenient synchronous method
+
+
+633
+00:35:20,966 --> 00:35:22,676
+that directly accesses
+user's birthday.
+
+
+634
+00:35:22,676 --> 00:35:25,076
+So let's go ahead and
+use that method here,
+
+
+635
+00:35:25,076 --> 00:35:28,026
+and once we have the birth date,
+
+
+636
+00:35:28,366 --> 00:35:31,006
+it's simple to get
+the user's age.
+
+
+637
+00:35:32,216 --> 00:35:36,206
+Notice here I am passing the age
+back in the completion block.
+
+
+638
+00:35:36,796 --> 00:35:38,736
+Let's run this code and see.
+
+
+639
+00:35:42,536 --> 00:35:46,926
+Tah-dah. The age does show
+up, and how this happened is
+
+
+640
+00:35:46,926 --> 00:35:49,066
+because earlier today I
+used Apple's health app
+
+
+641
+00:35:49,066 --> 00:35:52,066
+to insert my birth
+date into Health Store.
+
+
+642
+00:35:52,976 --> 00:35:55,586
+Let's look at user
+height and weight next.
+
+
+643
+00:35:56,736 --> 00:35:59,576
+So, height and weight
+are quantity data types
+
+
+644
+00:35:59,796 --> 00:36:02,416
+in HealthKit, and to
+get quantity samples
+
+
+645
+00:36:02,416 --> 00:36:04,776
+out of HealthStore, we need
+to write a sample query.
+
+
+646
+00:36:05,266 --> 00:36:07,376
+So let's go ahead and write
+our first sample query
+
+
+647
+00:36:07,376 --> 00:36:09,726
+in this convenient
+method which will give us
+
+
+648
+00:36:09,726 --> 00:36:14,116
+like the most recently quantity
+sample of any given data type.
+
+
+649
+00:36:14,116 --> 00:36:17,056
+So this is our first
+sample query.
+
+
+650
+00:36:17,056 --> 00:36:20,496
+Now I want a single most
+recent quantity sample
+
+
+651
+00:36:20,496 --> 00:36:23,136
+of a given data type, and
+so for that I'm first going
+
+
+652
+00:36:23,136 --> 00:36:25,786
+to sort my existing
+samples in descending order
+
+
+653
+00:36:25,786 --> 00:36:29,126
+and then I'm going to
+specify a limit of 1
+
+
+654
+00:36:29,126 --> 00:36:30,816
+to get just the first
+one out of it.
+
+
+655
+00:36:32,016 --> 00:36:35,016
+I don't want to filter the
+data, so my predicate is nil,
+
+
+656
+00:36:35,166 --> 00:36:36,966
+and the data type
+that I'm interested
+
+
+657
+00:36:36,966 --> 00:36:38,336
+in is passed into this method.
+
+
+658
+00:36:38,336 --> 00:36:44,646
+Now when this query
+returns, I get an array back,
+
+
+659
+00:36:45,286 --> 00:36:47,736
+and this is an array
+of quantity samples.
+
+
+660
+00:36:48,316 --> 00:36:51,686
+In our case if there is a
+valid quantity sample existing
+
+
+661
+00:36:51,686 --> 00:36:53,036
+in HealthStore, then
+you're going
+
+
+662
+00:36:53,036 --> 00:36:55,546
+to get just one quantity
+sample back.
+
+
+663
+00:36:55,546 --> 00:36:59,036
+So what we're going to do is get
+the quantity object associated
+
+
+664
+00:36:59,036 --> 00:37:01,226
+with that quantity
+sample back, and then pass
+
+
+665
+00:37:01,266 --> 00:37:02,536
+that in this completion block.
+
+
+666
+00:37:03,216 --> 00:37:05,446
+So let's go and write
+code to that.
+
+
+667
+00:37:07,116 --> 00:37:09,216
+So this gets the first
+object and then passes it
+
+
+668
+00:37:09,216 --> 00:37:10,146
+in the completion block.
+
+
+669
+00:37:10,696 --> 00:37:13,786
+Now very important once you've
+written a query is please don't
+
+
+670
+00:37:13,786 --> 00:37:18,126
+forget to execute the query.
+
+
+671
+00:37:18,126 --> 00:37:21,596
+Okay. Now let's use
+this convenient method
+
+
+672
+00:37:21,596 --> 00:37:23,646
+to actually get the
+user's height.
+
+
+673
+00:37:24,076 --> 00:37:27,026
+So let's first go can call
+that method we just wrote.
+
+
+674
+00:37:27,596 --> 00:37:32,186
+Now user height is a quantity
+type with identifier height,
+
+
+675
+00:37:32,596 --> 00:37:33,616
+and so I pass that in.
+
+
+676
+00:37:33,686 --> 00:37:38,026
+And when the query returns I get
+the most recent quantity object,
+
+
+677
+00:37:38,026 --> 00:37:40,236
+and as Justin was
+talking about earlier,
+
+
+678
+00:37:40,236 --> 00:37:44,266
+a quantity object is nothing
+but a double value associated
+
+
+679
+00:37:44,266 --> 00:37:45,446
+with a particular unit.
+
+
+680
+00:37:45,816 --> 00:37:51,596
+I want to show my height
+in inches and so I am going
+
+
+681
+00:37:51,596 --> 00:37:55,166
+to specify HKUnit inchUnit.
+
+
+682
+00:37:55,166 --> 00:38:00,256
+Once I have the height,
+we need to pass it back
+
+
+683
+00:38:00,256 --> 00:38:03,946
+to the view controller who
+wants it, but note that queries
+
+
+684
+00:38:03,946 --> 00:38:07,596
+from HealthStore always are done
+on anonymous background queues,
+
+
+685
+00:38:07,596 --> 00:38:10,286
+so we need to make sure we
+switch back to the main queue,
+
+
+686
+00:38:10,816 --> 00:38:13,176
+and it should give
+us the height.
+
+
+687
+00:38:14,046 --> 00:38:16,476
+Now, I have already set up
+code to do the exact same
+
+
+688
+00:38:16,476 --> 00:38:17,896
+for getting the user's weight.
+
+
+689
+00:38:18,116 --> 00:38:20,446
+The only difference is
+that the identifier here is
+
+
+690
+00:38:20,446 --> 00:38:24,116
+that for body mass, and the
+unit I'm interested in is pound.
+
+
+691
+00:38:25,236 --> 00:38:27,486
+Now let's run this code.
+
+
+692
+00:38:28,916 --> 00:38:31,176
+There, it works, you guys.
+
+
+693
+00:38:31,716 --> 00:38:31,986
+Okay.
+
+
+694
+00:38:33,516 --> 00:38:38,546
+[ Applause ]
+
+
+695
+00:38:39,046 --> 00:38:39,746
+Let's move on.
+
+
+696
+00:38:40,116 --> 00:38:43,286
+So we are interested in
+getting the net energy burn,
+
+
+697
+00:38:43,286 --> 00:38:45,706
+which we define as
+the total energy burn
+
+
+698
+00:38:45,706 --> 00:38:48,726
+by activity subtracted by
+the total energy consumed.
+
+
+699
+00:38:49,386 --> 00:38:51,716
+So let's give the user a
+chance to enter details
+
+
+700
+00:38:51,716 --> 00:38:52,986
+about the energy consumed.
+
+
+701
+00:38:52,986 --> 00:38:56,996
+I've already set up this
+app to show a possible list
+
+
+702
+00:38:56,996 --> 00:38:58,666
+of food items consumed,
+
+
+703
+00:38:58,776 --> 00:39:00,906
+but really this app doesn't
+do much else right now.
+
+
+704
+00:39:01,466 --> 00:39:05,226
+What I want it to be able to
+do is when I select an item,
+
+
+705
+00:39:05,646 --> 00:39:07,996
+I want to save that item
+details into HealthStore,
+
+
+706
+00:39:07,996 --> 00:39:09,856
+and when I come back
+to this main screen,
+
+
+707
+00:39:09,856 --> 00:39:12,826
+I want to retrieve those
+details and display it.
+
+
+708
+00:39:12,826 --> 00:39:15,536
+So let's go and write
+code to do that now.
+
+
+709
+00:39:15,876 --> 00:39:19,956
+Again a quick note - so
+food item is a lot more rich
+
+
+710
+00:39:20,026 --> 00:39:22,856
+than just calories, but for the
+purpose of this demo we're going
+
+
+711
+00:39:22,856 --> 00:39:24,846
+to focus on saving just
+the calorie information.
+
+
+712
+00:39:25,426 --> 00:39:30,426
+So, I'm going to treat each
+food item as a quantity sample,
+
+
+713
+00:39:30,426 --> 00:39:32,676
+and I want to save
+the food item's name
+
+
+714
+00:39:32,676 --> 00:39:34,016
+and calorie information.
+
+
+715
+00:39:34,546 --> 00:39:37,476
+I'll save the name as metadata
+and calorie information
+
+
+716
+00:39:37,476 --> 00:39:39,026
+as the quantity object
+associated
+
+
+717
+00:39:39,026 --> 00:39:40,016
+with that quantity sample.
+
+
+718
+00:39:40,636 --> 00:39:43,666
+So let's go create our
+first quantity sample.
+
+
+719
+00:39:47,176 --> 00:39:52,056
+Now the data type that I'm going
+to save this food sample as is
+
+
+720
+00:39:52,056 --> 00:39:55,106
+that of dietary calories,
+and so let's specify that.
+
+
+721
+00:39:56,026 --> 00:39:58,356
+The quantity object as we
+just mentioned will be the
+
+
+722
+00:39:58,356 --> 00:39:59,096
+calorie count.
+
+
+723
+00:40:00,216 --> 00:40:09,796
+So it will be kilocalorie unit,
+and the double value is passed
+
+
+724
+00:40:09,796 --> 00:40:14,556
+into this method, and
+that's our quantity object.
+
+
+725
+00:40:15,146 --> 00:40:16,826
+Now I'm just going to
+save this food sample
+
+
+726
+00:40:16,826 --> 00:40:20,176
+with the current date and time,
+and as I mentioned earlier,
+
+
+727
+00:40:20,176 --> 00:40:24,046
+the metadata will have the
+food name associated with it.
+
+
+728
+00:40:24,046 --> 00:40:27,236
+Notice here that HealthKit
+actually provides these
+
+
+729
+00:40:27,236 --> 00:40:29,946
+convenient strings to be
+used as keys in metadata,
+
+
+730
+00:40:29,946 --> 00:40:30,926
+and so we're just going
+
+
+731
+00:40:30,926 --> 00:40:33,676
+to use the food type
+key, and that's it.
+
+
+732
+00:40:33,676 --> 00:40:36,306
+We have officially
+created our first sample.
+
+
+733
+00:40:36,506 --> 00:40:38,596
+Let's go and save this
+into the database,
+
+
+734
+00:40:38,656 --> 00:40:43,326
+into HealthStore,
+and there, done.
+
+
+735
+00:40:44,516 --> 00:40:47,546
+Awesome. So now that we have
+saved these items let's write
+
+
+736
+00:40:47,546 --> 00:40:49,476
+code to fetch these
+items out and display it.
+
+
+737
+00:40:49,476 --> 00:40:51,776
+We already know what
+we are going to use
+
+
+738
+00:40:51,776 --> 00:40:53,556
+to get quantity samples
+out of HealthStore.
+
+
+739
+00:40:53,556 --> 00:40:55,816
+Let's write a sample query.
+
+
+740
+00:40:55,816 --> 00:41:00,866
+The sample type I'm interested
+in is that of dietary calories
+
+
+741
+00:41:00,866 --> 00:41:03,186
+because that's what
+I saved it in as.
+
+
+742
+00:41:04,436 --> 00:41:07,786
+Now, in this case, I want
+to filter samples out
+
+
+743
+00:41:07,786 --> 00:41:10,786
+and get only those samples that
+were inserted in for today.
+
+
+744
+00:41:11,056 --> 00:41:13,756
+So I'll have a predicate with
+a start date and an end date.
+
+
+745
+00:41:13,756 --> 00:41:17,786
+And start date and
+end date will be start
+
+
+746
+00:41:17,786 --> 00:41:19,276
+of today and end of today.
+
+
+747
+00:41:20,416 --> 00:41:23,096
+Now I don't really care about
+the number of samples as long
+
+
+748
+00:41:23,096 --> 00:41:25,396
+as I get all of them back,
+and I don't want to sort them,
+
+
+749
+00:41:25,396 --> 00:41:26,766
+so I'm going to specify
+nil here.
+
+
+750
+00:41:28,036 --> 00:41:30,186
+Again, when this query returns,
+
+
+751
+00:41:30,316 --> 00:41:33,316
+I'm going to get all the
+quantity samples back,
+
+
+752
+00:41:33,316 --> 00:41:36,196
+and what I want to do is
+retrieve relevant information
+
+
+753
+00:41:36,196 --> 00:41:37,576
+from each quantity sample,
+
+
+754
+00:41:37,916 --> 00:41:40,336
+which in our case will
+be the food item's name
+
+
+755
+00:41:40,336 --> 00:41:42,756
+and calorie information,
+and I'm going
+
+
+756
+00:41:42,756 --> 00:41:44,636
+to package that into an array.
+
+
+757
+00:41:45,296 --> 00:41:47,406
+So that's what this
+code does here.
+
+
+758
+00:41:47,406 --> 00:41:50,026
+Notice here that I get back
+the calorie information
+
+
+759
+00:41:50,026 --> 00:41:51,636
+and the calorie name.
+
+
+760
+00:41:51,846 --> 00:41:55,806
+I put that into this array, and
+once I have the array I'm going
+
+
+761
+00:41:55,806 --> 00:41:57,566
+to switch back to the main
+queue and send it back
+
+
+762
+00:41:57,566 --> 00:41:59,026
+in the completion block.
+
+
+763
+00:42:01,256 --> 00:42:03,166
+As always, let's not forget
+
+
+764
+00:42:03,166 --> 00:42:08,856
+to execute the query once
+we have written a query.
+
+
+765
+00:42:09,566 --> 00:42:13,176
+Let's see whether this works.
+
+
+766
+00:42:13,436 --> 00:42:17,356
+So I had oatmeal.
+
+
+767
+00:42:17,356 --> 00:42:20,846
+Yay, that worked, and bananas.
+
+
+768
+00:42:21,356 --> 00:42:24,026
+So, now that we have
+entered these details,
+
+
+769
+00:42:24,026 --> 00:42:26,786
+we can actually go ahead
+and compute net energy burn.
+
+
+770
+00:42:27,406 --> 00:42:29,346
+So we're going to
+define net energy burn
+
+
+771
+00:42:29,346 --> 00:42:32,906
+as total energy burn subtracted
+by the total energy consumed.
+
+
+772
+00:42:33,096 --> 00:42:38,466
+So ideally the total here would
+be this total energy consumed,
+
+
+773
+00:42:39,036 --> 00:42:41,346
+but what about the
+total energy burn?
+
+
+774
+00:42:41,346 --> 00:42:44,856
+So let's assume now that I'm
+wearing this imaginary fitness
+
+
+775
+00:42:44,856 --> 00:42:47,806
+tracker device here, and
+every time I sync my iPhone
+
+
+776
+00:42:47,806 --> 00:42:49,316
+with this fitness
+tracker device,
+
+
+777
+00:42:49,716 --> 00:42:53,056
+it inserts active energy burn
+samples into HealthStore.
+
+
+778
+00:42:54,336 --> 00:42:57,076
+So, let's write code to
+actually get the total of all
+
+
+779
+00:42:57,076 --> 00:42:57,936
+of these quantity samples.
+
+
+780
+00:43:03,656 --> 00:43:05,466
+Now I could write
+a sample query,
+
+
+781
+00:43:05,466 --> 00:43:07,686
+get all the quantity samples
+that I'm interested in,
+
+
+782
+00:43:07,686 --> 00:43:10,746
+and then iteratively go over
+it and compute the values,
+
+
+783
+00:43:10,846 --> 00:43:13,716
+but really what I want to do
+here is use a statistics query
+
+
+784
+00:43:13,716 --> 00:43:15,126
+because that's what
+this is meant to do.
+
+
+785
+00:43:15,716 --> 00:43:19,546
+So as always, let's have
+a convenience method,
+
+
+786
+00:43:19,546 --> 00:43:22,426
+and then in that let's write
+our first statistics query.
+
+
+787
+00:43:22,996 --> 00:43:25,746
+The quantity type
+that I'm interested
+
+
+788
+00:43:25,746 --> 00:43:28,746
+in will be passed
+into this method.
+
+
+789
+00:43:28,896 --> 00:43:32,686
+Again, the predicate will be
+filtering based on start date
+
+
+790
+00:43:32,686 --> 00:43:35,146
+and end date because I'm
+interested only in samples
+
+
+791
+00:43:35,206 --> 00:43:39,086
+that are relevant for
+today, and start date
+
+
+792
+00:43:39,086 --> 00:43:41,806
+and end date are going to be
+start of today and end of today.
+
+
+793
+00:43:43,386 --> 00:43:45,236
+This is the interesting
+part here.
+
+
+794
+00:43:45,236 --> 00:43:48,086
+I'm going to specify cumulative
+sum because that's the quantity
+
+
+795
+00:43:48,086 --> 00:43:51,916
+that I'm interested in, and
+when this query returns,
+
+
+796
+00:43:52,396 --> 00:43:55,656
+note that we are going to get
+an HKStatistics object back,
+
+
+797
+00:43:55,656 --> 00:43:58,766
+and what I want to do is get
+the quantity object associated
+
+
+798
+00:43:58,766 --> 00:44:01,116
+with this statistics object
+back and pass it along.
+
+
+799
+00:44:01,816 --> 00:44:09,516
+So I do that and let's not
+forget to execute the query.
+
+
+800
+00:44:09,686 --> 00:44:13,826
+Now let's actually get the total
+energy consumed with this query.
+
+
+801
+00:44:13,826 --> 00:44:15,916
+So let's call the convenience
+method that we just wrote.
+
+
+802
+00:44:16,566 --> 00:44:20,116
+And the energy type that
+I'm interested in is
+
+
+803
+00:44:20,116 --> 00:44:25,436
+that of dietary calories because
+that's what I saved it in as.
+
+
+804
+00:44:25,436 --> 00:44:27,676
+Finally when I get
+the quantity back,
+
+
+805
+00:44:28,806 --> 00:44:31,576
+I know that I want the
+unit as kilocalorie unit.
+
+
+806
+00:44:32,976 --> 00:44:37,296
+As always, let's switch back to
+the main queue and return this.
+
+
+807
+00:44:37,516 --> 00:44:39,966
+Now I've already set up
+code to do the exact same
+
+
+808
+00:44:39,966 --> 00:44:42,086
+for active energy burn
+samples that were inserted
+
+
+809
+00:44:42,086 --> 00:44:44,256
+by my fitness tracker device.
+
+
+810
+00:44:45,676 --> 00:44:48,156
+The only difference here
+is that of the data type,
+
+
+811
+00:44:48,156 --> 00:44:49,976
+which will now be
+active energy burn.
+
+
+812
+00:44:49,976 --> 00:44:53,236
+Now let's see whether
+this works.
+
+
+813
+00:44:53,236 --> 00:45:02,136
+Okay. I should see 255
+calories here, and that works,
+
+
+814
+00:45:02,206 --> 00:45:04,176
+and now let's see
+whether syncing works,
+
+
+815
+00:45:04,176 --> 00:45:07,186
+and so I actually get my
+net energy burn, and there,
+
+
+816
+00:45:07,186 --> 00:45:09,206
+I'm on track with my
+net energy burned.
+
+
+817
+00:45:09,206 --> 00:45:11,166
+And that was my quick demo.
+
+
+818
+00:45:11,496 --> 00:45:13,746
+So we saw in less than
+10 minutes how we manage
+
+
+819
+00:45:13,746 --> 00:45:15,786
+to integrate HealthKit
+with our app.
+
+
+820
+00:45:15,786 --> 00:45:17,756
+I hope you guys enjoyed it.
+
+
+821
+00:45:17,886 --> 00:45:21,966
+So the sample code for this
+demo is already uploaded online.
+
+
+822
+00:45:21,966 --> 00:45:23,926
+Please come to our labs if
+you have any more questions.
+
+
+823
+00:45:24,436 --> 00:45:25,696
+Over to Justin.
+
+
+824
+00:45:26,516 --> 00:45:32,826
+[ Applause ]
+
+
+825
+00:45:33,326 --> 00:45:34,206
+>> Thanks so much, Siji.
+
+
+826
+00:45:35,266 --> 00:45:38,256
+As you all can see, it's really
+easy to incorporate HealthKit
+
+
+827
+00:45:38,346 --> 00:45:39,616
+into your own applications.
+
+
+828
+00:45:39,766 --> 00:45:42,896
+Next we're going to talk through
+some HealthKit best practices.
+
+
+829
+00:45:43,636 --> 00:45:45,806
+So, before you can
+use HealthKit,
+
+
+830
+00:45:46,296 --> 00:45:48,876
+the first thing you need
+to do is let us know
+
+
+831
+00:45:48,916 --> 00:45:50,236
+that you intend to use it.
+
+
+832
+00:45:51,146 --> 00:45:53,786
+To support this, we've
+built HealthKit right
+
+
+833
+00:45:53,786 --> 00:45:57,676
+in the capabilities pane of
+Xcode so that you can manage it
+
+
+834
+00:45:57,676 --> 00:45:59,916
+in the same way you're
+used to managing things
+
+
+835
+00:46:00,006 --> 00:46:03,626
+like Game Center or Passbook.
+
+
+836
+00:46:04,216 --> 00:46:07,036
+Once you've given your app
+the HealthKit capability,
+
+
+837
+00:46:07,316 --> 00:46:10,126
+the last thing you need is
+permission from the user
+
+
+838
+00:46:10,126 --> 00:46:11,476
+to access their health data,
+
+
+839
+00:46:12,406 --> 00:46:16,226
+but remember health
+data is really sensitive
+
+
+840
+00:46:16,396 --> 00:46:17,766
+to many of our users.
+
+
+841
+00:46:18,646 --> 00:46:21,856
+We want to encourage our
+users to only give apps access
+
+
+842
+00:46:21,936 --> 00:46:24,476
+to the information that they
+feel comfortable sharing.
+
+
+843
+00:46:25,406 --> 00:46:28,496
+To support this, we let users
+give your app permission
+
+
+844
+00:46:28,546 --> 00:46:30,636
+on a per object type basis.
+
+
+845
+00:46:31,926 --> 00:46:35,736
+That way, if the only thing your
+application needs is step data,
+
+
+846
+00:46:36,136 --> 00:46:37,586
+they don't need to
+give it access
+
+
+847
+00:46:37,626 --> 00:46:41,166
+to what may be more
+sensitive kinds of data.
+
+
+848
+00:46:41,856 --> 00:46:44,656
+We also let them give
+your apps separate read
+
+
+849
+00:46:44,656 --> 00:46:48,206
+and write permissions
+per object type.
+
+
+850
+00:46:48,386 --> 00:46:50,196
+A user might be totally fine
+
+
+851
+00:46:50,196 --> 00:46:52,816
+with your application
+saving data to HealthKit
+
+
+852
+00:46:53,376 --> 00:46:54,966
+but might not want
+it reading data
+
+
+853
+00:46:54,966 --> 00:46:56,606
+that came from other sources.
+
+
+854
+00:46:58,256 --> 00:47:00,726
+To request access
+for a set of types,
+
+
+855
+00:47:00,956 --> 00:47:06,386
+you can use HKHealthStore's
+requestAuthorization
+
+
+856
+00:47:06,646 --> 00:47:09,386
+ToShareTypes, readTypes,
+completion.
+
+
+857
+00:47:10,756 --> 00:47:13,256
+They should be called
+before you start interacting
+
+
+858
+00:47:13,256 --> 00:47:15,566
+with your HealthStore
+so that you can ensure
+
+
+859
+00:47:15,566 --> 00:47:20,326
+that the user has been given a
+chance to grant your app access.
+
+
+860
+00:47:21,086 --> 00:47:25,016
+Once you ask for authorization
+to a new type, the user is going
+
+
+861
+00:47:25,016 --> 00:47:27,506
+to be presented with
+this authorization sheet.
+
+
+862
+00:47:28,006 --> 00:47:30,716
+This is a little bit different
+
+
+863
+00:47:30,756 --> 00:47:33,866
+than the authorization alert
+you may be used to seeing
+
+
+864
+00:47:33,916 --> 00:47:34,956
+from other frameworks.
+
+
+865
+00:47:35,456 --> 00:47:38,026
+This is specially designed
+
+
+866
+00:47:38,026 --> 00:47:40,526
+so that the user can
+manage multiple permissions
+
+
+867
+00:47:40,606 --> 00:47:42,866
+for your application
+at the same time.
+
+
+868
+00:47:43,976 --> 00:47:46,596
+To give your user the
+best experience possible,
+
+
+869
+00:47:46,596 --> 00:47:50,206
+you should request authorization
+for all types you intend
+
+
+870
+00:47:50,206 --> 00:47:53,946
+to use at the same time.
+
+
+871
+00:47:54,156 --> 00:47:55,796
+Once you've requested
+authorization,
+
+
+872
+00:47:55,796 --> 00:47:59,216
+the next thing you're probably
+going to want to do is check
+
+
+873
+00:47:59,216 --> 00:48:00,556
+if you've been granted access.
+
+
+874
+00:48:01,946 --> 00:48:04,796
+In HealthKit, we let you see
+whether you've been granted
+
+
+875
+00:48:04,906 --> 00:48:07,996
+sharing or write access
+to a particular type,
+
+
+876
+00:48:09,016 --> 00:48:11,416
+but you can't see if you've
+been granted read access.
+
+
+877
+00:48:12,706 --> 00:48:14,966
+This is because for some
+kinds of information,
+
+
+878
+00:48:15,316 --> 00:48:19,276
+knowing that the user blocked
+your app can be just as private
+
+
+879
+00:48:19,316 --> 00:48:21,806
+as knowing the data itself.
+
+
+880
+00:48:22,766 --> 00:48:25,496
+For example, if a user
+were to block your app
+
+
+881
+00:48:25,496 --> 00:48:28,386
+from reading their blood
+sugar, it might indicate
+
+
+882
+00:48:28,386 --> 00:48:30,406
+that they're diabetic,
+and we don't want
+
+
+883
+00:48:30,406 --> 00:48:31,456
+to leak this information.
+
+
+884
+00:48:32,016 --> 00:48:35,526
+You can check your
+authorization status
+
+
+885
+00:48:35,606 --> 00:48:38,506
+for a particular type
+using HKHealthStore's
+
+
+886
+00:48:38,576 --> 00:48:40,216
+authorizationStatusForType.
+
+
+887
+00:48:44,436 --> 00:48:46,946
+Our users are spread
+all around the world.
+
+
+888
+00:48:47,926 --> 00:48:51,176
+To be able to reach all of these
+people, it's really important
+
+
+889
+00:48:51,176 --> 00:48:53,286
+that your app supports
+localization.
+
+
+890
+00:48:54,516 --> 00:48:57,566
+Foundation already has
+a set of NSFormatters
+
+
+891
+00:48:58,196 --> 00:49:00,596
+that let you localize
+things such as numbers,
+
+
+892
+00:49:00,776 --> 00:49:02,136
+dates and even byte count.
+
+
+893
+00:49:03,446 --> 00:49:07,446
+You could use a number formatter
+to localize a quantity's value,
+
+
+894
+00:49:07,446 --> 00:49:10,306
+but you'd have to
+localize the unit yourself.
+
+
+895
+00:49:11,486 --> 00:49:15,296
+To help you localize some
+kinds of the data that we keep
+
+
+896
+00:49:15,296 --> 00:49:18,396
+in HealthKit, we've added
+three brand new formatters
+
+
+897
+00:49:18,396 --> 00:49:22,416
+to foundation: NSMassFormatter,
+NSLengthFormatter
+
+
+898
+00:49:22,416 --> 00:49:23,916
+and NSEnergyFormatter.
+
+
+899
+00:49:25,236 --> 00:49:27,886
+These let you display
+things such as weight,
+
+
+900
+00:49:27,886 --> 00:49:30,406
+energy and distance in
+a way that's pertinent
+
+
+901
+00:49:30,406 --> 00:49:32,456
+to the user's current locale.
+
+
+902
+00:49:33,316 --> 00:49:36,106
+Let's take a look at how you
+might use NSMassFormatter.
+
+
+903
+00:49:37,516 --> 00:49:41,986
+First, we create our formatter,
+and we tell it that it's
+
+
+904
+00:49:41,986 --> 00:49:44,096
+to be used for person mass.
+
+
+905
+00:49:44,496 --> 00:49:47,316
+This is pretty important because
+depending on your region,
+
+
+906
+00:49:47,616 --> 00:49:50,206
+you might use a different
+unit to measure the weight
+
+
+907
+00:49:50,206 --> 00:49:55,116
+of a person than you would to
+measure the weight of an object.
+
+
+908
+00:49:55,276 --> 00:49:56,856
+Next we create our quantity
+
+
+909
+00:49:56,856 --> 00:49:59,196
+and get its double
+value in kilograms.
+
+
+910
+00:49:59,716 --> 00:50:04,066
+We then pass this weight in
+kilograms to our formatter,
+
+
+911
+00:50:04,326 --> 00:50:06,096
+and it gives us a
+localized string,
+
+
+912
+00:50:06,266 --> 00:50:07,586
+including the unit string.
+
+
+913
+00:50:08,806 --> 00:50:11,796
+Note that our formatter
+explicitly takes its value
+
+
+914
+00:50:11,796 --> 00:50:12,646
+in kilograms.
+
+
+915
+00:50:13,296 --> 00:50:15,406
+Behind the scenes it
+will convert this value
+
+
+916
+00:50:15,546 --> 00:50:16,426
+to the proper unit.
+
+
+917
+00:50:18,196 --> 00:50:22,326
+This works great if all you're
+doing is putting a value
+
+
+918
+00:50:22,326 --> 00:50:25,206
+in a label, but oftentimes
+you need to know
+
+
+919
+00:50:25,206 --> 00:50:28,106
+which unit was actually used.
+
+
+920
+00:50:28,726 --> 00:50:33,176
+To support this, you can pass
+an NSMassFormatter unit pointer
+
+
+921
+00:50:33,726 --> 00:50:35,736
+to your formatter,
+and it will be filled
+
+
+922
+00:50:35,736 --> 00:50:38,086
+with whatever unit was
+used by the formatter.
+
+
+923
+00:50:38,086 --> 00:50:44,536
+So, we've talked about
+a lot of stuff today.
+
+
+924
+00:50:45,736 --> 00:50:47,826
+What I really want you
+to take away from this is
+
+
+925
+00:50:47,826 --> 00:50:50,876
+that HealthKit makes it
+easy for you to store
+
+
+926
+00:50:50,876 --> 00:50:52,026
+and share health data,
+
+
+927
+00:50:52,766 --> 00:50:55,576
+which means you can spend your
+time doing what you do best,
+
+
+928
+00:50:56,556 --> 00:50:58,916
+keeping our users
+happy and healthy.
+
+
+929
+00:51:01,236 --> 00:51:04,226
+Before you go, there's one thing
+that I would love for all of you
+
+
+930
+00:51:04,226 --> 00:51:05,606
+to do after this session.
+
+
+931
+00:51:06,766 --> 00:51:10,386
+Try out HealthKit for yourself;
+see what you can make with it.
+
+
+932
+00:51:11,376 --> 00:51:14,426
+Check out our sample code so
+you can see some examples of how
+
+
+933
+00:51:14,426 --> 00:51:15,976
+to properly use HealthKit.
+
+
+934
+00:51:17,036 --> 00:51:19,246
+For more information,
+you can reach out to one
+
+
+935
+00:51:19,246 --> 00:51:22,596
+of our awesome evangelists,
+Dave DeLong or David Harrington.
+
+
+936
+00:51:23,556 --> 00:51:25,506
+Our sample code is
+already available
+
+
+937
+00:51:25,596 --> 00:51:29,586
+on developer.apple.com, and we
+encourage you to ask questions
+
+
+938
+00:51:29,646 --> 00:51:31,276
+on our Apple Developer forums.
+
+
+939
+00:51:32,736 --> 00:51:35,926
+We have one related
+session, which unfortunately,
+
+
+940
+00:51:36,066 --> 00:51:38,496
+has already passed, but
+you should totally check it
+
+
+941
+00:51:38,496 --> 00:51:41,336
+out online, and it has
+some great information
+
+
+942
+00:51:41,336 --> 00:51:44,676
+on how Bluetooth devices are
+integrated right into HealthKit.
+
+
+943
+00:51:45,616 --> 00:51:48,976
+Thank you, and everybody
+have a fantastic WWDC.
+
+
+944
+00:51:49,516 --> 00:51:54,500
+[ Applause ]
+

@@ -1,0 +1,6985 @@
+1
+00:00:11,316 --> 00:00:12,176
+>> Hello, everyone.
+
+
+2
+00:00:12,716 --> 00:00:15,366
+I assume you guys are all here
+
+
+3
+00:00:15,366 --> 00:00:17,426
+because you care
+about battery life.
+
+
+4
+00:00:18,676 --> 00:00:21,486
+And if you don't, well, I
+got your bosses to thank
+
+
+5
+00:00:21,486 --> 00:00:24,856
+because they're probably the
+ones that sent you here today.
+
+
+6
+00:00:26,046 --> 00:00:27,966
+Well, either way, thank
+you so much for coming
+
+
+7
+00:00:27,966 --> 00:00:30,566
+to the second half of
+Writing Energy Efficient Code.
+
+
+8
+00:00:31,806 --> 00:00:32,526
+My name is Albert.
+
+
+9
+00:00:32,526 --> 00:00:35,416
+I'm an engineer on the
+iOS Software Power team.
+
+
+10
+00:00:36,216 --> 00:00:39,106
+And today, I want to talk
+about how to apply some
+
+
+11
+00:00:39,106 --> 00:00:42,346
+of the energy concepts and
+principles that, you know,
+
+
+12
+00:00:42,346 --> 00:00:43,616
+was discussed in
+the first session
+
+
+13
+00:00:44,126 --> 00:00:46,126
+to the various different
+technologies
+
+
+14
+00:00:46,126 --> 00:00:49,006
+and features you might be
+using in your application.
+
+
+15
+00:00:50,196 --> 00:00:53,956
+So, last year we introduced the
+energy menu in OS X Mavericks,
+
+
+16
+00:00:54,696 --> 00:01:00,986
+and this year we're introducing
+the Battery Usage Menu in iOS.
+
+
+17
+00:01:01,476 --> 00:01:06,346
+Now, this menu aims to break
+down your iOS device's energy
+
+
+18
+00:01:06,346 --> 00:01:08,206
+and battery use by application.
+
+
+19
+00:01:09,836 --> 00:01:13,606
+Both of those menus will
+help educate as well
+
+
+20
+00:01:13,606 --> 00:01:15,816
+as provide our users
+with information
+
+
+21
+00:01:15,816 --> 00:01:20,226
+on where their battery has gone
+in their devices because we know
+
+
+22
+00:01:20,226 --> 00:01:22,176
+that our users care
+about battery life.
+
+
+23
+00:01:23,556 --> 00:01:26,156
+According to surveys,
+one of the top reasons
+
+
+24
+00:01:26,156 --> 00:01:27,746
+that would prompt
+someone to spend money
+
+
+25
+00:01:28,096 --> 00:01:31,366
+to buy a new phone is
+better battery life.
+
+
+26
+00:01:32,606 --> 00:01:35,136
+So, our users do care about the
+battery life of their devices.
+
+
+27
+00:01:35,726 --> 00:01:38,286
+And with both of these
+menus, our message is clear.
+
+
+28
+00:01:39,296 --> 00:01:42,466
+We, at Apple, also care
+about battery life.
+
+
+29
+00:01:43,636 --> 00:01:47,696
+We go to great lengths
+and efforts to ensure
+
+
+30
+00:01:47,696 --> 00:01:50,646
+that our laptops and
+mobile devices have some
+
+
+31
+00:01:50,646 --> 00:01:54,576
+of the best battery life
+in the industry and we do
+
+
+32
+00:01:54,576 --> 00:01:59,996
+that because we know that great
+battery life is a key part
+
+
+33
+00:02:00,056 --> 00:02:02,096
+of great user experience.
+
+
+34
+00:02:02,136 --> 00:02:05,876
+Now, as a developer myself,
+
+
+35
+00:02:06,036 --> 00:02:08,866
+I know that oftentimes
+schedules are tight, right?
+
+
+36
+00:02:08,866 --> 00:02:11,356
+Requirements are always
+changing and getting features
+
+
+37
+00:02:11,356 --> 00:02:15,106
+and functionalities to
+work is your top priority.
+
+
+38
+00:02:15,106 --> 00:02:17,046
+However, what I hoped
+to show you today is
+
+
+39
+00:02:17,046 --> 00:02:20,046
+that by keeping energy
+in mind, as you design
+
+
+40
+00:02:20,046 --> 00:02:22,976
+and architecture applications,
+you might actually be able
+
+
+41
+00:02:22,976 --> 00:02:24,576
+to simplify your
+development cycles.
+
+
+42
+00:02:24,866 --> 00:02:30,496
+I hope that you will be able
+to walk away with APIs or ideas
+
+
+43
+00:02:30,496 --> 00:02:33,076
+on how you can minimize
+and reduce the energy use
+
+
+44
+00:02:33,076 --> 00:02:37,216
+of your applications, and
+really, my goal today is
+
+
+45
+00:02:37,216 --> 00:02:40,346
+to help you prevent your
+application from going
+
+
+46
+00:02:40,346 --> 00:02:42,776
+up to the top of our
+battery list unnecessarily.
+
+
+47
+00:02:43,346 --> 00:02:47,026
+So, through the next hour,
+we'll go through a quick recap
+
+
+48
+00:02:47,116 --> 00:02:48,916
+of what Anthony has
+discussed in the first session
+
+
+49
+00:02:49,766 --> 00:02:51,636
+and then we'll talk
+about how to apply some
+
+
+50
+00:02:51,636 --> 00:02:53,606
+of those principles
+to networking.
+
+
+51
+00:02:54,116 --> 00:02:58,706
+After that, I want to show you
+how you can actually measure the
+
+
+52
+00:02:58,706 --> 00:03:02,476
+energy usage of your application
+through some tools that we have,
+
+
+53
+00:03:03,316 --> 00:03:06,156
+and then we'll camp
+on the idea of sleep
+
+
+54
+00:03:06,836 --> 00:03:08,046
+for the rest of our session.
+
+
+55
+00:03:08,506 --> 00:03:14,656
+So with that, let's begin our
+session with a quick recap.
+
+
+56
+00:03:16,336 --> 00:03:18,506
+So, in the first session,
+for those of you guys
+
+
+57
+00:03:18,506 --> 00:03:21,336
+who weren't able to attend,
+Anthony briefly talked
+
+
+58
+00:03:21,336 --> 00:03:23,536
+about two energy concepts
+
+
+59
+00:03:23,656 --> 00:03:25,466
+that really anchor
+energy efficient coding.
+
+
+60
+00:03:26,346 --> 00:03:30,376
+First is the idea of
+fixed cost or what I would
+
+
+61
+00:03:30,466 --> 00:03:34,836
+like to simply refer to
+as the overhead cost.
+
+
+62
+00:03:35,026 --> 00:03:37,996
+Resources on our system, by
+default, stay in idle state
+
+
+63
+00:03:38,186 --> 00:03:39,406
+and this is to conserve power.
+
+
+64
+00:03:40,556 --> 00:03:42,306
+Now, when your app
+requests to do some work,
+
+
+65
+00:03:43,216 --> 00:03:45,226
+the system will need to
+power up that resource.
+
+
+66
+00:03:45,936 --> 00:03:48,976
+We need to keep the resource up
+while you're doing your work.
+
+
+67
+00:03:49,086 --> 00:03:52,356
+And then most resources go
+through an intermediate state
+
+
+68
+00:03:52,576 --> 00:03:55,346
+where the resources are kept up
+in case some other work needs
+
+
+69
+00:03:55,346 --> 00:03:56,806
+to be done very shortly.
+
+
+70
+00:03:57,236 --> 00:03:59,856
+Now this is so that you
+won't have to pay or wait
+
+
+71
+00:03:59,856 --> 00:04:00,756
+for the resource to boot
+
+
+72
+00:04:00,756 --> 00:04:02,756
+up again while you're
+doing-while you're doing
+
+
+73
+00:04:02,756 --> 00:04:03,176
+your work.
+
+
+74
+00:04:03,576 --> 00:04:06,276
+But the system does stay up a
+little bit-the resources stay
+
+
+75
+00:04:06,276 --> 00:04:08,586
+up a little bit even after
+you finish your work.
+
+
+76
+00:04:08,676 --> 00:04:10,296
+And finally, when
+the resource decides
+
+
+77
+00:04:10,296 --> 00:04:11,576
+that there's no more
+work to be done,
+
+
+78
+00:04:11,926 --> 00:04:13,366
+it'll go back down
+to idle state.
+
+
+79
+00:04:13,466 --> 00:04:17,116
+So, as you can see on the screen
+here, the area in the green is,
+
+
+80
+00:04:17,216 --> 00:04:18,976
+you know, the work that you're
+doing in your application,
+
+
+81
+00:04:19,315 --> 00:04:22,065
+but the area under in
+blue is the fixed cost
+
+
+82
+00:04:22,065 --> 00:04:23,046
+or the overhead cost.
+
+
+83
+00:04:23,826 --> 00:04:26,496
+And there is these
+intermediate stanzas
+
+
+84
+00:04:26,496 --> 00:04:28,336
+between where the
+resource is still kept
+
+
+85
+00:04:28,336 --> 00:04:30,546
+up while you're not
+doing any work.
+
+
+86
+00:04:30,546 --> 00:04:33,636
+So, if you want to
+minimize the energy used
+
+
+87
+00:04:33,636 --> 00:04:36,416
+for your applications, you'll
+want to do as much work
+
+
+88
+00:04:36,416 --> 00:04:38,036
+as you can while you
+do have the resource
+
+
+89
+00:04:38,036 --> 00:04:40,976
+so you can minimize the overhead
+cost of doing your work.
+
+
+90
+00:04:41,926 --> 00:04:45,286
+Second is the idea of
+trading power for energy.
+
+
+91
+00:04:46,306 --> 00:04:49,386
+Now, a lot of resources on our
+systems have different power
+
+
+92
+00:04:49,386 --> 00:04:51,696
+and performance states
+and that's
+
+
+93
+00:04:51,696 --> 00:04:54,496
+to conserve power
+while still ensuring
+
+
+94
+00:04:54,496 --> 00:04:56,196
+that we can provide
+fluid performances.
+
+
+95
+00:04:57,616 --> 00:05:00,536
+We all know, hopefully,
+that energy is a factor
+
+
+96
+00:05:00,536 --> 00:05:04,136
+of both the power used as
+well as the time it takes
+
+
+97
+00:05:04,406 --> 00:05:05,876
+for you to finish your work.
+
+
+98
+00:05:06,916 --> 00:05:09,526
+As you can see on the screen
+on the figure on your right,
+
+
+99
+00:05:09,686 --> 00:05:12,376
+the idea here is that
+by doing as much work
+
+
+100
+00:05:12,376 --> 00:05:17,446
+as you can-although, you could
+potentially be using a lot more
+
+
+101
+00:05:17,446 --> 00:05:20,506
+power instantaneously-you'll
+be able
+
+
+102
+00:05:20,506 --> 00:05:23,746
+to finish your work quicker,
+minimizing the overhead cost
+
+
+103
+00:05:23,746 --> 00:05:25,826
+as well as the overall
+energy used.
+
+
+104
+00:05:26,736 --> 00:05:30,666
+Essentially, you're trading
+power for time to reduce energy.
+
+
+105
+00:05:31,586 --> 00:05:33,656
+So, that's trading
+power for energy.
+
+
+106
+00:05:34,986 --> 00:05:38,016
+Now, as developers, I know
+that these concepts can be kind
+
+
+107
+00:05:38,016 --> 00:05:41,096
+of abstract and hard to apply
+when you're actually coding.
+
+
+108
+00:05:41,716 --> 00:05:43,836
+So, Anthony boiled
+it down for you guys.
+
+
+109
+00:05:44,356 --> 00:05:48,546
+Here's what reducing energy use
+really comes down to and that's
+
+
+110
+00:05:48,936 --> 00:05:51,346
+to do it never, to do
+it at a better time,
+
+
+111
+00:05:52,026 --> 00:05:54,776
+to do it more efficiently
+and to do it less.
+
+
+112
+00:05:55,926 --> 00:05:59,406
+You'll want to do work never,
+do work at a better time,
+
+
+113
+00:06:00,246 --> 00:06:04,026
+do work more efficiently
+and do work less.
+
+
+114
+00:06:04,216 --> 00:06:05,996
+That's what reducing
+energy really comes down to.
+
+
+115
+00:06:07,316 --> 00:06:09,036
+Now, Anthony went into
+great detail on how
+
+
+116
+00:06:09,036 --> 00:06:12,176
+to apply these principles to
+minimizing the system activity
+
+
+117
+00:06:12,176 --> 00:06:14,656
+of your applications in
+reducing-essentially,
+
+
+118
+00:06:14,656 --> 00:06:15,736
+reducing the CPU usage.
+
+
+119
+00:06:16,476 --> 00:06:18,316
+So, let me just quickly go
+over that for you real quick.
+
+
+120
+00:06:18,426 --> 00:06:20,646
+For doing it never, Anthony
+talked about reacting
+
+
+121
+00:06:20,736 --> 00:06:22,786
+to app transitions, right?
+
+
+122
+00:06:22,786 --> 00:06:24,576
+If your application is
+going into the background
+
+
+123
+00:06:24,656 --> 00:06:26,996
+or is not going to
+be the frontmost app,
+
+
+124
+00:06:26,996 --> 00:06:29,226
+make sure you stop
+any unnecessary work,
+
+
+125
+00:06:29,296 --> 00:06:30,506
+such as any type of rendering
+
+
+126
+00:06:30,506 --> 00:06:33,006
+because your users
+will not see it.
+
+
+127
+00:06:33,926 --> 00:06:36,886
+Now, for doing it at a
+better time, Anthony talked
+
+
+128
+00:06:36,886 --> 00:06:40,626
+about two scheduling APIs
+that you would consider using
+
+
+129
+00:06:41,586 --> 00:06:43,486
+and that's the
+NSBackgroundActivityScheduler
+
+
+130
+00:06:43,486 --> 00:06:47,356
+for OS X and the NSURLSession
+for both iOS and OS X
+
+
+131
+00:06:47,626 --> 00:06:49,286
+to schedule your
+network transactions.
+
+
+132
+00:06:49,486 --> 00:06:49,996
+Now, we'll talk
+
+
+133
+00:06:49,996 --> 00:06:54,316
+about NSURLSession a
+little bit more later.
+
+
+134
+00:06:54,846 --> 00:06:58,286
+For doing it more
+efficiently, Anthony talked
+
+
+135
+00:06:58,286 --> 00:07:02,346
+about the new quality of
+service APIs and he really went
+
+
+136
+00:07:02,346 --> 00:07:06,066
+into detail on how you can
+set the appropriate quality
+
+
+137
+00:07:06,066 --> 00:07:09,266
+of servers with the priority of
+your NSOperation or GCD queues
+
+
+138
+00:07:09,656 --> 00:07:11,206
+so you can do your
+work more efficiently.
+
+
+139
+00:07:12,956 --> 00:07:15,646
+And finally, for doing it less,
+Anthony mentioned the importance
+
+
+140
+00:07:15,646 --> 00:07:17,806
+of coalescing your
+timers, right?
+
+
+141
+00:07:17,806 --> 00:07:20,296
+You want to coalesce your
+timers to let your system,
+
+
+142
+00:07:20,406 --> 00:07:22,096
+your CPU idle as
+much as you can.
+
+
+143
+00:07:23,356 --> 00:07:27,066
+Now, before I continue, I wanted
+to take a quick detour and talk
+
+
+144
+00:07:27,066 --> 00:07:28,806
+about something new for iOS.
+
+
+145
+00:07:30,196 --> 00:07:32,916
+Now, up until now, we've
+seen many developer bugs
+
+
+146
+00:07:32,916 --> 00:07:35,586
+where their applications
+that are running
+
+
+147
+00:07:35,586 --> 00:07:38,726
+in the background are
+utilizing a lot of CPU
+
+
+148
+00:07:38,826 --> 00:07:41,336
+for an extended period of time.
+
+
+149
+00:07:41,516 --> 00:07:43,586
+This should be considered bugs
+
+
+150
+00:07:43,586 --> 00:07:45,966
+because there are pretty
+clear guidelines on why
+
+
+151
+00:07:45,966 --> 00:07:49,306
+and when an iOS app can
+run in the background.
+
+
+152
+00:07:49,836 --> 00:07:51,976
+So, as you help developers
+catch these bugs,
+
+
+153
+00:07:52,076 --> 00:07:55,856
+as well as minimize the
+battery impact on the device
+
+
+154
+00:07:55,856 --> 00:07:59,476
+when this happens, we've
+implemented a CPU monitor
+
+
+155
+00:07:59,536 --> 00:08:02,196
+that will kick in when your
+applications are running-are
+
+
+156
+00:08:02,196 --> 00:08:03,206
+considered background running.
+
+
+157
+00:08:03,296 --> 00:08:10,286
+Now, what this will mean for
+your applications is-well,
+
+
+158
+00:08:10,286 --> 00:08:12,786
+it really shouldn't
+mean anything, right?
+
+
+159
+00:08:12,786 --> 00:08:15,816
+The CPU limits that we've
+set are purely meant
+
+
+160
+00:08:15,816 --> 00:08:17,286
+to catch runaway usage.
+
+
+161
+00:08:18,316 --> 00:08:21,866
+They're set at a limit where
+if you're doing the normal type
+
+
+162
+00:08:21,866 --> 00:08:24,116
+of work that you've
+requested according
+
+
+163
+00:08:24,116 --> 00:08:26,446
+to the background modes that
+you have in your applications,
+
+
+164
+00:08:26,716 --> 00:08:28,606
+you should not be
+affected in any way.
+
+
+165
+00:08:29,616 --> 00:08:33,006
+However, if you do end
+up hitting the CPU limit,
+
+
+166
+00:08:33,686 --> 00:08:37,076
+your app will be terminated
+and a log will be generated
+
+
+167
+00:08:37,076 --> 00:08:39,385
+to help you identify
+that this has happened.
+
+
+168
+00:08:39,876 --> 00:08:41,206
+Here's what this
+log will look like.
+
+
+169
+00:08:43,056 --> 00:08:45,066
+So, up top, you'll
+see that the way
+
+
+170
+00:08:45,066 --> 00:08:48,216
+to identify is the exception
+type, which is EXC-RESOURCE
+
+
+171
+00:08:48,456 --> 00:08:50,736
+and the subtype,
+you'll see CPU-FATAL.
+
+
+172
+00:08:51,276 --> 00:08:52,986
+This is how you'll know
+that your application
+
+
+173
+00:08:52,986 --> 00:08:54,816
+that was running in the
+background was terminated.
+
+
+174
+00:08:55,676 --> 00:08:58,426
+And on the bottom, we've
+included some microstackshots
+
+
+175
+00:08:58,426 --> 00:09:01,096
+of what your application
+was doing right before we
+
+
+176
+00:09:01,096 --> 00:09:01,786
+terminated it.
+
+
+177
+00:09:02,186 --> 00:09:04,626
+This should help you
+identify in your CodePath
+
+
+178
+00:09:04,896 --> 00:09:08,756
+where you had your runaway CPU
+usage so that you can fix it.
+
+
+179
+00:09:09,556 --> 00:09:13,026
+So this is really-now, this will
+not only preserve battery life
+
+
+180
+00:09:13,026 --> 00:09:16,226
+but it will help our developers,
+which is you guys, to catch bugs
+
+
+181
+00:09:16,356 --> 00:09:17,446
+that you might not have known.
+
+
+182
+00:09:18,146 --> 00:09:21,346
+So once again, this is new
+and we'll begin in iOS 8.
+
+
+183
+00:09:21,856 --> 00:09:25,886
+So, let me go back to
+the recap-and I wanted
+
+
+184
+00:09:25,886 --> 00:09:28,176
+to mention one last thing
+that Anthony talked about
+
+
+185
+00:09:28,646 --> 00:09:31,826
+and that's really on
+energy-an energy efficient way
+
+
+186
+00:09:31,826 --> 00:09:33,156
+to do graphics and animation.
+
+
+187
+00:09:33,706 --> 00:09:36,386
+And the two points that
+he talked about were
+
+
+188
+00:09:36,656 --> 00:09:39,456
+to avoid extraneous
+screen updates, right?
+
+
+189
+00:09:39,456 --> 00:09:42,126
+Don't be updating the screen
+when it's not necessary
+
+
+190
+00:09:42,386 --> 00:09:45,766
+and to review the
+blur effect usage.
+
+
+191
+00:09:46,926 --> 00:09:50,756
+Now, blur is a great way to
+include depth as well as,
+
+
+192
+00:09:50,806 --> 00:09:53,226
+you know, to provide
+layering effect for your UIs.
+
+
+193
+00:09:53,386 --> 00:09:57,206
+However, with all great
+things, they can cost more.
+
+
+194
+00:09:58,096 --> 00:10:01,196
+So, you'll want to review,
+you know, all the animations
+
+
+195
+00:10:01,196 --> 00:10:03,476
+or frame changes that you're
+doing behind your blur and try
+
+
+196
+00:10:03,476 --> 00:10:05,246
+to minimize them
+as much as possible
+
+
+197
+00:10:05,246 --> 00:10:06,946
+so that you can provide
+your users
+
+
+198
+00:10:06,946 --> 00:10:10,126
+with a great UI while
+helping them conserve their
+
+
+199
+00:10:10,126 --> 00:10:11,326
+battery life.
+
+
+200
+00:10:14,436 --> 00:10:16,986
+So, that pretty much
+sums up our recap.
+
+
+201
+00:10:17,596 --> 00:10:20,536
+If you have any questions
+about what I just, you know,
+
+
+202
+00:10:20,536 --> 00:10:22,416
+breezed through,
+feel free to swing
+
+
+203
+00:10:22,416 --> 00:10:23,756
+by our labs this afternoon.
+
+
+204
+00:10:23,846 --> 00:10:25,836
+You know, once again,
+we have one at 2 o'clock
+
+
+205
+00:10:25,836 --> 00:10:28,096
+in the Core OS Lab
+and tomorrow at 3:15.
+
+
+206
+00:10:28,636 --> 00:10:31,186
+Anthony, myself, as well as
+our colleagues, will be happy
+
+
+207
+00:10:31,186 --> 00:10:34,546
+to answer any questions that you
+may have or check out the video
+
+
+208
+00:10:34,546 --> 00:10:35,386
+when it becomes available.
+
+
+209
+00:10:35,656 --> 00:10:38,926
+Anthony really goes into great
+detail on all these things
+
+
+210
+00:10:38,926 --> 00:10:41,746
+that I just, you know,
+quickly talked about.
+
+
+211
+00:10:43,776 --> 00:10:46,536
+So, to begin our session
+today, I want to start
+
+
+212
+00:10:46,536 --> 00:10:48,456
+by talking about networking.
+
+
+213
+00:10:48,856 --> 00:10:55,066
+We live in a time where
+the way we get information,
+
+
+214
+00:10:55,176 --> 00:10:57,786
+the way we shop, the way
+we connect with friends,
+
+
+215
+00:10:58,236 --> 00:11:01,576
+or the way we backup important
+data, or, you know, memories,
+
+
+216
+00:11:02,016 --> 00:11:03,096
+is really through networking.
+
+
+217
+00:11:03,836 --> 00:11:07,486
+I go as far as to say that
+there's probably very few apps
+
+
+218
+00:11:07,976 --> 00:11:10,576
+in the App Store that
+don't do any networking
+
+
+219
+00:11:10,576 --> 00:11:14,086
+and so it's important that we
+discuss how we can do networking
+
+
+220
+00:11:14,566 --> 00:11:15,906
+in an energy efficient way.
+
+
+221
+00:11:16,906 --> 00:11:19,516
+So, let's start with a
+very generic example.
+
+
+222
+00:11:20,046 --> 00:11:23,976
+Let's say today your requirement
+is to develop an application
+
+
+223
+00:11:24,096 --> 00:11:25,656
+to send some data
+to your servers.
+
+
+224
+00:11:27,356 --> 00:11:30,856
+So, an easy way to do this
+and the most intuitive way
+
+
+225
+00:11:30,856 --> 00:11:34,366
+to do this would be, right when
+data comes we'll, you know,
+
+
+226
+00:11:34,366 --> 00:11:36,536
+go ahead and send it off
+to the servers, right?
+
+
+227
+00:11:36,536 --> 00:11:40,256
+So, as you can see as data is
+coming in, we're firing up,
+
+
+228
+00:11:40,376 --> 00:11:42,296
+we're setting up connections,
+sending into our servers.
+
+
+229
+00:11:43,156 --> 00:11:45,076
+Let's see what the energy cost
+looks like for doing this.
+
+
+230
+00:11:47,716 --> 00:11:50,126
+So, here you have a couple of
+data syncs coming in, right?
+
+
+231
+00:11:50,486 --> 00:11:53,956
+And let's assume that the data
+that you're sending is small
+
+
+232
+00:11:54,756 --> 00:11:57,196
+so you think to yourself, "Well,
+I'm just, you know, sending,
+
+
+233
+00:11:57,666 --> 00:12:00,156
+like, small packets up to our
+server every once in a while.
+
+
+234
+00:12:00,156 --> 00:12:03,386
+It's probably not going to
+use that much energy, right?"
+
+
+235
+00:12:04,716 --> 00:12:07,456
+Well, given what we just
+talked about in overhead costs,
+
+
+236
+00:12:09,036 --> 00:12:11,346
+by default, the radios
+on our system are idle
+
+
+237
+00:12:11,346 --> 00:12:13,876
+and the radios are the resources
+that you're going to utilize
+
+
+238
+00:12:13,876 --> 00:12:16,716
+to send your network, to send
+your packets to your servers.
+
+
+239
+00:12:17,636 --> 00:12:21,176
+So, in order to send these data
+packets, the system has to bring
+
+
+240
+00:12:21,176 --> 00:12:25,116
+up the radios, keep the radios
+up while you're doing your work.
+
+
+241
+00:12:25,646 --> 00:12:27,776
+And then, if you take a look
+at the transfers happening
+
+
+242
+00:12:27,776 --> 00:12:30,756
+to your left, you'll see
+that, you know, like we said,
+
+
+243
+00:12:31,006 --> 00:12:32,436
+even though there are times
+
+
+244
+00:12:32,436 --> 00:12:34,486
+where you're not actually
+sending the packets out,
+
+
+245
+00:12:34,936 --> 00:12:36,596
+the radios are actually kept up.
+
+
+246
+00:12:37,386 --> 00:12:39,196
+This is the overhead cost
+that we talked about earlier.
+
+
+247
+00:12:39,486 --> 00:12:41,986
+And then, if you look at
+the transfer on your right,
+
+
+248
+00:12:41,986 --> 00:12:44,886
+even though you're only
+sending one small data packet,
+
+
+249
+00:12:45,956 --> 00:12:48,056
+you're still paying the
+cost to bring the radios
+
+
+250
+00:12:48,136 --> 00:12:50,956
+up for you to do that, right?
+
+
+251
+00:12:50,956 --> 00:12:54,166
+So, there's a big overhead
+cost in using the radios.
+
+
+252
+00:12:54,796 --> 00:12:57,756
+Now, not to complicate
+things, but depending
+
+
+253
+00:12:57,756 --> 00:13:00,166
+on which technology you're
+using to do your transfers,
+
+
+254
+00:13:00,536 --> 00:13:02,676
+the cost of both
+the time out as well
+
+
+255
+00:13:02,676 --> 00:13:04,336
+as the energy used
+can vary greatly.
+
+
+256
+00:13:04,416 --> 00:13:06,446
+All right, to give
+you guys an idea,
+
+
+257
+00:13:07,036 --> 00:13:10,236
+if you're simply web browsing
+constantly on an iPhone 5S,
+
+
+258
+00:13:11,056 --> 00:13:12,886
+if you're doing it
+through Wi-Fi,
+
+
+259
+00:13:12,886 --> 00:13:14,616
+your battery will
+last about 10 hours.
+
+
+260
+00:13:15,406 --> 00:13:17,126
+However, if you're
+doing this through 3G,
+
+
+261
+00:13:17,126 --> 00:13:20,826
+it will only last you about 8.
+
+
+262
+00:13:21,106 --> 00:13:24,206
+So, the technology you utilize
+
+
+263
+00:13:24,206 --> 00:13:27,206
+to do your transfers will
+affect the energy used
+
+
+264
+00:13:27,596 --> 00:13:30,676
+in your network transactions,
+right, whether you're on Wi-Fi,
+
+
+265
+00:13:30,986 --> 00:13:35,526
+or cellular, or even, you know,
+different cellular carriers kind
+
+
+266
+00:13:35,526 --> 00:13:37,546
+of impacts the energy you
+use through your networking.
+
+
+267
+00:13:38,796 --> 00:13:42,646
+Not only that, your network
+condition, your signal strength
+
+
+268
+00:13:42,646 --> 00:13:46,306
+as well as your network
+throughput can impact the time
+
+
+269
+00:13:46,306 --> 00:13:49,136
+it takes as well as the
+energy we use to send off
+
+
+270
+00:13:49,136 --> 00:13:50,096
+to your network transactions.
+
+
+271
+00:13:50,756 --> 00:13:52,986
+Networking can be
+quite expensive
+
+
+272
+00:13:53,066 --> 00:13:54,456
+if not done intelligently.
+
+
+273
+00:13:55,166 --> 00:13:56,506
+So, let's go back
+and take a look
+
+
+274
+00:13:56,506 --> 00:13:59,806
+at our simple web server
+example, and this time instead
+
+
+275
+00:13:59,806 --> 00:14:03,656
+of sending in one at a time,
+let's implement a simple buffer.
+
+
+276
+00:14:04,206 --> 00:14:10,906
+So, let's buffer the data on
+our device before we send it.
+
+
+277
+00:14:11,176 --> 00:14:14,456
+Now, instead of paying the
+overhead cost to send each
+
+
+278
+00:14:14,456 --> 00:14:17,086
+of those packets, your energy
+will look something more
+
+
+279
+00:14:17,086 --> 00:14:18,026
+like this.
+
+
+280
+00:14:18,656 --> 00:14:22,236
+As you can see while
+you're accumulating data,
+
+
+281
+00:14:22,716 --> 00:14:24,516
+your radio-the radios
+get to stay idle
+
+
+282
+00:14:24,516 --> 00:14:26,176
+and so you're not
+paying the overhead cost.
+
+
+283
+00:14:26,406 --> 00:14:29,106
+And once you do need to
+send a group of data,
+
+
+284
+00:14:29,106 --> 00:14:31,276
+although you do still need
+to bring up the radios,
+
+
+285
+00:14:31,956 --> 00:14:33,736
+it's not-it's a lot more
+worth it now, right?
+
+
+286
+00:14:33,736 --> 00:14:36,636
+You're sending a lot more
+data while paying less
+
+
+287
+00:14:36,676 --> 00:14:39,666
+of an overhead cost
+or actually-sorry,
+
+
+288
+00:14:39,666 --> 00:14:41,416
+you're sending the
+same amount of data
+
+
+289
+00:14:41,416 --> 00:14:44,336
+but paying less overhead cost.
+
+
+290
+00:14:44,336 --> 00:14:45,276
+So, it's important to know
+
+
+291
+00:14:45,276 --> 00:14:48,346
+that the way you schedule your
+network operations can greatly
+
+
+292
+00:14:48,346 --> 00:14:50,516
+impact the energy use
+in your application.
+
+
+293
+00:14:52,166 --> 00:14:54,026
+So, let's think about
+how we can apply some
+
+
+294
+00:14:54,026 --> 00:14:55,686
+of the principles Anthony
+talked about earlier
+
+
+295
+00:14:56,196 --> 00:14:58,446
+to the networking you're
+doing in your application
+
+
+296
+00:14:58,536 --> 00:15:01,476
+to help reduce this energy.
+
+
+297
+00:15:01,476 --> 00:15:04,346
+So, for doing it more
+efficiently, we just looked
+
+
+298
+00:15:04,346 --> 00:15:07,176
+at the importance of coalescing
+your transactions, right?
+
+
+299
+00:15:07,176 --> 00:15:10,786
+By doing more at once, you're
+paying less of an overhead cost
+
+
+300
+00:15:11,186 --> 00:15:13,266
+and you're reducing
+the energy used
+
+
+301
+00:15:13,406 --> 00:15:16,216
+by sending the same
+amount of packets.
+
+
+302
+00:15:17,386 --> 00:15:19,676
+Now, for doing it less
+and never, it's simple.
+
+
+303
+00:15:20,456 --> 00:15:21,806
+Cut down your transfers, right?
+
+
+304
+00:15:21,896 --> 00:15:25,216
+The best way to conserve
+energy is to do less work.
+
+
+305
+00:15:25,536 --> 00:15:27,726
+So think about you-think
+about creative ways
+
+
+306
+00:15:27,726 --> 00:15:30,576
+that you can reduce the data
+sizes in your application.
+
+
+307
+00:15:31,226 --> 00:15:33,086
+If you're sending media-like,
+
+
+308
+00:15:33,086 --> 00:15:36,366
+let's say you're uploading a
+photo to a social media website.
+
+
+309
+00:15:37,086 --> 00:15:40,136
+And, you know, if the photo
+is never going to be displayed
+
+
+310
+00:15:40,136 --> 00:15:44,096
+at its full quality, consider
+reducing the image quality first
+
+
+311
+00:15:44,356 --> 00:15:45,796
+before you send it
+out to your servers.
+
+
+312
+00:15:46,616 --> 00:15:48,566
+Compression is also
+another easy way.
+
+
+313
+00:15:48,566 --> 00:15:49,436
+If you're sending files,
+
+
+314
+00:15:49,776 --> 00:15:52,226
+compress that file before you
+send it up to your servers
+
+
+315
+00:15:52,656 --> 00:15:54,636
+to reduce the amount of
+data that you're sending.
+
+
+316
+00:15:55,596 --> 00:15:57,056
+Now, on top of reducing
+data sizes,
+
+
+317
+00:15:57,596 --> 00:16:00,636
+make sure you think about-make
+sure you try to avoid,
+
+
+318
+00:16:00,636 --> 00:16:02,406
+as much as you can,
+redundant transfers, right?
+
+
+319
+00:16:02,406 --> 00:16:04,446
+And make sure you
+cache information
+
+
+320
+00:16:04,446 --> 00:16:05,466
+that you've already downloaded.
+
+
+321
+00:16:06,236 --> 00:16:08,056
+This will not only
+help you save energy
+
+
+322
+00:16:08,056 --> 00:16:10,216
+but it can also improve
+the performance
+
+
+323
+00:16:10,216 --> 00:16:11,676
+of your application, right?
+
+
+324
+00:16:11,676 --> 00:16:13,876
+Since the next time you need an
+asset, you don't have to wait
+
+
+325
+00:16:13,876 --> 00:16:15,016
+for it to be downloaded again.
+
+
+326
+00:16:15,016 --> 00:16:17,336
+It will already be
+readily available.
+
+
+327
+00:16:18,236 --> 00:16:20,116
+Also, use resumable
+transactions.
+
+
+328
+00:16:20,846 --> 00:16:24,726
+Especially on mobile devices,
+network connections can go in
+
+
+329
+00:16:24,726 --> 00:16:26,016
+and out fairly frequent,
+
+
+330
+00:16:26,576 --> 00:16:28,786
+so you want to make sure
+you're using transactions
+
+
+331
+00:16:28,786 --> 00:16:30,166
+that can be paused and resumed.
+
+
+332
+00:16:30,166 --> 00:16:33,236
+So, if you detect the network
+condition is bad, you can pause,
+
+
+333
+00:16:33,406 --> 00:16:35,816
+and you don't have to
+resend those chunks of data
+
+
+334
+00:16:35,816 --> 00:16:39,476
+that was lost when you
+do get to send them.
+
+
+335
+00:16:39,556 --> 00:16:43,066
+Now, finally, with networking
+conditions, you won't-you want
+
+
+336
+00:16:43,066 --> 00:16:45,466
+to make sure that you handle
+your network errors properly,
+
+
+337
+00:16:45,656 --> 00:16:45,776
+right?
+
+
+338
+00:16:45,776 --> 00:16:48,026
+And make sure you have good
+timeout or retry policies.
+
+
+339
+00:16:48,026 --> 00:16:51,076
+It does not make any sense
+for you to continuously try
+
+
+340
+00:16:51,076 --> 00:16:53,796
+to send data to your
+servers when you can't.
+
+
+341
+00:16:54,266 --> 00:16:57,706
+So, these are just some
+of the things to consider
+
+
+342
+00:16:57,816 --> 00:16:59,776
+on how you can reduce
+the data sizes
+
+
+343
+00:16:59,776 --> 00:17:01,096
+of your network transactions.
+
+
+344
+00:17:02,616 --> 00:17:04,836
+Finally, for doing
+it at a better time,
+
+
+345
+00:17:05,266 --> 00:17:06,816
+we have consider tolerance.
+
+
+346
+00:17:07,366 --> 00:17:08,326
+Basically, you want
+
+
+347
+00:17:08,326 --> 00:17:10,476
+to understand the requirements
+of your application.
+
+
+348
+00:17:10,606 --> 00:17:13,266
+Is this network-does this
+networking transaction need
+
+
+349
+00:17:13,266 --> 00:17:14,276
+to happen immediately, right?
+
+
+350
+00:17:14,616 --> 00:17:19,536
+As we've just looked at earlier,
+the technology we use as well
+
+
+351
+00:17:19,536 --> 00:17:22,566
+as the signal conditions can
+greatly impact the energy use
+
+
+352
+00:17:22,566 --> 00:17:24,766
+of your application when you're
+doing those transactions.
+
+
+353
+00:17:25,126 --> 00:17:28,086
+So, if the-if the
+conditions aren't ideal,
+
+
+354
+00:17:28,086 --> 00:17:30,836
+can we wait on this
+network transaction?
+
+
+355
+00:17:30,836 --> 00:17:34,356
+You know, this is especially
+important for larger downloads
+
+
+356
+00:17:34,606 --> 00:17:38,176
+such as, let's say, you're
+backing up a user's data or,
+
+
+357
+00:17:38,326 --> 00:17:39,516
+you know, you're
+downloading a movie
+
+
+358
+00:17:39,516 --> 00:17:42,626
+that probably is just
+purely meant to be put
+
+
+359
+00:17:42,626 --> 00:17:44,026
+in the user's media library.
+
+
+360
+00:17:45,096 --> 00:17:47,706
+Those things won't have
+an immediate user impact
+
+
+361
+00:17:48,336 --> 00:17:50,606
+and so consider doing
+those at a better time.
+
+
+362
+00:17:51,236 --> 00:17:53,406
+And we'll talk about
+NSURLSession more later
+
+
+363
+00:17:53,406 --> 00:17:57,496
+on an easy way to do this,
+but let's take a look back
+
+
+364
+00:17:57,496 --> 00:17:59,636
+at our example first to
+see how we can apply some
+
+
+365
+00:17:59,636 --> 00:18:01,656
+of these principles to
+help reduce the energy
+
+
+366
+00:18:01,966 --> 00:18:02,976
+of your network.
+
+
+367
+00:18:03,246 --> 00:18:06,256
+So, we already determined
+that by buffering your data,
+
+
+368
+00:18:06,516 --> 00:18:08,116
+you greatly reduce
+the overhead cost.
+
+
+369
+00:18:08,236 --> 00:18:11,496
+Now, let's implement a simple
+check on the device to make sure
+
+
+370
+00:18:11,496 --> 00:18:13,186
+that the data is
+actually relevant.
+
+
+371
+00:18:13,426 --> 00:18:16,946
+Let's say you simply diff the
+current data versus the previous
+
+
+372
+00:18:16,946 --> 00:18:19,836
+to make sure that something has
+actually changed before you send
+
+
+373
+00:18:19,836 --> 00:18:20,616
+it off, right?
+
+
+374
+00:18:20,916 --> 00:18:25,126
+Now, I have been able to reduce
+the data size of my transfer
+
+
+375
+00:18:25,126 --> 00:18:27,246
+and finally, let's make sure
+
+
+376
+00:18:27,436 --> 00:18:30,316
+that the signal conditions are
+good before we send it off,
+
+
+377
+00:18:30,506 --> 00:18:30,646
+you know?
+
+
+378
+00:18:30,646 --> 00:18:32,186
+And then, obviously,
+here I'm assuming
+
+
+379
+00:18:32,186 --> 00:18:34,466
+that this data is not
+needed immediately,
+
+
+380
+00:18:34,566 --> 00:18:37,196
+so there is some
+tolerance before I need
+
+
+381
+00:18:37,236 --> 00:18:38,456
+to do this transaction.
+
+
+382
+00:18:39,126 --> 00:18:41,486
+Now, by implementing these
+three things, I've been able
+
+
+383
+00:18:41,486 --> 00:18:44,896
+to save a lot of energy while
+still providing the data
+
+
+384
+00:18:44,896 --> 00:18:46,446
+that needs to be provided.
+
+
+385
+00:18:47,956 --> 00:18:51,506
+So by now, I mean, a lot of you
+guys are probably asking like,
+
+
+386
+00:18:51,506 --> 00:18:52,706
+"This is not easy at all, right?
+
+
+387
+00:18:52,706 --> 00:18:53,976
+Especially with signal
+conditions,
+
+
+388
+00:18:53,976 --> 00:18:56,856
+especially with retries-like,
+this is not an easy thing
+
+
+389
+00:18:56,856 --> 00:18:58,956
+to implement and it kind
+of goes way over my head."
+
+
+390
+00:18:59,416 --> 00:19:02,466
+Well, this is where I'll
+talk about NSURLSession.
+
+
+391
+00:19:02,656 --> 00:19:05,686
+This is an API that will allow
+you to easily integrate pause
+
+
+392
+00:19:05,686 --> 00:19:09,686
+and resume as well as implement
+caching with NSURLCaching.
+
+
+393
+00:19:11,256 --> 00:19:15,466
+Now, one of the good
+features in this API is,
+
+
+394
+00:19:15,466 --> 00:19:16,646
+as Anthony has mentioned
+earlier,
+
+
+395
+00:19:16,646 --> 00:19:19,256
+the ability to create
+background sessions.
+
+
+396
+00:19:20,146 --> 00:19:22,846
+So, with background
+sessions, you're actually able
+
+
+397
+00:19:22,846 --> 00:19:24,656
+to do your downloads
+out of process.
+
+
+398
+00:19:25,446 --> 00:19:28,926
+And this is especially
+important for iOS apps
+
+
+399
+00:19:28,976 --> 00:19:32,946
+because your application won't
+get to run all the time, right?
+
+
+400
+00:19:32,946 --> 00:19:36,226
+So with background sessions,
+you no longer have to rush
+
+
+401
+00:19:36,226 --> 00:19:37,956
+to download everything
+you want immediately.
+
+
+402
+00:19:38,556 --> 00:19:40,556
+You just simply-you can
+create a background session
+
+
+403
+00:19:40,556 --> 00:19:42,536
+and allow the system
+to do that for you
+
+
+404
+00:19:42,536 --> 00:19:47,146
+and your app will be alerted
+whenever the transactions are
+
+
+405
+00:19:47,146 --> 00:19:48,606
+done or if it errors out.
+
+
+406
+00:19:49,686 --> 00:19:54,916
+Now, within iOS, when your
+applications are moved
+
+
+407
+00:19:54,916 --> 00:19:55,576
+to the background,
+
+
+408
+00:19:56,646 --> 00:19:59,436
+these background sessions will
+actually also automatically
+
+
+409
+00:19:59,436 --> 00:20:02,976
+opt-in to throughput monitoring
+as well as automatic retries.
+
+
+410
+00:20:03,336 --> 00:20:04,236
+So, those are some things
+
+
+411
+00:20:04,236 --> 00:20:07,346
+that will be automatically
+taken care of for you in iOS.
+
+
+412
+00:20:07,346 --> 00:20:11,726
+Now, one of the features that
+Anthony mentioned, and I'm going
+
+
+413
+00:20:11,726 --> 00:20:14,296
+to once again stress the
+importance of-for you
+
+
+414
+00:20:14,296 --> 00:20:17,936
+to consider using this as the
+discretionary flag, right?
+
+
+415
+00:20:17,936 --> 00:20:20,186
+You can set for your
+background sessions,
+
+
+416
+00:20:20,476 --> 00:20:22,336
+you can set it to
+be discretionary.
+
+
+417
+00:20:22,596 --> 00:20:25,316
+And by doing this, you're
+basically telling the system,
+
+
+418
+00:20:25,316 --> 00:20:27,496
+this is one of those
+"let's do it
+
+
+419
+00:20:27,496 --> 00:20:29,416
+at a better time"
+type transactions.
+
+
+420
+00:20:30,726 --> 00:20:32,546
+The system will automatically
+know
+
+
+421
+00:20:32,696 --> 00:20:34,236
+that this isn't needed
+immediately
+
+
+422
+00:20:34,236 --> 00:20:36,416
+and find the most
+power optimal time
+
+
+423
+00:20:36,976 --> 00:20:38,706
+to schedule your
+network transactions.
+
+
+424
+00:20:39,256 --> 00:20:41,676
+And all of this is transparent
+to your app, so you don't need
+
+
+425
+00:20:41,676 --> 00:20:42,616
+to know anything about it.
+
+
+426
+00:20:42,876 --> 00:20:45,686
+You'll simply get alerted
+when the transaction is done
+
+
+427
+00:20:45,816 --> 00:20:47,416
+or if it errors out, right?
+
+
+428
+00:20:47,416 --> 00:20:50,026
+Anthony also mentioned
+that you can adjust the
+
+
+429
+00:20:50,026 --> 00:20:50,756
+scheduling window.
+
+
+430
+00:20:50,756 --> 00:20:53,836
+You can give the system
+a certain amount of time
+
+
+431
+00:20:54,116 --> 00:20:56,106
+that you want this
+transaction to occur.
+
+
+432
+00:20:56,996 --> 00:20:59,836
+And, generally, you want to
+set it to be over 12 hours
+
+
+433
+00:20:59,836 --> 00:21:02,946
+to allow the system to actually
+be able to schedule it since,
+
+
+434
+00:21:02,946 --> 00:21:04,896
+you know, networking
+connections can go in and out
+
+
+435
+00:21:04,896 --> 00:21:06,816
+and the user can be
+using their devices.
+
+
+436
+00:21:07,156 --> 00:21:09,466
+But, you know, make sure you
+set this to over 12 hours
+
+
+437
+00:21:09,726 --> 00:21:11,486
+and the system will do its best
+
+
+438
+00:21:11,486 --> 00:21:13,186
+to schedule your
+network transaction
+
+
+439
+00:21:13,606 --> 00:21:14,466
+within this time window.
+
+
+440
+00:21:14,966 --> 00:21:17,276
+Now, if it is unable to,
+an error will be thrown
+
+
+441
+00:21:17,276 --> 00:21:18,726
+and then you can
+react accordingly.
+
+
+442
+00:21:18,896 --> 00:21:20,776
+For instance, you
+know, immediately try
+
+
+443
+00:21:20,776 --> 00:21:23,436
+to do your networking
+transactions or, you know,
+
+
+444
+00:21:23,576 --> 00:21:26,746
+once again schedule another one,
+giving, you know, another window
+
+
+445
+00:21:26,886 --> 00:21:30,276
+for you to wait if this
+transaction can happen
+
+
+446
+00:21:30,276 --> 00:21:30,906
+at a later time.
+
+
+447
+00:21:32,296 --> 00:21:36,006
+So, here is a code snippet
+of what this may look
+
+
+448
+00:21:36,006 --> 00:21:39,296
+like in your application and
+it's quite simple, right?
+
+
+449
+00:21:39,296 --> 00:21:42,656
+All you have to do is make sure
+you set up your configuration.
+
+
+450
+00:21:43,216 --> 00:21:46,336
+So, here I have a background
+session configuration setup.
+
+
+451
+00:21:46,996 --> 00:21:49,336
+And, you know, here
+I can set some flags.
+
+
+452
+00:21:49,336 --> 00:21:51,986
+For instance, I only want to do
+this when users are connected
+
+
+453
+00:21:51,986 --> 00:21:55,356
+to Wi-Fi because I know that
+that's more power efficient.
+
+
+454
+00:21:55,436 --> 00:21:57,346
+And also I want to
+save my user's money
+
+
+455
+00:21:57,526 --> 00:21:59,526
+because obviously
+data costs money.
+
+
+456
+00:22:00,916 --> 00:22:03,376
+Then we set our discretionary
+flag, right?
+
+
+457
+00:22:03,376 --> 00:22:05,826
+So this is where I tell
+the system, "You take care
+
+
+458
+00:22:05,826 --> 00:22:08,606
+of downloading this at
+whatever time you think is best.
+
+
+459
+00:22:08,676 --> 00:22:09,626
+Just tell me when it's done."
+
+
+460
+00:22:10,446 --> 00:22:13,366
+And then I say, "I want it
+within the next 18 hours."
+
+
+461
+00:22:15,306 --> 00:22:17,236
+Now, you just have to
+create your session
+
+
+462
+00:22:17,316 --> 00:22:19,066
+with the configuration
+that we just created.
+
+
+463
+00:22:19,766 --> 00:22:21,506
+Create task and send it off.
+
+
+464
+00:22:21,946 --> 00:22:22,336
+That's it.
+
+
+465
+00:22:22,556 --> 00:22:24,816
+The system will now do all
+the downloading for you
+
+
+466
+00:22:25,346 --> 00:22:28,026
+in an energy efficient
+way and all
+
+
+467
+00:22:28,026 --> 00:22:29,806
+of this is transparent
+to your application.
+
+
+468
+00:22:30,716 --> 00:22:33,096
+So, this is really
+a great API for you
+
+
+469
+00:22:33,096 --> 00:22:34,846
+to do your networking
+transactions
+
+
+470
+00:22:34,846 --> 00:22:36,056
+in an energy efficient way.
+
+
+471
+00:22:36,366 --> 00:22:39,366
+For more information, you
+know, check out the "What's New
+
+
+472
+00:22:39,366 --> 00:22:43,066
+in Foundation Networking"
+video when it becomes available
+
+
+473
+00:22:43,066 --> 00:22:44,796
+or swing by the networking labs.
+
+
+474
+00:22:45,766 --> 00:22:48,256
+But let's sum up
+networking, right?
+
+
+475
+00:22:48,376 --> 00:22:50,936
+Essentially, networking
+comes down to these three Ts,
+
+
+476
+00:22:51,846 --> 00:22:53,536
+all right-to coalesce
+your transactions,
+
+
+477
+00:22:54,136 --> 00:22:58,746
+to cutdown your transfers, and
+to consider tolerance, right?
+
+
+478
+00:22:58,746 --> 00:23:00,646
+So keep these three
+things in mind
+
+
+479
+00:23:00,646 --> 00:23:03,116
+as you are designing
+how you're going
+
+
+480
+00:23:03,116 --> 00:23:04,516
+to schedule your
+networking operations
+
+
+481
+00:23:04,766 --> 00:23:07,496
+to minimize the energy
+use of networking.
+
+
+482
+00:23:08,656 --> 00:23:12,706
+So, we talked a lot about
+different techniques and,
+
+
+483
+00:23:12,836 --> 00:23:14,806
+you know, APIs for
+you to be able
+
+
+484
+00:23:14,926 --> 00:23:17,156
+to reduce the energy
+use of your application.
+
+
+485
+00:23:18,016 --> 00:23:20,606
+How do you know that you've
+actually achieved that
+
+
+486
+00:23:20,746 --> 00:23:22,306
+or how can you actually measure
+
+
+487
+00:23:22,306 --> 00:23:24,246
+and profile the energy
+use of your application?
+
+
+488
+00:23:24,696 --> 00:23:26,356
+I hope that's the next
+question that you've thought
+
+
+489
+00:23:26,356 --> 00:23:27,866
+of because that's what
+we're going to talk about.
+
+
+490
+00:23:28,856 --> 00:23:33,316
+So, on for OS X developers,
+
+
+491
+00:23:33,446 --> 00:23:36,836
+you could do this directly
+through Xcode, right?
+
+
+492
+00:23:36,836 --> 00:23:38,316
+In the Xcode debugger,
+as you can see,
+
+
+493
+00:23:38,316 --> 00:23:40,846
+there is this little
+energy section here
+
+
+494
+00:23:40,846 --> 00:23:42,486
+that can really help
+you kind of understand,
+
+
+495
+00:23:42,486 --> 00:23:45,506
+at least to some
+extent, the energy impact
+
+
+496
+00:23:45,506 --> 00:23:47,076
+of your application
+as it's running.
+
+
+497
+00:23:49,306 --> 00:23:51,656
+For iOS developers,
+however, you will not be able
+
+
+498
+00:23:51,656 --> 00:23:53,486
+to use Xcode to do this.
+
+
+499
+00:23:54,676 --> 00:23:56,476
+What you will be able to do is
+
+
+500
+00:23:56,476 --> 00:24:00,306
+to pre-record a trace of-you
+know, let's say you want
+
+
+501
+00:24:00,306 --> 00:24:02,436
+to profile some activity,
+you can record a trace
+
+
+502
+00:24:02,696 --> 00:24:05,796
+of the system's energy usage as
+well as some other information,
+
+
+503
+00:24:06,166 --> 00:24:09,056
+and then you can use the
+Energy Diagnostics tools
+
+
+504
+00:24:09,056 --> 00:24:12,856
+and instruments to help you
+visualize what's going on.
+
+
+505
+00:24:13,856 --> 00:24:17,456
+To record this trace, simply
+navigate to the Instruments menu
+
+
+506
+00:24:17,946 --> 00:24:20,056
+and this is in Settings
+Developer menu.
+
+
+507
+00:24:20,126 --> 00:24:22,106
+You'll see an Instruments
+menu that you can select
+
+
+508
+00:24:22,596 --> 00:24:25,126
+and simply click Energy.
+
+
+509
+00:24:25,616 --> 00:24:27,596
+And, you know, selectively
+you can choose
+
+
+510
+00:24:27,596 --> 00:24:31,506
+to record networking information
+as well and just hit Start.
+
+
+511
+00:24:31,996 --> 00:24:34,186
+Now the system will begin
+recording your traces
+
+
+512
+00:24:34,496 --> 00:24:36,796
+and you can just simply navigate
+through your application,
+
+
+513
+00:24:37,046 --> 00:24:39,456
+do whatever work you
+wanted to do to profile it.
+
+
+514
+00:24:39,456 --> 00:24:42,166
+And then when you're done,
+come back to this menu
+
+
+515
+00:24:42,226 --> 00:24:43,746
+and hit Stop Recording.
+
+
+516
+00:24:45,176 --> 00:24:47,076
+Now your traces are recorded.
+
+
+517
+00:24:47,076 --> 00:24:51,836
+I do want to mention there's
+a little subtext right there.
+
+
+518
+00:24:51,836 --> 00:24:53,526
+I don't know if those of you
+in the back can see this,
+
+
+519
+00:24:53,766 --> 00:24:57,376
+but basically, we'll only
+save one trace at a time.
+
+
+520
+00:24:57,896 --> 00:25:00,876
+So, if you click
+Start Recording again,
+
+
+521
+00:25:01,276 --> 00:25:03,796
+your previous trace
+will be erased.
+
+
+522
+00:25:04,096 --> 00:25:04,996
+So, keep that in mind.
+
+
+523
+00:25:05,896 --> 00:25:07,576
+Now, you have your
+traces recorded.
+
+
+524
+00:25:07,576 --> 00:25:09,556
+Simply connect your
+device, you know,
+
+
+525
+00:25:09,556 --> 00:25:11,796
+to your Macs, to your laptops.
+
+
+526
+00:25:11,796 --> 00:25:15,756
+And then through the Instruments
+Energy Diagnostics menu,
+
+
+527
+00:25:15,836 --> 00:25:19,076
+you just have to click
+Import Data from device.
+
+
+528
+00:25:19,186 --> 00:25:22,286
+That's what that, you know,
+highlighted blue selection is.
+
+
+529
+00:25:22,716 --> 00:25:25,506
+And then your traces will
+be-you'll be able to pull
+
+
+530
+00:25:25,506 --> 00:25:27,386
+up your traces on instruments
+
+
+531
+00:25:27,496 --> 00:25:28,906
+with the Energy Diagnostics
+tool.
+
+
+532
+00:25:29,446 --> 00:25:32,286
+So, I'm going to go ahead
+
+
+533
+00:25:32,286 --> 00:25:37,536
+and show you guys what this
+may look like for an iOS app.
+
+
+534
+00:25:37,786 --> 00:25:40,316
+So, this should help
+familiarize you guys
+
+
+535
+00:25:40,316 --> 00:25:44,536
+with the energy diagnostics
+tool that we have to help you,
+
+
+536
+00:25:44,966 --> 00:25:47,436
+you know, kind of visualize
+the energy impact of your apps.
+
+
+537
+00:25:48,226 --> 00:25:51,176
+So, as you can see here
+I prerecorded two traces
+
+
+538
+00:25:51,276 --> 00:25:53,436
+that I'm going to
+show, but let's focus
+
+
+539
+00:25:53,436 --> 00:25:54,296
+on this first one here.
+
+
+540
+00:25:55,776 --> 00:26:00,376
+So, up top of energy diagnostics
+we have energy used, right?
+
+
+541
+00:26:00,376 --> 00:26:03,006
+And this really tells
+you the system energy
+
+
+542
+00:26:03,296 --> 00:26:05,026
+as your application was running.
+
+
+543
+00:26:05,906 --> 00:26:08,006
+And if you look at the
+details page on the bottom,
+
+
+544
+00:26:08,176 --> 00:26:11,476
+it might be hard to see,
+so, let me see if I can zoom
+
+
+545
+00:26:11,476 --> 00:26:13,376
+in on this-Great,there you go.
+
+
+546
+00:26:14,526 --> 00:26:16,786
+So, you'll see that
+energy used is, you know,
+
+
+547
+00:26:16,786 --> 00:26:19,756
+really an instantaneous
+reading based on one to 20.
+
+
+548
+00:26:20,266 --> 00:26:22,256
+Twenty means you're
+using a lot of energy
+
+
+549
+00:26:22,496 --> 00:26:24,886
+and one means you're
+using very little energy.
+
+
+550
+00:26:24,946 --> 00:26:32,306
+So, you can see as I've recorded
+this trace about-for about,
+
+
+551
+00:26:32,306 --> 00:26:35,906
+let's see, 13 minutes-you'll
+be able to see that energy is,
+
+
+552
+00:26:35,906 --> 00:26:37,146
+you know, generally pretty high.
+
+
+553
+00:26:37,416 --> 00:26:40,276
+What I'm doing here is
+every about 30 seconds,
+
+
+554
+00:26:40,276 --> 00:26:42,336
+I'm firing off a network
+connection, right?
+
+
+555
+00:26:42,516 --> 00:26:45,426
+Here to the Connections tab,
+you'll see all your connections.
+
+
+556
+00:26:45,846 --> 00:26:48,336
+And you can actually even
+see CPU activity, right?
+
+
+557
+00:26:48,336 --> 00:26:51,566
+So, CPU is fairly active since
+every 30 seconds I'm firing
+
+
+558
+00:26:51,566 --> 00:26:52,726
+up network connection.
+
+
+559
+00:26:53,506 --> 00:26:56,406
+Now, to help you better debug,
+
+
+560
+00:26:56,556 --> 00:26:58,386
+you can also-you
+also get information
+
+
+561
+00:26:58,386 --> 00:26:59,626
+such as network activity.
+
+
+562
+00:27:00,166 --> 00:27:01,536
+So, you'll be able
+to see, you know,
+
+
+563
+00:27:01,916 --> 00:27:04,296
+how many bytes you've
+transferred
+
+
+564
+00:27:04,296 --> 00:27:07,076
+from your application,
+what technology was going
+
+
+565
+00:27:07,076 --> 00:27:10,766
+through and, you know-let's
+see, as you can see here,
+
+
+566
+00:27:10,956 --> 00:27:11,786
+you have your cellular.
+
+
+567
+00:27:11,786 --> 00:27:12,656
+You have Wi-Fi.
+
+
+568
+00:27:12,886 --> 00:27:13,936
+All right.
+
+
+569
+00:27:14,526 --> 00:27:16,586
+Let's come back out.
+
+
+570
+00:27:17,336 --> 00:27:18,766
+And then, we also
+give you information
+
+
+571
+00:27:18,766 --> 00:27:20,106
+such as Display Brightness.
+
+
+572
+00:27:20,816 --> 00:27:23,486
+Now Display is also an area
+that can use up a lot of energy
+
+
+573
+00:27:23,486 --> 00:27:25,916
+so you're-so, if your
+application is, you know,
+
+
+574
+00:27:25,916 --> 00:27:28,816
+pushing the display up all the
+way to its full brightness,
+
+
+575
+00:27:28,816 --> 00:27:31,166
+make sure you disable that
+feature when it's not needed.
+
+
+576
+00:27:31,856 --> 00:27:34,846
+But here my display is
+about 20 percent brightness,
+
+
+577
+00:27:35,166 --> 00:27:38,066
+might-and we give you
+sleep-Sleep/Wake information
+
+
+578
+00:27:38,216 --> 00:27:39,156
+for your iOS devices.
+
+
+579
+00:27:39,156 --> 00:27:43,806
+So, if your device was asleep,
+we'll still be able to show
+
+
+580
+00:27:43,806 --> 00:27:45,416
+that here and it will
+look something more
+
+
+581
+00:27:45,416 --> 00:27:47,336
+like the dark red area here.
+
+
+582
+00:27:47,786 --> 00:27:50,276
+And then there's
+Bluetooth, Wi-Fi and GPS.
+
+
+583
+00:27:50,476 --> 00:27:52,756
+Now these three are
+purely on an on and off.
+
+
+584
+00:27:52,836 --> 00:27:57,866
+We only show you if
+it's on or it's off.
+
+
+585
+00:27:58,946 --> 00:28:01,806
+So, this is energy diagnostics.
+
+
+586
+00:28:01,806 --> 00:28:05,436
+It's really a good way for
+you to see the system energy,
+
+
+587
+00:28:05,736 --> 00:28:07,206
+what was going on in the system
+
+
+588
+00:28:07,466 --> 00:28:09,056
+when your application
+is running.
+
+
+589
+00:28:09,556 --> 00:28:12,486
+Now, just to show
+guys the importance
+
+
+590
+00:28:12,486 --> 00:28:15,826
+of coalescing your transactions,
+I've recorded a second trace
+
+
+591
+00:28:15,826 --> 00:28:18,306
+where instead of every 30
+seconds, as you can see here,
+
+
+592
+00:28:18,406 --> 00:28:21,436
+I'm only firing up
+connection every about two
+
+
+593
+00:28:21,436 --> 00:28:23,396
+to three minutes
+here-two minutes.
+
+
+594
+00:28:24,106 --> 00:28:25,446
+So, as you can see, you know,
+
+
+595
+00:28:25,536 --> 00:28:27,196
+it looks like I'm
+sending a lot more data.
+
+
+596
+00:28:28,476 --> 00:28:30,976
+However, if you look at
+the energy usage here,
+
+
+597
+00:28:31,396 --> 00:28:35,066
+and let's zoom in,
+our previous trace,
+
+
+598
+00:28:35,656 --> 00:28:40,216
+our energy usage was pretty
+much stuck around-let's see
+
+
+599
+00:28:40,306 --> 00:28:44,656
+if can get this to zoom
+in...there you go-stuck
+
+
+600
+00:28:44,656 --> 00:28:48,066
+around 14, 15, 16,
+throughout the whole trace.
+
+
+601
+00:28:49,326 --> 00:28:53,126
+However, simply by
+coalescing my transactions,
+
+
+602
+00:28:53,646 --> 00:28:58,416
+now the energy usage of my
+application, there you go,
+
+
+603
+00:28:59,256 --> 00:29:01,946
+you begin to see
+some like sixes,
+
+
+604
+00:29:01,946 --> 00:29:03,596
+sevens, and eights, right?
+
+
+605
+00:29:03,596 --> 00:29:05,936
+And then when you are firing
+your transactions, once again,
+
+
+606
+00:29:06,536 --> 00:29:09,896
+the energy usage will go
+up to 14, you know, 16, 17,
+
+
+607
+00:29:10,196 --> 00:29:13,146
+but it comes back down again.
+
+
+608
+00:29:13,146 --> 00:29:15,666
+So, it is important to coalesce
+your network transactions
+
+
+609
+00:29:16,396 --> 00:29:18,556
+and this is energy diagnostics.
+
+
+610
+00:29:18,686 --> 00:29:19,886
+It's really a great way for you
+
+
+611
+00:29:19,886 --> 00:29:22,616
+to visualize the energy
+use of your application.
+
+
+612
+00:29:23,266 --> 00:29:26,796
+So, we're about half way through
+our session and we talked
+
+
+613
+00:29:26,796 --> 00:29:29,486
+about energy efficient
+networking, applying some
+
+
+614
+00:29:29,486 --> 00:29:30,986
+of the principles through
+the networking you're doing
+
+
+615
+00:29:30,986 --> 00:29:31,716
+in your application.
+
+
+616
+00:29:32,646 --> 00:29:35,316
+We talked about how to
+use energy diagnostics
+
+
+617
+00:29:35,316 --> 00:29:38,196
+to measure the energy
+impact of your application
+
+
+618
+00:29:38,246 --> 00:29:41,196
+for iOS devices and iOS apps.
+
+
+619
+00:29:41,906 --> 00:29:46,216
+Next, I'm going to camp
+on the idea of sleep.
+
+
+620
+00:29:47,016 --> 00:29:51,116
+Now, what I'm about to talk
+about will be-the concepts
+
+
+621
+00:29:51,216 --> 00:29:55,146
+that I'm going to discuss can
+be applied for OS X developers.
+
+
+622
+00:29:55,676 --> 00:29:58,436
+However, I just want to point
+out that the technologies
+
+
+623
+00:29:58,436 --> 00:30:00,136
+as well as features I
+will be discussing more
+
+
+624
+00:30:00,136 --> 00:30:04,606
+in detail are primarily on iOS
+devices, so keep that in mind.
+
+
+625
+00:30:05,426 --> 00:30:08,386
+Now, a wise man once said,
+"To sleep is to prepare
+
+
+626
+00:30:08,386 --> 00:30:09,786
+for the longer journey ahead."
+
+
+627
+00:30:09,786 --> 00:30:13,396
+Now, that's true for you and me
+
+
+628
+00:30:13,956 --> 00:30:17,486
+and that's also true
+for our devices.
+
+
+629
+00:30:18,386 --> 00:30:21,896
+The battery life of our
+devices really depends on sleep.
+
+
+630
+00:30:22,336 --> 00:30:27,006
+Once again, to give you guys
+an idea on our favorite 5
+
+
+631
+00:30:27,006 --> 00:30:32,126
+or 5S-iPhone 5S like we saw
+earlier-if you're doing constant
+
+
+632
+00:30:32,126 --> 00:30:35,436
+web browsing, you know,
+the screen is on, right?
+
+
+633
+00:30:35,436 --> 00:30:38,176
+The radios are up, you
+know, you're downloading
+
+
+634
+00:30:38,426 --> 00:30:42,896
+and uploading packets, you know,
+the display is-the display is
+
+
+635
+00:30:42,896 --> 00:30:45,876
+on like I said and you know
+your device is fairly active
+
+
+636
+00:30:45,876 --> 00:30:46,736
+when you're doing these things.
+
+
+637
+00:30:47,156 --> 00:30:49,796
+So, you'll get about eight
+to 10 hours of battery life.
+
+
+638
+00:30:50,366 --> 00:30:53,576
+However, let's say
+instead of web browsing,
+
+
+639
+00:30:53,576 --> 00:30:55,316
+you're simply just playing
+audio on your device.
+
+
+640
+00:30:56,126 --> 00:30:58,176
+All right now, the
+screen is off,
+
+
+641
+00:30:58,176 --> 00:31:00,476
+the system is a lot
+less, you know, busy.
+
+
+642
+00:31:00,476 --> 00:31:04,076
+It's probably doing some audio
+packet audio-it's probably
+
+
+643
+00:31:04,356 --> 00:31:07,136
+decoding some audio packets,
+running those to your speakers,
+
+
+644
+00:31:07,136 --> 00:31:09,706
+but it's fairly idle,
+so, you know,
+
+
+645
+00:31:09,706 --> 00:31:11,166
+we get about 40 hours
+of battery life.
+
+
+646
+00:31:11,956 --> 00:31:14,526
+However, if your system
+is completely idle
+
+
+647
+00:31:14,626 --> 00:31:18,806
+and asleep you can get about
+250 hours of battery life.
+
+
+648
+00:31:19,816 --> 00:31:22,196
+That's like 10 days'
+worth of battery life.
+
+
+649
+00:31:24,106 --> 00:31:28,726
+Now, I know it's not really
+practical for you to just look
+
+
+650
+00:31:28,726 --> 00:31:30,686
+at this number because
+our users are not going
+
+
+651
+00:31:30,686 --> 00:31:33,996
+to just buy a device, leave
+it on a table, hope it sleeps
+
+
+652
+00:31:34,146 --> 00:31:35,986
+so they can get 10 days'
+worth of battery life.
+
+
+653
+00:31:36,366 --> 00:31:37,816
+That's not really useful at all.
+
+
+654
+00:31:38,306 --> 00:31:40,956
+However, the concept
+is simple here, right?
+
+
+655
+00:31:41,266 --> 00:31:43,226
+The longer you allow
+your devices to sleep,
+
+
+656
+00:31:44,036 --> 00:31:46,466
+the better battery
+life it will get.
+
+
+657
+00:31:47,336 --> 00:31:51,206
+So, for our typical user,
+when they turn off the screen
+
+
+658
+00:31:51,206 --> 00:31:53,646
+of their device, they either
+set it aside or put it
+
+
+659
+00:31:53,646 --> 00:31:55,496
+in their pockets, they assume
+
+
+660
+00:31:55,496 --> 00:31:57,496
+that the device is
+asleep, right?
+
+
+661
+00:31:57,496 --> 00:31:58,836
+They're not interacting
+with the device.
+
+
+662
+00:31:59,126 --> 00:32:00,496
+It's, you know, out
+of their sight.
+
+
+663
+00:32:01,156 --> 00:32:02,956
+The device should not
+be doing any work.
+
+
+664
+00:32:04,276 --> 00:32:06,306
+However, as developers, we know
+
+
+665
+00:32:06,306 --> 00:32:07,916
+that that is not
+the case, right?
+
+
+666
+00:32:08,336 --> 00:32:10,626
+When the device is
+seemingly asleep,
+
+
+667
+00:32:12,046 --> 00:32:15,526
+your apps are often waking
+up the device to interact
+
+
+668
+00:32:15,526 --> 00:32:17,466
+with all these different
+technologies and features
+
+
+669
+00:32:17,466 --> 00:32:20,006
+to provide their users with
+up-to-date information.
+
+
+670
+00:32:20,526 --> 00:32:23,896
+Now, this is necessary,
+obviously,
+
+
+671
+00:32:23,896 --> 00:32:25,986
+because our users expect,
+you know, their emails
+
+
+672
+00:32:25,986 --> 00:32:28,816
+to be coming through, our
+users expect the latest news
+
+
+673
+00:32:28,816 --> 00:32:30,976
+to be there when they, you
+know, start using their device.
+
+
+674
+00:32:31,946 --> 00:32:35,256
+However, you know,
+every time you do work,
+
+
+675
+00:32:36,466 --> 00:32:39,446
+you can pretty much expect
+the device needs to be awake
+
+
+676
+00:32:40,516 --> 00:32:43,086
+and thus, even though you're
+only doing a little bit of work,
+
+
+677
+00:32:43,386 --> 00:32:46,136
+and here's our favorite chart
+again, our favorite graph.
+
+
+678
+00:32:46,136 --> 00:32:47,826
+Even though you're only
+doing a little bit of work,
+
+
+679
+00:32:49,366 --> 00:32:51,586
+you're pretty much paying
+the whole overhead cost
+
+
+680
+00:32:51,586 --> 00:32:53,236
+of keeping the device awake.
+
+
+681
+00:32:55,916 --> 00:33:00,136
+And worst of all is all of
+this is happening transparent
+
+
+682
+00:33:00,136 --> 00:33:00,786
+to our users.
+
+
+683
+00:33:01,886 --> 00:33:04,006
+So, if you're doing
+a lot of work
+
+
+684
+00:33:04,006 --> 00:33:07,496
+in the background while
+the-while seemingly the device
+
+
+685
+00:33:07,496 --> 00:33:11,066
+is asleep, when the user turns
+on their device and wants
+
+
+686
+00:33:11,066 --> 00:33:12,926
+to use it again,
+they'll be very confused
+
+
+687
+00:33:13,146 --> 00:33:14,336
+as to why their battery
+has drained
+
+
+688
+00:33:15,196 --> 00:33:18,216
+and they will not
+be happy customers.
+
+
+689
+00:33:18,216 --> 00:33:20,726
+So, it's especially
+important for you
+
+
+690
+00:33:20,726 --> 00:33:23,016
+to minimize the energy
+use of your applications
+
+
+691
+00:33:23,416 --> 00:33:24,846
+when they're running
+in the background.
+
+
+692
+00:33:25,816 --> 00:33:29,756
+And, really, the best way to do
+that is to minimize the number
+
+
+693
+00:33:29,756 --> 00:33:33,726
+of times your application has
+to keep the device awake, right?
+
+
+694
+00:33:33,956 --> 00:33:36,586
+Do as much work as you can
+so you minimize the number
+
+
+695
+00:33:36,586 --> 00:33:38,666
+of time you'll need
+to be doing that work.
+
+
+696
+00:33:39,306 --> 00:33:42,356
+So, for the-with the
+remaining time that we have,
+
+
+697
+00:33:42,356 --> 00:33:46,516
+I want to talk about these four
+areas in Notifications, VoIP,
+
+
+698
+00:33:46,816 --> 00:33:48,636
+Location and Bluetooth.
+
+
+699
+00:33:49,176 --> 00:33:51,926
+I want to talk about some
+of the best practices
+
+
+700
+00:33:51,926 --> 00:33:54,136
+as your applications are
+utilizing these technologies
+
+
+701
+00:33:54,246 --> 00:33:55,546
+when it's running
+in the background.
+
+
+702
+00:33:56,376 --> 00:33:57,956
+So, first, from notifications.
+
+
+703
+00:33:59,486 --> 00:34:03,026
+Notification is a great way
+for your application to send,
+
+
+704
+00:34:03,276 --> 00:34:05,956
+you know, to just alert the
+users of some information.
+
+
+705
+00:34:07,236 --> 00:34:09,906
+Now, it is important for
+you to know, however,
+
+
+706
+00:34:09,906 --> 00:34:12,466
+every time you either
+schedule a local notification
+
+
+707
+00:34:12,576 --> 00:34:14,226
+or send a remote
+push notification,
+
+
+708
+00:34:15,436 --> 00:34:18,436
+the device will have to wake up
+to display that for your users.
+
+
+709
+00:34:19,505 --> 00:34:21,235
+So make sure you
+use those carefully.
+
+
+710
+00:34:21,726 --> 00:34:24,656
+If you're constantly sending or
+scheduling local notifications
+
+
+711
+00:34:24,656 --> 00:34:26,565
+or sending remote
+notifications from your servers,
+
+
+712
+00:34:27,456 --> 00:34:31,176
+pretty much the device-the
+user's device will be awake
+
+
+713
+00:34:31,306 --> 00:34:33,295
+for a majority of the time.
+
+
+714
+00:34:33,856 --> 00:34:36,876
+Now, one thing that you
+guys might not know is
+
+
+715
+00:34:36,876 --> 00:34:38,656
+with the push notifications
+you send,
+
+
+716
+00:34:39,565 --> 00:34:41,505
+you can actually
+set a push priority.
+
+
+717
+00:34:41,505 --> 00:34:44,056
+You can actually set a bit
+
+
+718
+00:34:44,056 --> 00:34:46,416
+that will determine the
+priority of your push.
+
+
+719
+00:34:47,795 --> 00:34:50,496
+Now, by default, your pushes
+are sent with priority 10,
+
+
+720
+00:34:50,686 --> 00:34:54,116
+which is deliver this
+immediately whenever you can,
+
+
+721
+00:34:54,396 --> 00:34:55,926
+so our servers will
+attempt to do that.
+
+
+722
+00:34:56,335 --> 00:34:59,766
+However, if you're simply trying
+to notify or alert the user
+
+
+723
+00:34:59,766 --> 00:35:02,816
+of something that is not needed
+to be displayed immediately,
+
+
+724
+00:35:03,046 --> 00:35:04,796
+consider setting your
+priority at five.
+
+
+725
+00:35:05,386 --> 00:35:09,476
+This will tell our servers to,
+you know, send this push maybe
+
+
+726
+00:35:09,476 --> 00:35:11,166
+at a better time
+for your device.
+
+
+727
+00:35:11,456 --> 00:35:14,396
+For instance, let's say another
+immediate-another high priority
+
+
+728
+00:35:14,396 --> 00:35:16,296
+push is coming through,
+then let's just go ahead
+
+
+729
+00:35:16,296 --> 00:35:19,146
+and send this push through
+with the high priority push.
+
+
+730
+00:35:19,346 --> 00:35:22,636
+But it won't actively send
+it unless it's a power
+
+
+731
+00:35:22,636 --> 00:35:24,266
+optimal time.
+
+
+732
+00:35:24,446 --> 00:35:26,866
+So, consider using this for
+your push notifications.
+
+
+733
+00:35:28,116 --> 00:35:29,856
+Now, one thing we do want you
+
+
+734
+00:35:29,856 --> 00:35:34,296
+to start using notifications
+for is VoIP.
+
+
+735
+00:35:34,356 --> 00:35:37,526
+Now, this is an area where
+we've made great improvements
+
+
+736
+00:35:37,726 --> 00:35:41,166
+in iOS 8.
+
+
+737
+00:35:41,446 --> 00:35:43,746
+So, when VoIP was first
+introduced in iOS,
+
+
+738
+00:35:44,746 --> 00:35:46,086
+we required the VoIP apps
+
+
+739
+00:35:46,146 --> 00:35:48,156
+to maintain their own
+persistent connections.
+
+
+740
+00:35:49,256 --> 00:35:51,986
+This meant that periodic
+keep-alives had to be sent
+
+
+741
+00:35:52,176 --> 00:35:55,286
+from your servers to the
+VoIP app and vice-versa.
+
+
+742
+00:35:56,626 --> 00:36:00,926
+Now, if the device was asleep,
+the device will need to wake
+
+
+743
+00:36:00,926 --> 00:36:03,136
+up for your applications
+to be able to respond
+
+
+744
+00:36:03,136 --> 00:36:08,126
+to these keep-alive packets
+and this meant periodic wakes.
+
+
+745
+00:36:09,876 --> 00:36:11,846
+Not only was this
+bad for battery life
+
+
+746
+00:36:12,836 --> 00:36:16,176
+but it also made developing
+VoIP apps fairly complex,
+
+
+747
+00:36:16,526 --> 00:36:17,896
+as some of these algorithms
+
+
+748
+00:36:17,896 --> 00:36:20,866
+to manage our connections can
+be very, very complicated.
+
+
+749
+00:36:22,336 --> 00:36:25,716
+To simplify the development
+process as well
+
+
+750
+00:36:25,716 --> 00:36:27,616
+as conserve the battery
+life on our systems,
+
+
+751
+00:36:28,596 --> 00:36:35,156
+in iOS 8 we've introduced a new
+way to do VoIP and that's VoIP
+
+
+752
+00:36:35,156 --> 00:36:36,466
+through the PushKit framework.
+
+
+753
+00:36:37,346 --> 00:36:39,976
+This new VoIP mechanism
+allows you to communicate
+
+
+754
+00:36:39,976 --> 00:36:43,306
+with your VoIP apps through
+the Apple's Push Notification
+
+
+755
+00:36:43,306 --> 00:36:43,936
+Service, right?
+
+
+756
+00:36:44,256 --> 00:36:46,376
+In this way, you no longer need
+
+
+757
+00:36:46,376 --> 00:36:48,036
+to maintain your
+persistent connections.
+
+
+758
+00:36:48,376 --> 00:36:50,646
+Meaning, you won't
+have to constantly wake
+
+
+759
+00:36:50,646 --> 00:36:55,376
+up the device just so that
+your connections won't timeout.
+
+
+760
+00:36:55,496 --> 00:36:58,206
+Now with these VoIP pushes,
+your app will be allowed
+
+
+761
+00:36:58,516 --> 00:37:01,296
+to receive runtime to
+process these VoIP pushes.
+
+
+762
+00:37:02,036 --> 00:37:05,726
+So your app will get runtime
+whenever a VoIP push is sent
+
+
+763
+00:37:05,726 --> 00:37:06,356
+to your device.
+
+
+764
+00:37:06,356 --> 00:37:10,526
+And the best of all is your apps
+will be able to do this even
+
+
+765
+00:37:10,526 --> 00:37:12,186
+if the user terminated the app
+
+
+766
+00:37:12,486 --> 00:37:13,976
+or for any reason your
+app was terminated.
+
+
+767
+00:37:14,141 --> 00:37:16,141
+[ Applause ]
+
+
+768
+00:37:16,266 --> 00:37:16,566
+Thank you.
+
+
+769
+00:37:17,056 --> 00:37:18,706
+Someone's enthusiastic
+about this.
+
+
+770
+00:37:19,866 --> 00:37:21,356
+And this is great, right?
+
+
+771
+00:37:21,356 --> 00:37:24,526
+Previously, in iOS, if a user
+terminates your VoIP app,
+
+
+772
+00:37:25,296 --> 00:37:28,216
+the connection is gone and you'd
+no longer be able to communicate
+
+
+773
+00:37:28,296 --> 00:37:31,006
+with that device, your servers
+won't be able to communicate
+
+
+774
+00:37:31,006 --> 00:37:31,816
+with the device anymore.
+
+
+775
+00:37:31,816 --> 00:37:34,766
+Now, we will do that
+for you and so even
+
+
+776
+00:37:34,766 --> 00:37:36,186
+if the user terminates your app
+
+
+777
+00:37:36,386 --> 00:37:38,266
+or for any other reason
+the app terminates,
+
+
+778
+00:37:39,186 --> 00:37:40,886
+you will still be
+able to communicate
+
+
+779
+00:37:40,886 --> 00:37:43,356
+with your apps using
+these VoIP pushes.
+
+
+780
+00:37:44,076 --> 00:37:46,166
+And finally, to help
+with performance as well
+
+
+781
+00:37:46,166 --> 00:37:49,346
+as to improve the call
+setup times, we'll allow you
+
+
+782
+00:37:49,346 --> 00:37:52,676
+to include up to a 4k
+payload in this VoIP pushes.
+
+
+783
+00:37:53,196 --> 00:37:56,386
+This is a lot more than
+the 256 bytes you get
+
+
+784
+00:37:56,476 --> 00:37:57,256
+with regular pushes.
+
+
+785
+00:37:57,936 --> 00:38:00,116
+So this should help improve
+the performance as well
+
+
+786
+00:38:00,116 --> 00:38:02,046
+as the call setup times
+of your applications.
+
+
+787
+00:38:03,646 --> 00:38:06,156
+Now, to adopt this new
+framework, what you'll need
+
+
+788
+00:38:06,156 --> 00:38:10,226
+to do is link the new PushKit
+framework, it's new in iOS 8,
+
+
+789
+00:38:11,246 --> 00:38:13,386
+and then you want
+to register your app
+
+
+790
+00:38:13,416 --> 00:38:15,196
+to receive these
+push notifications,
+
+
+791
+00:38:15,496 --> 00:38:16,296
+these VoIP pushes.
+
+
+792
+00:38:16,626 --> 00:38:18,966
+So, you'll do something like
+this in your application,
+
+
+793
+00:38:18,966 --> 00:38:20,356
+didFinishLaunching delegate.
+
+
+794
+00:38:21,136 --> 00:38:23,846
+So, you want to create
+a PKPushRegistry object
+
+
+795
+00:38:24,816 --> 00:38:26,756
+and then set the
+delegate to yourself.
+
+
+796
+00:38:27,766 --> 00:38:29,416
+And we'll be implementing
+two delegate methods
+
+
+797
+00:38:29,416 --> 00:38:30,886
+in a little bit.
+
+
+798
+00:38:30,966 --> 00:38:32,556
+But the main thing is you want
+
+
+799
+00:38:32,556 --> 00:38:35,956
+to set your desired
+PushTypes to include VoIP.
+
+
+800
+00:38:36,646 --> 00:38:38,966
+And with these three
+simple lines of code,
+
+
+801
+00:38:39,286 --> 00:38:41,956
+your app is now registered
+to receive VoIP pushes.
+
+
+802
+00:38:41,956 --> 00:38:44,756
+I do want to remind
+you guys with all-as
+
+
+803
+00:38:44,756 --> 00:38:47,756
+with all background
+running modes, you will have
+
+
+804
+00:38:47,756 --> 00:38:50,466
+to make sure your app
+has the VoIP background
+
+
+805
+00:38:50,466 --> 00:38:51,716
+remote requested.
+
+
+806
+00:38:51,716 --> 00:38:55,846
+So, now, let's talk about
+the two delegate methods
+
+
+807
+00:38:55,996 --> 00:38:57,656
+that we're going to implement.
+
+
+808
+00:38:58,516 --> 00:39:00,396
+First, similar to Remote pushes,
+
+
+809
+00:39:00,396 --> 00:39:02,736
+you have to handle the push
+token that's given to you.
+
+
+810
+00:39:03,296 --> 00:39:06,456
+Now, if you have both the Remote
+push as well as the VoIP pushes
+
+
+811
+00:39:06,546 --> 00:39:10,866
+in your applications, you will
+get two separate push tokens.
+
+
+812
+00:39:11,026 --> 00:39:13,236
+So, you'll need to send both
+of those up to your servers
+
+
+813
+00:39:13,416 --> 00:39:15,616
+so you can communicate
+with your app.
+
+
+814
+00:39:16,246 --> 00:39:20,236
+And then you have the delegate
+
+
+815
+00:39:20,236 --> 00:39:22,826
+to handle your incoming
+push, right?
+
+
+816
+00:39:22,826 --> 00:39:26,436
+So this is where your app
+will get-will start running
+
+
+817
+00:39:26,436 --> 00:39:27,196
+when a push comes.
+
+
+818
+00:39:27,536 --> 00:39:31,046
+So, here you can send
+off your notifications
+
+
+819
+00:39:31,046 --> 00:39:32,126
+to your users-you know,
+
+
+820
+00:39:32,126 --> 00:39:34,536
+maybe it's the new interacting
+notifications that you want
+
+
+821
+00:39:34,536 --> 00:39:38,526
+to display, right?-to alert the
+users that a call has come in.
+
+
+822
+00:39:39,216 --> 00:39:41,706
+And here, you know, you
+could probably begin to set
+
+
+823
+00:39:41,706 --> 00:39:43,486
+up your connections
+with your servers
+
+
+824
+00:39:43,486 --> 00:39:44,976
+to begin establishing
+your calls.
+
+
+825
+00:39:47,116 --> 00:39:49,786
+So, that's all you need
+to do on the device side
+
+
+826
+00:39:49,786 --> 00:39:51,526
+to adopt this new
+VoIP mechanism.
+
+
+827
+00:39:52,196 --> 00:39:55,486
+Now, on the server side, you'll
+still need to be required
+
+
+828
+00:39:55,486 --> 00:39:56,956
+to do some more changes, right?
+
+
+829
+00:39:56,996 --> 00:39:59,816
+First, you want to go and
+request the new push certificate
+
+
+830
+00:40:00,336 --> 00:40:01,906
+for VoIP and you can do this
+
+
+831
+00:40:01,996 --> 00:40:03,976
+through the Apple's
+Developer Portal.
+
+
+832
+00:40:04,046 --> 00:40:07,616
+And then, simply send
+your pushes with the token
+
+
+833
+00:40:07,616 --> 00:40:10,826
+that you got and this new
+push-VoIP push certificate
+
+
+834
+00:40:10,966 --> 00:40:12,286
+that you have.
+
+
+835
+00:40:12,286 --> 00:40:15,736
+Now, one thing to note is
+this mechanism will only work
+
+
+836
+00:40:15,736 --> 00:40:17,516
+with devices running iOS 8.
+
+
+837
+00:40:17,516 --> 00:40:19,886
+So if you try to send
+these VoIP pushes
+
+
+838
+00:40:19,886 --> 00:40:22,346
+to devices running iOS
+7, it will not work.
+
+
+839
+00:40:22,346 --> 00:40:25,086
+So you need-you'll want to make
+sure that you maintain some type
+
+
+840
+00:40:25,086 --> 00:40:26,946
+of compatibility
+on your servers.
+
+
+841
+00:40:27,546 --> 00:40:31,886
+But this is a new way that
+we're introducing for you
+
+
+842
+00:40:31,886 --> 00:40:34,706
+to do VoIP communication
+with your applications
+
+
+843
+00:40:34,906 --> 00:40:36,576
+and this is new in iOS 8.
+
+
+844
+00:40:36,576 --> 00:40:40,076
+All right, next, I want
+to talk about Location.
+
+
+845
+00:40:41,666 --> 00:40:44,886
+Location is a great way
+for you to include context
+
+
+846
+00:40:45,136 --> 00:40:47,826
+in the information you
+provide for your users, right?
+
+
+847
+00:40:47,826 --> 00:40:51,726
+Knowing where users are or
+users have been will allow you
+
+
+848
+00:40:51,726 --> 00:40:55,706
+to provide better suggestions,
+more relevant resources as well
+
+
+849
+00:40:55,706 --> 00:40:59,346
+as location-specific information
+that could be immediately useful
+
+
+850
+00:40:59,346 --> 00:41:00,196
+for your applications.
+
+
+851
+00:41:00,636 --> 00:41:02,986
+For my wife and I, one
+
+
+852
+00:41:02,986 --> 00:41:04,916
+of the most commonly
+used features we use
+
+
+853
+00:41:04,916 --> 00:41:06,956
+on our phone is the
+location-based restaurant
+
+
+854
+00:41:06,956 --> 00:41:07,926
+suggestions, right?
+
+
+855
+00:41:07,926 --> 00:41:10,826
+That really helps us to
+be able to procrastinate
+
+
+856
+00:41:10,826 --> 00:41:12,886
+in deciding what we want to eat.
+
+
+857
+00:41:14,136 --> 00:41:16,516
+So, Location is a
+great tool to integrate
+
+
+858
+00:41:16,716 --> 00:41:17,946
+in with your applications.
+
+
+859
+00:41:18,496 --> 00:41:22,136
+However, getting a user's
+location can be unnecessarily
+
+
+860
+00:41:22,136 --> 00:41:25,176
+expensive if you're not
+using the right APIs.
+
+
+861
+00:41:26,586 --> 00:41:29,076
+So, I'm going to talk
+a little bit just
+
+
+862
+00:41:29,076 --> 00:41:31,426
+to whet your guys' appetite
+on a couple location APIs
+
+
+863
+00:41:31,426 --> 00:41:35,036
+that you can consider using,
+and I'm going to first start
+
+
+864
+00:41:35,036 --> 00:41:37,816
+by talking about
+continuous location updates.
+
+
+865
+00:41:37,956 --> 00:41:42,286
+So, the continuous location
+updates is a great way for you
+
+
+866
+00:41:42,286 --> 00:41:45,836
+to get fine-grained user
+data, fine-grained information
+
+
+867
+00:41:45,836 --> 00:41:47,016
+about where your
+users have been.
+
+
+868
+00:41:47,446 --> 00:41:50,106
+Now, there's two things
+I want to point out here.
+
+
+869
+00:41:50,566 --> 00:41:54,556
+First is that using continuous
+location updates can prevent
+
+
+870
+00:41:54,556 --> 00:41:57,946
+your device from going to sleep.
+
+
+871
+00:41:58,136 --> 00:42:00,166
+Whenever you call
+startUpdatingLocation,
+
+
+872
+00:42:01,256 --> 00:42:03,586
+the location hardware
+will immediately begin
+
+
+873
+00:42:03,586 --> 00:42:05,716
+to stream location data
+for your application.
+
+
+874
+00:42:06,876 --> 00:42:09,466
+Now, if you have the location
+back on a running mode,
+
+
+875
+00:42:10,516 --> 00:42:13,136
+the device will have
+to stay awake even
+
+
+876
+00:42:13,136 --> 00:42:15,836
+if your app is not
+active to allow your app
+
+
+877
+00:42:16,726 --> 00:42:21,326
+to process this location data.
+
+
+878
+00:42:21,526 --> 00:42:24,606
+Now, if this location data is
+coming in frequently enough,
+
+
+879
+00:42:24,876 --> 00:42:26,536
+usually because of the
+accuracy that you sent,
+
+
+880
+00:42:26,806 --> 00:42:29,806
+your device will be kept
+awake the whole time
+
+
+881
+00:42:30,076 --> 00:42:31,846
+and you'll be paying
+the overhead cost
+
+
+882
+00:42:31,846 --> 00:42:35,776
+of keeping the device up while
+you're receiving these updates.
+
+
+883
+00:42:36,236 --> 00:42:39,376
+Second, I talked about accuracy.
+
+
+884
+00:42:39,506 --> 00:42:42,206
+Accuracy makes a
+difference, right?
+
+
+885
+00:42:42,206 --> 00:42:43,716
+Depending on the
+accuracy level you set,
+
+
+886
+00:42:44,196 --> 00:42:46,046
+not only does this
+affect the frequency
+
+
+887
+00:42:46,616 --> 00:42:49,446
+but core location uses
+different technologies
+
+
+888
+00:42:49,506 --> 00:42:51,306
+to get a user's location to you.
+
+
+889
+00:42:52,496 --> 00:42:54,056
+Depending on the
+accuracy level you set,
+
+
+890
+00:42:54,666 --> 00:42:56,696
+you will utilize
+different technologies
+
+
+891
+00:42:57,026 --> 00:42:59,736
+and so it will have
+varying amounts of cost
+
+
+892
+00:43:00,106 --> 00:43:01,446
+to get the user's location.
+
+
+893
+00:43:01,846 --> 00:43:05,956
+And, in general, the more
+accurate you request,
+
+
+894
+00:43:06,486 --> 00:43:08,596
+the more energy it's
+going to be required
+
+
+895
+00:43:09,056 --> 00:43:11,766
+on the location hardware site
+to get that information for you.
+
+
+896
+00:43:13,356 --> 00:43:15,786
+So, know that continuous
+location updates,
+
+
+897
+00:43:15,786 --> 00:43:19,376
+especially a high accuracy, can
+be really, really expensive,
+
+
+898
+00:43:19,436 --> 00:43:23,586
+so you'll only want to use
+this if it's necessary, right?
+
+
+899
+00:43:23,586 --> 00:43:24,866
+And make sure you, you know,
+
+
+900
+00:43:24,916 --> 00:43:27,326
+turn off continuous location
+updates whenever it's
+
+
+901
+00:43:27,326 --> 00:43:27,826
+not needed.
+
+
+902
+00:43:29,346 --> 00:43:30,396
+If you won't be needing
+
+
+903
+00:43:30,396 --> 00:43:34,346
+to process user's location
+data immediately or live,
+
+
+904
+00:43:35,096 --> 00:43:37,206
+if you're not going to be
+providing users any feedback
+
+
+905
+00:43:37,336 --> 00:43:40,756
+with the location data that you
+get back, consider using some
+
+
+906
+00:43:40,756 --> 00:43:44,126
+of the other more power-friendly
+APIs that will still alert you
+
+
+907
+00:43:44,396 --> 00:43:47,156
+of users' locations when
+you are interested in them.
+
+
+908
+00:43:47,766 --> 00:43:50,336
+And one of those is
+deferred location updates.
+
+
+909
+00:43:51,086 --> 00:43:54,816
+So, this is a great API to use
+if your app requires GPS level
+
+
+910
+00:43:54,816 --> 00:43:59,646
+of accuracy but won't need to
+process that data live, right?
+
+
+911
+00:43:59,646 --> 00:44:03,416
+What happens here is that the
+location hardware will buffer
+
+
+912
+00:44:03,416 --> 00:44:05,916
+that data before it gets
+sent to your application.
+
+
+913
+00:44:06,816 --> 00:44:09,446
+Now, you'll still be paying the
+cost of utilizing, you know,
+
+
+914
+00:44:09,446 --> 00:44:11,326
+in our case since you're
+requesting GPS level
+
+
+915
+00:44:11,326 --> 00:44:12,706
+of accuracy, the GPS.
+
+
+916
+00:44:13,636 --> 00:44:16,746
+However, you will allow the
+device to be able to go to sleep
+
+
+917
+00:44:16,746 --> 00:44:19,216
+for longer periods of time.
+
+
+918
+00:44:19,216 --> 00:44:20,916
+And this is a great
+way to, you know,
+
+
+919
+00:44:20,976 --> 00:44:22,896
+save energy while
+still being able to get
+
+
+920
+00:44:22,896 --> 00:44:25,506
+that fine-grained user
+location that you want.
+
+
+921
+00:44:26,196 --> 00:44:28,866
+So, if your application,
+let's say, wants some type
+
+
+922
+00:44:28,866 --> 00:44:31,996
+of historical information like,
+let's say, a run track app
+
+
+923
+00:44:31,996 --> 00:44:34,616
+or maybe you're implementing
+some type of life tracking app,
+
+
+924
+00:44:34,986 --> 00:44:38,446
+you want to consider using this
+because this will still give you
+
+
+925
+00:44:38,446 --> 00:44:41,106
+that fine-grained
+continuous location data
+
+
+926
+00:44:41,106 --> 00:44:44,386
+that you wanted but
+at a lower cost.
+
+
+927
+00:44:44,516 --> 00:44:46,306
+Now, if you don't need
+GPS level of accuracy,
+
+
+928
+00:44:47,286 --> 00:44:50,746
+consider using the Significant
+Location Change API, right?
+
+
+929
+00:44:51,096 --> 00:44:54,966
+This API will signify
+the location hardware
+
+
+930
+00:44:54,966 --> 00:44:58,286
+to only notify your app if
+the user has moved, you know,
+
+
+931
+00:44:58,286 --> 00:45:01,046
+a certain amount of distance.
+
+
+932
+00:45:01,046 --> 00:45:03,756
+And this is, you know, you
+can expect pretty much updates
+
+
+933
+00:45:03,756 --> 00:45:08,266
+to come in, at least, when users
+have traveled over 500 meters
+
+
+934
+00:45:09,096 --> 00:45:12,416
+or there's also a rate
+limit of five minutes.
+
+
+935
+00:45:13,056 --> 00:45:16,466
+So, this is a great API to use
+if your application is-needs
+
+
+936
+00:45:16,466 --> 00:45:17,976
+to update information
+based on regions.
+
+
+937
+00:45:18,016 --> 00:45:20,406
+For instance, a weather
+app, or let's say you want
+
+
+938
+00:45:20,406 --> 00:45:23,346
+to provide your users with
+the nearest local attractions,
+
+
+939
+00:45:23,676 --> 00:45:23,876
+right?
+
+
+940
+00:45:24,476 --> 00:45:26,266
+And you want to use
+significant location change
+
+
+941
+00:45:26,266 --> 00:45:29,606
+because now your device does not
+have to wake up as frequently.
+
+
+942
+00:45:30,696 --> 00:45:33,086
+And finally, I wanted to
+mention region monitoring.
+
+
+943
+00:45:33,696 --> 00:45:36,776
+This is a great API to use if
+your application only cares
+
+
+944
+00:45:36,776 --> 00:45:39,036
+about when users are
+entering or exiting
+
+
+945
+00:45:39,036 --> 00:45:41,276
+out of a specific
+location, right?
+
+
+946
+00:45:41,276 --> 00:45:44,296
+You want to use this, let's say,
+if you're developing an app,
+
+
+947
+00:45:44,296 --> 00:45:46,456
+let's say, of a museum, right?
+
+
+948
+00:45:46,456 --> 00:45:49,616
+You want to-when the user
+gets closer to your museum,
+
+
+949
+00:45:49,876 --> 00:45:51,776
+you want to, let's
+say, update the app
+
+
+950
+00:45:51,806 --> 00:45:54,616
+with the local attractions
+that might be there.
+
+
+951
+00:45:55,536 --> 00:45:58,546
+You want to use a region
+monitoring to set up a region
+
+
+952
+00:45:58,786 --> 00:45:59,546
+that you're interested in.
+
+
+953
+00:46:00,486 --> 00:46:02,916
+Once you do that, you can
+happily allow the device
+
+
+954
+00:46:02,916 --> 00:46:06,666
+in your app to go sleep while
+the location hardware will check
+
+
+955
+00:46:06,666 --> 00:46:09,676
+for you if you get closer
+to that region and only wake
+
+
+956
+00:46:09,676 --> 00:46:11,896
+up your app when you do.
+
+
+957
+00:46:11,896 --> 00:46:14,106
+So, once again, all
+these are great APIs
+
+
+958
+00:46:14,106 --> 00:46:17,116
+that will help you
+reduce the amount
+
+
+959
+00:46:17,216 --> 00:46:19,116
+of time the device
+needs to stay awake.
+
+
+960
+00:46:19,676 --> 00:46:21,516
+Oh, one more thing
+about location.
+
+
+961
+00:46:22,906 --> 00:46:25,846
+Please, please remember to
+stop your location updates
+
+
+962
+00:46:26,176 --> 00:46:26,856
+when they're not needed.
+
+
+963
+00:46:26,956 --> 00:46:30,256
+I can't tell you how many
+times we've, you know,
+
+
+964
+00:46:30,256 --> 00:46:32,746
+received battery complaints
+only to find that, you know,
+
+
+965
+00:46:32,866 --> 00:46:35,366
+some application
+forgot to unsubscribe
+
+
+966
+00:46:35,366 --> 00:46:37,506
+to their location updates
+when they're not needed.
+
+
+967
+00:46:38,146 --> 00:46:39,496
+Please double check,
+triple check,
+
+
+968
+00:46:39,496 --> 00:46:42,006
+because location
+updates can be expensive
+
+
+969
+00:46:42,006 --> 00:46:43,566
+and it can keep your
+devices awake.
+
+
+970
+00:46:44,006 --> 00:46:47,326
+So, please don't forget to
+stop your location updates
+
+
+971
+00:46:47,326 --> 00:46:48,396
+when they're not needed.
+
+
+972
+00:46:48,396 --> 00:46:51,786
+So, I'm going to go
+through a quick example
+
+
+973
+00:46:51,786 --> 00:46:53,406
+of what this might look
+like for your application.
+
+
+974
+00:46:54,026 --> 00:46:57,076
+So, let's say, today you're
+developing a run tracking app
+
+
+975
+00:46:57,076 --> 00:46:59,696
+and your requirements are
+when the users are running,
+
+
+976
+00:46:59,876 --> 00:47:02,036
+you want to keep
+track of their route.
+
+
+977
+00:47:02,036 --> 00:47:05,246
+And, you know, also you have
+this local store that you want
+
+
+978
+00:47:05,246 --> 00:47:08,456
+to update your app whenever the
+user gets close to that store
+
+
+979
+00:47:08,456 --> 00:47:10,626
+to send the latest coupons
+or discounts, right?
+
+
+980
+00:47:10,626 --> 00:47:14,436
+You want to entice your users
+to go into your local store.
+
+
+981
+00:47:14,716 --> 00:47:17,926
+So, one way to do this is to
+use continuous location updates.
+
+
+982
+00:47:18,886 --> 00:47:20,626
+Now, obviously, right,
+
+
+983
+00:47:21,006 --> 00:47:22,546
+when you're doing
+continuous location updates,
+
+
+984
+00:47:22,626 --> 00:47:25,016
+in your code it would probably
+look something more like this.
+
+
+985
+00:47:25,186 --> 00:47:27,606
+Whenever I get a location
+update, make sure I store
+
+
+986
+00:47:27,606 --> 00:47:28,496
+if the users are running.
+
+
+987
+00:47:29,026 --> 00:47:30,676
+If the users are not running,
+
+
+988
+00:47:30,676 --> 00:47:31,916
+then you can drop
+that location data.
+
+
+989
+00:47:32,946 --> 00:47:35,866
+Also, I want to check, every
+time I get location data,
+
+
+990
+00:47:35,866 --> 00:47:38,146
+if I'm close to my
+local store, right?
+
+
+991
+00:47:38,146 --> 00:47:41,826
+That way I can update the
+device with the new coupons
+
+
+992
+00:47:42,086 --> 00:47:43,836
+so that your users will
+want to go to your store.
+
+
+993
+00:47:44,556 --> 00:47:46,106
+So, let's take a look
+at what this will look
+
+
+994
+00:47:46,106 --> 00:47:46,956
+like for your device.
+
+
+995
+00:47:46,956 --> 00:47:49,946
+As you can see the device
+is on even though, you know,
+
+
+996
+00:47:49,946 --> 00:47:51,626
+the users have no
+idea that this is on
+
+
+997
+00:47:51,976 --> 00:47:55,616
+and you're utilizing the GPS,
+so location hardware is on.
+
+
+998
+00:47:55,736 --> 00:47:57,766
+Now, as the user
+starts running, right,
+
+
+999
+00:47:57,766 --> 00:48:01,116
+you're constantly updating the
+route but your device has kept
+
+
+1000
+00:48:01,116 --> 00:48:01,906
+on for the whole time.
+
+
+1001
+00:48:02,596 --> 00:48:04,346
+And then, let's say
+the user stops running
+
+
+1002
+00:48:04,346 --> 00:48:07,026
+and now they're walking,
+walk-slowly walking.
+
+
+1003
+00:48:07,766 --> 00:48:09,466
+You're checking and checking
+and finally, you get close
+
+
+1004
+00:48:09,466 --> 00:48:11,376
+to your local store and you
+can update your coupons.
+
+
+1005
+00:48:11,946 --> 00:48:15,536
+And so, as you can see,
+both the GPS hardware
+
+
+1006
+00:48:15,536 --> 00:48:16,406
+and the device is kept
+
+
+1007
+00:48:16,406 --> 00:48:17,756
+on the whole time while
+you're doing this.
+
+
+1008
+00:48:18,526 --> 00:48:19,236
+Now, let's use some
+
+
+1009
+00:48:19,236 --> 00:48:22,256
+of the location efficient
+APIs to do this, right?
+
+
+1010
+00:48:22,256 --> 00:48:25,236
+So, now, instead of using
+continuous location updates,
+
+
+1011
+00:48:25,276 --> 00:48:27,996
+let's set up the deferred
+location updates as well
+
+
+1012
+00:48:27,996 --> 00:48:28,836
+as the region monitoring.
+
+
+1013
+00:48:29,286 --> 00:48:31,406
+So, first thing this will
+do is it will, kind of,
+
+
+1014
+00:48:31,406 --> 00:48:32,896
+clean up your code
+a little bit, right?
+
+
+1015
+00:48:33,156 --> 00:48:35,746
+In your region monitoring
+delegate, all you need
+
+
+1016
+00:48:35,746 --> 00:48:38,506
+to do is just-you know, in
+that function whenever you get
+
+
+1017
+00:48:38,506 --> 00:48:40,366
+that callback, just
+simply pull your server
+
+
+1018
+00:48:40,366 --> 00:48:41,146
+from the new coupons.
+
+
+1019
+00:48:41,796 --> 00:48:44,356
+And then you have your
+location callbacks,
+
+
+1020
+00:48:44,356 --> 00:48:46,626
+and in that function all you
+need to do is basically take
+
+
+1021
+00:48:46,626 --> 00:48:49,446
+that chunk of data that the
+location hardware has buffered
+
+
+1022
+00:48:49,446 --> 00:48:51,036
+for you and, you
+know, simply store it
+
+
+1023
+00:48:51,246 --> 00:48:52,136
+if the users are running.
+
+
+1024
+00:48:52,956 --> 00:48:54,006
+So, with that, let's take a look
+
+
+1025
+00:48:54,006 --> 00:48:55,576
+at what this does
+for your device.
+
+
+1026
+00:48:56,426 --> 00:48:58,766
+So, as the user is running,
+the device is asleep until oh,
+
+
+1027
+00:48:58,766 --> 00:49:00,226
+I've run this long a distance.
+
+
+1028
+00:49:00,316 --> 00:49:03,846
+So, now, I can opt in my
+route when the device is on.
+
+
+1029
+00:49:04,396 --> 00:49:06,626
+And then, you know, the
+device can happily go
+
+
+1030
+00:49:06,626 --> 00:49:08,926
+to sleep while the user
+continues to run and then oh,
+
+
+1031
+00:49:09,386 --> 00:49:10,646
+significant distance
+have reached,
+
+
+1032
+00:49:10,946 --> 00:49:12,196
+let me once again get this data.
+
+
+1033
+00:49:12,196 --> 00:49:14,016
+As you can see just from now,
+
+
+1034
+00:49:14,556 --> 00:49:16,746
+you have already reduced
+the amount of time
+
+
+1035
+00:49:16,746 --> 00:49:18,026
+that the device needs to stay up
+
+
+1036
+00:49:18,066 --> 00:49:20,776
+and thus reducing
+the energy cost.
+
+
+1037
+00:49:20,846 --> 00:49:24,326
+Now, the users are done
+running so, you know,
+
+
+1038
+00:49:24,326 --> 00:49:26,966
+we don't need continuous-we
+don't need deferred location
+
+
+1039
+00:49:26,966 --> 00:49:27,556
+updates anymore.
+
+
+1040
+00:49:27,846 --> 00:49:29,306
+So, let's stop that.
+
+
+1041
+00:49:29,786 --> 00:49:33,406
+And then as users are
+walking, walking, walking, oh,
+
+
+1042
+00:49:34,176 --> 00:49:36,556
+now you reach and monitor API
+will kick in and alert your app
+
+
+1043
+00:49:36,916 --> 00:49:39,146
+and then your app can
+wake up to respond
+
+
+1044
+00:49:39,346 --> 00:49:41,846
+and to get the latest
+coupons, right?
+
+
+1045
+00:49:42,076 --> 00:49:46,406
+These location efficient
+APIs are a great way for you
+
+
+1046
+00:49:46,406 --> 00:49:48,736
+to get the same location data
+that you might be wanting,
+
+
+1047
+00:49:49,726 --> 00:49:51,556
+but more energy efficiently.
+
+
+1048
+00:49:52,036 --> 00:49:54,336
+And so, I talked about a couple.
+
+
+1049
+00:49:54,336 --> 00:49:55,896
+There's also something
+I did not talk about.
+
+
+1050
+00:49:56,186 --> 00:49:57,996
+There's the iBeacons
+here and AutoPause.
+
+
+1051
+00:49:57,996 --> 00:49:59,976
+I didn't really have time
+to talk too much about.
+
+
+1052
+00:50:00,176 --> 00:50:02,896
+But there's a great document
+online that will allow you
+
+
+1053
+00:50:02,896 --> 00:50:06,276
+to get best practices on
+what to do, which APIs to use
+
+
+1054
+00:50:06,426 --> 00:50:07,436
+when you're using location.
+
+
+1055
+00:50:07,736 --> 00:50:09,356
+And also new in iOS 8, I wanted
+
+
+1056
+00:50:09,356 --> 00:50:10,966
+to mention there is a
+significant location
+
+
+1057
+00:50:10,966 --> 00:50:11,596
+visited API.
+
+
+1058
+00:50:12,646 --> 00:50:13,786
+So, if you didn't get to check
+
+
+1059
+00:50:13,786 --> 00:50:16,366
+out the core location session
+yesterday, you'll want to check
+
+
+1060
+00:50:16,856 --> 00:50:18,226
+out what's new in core location.
+
+
+1061
+00:50:18,556 --> 00:50:21,006
+All right, so last, I wanted
+to spend just a little bit
+
+
+1062
+00:50:21,006 --> 00:50:22,556
+of time talking about Bluetooth.
+
+
+1063
+00:50:23,666 --> 00:50:26,806
+So, with the advancement
+of Bluetooth low energy,
+
+
+1064
+00:50:27,436 --> 00:50:30,646
+Bluetooth accessories are now
+becoming increasingly popular.
+
+
+1065
+00:50:32,086 --> 00:50:34,706
+And with Core Bluetooth
+introduced in iOS 5,
+
+
+1066
+00:50:34,706 --> 00:50:39,256
+it's now easier than ever to
+integrate Bluetooth accessories
+
+
+1067
+00:50:39,256 --> 00:50:40,856
+with your iOS app, right?
+
+
+1068
+00:50:40,856 --> 00:50:42,676
+This will allow you to
+provide rich features
+
+
+1069
+00:50:42,676 --> 00:50:45,566
+such as health monitoring,
+right, the new health kit.
+
+
+1070
+00:50:46,126 --> 00:50:48,756
+This will allow you to
+provide information for users
+
+
+1071
+00:50:48,996 --> 00:50:51,096
+that will allow you to do
+fitness and activity tracking
+
+
+1072
+00:50:51,266 --> 00:50:53,676
+as well as, you know,
+item proximity sensing.
+
+
+1073
+00:50:53,726 --> 00:50:57,556
+So, we could probably
+spend, like,
+
+
+1074
+00:50:57,556 --> 00:50:59,236
+a whole 'nother hour
+here just talking
+
+
+1075
+00:50:59,236 --> 00:51:02,646
+about how to-what are the best
+practices on how to communicate
+
+
+1076
+00:51:02,646 --> 00:51:05,076
+with Bluetooth accessories,
+you know, what's the best way,
+
+
+1077
+00:51:05,396 --> 00:51:07,746
+what's the most energy
+efficient way to design
+
+
+1078
+00:51:07,746 --> 00:51:09,476
+and architect the communication.
+
+
+1079
+00:51:09,806 --> 00:51:12,586
+But, due to the amount of time
+that we have left, I simply want
+
+
+1080
+00:51:12,586 --> 00:51:16,226
+to mention one thing, and
+that's whenever you do Bluetooth
+
+
+1081
+00:51:16,226 --> 00:51:19,566
+transfers, your device will
+wake up for your app to be able
+
+
+1082
+00:51:19,566 --> 00:51:23,846
+to receive it even if your app
+is running in the background.
+
+
+1083
+00:51:23,846 --> 00:51:26,486
+So, whenever I say
+that, hopefully by now,
+
+
+1084
+00:51:26,486 --> 00:51:28,526
+alarm bells begin to set
+off in you heads, right?
+
+
+1085
+00:51:28,526 --> 00:51:31,206
+"My device has to wake
+up for my app to be able
+
+
+1086
+00:51:31,206 --> 00:51:31,876
+to receive this data."
+
+
+1087
+00:51:32,206 --> 00:51:34,246
+And, hopefully, this chart
+somehow just, you know,
+
+
+1088
+00:51:34,246 --> 00:51:36,596
+pops up in your head once
+again, high overhead cost,
+
+
+1089
+00:51:36,836 --> 00:51:38,776
+device wake, not
+good for energy.
+
+
+1090
+00:51:39,666 --> 00:51:43,856
+So, you want to think about
+creative ways to minimize that.
+
+
+1091
+00:51:44,386 --> 00:51:46,766
+So, once again, to help you
+guys just kind of get some ideas
+
+
+1092
+00:51:46,766 --> 00:51:49,716
+and visualize this, we're going
+to go back to our running app
+
+
+1093
+00:51:49,716 --> 00:51:52,986
+and let's say we integrated a
+Bluetooth fitness band, right?
+
+
+1094
+00:51:52,986 --> 00:51:55,166
+You now want to help track
+user activity as well
+
+
+1095
+00:51:55,166 --> 00:51:58,406
+as perhaps heart rate,
+you know, blood pressure
+
+
+1096
+00:51:58,406 --> 00:51:59,266
+when the users are running.
+
+
+1097
+00:52:00,036 --> 00:52:03,446
+So, you know, we're going to use
+an example that we've used over
+
+
+1098
+00:52:03,446 --> 00:52:04,536
+and over again, and hopefully,
+
+
+1099
+00:52:04,536 --> 00:52:06,526
+this idea will stick
+in your head, right?
+
+
+1100
+00:52:06,526 --> 00:52:07,986
+We're going to start by
+just streaming the data.
+
+
+1101
+00:52:08,856 --> 00:52:09,146
+All right.
+
+
+1102
+00:52:09,146 --> 00:52:10,806
+So, now your fitness
+data are coming in
+
+
+1103
+00:52:10,806 --> 00:52:12,236
+and the device wakes up.
+
+
+1104
+00:52:12,236 --> 00:52:15,066
+However, because you're
+constantly streaming the device
+
+
+1105
+00:52:15,066 --> 00:52:15,986
+can potentially be kept
+
+
+1106
+00:52:16,106 --> 00:52:19,056
+up the whole time while
+data is coming in.
+
+
+1107
+00:52:19,296 --> 00:52:22,526
+So, our favorite solution
+is buffering, right?
+
+
+1108
+00:52:22,716 --> 00:52:25,556
+So, now, instead you're
+buffering the location data
+
+
+1109
+00:52:25,556 --> 00:52:28,526
+on your accessory site and
+so your device doesn't have
+
+
+1110
+00:52:28,526 --> 00:52:29,926
+to pay the cost to stay awake.
+
+
+1111
+00:52:30,546 --> 00:52:31,936
+And once your buffer is full,
+
+
+1112
+00:52:32,106 --> 00:52:34,946
+then you spend one
+time-then you do, in one time,
+
+
+1113
+00:52:35,336 --> 00:52:37,276
+to send all your data
+over to your device
+
+
+1114
+00:52:37,316 --> 00:52:40,386
+and the device only has to wake
+up one time to process a lot
+
+
+1115
+00:52:40,386 --> 00:52:43,536
+of data and then it
+can go back to sleep.
+
+
+1116
+00:52:44,226 --> 00:52:47,106
+Right, this is-this is something
+we really want you to consider,
+
+
+1117
+00:52:47,106 --> 00:52:50,956
+especially when you're not
+really actively providing users
+
+
+1118
+00:52:50,956 --> 00:52:52,756
+with information
+immediately, right?
+
+
+1119
+00:52:52,756 --> 00:52:55,466
+In our running tracking app,
+this works because, you know,
+
+
+1120
+00:52:55,466 --> 00:52:58,246
+our users probably won't be
+checking their devices all the
+
+
+1121
+00:52:58,246 --> 00:52:59,276
+time when they're running.
+
+
+1122
+00:53:00,116 --> 00:53:04,036
+So, you can coalesce your data
+transactions, doing more work
+
+
+1123
+00:53:04,036 --> 00:53:06,636
+at once, so you can minimize
+the number of times you need
+
+
+1124
+00:53:06,636 --> 00:53:08,026
+to keep the device awake, right.
+
+
+1125
+00:53:08,026 --> 00:53:10,966
+You don't want to implement a
+cool fitness band that's going
+
+
+1126
+00:53:10,996 --> 00:53:13,406
+to constantly keep the
+users' device awake even
+
+
+1127
+00:53:13,406 --> 00:53:14,886
+when they don't care
+about the information.
+
+
+1128
+00:53:15,336 --> 00:53:17,206
+Because then the users are
+going to put off their device,
+
+
+1129
+00:53:17,206 --> 00:53:19,306
+you're going to see that
+little energy drain bar
+
+
+1130
+00:53:19,306 --> 00:53:21,126
+and when the user
+wakes up their device,
+
+
+1131
+00:53:21,736 --> 00:53:22,766
+they're not going to be happy.
+
+
+1132
+00:53:23,846 --> 00:53:26,896
+So, the best way really
+to reduce the energy cost
+
+
+1133
+00:53:26,896 --> 00:53:29,426
+of your application when it's
+running in the background is
+
+
+1134
+00:53:29,426 --> 00:53:32,326
+to do as much work as you
+can when you do get to run
+
+
+1135
+00:53:32,326 --> 00:53:35,086
+so that you can minimize
+the number of times you have
+
+
+1136
+00:53:35,086 --> 00:53:37,736
+to wake up, right, and
+to coalesce your work
+
+
+1137
+00:53:37,916 --> 00:53:40,396
+so you can cut down your wakes.
+
+
+1138
+00:53:41,176 --> 00:53:43,496
+So, let's take this one
+step further, right?
+
+
+1139
+00:53:43,756 --> 00:53:46,866
+So, we've talked about this run
+tracking app and we know that,
+
+
+1140
+00:53:46,966 --> 00:53:49,576
+once again, we've implemented
+a buffer on the Bluetooth side,
+
+
+1141
+00:53:50,046 --> 00:53:52,406
+but we're also implementing
+using the deferred location
+
+
+1142
+00:53:52,466 --> 00:53:53,656
+updates, right?
+
+
+1143
+00:53:53,986 --> 00:53:56,736
+So, these-both of those
+have greatly minimized them
+
+
+1144
+00:53:56,736 --> 00:53:58,656
+for wakes, but we
+can even do better.
+
+
+1145
+00:53:59,436 --> 00:54:02,256
+So, let's say, now instead
+of having these two channels
+
+
+1146
+00:54:02,256 --> 00:54:04,266
+of waking up your device,
+let's coalesce them.
+
+
+1147
+00:54:04,756 --> 00:54:06,966
+So, as users are running,
+
+
+1148
+00:54:06,966 --> 00:54:08,596
+you're gathering data
+on your fitness band.
+
+
+1149
+00:54:09,086 --> 00:54:11,746
+But then, deferred location
+updates wakes up your-wakes
+
+
+1150
+00:54:11,746 --> 00:54:13,136
+up the device in your
+app and says, "Hey,
+
+
+1151
+00:54:13,136 --> 00:54:13,976
+you have location data."
+
+
+1152
+00:54:15,056 --> 00:54:17,066
+While your device is
+awake, let's just go ahead
+
+
+1153
+00:54:17,066 --> 00:54:19,126
+and grab the data
+from your fitness band
+
+
+1154
+00:54:19,206 --> 00:54:21,996
+so you no longer have to
+wake up the device again
+
+
+1155
+00:54:22,126 --> 00:54:23,186
+when you have your
+buffered data.
+
+
+1156
+00:54:24,136 --> 00:54:27,906
+Then your app can process all
+these things at once and go back
+
+
+1157
+00:54:27,906 --> 00:54:30,266
+to sleep, helping
+you conserve energy.
+
+
+1158
+00:54:32,016 --> 00:54:36,216
+So. once again, the best way
+for you to reduce energy use
+
+
+1159
+00:54:36,216 --> 00:54:38,306
+of your app when it's
+running in the background is
+
+
+1160
+00:54:38,376 --> 00:54:41,736
+to coalesce your work so
+you can cut down the wakes.
+
+
+1161
+00:54:42,596 --> 00:54:43,976
+Cut down the number
+of times you'll need
+
+
+1162
+00:54:43,976 --> 00:54:45,386
+to wake up the device.
+
+
+1163
+00:54:45,736 --> 00:54:48,156
+And especially in iOS, most
+of the time you're running
+
+
+1164
+00:54:48,156 --> 00:54:50,786
+in the background, you'll only
+be doing a little bit of work
+
+
+1165
+00:54:50,786 --> 00:54:51,776
+for short amounts of time.
+
+
+1166
+00:54:52,246 --> 00:54:54,546
+So, you want to minimize
+the number of times you do
+
+
+1167
+00:54:54,546 --> 00:54:59,396
+that so you can help
+produce energy.
+
+
+1168
+00:54:59,396 --> 00:55:01,026
+So let's sum it up, right?
+
+
+1169
+00:55:01,656 --> 00:55:03,836
+And I want to leave you
+guys with this quote.
+
+
+1170
+00:55:04,926 --> 00:55:06,266
+Hopefully, you guys are
+all familiar with this:
+
+
+1171
+00:55:07,056 --> 00:55:09,226
+"With great power comes
+great responsibility."
+
+
+1172
+00:55:10,046 --> 00:55:14,066
+We've provided many tools and
+APIs for you to, you know,
+
+
+1173
+00:55:14,146 --> 00:55:16,236
+build these amazing apps.
+
+
+1174
+00:55:16,576 --> 00:55:19,436
+Use those responsibly, right?
+
+
+1175
+00:55:19,506 --> 00:55:22,216
+Keep in mind energy as
+you design your apps
+
+
+1176
+00:55:22,656 --> 00:55:25,046
+because it greatly
+impacts user experience.
+
+
+1177
+00:55:25,926 --> 00:55:29,456
+Find creative ways in your
+apps to do work less or never,
+
+
+1178
+00:55:30,346 --> 00:55:35,456
+to do work more efficiently and
+to do work at a better time.
+
+
+1179
+00:55:36,836 --> 00:55:38,306
+And finally, like
+we talked about,
+
+
+1180
+00:55:39,096 --> 00:55:40,676
+be a considerate background app.
+
+
+1181
+00:55:41,156 --> 00:55:44,666
+Your users have no idea
+of what you're doing
+
+
+1182
+00:55:44,826 --> 00:55:46,056
+when you're running
+in the background.
+
+
+1183
+00:55:46,396 --> 00:55:47,696
+So, be considerate.
+
+
+1184
+00:55:47,876 --> 00:55:50,996
+Think of ways to coalesce
+your work so you can cut
+
+
+1185
+00:55:50,996 --> 00:55:52,956
+down the number of wakes.
+
+
+1186
+00:55:53,606 --> 00:55:58,106
+So, for more information,
+we have here Paul and Jake
+
+
+1187
+00:55:58,266 --> 00:55:59,876
+as our evangelists
+that you can contact.
+
+
+1188
+00:56:02,466 --> 00:56:03,996
+And also, here are
+some related sessions
+
+
+1189
+00:56:03,996 --> 00:56:06,136
+that might be and-that you
+might be interested in.
+
+
+1190
+00:56:06,136 --> 00:56:08,556
+Now, some of these have passed
+already so I would recommend you
+
+
+1191
+00:56:08,556 --> 00:56:10,116
+to go download the
+videos, right?
+
+
+1192
+00:56:10,116 --> 00:56:12,576
+For the graphic and
+animations, it really goes
+
+
+1193
+00:56:12,576 --> 00:56:13,836
+into details about, you know,
+
+
+1194
+00:56:13,836 --> 00:56:16,426
+how to-how the graphic
+rendering pipeline works
+
+
+1195
+00:56:16,426 --> 00:56:17,356
+and how blur works.
+
+
+1196
+00:56:17,956 --> 00:56:20,306
+And then you have, obviously,
+"What's New in Core Location"
+
+
+1197
+00:56:20,406 --> 00:56:22,396
+as well as "What's New in
+Foundation Networking."
+
+
+1198
+00:56:22,706 --> 00:56:23,996
+And then you have
+the instruments,
+
+
+1199
+00:56:24,026 --> 00:56:25,566
+"Improving Your Apps
+with Instruments."
+
+
+1200
+00:56:25,886 --> 00:56:28,376
+Also, like I said, download
+Anthony's talk earlier.
+
+
+1201
+00:56:29,006 --> 00:56:29,876
+Thank you so much for coming.
+
+
+1202
+00:56:30,406 --> 00:56:30,926
+Enjoy your lunch.
+
+
+1203
+00:56:31,016 --> 00:56:33,000
+[ Applause ]
+

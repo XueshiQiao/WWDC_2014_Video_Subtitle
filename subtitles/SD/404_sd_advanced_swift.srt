@@ -1,0 +1,6477 @@
+1
+00:00:00,506 --> 00:00:11,516
+[ Silence ]
+
+
+2
+00:00:12,016 --> 00:00:20,000
+[ Applause ]
+
+
+3
+00:00:22,556 --> 00:00:26,286
+>> Hi. My name is John McCall.
+
+
+4
+00:00:26,286 --> 00:00:27,726
+I'm a compiler engineer
+
+
+5
+00:00:27,726 --> 00:00:30,976
+on the Swift project
+and a horrible nerd.
+
+
+6
+00:00:31,876 --> 00:00:37,326
+And today I want to talk
+to you about how, you know,
+
+
+7
+00:00:37,326 --> 00:00:39,206
+you can take advantage
+of really,
+
+
+8
+00:00:39,206 --> 00:00:41,236
+all of the language tools
+that we've built into Swift
+
+
+9
+00:00:41,236 --> 00:00:44,436
+to make your code so
+much more expressive,
+
+
+10
+00:00:44,436 --> 00:00:46,226
+and powerful, and safe.
+
+
+11
+00:00:46,956 --> 00:00:49,086
+We're going to start
+off by talking
+
+
+12
+00:00:49,086 --> 00:00:51,376
+about how you can take control
+
+
+13
+00:00:51,376 --> 00:00:54,946
+of really the basic
+language and syntax of Swift.
+
+
+14
+00:00:54,946 --> 00:00:57,106
+We're going to follow
+that up by talking
+
+
+15
+00:00:57,106 --> 00:01:01,616
+about a much more advanced
+topic of generic programming,
+
+
+16
+00:01:01,616 --> 00:01:04,906
+and then we're going to finish
+that up real quick by talking
+
+
+17
+00:01:04,906 --> 00:01:09,346
+about how Swift is implemented
+and how it turns your code
+
+
+18
+00:01:09,346 --> 00:01:12,766
+into great machine code
+that's finally executed.
+
+
+19
+00:01:14,236 --> 00:01:17,886
+So when we designed Swift,
+
+
+20
+00:01:19,046 --> 00:01:21,916
+we wanted to avoid hard coding
+too much about the language.
+
+
+21
+00:01:22,886 --> 00:01:24,146
+We think it's really important
+
+
+22
+00:01:24,146 --> 00:01:26,456
+to provide a great
+standard library
+
+
+23
+00:01:26,456 --> 00:01:31,686
+that lets you really get started
+right away and making great apps
+
+
+24
+00:01:31,886 --> 00:01:36,686
+for your users and just
+jump right in and be able
+
+
+25
+00:01:36,686 --> 00:01:37,786
+to do what you need to do.
+
+
+26
+00:01:38,506 --> 00:01:41,386
+But we didn't want to lock you
+
+
+27
+00:01:41,386 --> 00:01:43,256
+into just the tools
+that we provided.
+
+
+28
+00:01:43,866 --> 00:01:47,346
+We wanted you to be able to
+extend that basic language
+
+
+29
+00:01:47,406 --> 00:01:52,386
+with new idioms, new
+abstractions, and not feel
+
+
+30
+00:01:52,386 --> 00:01:54,076
+like you're locking
+yourself into that.
+
+
+31
+00:01:55,826 --> 00:01:58,426
+In order to show you what
+I'm trying to get at here,
+
+
+32
+00:01:58,426 --> 00:01:59,976
+I want to work through
+an example.
+
+
+33
+00:01:59,976 --> 00:02:03,216
+And since this is the
+advanced talk, I want to work
+
+
+34
+00:02:03,216 --> 00:02:05,866
+through an example that
+really shows off the advanced
+
+
+35
+00:02:05,866 --> 00:02:10,056
+capabilities of our platforms.
+
+
+36
+00:02:10,106 --> 00:02:12,256
+If you've never seen a
+text adventure before --
+
+
+37
+00:02:15,516 --> 00:02:18,886
+[ Applause ]
+
+
+38
+00:02:19,386 --> 00:02:21,136
+If you've never seen a
+text adventure before,
+
+
+39
+00:02:21,136 --> 00:02:22,306
+the idea is pretty simple.
+
+
+40
+00:02:22,796 --> 00:02:26,186
+You as the player are wandering
+around the world solving puzzles
+
+
+41
+00:02:26,186 --> 00:02:27,246
+and having adventures.
+
+
+42
+00:02:27,846 --> 00:02:31,676
+You interact with the
+game by typing in commands
+
+
+43
+00:02:31,786 --> 00:02:36,126
+at a terminal prompt and the
+game responds back to you
+
+
+44
+00:02:36,126 --> 00:02:39,376
+by interpreting those commands,
+trying to carry them out
+
+
+45
+00:02:39,626 --> 00:02:40,846
+and then telling
+you what happens.
+
+
+46
+00:02:41,986 --> 00:02:45,866
+So for example in
+the game you're going
+
+
+47
+00:02:46,926 --> 00:02:50,346
+to be wandering around,
+exploring a lot
+
+
+48
+00:02:50,346 --> 00:02:53,326
+of new locations, and finding
+a bunch of new objects.
+
+
+49
+00:02:53,326 --> 00:02:55,666
+And when you find an object
+you're going to be able to --
+
+
+50
+00:02:56,076 --> 00:02:58,636
+you want to be able to
+look at it, and you know,
+
+
+51
+00:02:58,636 --> 00:03:01,466
+try to interact with
+it, and maybe even sort
+
+
+52
+00:03:01,466 --> 00:03:03,646
+of tear things apart
+and really get chaotic.
+
+
+53
+00:03:05,036 --> 00:03:09,316
+Now, in this scene we've got a
+whole bunch of different objects
+
+
+54
+00:03:09,706 --> 00:03:11,066
+that in our game,
+we're going to have
+
+
+55
+00:03:11,066 --> 00:03:13,386
+to like manually
+model one-by-one.
+
+
+56
+00:03:13,916 --> 00:03:18,066
+It's going to be a lot of text.
+
+
+57
+00:03:18,066 --> 00:03:20,966
+All these objects are going
+
+
+58
+00:03:20,966 --> 00:03:24,446
+to be instances ultimately
+of this Thing class.
+
+
+59
+00:03:24,936 --> 00:03:27,466
+A Thing is really simple;
+it's not anything more
+
+
+60
+00:03:27,466 --> 00:03:29,286
+than just a name
+and a description
+
+
+61
+00:03:29,636 --> 00:03:31,416
+and a current location
+of the object.
+
+
+62
+00:03:34,976 --> 00:03:39,736
+Here's a couple of really simple
+objects that are nothing more
+
+
+63
+00:03:39,736 --> 00:03:41,676
+than just a name
+and a description.
+
+
+64
+00:03:42,386 --> 00:03:44,326
+You can see, you know,
+
+
+65
+00:03:45,266 --> 00:03:47,686
+we're just calling the
+initializer directly passing
+
+
+66
+00:03:47,686 --> 00:03:50,656
+in a couple literal values.
+
+
+67
+00:03:51,396 --> 00:03:53,336
+We're going to have a
+ton of objects like this,
+
+
+68
+00:03:53,516 --> 00:03:56,046
+scenery objects, maybe
+three or four of these
+
+
+69
+00:03:56,046 --> 00:03:57,676
+in every single place
+in the game.
+
+
+70
+00:03:58,286 --> 00:04:00,476
+Added up over what could
+be a very large game
+
+
+71
+00:04:00,476 --> 00:04:03,286
+that means we're going
+to have several hundreds
+
+
+72
+00:04:03,286 --> 00:04:04,756
+of these, maybe even thousands.
+
+
+73
+00:04:04,756 --> 00:04:06,886
+And it's going to be
+really important to me
+
+
+74
+00:04:06,886 --> 00:04:09,836
+that this code end up
+looking really compact.
+
+
+75
+00:04:10,116 --> 00:04:14,076
+That it be really
+convenient to read and write.
+
+
+76
+00:04:14,196 --> 00:04:20,606
+Well it's already pretty compact
+but these keyword arguments,
+
+
+77
+00:04:20,685 --> 00:04:23,766
+these argument names aren't
+really doing a whole lot for me.
+
+
+78
+00:04:23,906 --> 00:04:27,396
+I can actually tell
+straight off what each one
+
+
+79
+00:04:27,396 --> 00:04:30,286
+of these things are because
+there's two different strings,
+
+
+80
+00:04:30,286 --> 00:04:31,536
+there's a name of an object.
+
+
+81
+00:04:31,586 --> 00:04:33,446
+The two strings, one of
+them is really short,
+
+
+82
+00:04:33,446 --> 00:04:34,526
+one of them is really long.
+
+
+83
+00:04:35,376 --> 00:04:37,716
+It doesn't take much
+for me to memorize this.
+
+
+84
+00:04:37,876 --> 00:04:40,146
+It would be really great since
+I'm going to be writing this
+
+
+85
+00:04:40,146 --> 00:04:41,686
+over and over again,
+if I didn't have
+
+
+86
+00:04:41,736 --> 00:04:43,056
+to have all this redundancy.
+
+
+87
+00:04:44,106 --> 00:04:48,626
+So how do we go about actually
+changing argument names?
+
+
+88
+00:04:49,546 --> 00:04:53,486
+Well in Swift these
+argument names come
+
+
+89
+00:04:54,046 --> 00:04:57,936
+from the declaration
+of the initializer.
+
+
+90
+00:04:58,216 --> 00:05:01,896
+By default the parameter
+names that we use
+
+
+91
+00:05:01,896 --> 00:05:04,546
+in initializer are also going
+to be the argument names.
+
+
+92
+00:05:05,166 --> 00:05:06,326
+But that's just the default,
+
+
+93
+00:05:06,326 --> 00:05:08,796
+we can expand this
+syntax out like so.
+
+
+94
+00:05:09,386 --> 00:05:10,566
+It's exactly equivalent.
+
+
+95
+00:05:10,706 --> 00:05:14,076
+Now I've got the argument
+names specifically right next
+
+
+96
+00:05:14,076 --> 00:05:15,726
+to the parameter name.
+
+
+97
+00:05:18,016 --> 00:05:20,676
+But how do we actually
+make something anonymous?
+
+
+98
+00:05:21,786 --> 00:05:26,166
+Well Swift has a very consistent
+syntax for doing this.
+
+
+99
+00:05:26,506 --> 00:05:29,756
+Instead of giving it a
+real meaningful identifier,
+
+
+100
+00:05:29,756 --> 00:05:31,176
+you just give it an underscore.
+
+
+101
+00:05:31,486 --> 00:05:33,026
+You can use this syntax in a lot
+
+
+102
+00:05:33,026 --> 00:05:34,656
+of different places
+in the language.
+
+
+103
+00:05:35,026 --> 00:05:38,486
+For example, in this
+small for loop,
+
+
+104
+00:05:38,486 --> 00:05:41,346
+I'm just iterating all the
+entries in the dictionary.
+
+
+105
+00:05:41,756 --> 00:05:44,706
+But I don't actually care about
+the values in the dictionary,
+
+
+106
+00:05:45,006 --> 00:05:46,586
+I just want to print
+out all the keys.
+
+
+107
+00:05:47,396 --> 00:05:52,606
+I could give this, you know,
+its own local variable name,
+
+
+108
+00:05:52,966 --> 00:05:55,626
+but then if this were a
+larger loop, you know,
+
+
+109
+00:05:56,176 --> 00:05:57,086
+somebody coming along
+
+
+110
+00:05:57,086 --> 00:05:59,906
+and reading it later would
+instinctively feel --
+
+
+111
+00:06:00,036 --> 00:06:03,786
+wonder, if I was actually using
+the value somewhere in the loop
+
+
+112
+00:06:03,956 --> 00:06:05,076
+and then feel like they needed
+
+
+113
+00:06:05,076 --> 00:06:07,136
+to visually search
+the entire loop.
+
+
+114
+00:06:07,516 --> 00:06:09,646
+So instead I can just name
+it with an underscore,
+
+
+115
+00:06:09,646 --> 00:06:13,286
+which isn't a real variable,
+it just says ignore this value.
+
+
+116
+00:06:13,826 --> 00:06:17,036
+And that's not just
+in initializations,
+
+
+117
+00:06:17,036 --> 00:06:19,686
+I can even assign it
+as a sort of value sync
+
+
+118
+00:06:20,006 --> 00:06:22,146
+so if I have a color,
+I can break it
+
+
+119
+00:06:22,146 --> 00:06:25,486
+down into its color components.
+
+
+120
+00:06:25,906 --> 00:06:27,736
+But in this case I
+only care about the red
+
+
+121
+00:06:27,736 --> 00:06:30,096
+and blue components, not
+the green and the alpha.
+
+
+122
+00:06:30,426 --> 00:06:34,276
+So I just assigned the green and
+alpha components to underscore,
+
+
+123
+00:06:34,506 --> 00:06:37,586
+which just immediately
+drops them.
+
+
+124
+00:06:37,796 --> 00:06:42,866
+Going back to our initializer,
+I have all these argument names
+
+
+125
+00:06:43,146 --> 00:06:45,816
+and if I just removed
+them I'd end up back
+
+
+126
+00:06:45,816 --> 00:06:46,966
+in that default state
+
+
+127
+00:06:46,966 --> 00:06:50,226
+where Swift was using
+the parameter names
+
+
+128
+00:06:50,226 --> 00:06:51,756
+as the default argument names.
+
+
+129
+00:06:52,516 --> 00:06:55,856
+But if I want to drop them
+completely, I need to tell Swift
+
+
+130
+00:06:55,856 --> 00:06:57,056
+that I don't want this.
+
+
+131
+00:06:57,056 --> 00:07:00,176
+And the way I do that is I
+name it with an underscore.
+
+
+132
+00:07:01,456 --> 00:07:03,916
+This is just a very simple way
+
+
+133
+00:07:03,916 --> 00:07:06,286
+of telling Swift I don't
+want any argument names,
+
+
+134
+00:07:06,376 --> 00:07:09,846
+just let me call this
+initializer positionally.
+
+
+135
+00:07:10,406 --> 00:07:15,676
+And so I get a much
+more compact --
+
+
+136
+00:07:15,676 --> 00:07:17,306
+I get much more compact
+definitions
+
+
+137
+00:07:17,306 --> 00:07:18,376
+of all of my objects.
+
+
+138
+00:07:18,756 --> 00:07:20,496
+This isn't something
+you'd necessarily want
+
+
+139
+00:07:20,496 --> 00:07:22,136
+to do all over the place.
+
+
+140
+00:07:22,466 --> 00:07:24,486
+There's a lot of
+value that I get
+
+
+141
+00:07:24,486 --> 00:07:26,736
+from keyword arguments,
+from argument names.
+
+
+142
+00:07:27,856 --> 00:07:30,776
+Usually it provides a really
+important semantic cue,
+
+
+143
+00:07:30,776 --> 00:07:34,256
+but in this case I've thought
+about it very carefully
+
+
+144
+00:07:34,256 --> 00:07:36,546
+and decided that it's
+not providing much value
+
+
+145
+00:07:36,546 --> 00:07:38,316
+and that I'd much rather
+have the compactness.
+
+
+146
+00:07:38,476 --> 00:07:43,056
+All right those were a
+couple simple objects.
+
+
+147
+00:07:43,446 --> 00:07:46,326
+In a more complicated object
+I'm going to - want to be able
+
+
+148
+00:07:46,326 --> 00:07:49,116
+to give it a -- maybe
+even additional state,
+
+
+149
+00:07:49,506 --> 00:07:53,256
+additional logic, maybe make
+it respond to an action.
+
+
+150
+00:07:53,706 --> 00:07:56,466
+So for example going back to
+that original scene I had up,
+
+
+151
+00:07:56,726 --> 00:07:59,356
+I had some boards that were
+nailed up in front of the door.
+
+
+152
+00:07:59,676 --> 00:08:02,946
+I want these boards to be
+pullable, so I'm going to end
+
+
+153
+00:08:02,946 --> 00:08:05,776
+up giving it its own
+subclass of the Thing class.
+
+
+154
+00:08:08,566 --> 00:08:12,986
+Well how do I actually
+make it pullable?
+
+
+155
+00:08:13,076 --> 00:08:19,466
+My game, when the user types in
+pull boards, it's going to hand
+
+
+156
+00:08:19,466 --> 00:08:22,136
+that string off to the parser
+which will break it down
+
+
+157
+00:08:22,406 --> 00:08:25,246
+and look -- find
+out the verb pull,
+
+
+158
+00:08:25,246 --> 00:08:28,496
+and look around for an
+object called boards.
+
+
+159
+00:08:29,276 --> 00:08:31,046
+Let's take over from that part.
+
+
+160
+00:08:31,306 --> 00:08:33,586
+We're going to implement
+a function that takes
+
+
+161
+00:08:33,626 --> 00:08:35,385
+in a resolved object
+
+
+162
+00:08:35,596 --> 00:08:37,905
+and implements the
+pull command on it.
+
+
+163
+00:08:38,496 --> 00:08:40,926
+Well how do we want that
+to work at a high level?
+
+
+164
+00:08:41,546 --> 00:08:45,346
+If the object is
+pullable, we want to pull it
+
+
+165
+00:08:45,346 --> 00:08:47,126
+and otherwise we're going
+to print out some sort
+
+
+166
+00:08:47,126 --> 00:08:49,816
+of error message saying hey,
+look you can't pull this thing.
+
+
+167
+00:08:51,466 --> 00:08:54,146
+Well that's a great
+use of a protocol.
+
+
+168
+00:08:55,506 --> 00:08:58,236
+We've talked about protocols
+a lot in other talks,
+
+
+169
+00:08:58,296 --> 00:09:01,096
+but I want to show you what
+a protocol actually looks
+
+
+170
+00:09:01,096 --> 00:09:01,566
+like now.
+
+
+171
+00:09:01,996 --> 00:09:03,836
+You've probably seen
+this in, you know,
+
+
+172
+00:09:04,066 --> 00:09:08,796
+reading the entire book, but
+a protocol really just looks
+
+
+173
+00:09:08,796 --> 00:09:10,576
+like a sort of blueprint
+for a type
+
+
+174
+00:09:10,826 --> 00:09:13,016
+where you aren't actually
+implementing any of the things
+
+
+175
+00:09:13,016 --> 00:09:15,356
+in it, you're just describing
+what requirements are
+
+
+176
+00:09:15,356 --> 00:09:16,126
+actually there.
+
+
+177
+00:09:16,126 --> 00:09:19,536
+A pullable protocol
+is extremely simple.
+
+
+178
+00:09:19,536 --> 00:09:22,466
+It just has one method,
+doesn't take any arguments,
+
+
+179
+00:09:22,466 --> 00:09:23,516
+doesn't return anything.
+
+
+180
+00:09:23,516 --> 00:09:29,166
+In order to adapt this
+protocol, we just go back
+
+
+181
+00:09:29,236 --> 00:09:33,126
+to our boards class and either
+extend it or add pullable
+
+
+182
+00:09:33,296 --> 00:09:36,486
+to the main definition of it.
+
+
+183
+00:09:37,096 --> 00:09:40,386
+In this case I've decided to
+add it to the main definition.
+
+
+184
+00:09:41,196 --> 00:09:44,256
+The compiler warns
+me straight off
+
+
+185
+00:09:44,356 --> 00:09:47,776
+that I haven't actually
+fully implemented this,
+
+
+186
+00:09:48,326 --> 00:09:49,806
+so I need to go add
+the pull method.
+
+
+187
+00:09:50,256 --> 00:09:52,576
+Which for my boards
+is going to be --
+
+
+188
+00:09:52,726 --> 00:09:55,106
+is very straightforward
+in its functionality.
+
+
+189
+00:09:55,406 --> 00:09:58,376
+You just check to see
+whether the boards are still
+
+
+190
+00:09:58,376 --> 00:10:01,256
+on the wall, and if
+they are you move them
+
+
+191
+00:10:01,256 --> 00:10:02,976
+to the ground and
+print a message.
+
+
+192
+00:10:04,106 --> 00:10:05,696
+And then we'll just
+print an error message
+
+
+193
+00:10:05,696 --> 00:10:08,716
+if they're not still on the
+board so that the player knows
+
+
+194
+00:10:08,716 --> 00:10:11,616
+that they don't need to care
+about these boards anymore,
+
+
+195
+00:10:11,616 --> 00:10:16,036
+they're not going to be useful
+in the rest of the game.
+
+
+196
+00:10:16,266 --> 00:10:19,586
+Now let's go back to our
+perform pull function.
+
+
+197
+00:10:20,326 --> 00:10:22,886
+How do we actually check
+whether something is pullable?
+
+
+198
+00:10:23,436 --> 00:10:24,756
+Well that's very
+straightforward.
+
+
+199
+00:10:24,756 --> 00:10:28,576
+We can just use a conditional
+pass down to the protocol type.
+
+
+200
+00:10:29,376 --> 00:10:33,446
+This conditional pass will give
+us a value of a pullable type,
+
+
+201
+00:10:33,906 --> 00:10:36,226
+which we can then actually
+pull if it succeeds.
+
+
+202
+00:10:36,946 --> 00:10:39,546
+And if it doesn't
+succeed we're just going
+
+
+203
+00:10:39,546 --> 00:10:40,706
+to print out an error message.
+
+
+204
+00:10:41,956 --> 00:10:42,706
+And that's it.
+
+
+205
+00:10:42,706 --> 00:10:43,916
+That's all we needed
+to do in order
+
+
+206
+00:10:43,916 --> 00:10:45,166
+to implement the pull method.
+
+
+207
+00:10:46,526 --> 00:10:49,546
+Now how do we -- now I want
+to take a little bit closer
+
+
+208
+00:10:49,546 --> 00:10:51,306
+of a look at this error message.
+
+
+209
+00:10:51,936 --> 00:10:55,256
+I'm going to have a lot of
+text like this in my game,
+
+
+210
+00:10:55,256 --> 00:10:56,846
+a lot of messages
+that need to work --
+
+
+211
+00:10:57,006 --> 00:10:58,806
+apply to an arbitrary object.
+
+
+212
+00:10:59,486 --> 00:11:00,836
+And this isn't bad.
+
+
+213
+00:11:01,366 --> 00:11:06,976
+This isn't awful syntax, but
+it's less compact, less natural
+
+
+214
+00:11:06,976 --> 00:11:08,166
+than it needs to be
+because of this .
+
+
+215
+00:11:08,256 --> 00:11:08,816
+"dot" name.
+
+
+216
+00:11:09,336 --> 00:11:12,596
+Why can't I just put object
+and string interpolation here?
+
+
+217
+00:11:13,456 --> 00:11:14,346
+Well I can.
+
+
+218
+00:11:15,016 --> 00:11:17,946
+Swift knows how to print
+out an arbitrary object.
+
+
+219
+00:11:18,356 --> 00:11:21,836
+However, the rules that
+Swift will use to print
+
+
+220
+00:11:21,836 --> 00:11:24,306
+out an arbitrary object
+aren't necessarily the most
+
+
+221
+00:11:24,306 --> 00:11:25,096
+useful defaults.
+
+
+222
+00:11:27,006 --> 00:11:30,456
+How do I actually take
+over this syntax and hook
+
+
+223
+00:11:30,456 --> 00:11:34,106
+into string interpolation
+to actually do what I want?
+
+
+224
+00:11:34,876 --> 00:11:38,356
+In general the way that you hook
+into a sort of language feature
+
+
+225
+00:11:38,356 --> 00:11:40,226
+like this in Swift
+is that you're going
+
+
+226
+00:11:40,226 --> 00:11:41,476
+to implement a protocol.
+
+
+227
+00:11:41,746 --> 00:11:44,216
+A special protocol that the
+compiler actually already
+
+
+228
+00:11:44,216 --> 00:11:44,796
+knows about.
+
+
+229
+00:11:46,166 --> 00:11:50,386
+For example, I can use
+special built-in protocols
+
+
+230
+00:11:50,386 --> 00:11:53,426
+to make my type be usable
+as a [inaudible] condition.
+
+
+231
+00:11:53,746 --> 00:11:57,356
+Or to allow the user to iterate
+over it using a forward loop.
+
+
+232
+00:11:57,626 --> 00:12:00,656
+Or I could even take over one
+of the basic literal syntaxes.
+
+
+233
+00:12:01,126 --> 00:12:03,336
+But in this example what
+I want is the second one.
+
+
+234
+00:12:03,616 --> 00:12:06,326
+I want to implement printable
+so that I can actually --
+
+
+235
+00:12:06,596 --> 00:12:08,946
+which is how you take
+over string interpolation.
+
+
+236
+00:12:10,116 --> 00:12:13,926
+Printable is again a
+very simple protocol.
+
+
+237
+00:12:14,186 --> 00:12:17,276
+It just has one requirement,
+which is a property.
+
+
+238
+00:12:17,476 --> 00:12:20,346
+And all I have to do for
+that property is implement --
+
+
+239
+00:12:20,386 --> 00:12:21,586
+is provide a getter for it.
+
+
+240
+00:12:21,586 --> 00:12:23,506
+I could also provide a
+setter, but I don't have
+
+
+241
+00:12:23,566 --> 00:12:25,906
+to because protocol
+doesn't require it.
+
+
+242
+00:12:26,976 --> 00:12:29,626
+So in this case I'm going to
+go back and add an extension
+
+
+243
+00:12:29,626 --> 00:12:31,376
+to thing that implements
+printable.
+
+
+244
+00:12:31,776 --> 00:12:33,816
+I have to provide the
+description protocol
+
+
+245
+00:12:33,816 --> 00:12:35,616
+and I'll just have it
+return the name property.
+
+
+246
+00:12:36,186 --> 00:12:37,866
+And that's it.
+
+
+247
+00:12:38,236 --> 00:12:39,196
+That's all I needed to do.
+
+
+248
+00:12:40,426 --> 00:12:43,696
+Well, is this really going to
+work for an arbitrary object?
+
+
+249
+00:12:45,116 --> 00:12:48,136
+I mean if I look at this text up
+here, it doesn't even read right
+
+
+250
+00:12:48,166 --> 00:12:51,916
+to me as an English
+speaker, because "a object."
+
+
+251
+00:12:52,836 --> 00:12:53,816
+That's not grammatical.
+
+
+252
+00:12:54,406 --> 00:12:57,266
+When I come along and pull --
+
+
+253
+00:12:57,266 --> 00:13:01,286
+and try to pull something that
+starts with a vowel sound,
+
+
+254
+00:13:01,656 --> 00:13:04,416
+or that's a plural, or
+a mass noun in English,
+
+
+255
+00:13:04,786 --> 00:13:06,616
+you can't just put
+A in front of it.
+
+
+256
+00:13:06,856 --> 00:13:09,576
+I need this to be able to
+work for an arbitrary thing
+
+
+257
+00:13:09,576 --> 00:13:12,306
+which means I need -- and if
+I want this to feel natural
+
+
+258
+00:13:12,306 --> 00:13:15,536
+to the user, so I don't take the
+player out of their experience,
+
+
+259
+00:13:15,826 --> 00:13:17,886
+I want this to be
+actually grammatical.
+
+
+260
+00:13:19,396 --> 00:13:22,506
+Well, how do I actually do that?
+
+
+261
+00:13:23,136 --> 00:13:29,486
+From a class design perspective,
+I can just define a new property
+
+
+262
+00:13:30,036 --> 00:13:32,536
+on Thing that's going
+to be name with article
+
+
+263
+00:13:32,536 --> 00:13:34,716
+that will throw the right word
+in front of it, that's great.
+
+
+264
+00:13:34,796 --> 00:13:37,716
+This is a great class design,
+
+
+265
+00:13:37,716 --> 00:13:41,306
+but it's not actually very
+usable for me if I'm going
+
+
+266
+00:13:41,366 --> 00:13:45,446
+to have a ton of text
+printing out this thing.
+
+
+267
+00:13:45,636 --> 00:13:48,136
+This is actually worse
+than just object .name was.
+
+
+268
+00:13:48,256 --> 00:13:50,016
+So how can I do better
+than this?
+
+
+269
+00:13:50,156 --> 00:13:51,926
+Well I really want
+to stick something
+
+
+270
+00:13:51,966 --> 00:13:55,006
+in the string interpolation
+to sort of modify it.
+
+
+271
+00:13:55,946 --> 00:13:58,036
+It would be great if I
+could just write this --
+
+
+272
+00:13:58,146 --> 00:13:59,776
+write an object right there.
+
+
+273
+00:13:59,776 --> 00:14:03,396
+But that's not actually
+valid Swift syntax for a lot
+
+
+274
+00:14:03,396 --> 00:14:07,656
+of very good reasons, but I
+can sort of slightly tweak this
+
+
+275
+00:14:07,796 --> 00:14:10,296
+in a way that still
+feels very natural,
+
+
+276
+00:14:10,476 --> 00:14:11,596
+that's still very readable,
+
+
+277
+00:14:11,956 --> 00:14:14,396
+by instead of just putting
+them next to each other,
+
+
+278
+00:14:15,066 --> 00:14:16,916
+separating them with
+a binary operator.
+
+
+279
+00:14:18,056 --> 00:14:21,036
+This is a new binary operator
+that's not currently defined
+
+
+280
+00:14:21,036 --> 00:14:21,766
+in language.
+
+
+281
+00:14:22,146 --> 00:14:25,666
+So how do I go about
+actually adding it?
+
+
+282
+00:14:25,936 --> 00:14:29,576
+Well the way that you define
+a new operator for, you know,
+
+
+283
+00:14:29,576 --> 00:14:31,716
+either taking an existing
+operator and defining it
+
+
+284
+00:14:31,716 --> 00:14:32,766
+for a new set of types,
+
+
+285
+00:14:32,816 --> 00:14:35,586
+or actually adding a
+new operator entirely,
+
+
+286
+00:14:36,066 --> 00:14:37,876
+is you're going to
+need a global function.
+
+
+287
+00:14:38,486 --> 00:14:40,786
+And the global function
+just takes
+
+
+288
+00:14:41,246 --> 00:14:43,786
+for a binary operator it's just
+going to take two arguments,
+
+
+289
+00:14:43,856 --> 00:14:46,256
+one for the left hand side, and
+one for the right hand side.
+
+
+290
+00:14:46,486 --> 00:14:49,156
+And it's just normal
+global function
+
+
+291
+00:14:49,156 --> 00:14:50,176
+with a kind of funky name.
+
+
+292
+00:14:51,206 --> 00:14:53,996
+But Swift won't actually
+let me do this
+
+
+293
+00:14:54,026 --> 00:14:56,006
+because it's actually
+checking up on me.
+
+
+294
+00:14:56,496 --> 00:14:59,246
+Swift doesn't know how to
+actually parse an expression
+
+
+295
+00:14:59,546 --> 00:15:01,496
+that uses this as
+a binary operator.
+
+
+296
+00:15:01,496 --> 00:15:03,746
+I need to tell Swift
+the basic rules
+
+
+297
+00:15:03,746 --> 00:15:06,066
+for this as a binary operator.
+
+
+298
+00:15:06,066 --> 00:15:10,796
+In order to do that I just need
+
+
+299
+00:15:10,796 --> 00:15:13,056
+to provide an operator
+declaration somewhere
+
+
+300
+00:15:13,056 --> 00:15:13,816
+in my program.
+
+
+301
+00:15:14,636 --> 00:15:16,846
+I could throw a lot of
+information up in here in order
+
+
+302
+00:15:16,846 --> 00:15:20,256
+to describe how to -- how
+this operator associates
+
+
+303
+00:15:20,256 --> 00:15:22,576
+with other binary operators, but
+in this case I'm not planning
+
+
+304
+00:15:22,576 --> 00:15:25,916
+on actually using it next to
+any other binary operators.
+
+
+305
+00:15:25,916 --> 00:15:27,306
+So all of that is unnecessary.
+
+
+306
+00:15:27,306 --> 00:15:29,186
+I can just have a very
+simple declaration.
+
+
+307
+00:15:31,296 --> 00:15:33,196
+Now let's go back to this
+function declaration.
+
+
+308
+00:15:33,776 --> 00:15:36,926
+The right hand side of this,
+we want it to be an object.
+
+
+309
+00:15:37,496 --> 00:15:39,096
+What do we want the
+left hand side to be?
+
+
+310
+00:15:40,546 --> 00:15:42,406
+Remember that this is the syntax
+
+
+311
+00:15:42,406 --> 00:15:44,696
+that we actually want
+to be able to write.
+
+
+312
+00:15:45,506 --> 00:15:48,316
+Object here is just an arbitrary
+expression that's going
+
+
+313
+00:15:48,316 --> 00:15:50,706
+to be resolved in global scope.
+
+
+314
+00:15:51,386 --> 00:15:56,186
+And we need -- and it's also
+going to be an identifier.
+
+
+315
+00:15:56,186 --> 00:15:59,306
+It needs to actually resolve
+to something in scope.
+
+
+316
+00:15:59,926 --> 00:16:01,656
+But we want this to
+be usable anywhere,
+
+
+317
+00:16:01,656 --> 00:16:03,626
+so this has to be something
+that's actually defined
+
+
+318
+00:16:03,626 --> 00:16:04,526
+at global scope.
+
+
+319
+00:16:05,056 --> 00:16:07,186
+And the most natural thing
+to put at global scope
+
+
+320
+00:16:07,186 --> 00:16:09,466
+in this case would
+just be a function.
+
+
+321
+00:16:10,296 --> 00:16:14,166
+By using a function and having
+it take the object that was
+
+
+322
+00:16:14,166 --> 00:16:15,326
+on the right hand side,
+
+
+323
+00:16:15,586 --> 00:16:18,906
+I can make this syntax very
+naturally extend to any sort
+
+
+324
+00:16:18,906 --> 00:16:21,446
+of declarator that I want to
+stick on the left hand side,
+
+
+325
+00:16:21,536 --> 00:16:25,586
+I just have to define a new
+global function with that name.
+
+
+326
+00:16:25,586 --> 00:16:29,946
+The an function we're just going
+to implement by using that name
+
+
+327
+00:16:29,946 --> 00:16:33,006
+with article property
+that we already defined.
+
+
+328
+00:16:33,756 --> 00:16:38,156
+With all of that, I can go
+back to my operator function
+
+
+329
+00:16:38,156 --> 00:16:40,556
+and the left hand side
+of this is now going
+
+
+330
+00:16:40,556 --> 00:16:41,936
+to be a function value.
+
+
+331
+00:16:42,506 --> 00:16:43,556
+And the way that we're going
+
+
+332
+00:16:43,556 --> 00:16:47,136
+to implement this is we're just
+going to call the function value
+
+
+333
+00:16:47,826 --> 00:16:50,486
+with the object that
+we will provide it
+
+
+334
+00:16:50,486 --> 00:16:51,386
+on the right hand side.
+
+
+335
+00:16:51,386 --> 00:16:53,296
+And that's it.
+
+
+336
+00:16:53,296 --> 00:16:57,056
+That gives me great -- a great
+new idiom for expressing a sort
+
+
+337
+00:16:57,056 --> 00:16:59,066
+of decorated interpolated
+string.
+
+
+338
+00:17:00,316 --> 00:17:02,186
+This isn't something that
+you would necessarily want
+
+
+339
+00:17:02,186 --> 00:17:06,705
+to use casually, but in my
+game it's valuable enough to me
+
+
+340
+00:17:06,986 --> 00:17:08,425
+to make this easy to write,
+
+
+341
+00:17:08,915 --> 00:17:12,925
+that it's worth forcing
+everybody who's reading my code
+
+
+342
+00:17:12,925 --> 00:17:14,226
+to learn this new idiom.
+
+
+343
+00:17:14,746 --> 00:17:17,776
+I want to work through
+one more example.
+
+
+344
+00:17:18,406 --> 00:17:23,175
+I talked a lot about
+objects in the game,
+
+
+345
+00:17:23,175 --> 00:17:24,856
+but I haven't talked
+about places.
+
+
+346
+00:17:25,415 --> 00:17:29,776
+In the game you're
+going to be able
+
+
+347
+00:17:29,776 --> 00:17:32,206
+to walk around, visiting
+new places.
+
+
+348
+00:17:32,556 --> 00:17:35,496
+And all those places are going
+to be connected to other places,
+
+
+349
+00:17:35,586 --> 00:17:37,966
+by going east, by going
+north, by going south.
+
+
+350
+00:17:39,386 --> 00:17:41,966
+In our class system, place
+is just a special kind
+
+
+351
+00:17:41,966 --> 00:17:44,526
+of thing that's going to
+also have a dictionary
+
+
+352
+00:17:44,526 --> 00:17:46,126
+that describes all
+the exits out.
+
+
+353
+00:17:46,856 --> 00:17:50,466
+When I'm defining objects, this
+is what that's going to look
+
+
+354
+00:17:50,466 --> 00:17:51,996
+like as the sort of first pass.
+
+
+355
+00:17:52,716 --> 00:17:54,786
+But this is kind of
+syntactically heavyweight.
+
+
+356
+00:17:55,136 --> 00:17:57,746
+Again, I'm going to have
+lots of places in my game.
+
+
+357
+00:17:57,746 --> 00:18:00,266
+I'd like this to look really
+convenient and natural
+
+
+358
+00:18:00,266 --> 00:18:01,756
+and more compact than this.
+
+
+359
+00:18:02,476 --> 00:18:05,846
+Well, why do I have
+to write .exits here?
+
+
+360
+00:18:06,606 --> 00:18:08,526
+Isn't the exits dictionary sort
+
+
+361
+00:18:08,526 --> 00:18:13,646
+of an implementation
+detail of my place class?
+
+
+362
+00:18:15,296 --> 00:18:19,746
+Wouldn't it be more natural if
+I could just directly subscript
+
+
+363
+00:18:19,746 --> 00:18:24,936
+into a place and specify where
+a particular exit goes to?
+
+
+364
+00:18:25,606 --> 00:18:28,366
+The way that you do that is
+with a subscript declaration.
+
+
+365
+00:18:29,646 --> 00:18:33,126
+A subscript declaration in Swift
+feels a lot like a property.
+
+
+366
+00:18:33,126 --> 00:18:37,076
+You use the subscript keyword
+
+
+367
+00:18:37,076 --> 00:18:42,036
+and then you give it a parameter
+clause, which is kind of like --
+
+
+368
+00:18:42,196 --> 00:18:43,886
+which is going to
+be all the indexes
+
+
+369
+00:18:43,886 --> 00:18:46,276
+that are being used
+to subscript in.
+
+
+370
+00:18:46,276 --> 00:18:51,056
+And then kind of like a
+function you give it a return --
+
+
+371
+00:18:51,176 --> 00:18:55,046
+what feels like a return type,
+that's the type of the element
+
+
+372
+00:18:55,676 --> 00:18:56,576
+that you subscript to.
+
+
+373
+00:18:58,446 --> 00:19:00,476
+But here's where it starts
+feeling more like a property.
+
+
+374
+00:19:00,476 --> 00:19:06,426
+You just provide a get and a set
+method like any other property.
+
+
+375
+00:19:06,976 --> 00:19:09,876
+So the get is just going
+to delegate to exits.
+
+
+376
+00:19:10,286 --> 00:19:13,866
+And the set just
+writes back into exits.
+
+
+377
+00:19:13,866 --> 00:19:20,586
+All I've done here is provide
+a subscript directly on place
+
+
+378
+00:19:20,756 --> 00:19:24,396
+that just immediately delegates
+down to the exits' property.
+
+
+379
+00:19:25,516 --> 00:19:28,646
+But that's going to let me write
+this in a much more compact
+
+
+380
+00:19:28,646 --> 00:19:30,596
+and natural style
+over, and over again.
+
+
+381
+00:19:31,196 --> 00:19:36,756
+I've been talking a lot about
+the ways that you can hook
+
+
+382
+00:19:36,756 --> 00:19:39,886
+into the basic syntax of Swift.
+
+
+383
+00:19:40,066 --> 00:19:41,686
+I do want to talk a little bit
+
+
+384
+00:19:41,686 --> 00:19:46,296
+about when you should
+actually do this.
+
+
+385
+00:19:46,516 --> 00:19:51,526
+Taking over a basic syntax like
+this, developing new idioms,
+
+
+386
+00:19:51,526 --> 00:19:54,826
+developing things that don't
+look exactly like other things
+
+
+387
+00:19:54,826 --> 00:19:57,366
+in Swift can be a
+little bit dangerous.
+
+
+388
+00:19:57,696 --> 00:20:00,066
+Not in the sense of
+being dynamically unsafe,
+
+
+389
+00:20:00,416 --> 00:20:02,976
+but in the sense of making your
+code a lot harder to understand.
+
+
+390
+00:20:03,046 --> 00:20:07,226
+The key thing to doing this
+well is to make it feel natural.
+
+
+391
+00:20:07,726 --> 00:20:09,526
+Think about how someone
+coming along
+
+
+392
+00:20:09,526 --> 00:20:11,256
+and reading your
+code later is going
+
+
+393
+00:20:11,256 --> 00:20:13,876
+to understand it
+sort of intuitively.
+
+
+394
+00:20:14,606 --> 00:20:17,446
+Think about what your
+syntax actually suggests
+
+
+395
+00:20:17,446 --> 00:20:20,396
+about what it's actually doing.
+
+
+396
+00:20:21,296 --> 00:20:25,786
+A major part of that means
+not taking existing syntax
+
+
+397
+00:20:25,936 --> 00:20:28,266
+and making it do
+something that doesn't feel
+
+
+398
+00:20:28,406 --> 00:20:31,046
+like what other instances
+of that syntax are doing.
+
+
+399
+00:20:31,686 --> 00:20:36,956
+For example, my subscript is
+just sort of providing a view
+
+
+400
+00:20:37,436 --> 00:20:39,536
+of an aspect of a place.
+
+
+401
+00:20:40,396 --> 00:20:41,606
+You wouldn't want a subscript
+
+
+402
+00:20:41,606 --> 00:20:43,266
+to do something completely
+different.
+
+
+403
+00:20:43,666 --> 00:20:46,166
+You could syntactically,
+of course,
+
+
+404
+00:20:46,216 --> 00:20:49,326
+the language would let you
+use subscript operators
+
+
+405
+00:20:49,626 --> 00:20:51,166
+to do anything you want.
+
+
+406
+00:20:51,166 --> 00:20:54,296
+You can make it do calls,
+you can make it take all
+
+
+407
+00:20:54,296 --> 00:20:57,286
+of your methods and implement
+them using subscript methods,
+
+
+408
+00:20:57,526 --> 00:20:59,016
+but that wouldn't be natural.
+
+
+409
+00:20:59,436 --> 00:21:04,356
+It wouldn't feel like
+you're really accessing part
+
+
+410
+00:21:04,356 --> 00:21:07,326
+of the object in a way that
+a subscript operator does.
+
+
+411
+00:21:07,486 --> 00:21:09,526
+And that's going to
+make it a major obstacle
+
+
+412
+00:21:09,526 --> 00:21:11,736
+to somebody trying to
+actually understand your code.
+
+
+413
+00:21:13,466 --> 00:21:17,716
+And finally it's okay to add
+new idioms that everybody
+
+
+414
+00:21:17,716 --> 00:21:19,866
+who reads your code is
+going to have to learn.
+
+
+415
+00:21:21,256 --> 00:21:23,546
+People coming into
+new code bases have
+
+
+416
+00:21:23,546 --> 00:21:25,116
+to learn new idioms anyway even
+
+
+417
+00:21:25,116 --> 00:21:27,676
+if they're just expressed
+using properties and methods,
+
+
+418
+00:21:28,856 --> 00:21:33,816
+but when you're inventing new
+idioms using basic syntax,
+
+
+419
+00:21:34,566 --> 00:21:36,646
+it has a sort of extra cost.
+
+
+420
+00:21:36,996 --> 00:21:39,476
+It's an extra, you
+know, thing to learn,
+
+
+421
+00:21:39,636 --> 00:21:41,566
+that the programmer
+needs to learn just
+
+
+422
+00:21:41,566 --> 00:21:45,486
+to understand even what
+your code looks like.
+
+
+423
+00:21:47,326 --> 00:21:51,656
+That's okay to do -- that's
+okay to expect someone to do
+
+
+424
+00:21:52,046 --> 00:21:53,806
+if it's actually worthwhile.
+
+
+425
+00:21:54,566 --> 00:21:57,326
+Make sure that the syntax
+is paying for itself.
+
+
+426
+00:21:57,546 --> 00:22:00,856
+That it's worth somebody's time
+to have actually learned it.
+
+
+427
+00:22:00,856 --> 00:22:02,576
+And that the value
+that you're deriving
+
+
+428
+00:22:02,576 --> 00:22:07,666
+from it actually pays for it.
+
+
+429
+00:22:07,666 --> 00:22:10,866
+I've been talking a lot
+about a bunch of very sort
+
+
+430
+00:22:11,696 --> 00:22:15,106
+of superficial ways that
+you can extend the language.
+
+
+431
+00:22:15,106 --> 00:22:16,886
+I'd like to bring up
+Dave Abrahams to talk
+
+
+432
+00:22:16,886 --> 00:22:20,356
+about a much deeper
+and interesting topic,
+
+
+433
+00:22:20,766 --> 00:22:21,836
+which is generic programming.
+
+
+434
+00:22:21,836 --> 00:22:22,056
+.
+
+
+435
+00:22:22,056 --> 00:22:22,976
+>> Thanks John.
+
+
+436
+00:22:23,516 --> 00:22:27,546
+[ Applause ]
+
+
+437
+00:22:28,046 --> 00:22:30,386
+How's everybody doing?
+
+
+438
+00:22:30,386 --> 00:22:32,496
+Good? Because we were
+a little concerned.
+
+
+439
+00:22:33,096 --> 00:22:37,736
+You know. We thought maybe after
+three days of total immersion
+
+
+440
+00:22:37,736 --> 00:22:40,616
+in Swift you might be
+feeling a little uneasy,
+
+
+441
+00:22:40,616 --> 00:22:42,736
+maybe a little jittery even,
+
+
+442
+00:22:43,216 --> 00:22:44,626
+because you haven't seen
+one of these in a while.
+
+
+443
+00:22:46,666 --> 00:22:48,446
+So I'm just going to
+give you a moment to sit
+
+
+444
+00:22:48,446 --> 00:22:49,776
+with it, okay [applause].
+
+
+445
+00:22:50,536 --> 00:22:51,186
+Drink it in.
+
+
+446
+00:22:52,436 --> 00:22:54,236
+Okay. Because you won't see
+another one before the end
+
+
+447
+00:22:54,236 --> 00:22:54,706
+of the talk.
+
+
+448
+00:22:55,496 --> 00:22:59,896
+And we're going to go to our
+first slide in three, two, one.
+
+
+449
+00:23:02,446 --> 00:23:04,776
+Sorry semicolon lovers.
+
+
+450
+00:23:05,516 --> 00:23:08,966
+Okay so let me tell you a
+story about my friend, Crusty.
+
+
+451
+00:23:10,186 --> 00:23:11,656
+Crusty is old school.
+
+
+452
+00:23:12,456 --> 00:23:15,986
+Programming in Swift is like
+his one concession to modernity
+
+
+453
+00:23:17,036 --> 00:23:21,216
+and he doesn't trust modern
+tools IDEs or debuggers,
+
+
+454
+00:23:21,616 --> 00:23:25,916
+no he likes to debug his Swift
+code by logging to the console.
+
+
+455
+00:23:26,436 --> 00:23:29,106
+He was using a family of
+logging functions like this.
+
+
+456
+00:23:30,196 --> 00:23:33,926
+Now when he needed to look
+
+
+457
+00:23:33,926 --> 00:23:36,646
+at an interesting string
+value he would peek String.
+
+
+458
+00:23:37,586 --> 00:23:39,436
+And if he wanted to peek at
+an interesting int value,
+
+
+459
+00:23:39,436 --> 00:23:42,306
+he would peek int and so on.
+
+
+460
+00:23:42,756 --> 00:23:44,586
+But it turns out every once
+
+
+461
+00:23:44,586 --> 00:23:47,566
+in a while even old Crusty
+takes a step into the future.
+
+
+462
+00:23:48,756 --> 00:23:51,536
+And one day he strode into
+my office and announced
+
+
+463
+00:23:51,536 --> 00:23:57,806
+that he had rewritten his
+logging to use overloading.
+
+
+464
+00:23:59,046 --> 00:24:04,996
+He said to me, "Dave, well Swift
+takes a look at the arguments
+
+
+465
+00:24:04,996 --> 00:24:06,556
+that I'm actually
+passing and figures
+
+
+466
+00:24:06,556 --> 00:24:08,636
+out which function
+I want to call.
+
+
+467
+00:24:10,916 --> 00:24:13,886
+Now I just always write peek
+and leave off the type name."
+
+
+468
+00:24:15,266 --> 00:24:18,916
+Now I had used overloading
+before so, you know,
+
+
+469
+00:24:19,026 --> 00:24:21,776
+this wasn't a big deal for me,
+but it is kind of a big day
+
+
+470
+00:24:21,776 --> 00:24:24,756
+when Crusty changes,
+well anything.
+
+
+471
+00:24:25,656 --> 00:24:28,196
+So I didn't want to burst
+his bubble, you know.
+
+
+472
+00:24:28,796 --> 00:24:33,366
+I was about to say something
+encouraging when he looked
+
+
+473
+00:24:33,366 --> 00:24:35,806
+over my shoulder and said,
+"What in tarnation is that?"
+
+
+474
+00:24:37,446 --> 00:24:38,596
+And "What," I said.
+
+
+475
+00:24:39,926 --> 00:24:40,686
+He said, "That."
+
+
+476
+00:24:41,706 --> 00:24:44,566
+Leaving a smudge on my
+gorgeous retina display.
+
+
+477
+00:24:45,066 --> 00:24:50,126
+[ Applause ]
+
+
+478
+00:24:50,626 --> 00:24:56,326
+"Oh Any? Well any is the empty
+protocol type," I told him.
+
+
+479
+00:24:56,326 --> 00:24:57,976
+"It's got no operations in it,
+
+
+480
+00:24:58,286 --> 00:25:00,316
+but it can hold literally
+anything.
+
+
+481
+00:25:01,366 --> 00:25:05,386
+And by the time I had
+looked up Crusty was gone.
+
+
+482
+00:25:05,426 --> 00:25:06,696
+He had run back to his office
+
+
+483
+00:25:06,696 --> 00:25:10,736
+to re-implement his
+logging functions like this.
+
+
+484
+00:25:10,916 --> 00:25:14,606
+Now this version of peek
+worked great and it left room
+
+
+485
+00:25:14,646 --> 00:25:17,106
+for more code in the
+80x24 terminal windows
+
+
+486
+00:25:17,106 --> 00:25:17,976
+that crusty favored [laughter].
+
+
+487
+00:25:21,016 --> 00:25:25,936
+Also since everything in Swift
+can be printed, peek even worked
+
+
+488
+00:25:26,316 --> 00:25:30,906
+for some types that Crusty
+had never peeked at before.
+
+
+489
+00:25:31,026 --> 00:25:34,146
+So all was right with the
+world and Crusty was happy.
+
+
+490
+00:25:34,756 --> 00:25:37,936
+That is at least until
+the doghouse showed
+
+
+491
+00:25:37,936 --> 00:25:38,986
+up in his window title.
+
+
+492
+00:25:40,196 --> 00:25:44,146
+Now this was a problem because
+nothing gets old Crusty's dander
+
+
+493
+00:25:44,146 --> 00:25:47,166
+up like pesky emoji
+in his window title.
+
+
+494
+00:25:47,776 --> 00:25:49,426
+So he said.
+
+
+495
+00:25:50,336 --> 00:25:53,506
+See he had written
+this fancy extension
+
+
+496
+00:25:53,506 --> 00:25:55,966
+on string adding a
+computed property
+
+
+497
+00:25:56,566 --> 00:25:58,536
+so he could eliminate
+these emoji.
+
+
+498
+00:25:59,126 --> 00:26:02,666
+And he carefully
+used this property
+
+
+499
+00:26:03,656 --> 00:26:06,086
+in his computation
+of the window title.
+
+
+500
+00:26:07,196 --> 00:26:10,276
+Crusty scratched his head and
+thought about his next move.
+
+
+501
+00:26:10,856 --> 00:26:15,466
+He figured what I
+really need to do is see
+
+
+502
+00:26:15,466 --> 00:26:18,586
+if the offending characters are
+there in the original string.
+
+
+503
+00:26:19,326 --> 00:26:23,056
+So I'm going to peek at
+that -- that sub expression.
+
+
+504
+00:26:26,396 --> 00:26:29,546
+Now normally he might have
+rewritten his code like this,
+
+
+505
+00:26:30,126 --> 00:26:32,346
+so breaking out the
+expression of interest
+
+
+506
+00:26:32,346 --> 00:26:37,326
+into a named constant, peeking
+at that and then carrying
+
+
+507
+00:26:37,326 --> 00:26:38,406
+on with a computation.
+
+
+508
+00:26:39,986 --> 00:26:42,126
+But old Crusty had been
+in a fix like this before.
+
+
+509
+00:26:42,776 --> 00:26:44,266
+He was sick and tired
+
+
+510
+00:26:44,266 --> 00:26:46,846
+of reformatting his code
+every time he wanted
+
+
+511
+00:26:46,846 --> 00:26:47,976
+to do a little debugging work.
+
+
+512
+00:26:51,506 --> 00:26:53,936
+"Ah-ha," thought Crusty,
+"I know what I'll do.
+
+
+513
+00:26:54,076 --> 00:26:56,356
+I'll return the interesting
+value from peek
+
+
+514
+00:26:56,356 --> 00:26:58,906
+and then I'll be
+able to insert a call
+
+
+515
+00:26:58,906 --> 00:27:00,216
+to it right in the expression."
+
+
+516
+00:27:01,546 --> 00:27:06,306
+Which was an awesome idea,
+except that doesn't work.
+
+
+517
+00:27:07,916 --> 00:27:12,286
+So, you see using Any
+throws away the stringiness
+
+
+518
+00:27:12,476 --> 00:27:13,176
+of the argument.
+
+
+519
+00:27:13,726 --> 00:27:17,146
+So of course the compiler
+doesn't know what's coming
+
+
+520
+00:27:17,146 --> 00:27:18,826
+out of that peek function.
+
+
+521
+00:27:20,166 --> 00:27:22,876
+It could be an NS document
+controller delegate,
+
+
+522
+00:27:23,106 --> 00:27:24,846
+or it could be an int,
+or it could be a string.
+
+
+523
+00:27:26,486 --> 00:27:30,526
+At the call site the complier
+only sees that signature.
+
+
+524
+00:27:33,296 --> 00:27:37,866
+So Crusty knew that he could
+always downcast to string
+
+
+525
+00:27:37,866 --> 00:27:40,756
+to get his string
+back out of the Any.
+
+
+526
+00:27:41,816 --> 00:27:44,266
+But if there's one thing
+I can say for Crusty,
+
+
+527
+00:27:44,266 --> 00:27:48,446
+the man's got taste, you know,
+he cannot tolerate ugly code
+
+
+528
+00:27:48,446 --> 00:27:49,646
+and this was starting
+to get ugly.
+
+
+529
+00:27:50,186 --> 00:27:54,896
+That's when Crusty dove into
+the Swift language guide
+
+
+530
+00:27:55,256 --> 00:27:57,666
+and discovered that the
+tiniest change could make all
+
+
+531
+00:27:57,666 --> 00:27:58,216
+the difference.
+
+
+532
+00:27:58,546 --> 00:28:03,606
+What he did here was turn
+peek into a generic function.
+
+
+533
+00:28:04,726 --> 00:28:07,286
+Now a generic function
+is declared
+
+
+534
+00:28:07,286 --> 00:28:10,836
+with a type parameter
+list in angle brackets
+
+
+535
+00:28:11,196 --> 00:28:12,406
+after the base function name.
+
+
+536
+00:28:13,526 --> 00:28:17,476
+In this case, there's
+just one T.
+
+
+537
+00:28:18,406 --> 00:28:21,506
+Now you can think of T as
+a placeholder for any type.
+
+
+538
+00:28:21,506 --> 00:28:24,276
+And when you write
+a function this way,
+
+
+539
+00:28:24,456 --> 00:28:27,456
+Swift deduces what
+T is from the type
+
+
+540
+00:28:27,566 --> 00:28:29,156
+of the actual argument you pass.
+
+
+541
+00:28:29,606 --> 00:28:31,276
+It's a lot like figuring
+out which function
+
+
+542
+00:28:31,276 --> 00:28:32,466
+to call in an overload set.
+
+
+543
+00:28:33,366 --> 00:28:36,536
+In the case above, we
+passed a string to peek
+
+
+544
+00:28:36,536 --> 00:28:37,786
+so peek returns a string.
+
+
+545
+00:28:38,376 --> 00:28:40,926
+Not string wrapped in an
+any, but good old string.
+
+
+546
+00:28:42,806 --> 00:28:44,996
+And it just worked.
+
+
+547
+00:28:46,506 --> 00:28:49,646
+Now we've seen two very
+different ways to deal
+
+
+548
+00:28:49,756 --> 00:28:51,666
+with things of arbitrary type.
+
+
+549
+00:28:52,806 --> 00:28:56,326
+We could pass them as instances
+of a protocol type like Any
+
+
+550
+00:28:56,326 --> 00:28:58,136
+or pullable that
+John showed you,
+
+
+551
+00:28:59,676 --> 00:29:01,146
+which erases type information.
+
+
+552
+00:29:01,836 --> 00:29:04,956
+Or we could pass them
+as generic parameters,
+
+
+553
+00:29:05,546 --> 00:29:09,576
+we could let their types bind
+to the generic parameters
+
+
+554
+00:29:09,576 --> 00:29:12,676
+of generic functions and that
+can serve as type information.
+
+
+555
+00:29:13,886 --> 00:29:17,336
+Now there's nothing wrong
+with erasing type information
+
+
+556
+00:29:17,626 --> 00:29:19,796
+when what you want is
+dynamic polymorphism.
+
+
+557
+00:29:20,216 --> 00:29:23,016
+So you want to make a
+collection of objects
+
+
+558
+00:29:23,076 --> 00:29:26,336
+that are all different
+types of objects.
+
+
+559
+00:29:26,936 --> 00:29:29,556
+And you know that has to
+be dynamic at runtime.
+
+
+560
+00:29:30,446 --> 00:29:32,186
+Great. Use type eraser.
+
+
+561
+00:29:32,786 --> 00:29:34,846
+But when you don't need
+dynamic polymorphism,
+
+
+562
+00:29:35,276 --> 00:29:36,956
+there's some pretty
+compelling upsides
+
+
+563
+00:29:36,956 --> 00:29:38,326
+to conserving type information.
+
+
+564
+00:29:39,346 --> 00:29:42,116
+So first, when the
+compiler keeps track
+
+
+565
+00:29:42,366 --> 00:29:45,236
+of what types you're actually
+using, you don't have to resort
+
+
+566
+00:29:45,236 --> 00:29:48,676
+to unsafe downcasts like we
+saw in the previous example.
+
+
+567
+00:29:49,416 --> 00:29:51,136
+And you don't have to
+deal with the possibility
+
+
+568
+00:29:51,136 --> 00:29:52,336
+that those casts might fail.
+
+
+569
+00:29:52,886 --> 00:29:57,216
+And second, when the compiler
+knows just what types you're
+
+
+570
+00:29:57,216 --> 00:29:59,986
+dealing with, it can
+generate much better code,
+
+
+571
+00:29:59,986 --> 00:30:01,976
+it can generate code
+just for those types.
+
+
+572
+00:30:02,636 --> 00:30:05,556
+And John will be talking
+more when he comes back
+
+
+573
+00:30:05,646 --> 00:30:09,546
+about how the internal
+mechanisms work with that.
+
+
+574
+00:30:11,306 --> 00:30:14,766
+Another reason to like
+conserving type information is
+
+
+575
+00:30:14,766 --> 00:30:18,616
+that it allows us to express
+relationships among types.
+
+
+576
+00:30:19,956 --> 00:30:23,216
+Consider this function,
+which comes with Swift.
+
+
+577
+00:30:23,786 --> 00:30:25,796
+It just exchanges
+two arbitrary values.
+
+
+578
+00:30:26,796 --> 00:30:30,036
+Here, X and Y can
+have any type at all,
+
+
+579
+00:30:30,036 --> 00:30:33,186
+as long as they have
+the same type.
+
+
+580
+00:30:34,036 --> 00:30:38,906
+So for example student teacher
+ratios being what they are,
+
+
+581
+00:30:38,906 --> 00:30:41,396
+it might make sense to
+exchange the number of students
+
+
+582
+00:30:41,396 --> 00:30:44,656
+with the number or teachers,
+but exchanging the name
+
+
+583
+00:30:44,656 --> 00:30:52,976
+of your school with the number
+of students is nonsense.
+
+
+584
+00:30:53,866 --> 00:30:56,806
+I love the way Swift helps me
+write correct code the first
+
+
+585
+00:30:56,806 --> 00:30:59,446
+time because it doesn't
+tolerate this kind of stuff.
+
+
+586
+00:31:00,616 --> 00:31:03,326
+Note that you can't do
+anything like this with Any
+
+
+587
+00:31:03,326 --> 00:31:07,376
+or with your similar thing
+in Objective-C like ID,
+
+
+588
+00:31:07,806 --> 00:31:10,296
+because converting to
+these types throws away the
+
+
+589
+00:31:10,296 --> 00:31:11,066
+type information.
+
+
+590
+00:31:11,566 --> 00:31:12,766
+It takes real generics,
+
+
+591
+00:31:13,306 --> 00:31:16,006
+which conserve type
+information to get this right.
+
+
+592
+00:31:17,366 --> 00:31:19,896
+Okay let's look at a
+more interesting example.
+
+
+593
+00:31:21,976 --> 00:31:25,356
+Here's a simple function that
+takes an array of strings,
+
+
+594
+00:31:25,356 --> 00:31:30,096
+iterates through the indices in
+the array, looking for an index
+
+
+595
+00:31:30,096 --> 00:31:32,756
+where there's a string that
+matches the one that you passed.
+
+
+596
+00:31:33,676 --> 00:31:35,796
+And if it finds it,
+it returns the index,
+
+
+597
+00:31:36,316 --> 00:31:37,326
+otherwise it returns nil.
+
+
+598
+00:31:38,006 --> 00:31:41,686
+Right? It's returning
+an optional.
+
+
+599
+00:31:41,816 --> 00:31:44,346
+Okay so let's generalize this.
+
+
+600
+00:31:45,616 --> 00:31:48,836
+First we just find the
+concrete types that we want
+
+
+601
+00:31:48,836 --> 00:31:52,336
+to make variable, string
+and we replace those
+
+
+602
+00:31:52,336 --> 00:31:53,316
+with generic parameters.
+
+
+603
+00:31:53,846 --> 00:31:59,636
+But it's not quite that simple.
+
+
+604
+00:31:59,756 --> 00:32:03,916
+Right, now that T is no longer
+a known type like string,
+
+
+605
+00:32:04,296 --> 00:32:06,076
+the compiler isn't entirely sure
+
+
+606
+00:32:06,076 --> 00:32:08,986
+that we can compare these
+two things with equal equal.
+
+
+607
+00:32:09,996 --> 00:32:14,586
+So let's fix that by
+constraining T to be equatable.
+
+
+608
+00:32:18,416 --> 00:32:21,736
+See, the function signature
+already imposed one type
+
+
+609
+00:32:21,736 --> 00:32:23,266
+constraint, that the type
+
+
+610
+00:32:23,266 --> 00:32:28,386
+of value matched the
+element type of the array.
+
+
+611
+00:32:28,386 --> 00:32:30,336
+Equatable adds another
+kind of type constraint
+
+
+612
+00:32:30,896 --> 00:32:32,146
+for callers to find value.
+
+
+613
+00:32:32,516 --> 00:32:34,536
+And in exchange for
+constraining callers,
+
+
+614
+00:32:34,976 --> 00:32:37,516
+now we have a new
+capability inside of the body,
+
+
+615
+00:32:37,896 --> 00:32:39,706
+which is to compare
+with equal equal.
+
+
+616
+00:32:40,276 --> 00:32:43,776
+All right let's see how
+equatable is compared.
+
+
+617
+00:32:45,876 --> 00:32:47,626
+Of course equatable
+is a protocol,
+
+
+618
+00:32:49,066 --> 00:32:52,266
+a blueprint for type
+as John put it.
+
+
+619
+00:32:52,586 --> 00:32:54,496
+Now this one imposes
+a single requirement
+
+
+620
+00:32:54,496 --> 00:32:55,916
+that there's an equal
+equal operator.
+
+
+621
+00:32:56,476 --> 00:33:00,176
+If you're familiar with
+protocols in Objective-C,
+
+
+622
+00:33:00,736 --> 00:33:04,116
+it may help to know that every
+single Objective-C protocol is
+
+
+623
+00:33:04,116 --> 00:33:05,246
+also a Swift protocol.
+
+
+624
+00:33:06,496 --> 00:33:09,656
+However, Swift protocols
+have some capabilities
+
+
+625
+00:33:09,656 --> 00:33:11,196
+that Objective-C
+protocols don't,
+
+
+626
+00:33:11,606 --> 00:33:14,366
+which makes them especially
+well-suited to generic program.
+
+
+627
+00:33:15,856 --> 00:33:20,136
+Case in point, because
+Swift generics conserve type
+
+
+628
+00:33:20,136 --> 00:33:22,146
+information, they have access
+
+
+629
+00:33:22,146 --> 00:33:24,766
+to the full type
+implementing Any protocol.
+
+
+630
+00:33:25,756 --> 00:33:28,476
+Here we're saying that there
+must be an equality operator
+
+
+631
+00:33:28,476 --> 00:33:31,856
+that takes two instances of the
+type implementing equatable.
+
+
+632
+00:33:32,366 --> 00:33:37,016
+Note that some popular languages
+implement what they call
+
+
+633
+00:33:37,016 --> 00:33:41,596
+generics with type eraser,
+essentially Any plus downcasts.
+
+
+634
+00:33:42,436 --> 00:33:45,226
+And because these languages
+throw type information away,
+
+
+635
+00:33:45,686 --> 00:33:48,506
+they're unable to express
+even something as fundamental
+
+
+636
+00:33:48,506 --> 00:33:50,826
+and basic as this in
+their generic system.
+
+
+637
+00:33:51,146 --> 00:33:52,706
+But Swift handles
+it beautifully.
+
+
+638
+00:33:52,706 --> 00:33:55,806
+All right now let's quickly --
+
+
+639
+00:33:56,296 --> 00:33:56,966
+Thank you very much.
+
+
+640
+00:33:57,516 --> 00:34:01,126
+[ Applause ]
+
+
+641
+00:34:01,626 --> 00:34:04,926
+Now let's quickly make
+an equatable type.
+
+
+642
+00:34:05,796 --> 00:34:11,056
+So temperature here is just a
+little wrapper over and int.
+
+
+643
+00:34:11,056 --> 00:34:13,025
+And there's a couple
+of things to notice.
+
+
+644
+00:34:13,025 --> 00:34:14,926
+First temperature is a struct.
+
+
+645
+00:34:15,616 --> 00:34:20,366
+Protocol adoption is available
+to structs, enums, and classes.
+
+
+646
+00:34:20,366 --> 00:34:22,176
+Not just classes
+as an Objective-C.
+
+
+647
+00:34:23,646 --> 00:34:28,056
+Second of all, we've satisfied
+its operator requirement outside
+
+
+648
+00:34:28,056 --> 00:34:32,436
+the type body and
+that's sort of specific
+
+
+649
+00:34:32,436 --> 00:34:34,126
+to operator requirements.
+
+
+650
+00:34:34,416 --> 00:34:37,196
+All other requirements you'll
+find satisfied inside the type
+
+
+651
+00:34:37,226 --> 00:34:38,966
+body or inside an extension.
+
+
+652
+00:34:41,936 --> 00:34:47,096
+Okay. So you may be wondering,
+well where's not equal.
+
+
+653
+00:34:48,246 --> 00:34:51,826
+Well it's not a requirement,
+we didn't have to write it,
+
+
+654
+00:34:52,176 --> 00:34:53,636
+because Swift provides this one.
+
+
+655
+00:34:54,436 --> 00:35:00,256
+It's a generic not equal
+that depends on equatable
+
+
+656
+00:35:01,256 --> 00:35:04,246
+and uses the equal equal
+operator to implement it.
+
+
+657
+00:35:04,976 --> 00:35:07,176
+So that works for
+every equatable type,
+
+
+658
+00:35:07,346 --> 00:35:08,616
+which is pretty Swift indeed.
+
+
+659
+00:35:09,516 --> 00:35:14,886
+[ Applause ]
+
+
+660
+00:35:15,386 --> 00:35:18,096
+Okay let's look at an example
+
+
+661
+00:35:18,096 --> 00:35:20,016
+of how we can use what
+we've seen so far.
+
+
+662
+00:35:20,686 --> 00:35:23,636
+Now I wanted to come up with
+a really practical example.
+
+
+663
+00:35:23,956 --> 00:35:27,106
+Something that, you know, you
+would use in your day to day
+
+
+664
+00:35:27,106 --> 00:35:28,056
+in your Cocoa programming.
+
+
+665
+00:35:28,476 --> 00:35:31,506
+So what we're going to be doing
+is computing phi the Golden
+
+
+666
+00:35:31,506 --> 00:35:37,296
+Mean, which is the ratio of
+consecutive Fibonacci numbers
+
+
+667
+00:35:37,296 --> 00:35:38,746
+as N approaches infinity.
+
+
+668
+00:35:40,126 --> 00:35:42,666
+The slide warned you that we
+were horrible nerds right?
+
+
+669
+00:35:43,796 --> 00:35:50,126
+Okay. So first we need to
+computer the N Fibonacci number.
+
+
+670
+00:35:50,706 --> 00:35:56,176
+So that's just the sum of the
+previous two Fibonacci numbers
+
+
+671
+00:35:56,656 --> 00:35:59,216
+where the first two Fibonacci
+numbers are zero and 1.
+
+
+672
+00:36:00,436 --> 00:36:02,156
+Okay, this is not
+the fastest way
+
+
+673
+00:36:02,156 --> 00:36:05,716
+to compute the Fibonacci
+numbers, but it is really hard
+
+
+674
+00:36:05,716 --> 00:36:07,066
+to beat for its simplicity,
+
+
+675
+00:36:07,066 --> 00:36:08,886
+and mathematical
+purity, and elegance.
+
+
+676
+00:36:09,436 --> 00:36:11,506
+It's really easy to verify
+
+
+677
+00:36:11,506 --> 00:36:13,086
+that this does exactly
+the right thing.
+
+
+678
+00:36:15,876 --> 00:36:16,416
+And here's phi.
+
+
+679
+00:36:16,416 --> 00:36:21,296
+We need to go a few
+iterations right up to about 45
+
+
+680
+00:36:21,296 --> 00:36:23,656
+so that we get enough
+precision with our estimate.
+
+
+681
+00:36:25,116 --> 00:36:29,556
+Now running this part of our
+program takes 11 seconds,
+
+
+682
+00:36:30,776 --> 00:36:33,316
+11 seconds on a fast machine.
+
+
+683
+00:36:34,416 --> 00:36:38,336
+Well it's easy to see why if
+you look at the call graph.
+
+
+684
+00:36:39,096 --> 00:36:42,926
+So just looking at
+Fibonacci at 5, that depends
+
+
+685
+00:36:42,926 --> 00:36:44,826
+on Fibonacci at 4 and 3.
+
+
+686
+00:36:45,696 --> 00:36:50,206
+And Fibonacci of 4 depends
+on Fibonacci of 3 and 2.
+
+
+687
+00:36:50,206 --> 00:36:51,516
+And you can already start to see
+
+
+688
+00:36:51,516 --> 00:36:53,356
+that it repeated
+computations in here.
+
+
+689
+00:36:53,816 --> 00:36:55,516
+And if you look at
+the entire call graph,
+
+
+690
+00:36:55,946 --> 00:36:57,826
+well you can see there's
+a lot of repetition.
+
+
+691
+00:36:58,706 --> 00:37:01,136
+Now expand this up 45 levels
+
+
+692
+00:37:01,796 --> 00:37:06,236
+and you've got a recipe
+for a slow program.
+
+
+693
+00:37:07,636 --> 00:37:11,286
+However, if we could
+just store our results
+
+
+694
+00:37:11,286 --> 00:37:13,416
+in a dictionary the first
+time we compute them,
+
+
+695
+00:37:14,896 --> 00:37:19,146
+then we could turn all of these
+calls into fast lookups, right.
+
+
+696
+00:37:19,936 --> 00:37:23,966
+And these calls, well they
+would just disappear entirely.
+
+
+697
+00:37:24,486 --> 00:37:28,206
+This technique is
+called memoization.
+
+
+698
+00:37:28,626 --> 00:37:31,396
+And while Fibonacci makes
+a great example for it
+
+
+699
+00:37:31,396 --> 00:37:33,906
+because it -- you know,
+recalls the same function over,
+
+
+700
+00:37:33,906 --> 00:37:34,306
+and over.
+
+
+701
+00:37:34,626 --> 00:37:38,496
+You can apply it to speed
+up any pure function
+
+
+702
+00:37:39,026 --> 00:37:40,976
+where you might be
+calling it over and over
+
+
+703
+00:37:40,976 --> 00:37:42,596
+with the same sets of arguments.
+
+
+704
+00:37:45,326 --> 00:37:49,346
+Okay let's manually
+memoize Fibonacci, okay.
+
+
+705
+00:37:49,836 --> 00:37:53,996
+First we need a dictionary.
+
+
+706
+00:37:54,036 --> 00:37:58,286
+Next we change the function body
+so that it checks the dictionary
+
+
+707
+00:37:58,286 --> 00:38:01,686
+to see if it's got the result
+and only computes the result
+
+
+708
+00:38:01,686 --> 00:38:05,036
+if it isn't found there.
+
+
+709
+00:38:05,256 --> 00:38:08,316
+Now how does our
+function perform?
+
+
+710
+00:38:08,426 --> 00:38:11,246
+Okay 100x speedup,
+that's pretty good.
+
+
+711
+00:38:11,246 --> 00:38:15,296
+It's 100 times more
+Swift, okay [applause].
+
+
+712
+00:38:16,016 --> 00:38:17,956
+Please forgive me,
+please forgive me.
+
+
+713
+00:38:19,856 --> 00:38:21,936
+Now this is awesome,
+but we've kind
+
+
+714
+00:38:21,936 --> 00:38:23,596
+of destroyed the readability
+
+
+715
+00:38:23,786 --> 00:38:25,826
+and mathematical
+purity of our function.
+
+
+716
+00:38:26,376 --> 00:38:29,056
+I mean, if you look in there
+really hard you might be able
+
+
+717
+00:38:29,056 --> 00:38:33,346
+to find the original computation
+among all of that boilerplate.
+
+
+718
+00:38:33,526 --> 00:38:35,896
+There it is.
+
+
+719
+00:38:35,896 --> 00:38:38,986
+It would be nice if we
+could encapsulate all
+
+
+720
+00:38:38,986 --> 00:38:40,546
+of that road code transformation
+
+
+721
+00:38:40,986 --> 00:38:43,366
+so we could easily
+memoize any function
+
+
+722
+00:38:43,986 --> 00:38:45,366
+without destroying
+its readability.
+
+
+723
+00:38:45,876 --> 00:38:49,106
+Something like this.
+
+
+724
+00:38:49,326 --> 00:38:50,846
+Well in Swift, you can.
+
+
+725
+00:38:51,416 --> 00:38:55,416
+In fact memoize isn't
+in the language,
+
+
+726
+00:38:56,596 --> 00:38:58,136
+it's just a generic
+function I wrote.
+
+
+727
+00:38:58,646 --> 00:39:03,546
+And the code between the
+curlies, well that's a closure
+
+
+728
+00:39:03,846 --> 00:39:07,756
+or an anonymous function being
+passed as an argument to memoize
+
+
+729
+00:39:08,056 --> 00:39:10,046
+with trailing closure syntax.
+
+
+730
+00:39:11,216 --> 00:39:14,296
+Memoize returns another closure
+
+
+731
+00:39:15,356 --> 00:39:18,826
+and that's what we're
+storing in Fibonacci.
+
+
+732
+00:39:18,826 --> 00:39:20,956
+So Fibonacci's just
+like a function.
+
+
+733
+00:39:20,956 --> 00:39:24,386
+You know a regular function
+is just a constant bound
+
+
+734
+00:39:25,136 --> 00:39:26,266
+to a closure.
+
+
+735
+00:39:27,476 --> 00:39:29,956
+So in fact you don't even
+need that type annotation
+
+
+736
+00:39:29,956 --> 00:39:33,786
+in this case because Swift type
+inference can figure it all
+
+
+737
+00:39:33,786 --> 00:39:34,266
+out for you.
+
+
+738
+00:39:35,306 --> 00:39:37,306
+And now memoize is general.
+
+
+739
+00:39:38,076 --> 00:39:42,086
+So when I discover that my
+app is bleeding CPU cycles
+
+
+740
+00:39:42,136 --> 00:39:45,976
+by parsing the same
+property list strings over
+
+
+741
+00:39:45,976 --> 00:39:47,966
+and over again I can go back
+
+
+742
+00:39:47,966 --> 00:39:52,816
+and use memoize again,
+just like this.
+
+
+743
+00:39:53,036 --> 00:39:54,876
+Okay let me show
+you how this works.
+
+
+744
+00:39:55,446 --> 00:39:59,776
+So this is a first cut at
+a memoization function.
+
+
+745
+00:40:01,466 --> 00:40:02,176
+A simple version.
+
+
+746
+00:40:03,006 --> 00:40:05,236
+All right, yes I know it
+doesn't look that simple,
+
+
+747
+00:40:05,296 --> 00:40:06,706
+but I'll take it apart for you.
+
+
+748
+00:40:07,466 --> 00:40:10,686
+So it takes one parameter
+called body
+
+
+749
+00:40:11,406 --> 00:40:13,156
+which is the closure, right?
+
+
+750
+00:40:14,076 --> 00:40:16,626
+And the types, the
+argument and return types
+
+
+751
+00:40:16,626 --> 00:40:18,936
+of that closure are
+arbitrary except
+
+
+752
+00:40:18,936 --> 00:40:20,746
+that there's this constraint
+
+
+753
+00:40:21,526 --> 00:40:23,186
+on the argument type
+that it be hashable.
+
+
+754
+00:40:24,416 --> 00:40:25,356
+Why do we need that?
+
+
+755
+00:40:25,516 --> 00:40:28,606
+Well so we can use the argument
+type as a key in the dictionary.
+
+
+756
+00:40:30,526 --> 00:40:34,456
+Right? And it returns the same
+type of closure that it gets.
+
+
+757
+00:40:37,166 --> 00:40:41,536
+Okay. Inside the body this is
+actually pretty straightforward.
+
+
+758
+00:40:42,076 --> 00:40:44,726
+So first we create the
+dictionary that we're going
+
+
+759
+00:40:44,726 --> 00:40:46,356
+to need to use to
+memoize that function.
+
+
+760
+00:40:48,316 --> 00:40:51,796
+And then we return a
+closure which is wrapped
+
+
+761
+00:40:51,796 --> 00:40:56,346
+around an invocation of the body
+which is the actual computation,
+
+
+762
+00:40:56,616 --> 00:40:58,996
+right, and the usual
+memoization dance.
+
+
+763
+00:40:59,526 --> 00:41:02,286
+Where we look in the dictionary
+and return the value we found
+
+
+764
+00:41:02,286 --> 00:41:04,476
+if we found it, otherwise
+compute
+
+
+765
+00:41:04,476 --> 00:41:05,776
+and put it in the dictionary.
+
+
+766
+00:41:07,366 --> 00:41:10,586
+Okay. Now this version
+of memoize works great
+
+
+767
+00:41:11,246 --> 00:41:13,836
+for functions like
+parse property list.
+
+
+768
+00:41:15,216 --> 00:41:17,376
+This just works,
+which is awesome,
+
+
+769
+00:41:17,706 --> 00:41:21,056
+but for recursive
+functions, like factorial,
+
+
+770
+00:41:21,366 --> 00:41:24,806
+or Fibonacci, well not so much.
+
+
+771
+00:41:25,696 --> 00:41:27,816
+You see Swift doesn't want us
+
+
+772
+00:41:27,846 --> 00:41:33,436
+to use a variable's own
+value to initialize it.
+
+
+773
+00:41:33,676 --> 00:41:36,186
+Like initialize itself
+in terms of itself.
+
+
+774
+00:41:36,186 --> 00:41:37,996
+That just doesn't
+make sense, right,
+
+
+775
+00:41:38,326 --> 00:41:40,346
+it's usually a terrible
+programming error.
+
+
+776
+00:41:41,016 --> 00:41:43,766
+So what can we do
+to get out of this?
+
+
+777
+00:41:43,966 --> 00:41:47,016
+Well we could do this
+two-phase initialization dance.
+
+
+778
+00:41:48,576 --> 00:41:52,376
+Here what we've done is we've
+made factorial a variable.
+
+
+779
+00:41:52,956 --> 00:41:55,006
+And we've initialized it
+with something throwaway
+
+
+780
+00:41:55,006 --> 00:41:57,216
+like the identity
+function, right?
+
+
+781
+00:41:57,396 --> 00:42:00,176
+Dollar zero in braces just
+returns the argument it gets.
+
+
+782
+00:42:01,316 --> 00:42:03,496
+And then we reassign
+factorial to memoize.
+
+
+783
+00:42:04,016 --> 00:42:09,746
+Okay this works, but
+it's got a few downsides.
+
+
+784
+00:42:09,746 --> 00:42:12,296
+First of all, it's ugly
+so Crusty's not going
+
+
+785
+00:42:12,296 --> 00:42:13,896
+to be happy with us, right.
+
+
+786
+00:42:14,366 --> 00:42:16,286
+Second of all, we had to write
+
+
+787
+00:42:16,286 --> 00:42:19,396
+out the explicit type
+annotation, that Int arrow Int.
+
+
+788
+00:42:20,176 --> 00:42:22,266
+And that used to
+be deduced for us.
+
+
+789
+00:42:22,716 --> 00:42:27,246
+But most importantly of all,
+it makes factorial mutable,
+
+
+790
+00:42:27,536 --> 00:42:28,566
+which we didn't intend.
+
+
+791
+00:42:29,456 --> 00:42:32,606
+And keeping things immutable
+as often as possible is a,
+
+
+792
+00:42:32,996 --> 00:42:36,596
+you know, is a great path toward
+correctness and easy to reason
+
+
+793
+00:42:36,596 --> 00:42:40,006
+about programs and all kinds of
+things, including thread safety.
+
+
+794
+00:42:41,426 --> 00:42:43,746
+So fortunately, there's
+a better way.
+
+
+795
+00:42:45,836 --> 00:42:46,896
+Ready for take two?
+
+
+796
+00:42:47,526 --> 00:42:49,316
+I'm going to warn you in advance
+
+
+797
+00:42:49,636 --> 00:42:52,626
+that this is a little
+bit mind blowing, okay?
+
+
+798
+00:42:52,626 --> 00:42:55,166
+If your mind's not
+already blown.
+
+
+799
+00:42:56,216 --> 00:43:00,736
+So let's just have
+memoize pass factorial
+
+
+800
+00:43:01,186 --> 00:43:03,446
+as an argument to its own body.
+
+
+801
+00:43:04,706 --> 00:43:11,796
+Right? Okay but stick with
+me you'll get it, okay.
+
+
+802
+00:43:12,396 --> 00:43:16,716
+So if we can pass factorial in
+it as an argument to this body,
+
+
+803
+00:43:17,206 --> 00:43:18,956
+then that factorial
+on the right,
+
+
+804
+00:43:18,956 --> 00:43:23,216
+well that refers just back
+to the function parameter.
+
+
+805
+00:43:23,216 --> 00:43:26,996
+It's just like referring to X.
+
+
+806
+00:43:27,236 --> 00:43:31,956
+See now our closure has two
+parameters, a function and X.
+
+
+807
+00:43:33,056 --> 00:43:37,976
+All right so what do we need
+to do to make this happen?
+
+
+808
+00:43:38,166 --> 00:43:42,616
+Well first we need an additional
+parameter to body right.
+
+
+809
+00:43:42,616 --> 00:43:44,746
+You can see body is
+taking now a new parameter.
+
+
+810
+00:43:45,856 --> 00:43:47,476
+And that parameter
+has the same type
+
+
+811
+00:43:47,476 --> 00:43:49,076
+as we're returning for memoize.
+
+
+812
+00:43:49,916 --> 00:43:53,616
+Whoa lots of arrow.
+
+
+813
+00:43:53,616 --> 00:43:55,506
+Everybody okay?
+
+
+814
+00:43:56,056 --> 00:43:57,546
+Okay. I'm sorry.
+
+
+815
+00:43:58,236 --> 00:44:01,286
+Next -- it will get easy again.
+
+
+816
+00:44:02,266 --> 00:44:08,746
+Next, we do the two-phase
+initialization dance.
+
+
+817
+00:44:08,906 --> 00:44:12,266
+So here we can't really get
+
+
+818
+00:44:12,266 --> 00:44:14,626
+out of the two-phase
+initialization problem,
+
+
+819
+00:44:14,656 --> 00:44:17,296
+but at least we can hide
+it inside of memoize.
+
+
+820
+00:44:18,256 --> 00:44:20,646
+And two-phase initialization
+scenarios
+
+
+821
+00:44:20,646 --> 00:44:23,476
+like this one are
+a great application
+
+
+822
+00:44:23,626 --> 00:44:25,236
+for implicitly unwrapped
+optionals.
+
+
+823
+00:44:25,956 --> 00:44:28,886
+Because right, once you've
+initialized the thing,
+
+
+824
+00:44:28,986 --> 00:44:30,586
+after that the thing
+can never be nil.
+
+
+825
+00:44:30,586 --> 00:44:32,596
+So there's no point
+in going through all
+
+
+826
+00:44:32,596 --> 00:44:34,896
+that syntactic baggage
+of unwrapping it.
+
+
+827
+00:44:35,426 --> 00:44:39,486
+And in this case, the implicitly
+unwrapped optional unwraps
+
+
+828
+00:44:39,486 --> 00:44:41,596
+when we return it as
+a non-optional, right.
+
+
+829
+00:44:42,766 --> 00:44:44,996
+And because it dies at
+the end of this scope,
+
+
+830
+00:44:45,606 --> 00:44:48,956
+well any scary possibilities of
+it being nil die along with it.
+
+
+831
+00:44:49,876 --> 00:44:54,326
+So this is actually
+pretty elegant.
+
+
+832
+00:44:54,406 --> 00:44:58,016
+Now all that remains is
+to pass result to the body
+
+
+833
+00:44:58,376 --> 00:45:01,366
+when it's invoked and
+there you have it.
+
+
+834
+00:45:02,996 --> 00:45:06,696
+A reusable tool that
+elegantly memoizes even
+
+
+835
+00:45:06,696 --> 00:45:07,516
+recursive functions.
+
+
+836
+00:45:08,516 --> 00:45:14,876
+[ Applause ]
+
+
+837
+00:45:15,376 --> 00:45:17,796
+Now the point of course is not
+that you're going to go out
+
+
+838
+00:45:17,796 --> 00:45:19,226
+and memoize all your functions,
+
+
+839
+00:45:19,676 --> 00:45:21,496
+but that you can do
+stuff like this in Swift.
+
+
+840
+00:45:22,076 --> 00:45:24,866
+You can write your
+own modifying,
+
+
+841
+00:45:25,046 --> 00:45:27,226
+crazy language extension-type
+functions like this.
+
+
+842
+00:45:28,126 --> 00:45:28,896
+And it's pretty cool.
+
+
+843
+00:45:30,056 --> 00:45:34,336
+So being able to do this
+relied on the synergy
+
+
+844
+00:45:34,336 --> 00:45:36,466
+of three powerful features.
+
+
+845
+00:45:37,376 --> 00:45:40,786
+First, type deduction
+for concision,
+
+
+846
+00:45:40,936 --> 00:45:43,726
+so we would have compact
+and readable code.
+
+
+847
+00:45:44,306 --> 00:45:47,906
+Next, trailing closure syntax,
+
+
+848
+00:45:48,776 --> 00:45:52,276
+which evokes control flow
+while supporting functional
+
+
+849
+00:45:52,326 --> 00:45:53,706
+programming idioms.
+
+
+850
+00:45:54,446 --> 00:45:58,186
+And lastly, truly
+generic functions
+
+
+851
+00:45:58,656 --> 00:46:03,266
+that are flexible,
+safe, and fast.
+
+
+852
+00:46:04,656 --> 00:46:06,756
+Okay. Now I want to
+bring it back down
+
+
+853
+00:46:06,836 --> 00:46:09,456
+and talk a little bit
+about generic types.
+
+
+854
+00:46:10,916 --> 00:46:13,936
+So you've already seen a bunch
+of generic types yourself.
+
+
+855
+00:46:14,516 --> 00:46:17,436
+Arrays in Swift are
+just generic structs
+
+
+856
+00:46:17,746 --> 00:46:19,096
+and so are our dictionaries.
+
+
+857
+00:46:19,826 --> 00:46:21,736
+And optionals are
+just generic enums.
+
+
+858
+00:46:22,136 --> 00:46:24,536
+And if you've watched
+the other presentations,
+
+
+859
+00:46:24,536 --> 00:46:25,326
+I know that was covered.
+
+
+860
+00:46:26,496 --> 00:46:28,216
+You can also make
+generic classes in Swift.
+
+
+861
+00:46:28,706 --> 00:46:31,066
+Let's make a generic struct.
+
+
+862
+00:46:32,716 --> 00:46:35,386
+So we'll start with a
+simple concrete struct,
+
+
+863
+00:46:35,826 --> 00:46:37,706
+concrete stack of strings.
+
+
+864
+00:46:38,916 --> 00:46:40,286
+It's got push and pop methods
+
+
+865
+00:46:40,286 --> 00:46:42,496
+and it's just implemented
+in terms of an array.
+
+
+866
+00:46:43,796 --> 00:46:45,466
+Now let's make this into
+a stack of any type.
+
+
+867
+00:46:46,196 --> 00:46:50,226
+We just do what we did
+with our generic functions.
+
+
+868
+00:46:50,296 --> 00:46:51,936
+When we made a concrete
+function generic,
+
+
+869
+00:46:52,256 --> 00:46:53,966
+we took the concrete
+types and replaced them
+
+
+870
+00:46:53,966 --> 00:46:57,406
+with a type parameter,
+and there you have it.
+
+
+871
+00:46:58,076 --> 00:47:02,976
+Now I can make a stack
+of Ints or a stack
+
+
+872
+00:47:02,976 --> 00:47:04,806
+of NSWindows if I like.
+
+
+873
+00:47:05,616 --> 00:47:08,686
+So notice that unlike
+with generic functions,
+
+
+874
+00:47:09,016 --> 00:47:14,166
+when you use a generic type
+you actually supply the type
+
+
+875
+00:47:14,436 --> 00:47:16,286
+arguments explicitly
+most of the time.
+
+
+876
+00:47:17,116 --> 00:47:19,506
+With functions the type
+arguments are always deduced.
+
+
+877
+00:47:20,026 --> 00:47:25,326
+Now Crusty probably wants
+to be able to log our stack.
+
+
+878
+00:47:25,956 --> 00:47:29,466
+And he would probably write
+his logging function like this.
+
+
+879
+00:47:30,736 --> 00:47:32,946
+But unfortunately
+that's not going to work.
+
+
+880
+00:47:33,756 --> 00:47:36,556
+It's not going to work
+because the for Int syntax
+
+
+881
+00:47:36,556 --> 00:47:39,786
+as John mentioned is governed
+by this sequence protocol
+
+
+882
+00:47:39,786 --> 00:47:40,806
+and we haven't implemented it.
+
+
+883
+00:47:41,356 --> 00:47:42,846
+So let's take a look
+under the hood
+
+
+884
+00:47:43,236 --> 00:47:45,576
+at how Swift does
+for...in loops.
+
+
+885
+00:47:46,526 --> 00:47:48,486
+So when you write
+a loop like this,
+
+
+886
+00:47:49,376 --> 00:47:53,026
+Swift internally rewrites
+your code like this.
+
+
+887
+00:47:53,026 --> 00:47:55,696
+So what's happening here?
+
+
+888
+00:47:56,406 --> 00:47:59,336
+First it goes to your
+sequence and it calls generate,
+
+
+889
+00:47:59,636 --> 00:48:00,616
+to get a generator out.
+
+
+890
+00:48:01,066 --> 00:48:07,296
+Next, it repeatedly
+calls the next function
+
+
+891
+00:48:07,296 --> 00:48:09,846
+on your generator
+until it gets nil.
+
+
+892
+00:48:10,126 --> 00:48:11,876
+So next returns an optional.
+
+
+893
+00:48:12,326 --> 00:48:14,706
+And those optionals are
+filled in with values
+
+
+894
+00:48:14,706 --> 00:48:15,856
+until the sequence runs out.
+
+
+895
+00:48:16,476 --> 00:48:18,976
+Okay so what is this
+generator thing?
+
+
+896
+00:48:19,476 --> 00:48:20,426
+I'm sure you can guess.
+
+
+897
+00:48:21,276 --> 00:48:23,996
+It's a protocol, okay.
+
+
+898
+00:48:24,356 --> 00:48:25,756
+And the first thing you see
+
+
+899
+00:48:25,756 --> 00:48:28,316
+in this protocol
+is this type alias.
+
+
+900
+00:48:29,576 --> 00:48:31,906
+Now when you see a type
+alias in a protocol,
+
+
+901
+00:48:32,536 --> 00:48:35,076
+that's called an
+associated type requirement.
+
+
+902
+00:48:37,476 --> 00:48:39,136
+Okay, it can be satisfied just
+
+
+903
+00:48:39,136 --> 00:48:43,426
+by writing any nested type
+called element inside your
+
+
+904
+00:48:43,726 --> 00:48:46,276
+generator, but why
+do we do this?
+
+
+905
+00:48:46,496 --> 00:48:49,586
+Well it's usually a type
+that's involved in one
+
+
+906
+00:48:49,716 --> 00:48:51,626
+of the protocol's
+other requirements,
+
+
+907
+00:48:51,626 --> 00:48:52,906
+in this case, Next.
+
+
+908
+00:48:53,406 --> 00:48:55,656
+You have to express that,
+you know, here's a name
+
+
+909
+00:48:55,726 --> 00:48:59,816
+for a type that's going
+to come out of Next.
+
+
+910
+00:49:00,706 --> 00:49:03,126
+So let's build a
+generator for stack.
+
+
+911
+00:49:05,086 --> 00:49:05,856
+Here's the code.
+
+
+912
+00:49:07,376 --> 00:49:11,356
+So it's just another
+generic struct, right.
+
+
+913
+00:49:11,446 --> 00:49:12,686
+It conforms to generator.
+
+
+914
+00:49:13,286 --> 00:49:17,556
+And you can see that it
+implements all the necessary
+
+
+915
+00:49:17,556 --> 00:49:19,316
+parts of the blueprint here.
+
+
+916
+00:49:19,906 --> 00:49:24,366
+Now we've written a
+little bit more here
+
+
+917
+00:49:24,366 --> 00:49:25,506
+than we actually had to.
+
+
+918
+00:49:26,256 --> 00:49:31,236
+See when the compiler matches
+up that next requirement
+
+
+919
+00:49:31,676 --> 00:49:32,796
+with this Next function,
+
+
+920
+00:49:33,416 --> 00:49:38,046
+it can see that the
+element type has to be T.
+
+
+921
+00:49:38,376 --> 00:49:40,716
+So that associated
+type is deduced
+
+
+922
+00:49:40,716 --> 00:49:44,706
+and we can just leave it out.
+
+
+923
+00:49:44,986 --> 00:49:45,996
+That gets really convenient.
+
+
+924
+00:49:47,266 --> 00:49:48,996
+The next thing I
+need to point out is
+
+
+925
+00:49:48,996 --> 00:49:50,396
+that we've used this Slice type.
+
+
+926
+00:49:50,936 --> 00:49:54,716
+So Slice is a lot like array, in
+fact you make them from arrays
+
+
+927
+00:49:54,716 --> 00:49:57,296
+by slicing the array
+using this syntax.
+
+
+928
+00:49:57,716 --> 00:49:59,736
+So you pass a range to
+the subscript operator.
+
+
+929
+00:50:00,346 --> 00:50:02,826
+And Slice differs from array
+
+
+930
+00:50:02,826 --> 00:50:05,186
+in that you can efficiently
+drop things off the front
+
+
+931
+00:50:05,186 --> 00:50:07,466
+of the Slice in order one time.
+
+
+932
+00:50:08,046 --> 00:50:10,186
+So that's why we're using it
+because we want to go forward
+
+
+933
+00:50:10,186 --> 00:50:10,976
+through this sequence.
+
+
+934
+00:50:12,006 --> 00:50:14,246
+So, what do we do?
+
+
+935
+00:50:14,246 --> 00:50:16,006
+First we check to see
+if the Slice is empty,
+
+
+936
+00:50:16,306 --> 00:50:17,446
+if it is we return nil,
+
+
+937
+00:50:18,286 --> 00:50:20,086
+otherwise we get the
+first item off the Slice.
+
+
+938
+00:50:20,846 --> 00:50:25,236
+Replace the Slice with the rest
+of the elements and return.
+
+
+939
+00:50:26,686 --> 00:50:27,886
+And there's our complete
+generator.
+
+
+940
+00:50:28,446 --> 00:50:32,966
+But we're not done yet because
+we haven't implemented sequence.
+
+
+941
+00:50:33,766 --> 00:50:36,036
+Right, this is a
+two-protocol, protocol.
+
+
+942
+00:50:38,046 --> 00:50:40,866
+So sequence has a very similar
+structure to that of generator.
+
+
+943
+00:50:42,436 --> 00:50:44,006
+The most notable difference is
+
+
+944
+00:50:44,176 --> 00:50:47,186
+that its associated
+type is constrained here
+
+
+945
+00:50:47,186 --> 00:50:50,306
+to be a generator and
+that's how Swift knows
+
+
+946
+00:50:50,306 --> 00:50:53,946
+that it can call next on the
+thing that gets out of generate.
+
+
+947
+00:50:54,536 --> 00:50:59,626
+Okay, so let's implement
+sequence for our stack.
+
+
+948
+00:51:01,496 --> 00:51:02,346
+Here it is.
+
+
+949
+00:51:03,336 --> 00:51:06,936
+Notice first that I've done the
+entire implementation inside an
+
+
+950
+00:51:06,936 --> 00:51:09,606
+extension that's
+dedicated to that protocol.
+
+
+951
+00:51:09,606 --> 00:51:11,776
+And this is a really slick way
+
+
+952
+00:51:11,776 --> 00:51:14,766
+to partition your code
+especially if you have a lot
+
+
+953
+00:51:14,766 --> 00:51:15,966
+of protocol conformances.
+
+
+954
+00:51:16,386 --> 00:51:18,346
+And that's going to be
+pretty common in Swift.
+
+
+955
+00:51:18,796 --> 00:51:25,256
+In a lot of ways Swift is
+a protocol-based language.
+
+
+956
+00:51:25,256 --> 00:51:26,766
+Next, I want you to notice
+
+
+957
+00:51:26,766 --> 00:51:30,146
+that I haven't given the
+associated type explicitly,
+
+
+958
+00:51:30,146 --> 00:51:30,396
+right.
+
+
+959
+00:51:30,686 --> 00:51:34,036
+It gets deduced from the
+signature of this function,
+
+
+960
+00:51:34,916 --> 00:51:36,406
+which returns a stack generator,
+
+
+961
+00:51:36,406 --> 00:51:41,346
+which is the thing
+we just created.
+
+
+962
+00:51:41,426 --> 00:51:45,176
+Lastly, I want to point out
+there are some circumstances
+
+
+963
+00:51:45,176 --> 00:51:46,226
+where you don't even need
+
+
+964
+00:51:46,226 --> 00:51:48,796
+to write the type
+parameters on a generic type.
+
+
+965
+00:51:49,386 --> 00:51:51,716
+In this case, I'm
+returning stack generator
+
+
+966
+00:51:51,716 --> 00:51:54,526
+and I haven't written
+the T in angled brackets.
+
+
+967
+00:51:54,896 --> 00:51:56,516
+That's because the type context,
+
+
+968
+00:51:56,566 --> 00:51:59,456
+the fact that we're returning
+the stack generator of T,
+
+
+969
+00:51:59,826 --> 00:52:05,256
+allows the compiler to
+deduce what type that is.
+
+
+970
+00:52:05,466 --> 00:52:10,336
+Okay and now we can finally loop
+over the elements of our stack
+
+
+971
+00:52:10,766 --> 00:52:11,986
+and Crusty is happy again.
+
+
+972
+00:52:12,596 --> 00:52:18,086
+Okay, there is a lot
+more I could tell you
+
+
+973
+00:52:18,086 --> 00:52:19,156
+about generics and Swift.
+
+
+974
+00:52:19,536 --> 00:52:20,896
+And I know this was
+pretty intense.
+
+
+975
+00:52:21,396 --> 00:52:22,846
+So we're going to stop here.
+
+
+976
+00:52:23,026 --> 00:52:26,116
+I wish we had time to cover
+the collection protocols,
+
+
+977
+00:52:26,116 --> 00:52:28,986
+the index protocol,
+protocol refinement.
+
+
+978
+00:52:29,406 --> 00:52:32,606
+How to build lazy functional
+adapters like we have, like map,
+
+
+979
+00:52:32,756 --> 00:52:35,576
+filter, and reverse like we
+have in the standard library,
+
+
+980
+00:52:35,956 --> 00:52:38,906
+but you know, you can find
+all of that stuff if you dig
+
+
+981
+00:52:38,906 --> 00:52:40,316
+into the documentation.
+
+
+982
+00:52:41,086 --> 00:52:43,296
+If you remember only three
+things about this part
+
+
+983
+00:52:43,296 --> 00:52:45,816
+of the talk, let it be these.
+
+
+984
+00:52:46,656 --> 00:52:48,446
+First, protocols are
+what let you hook
+
+
+985
+00:52:48,446 --> 00:52:51,476
+into the basic core language
+features like for Int,
+
+
+986
+00:52:51,476 --> 00:52:52,436
+and string interpolation.
+
+
+987
+00:52:53,656 --> 00:52:58,436
+Second, generics offer a
+new dimension of speed,
+
+
+988
+00:52:58,656 --> 00:53:02,866
+expressivity, and safety for
+people coming Objective-C.
+
+
+989
+00:53:03,146 --> 00:53:05,616
+You can do really
+totally new things.
+
+
+990
+00:53:06,686 --> 00:53:08,176
+And lastly, Swift is fun.
+
+
+991
+00:53:08,726 --> 00:53:12,266
+I encourage you to dig into
+these capabilities and find
+
+
+992
+00:53:12,266 --> 00:53:13,276
+out as much as you can.
+
+
+993
+00:53:13,536 --> 00:53:14,266
+Experiment.
+
+
+994
+00:53:14,476 --> 00:53:15,056
+Play around.
+
+
+995
+00:53:15,696 --> 00:53:19,756
+Okay. Now I'm going to bring
+up John to close the talk.
+
+
+996
+00:53:20,106 --> 00:53:22,926
+He's going to tell you a
+bit about the Swift model.
+
+
+997
+00:53:23,516 --> 00:53:31,026
+[ Applause ]
+
+
+998
+00:53:31,526 --> 00:53:33,826
+>> We talked a lot about what
+you can do in Swift and I want
+
+
+999
+00:53:33,826 --> 00:53:37,116
+to tie it up by talking about
+how Swift actually works
+
+
+1000
+00:53:37,296 --> 00:53:40,726
+in a couple of quick ways.
+
+
+1001
+00:53:40,936 --> 00:53:43,466
+Like C, Objective-C, and C++,
+
+
+1002
+00:53:43,946 --> 00:53:46,086
+Swift is a statically
+compiled language
+
+
+1003
+00:53:46,146 --> 00:53:47,976
+with relatively small
+runtime requirements.
+
+
+1004
+00:53:49,356 --> 00:53:51,286
+That's not a coincidence
+and it's not
+
+
+1005
+00:53:51,286 --> 00:53:53,136
+because we were forced
+into it in anyway.
+
+
+1006
+00:53:53,506 --> 00:53:56,316
+We actually believe very,
+very strongly in this model
+
+
+1007
+00:53:56,316 --> 00:53:58,616
+of programming languages
+as a great model for you.
+
+
+1008
+00:53:59,406 --> 00:54:00,766
+It's really flexible.
+
+
+1009
+00:54:01,396 --> 00:54:02,566
+It's really predictable.
+
+
+1010
+00:54:02,846 --> 00:54:03,936
+And it's really efficient.
+
+
+1011
+00:54:04,456 --> 00:54:09,186
+It's flexible because it allows
+really simple interoperation.
+
+
+1012
+00:54:09,556 --> 00:54:12,306
+You don't have to write
+everything in Swift.
+
+
+1013
+00:54:13,176 --> 00:54:15,936
+Our runtime requirements
+are so small
+
+
+1014
+00:54:15,936 --> 00:54:20,206
+that we can just transparently
+interact with your existing C,
+
+
+1015
+00:54:20,466 --> 00:54:25,306
+Objective-C, or Assembly
+-- Ada, so on.
+
+
+1016
+00:54:26,626 --> 00:54:27,536
+Don't write your
+code Ada [laughter].
+
+
+1017
+00:54:30,106 --> 00:54:34,726
+And all of that makes it really
+straightforward to deploy Swift
+
+
+1018
+00:54:35,576 --> 00:54:36,896
+to versions of iOS and OS X
+
+
+1019
+00:54:37,006 --> 00:54:40,246
+that don't even know
+anything about the language.
+
+
+1020
+00:54:40,246 --> 00:54:42,206
+That were developed
+without Swift in mind.
+
+
+1021
+00:54:42,646 --> 00:54:45,986
+Swift is a really
+predictable model.
+
+
+1022
+00:54:45,986 --> 00:54:48,126
+Because it leaves
+you fully in charge
+
+
+1023
+00:54:48,126 --> 00:54:49,566
+of the code that's
+actually going to run
+
+
+1024
+00:54:49,566 --> 00:54:51,306
+on your users' devices.
+
+
+1025
+00:54:52,146 --> 00:54:55,056
+The compiler's going to weave
+a lot of complicated magic,
+
+
+1026
+00:54:55,056 --> 00:54:58,536
+making generics work, optimizing
+this and that and so on.
+
+
+1027
+00:54:58,536 --> 00:55:01,316
+But when all of that is
+done, when all of it settles,
+
+
+1028
+00:55:01,656 --> 00:55:05,606
+you see exactly what's left and
+you can feel confident that --
+
+
+1029
+00:55:05,706 --> 00:55:09,726
+that in how that's actually
+going to run on a device.
+
+
+1030
+00:55:10,736 --> 00:55:13,776
+There are no extra, just
+in time compilation steps
+
+
+1031
+00:55:13,776 --> 00:55:16,646
+where all the really interesting
+optimizations are implemented.
+
+
+1032
+00:55:17,116 --> 00:55:19,796
+There's no non-deterministic
+places
+
+
+1033
+00:55:20,096 --> 00:55:25,586
+where like a secondary thread is
+pausing your entire application
+
+
+1034
+00:55:25,586 --> 00:55:28,796
+to garbage-collect right in
+the middle of a user operation.
+
+
+1035
+00:55:29,706 --> 00:55:32,936
+You can understand your code
+exactly how it was compiled,
+
+
+1036
+00:55:33,136 --> 00:55:35,776
+and exactly the result
+and feel confident
+
+
+1037
+00:55:35,776 --> 00:55:38,856
+in exactly how it's
+going to run.
+
+
+1038
+00:55:39,226 --> 00:55:42,066
+And finally, it's
+really efficient.
+
+
+1039
+00:55:42,636 --> 00:55:44,746
+Swift generates native code.
+
+
+1040
+00:55:45,016 --> 00:55:47,526
+Native code that's
+ready to run as soon
+
+
+1041
+00:55:47,526 --> 00:55:48,726
+as you put in on a device.
+
+
+1042
+00:55:49,516 --> 00:55:51,276
+There are no recompilation
+
+
+1043
+00:55:51,276 --> 00:55:54,396
+or warm-up delays while
+your app launches.
+
+
+1044
+00:55:55,046 --> 00:55:58,726
+You're free to organize all of
+your high-level code in Swift
+
+
+1045
+00:55:59,206 --> 00:56:02,706
+into clean and easy to maintain
+abstractions using powerful
+
+
+1046
+00:56:02,706 --> 00:56:03,736
+things like generics.
+
+
+1047
+00:56:03,996 --> 00:56:05,646
+And because it's all
+statically compiled
+
+
+1048
+00:56:05,646 --> 00:56:09,676
+that abstraction disappears
+immediately during compilation
+
+
+1049
+00:56:09,926 --> 00:56:14,666
+not later when the jet actually
+kicks in and lowers it all
+
+
+1050
+00:56:14,666 --> 00:56:16,486
+down to nothing, hopefully.
+
+
+1051
+00:56:17,786 --> 00:56:19,876
+And the predictability
+of compilation means
+
+
+1052
+00:56:19,876 --> 00:56:21,586
+that you can really
+feel confident
+
+
+1053
+00:56:21,586 --> 00:56:24,306
+in exactly what is going to
+run after all this is done.
+
+
+1054
+00:56:24,706 --> 00:56:28,116
+So you can feel confident that
+you're really tight, efficient,
+
+
+1055
+00:56:28,396 --> 00:56:34,976
+low-level code will always
+do exactly what you expect.
+
+
+1056
+00:56:35,086 --> 00:56:36,166
+I want to talk a little bit
+
+
+1057
+00:56:36,166 --> 00:56:38,156
+about the Swift compiler
+architecture.
+
+
+1058
+00:56:39,116 --> 00:56:42,596
+The way that we accomplish
+this is very, very similar
+
+
+1059
+00:56:42,596 --> 00:56:45,736
+to how these [inaudible]
+C compilers are structured
+
+
+1060
+00:56:46,216 --> 00:56:48,536
+with one major modification.
+
+
+1061
+00:56:49,076 --> 00:56:53,476
+We add an extra step, an
+extra phase of compilation
+
+
+1062
+00:56:53,556 --> 00:56:55,986
+for high-level analysis
+and optimization.
+
+
+1063
+00:56:56,636 --> 00:56:59,136
+These are language-specific
+analyses.
+
+
+1064
+00:56:59,226 --> 00:57:02,606
+Things that we know specially
+about Swift and its library
+
+
+1065
+00:57:02,956 --> 00:57:05,686
+that allows us to do very
+high-level manipulations
+
+
+1066
+00:57:05,686 --> 00:57:07,776
+and produce really
+great code straight off.
+
+
+1067
+00:57:07,776 --> 00:57:11,356
+I want to talk about three
+of those in particular.
+
+
+1068
+00:57:11,956 --> 00:57:16,786
+The first one is I want to talk
+about abstraction penalties.
+
+
+1069
+00:57:17,746 --> 00:57:20,836
+Suppose that you're writing an
+application, and it's got --
+
+
+1070
+00:57:20,836 --> 00:57:23,626
+and it's talking to a
+whole bunch of sensors
+
+
+1071
+00:57:23,626 --> 00:57:25,646
+and a whole bunch of
+different subsystems and some
+
+
+1072
+00:57:25,696 --> 00:57:27,736
+of them are giving
+you values, you know,
+
+
+1073
+00:57:27,736 --> 00:57:30,576
+values back in one
+kind of unit and some
+
+
+1074
+00:57:30,576 --> 00:57:32,056
+of them are giving
+you values back
+
+
+1075
+00:57:32,056 --> 00:57:33,146
+in a different kind of unit.
+
+
+1076
+00:57:33,356 --> 00:57:35,766
+And it's really important to
+you that you're not app --
+
+
+1077
+00:57:36,066 --> 00:57:39,876
+not burn up when it re-enters
+the Martian atmosphere.
+
+
+1078
+00:57:42,506 --> 00:57:44,836
+You can use the type
+system in Swift to do this.
+
+
+1079
+00:57:45,316 --> 00:57:49,206
+Structs have zero added
+run time extraction costs,
+
+
+1080
+00:57:49,206 --> 00:57:53,796
+which we've designed Swift from
+ground-up to eliminate this kind
+
+
+1081
+00:57:53,796 --> 00:57:55,526
+of abstraction cost
+transparently.
+
+
+1082
+00:57:56,996 --> 00:58:00,796
+In fact, in Swift even basic
+fundamental library types
+
+
+1083
+00:58:00,796 --> 00:58:03,716
+like Int and Float are
+actually implemented as Swift
+
+
+1084
+00:58:03,926 --> 00:58:07,256
+as struct types that are
+wrapping even more fundamental
+
+
+1085
+00:58:07,256 --> 00:58:07,896
+LLVM types.
+
+
+1086
+00:58:07,896 --> 00:58:10,896
+So you can feel very,
+very confident
+
+
+1087
+00:58:10,896 --> 00:58:13,726
+that we've done an extraordinary
+amount of work to make sure
+
+
+1088
+00:58:13,726 --> 00:58:16,646
+that these things don't
+add any extra overhead.
+
+
+1089
+00:58:17,176 --> 00:58:22,466
+The second thing I want to talk
+about is generic specialization.
+
+
+1090
+00:58:23,306 --> 00:58:25,266
+Some languages implement
+generics
+
+
+1091
+00:58:25,306 --> 00:58:30,476
+by immediately expanding out
+your code whenever you use it
+
+
+1092
+00:58:30,476 --> 00:58:32,296
+with a different set
+of generic arguments.
+
+
+1093
+00:58:32,636 --> 00:58:34,776
+Now that generates
+very, very fast code
+
+
+1094
+00:58:34,846 --> 00:58:38,796
+for this particular
+expansion because it means
+
+
+1095
+00:58:39,056 --> 00:58:42,556
+that like the code generator
+never even sees the concept
+
+
+1096
+00:58:42,836 --> 00:58:43,936
+of a generic function.
+
+
+1097
+00:58:44,866 --> 00:58:49,146
+But unfortunately, there are
+a couple downsides to this.
+
+
+1098
+00:58:49,186 --> 00:58:52,396
+It's terrible for debug
+build times and it ends
+
+
+1099
+00:58:52,396 --> 00:58:55,526
+up generating a ton of code
+that the compiler and the linker
+
+
+1100
+00:58:55,526 --> 00:58:57,636
+and everything else need
+to conspire together
+
+
+1101
+00:58:57,636 --> 00:58:59,156
+to try to hide at run time.
+
+
+1102
+00:58:59,846 --> 00:59:02,986
+And it also steals a lot of
+flexibility from the compiler
+
+
+1103
+00:59:02,986 --> 00:59:04,686
+to actually unify these things.
+
+
+1104
+00:59:05,616 --> 00:59:08,236
+So in Swift, generic
+specialization is
+
+
+1105
+00:59:08,236 --> 00:59:09,406
+an optimization.
+
+
+1106
+00:59:09,446 --> 00:59:13,196
+It's something that we can do,
+but we also maintain the ability
+
+
+1107
+00:59:13,196 --> 00:59:16,446
+to run generic code
+as generic code.
+
+
+1108
+00:59:18,216 --> 00:59:21,106
+The last thing I want to talk
+about is de-virtualization.
+
+
+1109
+00:59:21,636 --> 00:59:23,816
+De-virtualization is
+an incredibly important
+
+
+1110
+00:59:23,816 --> 00:59:25,676
+optimization in Swift,
+because so much
+
+
+1111
+00:59:25,676 --> 00:59:27,216
+of your code is written
+around classes.
+
+
+1112
+00:59:27,476 --> 00:59:31,636
+It's very important
+for us to be able
+
+
+1113
+00:59:31,636 --> 00:59:34,386
+to take something very
+simple and very lightweight
+
+
+1114
+00:59:34,386 --> 00:59:38,646
+like a getter and turn that into
+direct manipulation of memory.
+
+
+1115
+00:59:39,786 --> 00:59:42,126
+There are a lot of ways that
+we can do de-virtualization
+
+
+1116
+00:59:42,126 --> 00:59:42,996
+in Swift.
+
+
+1117
+00:59:43,146 --> 00:59:45,736
+We can see where you're actually
+constructing the object.
+
+
+1118
+00:59:46,086 --> 00:59:48,096
+We can do hierarchy
+analysis to see
+
+
+1119
+00:59:48,096 --> 00:59:50,066
+that a class doesn't
+have any sub-classes.
+
+
+1120
+00:59:50,066 --> 00:59:54,476
+But you can also take control of
+this manually by marking methods
+
+
+1121
+00:59:54,476 --> 00:59:57,026
+and classes as final,
+in order to tell Swift
+
+
+1122
+00:59:57,026 --> 00:59:59,026
+that it doesn't have to
+worry about the possibility
+
+
+1123
+00:59:59,026 --> 01:00:00,366
+of it being overridden anywhere.
+
+
+1124
+01:00:00,906 --> 01:00:04,256
+There are a lot of other
+high-level optimizations
+
+
+1125
+01:00:04,256 --> 01:00:06,086
+that I really wish that I
+had the time to talk to,
+
+
+1126
+01:00:06,086 --> 01:00:07,976
+but I'm actually already
+two minutes over time.
+

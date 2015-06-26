@@ -1,0 +1,4633 @@
+1
+00:00:13,196 --> 00:00:13,986
+>> Hello.
+
+
+2
+00:00:15,516 --> 00:00:18,766
+[ Applause ]
+
+
+3
+00:00:19,266 --> 00:00:22,636
+Welcome to Session 610:
+"Building a Game with SceneKit."
+
+
+4
+00:00:24,256 --> 00:00:27,686
+SceneKit is an amazing
+technology that makes it easy
+
+
+5
+00:00:27,686 --> 00:00:31,196
+to write casual 3D games.
+
+
+6
+00:00:31,376 --> 00:00:34,796
+Because SceneKit is a high
+level API that integrates well
+
+
+7
+00:00:34,916 --> 00:00:37,936
+with other Cocoa frameworks,
+it's really easy to write games.
+
+
+8
+00:00:38,106 --> 00:00:39,926
+We built this demo for WWDC,
+
+
+9
+00:00:39,926 --> 00:00:43,266
+and I only required
+a few lines of code.
+
+
+10
+00:00:44,176 --> 00:00:47,516
+We believe that building
+a casual 3D game
+
+
+11
+00:00:47,636 --> 00:00:50,726
+with SceneKit is really easy,
+and anybody can do that.
+
+
+12
+00:00:50,966 --> 00:00:51,976
+It's really fantastic.
+
+
+13
+00:00:53,136 --> 00:00:55,746
+So, this is a hands-on session,
+
+
+14
+00:00:55,746 --> 00:00:57,226
+so hopefully you
+are already familiar
+
+
+15
+00:00:57,226 --> 00:00:58,646
+with the basics of SceneKit.
+
+
+16
+00:00:58,806 --> 00:01:01,766
+You should know what
+a scene graph is;
+
+
+17
+00:01:01,906 --> 00:01:06,006
+that nodes have attributes such
+as geometry, camera and lights;
+
+
+18
+00:01:06,426 --> 00:01:10,186
+and if not, we have great
+sessions about this,
+
+
+19
+00:01:10,186 --> 00:01:11,996
+one just before and
+one last year.
+
+
+20
+00:01:12,606 --> 00:01:15,086
+I encourage you to check
+these presentations
+
+
+21
+00:01:15,086 --> 00:01:19,796
+because they have 3D slides
+entirely made in SceneKit.
+
+
+22
+00:01:19,846 --> 00:01:22,086
+So, in this session, we
+will start really quick
+
+
+23
+00:01:22,296 --> 00:01:26,596
+by showing you how to start
+in Xcode, how to add 3D assets
+
+
+24
+00:01:26,596 --> 00:01:29,056
+to your project, and have
+your first scene rendered
+
+
+25
+00:01:29,056 --> 00:01:29,646
+to the screen.
+
+
+26
+00:01:30,586 --> 00:01:32,716
+Then we will show you
+our Bananas demos.
+
+
+27
+00:01:33,096 --> 00:01:35,756
+It's a great demo because
+it shows many features
+
+
+28
+00:01:35,756 --> 00:01:37,846
+of the SceneKit framework,
+and we will use
+
+
+29
+00:01:37,846 --> 00:01:39,646
+that demo throughout
+the rest of the session.
+
+
+30
+00:01:40,046 --> 00:01:42,046
+We will explain to
+you how we made it
+
+
+31
+00:01:42,046 --> 00:01:43,656
+so then you can create
+your own games.
+
+
+32
+00:01:43,846 --> 00:01:46,656
+And finally, Thomas will
+join me onstage to talk
+
+
+33
+00:01:46,656 --> 00:01:49,496
+about performance and creating
+custom tools for SceneKit.
+
+
+34
+00:01:50,966 --> 00:01:52,536
+Okay, let's get started.
+
+
+35
+00:01:52,536 --> 00:01:58,686
+The first thing you want to have
+when building a 3D app is a view
+
+
+36
+00:01:58,686 --> 00:02:01,786
+to render your scene, and
+that's just easy as you see.
+
+
+37
+00:02:02,476 --> 00:02:05,596
+While integrating between
+the interface builder,
+
+
+38
+00:02:05,906 --> 00:02:09,246
+so all what you have to
+do is drag an SCNView
+
+
+39
+00:02:09,246 --> 00:02:11,986
+from the object library and
+drop it onto your [inaudible].
+
+
+40
+00:02:13,996 --> 00:02:17,396
+Then you open the inspector,
+
+
+41
+00:02:17,396 --> 00:02:19,286
+where you can set the
+visual properties,
+
+
+42
+00:02:19,506 --> 00:02:22,456
+and you simply specify
+the name of the 3D scene.
+
+
+43
+00:02:22,666 --> 00:02:26,716
+You click Build and Run,
+and boom: Without having
+
+
+44
+00:02:27,266 --> 00:02:28,826
+to write any single
+line of code,
+
+
+45
+00:02:28,906 --> 00:02:30,606
+you have your first scene
+rendered on the screen.
+
+
+46
+00:02:30,606 --> 00:02:34,976
+Now, if you are starting a new
+project, you might want to start
+
+
+47
+00:02:35,186 --> 00:02:36,506
+with a new game template.
+
+
+48
+00:02:37,086 --> 00:02:40,246
+It's really convenient because
+it creates a universal app
+
+
+49
+00:02:40,516 --> 00:02:44,946
+that runs on iPhone and iPad,
+and it has a full-screen 3D view
+
+
+50
+00:02:45,046 --> 00:02:48,316
+that displays a scene
+you can interact with.
+
+
+51
+00:02:51,356 --> 00:02:52,946
+The way you add 3D assets
+
+
+52
+00:02:53,106 --> 00:02:55,576
+to your game is just
+SceneKit asset catalogs.
+
+
+53
+00:02:56,906 --> 00:03:00,206
+SceneKit asset catalogs
+are new feature in Xcode 6,
+
+
+54
+00:03:00,256 --> 00:03:03,986
+and they allow you to organize
+and optimize your 3D assets.
+
+
+55
+00:03:05,136 --> 00:03:09,386
+The structure of SceneKit
+asset catalogs is preserved
+
+
+56
+00:03:09,466 --> 00:03:11,286
+when they are copied
+into your target.
+
+
+57
+00:03:11,886 --> 00:03:15,686
+Also, they automatically track
+files that are added to them
+
+
+58
+00:03:15,686 --> 00:03:17,136
+or removed from them on disc.
+
+
+59
+00:03:21,056 --> 00:03:23,366
+They are really convenient
+
+
+60
+00:03:23,366 --> 00:03:25,646
+because they can optimize
+your 3D assets for you.
+
+
+61
+00:03:25,936 --> 00:03:30,326
+For instance, they help
+with up axis conversion.
+
+
+62
+00:03:31,196 --> 00:03:33,246
+SceneKit follows the
+up axis conversion,
+
+
+63
+00:03:33,396 --> 00:03:36,996
+which means that the positive y
+axis is the one that looks up.
+
+
+64
+00:03:38,336 --> 00:03:39,896
+This is a convention
+that is followed
+
+
+65
+00:03:39,896 --> 00:03:42,186
+by many other applications
+and frameworks,
+
+
+66
+00:03:42,606 --> 00:03:44,696
+but some exporters
+do things differently
+
+
+67
+00:03:44,746 --> 00:03:47,936
+and use a z up axis convention.
+
+
+68
+00:03:48,486 --> 00:03:49,796
+With SceneKit asset catalogs,
+
+
+69
+00:03:49,916 --> 00:03:51,216
+you don't have to
+think about that.
+
+
+70
+00:03:51,716 --> 00:03:52,466
+We automatically
+
+
+71
+00:03:52,466 --> 00:03:56,396
+and transparently convert all
+the animations and geometries
+
+
+72
+00:03:56,396 --> 00:03:59,056
+in your scene so that they
+follow the up axis convention.
+
+
+73
+00:04:00,396 --> 00:04:01,616
+We are also able
+
+
+74
+00:04:01,956 --> 00:04:05,596
+to automatically interleave
+your geometries at build time.
+
+
+75
+00:04:06,396 --> 00:04:10,496
+This means that your
+vertices' position, normal,
+
+
+76
+00:04:10,496 --> 00:04:13,546
+and texture coordinates are
+stored in a single buffer
+
+
+77
+00:04:13,546 --> 00:04:15,156
+that makes the GPU really happy
+
+
+78
+00:04:15,156 --> 00:04:18,266
+and faster rendering
+your geometries.
+
+
+79
+00:04:18,736 --> 00:04:22,346
+And finally, on iOS we
+support PVRTC textures.
+
+
+80
+00:04:22,606 --> 00:04:24,866
+If you have two versions
+of the same texture,
+
+
+81
+00:04:25,116 --> 00:04:27,356
+one with the PVRTC
+file extension -
+
+
+82
+00:04:27,356 --> 00:04:30,406
+which is a compressed file
+format that is optimized
+
+
+83
+00:04:30,406 --> 00:04:33,776
+for iOS - and another version
+- for instance, a PNG -
+
+
+84
+00:04:33,776 --> 00:04:38,196
+this code will automatically
+select the PVRTC texture
+
+
+85
+00:04:38,196 --> 00:04:40,696
+when you target iOS
+and the regular version
+
+
+86
+00:04:40,746 --> 00:04:41,976
+when you target OS X.
+
+
+87
+00:04:45,346 --> 00:04:48,476
+So, this is how it
+works: Your artist works
+
+
+88
+00:04:48,866 --> 00:04:50,546
+in their favorite
+authoring tool;
+
+
+89
+00:04:51,196 --> 00:04:54,106
+they export all the animation
+and models you want to use
+
+
+90
+00:04:54,106 --> 00:04:56,096
+in your app in a
+COLLADA document.
+
+
+91
+00:04:56,456 --> 00:04:59,736
+Then you take over and
+you import this document
+
+
+92
+00:05:00,116 --> 00:05:01,326
+in SceneKit asset catalogs.
+
+
+93
+00:05:01,706 --> 00:05:03,706
+But there is much more
+you can do with Xcode.
+
+
+94
+00:05:05,576 --> 00:05:08,116
+To help you have a better
+understanding of your scene,
+
+
+95
+00:05:08,216 --> 00:05:10,076
+we built a scene
+[inaudible] into Xcode.
+
+
+96
+00:05:11,406 --> 00:05:13,626
+This tool is really great,
+not only to allow you
+
+
+97
+00:05:13,626 --> 00:05:17,446
+to have a better understanding
+of what is inside your scene,
+
+
+98
+00:05:17,546 --> 00:05:20,496
+but it's also useful to
+tweak and refine the scene.
+
+
+99
+00:05:21,856 --> 00:05:25,846
+For instance, with direct
+manipulation you can place the
+
+
+100
+00:05:25,846 --> 00:05:29,106
+nodes where you want, you can
+rotate them and scale them,
+
+
+101
+00:05:29,446 --> 00:05:33,406
+and that's much less code
+to write in your app.
+
+
+102
+00:05:33,646 --> 00:05:36,156
+You can also see how
+nodes are arranged.
+
+
+103
+00:05:36,616 --> 00:05:38,996
+You can re-bound them.
+
+
+104
+00:05:39,926 --> 00:05:40,856
+You can merge them.
+
+
+105
+00:05:40,976 --> 00:05:46,356
+You can create and delete nodes
+as well as node attributes.
+
+
+106
+00:05:46,606 --> 00:05:49,836
+You can immediately see which
+node has a camera, light,
+
+
+107
+00:05:49,836 --> 00:05:54,406
+or geometry attached to
+it, and it also allows you
+
+
+108
+00:05:54,406 --> 00:05:56,866
+to have a quick look at all
+the entities in your scene.
+
+
+109
+00:05:57,306 --> 00:06:00,526
+Remember that in SceneKit
+node attributes are shared
+
+
+110
+00:06:00,526 --> 00:06:02,296
+by default, and this
+is a great way
+
+
+111
+00:06:02,296 --> 00:06:04,986
+to know how many unique
+objects you have in your scene,
+
+
+112
+00:06:05,326 --> 00:06:09,266
+and it helps for performance.
+
+
+113
+00:06:09,266 --> 00:06:11,716
+Of course, we have
+inspectors in this editor.
+
+
+114
+00:06:12,386 --> 00:06:15,416
+You can edit node properties,
+and as you make changes,
+
+
+115
+00:06:15,516 --> 00:06:18,146
+they are automatically
+reflected in the viewports.
+
+
+116
+00:06:19,106 --> 00:06:22,306
+This works for node
+attributes as well.
+
+
+117
+00:06:22,686 --> 00:06:26,966
+You can edit all the camera,
+lights and geometry properties
+
+
+118
+00:06:26,966 --> 00:06:28,556
+that are exposed
+in the raw APIs.
+
+
+119
+00:06:28,556 --> 00:06:31,646
+And finally, it works
+on materials.
+
+
+120
+00:06:32,216 --> 00:06:33,016
+This is really cool.
+
+
+121
+00:06:33,556 --> 00:06:36,946
+It allows you to finely tweak
+the rendering of your objects.
+
+
+122
+00:06:37,056 --> 00:06:39,986
+You can control exactly how
+they will render in your scene,
+
+
+123
+00:06:40,516 --> 00:06:43,656
+because what you see
+here in the editor,
+
+
+124
+00:06:43,816 --> 00:06:46,446
+that is exactly how SceneKit
+will render the scene
+
+
+125
+00:06:46,446 --> 00:06:47,216
+in your app.
+
+
+126
+00:06:47,326 --> 00:06:48,486
+It's a huge timesaver.
+
+
+127
+00:06:49,816 --> 00:06:51,666
+In addition to the scene editor,
+
+
+128
+00:06:51,666 --> 00:06:53,386
+we have a particle
+system editor.
+
+
+129
+00:06:53,896 --> 00:06:57,456
+It's really useful to edit
+particle system properties,
+
+
+130
+00:06:57,716 --> 00:07:01,026
+and it becomes very convenient
+when you have to do things
+
+
+131
+00:07:01,026 --> 00:07:03,076
+that would be very
+tiresome in code.
+
+
+132
+00:07:03,286 --> 00:07:05,906
+For instance, finding
+the right animation curve
+
+
+133
+00:07:05,906 --> 00:07:10,776
+to control the size of your
+particles can take a very long
+
+
+134
+00:07:10,836 --> 00:07:11,456
+time in code.
+
+
+135
+00:07:11,806 --> 00:07:13,836
+With the editor and
+immediate feedback,
+
+
+136
+00:07:13,836 --> 00:07:14,886
+it's really quick and easy.
+
+
+137
+00:07:18,196 --> 00:07:20,976
+So, we've already
+covered a lot here.
+
+
+138
+00:07:21,736 --> 00:07:23,606
+We know how to work
+with an artist.
+
+
+139
+00:07:23,606 --> 00:07:25,546
+You know how to tweak
+scenes in the editor.
+
+
+140
+00:07:25,976 --> 00:07:29,386
+You can automatically optimize
+them using the asset catalogs,
+
+
+141
+00:07:29,386 --> 00:07:31,846
+and you can render them on
+the screen without having
+
+
+142
+00:07:31,846 --> 00:07:32,966
+to write any line of code.
+
+
+143
+00:07:33,796 --> 00:07:35,896
+And now, to show you
+how truly simple it is
+
+
+144
+00:07:35,946 --> 00:07:38,516
+to write a casual 3D
+game, we built a demo.
+
+
+145
+00:07:39,996 --> 00:07:42,856
+So, first it's a sample code,
+so might you have any questions
+
+
+146
+00:07:42,856 --> 00:07:45,736
+about what you are going to see
+on the screen, you will be able
+
+
+147
+00:07:45,736 --> 00:07:48,086
+to dive into the code
+and see how it was done.
+
+
+148
+00:07:48,566 --> 00:07:50,646
+And it's a great sample code
+
+
+149
+00:07:50,646 --> 00:07:54,226
+because it illustrates many
+features of SceneKit: animation,
+
+
+150
+00:07:54,336 --> 00:07:57,386
+lighting and shadows,
+physics, particles
+
+
+151
+00:07:57,386 --> 00:07:58,286
+and advanced rendering.
+
+
+152
+00:07:59,186 --> 00:08:03,046
+So, let's have a
+look at the demo.
+
+
+153
+00:08:03,046 --> 00:08:05,246
+So, this is our game
+named "Bananas."
+
+
+154
+00:08:06,116 --> 00:08:09,566
+As you can see, we are in the
+jungle controlling an explorer.
+
+
+155
+00:08:09,926 --> 00:08:12,566
+We use gestures to make the
+character walk along the path.
+
+
+156
+00:08:12,646 --> 00:08:16,476
+On the track, we can collect
+bananas, but there are enemies.
+
+
+157
+00:08:16,736 --> 00:08:20,436
+We have some animated monkeys
+that throw coconuts at us.
+
+
+158
+00:08:20,546 --> 00:08:22,606
+So [inaudible], you
+can jump and run.
+
+
+159
+00:08:23,456 --> 00:08:26,836
+Look how the scene
+looks gorgeous.
+
+
+160
+00:08:27,166 --> 00:08:29,456
+We have perfect [inaudible]
+real-time lighting
+
+
+161
+00:08:29,456 --> 00:08:31,136
+as well as real-time shadows.
+
+
+162
+00:08:31,436 --> 00:08:36,096
+Look how the character is lit
+when it approaches the torches.
+
+
+163
+00:08:36,176 --> 00:08:38,905
+As we advance in the game,
+we encounter obstacles.
+
+
+164
+00:08:39,476 --> 00:08:43,616
+Here is a lava flow, and falling
+into it is not a good idea.
+
+
+165
+00:08:45,456 --> 00:08:46,926
+So here we have to start again,
+
+
+166
+00:08:47,476 --> 00:08:49,836
+and you will notice how
+the explorer produce dust
+
+
+167
+00:08:50,076 --> 00:08:50,676
+as she runs.
+
+
+168
+00:08:50,986 --> 00:08:55,056
+If you look at the background,
+you will notice a volcano.
+
+
+169
+00:08:55,116 --> 00:08:57,086
+The volcano is erupting,
+
+
+170
+00:08:57,086 --> 00:08:59,166
+and this is where
+the lava comes from.
+
+
+171
+00:08:59,166 --> 00:09:02,576
+In fact, everything that's
+in this scene is animated:
+
+
+172
+00:09:02,976 --> 00:09:05,396
+the character and the
+enemies, the lava,
+
+
+173
+00:09:05,396 --> 00:09:07,246
+the torches, the vines as well.
+
+
+174
+00:09:09,376 --> 00:09:11,826
+And as you can see,
+everything is 3D in this scene.
+
+
+175
+00:09:12,676 --> 00:09:15,546
+When the character moves, the
+camera follows in 3D space
+
+
+176
+00:09:15,856 --> 00:09:17,136
+and offers new points of view.
+
+
+177
+00:09:21,086 --> 00:09:23,846
+We also have a soundtrack
+and sound effects.
+
+
+178
+00:09:23,846 --> 00:09:27,766
+There is also a basic UI that
+show you how much time is left
+
+
+179
+00:09:27,916 --> 00:09:29,216
+and your current score.
+
+
+180
+00:09:30,666 --> 00:09:33,416
+This one's really supposed to
+be on an iPad, but it works
+
+
+181
+00:09:33,416 --> 00:09:38,906
+on iPhone too at 60
+frames per second.
+
+
+182
+00:09:39,026 --> 00:09:40,356
+Okay. Thanks, Thomas.
+
+
+183
+00:09:40,576 --> 00:09:40,926
+Thank you.
+
+
+184
+00:09:42,516 --> 00:09:48,716
+[ Applause ]
+
+
+185
+00:09:49,216 --> 00:09:50,636
+So, this was "Bananas."
+
+
+186
+00:09:51,856 --> 00:09:55,646
+It's an All Objective-C project,
+and it's a small project:
+
+
+187
+00:09:56,286 --> 00:09:59,446
+only 2,700 lines of code
+
+
+188
+00:09:59,646 --> 00:10:03,656
+for everything you saw
+onscreen today for iOS and OS X.
+
+
+189
+00:10:05,476 --> 00:10:10,256
+And so, you don't have
+to have a big team
+
+
+190
+00:10:10,256 --> 00:10:12,606
+to write a 3D casual
+game with SceneKit.
+
+
+191
+00:10:12,856 --> 00:10:15,476
+Bananas was written by
+a team of one designer
+
+
+192
+00:10:15,476 --> 00:10:17,266
+and only one engineer.
+
+
+193
+00:10:17,686 --> 00:10:19,876
+It's really easy
+to make such games.
+
+
+194
+00:10:20,046 --> 00:10:22,306
+So first, a quick look
+behind the scenes.
+
+
+195
+00:10:23,426 --> 00:10:24,836
+Here is our world.
+
+
+196
+00:10:24,836 --> 00:10:27,976
+It's a simple track on
+which the character walks.
+
+
+197
+00:10:29,546 --> 00:10:33,276
+Look how palm trees and rocks do
+not always stand on the ground.
+
+
+198
+00:10:33,876 --> 00:10:36,636
+This is because your scene
+should only be made of elements
+
+
+199
+00:10:36,636 --> 00:10:40,626
+that will, at some point,
+be visible from the camera.
+
+
+200
+00:10:41,126 --> 00:10:42,076
+Here is a side view.
+
+
+201
+00:10:42,396 --> 00:10:45,166
+As you can see, vines
+aren't attached to anything.
+
+
+202
+00:10:45,166 --> 00:10:48,076
+They float in the air, and
+the world suddenly ends.
+
+
+203
+00:10:48,796 --> 00:10:52,336
+There's no need to have extra
+geometry pushed to the GPU
+
+
+204
+00:10:52,336 --> 00:10:54,026
+if it's never rendered
+onto the screen.
+
+
+205
+00:10:56,336 --> 00:10:57,966
+We have low [inaudible]
+for the mountains
+
+
+206
+00:10:57,966 --> 00:11:00,676
+and the volcano as
+the background.
+
+
+207
+00:11:01,266 --> 00:11:04,566
+It's absolutely fine to cheat
+when you write 3D games.
+
+
+208
+00:11:04,836 --> 00:11:08,366
+Here, the scene is sparse,
+and you have to find tricks
+
+
+209
+00:11:08,366 --> 00:11:11,446
+to make the scene gorgeous
+but really cheap to render.
+
+
+210
+00:11:11,786 --> 00:11:18,276
+So to give you some idea
+of reasonable numbers,
+
+
+211
+00:11:18,556 --> 00:11:20,046
+here are statistics
+from the game.
+
+
+212
+00:11:21,016 --> 00:11:24,796
+We have 10 lights in the world,
+but each object is only affected
+
+
+213
+00:11:24,796 --> 00:11:25,916
+by three lights at most.
+
+
+214
+00:11:26,586 --> 00:11:28,726
+We have 200k polygons
+in the world,
+
+
+215
+00:11:28,726 --> 00:11:31,546
+but at each frame,
+only 80 are rendered.
+
+
+216
+00:11:31,546 --> 00:11:36,126
+And to finish, we have at
+most 50 draw calls per frame,
+
+
+217
+00:11:36,126 --> 00:11:37,306
+and that will make more sense
+
+
+218
+00:11:37,306 --> 00:11:39,236
+when Thomas talks
+about performance.
+
+
+219
+00:11:42,166 --> 00:11:46,026
+So of course we use SceneKit
+assets catalogs in "Bananas."
+
+
+220
+00:11:46,456 --> 00:11:50,946
+We have about 25 3D documents
+that store animation, models,
+
+
+221
+00:11:51,036 --> 00:11:52,536
+textures and particle systems.
+
+
+222
+00:11:53,506 --> 00:11:57,736
+And how do you use that many
+different documents you want
+
+
+223
+00:11:57,736 --> 00:11:59,366
+to consider in your game?
+
+
+224
+00:12:00,126 --> 00:12:02,786
+Well, let's take this example.
+
+
+225
+00:12:02,936 --> 00:12:06,286
+Here we have a document
+which stores the jungle,
+
+
+226
+00:12:06,286 --> 00:12:08,006
+and then those are documents
+
+
+227
+00:12:08,476 --> 00:12:11,556
+which stores our animated
+monkey, and we want to view
+
+
+228
+00:12:11,556 --> 00:12:13,046
+that monkey in our world.
+
+
+229
+00:12:13,436 --> 00:12:15,516
+The first step is really easy.
+
+
+230
+00:12:15,776 --> 00:12:18,096
+All you have to do is
+to load the two scenes.
+
+
+231
+00:12:18,596 --> 00:12:21,596
+We have to - where you
+have to be careful is
+
+
+232
+00:12:21,596 --> 00:12:23,866
+that you cannot directly
+add the root node
+
+
+233
+00:12:23,866 --> 00:12:25,676
+of one scene to another scene.
+
+
+234
+00:12:26,436 --> 00:12:29,666
+This is because root nodes
+are not meant to be rebounded.
+
+
+235
+00:12:30,426 --> 00:12:31,726
+What you have to do instead is
+
+
+236
+00:12:32,566 --> 00:12:35,856
+to retrieve the node you're
+interested in by using its name
+
+
+237
+00:12:36,406 --> 00:12:38,516
+and then add it to
+the original scene.
+
+
+238
+00:12:38,796 --> 00:12:45,056
+And of course, you can add
+multiple copies of that node.
+
+
+239
+00:12:45,056 --> 00:12:48,516
+So SceneKit is a high level
+API that [inaudible] well
+
+
+240
+00:12:48,516 --> 00:12:51,426
+with other APIs on
+the web platform,
+
+
+241
+00:12:51,816 --> 00:12:54,946
+so we support game controllers
+to control the character.
+
+
+242
+00:12:54,946 --> 00:12:57,736
+But we also leverage
+gesture recognizers
+
+
+243
+00:12:57,736 --> 00:13:01,516
+and implemented our own
+"D-pad" gesture recognizer
+
+
+244
+00:13:01,516 --> 00:13:04,176
+to make the character jump
+and go left and right.
+
+
+245
+00:13:04,766 --> 00:13:08,516
+And then on OS X, we also
+support game controllers
+
+
+246
+00:13:08,636 --> 00:13:10,736
+and simply listen
+to keyboard events.
+
+
+247
+00:13:12,476 --> 00:13:14,696
+So how do we move the character?
+
+
+248
+00:13:14,696 --> 00:13:15,876
+First, we have to animate it.
+
+
+249
+00:13:16,456 --> 00:13:19,946
+Our character is skinned, which
+means that it has a skeleton
+
+
+250
+00:13:19,946 --> 00:13:22,676
+with bones, and by
+animating these bones,
+
+
+251
+00:13:22,766 --> 00:13:24,136
+we can define the geometry
+
+
+252
+00:13:24,136 --> 00:13:26,936
+and make the character
+adopt defined postures.
+
+
+253
+00:13:27,186 --> 00:13:31,136
+Our character can
+run, jump and be idle.
+
+
+254
+00:13:31,356 --> 00:13:33,436
+And you have different
+animations
+
+
+255
+00:13:33,676 --> 00:13:35,346
+for the bones in these files.
+
+
+256
+00:13:36,636 --> 00:13:39,636
+Animating a character
+is just as easy
+
+
+257
+00:13:40,146 --> 00:13:43,276
+as retrieving a Core
+Animation animation
+
+
+258
+00:13:43,276 --> 00:13:45,566
+by using the assigned
+sceneSource class.
+
+
+259
+00:13:45,846 --> 00:13:47,806
+It allows us to retrieve
+an animation,
+
+
+260
+00:13:48,196 --> 00:13:52,816
+with a unique identifier
+of the animation
+
+
+261
+00:13:52,816 --> 00:13:54,416
+that you can find in Xcode.
+
+
+262
+00:13:55,446 --> 00:13:58,046
+And then, animating the
+character is just as easy
+
+
+263
+00:13:58,516 --> 00:14:02,926
+as adding this animation
+to the character node.
+
+
+264
+00:14:03,136 --> 00:14:05,276
+Okay, so now we animating
+the character,
+
+
+265
+00:14:05,276 --> 00:14:06,586
+but we still have to move it.
+
+
+266
+00:14:06,906 --> 00:14:08,456
+There are many ways to do that,
+
+
+267
+00:14:08,456 --> 00:14:10,886
+and here is the technique
+we used in "Bananas."
+
+
+268
+00:14:14,386 --> 00:14:18,106
+In our authoring tool,
+we placed empty nodes
+
+
+269
+00:14:18,106 --> 00:14:21,416
+at different locations
+in the scene.
+
+
+270
+00:14:21,606 --> 00:14:24,296
+We then use a [inaudible]
+of time
+
+
+271
+00:14:24,896 --> 00:14:26,306
+to interpolate these values.
+
+
+272
+00:14:26,736 --> 00:14:29,546
+It's a smooth parametric
+curve that goes
+
+
+273
+00:14:29,546 --> 00:14:31,026
+through each of these locations.
+
+
+274
+00:14:31,156 --> 00:14:33,956
+And then moving the
+character is just as easy
+
+
+275
+00:14:34,716 --> 00:14:37,016
+as evaluating this function
+
+
+276
+00:14:37,016 --> 00:14:42,396
+at different times,
+between zero and one.
+
+
+277
+00:14:42,396 --> 00:14:45,106
+And for the camera, when the
+character goes to the right,
+
+
+278
+00:14:45,416 --> 00:14:49,056
+we simply [inaudible] the
+camera, and at each frame,
+
+
+279
+00:14:49,446 --> 00:14:54,126
+we move it by 120 feet its
+distance to the character.
+
+
+280
+00:14:55,336 --> 00:14:57,856
+This gives us these nice
+[inaudible] animations that's
+
+
+281
+00:14:57,856 --> 00:15:01,686
+really pleasing when
+you play the game.
+
+
+282
+00:15:01,896 --> 00:15:05,856
+Note, in iOS 8 and
+OS X Yosemite,
+
+
+283
+00:15:05,856 --> 00:15:09,006
+SceneKit has an active
+support for physics.
+
+
+284
+00:15:09,216 --> 00:15:12,046
+And we use collision detection
+at many places in the game -
+
+
+285
+00:15:12,886 --> 00:15:14,776
+to make the character
+stay on the path,
+
+
+286
+00:15:15,216 --> 00:15:17,386
+to detect when we
+are hit by coconuts
+
+
+287
+00:15:17,386 --> 00:15:19,266
+and when we collect
+bananas, for instance.
+
+
+288
+00:15:20,266 --> 00:15:21,156
+How does it work?
+
+
+289
+00:15:21,566 --> 00:15:25,166
+Well, each scene has a physics
+world, which has a delegate.
+
+
+290
+00:15:25,306 --> 00:15:27,976
+And each time a collision
+occurs in the scene,
+
+
+291
+00:15:28,326 --> 00:15:30,826
+the delegate is notified
+and can react.
+
+
+292
+00:15:31,656 --> 00:15:35,066
+We can also explicitly perform
+ray tests, and that what we use
+
+
+293
+00:15:35,066 --> 00:15:39,596
+to compute is the
+altitude of the character.
+
+
+294
+00:15:39,596 --> 00:15:43,776
+So we cast a ray and compute the
+intersection between that ray
+
+
+295
+00:15:43,776 --> 00:15:48,346
+and the ground to calculate
+the altitude of the character.
+
+
+296
+00:15:50,926 --> 00:15:55,636
+Animating items is different
+than animating a character.
+
+
+297
+00:15:55,926 --> 00:15:59,176
+For items such as the
+bananas, we use actions
+
+
+298
+00:15:59,176 --> 00:16:01,616
+that was presented in
+the previous session,
+
+
+299
+00:16:01,696 --> 00:16:04,966
+that really easy to
+manipulate programmatically.
+
+
+300
+00:16:09,266 --> 00:16:11,126
+So here's the lighting
+in "Bananas."
+
+
+301
+00:16:11,716 --> 00:16:14,096
+As you can see, we have objects
+
+
+302
+00:16:14,096 --> 00:16:16,006
+that aren't affected
+by any light.
+
+
+303
+00:16:16,276 --> 00:16:17,866
+They use a constant
+lighting model.
+
+
+304
+00:16:18,866 --> 00:16:22,166
+For all the other objects in the
+scene, we add an ambient light,
+
+
+305
+00:16:22,166 --> 00:16:24,326
+so it's very ambient
+when it's all black.
+
+
+306
+00:16:25,506 --> 00:16:27,586
+Next, we have the
+directional key light.
+
+
+307
+00:16:27,586 --> 00:16:33,056
+And under there directional
+backlight, to add more contrast.
+
+
+308
+00:16:34,036 --> 00:16:37,016
+Finally, for torches
+and lava flows,
+
+
+309
+00:16:37,016 --> 00:16:39,106
+we have only directional lights.
+
+
+310
+00:16:39,656 --> 00:16:44,976
+With this dynamic lighting,
+we also want shadows,
+
+
+311
+00:16:44,976 --> 00:16:47,426
+and we have multiple
+techniques in "Bananas."
+
+
+312
+00:16:47,606 --> 00:16:49,006
+First, static shadows.
+
+
+313
+00:16:50,566 --> 00:16:53,516
+Static shadows are suitable for
+objects that aren't animated
+
+
+314
+00:16:53,516 --> 00:16:55,426
+in the scene, such
+as the palm trees.
+
+
+315
+00:16:57,076 --> 00:16:59,096
+Static shadows are
+baked into textures,
+
+
+316
+00:16:59,566 --> 00:17:02,236
+which means that they
+are rendered offline
+
+
+317
+00:17:02,236 --> 00:17:03,256
+in an authoring tool.
+
+
+318
+00:17:03,716 --> 00:17:06,536
+And that's why they are
+generally very complex
+
+
+319
+00:17:06,536 --> 00:17:07,106
+and detailed.
+
+
+320
+00:17:08,886 --> 00:17:12,746
+Setting a static shadow is
+as simple as setting an image
+
+
+321
+00:17:13,056 --> 00:17:15,046
+to the multiplied
+property of a material.
+
+
+322
+00:17:16,316 --> 00:17:18,746
+But we also have
+dynamic shadows,
+
+
+323
+00:17:18,856 --> 00:17:20,915
+for objects that move,
+such as a character.
+
+
+324
+00:17:22,106 --> 00:17:24,146
+For dynamic shadows,
+we use shadow maps.
+
+
+325
+00:17:24,586 --> 00:17:27,906
+These are real-time shadows and
+suitable for animated objects.
+
+
+326
+00:17:28,165 --> 00:17:31,016
+And making your light
+cast shadows is as simple
+
+
+327
+00:17:31,246 --> 00:17:33,566
+as setting a property.
+
+
+328
+00:17:33,566 --> 00:17:35,946
+Next, of course you
+can mix techniques
+
+
+329
+00:17:35,946 --> 00:17:38,456
+and use dynamic and
+static shadows.
+
+
+330
+00:17:39,366 --> 00:17:42,006
+After you make your
+light cast shadows,
+
+
+331
+00:17:42,466 --> 00:17:47,726
+you can simply exclude nodes
+that are using static shadows,
+
+
+332
+00:17:48,016 --> 00:17:51,106
+so that they don't
+cast dynamic shadows.
+
+
+333
+00:17:51,846 --> 00:17:55,576
+This can also be achieved
+by using categoryBitMasks.
+
+
+334
+00:17:56,026 --> 00:18:00,986
+You use exclusive masks
+on the light and nodes
+
+
+335
+00:18:00,986 --> 00:18:02,136
+that don't cast shadows.
+
+
+336
+00:18:04,616 --> 00:18:08,566
+So this is one example of
+dynamic shadows, but we have one
+
+
+337
+00:18:08,566 --> 00:18:11,806
+on other, which we
+call projected shadows.
+
+
+338
+00:18:12,446 --> 00:18:15,716
+Projected shadows are
+real-time as well,
+
+
+339
+00:18:16,316 --> 00:18:17,416
+but they are simplified,
+
+
+340
+00:18:17,556 --> 00:18:19,916
+and they are very suitable
+for low-end devices.
+
+
+341
+00:18:21,276 --> 00:18:23,666
+Using projected shadows is done
+
+
+342
+00:18:23,836 --> 00:18:26,306
+by using the modulated
+shadow mode.
+
+
+343
+00:18:27,696 --> 00:18:30,466
+You set an image to the
+gobo property of a light,
+
+
+344
+00:18:30,466 --> 00:18:32,806
+and then every object
+that is lit
+
+
+345
+00:18:33,116 --> 00:18:38,076
+with this light has this
+image projected on it.
+
+
+346
+00:18:38,326 --> 00:18:44,946
+So in "Bananas," to make the
+floor only receive this image,
+
+
+347
+00:18:45,006 --> 00:18:47,186
+we use a categoryBitMask.
+
+
+348
+00:18:48,806 --> 00:18:50,956
+Next, particle systems.
+
+
+349
+00:18:51,636 --> 00:18:54,226
+We use particle systems
+extensively in "Bananas."
+
+
+350
+00:18:54,376 --> 00:18:57,326
+We use them for torches and
+when the character walks.
+
+
+351
+00:18:58,696 --> 00:19:00,956
+Using particle system
+is real easy.
+
+
+352
+00:19:01,096 --> 00:19:03,366
+All you have to do is
+load a particle system
+
+
+353
+00:19:03,366 --> 00:19:05,246
+from a file and add
+it to a node.
+
+
+354
+00:19:06,326 --> 00:19:08,416
+[Inaudible] particle
+system of dynamic,
+
+
+355
+00:19:08,556 --> 00:19:11,856
+we can make the character emit
+a lot of dirt when she runs
+
+
+356
+00:19:12,336 --> 00:19:14,436
+and emit nothing
+when she stands idle.
+
+
+357
+00:19:14,916 --> 00:19:20,466
+We also have some nice visual
+improvements in "Bananas."
+
+
+358
+00:19:21,266 --> 00:19:23,256
+We use geometry animation
+for the vines,
+
+
+359
+00:19:23,856 --> 00:19:26,546
+and we use texture animation
+for the lava and the volcano.
+
+
+360
+00:19:27,036 --> 00:19:30,336
+You might have seen that smoke
+is emitted by the volcano,
+
+
+361
+00:19:30,746 --> 00:19:33,646
+and that the lava
+flow is animated.
+
+
+362
+00:19:33,646 --> 00:19:36,576
+This is done using
+shader modifiers.
+
+
+363
+00:19:36,576 --> 00:19:40,016
+What we do is we have
+a shader modifier
+
+
+364
+00:19:40,256 --> 00:19:43,556
+that continuously updates
+the texture coordinates
+
+
+365
+00:19:43,556 --> 00:19:45,006
+of the lava and the volcano.
+
+
+366
+00:19:45,756 --> 00:19:46,646
+This is really simple.
+
+
+367
+00:19:48,156 --> 00:19:51,406
+Next, we have some
+visual postprocessing.
+
+
+368
+00:19:51,626 --> 00:19:54,276
+We use SCNTechnique,
+which is new this year
+
+
+369
+00:19:54,796 --> 00:19:58,526
+and that lets us achieve color
+effects and image deformation.
+
+
+370
+00:19:59,156 --> 00:20:01,536
+We use that in "Bananas"
+when we launch the game
+
+
+371
+00:20:01,536 --> 00:20:03,826
+to have this nice
+grayscale effect.
+
+
+372
+00:20:05,536 --> 00:20:07,506
+We also use SpriteKit overlays.
+
+
+373
+00:20:07,716 --> 00:20:09,676
+SpriteKit overlays
+are really nice,
+
+
+374
+00:20:09,676 --> 00:20:11,616
+because they are cross-platform.
+
+
+375
+00:20:11,616 --> 00:20:13,676
+They work on iOS and OS X.
+
+
+376
+00:20:13,676 --> 00:20:16,446
+And they let you build
+UIs that work everywhere.
+
+
+377
+00:20:16,836 --> 00:20:22,946
+In SpriteKit - in "Bananas," we
+use that to display a simple UI
+
+
+378
+00:20:22,946 --> 00:20:26,416
+that shows you the final
+score, and when you're playing,
+
+
+379
+00:20:26,746 --> 00:20:29,366
+it shows you the current
+time and your score.
+
+
+380
+00:20:29,876 --> 00:20:36,336
+And finally, we use an SKAction
+to play sound in the game.
+
+
+381
+00:20:36,546 --> 00:20:38,896
+So as you saw, we
+have a soundtrack
+
+
+382
+00:20:38,896 --> 00:20:40,176
+as well as sound effects.
+
+
+383
+00:20:40,666 --> 00:20:44,166
+So I hope we showed
+you how simple it is
+
+
+384
+00:20:44,206 --> 00:20:46,406
+to write casual 3D
+games with SceneKit.
+
+
+385
+00:20:46,726 --> 00:20:50,066
+We truly believe that
+anyone, even a small team,
+
+
+386
+00:20:50,166 --> 00:20:51,616
+can write games with SceneKit.
+
+
+387
+00:20:51,616 --> 00:20:53,626
+And with that, I hand
+it over to Thomas,
+
+
+388
+00:20:54,026 --> 00:20:55,286
+to talk about performance.
+
+
+389
+00:20:55,836 --> 00:20:56,226
+Thanks.
+
+
+390
+00:20:57,516 --> 00:21:01,436
+[ Applause ]
+
+
+391
+00:21:01,936 --> 00:21:02,356
+>> Thank you.
+
+
+392
+00:21:03,606 --> 00:21:05,936
+Okay. So let's talk
+about performance now.
+
+
+393
+00:21:06,656 --> 00:21:11,296
+So Xcode has some great
+tools to get information
+
+
+394
+00:21:11,296 --> 00:21:14,146
+about performance and in
+particular with graphics,
+
+
+395
+00:21:14,146 --> 00:21:18,426
+performance with graphics report
+that you probably already knew.
+
+
+396
+00:21:19,356 --> 00:21:23,166
+In this release of Xcode 6,
+we are adding a new report,
+
+
+397
+00:21:24,036 --> 00:21:25,616
+that we call the
+SceneKit report,
+
+
+398
+00:21:25,946 --> 00:21:30,306
+that will give you CPU time
+information about your game.
+
+
+399
+00:21:31,266 --> 00:21:33,546
+So this report is not available
+
+
+400
+00:21:33,546 --> 00:21:36,046
+in the first seed
+of Xcode 6 yet.
+
+
+401
+00:21:36,266 --> 00:21:38,806
+So you will have to wait for the
+next seed to have it in hand.
+
+
+402
+00:21:39,306 --> 00:21:41,666
+But I would like to
+present how it works now,
+
+
+403
+00:21:41,756 --> 00:21:43,176
+since we are talking
+about performance.
+
+
+404
+00:21:43,646 --> 00:21:48,426
+So this report will give
+you timing information
+
+
+405
+00:21:48,426 --> 00:21:50,876
+about all the different
+steps of your game loop.
+
+
+406
+00:21:51,426 --> 00:21:53,946
+You'll remember your game
+loop looks like this.
+
+
+407
+00:21:54,066 --> 00:21:56,956
+It's made of both
+callbacks that you implement
+
+
+408
+00:21:56,956 --> 00:22:01,576
+to your game logic, and also
+of SceneKit internal process,
+
+
+409
+00:22:01,576 --> 00:22:04,626
+like rendering itself or
+the evaluation of physics
+
+
+410
+00:22:04,716 --> 00:22:06,536
+and animations and constraints.
+
+
+411
+00:22:08,056 --> 00:22:14,616
+So the SceneKit report will give
+you many milliseconds aspect
+
+
+412
+00:22:14,616 --> 00:22:18,026
+into those different steps.
+
+
+413
+00:22:18,026 --> 00:22:22,796
+And this is for iOS only.
+
+
+414
+00:22:23,386 --> 00:22:28,686
+But on OS X, we have something
+equivalent, directly available
+
+
+415
+00:22:28,686 --> 00:22:31,766
+in the SCNView with the
+showsStatistics property.
+
+
+416
+00:22:32,936 --> 00:22:35,996
+If you set this statistics
+- this property to yes,
+
+
+417
+00:22:35,996 --> 00:22:38,886
+it will display a little
+overlay on top of your view
+
+
+418
+00:22:39,216 --> 00:22:41,746
+that you can expand to get
+more detailed statistics.
+
+
+419
+00:22:42,436 --> 00:22:45,166
+And basically, it contains
+the same information
+
+
+420
+00:22:45,746 --> 00:22:47,316
+as the iOS report.
+
+
+421
+00:22:48,376 --> 00:22:52,516
+Sorry - here it is.
+
+
+422
+00:22:52,646 --> 00:22:52,896
+Okay.
+
+
+423
+00:22:54,186 --> 00:22:57,196
+And so this is how
+to get information.
+
+
+424
+00:22:57,296 --> 00:22:59,386
+Now, let's see how to
+analyze this information.
+
+
+425
+00:22:59,796 --> 00:23:03,876
+If your game is running slow,
+the first thing to understand is
+
+
+426
+00:23:03,876 --> 00:23:06,666
+if you are limited by
+the CPU or by the GPU.
+
+
+427
+00:23:07,286 --> 00:23:12,896
+For this, use a graphic report
+and look at the third column.
+
+
+428
+00:23:13,846 --> 00:23:16,106
+It will tell you how many
+milliseconds are spent
+
+
+429
+00:23:16,106 --> 00:23:18,046
+on the CPU side and
+the GPU side.
+
+
+430
+00:23:18,856 --> 00:23:21,766
+Both should be under 16
+milliseconds if you want
+
+
+431
+00:23:21,766 --> 00:23:25,726
+to run your game at
+60 frames per second.
+
+
+432
+00:23:25,726 --> 00:23:28,816
+Now let's say we are alerted
+by the GPU, let's say.
+
+
+433
+00:23:29,596 --> 00:23:33,986
+You can switch to the
+SceneKit report to get details
+
+
+434
+00:23:33,986 --> 00:23:35,806
+about the different steps.
+
+
+435
+00:23:36,016 --> 00:23:39,026
+And then depending
+on the returned -
+
+
+436
+00:23:39,086 --> 00:23:40,946
+the numbers that are returned,
+
+
+437
+00:23:41,906 --> 00:23:43,836
+there are some obvious
+actions we can do.
+
+
+438
+00:23:43,946 --> 00:23:47,766
+For example, if it says that
+most of the time is spent
+
+
+439
+00:23:47,766 --> 00:23:50,426
+in physics, you might
+want to reduce the number
+
+
+440
+00:23:50,426 --> 00:23:51,946
+of dynamic bodies in your scene
+
+
+441
+00:23:52,176 --> 00:23:54,326
+or simplify the shape
+of your bodies.
+
+
+442
+00:23:54,946 --> 00:23:56,966
+And if it's in particles,
+
+
+443
+00:23:56,966 --> 00:23:59,626
+you want to [inaudible]
+reduce the number of emitters
+
+
+444
+00:23:59,626 --> 00:24:01,606
+or reduce the number
+of emitted particles.
+
+
+445
+00:24:02,136 --> 00:24:04,496
+So these are the obvious things.
+
+
+446
+00:24:04,776 --> 00:24:08,436
+Now, less obvious is
+the time you spent
+
+
+447
+00:24:08,776 --> 00:24:12,856
+in the rendering itself or when
+pushing the OpenGL commands.
+
+
+448
+00:24:14,286 --> 00:24:17,746
+Then it's very likely because
+your scene requires too many
+
+
+449
+00:24:17,746 --> 00:24:18,826
+draw calls to render.
+
+
+450
+00:24:20,496 --> 00:24:24,246
+The number of draw calls
+is something very important
+
+
+451
+00:24:24,246 --> 00:24:25,006
+for your frame rate.
+
+
+452
+00:24:25,446 --> 00:24:26,836
+And if you have too
+many draw calls,
+
+
+453
+00:24:26,836 --> 00:24:30,186
+it will impact your CPU time.
+
+
+454
+00:24:30,386 --> 00:24:33,576
+You can check how many draw
+calls your scene is doing
+
+
+455
+00:24:33,576 --> 00:24:35,436
+with a SceneKit report
+by looking
+
+
+456
+00:24:35,766 --> 00:24:37,086
+at the third column here.
+
+
+457
+00:24:39,016 --> 00:24:40,196
+This is for iOS.
+
+
+458
+00:24:40,376 --> 00:24:42,086
+On OS X, you have
+the same information
+
+
+459
+00:24:42,086 --> 00:24:45,956
+in the statistics overlay
+in the lower right corner.
+
+
+460
+00:24:46,966 --> 00:24:52,256
+And if this number is big, and
+if you are limited by the CPU,
+
+
+461
+00:24:52,386 --> 00:24:54,006
+you want to reduce the
+number of draw calls.
+
+
+462
+00:24:54,176 --> 00:24:56,816
+And to do that, what
+you can try to do is
+
+
+463
+00:24:56,816 --> 00:25:01,696
+to flatten your static
+objects into one single node.
+
+
+464
+00:25:01,986 --> 00:25:05,916
+For example, in "Bananas," we
+have many plants and palm trees
+
+
+465
+00:25:05,916 --> 00:25:10,106
+that are static, and instead of
+adding one node for every plant,
+
+
+466
+00:25:10,796 --> 00:25:14,006
+we grouped them and flattened
+them into a single node,
+
+
+467
+00:25:14,496 --> 00:25:17,446
+so that it ends up
+into a single draw call
+
+
+468
+00:25:17,446 --> 00:25:19,246
+to render many plants
+at the same time.
+
+
+469
+00:25:20,796 --> 00:25:23,896
+To flatten objects,
+you have two options.
+
+
+470
+00:25:25,296 --> 00:25:26,386
+You can ask your artist
+
+
+471
+00:25:26,576 --> 00:25:29,216
+to flatten directly
+in the 3D software.
+
+
+472
+00:25:29,856 --> 00:25:31,726
+3D software, great tools
+
+
+473
+00:25:31,726 --> 00:25:33,506
+to flatten everything
+into a single object.
+
+
+474
+00:25:34,066 --> 00:25:35,326
+This is the recommended way,
+
+
+475
+00:25:35,326 --> 00:25:38,366
+because everything
+is pre-computed,
+
+
+476
+00:25:38,366 --> 00:25:39,586
+so that nothing to
+do at runtime.
+
+
+477
+00:25:39,586 --> 00:25:41,026
+And this is obviously faster.
+
+
+478
+00:25:42,276 --> 00:25:45,606
+Now if needed, you can also
+flatten things programmatically
+
+
+479
+00:25:45,606 --> 00:25:49,376
+with the flattenedClone
+method and SCNNode.
+
+
+480
+00:25:50,156 --> 00:25:53,526
+It will flatten the entire node
+tree and return the new node
+
+
+481
+00:25:53,786 --> 00:25:55,966
+with no time load that
+render exactly the same.
+
+
+482
+00:25:56,556 --> 00:26:02,086
+So flattening is really going to
+improve the number of draw call,
+
+
+483
+00:26:02,086 --> 00:26:03,986
+but don't flatten too much.
+
+
+484
+00:26:04,946 --> 00:26:08,626
+Because let's say you
+have a very large level.
+
+
+485
+00:26:08,976 --> 00:26:11,216
+If you flatten everything
+into a single node,
+
+
+486
+00:26:11,216 --> 00:26:14,996
+it will end up into a giant
+mesh, with millions of polygon.
+
+
+487
+00:26:15,556 --> 00:26:18,646
+And so you will lose the
+benefit of the culling
+
+
+488
+00:26:18,876 --> 00:26:20,536
+of the objects that
+are not visible.
+
+
+489
+00:26:20,916 --> 00:26:22,836
+Your big mesh will
+be always visible,
+
+
+490
+00:26:23,766 --> 00:26:26,826
+and so you will push millions
+of polygons at every frame,
+
+
+491
+00:26:27,266 --> 00:26:29,246
+which is obviously not
+good for the performance.
+
+
+492
+00:26:29,956 --> 00:26:34,116
+And also, your huge mesh
+will be lit by all the lights
+
+
+493
+00:26:34,386 --> 00:26:37,316
+in the world, which is not
+good for the performance,
+
+
+494
+00:26:37,316 --> 00:26:38,676
+and I will explain why after.
+
+
+495
+00:26:39,706 --> 00:26:42,456
+So here is how we
+did in "Bananas."
+
+
+496
+00:26:43,016 --> 00:26:47,676
+We first split the level
+into chunks that are
+
+
+497
+00:26:47,676 --> 00:26:49,916
+about the width of the viewport.
+
+
+498
+00:26:50,476 --> 00:26:56,646
+That way, when the character
+progress, we can directly -
+
+
+499
+00:26:56,806 --> 00:27:00,056
+SceneKit automatically culls
+the chunks that are not visible,
+
+
+500
+00:27:00,056 --> 00:27:01,106
+and so they are not pushed
+
+
+501
+00:27:01,106 --> 00:27:02,516
+to the rendering
+[inaudible] at all.
+
+
+502
+00:27:03,576 --> 00:27:07,106
+And since almost every scene
+in one chunk is flattened,
+
+
+503
+00:27:08,176 --> 00:27:10,346
+that means that we
+are only rendering one
+
+
+504
+00:27:10,346 --> 00:27:12,246
+or two chunks at the same time.
+
+
+505
+00:27:12,246 --> 00:27:14,966
+And so we are really pushing
+a few number of draw calls
+
+
+506
+00:27:14,966 --> 00:27:16,676
+to render to chunks
+that are visible.
+
+
+507
+00:27:18,716 --> 00:27:20,716
+So that's if you
+are CPU limited.
+
+
+508
+00:27:21,506 --> 00:27:24,686
+Now, if you are GPU
+limited, again,
+
+
+509
+00:27:24,686 --> 00:27:27,846
+you can use the graphic report
+and look at the third column
+
+
+510
+00:27:27,846 --> 00:27:30,926
+to check how many milliseconds
+you are using on the GPU side.
+
+
+511
+00:27:31,396 --> 00:27:34,466
+And if you are GPU limited,
+there are two things to look at.
+
+
+512
+00:27:34,736 --> 00:27:37,086
+The first one is a
+tiler on one side.
+
+
+513
+00:27:37,086 --> 00:27:40,346
+The second one is
+the renderer/device.
+
+
+514
+00:27:40,906 --> 00:27:43,696
+So this is here in
+the second column.
+
+
+515
+00:27:44,586 --> 00:27:47,396
+So let's consider the
+renderer and device for now.
+
+
+516
+00:27:49,186 --> 00:27:52,776
+If your renderer and device
+usage are at 100 percent,
+
+
+517
+00:27:53,816 --> 00:27:56,896
+it is very likely because you
+are either fill rate limited,
+
+
+518
+00:27:57,366 --> 00:27:59,906
+or you are using too
+complex fragment shaders.
+
+
+519
+00:28:02,526 --> 00:28:04,436
+So let's consider
+first the fill rate.
+
+
+520
+00:28:04,676 --> 00:28:06,496
+Fill rate means - if
+you're fill rate limited,
+
+
+521
+00:28:06,496 --> 00:28:10,796
+it means that you are asking
+the GPU to render more pixels -
+
+
+522
+00:28:10,796 --> 00:28:14,276
+more fragments per second
+than it can actually render.
+
+
+523
+00:28:14,626 --> 00:28:16,366
+If that happen, you
+can first try to play
+
+
+524
+00:28:16,366 --> 00:28:18,796
+with the content scale
+factor of your view.
+
+
+525
+00:28:19,316 --> 00:28:24,196
+By default, SceneKit is using
+a 2x contents scale factor,
+
+
+526
+00:28:24,286 --> 00:28:25,446
+which means fully [inaudible].
+
+
+527
+00:28:25,506 --> 00:28:29,396
+But you can try, depending on
+the device, to switch to 1x
+
+
+528
+00:28:29,396 --> 00:28:30,946
+or any intermediate values.
+
+
+529
+00:28:31,336 --> 00:28:36,326
+You can also try to reduce the
+number of postprocess effects,
+
+
+530
+00:28:36,796 --> 00:28:38,416
+since they are usually
+full-screen effects.
+
+
+531
+00:28:38,816 --> 00:28:39,196
+They are [inaudible].
+
+
+532
+00:28:39,196 --> 00:28:43,786
+So typically deferred
+shadows, depths of field,
+
+
+533
+00:28:43,786 --> 00:28:46,966
+reflective floors and all
+your custom postprocessing.
+
+
+534
+00:28:47,826 --> 00:28:49,646
+Reduce that if you
+are fill rate limited.
+
+
+535
+00:28:51,426 --> 00:28:54,196
+Last, you can also try to play
+with the anti-aliasing level
+
+
+536
+00:28:54,736 --> 00:28:57,676
+by setting the antialiasingMode
+property of the view to one
+
+
+537
+00:28:57,676 --> 00:29:02,466
+of the available constants
+known [inaudible] sampling 4x
+
+
+538
+00:29:02,836 --> 00:29:04,136
+for limited sampling.
+
+
+539
+00:29:04,476 --> 00:29:07,186
+Note that on iOS, it's
+already turned off by default,
+
+
+540
+00:29:07,186 --> 00:29:09,266
+and it's 4x by default on OS X.
+
+
+541
+00:29:09,796 --> 00:29:12,206
+So that's for the fill rate.
+
+
+542
+00:29:12,306 --> 00:29:13,966
+Now, the other reason could be
+
+
+543
+00:29:13,966 --> 00:29:16,956
+that you are using too
+complex fragment shaders.
+
+
+544
+00:29:18,476 --> 00:29:22,076
+And most of the time,
+the complexity
+
+
+545
+00:29:22,076 --> 00:29:24,696
+of your shaders directly
+depends on the complexity
+
+
+546
+00:29:24,696 --> 00:29:26,196
+of the lighting in your scene.
+
+
+547
+00:29:27,636 --> 00:29:31,746
+So I remind that there
+are two type of lightings:
+
+
+548
+00:29:31,876 --> 00:29:33,496
+dynamic lighting
+and static lighting.
+
+
+549
+00:29:33,526 --> 00:29:37,256
+With static lighting, all the
+light informations are baked
+
+
+550
+00:29:37,256 --> 00:29:37,916
+into textures.
+
+
+551
+00:29:37,916 --> 00:29:40,416
+So if they're super-fast,
+it can look really great.
+
+
+552
+00:29:40,766 --> 00:29:43,576
+But obviously, it only works
+with objects that are static.
+
+
+553
+00:29:45,136 --> 00:29:48,796
+And so here we focus on dynamic
+lightings that we need to use
+
+
+554
+00:29:48,796 --> 00:29:49,726
+when objects are moving.
+
+
+555
+00:29:51,116 --> 00:29:55,826
+One thing important about lights
+is their area of influence.
+
+
+556
+00:29:57,236 --> 00:30:01,086
+So you can configure
+the attenuation distance
+
+
+557
+00:30:01,356 --> 00:30:05,146
+with an attenuationEndDistance,
+and beyond that distance,
+
+
+558
+00:30:05,146 --> 00:30:09,876
+a light won't influence
+the other objects.
+
+
+559
+00:30:09,876 --> 00:30:11,626
+And this part is
+really important,
+
+
+560
+00:30:11,626 --> 00:30:13,136
+because we're getting
+into performance.
+
+
+561
+00:30:13,316 --> 00:30:17,296
+What matters is not the total
+number of lights in your scene.
+
+
+562
+00:30:17,966 --> 00:30:21,346
+It's the number of lights
+that influence a given object.
+
+
+563
+00:30:22,126 --> 00:30:26,696
+So for example, here, I have
+three lights in my scene.
+
+
+564
+00:30:27,166 --> 00:30:30,586
+But I configured the attenuation
+distance so that most
+
+
+565
+00:30:30,586 --> 00:30:33,346
+of the objects are only
+affected by one light,
+
+
+566
+00:30:33,676 --> 00:30:35,046
+or two lights, in
+the worst case.
+
+
+567
+00:30:35,816 --> 00:30:38,456
+So that means that the light
+with the 1, or - sorry.
+
+
+568
+00:30:38,456 --> 00:30:41,446
+The object with the 1
+will be, the rendering
+
+
+569
+00:30:41,446 --> 00:30:43,056
+of them will be relatively
+cheap.
+
+
+570
+00:30:44,496 --> 00:30:45,616
+The rendering of the objects
+
+
+571
+00:30:45,616 --> 00:30:48,976
+with a 2 will be
+slightly more expensive.
+
+
+572
+00:30:48,976 --> 00:30:51,776
+But at least no objects in
+that scene will be affected
+
+
+573
+00:30:51,776 --> 00:30:53,666
+by 3 [inaudible]
+lights at the same time.
+
+
+574
+00:30:55,396 --> 00:30:57,636
+Here's how we did
+it in "Bananas."
+
+
+575
+00:30:58,656 --> 00:31:01,266
+We placed the torches
+and the lava,
+
+
+576
+00:31:01,696 --> 00:31:04,346
+so that when the character
+progress in the game,
+
+
+577
+00:31:04,776 --> 00:31:07,366
+it is never affected
+by more than one torch
+
+
+578
+00:31:07,456 --> 00:31:11,186
+or one lava at a time.
+
+
+579
+00:31:11,376 --> 00:31:15,886
+Related to lighting, shadows,
+shadows are also expensive.
+
+
+580
+00:31:15,886 --> 00:31:18,276
+Again, there are two type of
+shadows: dynamic and static.
+
+
+581
+00:31:18,686 --> 00:31:20,846
+Static for this particular
+scene is baked
+
+
+582
+00:31:21,076 --> 00:31:22,476
+into textures with 3D 2s.
+
+
+583
+00:31:23,536 --> 00:31:25,816
+And it's fast, so let's focus
+
+
+584
+00:31:25,816 --> 00:31:28,166
+on dynamic shadows
+for dynamic objects.
+
+
+585
+00:31:28,706 --> 00:31:32,636
+The first thing to
+consider is what mode
+
+
+586
+00:31:32,636 --> 00:31:33,876
+of shadow you want to use.
+
+
+587
+00:31:34,266 --> 00:31:37,366
+If you want to use the
+real dynamic shadows
+
+
+588
+00:31:37,366 --> 00:31:39,386
+with the 4-1 mode,
+which is the default.
+
+
+589
+00:31:40,926 --> 00:31:45,336
+And you might want to
+consider projected shadows
+
+
+590
+00:31:45,336 --> 00:31:49,766
+for low-end devices with the
+right shadow image it can write
+
+
+591
+00:31:49,846 --> 00:31:53,006
+to, and it is really fast.
+
+
+592
+00:31:53,116 --> 00:31:55,076
+If you are using
+dynamic shadows,
+
+
+593
+00:31:55,076 --> 00:31:56,286
+there are still a
+few things you can do
+
+
+594
+00:31:56,286 --> 00:31:57,406
+to optimize the performance.
+
+
+595
+00:31:58,326 --> 00:32:01,076
+The first thing is to play with
+the size of the shadow map.
+
+
+596
+00:32:01,966 --> 00:32:04,606
+When you are using dynamic
+shadows, SceneKit computes
+
+
+597
+00:32:04,666 --> 00:32:06,966
+such shadow maps at
+every frame typically
+
+
+598
+00:32:06,966 --> 00:32:09,226
+by rendering your scene from
+the light point of view.
+
+
+599
+00:32:09,566 --> 00:32:14,636
+So if you're fill rate limited,
+by setting the shadow map size
+
+
+600
+00:32:14,686 --> 00:32:19,536
+to a smaller size, it will
+reduce the fill rate impact
+
+
+601
+00:32:19,686 --> 00:32:21,786
+of the shadowMapSize
+computation.
+
+
+602
+00:32:22,346 --> 00:32:27,856
+You can also play with the
+shadowSampleCount property
+
+
+603
+00:32:27,996 --> 00:32:28,906
+on SCNLight.
+
+
+604
+00:32:29,466 --> 00:32:34,796
+This inputs a lot to the
+complexity of the shadow
+
+
+605
+00:32:34,796 --> 00:32:36,446
+that is generated to
+compute the shadows.
+
+
+606
+00:32:37,306 --> 00:32:40,496
+Note that on iOS, it is
+already 1x by default,
+
+
+607
+00:32:40,576 --> 00:32:42,266
+which corresponds
+to hard shadows.
+
+
+608
+00:32:42,686 --> 00:32:46,966
+And it is 8x by default on
+OS X for smooth shadows.
+
+
+609
+00:32:49,256 --> 00:32:55,346
+Still about GPU, one more reason
+to be limited by the renderer is
+
+
+610
+00:32:55,346 --> 00:32:59,526
+when you are doing too many
+texture sample in your game.
+
+
+611
+00:33:00,496 --> 00:33:02,506
+So first thing to
+check is to make sure
+
+
+612
+00:33:02,506 --> 00:33:05,536
+that you are not using
+unnecessary large textures
+
+
+613
+00:33:05,536 --> 00:33:06,116
+in your game.
+
+
+614
+00:33:06,316 --> 00:33:09,536
+For example, if your texture is
+always rendered small on screen,
+
+
+615
+00:33:09,536 --> 00:33:11,286
+there's no need to have
+a huge texture for that.
+
+
+616
+00:33:12,466 --> 00:33:15,956
+One more thing to do is, it's
+better - if you're using tons
+
+
+617
+00:33:15,956 --> 00:33:19,286
+of textures, it's better to
+pack them into a texture atlas.
+
+
+618
+00:33:20,366 --> 00:33:22,916
+For that, 3D softwares
+have great tools
+
+
+619
+00:33:22,916 --> 00:33:25,266
+to bake your textures
+into texture atlases,
+
+
+620
+00:33:25,266 --> 00:33:27,066
+and you can also use SpriteKit
+
+
+621
+00:33:27,526 --> 00:33:29,226
+to generate texture
+atlases for you.
+
+
+622
+00:33:31,236 --> 00:33:34,616
+If you are using - if you need
+to use very large textures,
+
+
+623
+00:33:34,616 --> 00:33:37,186
+you can also try to
+play with mipmapping.
+
+
+624
+00:33:38,386 --> 00:33:42,846
+Mipmapping improves
+the performance a lot
+
+
+625
+00:33:42,846 --> 00:33:45,426
+when you are rendering a
+large texture at a small size,
+
+
+626
+00:33:45,546 --> 00:33:48,096
+because it will pick and
+choose smaller resolution
+
+
+627
+00:33:48,586 --> 00:33:49,296
+of your texture.
+
+
+628
+00:33:50,146 --> 00:33:51,926
+It can also improve
+the rendering
+
+
+629
+00:33:52,306 --> 00:33:56,256
+by reducing some aliasing
+effects and some Moire effects.
+
+
+630
+00:33:57,426 --> 00:33:58,596
+It has some drawbacks, though.
+
+
+631
+00:33:58,766 --> 00:34:03,146
+It takes more time to
+load, and it can use also -
+
+
+632
+00:34:03,146 --> 00:34:04,896
+it uses also slightly
+more memory.
+
+
+633
+00:34:06,136 --> 00:34:09,485
+To turn on the mipmapping, just
+set the mipFilter property on,
+
+
+634
+00:34:09,896 --> 00:34:13,886
+the mipFilter property on
+the [inaudible] property.
+
+
+635
+00:34:13,946 --> 00:34:16,926
+Set it to linear to turn it
+on and none to turn it off.
+
+
+636
+00:34:19,485 --> 00:34:24,246
+OK. So that was for the
+renderer and device part.
+
+
+637
+00:34:24,346 --> 00:34:26,976
+Now, let's say you are
+limited by the tiler this time.
+
+
+638
+00:34:27,886 --> 00:34:29,505
+If you are limited by the tiler,
+
+
+639
+00:34:30,096 --> 00:34:33,686
+that means that you are pushing
+too many vertices to the GPU.
+
+
+640
+00:34:34,076 --> 00:34:35,436
+And so by extension,
+that you are -
+
+
+641
+00:34:35,436 --> 00:34:36,676
+you have too many polygons.
+
+
+642
+00:34:37,275 --> 00:34:42,476
+You can check how many
+polygons your scene is rendering
+
+
+643
+00:34:42,476 --> 00:34:45,916
+at every frame, with
+SceneKit report here.
+
+
+644
+00:34:46,616 --> 00:34:47,536
+This is for iOS.
+
+
+645
+00:34:48,206 --> 00:34:51,716
+On OS X, you have the equivalent
+in the statistics overlay here.
+
+
+646
+00:34:52,295 --> 00:34:55,246
+And so if you have
+too many polygons,
+
+
+647
+00:34:55,686 --> 00:34:58,386
+obviously the first thing you
+can try is to reduce the number
+
+
+648
+00:34:58,386 --> 00:34:59,546
+of polygons in your models.
+
+
+649
+00:35:00,806 --> 00:35:02,656
+And the second thing
+you can try or so is
+
+
+650
+00:35:02,706 --> 00:35:04,696
+to play with level of detail.
+
+
+651
+00:35:06,046 --> 00:35:08,826
+SceneKit has some support
+for level of details.
+
+
+652
+00:35:09,166 --> 00:35:12,996
+For example, here I have
+three version of the teapot -
+
+
+653
+00:35:12,996 --> 00:35:15,666
+of these teapots with
+more or less polygons.
+
+
+654
+00:35:16,236 --> 00:35:18,746
+And so with the higher
+and lower quality.
+
+
+655
+00:35:19,236 --> 00:35:23,226
+And I can group them into a
+single level of detail array
+
+
+656
+00:35:24,236 --> 00:35:26,046
+and assign that to my geometry.
+
+
+657
+00:35:27,286 --> 00:35:32,506
+Then SceneKit will automatically
+use the right level of detail,
+
+
+658
+00:35:32,956 --> 00:35:36,786
+depending on how big your
+model is displayed onscreen.
+
+
+659
+00:35:37,046 --> 00:35:40,776
+So you can associate to each
+resolution either a distance
+
+
+660
+00:35:40,776 --> 00:35:47,986
+from the camera or screen reduce
+and to tell SceneKit what level
+
+
+661
+00:35:47,986 --> 00:35:49,936
+of detail it should use.
+
+
+662
+00:35:51,396 --> 00:35:54,596
+And this can help a lot to
+reduce the number of polygons
+
+
+663
+00:35:54,596 --> 00:35:57,396
+in your game, because with
+this example, here for example,
+
+
+664
+00:35:57,716 --> 00:36:00,746
+the teapots in the
+background are rendered
+
+
+665
+00:36:00,746 --> 00:36:02,336
+with a low resolution,
+
+
+666
+00:36:03,206 --> 00:36:06,576
+and so most of the teapots are
+using very low - a small number
+
+
+667
+00:36:06,576 --> 00:36:09,236
+of polygons instead of having
+the huge resolution all
+
+
+668
+00:36:09,236 --> 00:36:11,486
+the time.
+
+
+669
+00:36:11,486 --> 00:36:15,676
+So to sum up all of this, when
+your game is running slow,
+
+
+670
+00:36:15,676 --> 00:36:16,626
+you first need to understand
+
+
+671
+00:36:16,626 --> 00:36:18,766
+if you are limited
+by the CPU or GPU.
+
+
+672
+00:36:18,866 --> 00:36:22,526
+And if it's with the GPU,
+you have to check the tiler
+
+
+673
+00:36:22,526 --> 00:36:24,316
+or the renderer and device.
+
+
+674
+00:36:24,546 --> 00:36:27,456
+If you're limited by the CPU,
+you can try to reduce the number
+
+
+675
+00:36:27,456 --> 00:36:32,326
+of draw calls by
+flattening your scenes,
+
+
+676
+00:36:32,846 --> 00:36:37,746
+and also if you are using too
+- if your time is spent, sorry,
+
+
+677
+00:36:37,746 --> 00:36:42,066
+in physics or animations,
+you can try to reduce that.
+
+
+678
+00:36:42,066 --> 00:36:44,556
+If you are limited by the tiler,
+you can try to play with level
+
+
+679
+00:36:44,556 --> 00:36:46,266
+of details to reduce
+the number of polygons,
+
+
+680
+00:36:46,516 --> 00:36:49,476
+and you can also try to split
+your scene in smaller chunks
+
+
+681
+00:36:49,786 --> 00:36:50,976
+to alleviate the culling.
+
+
+682
+00:36:52,296 --> 00:36:54,376
+If you're limited by
+the renderer or device,
+
+
+683
+00:36:54,726 --> 00:36:58,416
+you can try to simplify
+your materials.
+
+
+684
+00:36:58,676 --> 00:37:00,966
+It will end up being
+simpler shaders.
+
+
+685
+00:37:01,676 --> 00:37:05,086
+You can simplify your
+lighting, try to reduce the size
+
+
+686
+00:37:05,086 --> 00:37:07,446
+of fill textures and try
+to turn on mipmapping
+
+
+687
+00:37:07,446 --> 00:37:08,836
+if you are using large textures.
+
+
+688
+00:37:09,286 --> 00:37:11,496
+And if you are fill rate
+limited, you can also try
+
+
+689
+00:37:11,496 --> 00:37:13,816
+to reduce the number of
+full-screen postprocess.
+
+
+690
+00:37:15,276 --> 00:37:18,496
+Now some more, other
+performance notes.
+
+
+691
+00:37:20,066 --> 00:37:21,546
+First, about sharing.
+
+
+692
+00:37:22,816 --> 00:37:25,486
+When you copy a node
+in SceneKit,
+
+
+693
+00:37:26,116 --> 00:37:29,276
+by default it shares
+the attributes.
+
+
+694
+00:37:30,196 --> 00:37:32,456
+So this is ideal
+for the performance.
+
+
+695
+00:37:32,936 --> 00:37:38,416
+But now, let's say you want to
+modify NodeA.GeometryA.Material.
+
+
+696
+00:37:39,396 --> 00:37:42,466
+It will also modify
+the color of Node B.
+
+
+697
+00:37:42,796 --> 00:37:44,356
+And so this is a common pitfall.
+
+
+698
+00:37:44,356 --> 00:37:46,136
+If it's what you
+want, that's perfect.
+
+
+699
+00:37:46,416 --> 00:37:49,216
+Now, if you want a
+different material for Node B,
+
+
+700
+00:37:49,636 --> 00:37:53,676
+what you have to do first is
+to copy the geometry as well.
+
+
+701
+00:37:54,706 --> 00:37:56,756
+And see, the geometry
+is immutable,
+
+
+702
+00:37:56,756 --> 00:38:01,016
+it is relatively cheap,
+because no geometry data is
+
+
+703
+00:38:01,016 --> 00:38:02,096
+actually copied.
+
+
+704
+00:38:02,266 --> 00:38:02,986
+It's just shared.
+
+
+705
+00:38:03,536 --> 00:38:07,206
+And then you can just simply
+copy the material as well,
+
+
+706
+00:38:07,386 --> 00:38:10,616
+and now you can modify Material
+A and Material B independently
+
+
+707
+00:38:10,616 --> 00:38:13,356
+to have a different material
+colors for your objects.
+
+
+708
+00:38:15,756 --> 00:38:18,736
+Another note, this
+time about preloading.
+
+
+709
+00:38:20,276 --> 00:38:24,546
+By default, SceneKit
+will load the information
+
+
+710
+00:38:24,546 --> 00:38:26,406
+on the GPU when needed.
+
+
+711
+00:38:26,516 --> 00:38:29,116
+That means that when your
+objects are never rendered,
+
+
+712
+00:38:29,306 --> 00:38:30,836
+nothing is pushed to the GPU.
+
+
+713
+00:38:31,196 --> 00:38:33,586
+And the first time an
+object appears onscreen,
+
+
+714
+00:38:33,906 --> 00:38:36,756
+we compute everything the GPU
+needs to render that object.
+
+
+715
+00:38:37,336 --> 00:38:39,876
+And depending on the
+complexity of this object,
+
+
+716
+00:38:40,466 --> 00:38:43,446
+it can take some time, and in
+some cases, it can make you
+
+
+717
+00:38:43,446 --> 00:38:46,726
+to miss some frame and so
+suffer from frame drops.
+
+
+718
+00:38:48,036 --> 00:38:51,786
+To avoid that, you can preload
+your objects, if you want,
+
+
+719
+00:38:51,856 --> 00:38:54,056
+with the prepareObjects
+withCompletionHandler
+
+
+720
+00:38:54,416 --> 00:38:55,316
+on SCNView.
+
+
+721
+00:38:56,386 --> 00:38:59,956
+You can pass to this
+method the following object.
+
+
+722
+00:39:01,406 --> 00:39:03,076
+If you pass a material instance,
+
+
+723
+00:39:03,406 --> 00:39:05,596
+SceneKit will pre-compute
+all the textures
+
+
+724
+00:39:06,246 --> 00:39:08,066
+that are referenced
+by this material.
+
+
+725
+00:39:09,176 --> 00:39:11,016
+If you pass the geometry,
+
+
+726
+00:39:11,646 --> 00:39:13,716
+it will pre-compute all
+the geometry buffers -
+
+
+727
+00:39:13,716 --> 00:39:17,186
+like the vertices, no more than
+texture coordinates - and also,
+
+
+728
+00:39:17,186 --> 00:39:19,556
+all the materials that are
+referenced by this geometry.
+
+
+729
+00:39:20,876 --> 00:39:25,066
+If you pass a node, it will
+preload the entire node tree,
+
+
+730
+00:39:25,476 --> 00:39:27,016
+including all the geometries
+
+
+731
+00:39:27,016 --> 00:39:28,186
+that are attached
+to these nodes.
+
+
+732
+00:39:29,256 --> 00:39:32,616
+And last, if you pass the entire
+scene, it can do even more.
+
+
+733
+00:39:33,266 --> 00:39:36,056
+It will preload the node
+tree, but also all the shaders
+
+
+734
+00:39:36,236 --> 00:39:38,326
+that are needed to
+render the objects.
+
+
+735
+00:39:39,196 --> 00:39:42,966
+It only works when you pass a
+scene, because SceneKit needs
+
+
+736
+00:39:42,966 --> 00:39:45,586
+to know how many lights
+you have in your scene
+
+
+737
+00:39:45,776 --> 00:39:47,476
+to pre-compute the
+right shaders.
+
+
+738
+00:39:47,706 --> 00:39:51,476
+In "Bananas," for
+example, at launch,
+
+
+739
+00:39:51,636 --> 00:39:53,226
+we preload the entire scene
+
+
+740
+00:39:53,226 --> 00:39:56,676
+to have almost all our
+shaders directly ready
+
+
+741
+00:39:56,776 --> 00:39:59,416
+when the game starts.
+
+
+742
+00:39:59,416 --> 00:40:02,886
+Okay. Some notes about custom
+tools and workflow now.
+
+
+743
+00:40:03,526 --> 00:40:06,606
+So I'm already presented how
+
+
+744
+00:40:06,606 --> 00:40:09,136
+to manage your assets
+in assets catalogs.
+
+
+745
+00:40:10,116 --> 00:40:11,946
+But at some point,
+you may want to sort
+
+
+746
+00:40:11,946 --> 00:40:14,586
+of customize your workflow.
+
+
+747
+00:40:15,266 --> 00:40:17,226
+By, for example,
+building your own tools
+
+
+748
+00:40:17,226 --> 00:40:18,656
+that we process your assets,
+
+
+749
+00:40:19,066 --> 00:40:21,186
+or having your own tools
+to debug your game.
+
+
+750
+00:40:22,126 --> 00:40:26,776
+And for this, SceneKit
+provides some APIs to help you.
+
+
+751
+00:40:26,906 --> 00:40:29,346
+The first one is archiving.
+
+
+752
+00:40:30,716 --> 00:40:32,676
+Now, this is new
+in this release.
+
+
+753
+00:40:33,126 --> 00:40:35,876
+All the objects of
+the scene graph
+
+
+754
+00:40:36,126 --> 00:40:39,296
+of the API conforms
+to NSSecureCoding.
+
+
+755
+00:40:39,866 --> 00:40:44,086
+So that allows you to
+archive whatever object,
+
+
+756
+00:40:44,086 --> 00:40:47,916
+an archive with a [inaudible]
+NSKeyedArchiver, for example.
+
+
+757
+00:40:49,436 --> 00:40:53,006
+SceneKit also allows you to
+export your scene as COLLADA.
+
+
+758
+00:40:53,566 --> 00:40:58,476
+And here, the advantage is
+that you can export to COLLADA
+
+
+759
+00:40:58,476 --> 00:41:00,536
+and import it back
+to a 3D software.
+
+
+760
+00:41:01,766 --> 00:41:04,366
+However, note that only a subset
+
+
+761
+00:41:04,426 --> 00:41:06,756
+of SceneKit can be
+exported to COLLADA.
+
+
+762
+00:41:07,776 --> 00:41:11,026
+If we compare both, so
+the first difference is
+
+
+763
+00:41:11,026 --> 00:41:14,396
+that archives can be
+directly loaded on iOS,
+
+
+764
+00:41:14,926 --> 00:41:17,796
+although COLLADA files need
+to go through Xcode first
+
+
+765
+00:41:17,796 --> 00:41:19,366
+if you want to load them on iOS.
+
+
+766
+00:41:21,456 --> 00:41:26,496
+Then you can import back COLLADA
+files to any 3D software,
+
+
+767
+00:41:26,496 --> 00:41:29,316
+but obviously, you can't
+import SceneKit archives.
+
+
+768
+00:41:30,856 --> 00:41:33,396
+Both report the scene
+graph basics,
+
+
+769
+00:41:33,666 --> 00:41:37,736
+like the node hierarchies, the
+node names, the geometries,
+
+
+770
+00:41:37,736 --> 00:41:39,656
+all the materials
+and the animations.
+
+
+771
+00:41:39,776 --> 00:41:40,646
+They work for both.
+
+
+772
+00:41:41,666 --> 00:41:46,356
+But advanced features like
+actions, physics, particles
+
+
+773
+00:41:46,356 --> 00:41:50,096
+and even custom shaders,
+everything is archived -
+
+
+774
+00:41:50,406 --> 00:41:53,976
+works with archive but not
+in - supported by COLLADA.
+
+
+775
+00:41:57,216 --> 00:41:58,106
+One more note.
+
+
+776
+00:41:58,216 --> 00:41:59,776
+As mentioned in the
+previous session,
+
+
+777
+00:41:59,876 --> 00:42:01,726
+SceneKit is now fully
+[inaudible] with JavaScript.
+
+
+778
+00:42:02,406 --> 00:42:04,836
+This can be really
+helpful for your -
+
+
+779
+00:42:04,836 --> 00:42:06,286
+if you want to customize
+your workflow
+
+
+780
+00:42:06,646 --> 00:42:12,636
+or add debug tools
+to debug your games.
+
+
+781
+00:42:12,636 --> 00:42:16,856
+It's [inaudible]
+with JavaScript call.
+
+
+782
+00:42:17,656 --> 00:42:21,136
+And so the "Bananas" sample
+code we showed in our -
+
+
+783
+00:42:21,236 --> 00:42:23,726
+here is available on
+the developer website.
+
+
+784
+00:42:24,136 --> 00:42:26,776
+We also have three other
+sample codes available:
+
+
+785
+00:42:27,346 --> 00:42:30,606
+the little car demo we showed
+in the previous session,
+
+
+786
+00:42:31,136 --> 00:42:33,646
+the demo that was shown
+in the state of the union,
+
+
+787
+00:42:34,586 --> 00:42:37,976
+and the 3D slide that was
+shown in the previous session
+
+
+788
+00:42:38,226 --> 00:42:39,746
+that is for OS X only.
+
+
+789
+00:42:42,056 --> 00:42:45,796
+For more information, please
+contact our evangelists,
+
+
+790
+00:42:45,986 --> 00:42:47,786
+Allan Schaffer and
+Filip Iliescu.
+
+
+791
+00:42:48,726 --> 00:42:51,536
+We have new gorgeous
+documentation available
+
+
+792
+00:42:51,536 --> 00:42:52,886
+on the developer
+website, as well.
+
+
+793
+00:42:54,026 --> 00:42:57,056
+And we have a dedicated
+forum for SceneKit
+
+
+794
+00:42:57,356 --> 00:42:59,156
+on devforums.apple.com.
+
+
+795
+00:42:59,156 --> 00:43:03,206
+Don't hesitate to ask
+your questions there.
+
+
+796
+00:43:03,386 --> 00:43:04,796
+Some related sessions.
+
+
+797
+00:43:05,956 --> 00:43:08,326
+So, obviously, the
+previous sessions about
+
+
+798
+00:43:08,326 --> 00:43:09,226
+"What's New in SceneKit.
+
+
+799
+00:43:09,636 --> 00:43:13,516
+Also have a look to
+the SpriteKit sessions,
+
+
+800
+00:43:13,516 --> 00:43:16,746
+since both can work well
+together to achieve great stuff.
+
+
+801
+00:43:16,746 --> 00:43:16,976
+Thank you.
+
+
+802
+00:43:17,516 --> 00:43:20,500
+[ Applause ]
+

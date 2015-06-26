@@ -1,0 +1,3198 @@
+1
+00:00:11,066 --> 00:00:13,486
+>> Good morning, hello.
+
+
+2
+00:00:18,056 --> 00:00:22,696
+Welcome to session 705,
+Distributing Enterprise Apps.
+
+
+3
+00:00:23,746 --> 00:00:27,276
+My name is Dave Rahardja,
+I'm an iOS software engineer.
+
+
+4
+00:00:28,896 --> 00:00:32,256
+So tell me if this
+sounds familiar to you,
+
+
+5
+00:00:34,236 --> 00:00:39,286
+you're in charge of a team
+that's developing an iOS app
+
+
+6
+00:00:39,986 --> 00:00:43,486
+for your business or
+for your school, okay.
+
+
+7
+00:00:44,416 --> 00:00:50,166
+You're in charge of everything
+including managing developers,
+
+
+8
+00:00:50,656 --> 00:00:57,446
+contractors, distributing apps
+over MDM, making sure they run
+
+
+9
+00:00:58,046 --> 00:01:01,916
+on a whole bunch of different
+regions and make sure
+
+
+10
+00:01:01,916 --> 00:01:05,105
+that it keeps running for
+years and years to come.
+
+
+11
+00:01:05,876 --> 00:01:10,166
+So if this sounds familiar to
+you this session is for you.
+
+
+12
+00:01:11,076 --> 00:01:17,516
+I want to give you a kind
+of a comprehensive overview
+
+
+13
+00:01:17,576 --> 00:01:22,526
+of everything that you need to
+know to successfully develop
+
+
+14
+00:01:22,526 --> 00:01:27,776
+and distribute and deploy an iOS
+app in an enterprise setting.
+
+
+15
+00:01:29,216 --> 00:01:36,256
+So we're going to do that by
+focusing on four major areas
+
+
+16
+00:01:37,286 --> 00:01:40,766
+that will sound familiar to
+you if you've ever done this.
+
+
+17
+00:01:41,776 --> 00:01:48,846
+First managing your team,
+next using Xcode server
+
+
+18
+00:01:49,206 --> 00:01:50,946
+to provide help for development,
+
+
+19
+00:01:53,116 --> 00:01:58,876
+then some app distribution
+strategies that will keep you
+
+
+20
+00:01:58,876 --> 00:02:06,006
+in the clear for years and
+finally custom B2B and how
+
+
+21
+00:02:06,006 --> 00:02:09,056
+that fits within your
+organizations deployment plan.
+
+
+22
+00:02:10,515 --> 00:02:12,886
+All right so four major topics,
+
+
+23
+00:02:14,066 --> 00:02:18,966
+let's start with the first
+one, managing your team.
+
+
+24
+00:02:19,156 --> 00:02:21,986
+So let's start at
+the very beginning,
+
+
+25
+00:02:22,886 --> 00:02:25,396
+how do you get started
+developing enterprise apps
+
+
+26
+00:02:25,396 --> 00:02:25,676
+at all?
+
+
+27
+00:02:26,376 --> 00:02:28,066
+Well, it's really simple,
+
+
+28
+00:02:28,706 --> 00:02:34,356
+you need an enterprise
+developer account, it use to be
+
+
+29
+00:02:34,356 --> 00:02:38,066
+that we had a 500
+member...500 employee limit
+
+
+30
+00:02:38,436 --> 00:02:42,676
+for enterprise app
+accounts, that's gone,
+
+
+31
+00:02:42,976 --> 00:02:48,146
+no minimum company size as long
+as you have a D-U-N-S number
+
+
+32
+00:02:48,496 --> 00:02:50,696
+for your enterprise
+you are eligible.
+
+
+33
+00:02:51,166 --> 00:02:55,106
+This program is 299 a year.
+
+
+34
+00:02:59,896 --> 00:03:04,096
+To get started you need
+to create an agent account
+
+
+35
+00:03:05,236 --> 00:03:10,656
+and then add admins and team
+members to the developer portal.
+
+
+36
+00:03:13,416 --> 00:03:19,046
+So let's talk about these
+roles, an agent is a person
+
+
+37
+00:03:19,296 --> 00:03:24,296
+who is authorized to accept
+legal terms with respect
+
+
+38
+00:03:24,336 --> 00:03:26,746
+to the developer program.
+
+
+39
+00:03:28,676 --> 00:03:34,776
+Admins manage team members
+and they prepare apps
+
+
+40
+00:03:35,116 --> 00:03:38,076
+for distribution, there
+can only be one agent
+
+
+41
+00:03:38,716 --> 00:03:43,616
+but multiple admins, team
+members are those people
+
+
+42
+00:03:43,616 --> 00:03:47,056
+who actually develop and
+test code under the program.
+
+
+43
+00:03:48,736 --> 00:03:55,376
+Because agents and admins
+are able to produce things
+
+
+44
+00:03:55,376 --> 00:03:58,936
+that represent your company
+so agents sign contracts,
+
+
+45
+00:03:59,336 --> 00:04:03,126
+admins publish apps with your
+code signing certificate.
+
+
+46
+00:04:04,136 --> 00:04:08,926
+They should be employees
+of your enterprise,
+
+
+47
+00:04:12,756 --> 00:04:17,486
+team members however can
+be employees or contractors
+
+
+48
+00:04:17,916 --> 00:04:21,836
+and we'll talk about the kind of
+a work flow here for contractors
+
+
+49
+00:04:21,836 --> 00:04:27,136
+in a minute but first
+let's talk about admins.
+
+
+50
+00:04:27,896 --> 00:04:33,156
+So admins can add and remove
+team members from your roster,
+
+
+51
+00:04:33,686 --> 00:04:38,106
+they can create app ID's
+in the developer portal,
+
+
+52
+00:04:39,826 --> 00:04:43,566
+they can request push
+certificates for those app ID's,
+
+
+53
+00:04:44,116 --> 00:04:48,216
+they can add devices to the team
+development provisioning profile
+
+
+54
+00:04:48,216 --> 00:04:52,746
+which everybody else in the team
+including the team members use
+
+
+55
+00:04:52,746 --> 00:04:56,356
+to actually do debugging
+on iOS hardware,
+
+
+56
+00:04:58,096 --> 00:05:02,216
+they get to manage the
+distribution code signing
+
+
+57
+00:05:02,216 --> 00:05:04,846
+certificate which is
+a special certificate,
+
+
+58
+00:05:05,186 --> 00:05:06,886
+a code signing certificate
+that you need
+
+
+59
+00:05:07,156 --> 00:05:09,946
+in order to publish the app.
+
+
+60
+00:05:11,556 --> 00:05:14,086
+They also create
+the distribution
+
+
+61
+00:05:14,366 --> 00:05:15,916
+provisioning profiles.
+
+
+62
+00:05:16,416 --> 00:05:18,916
+This is in contrast to the
+development provisional profile
+
+
+63
+00:05:18,916 --> 00:05:20,566
+which is automatically
+managed by Xcode.
+
+
+64
+00:05:21,086 --> 00:05:27,136
+And finally they are the ones
+who package the actual apps
+
+
+65
+00:05:27,186 --> 00:05:28,776
+for final distribution.
+
+
+66
+00:05:29,886 --> 00:05:33,936
+So as you can tell admins have
+a lot of power in this program,
+
+
+67
+00:05:34,726 --> 00:05:39,186
+most of the administrative
+tasks with respect to developing
+
+
+68
+00:05:39,186 --> 00:05:42,216
+and distributing apps
+fall under admin accounts.
+
+
+69
+00:05:44,476 --> 00:05:47,306
+Team members are coders
+
+
+70
+00:05:47,346 --> 00:05:51,986
+and testers they should have
+their own personal code signing
+
+
+71
+00:05:51,986 --> 00:05:55,046
+certificate, each one should
+have their own code signing
+
+
+72
+00:05:55,046 --> 00:05:58,786
+certificate, don't share your
+private keys between developers.
+
+
+73
+00:05:59,506 --> 00:06:02,606
+During the development cycle
+
+
+74
+00:06:02,606 --> 00:06:05,176
+if a developer loses their
+private key you could just
+
+
+75
+00:06:05,176 --> 00:06:08,456
+create another one as long as
+nobody is using an older version
+
+
+76
+00:06:08,616 --> 00:06:13,526
+of an app that they
+produced it's fine,
+
+
+77
+00:06:13,746 --> 00:06:14,636
+just create a new one,
+
+
+78
+00:06:15,556 --> 00:06:17,326
+don't share the code
+signing certificates.
+
+
+79
+00:06:18,626 --> 00:06:23,796
+Use the team development
+provisioning profile to debug
+
+
+80
+00:06:23,796 --> 00:06:26,796
+on iOS hardware and this is
+done automatically by Xcode
+
+
+81
+00:06:27,146 --> 00:06:28,816
+if you set up Xcode
+correctly you never have
+
+
+82
+00:06:28,846 --> 00:06:30,226
+to worry about this.
+
+
+83
+00:06:31,196 --> 00:06:34,516
+Team members can distribute
+apps to a limited extent,
+
+
+84
+00:06:35,106 --> 00:06:37,346
+they can create ad-hoc
+distributions
+
+
+85
+00:06:37,946 --> 00:06:42,596
+which are app bundles...app
+packages
+
+
+86
+00:06:42,596 --> 00:06:45,026
+that can be run only
+on test devices.
+
+
+87
+00:06:45,716 --> 00:06:48,776
+This is great for QA for
+example or alpha testing
+
+
+88
+00:06:49,326 --> 00:06:52,536
+but they cannot be run outside
+
+
+89
+00:06:52,536 --> 00:06:54,256
+of their own little
+group of devices.
+
+
+90
+00:06:54,936 --> 00:07:02,906
+Now contractors, many of us have
+contractors that come in and out
+
+
+91
+00:07:02,906 --> 00:07:04,186
+of our development circle,
+
+
+92
+00:07:05,156 --> 00:07:10,686
+so the way that you should treat
+contractors is they should be
+
+
+93
+00:07:11,156 --> 00:07:13,746
+enrolled as team
+members in your program,
+
+
+94
+00:07:15,036 --> 00:07:18,056
+you should invite them
+using their e-mail address
+
+
+95
+00:07:18,986 --> 00:07:21,216
+and then they should get their
+own code signing certificate,
+
+
+96
+00:07:21,736 --> 00:07:23,086
+just like any other team member.
+
+
+97
+00:07:23,676 --> 00:07:27,296
+At the end of their
+contract simply remove them
+
+
+98
+00:07:27,296 --> 00:07:32,486
+from the member portal
+and that's it,
+
+
+99
+00:07:33,176 --> 00:07:34,876
+you'll invalidate the
+code signing certificate,
+
+
+100
+00:07:34,876 --> 00:07:38,746
+they can get another one for
+another project next time.
+
+
+101
+00:07:38,946 --> 00:07:42,086
+All right so let's walk
+through a little flow
+
+
+102
+00:07:42,086 --> 00:07:46,226
+of inviting a team member
+including contractors
+
+
+103
+00:07:46,646 --> 00:07:48,736
+to join your development team,
+
+
+104
+00:07:48,996 --> 00:07:53,446
+so here we have the developer
+website here member center
+
+
+105
+00:07:54,436 --> 00:07:56,596
+and we have a list of people
+
+
+106
+00:07:57,086 --> 00:08:00,846
+in your development team
+including some admins
+
+
+107
+00:08:00,846 --> 00:08:08,156
+and some members, what you do
+is click on the invitations icon
+
+
+108
+00:08:08,156 --> 00:08:11,336
+in the site bar and
+you'll see this.
+
+
+109
+00:08:12,296 --> 00:08:14,246
+You can invite one
+or a bunch of people
+
+
+110
+00:08:14,246 --> 00:08:19,046
+into your development team
+at once, click invite person,
+
+
+111
+00:08:20,346 --> 00:08:23,966
+enter the name and
+e-mail address,
+
+
+112
+00:08:24,966 --> 00:08:26,286
+this is just an e-mail
+address it doesn't have
+
+
+113
+00:08:26,316 --> 00:08:28,106
+to be their Apple ID
+because any e-mail address
+
+
+114
+00:08:28,106 --> 00:08:29,486
+that they can be reached at.
+
+
+115
+00:08:29,986 --> 00:08:35,385
+And they will get something
+like this so you've been invited
+
+
+116
+00:08:35,385 --> 00:08:37,196
+to join the Apple
+developer program,
+
+
+117
+00:08:37,956 --> 00:08:42,106
+so the reason they don't
+have to receive this e-mail
+
+
+118
+00:08:42,106 --> 00:08:44,826
+over Apple ID is
+because when they click
+
+
+119
+00:08:44,826 --> 00:08:49,626
+on that blue underlined link
+there they will be taken
+
+
+120
+00:08:49,966 --> 00:08:52,496
+to this portal where
+they can then sign
+
+
+121
+00:08:52,496 --> 00:08:55,176
+in with their actual
+developer ID.
+
+
+122
+00:08:56,076 --> 00:08:58,296
+If they're already a developer
+
+
+123
+00:08:58,296 --> 00:09:02,456
+like the 99 dollar app developer
+they can click the top button
+
+
+124
+00:09:03,116 --> 00:09:06,096
+and log in with that,
+if they're not part
+
+
+125
+00:09:06,096 --> 00:09:10,086
+of any development program they
+can click on the register button
+
+
+126
+00:09:10,346 --> 00:09:14,056
+on the bottom and they will get
+access to the developer tools
+
+
+127
+00:09:14,546 --> 00:09:17,216
+and the rights as a
+developer by virtue
+
+
+128
+00:09:17,216 --> 00:09:22,536
+of joining your team, okay.
+
+
+129
+00:09:22,726 --> 00:09:27,116
+Once you do that the
+next thing you should do
+
+
+130
+00:09:27,116 --> 00:09:30,726
+as a team member
+is to go to Xcode
+
+
+131
+00:09:30,726 --> 00:09:35,336
+and type your registered Apple
+ID in, so you click register,
+
+
+132
+00:09:35,336 --> 00:09:39,256
+you register as a new developer
+for example, go to Xcode,
+
+
+133
+00:09:40,036 --> 00:09:43,426
+hit your preferences, go
+to accounts and add this.
+
+
+134
+00:09:43,816 --> 00:09:49,436
+This is the key to having a
+really nice flow of artifacts
+
+
+135
+00:09:49,586 --> 00:09:53,946
+between your team members,
+you admins using Xcode.
+
+
+136
+00:09:54,956 --> 00:10:01,566
+When you log in Xcode will show
+you what development teams you
+
+
+137
+00:10:01,566 --> 00:10:03,736
+belong to down there
+on the bottom right,
+
+
+138
+00:10:04,396 --> 00:10:06,866
+in this case Ann is a member
+
+
+139
+00:10:06,866 --> 00:10:11,646
+of the business markets
+enterprise program team.
+
+
+140
+00:10:12,166 --> 00:10:20,996
+When you click on view details
+you will see this so you start
+
+
+141
+00:10:20,996 --> 00:10:23,136
+out with no code signing
+identities of course
+
+
+142
+00:10:23,616 --> 00:10:26,906
+and no provisioning
+profiles, the first thing
+
+
+143
+00:10:26,906 --> 00:10:30,706
+that the new team member should
+do is to click the plus button
+
+
+144
+00:10:31,416 --> 00:10:35,596
+and request a new
+iOS development code
+
+
+145
+00:10:35,596 --> 00:10:37,566
+signing certificate.
+
+
+146
+00:10:40,556 --> 00:10:43,166
+When they do that
+all of the admins
+
+
+147
+00:10:43,166 --> 00:10:47,496
+of the team will see
+this, they will see
+
+
+148
+00:10:47,496 --> 00:10:49,936
+that Ann has a requested a
+code signing certificate,
+
+
+149
+00:10:50,526 --> 00:10:54,576
+all you got to do is hit approve
+
+
+150
+00:10:54,756 --> 00:11:00,126
+and Xcode will get the
+signing certificate installed
+
+
+151
+00:11:00,126 --> 00:11:02,366
+on your team member
+team member's computer.
+
+
+152
+00:11:03,876 --> 00:11:07,006
+The same goes for
+provisioning profiles,
+
+
+153
+00:11:07,666 --> 00:11:09,846
+when they refresh their
+provisioning profiles
+
+
+154
+00:11:09,846 --> 00:11:13,006
+after they've done this they
+will get the latest iOS team
+
+
+155
+00:11:13,006 --> 00:11:16,696
+provisioning profile, so most
+of this, once you've set this
+
+
+156
+00:11:16,696 --> 00:11:20,266
+up much of the details
+is taken care
+
+
+157
+00:11:20,266 --> 00:11:23,026
+of for the developer by Xcode.
+
+
+158
+00:11:24,396 --> 00:11:32,006
+All right so let's switch gears
+a little bit so once you set
+
+
+159
+00:11:32,006 --> 00:11:33,996
+that up you can actually
+start developing.
+
+
+160
+00:11:34,706 --> 00:11:39,956
+But what I want to recommend
+for your admins to do is
+
+
+161
+00:11:39,956 --> 00:11:42,686
+to create app ID's
+right at the beginning
+
+
+162
+00:11:42,686 --> 00:11:44,016
+of your app development cycle.
+
+
+163
+00:11:45,006 --> 00:11:49,756
+So if you want to develop
+you know some an app
+
+
+164
+00:11:49,756 --> 00:11:52,686
+and you have some app
+in mind go ahead and go
+
+
+165
+00:11:52,686 --> 00:11:56,226
+to the developer portal here
+and click on certificates,
+
+
+166
+00:11:56,226 --> 00:11:57,786
+identifiers and profiles.
+
+
+167
+00:11:59,716 --> 00:12:07,066
+Click on app ID's and plus
+and create your new app ID.
+
+
+168
+00:12:07,646 --> 00:12:11,886
+Create this at the beginning
+of your development cycle
+
+
+169
+00:12:12,696 --> 00:12:16,586
+and I'll tell you
+why in a second.
+
+
+170
+00:12:16,696 --> 00:12:19,366
+Use the team ID prefix
+for your app,
+
+
+171
+00:12:20,206 --> 00:12:23,756
+there may be some legacy entries
+if you were a developer before,
+
+
+172
+00:12:24,156 --> 00:12:26,406
+don't use those use
+the team prefix
+
+
+173
+00:12:26,406 --> 00:12:32,596
+that will get you the happiest
+path and use an explicit app ID,
+
+
+174
+00:12:32,596 --> 00:12:36,506
+you should no longer
+use wild card app ID's
+
+
+175
+00:12:36,916 --> 00:12:39,256
+because this will get
+you a lot more features
+
+
+176
+00:12:40,016 --> 00:12:41,916
+if you use an explicit app ID.
+
+
+177
+00:12:42,666 --> 00:12:46,426
+So the reason that I asked
+admins to create app ID's
+
+
+178
+00:12:46,766 --> 00:12:49,436
+at the beginning of the
+development cycle is
+
+
+179
+00:12:49,436 --> 00:12:52,996
+because many of the apps
+developed today require
+
+
+180
+00:12:52,996 --> 00:12:56,346
+entitlements in their
+provisioning profile,
+
+
+181
+00:12:56,846 --> 00:12:59,806
+so you have iCloud entitlements,
+
+
+182
+00:13:00,206 --> 00:13:03,946
+for extensions you would need
+special entitlements sometimes
+
+
+183
+00:13:04,036 --> 00:13:08,576
+and if your app needs push
+notifications you would need
+
+
+184
+00:13:08,576 --> 00:13:11,706
+to have an app ID registered
+first before you can get a push
+
+
+185
+00:13:11,706 --> 00:13:13,456
+certificate, etcetera, etcetera.
+
+
+186
+00:13:13,756 --> 00:13:18,366
+So because many of the apps
+that we develop today use a lot
+
+
+187
+00:13:18,366 --> 00:13:25,196
+of modern additions that need
+provisioning it's usually easier
+
+
+188
+00:13:25,196 --> 00:13:27,416
+to just enter the app ID first
+
+
+189
+00:13:27,416 --> 00:13:29,556
+and then just keep
+checking boxes as you need
+
+
+190
+00:13:29,976 --> 00:13:33,156
+on the developer
+portal, that's why.
+
+
+191
+00:13:33,706 --> 00:13:42,226
+So in summary enroll in iOS
+developer enterprise program
+
+
+192
+00:13:42,286 --> 00:13:46,006
+to begin development,
+you're agents
+
+
+193
+00:13:46,166 --> 00:13:48,146
+and your admins should
+be employees.
+
+
+194
+00:13:48,746 --> 00:13:53,116
+Your contractors can be
+treated as team members,
+
+
+195
+00:13:54,596 --> 00:13:56,616
+you should invite
+your team members
+
+
+196
+00:13:56,756 --> 00:13:59,766
+as you create your program
+
+
+197
+00:13:59,856 --> 00:14:02,246
+and you should approve
+their code signing
+
+
+198
+00:14:02,246 --> 00:14:03,736
+certificate requests.
+
+
+199
+00:14:04,396 --> 00:14:07,846
+Remember each team member should
+have their own code signing
+
+
+200
+00:14:07,846 --> 00:14:12,626
+certificate and best
+practice create your app ID's
+
+
+201
+00:14:12,626 --> 00:14:14,526
+at the beginning of
+the development cycle
+
+
+202
+00:14:15,446 --> 00:14:19,226
+that gives you the most leverage
+as you continue to use features
+
+
+203
+00:14:19,226 --> 00:14:20,616
+that require entitlements.
+
+
+204
+00:14:22,216 --> 00:14:26,356
+So that's managing your
+team, I hope that's helpful,
+
+
+205
+00:14:27,126 --> 00:14:29,926
+next I'd like to talk
+about Xcode server,
+
+
+206
+00:14:30,496 --> 00:14:34,056
+Xcode server is a great
+hub for development.
+
+
+207
+00:14:35,186 --> 00:14:38,416
+To install Xcode
+server all you have
+
+
+208
+00:14:38,416 --> 00:14:43,776
+to do is install the OS X
+server from the Mac App Store
+
+
+209
+00:14:43,776 --> 00:14:46,796
+and then install Xcode
+on the same machine.
+
+
+210
+00:14:47,326 --> 00:14:51,326
+When this happens a
+new entry will show
+
+
+211
+00:14:51,326 --> 00:14:56,886
+up in your server dot app side
+bar to enable Xcode service.
+
+
+212
+00:14:57,726 --> 00:15:00,936
+So here's how you set it up
+for enterprise development,
+
+
+213
+00:15:01,576 --> 00:15:07,666
+the first thing you want
+to do if you want to log
+
+
+214
+00:15:07,666 --> 00:15:14,326
+in with your enterprise account
+on Xcode server, so edit that,
+
+
+215
+00:15:15,166 --> 00:15:20,416
+log in, you can log in with any
+admin account on Xcode server.
+
+
+216
+00:15:21,306 --> 00:15:28,056
+When you do this, the Xcode
+server will get its own code
+
+
+217
+00:15:28,056 --> 00:15:31,726
+signing certificate,
+all right so if you look
+
+
+218
+00:15:31,726 --> 00:15:33,616
+at the key chain there
+it is that's a servers,
+
+
+219
+00:15:33,616 --> 00:15:34,246
+it doesn't belong
+
+
+220
+00:15:34,246 --> 00:15:37,576
+to any developer it's a servers
+own code signing certificate
+
+
+221
+00:15:38,476 --> 00:15:43,516
+and this means that the server
+can produce app packages for you
+
+
+222
+00:15:43,906 --> 00:15:46,806
+and we'll see how that can
+be useful in a few minutes.
+
+
+223
+00:15:47,686 --> 00:15:51,936
+Once you're logged in you
+should create a user for each
+
+
+224
+00:15:51,976 --> 00:15:57,216
+of you admin and team
+members on OS X server.
+
+
+225
+00:15:57,726 --> 00:16:02,206
+You don't have to give
+them home directories,
+
+
+226
+00:16:02,526 --> 00:16:05,876
+you can select services only
+
+
+227
+00:16:06,306 --> 00:16:08,496
+so this basically
+creates directory entries
+
+
+228
+00:16:08,556 --> 00:16:09,666
+for your team members.
+
+
+229
+00:16:10,356 --> 00:16:13,166
+This greatly facilitates
+the rest of the past
+
+
+230
+00:16:13,906 --> 00:16:17,986
+because you can create
+groups out of these entries
+
+
+231
+00:16:18,606 --> 00:16:24,196
+and then create access
+controls based on that group.
+
+
+232
+00:16:24,196 --> 00:16:30,396
+All right so that's really
+it for OS X for Xcode server
+
+
+233
+00:16:30,396 --> 00:16:34,186
+on OS X until later
+we'll talk about bots.
+
+
+234
+00:16:35,656 --> 00:16:37,156
+Let's talk about
+code repositories,
+
+
+235
+00:16:38,426 --> 00:16:45,266
+so you can create
+code repositories
+
+
+236
+00:16:45,266 --> 00:16:51,176
+on Xcode server also, we
+support git or subversion,
+
+
+237
+00:16:52,556 --> 00:16:56,676
+I can recommend git these days,
+
+
+238
+00:16:57,046 --> 00:17:00,816
+you should create one
+repository per app and because
+
+
+239
+00:17:00,816 --> 00:17:01,866
+that makes it easier
+
+
+240
+00:17:01,866 --> 00:17:03,896
+to integrate your code
+repository trigger
+
+
+241
+00:17:03,946 --> 00:17:09,336
+with bots later on and create
+access controls on the server,
+
+
+242
+00:17:09,336 --> 00:17:10,746
+it really is very
+simple, all you have
+
+
+243
+00:17:10,746 --> 00:17:11,996
+to do is hit the plus button,
+
+
+244
+00:17:12,316 --> 00:17:15,536
+create a repository,
+it's that simple.
+
+
+245
+00:17:15,536 --> 00:17:20,685
+Now on your developers machine
+you can actually add a server
+
+
+246
+00:17:20,685 --> 00:17:24,646
+as its own entry under your
+preferences, under your accounts
+
+
+247
+00:17:25,076 --> 00:17:28,156
+so here's a server, if
+the server is visible
+
+
+248
+00:17:28,156 --> 00:17:31,856
+on Bonjour it will show
+up here, add that server
+
+
+249
+00:17:32,246 --> 00:17:36,786
+to your Xcode environment
+and you will get this,
+
+
+250
+00:17:38,196 --> 00:17:43,536
+check out an existing project
+on your Xcode welcome screen.
+
+
+251
+00:17:45,266 --> 00:17:49,256
+When you click that Xcode will
+automatically reach the server
+
+
+252
+00:17:49,576 --> 00:17:53,766
+and figure out what repositories
+you have access to and this is
+
+
+253
+00:17:53,766 --> 00:17:58,696
+where all the accounts
+come into play click that
+
+
+254
+00:17:58,696 --> 00:18:02,686
+and you're good to go.
+
+
+255
+00:18:02,806 --> 00:18:06,886
+So bots, so a great feature
+
+
+256
+00:18:07,106 --> 00:18:13,626
+of Xcode server is
+bots, so what are bots?
+
+
+257
+00:18:14,716 --> 00:18:20,996
+Give you continuous integration
+they will run units tests
+
+
+258
+00:18:21,036 --> 00:18:23,476
+on devices connected
+to the Xcode server,
+
+
+259
+00:18:24,056 --> 00:18:29,346
+it will generate reports
+and create archives for QA.
+
+
+260
+00:18:29,986 --> 00:18:34,096
+So I'm going to walk you
+through how you create a bot
+
+
+261
+00:18:34,756 --> 00:18:35,866
+using Xcode.
+
+
+262
+00:18:36,986 --> 00:18:41,146
+So anyone can create a bot, it
+doesn't have to be an admin.
+
+
+263
+00:18:41,316 --> 00:18:43,276
+as long as you have
+rights on Xcode server,
+
+
+264
+00:18:44,266 --> 00:18:45,726
+the first thing you
+want to do when you want
+
+
+265
+00:18:45,726 --> 00:18:48,826
+to create a bot is open the
+project that you are interested
+
+
+266
+00:18:48,826 --> 00:18:54,996
+in and create a share scheme,
+go here, click manage schemes.
+
+
+267
+00:18:56,326 --> 00:19:00,306
+Most of the time you already
+have a scheme that you want
+
+
+268
+00:19:00,306 --> 00:19:04,196
+to use as a template for
+the bots scheme so go ahead
+
+
+269
+00:19:04,196 --> 00:19:08,786
+and duplicate that scheme right
+there and call it integration
+
+
+270
+00:19:08,786 --> 00:19:13,666
+for instance and make sure that
+the shared check box is checked,
+
+
+271
+00:19:14,156 --> 00:19:19,866
+it has to be shared and
+remember to commit the scheme
+
+
+272
+00:19:19,866 --> 00:19:22,426
+to your server with the
+source control and check it
+
+
+273
+00:19:22,426 --> 00:19:24,916
+in otherwise of course the
+server can't see the scheme
+
+
+274
+00:19:24,916 --> 00:19:25,546
+that you've just made.
+
+
+275
+00:19:26,036 --> 00:19:30,256
+Next on the server
+connect your test devices
+
+
+276
+00:19:30,996 --> 00:19:35,126
+so if you plug an iOS device
+into an OS server it will show
+
+
+277
+00:19:35,126 --> 00:19:37,326
+up here, it will show
+up at the bottom.
+
+
+278
+00:19:38,266 --> 00:19:43,046
+If you click on add the team
+Xcode server will take your
+
+
+279
+00:19:43,046 --> 00:19:44,686
+device and automatically add
+
+
+280
+00:19:44,756 --> 00:19:46,406
+that to your provisioning
+profiles.
+
+
+281
+00:19:46,736 --> 00:19:50,406
+The rapid device you did
+go to the developer portal
+
+
+282
+00:19:51,026 --> 00:19:54,606
+and create a new development
+provision and profile
+
+
+283
+00:19:54,606 --> 00:19:56,586
+which can then be downloaded
+by your team members
+
+
+284
+00:19:57,186 --> 00:20:00,376
+so why do you want to connect
+test devices to the server?
+
+
+285
+00:20:01,146 --> 00:20:04,816
+This device is actually
+used for the unit test,
+
+
+286
+00:20:04,986 --> 00:20:07,356
+they'll actually run the
+unit test on the device.
+
+
+287
+00:20:08,306 --> 00:20:12,946
+So connect a variety of test
+devices if you can, an iPad,
+
+
+288
+00:20:12,946 --> 00:20:16,556
+iPod touch, iPhone to get the
+best coverage for your tests
+
+
+289
+00:20:18,006 --> 00:20:21,156
+and like I said the development
+provisioning profile is
+
+
+290
+00:20:21,156 --> 00:20:24,476
+automatically updated
+actually connect new devices
+
+
+291
+00:20:24,866 --> 00:20:27,206
+and add them the portal.
+
+
+292
+00:20:28,656 --> 00:20:32,946
+Once you've done that back
+to Xcode, create your bot,
+
+
+293
+00:20:34,276 --> 00:20:38,836
+under product remember this is
+you still have the project open
+
+
+294
+00:20:38,896 --> 00:20:40,646
+that you're interested
+in creating the bot for,
+
+
+295
+00:20:41,346 --> 00:20:47,436
+under product go to create bots,
+under the create bots dialogue,
+
+
+296
+00:20:47,496 --> 00:20:49,346
+choose the scheme
+that you've just made,
+
+
+297
+00:20:49,836 --> 00:20:51,306
+the dash it all integration
+scheme
+
+
+298
+00:20:51,876 --> 00:20:54,216
+and call the bot give
+a name to the bot,
+
+
+299
+00:20:54,466 --> 00:20:56,856
+so we have here dash it
+all commitment integration
+
+
+300
+00:20:57,066 --> 00:21:00,166
+so for this example
+we want the bot to run
+
+
+301
+00:21:00,596 --> 00:21:06,806
+when a new commit is made to
+the repository and that's it.
+
+
+302
+00:21:08,226 --> 00:21:13,296
+You can choose when you want
+to perform the operation,
+
+
+303
+00:21:13,856 --> 00:21:17,386
+you can choose what actions
+you want to do, analyze, test,
+
+
+304
+00:21:17,386 --> 00:21:22,546
+archive and which devices
+you want to run this bot on.
+
+
+305
+00:21:27,076 --> 00:21:29,736
+Bot creation succeeded
+and the bot is ready
+
+
+306
+00:21:29,736 --> 00:21:30,886
+to use, it's that simple.
+
+
+307
+00:21:30,886 --> 00:21:33,196
+So what do you get?
+
+
+308
+00:21:33,796 --> 00:21:39,186
+When the bot runs it keeps a
+data base of its run status
+
+
+309
+00:21:39,186 --> 00:21:44,016
+and results so you can see
+the history off the builds,
+
+
+310
+00:21:44,186 --> 00:21:47,166
+which builds failed and
+passed, you can see how many
+
+
+311
+00:21:47,166 --> 00:21:51,056
+of your units have passed and
+failed, you can even see this
+
+
+312
+00:21:51,156 --> 00:21:55,786
+on a web browser by going to
+the servername/Xcode/bots.
+
+
+313
+00:21:56,526 --> 00:22:00,676
+Your bot will produce
+these results,
+
+
+314
+00:22:01,376 --> 00:22:03,896
+it will produce test results,
+unit test pass and fails,
+
+
+315
+00:22:04,886 --> 00:22:06,476
+static analysis results.
+
+
+316
+00:22:07,466 --> 00:22:11,616
+It will produce logs from
+your build and test sessions,
+
+
+317
+00:22:12,006 --> 00:22:15,416
+it will produce extra
+project archives
+
+
+318
+00:22:15,416 --> 00:22:18,696
+so you know exactly what code
+got compiled for that run.
+
+
+319
+00:22:19,186 --> 00:22:23,546
+And here's where the servers
+code signing comes into play.
+
+
+320
+00:22:24,166 --> 00:22:27,946
+The bots will actually use Xcode
+servers code signing certificate
+
+
+321
+00:22:28,236 --> 00:22:32,376
+to create ad-hoc
+signed app packages
+
+
+322
+00:22:32,776 --> 00:22:36,376
+which QA can then download
+straight from the web server
+
+
+323
+00:22:36,686 --> 00:22:39,196
+or Xcode and install
+on their own devices
+
+
+324
+00:22:39,196 --> 00:22:43,186
+to do regression testing,
+it's great for QA.
+
+
+325
+00:22:44,236 --> 00:22:47,406
+That's Xcode server, it's
+a hub for development,
+
+
+326
+00:22:48,656 --> 00:22:52,086
+install OS X server and
+Xcode on the same machine,
+
+
+327
+00:22:53,436 --> 00:22:55,006
+sign in with your
+enterprise account,
+
+
+328
+00:22:55,306 --> 00:22:59,186
+any admin account will do, host
+your code repository there,
+
+
+329
+00:23:00,606 --> 00:23:03,226
+connect your test
+devices and use bots
+
+
+330
+00:23:03,486 --> 00:23:04,726
+for continuous integration.
+
+
+331
+00:23:06,046 --> 00:23:08,666
+It's a great hub for
+your development needs,
+
+
+332
+00:23:08,796 --> 00:23:11,476
+that's Xcode server, all right.
+
+
+333
+00:23:12,646 --> 00:23:13,836
+App distribution strategy,
+
+
+334
+00:23:14,416 --> 00:23:18,316
+distribution provisioning
+profiles, when you're ready
+
+
+335
+00:23:18,386 --> 00:23:20,466
+to publish your app
+and distribute them
+
+
+336
+00:23:20,606 --> 00:23:23,156
+to your enterprise
+members you need
+
+
+337
+00:23:23,156 --> 00:23:26,156
+to create a distribution
+provisioning profile.
+
+
+338
+00:23:26,486 --> 00:23:30,306
+The way you do that is go
+to the developer portal,
+
+
+339
+00:23:30,306 --> 00:23:33,946
+certificate identifiers and
+profiles again and click
+
+
+340
+00:23:33,946 --> 00:23:36,556
+on the distribution
+item on the side bar.
+
+
+341
+00:23:38,876 --> 00:23:42,106
+Then next step click in
+house so this is available
+
+
+342
+00:23:42,106 --> 00:23:43,406
+for enterprise accounts,
+
+
+343
+00:23:44,076 --> 00:23:47,156
+in house distribution will
+allow you to run your app
+
+
+344
+00:23:47,736 --> 00:23:51,086
+that you signed on any
+devices without limit of UDID.
+
+
+345
+00:23:53,796 --> 00:23:58,526
+Select your app ID that you've
+provisioned before right there
+
+
+346
+00:23:59,086 --> 00:24:03,306
+and that's it.
+
+
+347
+00:24:04,576 --> 00:24:08,756
+You can download the
+provisioning profile and then go
+
+
+348
+00:24:08,756 --> 00:24:14,426
+to Xcode and open the
+project and see archive,
+
+
+349
+00:24:15,056 --> 00:24:19,066
+product archive right there.
+
+
+350
+00:24:19,276 --> 00:24:22,896
+When you click archive the
+project will be archived
+
+
+351
+00:24:23,196 --> 00:24:26,236
+and will be ready to
+distribute, it is not ready
+
+
+352
+00:24:26,236 --> 00:24:28,936
+to distribute yet, you
+need to do one more step,
+
+
+353
+00:24:29,116 --> 00:24:34,456
+you need to click distribute
+and save for enterprise
+
+
+354
+00:24:34,696 --> 00:24:38,536
+or ad-hoc deployment
+right there.
+
+
+355
+00:24:41,576 --> 00:24:45,346
+Then choose the provisioning
+profile the provisioning profile
+
+
+356
+00:24:45,346 --> 00:24:48,866
+that you've just created, not
+the team provisioning profile
+
+
+357
+00:24:48,866 --> 00:24:52,046
+but this one the in house
+provisioning profile,
+
+
+358
+00:24:52,246 --> 00:24:53,646
+distribution provisioning
+profile.
+
+
+359
+00:24:54,126 --> 00:24:59,276
+And then save the file.
+
+
+360
+00:24:59,836 --> 00:25:03,196
+If you're using MDM to
+distribute your apps
+
+
+361
+00:25:03,376 --> 00:25:07,046
+and you should you
+get the opportunity
+
+
+362
+00:25:07,186 --> 00:25:10,256
+to create the manifest file
+that can then be provided
+
+
+363
+00:25:10,256 --> 00:25:11,766
+to your MDM server over here.
+
+
+364
+00:25:12,356 --> 00:25:18,646
+Consult your MDM server and you
+can enter the URL and app icons
+
+
+365
+00:25:18,736 --> 00:25:24,256
+that will be used to download
+the enterprise app that's how
+
+
+366
+00:25:24,256 --> 00:25:26,416
+you package your apps
+for distribution.
+
+
+367
+00:25:26,836 --> 00:25:32,256
+All right so next topic is
+something that's near and dear
+
+
+368
+00:25:32,256 --> 00:25:34,876
+to all our hearts, code signing
+
+
+369
+00:25:34,876 --> 00:25:37,936
+and provisioning
+rules, all right.
+
+
+370
+00:25:38,926 --> 00:25:44,976
+Code signing certificates
+are valid for three years.
+
+
+371
+00:25:45,516 --> 00:25:47,966
+[ Applause ]
+
+
+372
+00:25:48,466 --> 00:25:48,976
+Thank you.
+
+
+373
+00:25:51,836 --> 00:25:57,996
+You can have up to two valid
+certificates at a time all right
+
+
+374
+00:25:58,256 --> 00:26:02,606
+so they can overlap but at any
+particular time you can only
+
+
+375
+00:26:02,606 --> 00:26:03,806
+have two valid ones.
+
+
+376
+00:26:04,656 --> 00:26:06,986
+You have to update
+your app binary
+
+
+377
+00:26:06,986 --> 00:26:10,856
+to update your code
+signing certificate
+
+
+378
+00:26:10,896 --> 00:26:14,036
+because you know it's
+part of the code bundle.
+
+
+379
+00:26:15,896 --> 00:26:20,116
+Provisioning profiles,
+provisioning profiles are valid
+
+
+380
+00:26:20,116 --> 00:26:25,686
+for one year but you can
+renew it at any time.
+
+
+381
+00:26:25,886 --> 00:26:28,706
+There is no need to
+update your app binary,
+
+
+382
+00:26:29,866 --> 00:26:32,526
+in fact it is the best practice
+
+
+383
+00:26:32,726 --> 00:26:36,076
+to update your provisioning
+profile silently over MDM
+
+
+384
+00:26:36,446 --> 00:26:37,896
+so that the apps will
+continue running.
+
+
+385
+00:26:39,436 --> 00:26:42,196
+Enterprise apps need
+both of these to run,
+
+
+386
+00:26:42,646 --> 00:26:44,786
+they need to have a valid
+code signing certificate
+
+
+387
+00:26:45,726 --> 00:26:50,676
+and a valid provisioning
+profile at the same time to run
+
+
+388
+00:26:50,676 --> 00:26:57,206
+on a user's device so to
+illustrate the kind of strategy
+
+
+389
+00:26:57,206 --> 00:26:59,356
+that you might have to
+build around these rules,
+
+
+390
+00:27:00,066 --> 00:27:05,806
+I've got a little chart here
+for you, so the vertical bars
+
+
+391
+00:27:05,806 --> 00:27:09,416
+in this chart are years, so
+this is year 0, year 1, year 2,
+
+
+392
+00:27:09,416 --> 00:27:13,476
+year 3, etcetera and the arrow
+up there is where you are
+
+
+393
+00:27:13,476 --> 00:27:16,726
+in time, I'm going to describe
+to you the kinds of things
+
+
+394
+00:27:16,726 --> 00:27:18,006
+that you might have to consider
+
+
+395
+00:27:18,536 --> 00:27:20,536
+as your app is deployed
+over the years.
+
+
+396
+00:27:21,066 --> 00:27:23,586
+So let's start by assuming
+you're going to publish an app
+
+
+397
+00:27:23,876 --> 00:27:26,256
+and year 0, you've never
+done it before, here we go,
+
+
+398
+00:27:26,256 --> 00:27:29,946
+app A 1.0 at year 0 we're
+going to distribute it.
+
+
+399
+00:27:31,106 --> 00:27:33,066
+Well the first thing
+you got to do is you got
+
+
+400
+00:27:33,066 --> 00:27:36,656
+to get yourself a code signing
+certificate, so you do that
+
+
+401
+00:27:37,266 --> 00:27:40,346
+and you sign your
+app with it, great.
+
+
+402
+00:27:40,726 --> 00:27:44,466
+Well, that's not enough right,
+you need a provisioning profile,
+
+
+403
+00:27:44,466 --> 00:27:46,236
+you need a distribution
+provisioning profile,
+
+
+404
+00:27:46,236 --> 00:27:49,836
+that's so these three steps are
+what we have just seen a few
+
+
+405
+00:27:49,836 --> 00:27:52,906
+slides ago when you go
+through and go to your archives
+
+
+406
+00:27:53,166 --> 00:27:54,716
+and distribute for
+enterprise, this is it.
+
+
+407
+00:27:54,966 --> 00:27:57,616
+You go to cosigning certificate,
+you use it to sign an app
+
+
+408
+00:27:58,396 --> 00:28:00,036
+and then you have a
+provisioning profile.
+
+
+409
+00:28:00,766 --> 00:28:03,566
+So the provisioning profiles
+are embedded in the app
+
+
+410
+00:28:03,566 --> 00:28:06,656
+so when the user downloads
+the app they automatically get
+
+
+411
+00:28:06,736 --> 00:28:08,346
+whatever provisioning
+profile you chose
+
+
+412
+00:28:08,346 --> 00:28:11,596
+when you distributed that app.
+
+
+413
+00:28:11,736 --> 00:28:14,476
+So everything is great,
+apps running, fantastic,
+
+
+414
+00:28:14,936 --> 00:28:20,016
+six months go by you go hey
+there's only six months left
+
+
+415
+00:28:20,016 --> 00:28:24,126
+in my provisioning profile, I'd
+better refresh this before some
+
+
+416
+00:28:24,296 --> 00:28:27,476
+of my users run out of
+provisioning profile validity,
+
+
+417
+00:28:28,536 --> 00:28:30,856
+so you create a new
+provisioning profile,
+
+
+418
+00:28:31,556 --> 00:28:34,556
+remember provisioning profiles
+can be renewed at any time
+
+
+419
+00:28:34,556 --> 00:28:37,586
+so you just do it and
+push it out using MDM
+
+
+420
+00:28:37,586 --> 00:28:39,916
+and the users are good
+to go for another year
+
+
+421
+00:28:39,916 --> 00:28:44,006
+from that point, all right.
+
+
+422
+00:28:45,276 --> 00:28:49,116
+So everything is going
+fine and now you want
+
+
+423
+00:28:49,116 --> 00:28:53,166
+to create another app A
+version, let's do an app A 2.0,
+
+
+424
+00:28:53,166 --> 00:28:55,986
+you do the same thing again
+just assign it a code signing
+
+
+425
+00:28:55,986 --> 00:28:58,246
+certificate, you don't have
+
+
+426
+00:28:58,246 --> 00:29:01,246
+to include another provisioning
+profile in app A 2.0
+
+
+427
+00:29:01,526 --> 00:29:04,516
+because the apps
+bundle ID didn't change
+
+
+428
+00:29:05,256 --> 00:29:08,326
+but it's a good idea because
+provisioning profiles are free
+
+
+429
+00:29:08,326 --> 00:29:12,766
+to renew just make another one,
+bundle it in with app A 2.0
+
+
+430
+00:29:13,036 --> 00:29:14,306
+so when the user downloads it
+
+
+431
+00:29:14,306 --> 00:29:16,826
+at that time they get a
+full year's worth of use
+
+
+432
+00:29:17,206 --> 00:29:18,296
+of the provisioning profile.
+
+
+433
+00:29:19,786 --> 00:29:24,956
+And time goes on and you keep
+doing this over the years
+
+
+434
+00:29:24,956 --> 00:29:27,526
+and everything is great, all
+the users are getting their
+
+
+435
+00:29:27,526 --> 00:29:30,646
+provisional profiles pushed
+by MDM, you don't have
+
+
+436
+00:29:30,646 --> 00:29:32,316
+to do a thing, the
+app continues to run.
+
+
+437
+00:29:33,136 --> 00:29:35,416
+All right so now
+you're 2 1/2 years
+
+
+438
+00:29:35,416 --> 00:29:37,826
+into your first code signing
+certificates validity date.
+
+
+439
+00:29:39,136 --> 00:29:43,836
+You decide to create
+another app, app B 1.0.
+
+
+440
+00:29:44,556 --> 00:29:47,576
+You could sign app B with your
+current cosigning certificate
+
+
+441
+00:29:48,266 --> 00:29:50,366
+but you're going to get six
+months of use out of it.
+
+
+442
+00:29:51,426 --> 00:29:55,336
+So many of our enterprise
+developers will have some kind
+
+
+443
+00:29:55,336 --> 00:29:59,256
+of threshold date where
+they say if there is less
+
+
+444
+00:29:59,256 --> 00:30:00,576
+than this number of days left
+
+
+445
+00:30:00,576 --> 00:30:02,756
+in my original code signing
+certificate I'm going
+
+
+446
+00:30:02,756 --> 00:30:03,676
+to create a new one.
+
+
+447
+00:30:04,286 --> 00:30:06,796
+So we're going to assume
+six months is too little,
+
+
+448
+00:30:06,796 --> 00:30:09,126
+they're going to create a
+new code signing certificate
+
+
+449
+00:30:09,126 --> 00:30:15,356
+and sign app B with a new
+code signing certificate.
+
+
+450
+00:30:15,806 --> 00:30:17,296
+Because you're signing at B
+
+
+451
+00:30:17,296 --> 00:30:19,546
+with a new code signing
+certificate you're going
+
+
+452
+00:30:19,546 --> 00:30:22,926
+to have a new distribution
+provisioning profile for app B
+
+
+453
+00:30:23,306 --> 00:30:25,936
+which you include and everything
+is great, everything works,
+
+
+454
+00:30:26,386 --> 00:30:29,916
+app A continues to work with
+the old cosigning certificate
+
+
+455
+00:30:29,916 --> 00:30:33,386
+and app B continues to work with
+the new cosigning certificate,
+
+
+456
+00:30:33,906 --> 00:30:40,156
+everything is fine until
+you reach close the end
+
+
+457
+00:30:40,616 --> 00:30:44,136
+of app A's code signing
+certificate validity date.
+
+
+458
+00:30:44,796 --> 00:30:45,506
+What do we do now?
+
+
+459
+00:30:46,576 --> 00:30:50,516
+Well, you can't reuse the
+old code singing certificate
+
+
+460
+00:30:50,946 --> 00:30:53,316
+but you have a new code
+signing certificate that's good
+
+
+461
+00:30:53,316 --> 00:30:57,166
+for another few years
+however in order
+
+
+462
+00:30:57,166 --> 00:30:58,906
+to update the code
+signing certificate
+
+
+463
+00:30:58,906 --> 00:31:03,356
+in your app you must distribute
+a new version of your app
+
+
+464
+00:31:04,086 --> 00:31:09,496
+that is signed with a new code
+signing certificate, okay.
+
+
+465
+00:31:09,496 --> 00:31:14,256
+And because the code signing
+certificate has changed you also
+
+
+466
+00:31:14,256 --> 00:31:17,766
+need a new distribution
+provisioning profile for app A,
+
+
+467
+00:31:18,906 --> 00:31:21,366
+which you bundle with
+app A and you distribute.
+
+
+468
+00:31:22,006 --> 00:31:24,766
+Now everything is good for
+another 2 1/2 years or so.
+
+
+469
+00:31:25,076 --> 00:31:26,906
+Notice your code
+signing expiration dates
+
+
+470
+00:31:28,006 --> 00:31:30,826
+and use the newest code signing
+certificate that you have
+
+
+471
+00:31:30,826 --> 00:31:35,986
+on hand, embed a new
+provisioning profile every time
+
+
+472
+00:31:36,096 --> 00:31:40,036
+you distribute a new app.
+
+
+473
+00:31:40,036 --> 00:31:41,726
+Host your in house
+app using HTTPS,
+
+
+474
+00:31:41,726 --> 00:31:44,146
+this is just a little note
+
+
+475
+00:31:44,296 --> 00:31:46,676
+because we've made a
+recent change in iOS
+
+
+476
+00:31:46,676 --> 00:31:51,316
+that requires HTTPS in order
+to download your in house apps.
+
+
+477
+00:31:52,386 --> 00:31:55,196
+Then use MDM to distribute
+your apps
+
+
+478
+00:31:55,616 --> 00:31:58,466
+and to refresh you
+provisioning profiles silently.
+
+
+479
+00:31:59,056 --> 00:32:03,646
+Remember that an app must
+be updated in order in order
+
+
+480
+00:32:03,646 --> 00:32:05,946
+to change its code
+signing certificates.
+
+
+481
+00:32:08,076 --> 00:32:11,966
+All right so that's a little bit
+about app distribution strategy.
+
+
+482
+00:32:12,516 --> 00:32:19,376
+All right now let's
+talk about custom B2B,
+
+
+483
+00:32:21,296 --> 00:32:26,866
+so what's custom B2B custom
+B2B are apps that are hosted
+
+
+484
+00:32:27,096 --> 00:32:31,666
+in the Apple App Store
+but are only visible
+
+
+485
+00:32:31,846 --> 00:32:33,346
+to a limited audience.
+
+
+486
+00:32:33,856 --> 00:32:39,196
+Because they are hosted in the
+App Store they are reviewed
+
+
+487
+00:32:39,196 --> 00:32:44,116
+by Apple but when you install
+a custom B2B app there's no
+
+
+488
+00:32:44,116 --> 00:32:45,526
+provisioning profile required
+
+
+489
+00:32:45,826 --> 00:32:48,396
+because they are
+considered App Store apps.
+
+
+490
+00:32:52,696 --> 00:32:55,476
+To publish a custom
+B2B app you have
+
+
+491
+00:32:55,506 --> 00:32:56,976
+to be an App Store developer,
+
+
+492
+00:32:57,486 --> 00:32:59,176
+not necessarily an
+enterprise developer,
+
+
+493
+00:32:59,716 --> 00:33:02,616
+you follow the same
+steps that you do
+
+
+494
+00:33:03,076 --> 00:33:08,246
+for publishing irregular App
+Store app, however all you got
+
+
+495
+00:33:08,246 --> 00:33:11,426
+to do is check that little box
+that says custom B2B and when
+
+
+496
+00:33:11,426 --> 00:33:14,096
+that happens you get a
+field that allows you
+
+
+497
+00:33:14,336 --> 00:33:20,376
+to specify what Apple
+ID's can see your app.
+
+
+498
+00:33:20,706 --> 00:33:27,186
+These Apple ID's are Apple
+ID's for the VPP portal,
+
+
+499
+00:33:27,186 --> 00:33:31,556
+the volume purchase
+program portal, right here.
+
+
+500
+00:33:32,496 --> 00:33:38,666
+When a custom B2B app is
+published and an Apple ID is put
+
+
+501
+00:33:38,666 --> 00:33:42,746
+in there the purchaser of
+that app can see these apps,
+
+
+502
+00:33:43,116 --> 00:33:46,276
+list it at the bottom
+of their VPP portal
+
+
+503
+00:33:47,316 --> 00:33:50,646
+where they can then purchase
+licenses and push these apps
+
+
+504
+00:33:50,646 --> 00:33:55,256
+out using MDM as though
+they were App Store apps.
+
+
+505
+00:33:56,936 --> 00:33:59,676
+So why would you use custom B2B?
+
+
+506
+00:34:00,356 --> 00:34:03,346
+If you're an enterprise
+custom B2B is great
+
+
+507
+00:34:03,776 --> 00:34:07,976
+if a custom app that's
+made for you contains code
+
+
+508
+00:34:07,976 --> 00:34:12,536
+that you don't own, when you
+buy an app tailor made for you
+
+
+509
+00:34:12,536 --> 00:34:14,416
+from some, from a
+separate company
+
+
+510
+00:34:14,516 --> 00:34:17,835
+for example you can ask
+them to publish the app
+
+
+511
+00:34:17,926 --> 00:34:20,876
+as a custom B2B app
+which you can then view
+
+
+512
+00:34:20,876 --> 00:34:23,906
+and purchase using your own
+portal and you will know
+
+
+513
+00:34:23,906 --> 00:34:26,196
+for sure that nobody else
+gets access to that app.
+
+
+514
+00:34:27,126 --> 00:34:32,176
+Okay, they're also great for
+subsidiaries so if your company
+
+
+515
+00:34:32,176 --> 00:34:35,886
+if your enterprise happens
+to be a conglomeration
+
+
+516
+00:34:35,886 --> 00:34:39,436
+of subsidiaries many of them
+have different VPP programs
+
+
+517
+00:34:39,436 --> 00:34:42,996
+with different requirements
+creating a custom B2B
+
+
+518
+00:34:43,335 --> 00:34:45,426
+distribution maybe easier
+
+
+519
+00:34:45,426 --> 00:34:48,746
+than developing an enterprise
+app for them, all right.
+
+
+520
+00:34:49,045 --> 00:34:52,446
+So a custom B2B app does
+not require any code signing
+
+
+521
+00:34:52,446 --> 00:34:54,386
+or provisioning profile watching
+
+
+522
+00:34:54,386 --> 00:34:57,206
+for code signing
+provisioning profile expiration
+
+
+523
+00:34:57,696 --> 00:35:00,636
+because they are App Store apps.
+
+
+524
+00:35:00,706 --> 00:35:04,016
+You can create promo codes
+for beta testing your apps.
+
+
+525
+00:35:05,356 --> 00:35:08,716
+So that's custom B2B.
+
+
+526
+00:35:08,946 --> 00:35:12,856
+So today we've covered
+several high level topics here,
+
+
+527
+00:35:13,536 --> 00:35:16,776
+managing your team and
+the roles in the program.
+
+
+528
+00:35:17,356 --> 00:35:22,156
+We talked about Xcode server and
+how it can become a great hub
+
+
+529
+00:35:22,606 --> 00:35:24,286
+for your development team.
+
+
+530
+00:35:25,016 --> 00:35:30,346
+We talked about app distribution
+strategies and we've talked
+
+
+531
+00:35:30,346 --> 00:35:34,006
+about custom B2B and how that
+can be used in your enterprise.
+
+
+532
+00:35:34,596 --> 00:35:40,556
+Some Key take-a-ways, agents
+and admins should be employees,
+
+
+533
+00:35:41,546 --> 00:35:45,126
+contractors should
+be team members.
+
+
+534
+00:35:45,576 --> 00:35:48,636
+Use Xcode server for
+continuous integration and QA
+
+
+535
+00:35:49,156 --> 00:35:52,536
+and keep an eye out
+for the code signing
+
+
+536
+00:35:52,536 --> 00:35:56,326
+and certificate expiration
+dates and use custom B2B
+
+
+537
+00:35:56,326 --> 00:35:59,466
+if you don't own the code.
+
+
+538
+00:36:00,196 --> 00:36:03,866
+All right I want to call your
+attention to a great portal site
+
+
+539
+00:36:03,866 --> 00:36:06,096
+that was just launched,
+developer.apple.
+
+
+540
+00:36:06,096 --> 00:36:09,616
+com/enterprise made especially
+for enterprise developers.
+
+
+541
+00:36:10,136 --> 00:36:14,516
+Our evangelist is Paul Danbold
+
+
+542
+00:36:16,036 --> 00:36:18,916
+and development forums are
+always a great resource for you.
+
+
+543
+00:36:19,926 --> 00:36:21,026
+Some related sessions,
+
+
+544
+00:36:22,046 --> 00:36:25,246
+this morning we had Managing
+Apple Devices please check the
+
+
+545
+00:36:25,246 --> 00:36:25,776
+video out.
+
+
+546
+00:36:26,556 --> 00:36:28,416
+We had Building Apps
+for Enterprise
+
+
+547
+00:36:28,416 --> 00:36:31,906
+and Education earlier today,
+with that thank you very much.
+
+
+548
+00:36:32,516 --> 00:36:36,500
+[ Applause ]
+

@@ -1,0 +1,7089 @@
+1
+00:00:13,336 --> 00:00:14,186
+>> So welcome.
+
+
+2
+00:00:14,186 --> 00:00:14,253
+So-
+
+
+3
+00:00:14,253 --> 00:00:14,926
+[ Applause ]
+
+
+4
+00:00:14,926 --> 00:00:15,736
+-oh, thank you.
+
+
+5
+00:00:21,836 --> 00:00:24,046
+So, my name's Richard
+Schreyer, and I've been working
+
+
+6
+00:00:24,046 --> 00:00:26,146
+on the design of Metal
+for quite a while now.
+
+
+7
+00:00:26,146 --> 00:00:28,446
+And so it's really exciting
+to finally be able to talk
+
+
+8
+00:00:28,446 --> 00:00:29,206
+to all of you about it.
+
+
+9
+00:00:29,536 --> 00:00:31,826
+So this is the Metal
+fundamentals session.
+
+
+10
+00:00:32,016 --> 00:00:35,396
+It's the second in our trio of
+sessions, following concepts
+
+
+11
+00:00:35,466 --> 00:00:37,816
+and to be followed by
+Metal advanced usage.
+
+
+12
+00:00:38,036 --> 00:00:42,276
+So this session is going to
+be split into two major parts.
+
+
+13
+00:00:43,036 --> 00:00:45,306
+The first half, which I'm going
+to present, is going to be how
+
+
+14
+00:00:45,306 --> 00:00:47,126
+to build a basic
+Metal application.
+
+
+15
+00:00:48,056 --> 00:00:49,686
+I want to take all
+of the concepts
+
+
+16
+00:00:49,686 --> 00:00:50,736
+that Jeremy just described,
+
+
+17
+00:00:50,876 --> 00:00:52,946
+a bunch of block
+diagrams and arrows.
+
+
+18
+00:00:53,376 --> 00:00:54,956
+And turn those into actual code.
+
+
+19
+00:00:55,646 --> 00:00:57,986
+So, we'll try to make
+everything more concrete.
+
+
+20
+00:00:59,636 --> 00:01:01,126
+During the second
+half of the session,
+
+
+21
+00:01:01,126 --> 00:01:03,176
+I'm going to turn the stage over
+to my colleague Aafi [phonetic],
+
+
+22
+00:01:03,176 --> 00:01:05,196
+who will take you
+into a deep dive
+
+
+23
+00:01:05,266 --> 00:01:06,496
+into the Metal shading language.
+
+
+24
+00:01:07,076 --> 00:01:10,366
+Talk about, you know, the
+various syntax and data types.
+
+
+25
+00:01:10,366 --> 00:01:12,736
+How to express vertex,
+pixel and compute shaders.
+
+
+26
+00:01:12,996 --> 00:01:15,246
+And then a bunch of grab bag
+of other interesting topics.
+
+
+27
+00:01:16,236 --> 00:01:19,176
+So, getting right into
+building a Metal application.
+
+
+28
+00:01:19,176 --> 00:01:22,786
+So as I said, this is
+going to be a fairly --
+
+
+29
+00:01:22,986 --> 00:01:26,376
+a set of slides that are
+fairly heavy on code.
+
+
+30
+00:01:26,496 --> 00:01:29,036
+That's really what I want to
+try to get across is, you know,
+
+
+31
+00:01:29,146 --> 00:01:31,906
+what you're going to actually
+want to put down in Xcode.
+
+
+32
+00:01:32,106 --> 00:01:33,986
+So I'm going to try and
+keep this application
+
+
+33
+00:01:33,986 --> 00:01:34,896
+as simple as possible.
+
+
+34
+00:01:34,896 --> 00:01:36,946
+So it's going to be a very
+"hello world" kind of thing.
+
+
+35
+00:01:37,416 --> 00:01:40,576
+So in the interest of, is it
+always that way in graphics?
+
+
+36
+00:01:40,576 --> 00:01:41,836
+So the application I'm going
+
+
+37
+00:01:41,836 --> 00:01:43,616
+to build is basically
+just a triangle.
+
+
+38
+00:01:43,616 --> 00:01:45,456
+We're going to go
+through all the steps
+
+
+39
+00:01:45,456 --> 00:01:47,896
+to go put a single shaded
+triangle on the screen.
+
+
+40
+00:01:47,896 --> 00:01:48,086
+[ Applause ]
+
+
+41
+00:01:48,086 --> 00:01:49,896
+I know, really exciting stuff.
+
+
+42
+00:01:51,476 --> 00:01:54,016
+But it's actually pretty cool
+because, and we're going to go
+
+
+43
+00:01:54,016 --> 00:01:56,136
+through some boiler
+plate and some setup.
+
+
+44
+00:01:56,136 --> 00:01:57,306
+But once you get through that,
+
+
+45
+00:01:57,306 --> 00:01:58,936
+that's really the same
+foundation you need
+
+
+46
+00:01:58,936 --> 00:01:59,996
+to start building, immediately,
+
+
+47
+00:01:59,996 --> 00:02:01,886
+much more complex
+content on top of that.
+
+
+48
+00:02:02,536 --> 00:02:05,016
+So we're not going out of our
+way to draw just a triangle.
+
+
+49
+00:02:07,226 --> 00:02:08,985
+So the first set of
+things I'm going to go
+
+
+50
+00:02:08,985 --> 00:02:10,616
+through are just
+the initialization.
+
+
+51
+00:02:10,616 --> 00:02:12,556
+I mean what's the
+one-shot setup you'll do
+
+
+52
+00:02:12,646 --> 00:02:14,646
+when your application launches
+or you start using Metal?
+
+
+53
+00:02:15,646 --> 00:02:17,686
+Then I'll get into the
+contents of what, you know,
+
+
+54
+00:02:17,686 --> 00:02:18,996
+the actual drawing
+will look like.
+
+
+55
+00:02:19,736 --> 00:02:22,356
+And then we'll get on to
+extending the application
+
+
+56
+00:02:22,356 --> 00:02:23,806
+to do a little bit more stuff.
+
+
+57
+00:02:23,906 --> 00:02:26,256
+So these are the
+steps that I'll walk
+
+
+58
+00:02:26,256 --> 00:02:27,346
+through in the code, in order.
+
+
+59
+00:02:28,546 --> 00:02:30,506
+So right at the top
+is getting the device.
+
+
+60
+00:02:31,106 --> 00:02:32,436
+So what is the device API?
+
+
+61
+00:02:32,436 --> 00:02:37,586
+So in Metal, a device is sort of
+the root object of a whole API.
+
+
+62
+00:02:37,586 --> 00:02:40,656
+It's your direct connection
+
+
+63
+00:02:40,656 --> 00:02:42,916
+to the GPU driver
+and the GPU hardware.
+
+
+64
+00:02:43,616 --> 00:02:46,226
+Now as far as the actual API
+that the device sends out,
+
+
+65
+00:02:46,886 --> 00:02:50,226
+what it really does directly,
+it's the source that you go
+
+
+66
+00:02:50,226 --> 00:02:52,556
+to to create all of the other
+objects in the Metal API.
+
+
+67
+00:02:53,786 --> 00:02:56,856
+So if you want to go create
+a new texture or a new buffer
+
+
+68
+00:02:56,856 --> 00:02:59,146
+or a new RenderPipeline,
+the device is
+
+
+69
+00:02:59,146 --> 00:02:59,876
+where you'll find that.
+
+
+70
+00:03:01,006 --> 00:03:02,826
+So, we want to go
+create some stuff,
+
+
+71
+00:03:02,826 --> 00:03:04,616
+and so we need a device
+to create them on.
+
+
+72
+00:03:05,236 --> 00:03:05,966
+So that's really easy.
+
+
+73
+00:03:06,026 --> 00:03:09,016
+So our first initialization
+step is to just say, "hey,
+
+
+74
+00:03:09,096 --> 00:03:12,396
+I want the default device."
+
+
+75
+00:03:13,196 --> 00:03:17,046
+Our second initialization step
+is we need a command queue.
+
+
+76
+00:03:18,126 --> 00:03:20,996
+The CommandQueue is our channel
+to submit work to the GPU.
+
+
+77
+00:03:21,726 --> 00:03:24,036
+Now we're not actually going
+to do any of that until we get
+
+
+78
+00:03:24,036 --> 00:03:26,156
+to drawing, so I'm going to
+create a CommandQueue now
+
+
+79
+00:03:26,446 --> 00:03:28,566
+from the device and
+save it aside.
+
+
+80
+00:03:29,166 --> 00:03:35,086
+The third initialization step is
+to go create all of my buffers
+
+
+81
+00:03:35,086 --> 00:03:37,536
+and textures and
+other resources.
+
+
+82
+00:03:38,316 --> 00:03:40,576
+My application is simple enough
+that I have exactly one of them.
+
+
+83
+00:03:40,576 --> 00:03:41,416
+I need a vertexArray.
+
+
+84
+00:03:41,416 --> 00:03:44,166
+And so I'm going to
+go back to the device
+
+
+85
+00:03:44,366 --> 00:03:45,866
+yet again and say newBuffer.
+
+
+86
+00:03:46,646 --> 00:03:48,886
+This particular variance
+will go allocate a new block
+
+
+87
+00:03:48,886 --> 00:03:52,256
+of CPU/GPU shared memory, copy
+the provided pointer into it,
+
+
+88
+00:03:52,256 --> 00:03:53,916
+and give me back a
+handle to that buffer.
+
+
+89
+00:03:55,376 --> 00:03:57,136
+So right off the bat
+we've gotten through three
+
+
+90
+00:03:57,136 --> 00:03:58,696
+of our five initialization
+steps.
+
+
+91
+00:03:58,696 --> 00:03:59,706
+We're making pretty good time.
+
+
+92
+00:04:00,586 --> 00:04:02,706
+The fourth one is going to
+be quite a bit more involved.
+
+
+93
+00:04:02,706 --> 00:04:04,266
+We're going to spend
+some time on that one.
+
+
+94
+00:04:04,816 --> 00:04:06,806
+And that is creating
+the RenderPipeline.
+
+
+95
+00:04:07,416 --> 00:04:11,396
+So this is all -- so as we
+saw in the concepts session,
+
+
+96
+00:04:12,336 --> 00:04:14,366
+the RenderPipeline
+is a collection
+
+
+97
+00:04:14,366 --> 00:04:15,706
+of quite a bit of stuff.
+
+
+98
+00:04:15,976 --> 00:04:19,096
+Most importantly, the vertex
+and the fragment shaders,
+
+
+99
+00:04:19,896 --> 00:04:22,396
+but it also incorporates
+every other piece of state
+
+
+100
+00:04:22,396 --> 00:04:24,006
+that the shader compiler needs
+
+
+101
+00:04:24,006 --> 00:04:27,346
+to generate the final
+machine code for the A7.
+
+
+102
+00:04:27,896 --> 00:04:29,926
+That includes some
+information on vertex layout,
+
+
+103
+00:04:30,236 --> 00:04:33,146
+some rasterizer configuration,
+all of the framebuffer,
+
+
+104
+00:04:33,146 --> 00:04:35,226
+blend modes, and
+some information
+
+
+105
+00:04:35,226 --> 00:04:36,846
+about the framebuffer
+configuration
+
+
+106
+00:04:36,966 --> 00:04:37,966
+that this pipeline will draw to.
+
+
+107
+00:04:38,086 --> 00:04:41,486
+That's actually quite
+a bit of stuff.
+
+
+108
+00:04:41,986 --> 00:04:43,756
+And so we've split
+the RenderPipeline
+
+
+109
+00:04:43,756 --> 00:04:45,216
+into two separate objects.
+
+
+110
+00:04:45,636 --> 00:04:48,596
+The RenderPipelineDescriptor,
+which is your object
+
+
+111
+00:04:48,666 --> 00:04:50,506
+that provides all the
+configuration API,
+
+
+112
+00:04:50,506 --> 00:04:56,616
+and the RenderPipelineState,
+which is the sort of baked,
+
+
+113
+00:04:56,616 --> 00:04:57,776
+finalized form of that.
+
+
+114
+00:04:58,166 --> 00:04:59,786
+It's just small, it's compact,
+
+
+115
+00:05:00,146 --> 00:05:02,526
+and they're really
+cheap to switch between.
+
+
+116
+00:05:03,916 --> 00:05:05,706
+So let's go look at
+the code to build --
+
+
+117
+00:05:05,706 --> 00:05:07,226
+I'm going to build
+one RenderPipeline
+
+
+118
+00:05:07,226 --> 00:05:12,536
+in this application, so
+let's go look at the code.
+
+
+119
+00:05:12,646 --> 00:05:15,186
+So first, I'm going to
+conjure up a new descriptor.
+
+
+120
+00:05:16,286 --> 00:05:18,686
+And the very first things I'm
+going to set on it are my vertex
+
+
+121
+00:05:18,686 --> 00:05:19,916
+and my fragment shaders.
+
+
+122
+00:05:21,736 --> 00:05:23,946
+And you'll notice that I'm not
+providing any source code here.
+
+
+123
+00:05:24,476 --> 00:05:26,516
+So this is what the
+runtime API looks
+
+
+124
+00:05:26,516 --> 00:05:29,246
+like when Xcode builds your
+shaders offline for you.
+
+
+125
+00:05:29,546 --> 00:05:32,596
+Xcode's going to package up all
+of the offline-built shaders
+
+
+126
+00:05:33,046 --> 00:05:35,056
+into a device independent
+bytecode file...
+
+
+127
+00:05:35,866 --> 00:05:37,726
+and ship that in your
+application bundle.
+
+
+128
+00:05:37,776 --> 00:05:40,256
+And at runtime I can
+go ask the device
+
+
+129
+00:05:40,256 --> 00:05:41,716
+to load that default library.
+
+
+130
+00:05:43,266 --> 00:05:45,556
+Once I have that, I can
+go start picking functions
+
+
+131
+00:05:45,556 --> 00:05:46,496
+out of that by name.
+
+
+132
+00:05:49,256 --> 00:05:51,216
+The second piece of
+configuration I need
+
+
+133
+00:05:51,216 --> 00:05:53,726
+on the RenderPipeline is
+the framebuffer format.
+
+
+134
+00:05:54,256 --> 00:05:58,256
+So, I'm only going to have one
+color attachment I'm rendering
+
+
+135
+00:05:58,256 --> 00:06:00,436
+to, and so I'm going to
+say, "hey, this is going
+
+
+136
+00:06:00,436 --> 00:06:01,946
+to be a BGRA render target."
+
+
+137
+00:06:03,086 --> 00:06:06,816
+A RenderPipeline has a whole
+bunch of other stuff I can set
+
+
+138
+00:06:06,816 --> 00:06:08,906
+on it, but for my simple
+little application,
+
+
+139
+00:06:09,356 --> 00:06:10,536
+that's really all I need.
+
+
+140
+00:06:10,946 --> 00:06:13,336
+The default values of all
+the other properties are
+
+
+141
+00:06:13,336 --> 00:06:14,276
+already appropriate.
+
+
+142
+00:06:14,676 --> 00:06:19,096
+So I'm going to go ahead and
+compile and ask the device
+
+
+143
+00:06:19,096 --> 00:06:20,656
+to compile a RenderPipeline
+state.
+
+
+144
+00:06:20,896 --> 00:06:21,946
+I'll just go to the device
+
+
+145
+00:06:21,946 --> 00:06:25,426
+and call newRenderPipelineState
+WithDescriptor.
+
+
+146
+00:06:26,706 --> 00:06:28,386
+So this is actually
+the expensive API.
+
+
+147
+00:06:29,166 --> 00:06:31,646
+This is the API that is
+going to, if necessary,
+
+
+148
+00:06:31,976 --> 00:06:33,466
+go call over to the
+shader compiler
+
+
+149
+00:06:33,676 --> 00:06:37,416
+and finish the code generation,
+taking into account all
+
+
+150
+00:06:37,416 --> 00:06:40,506
+of the other information
+that you have provided.
+
+
+151
+00:06:40,576 --> 00:06:42,976
+Once we have this
+RenderPipeline, now you,
+
+
+152
+00:06:43,076 --> 00:06:44,586
+you know -- it's all baked.
+
+
+153
+00:06:44,586 --> 00:06:46,466
+It's all finalized, and
+we can toggle between them
+
+
+154
+00:06:46,466 --> 00:06:48,476
+at draw time very, very cheaply.
+
+
+155
+00:06:48,956 --> 00:06:51,846
+So that's our fourth
+initialization step,
+
+
+156
+00:06:52,416 --> 00:06:53,496
+building the RenderPipeline.
+
+
+157
+00:06:53,916 --> 00:06:57,436
+But before I move on from that,
+you know, since we're pointing
+
+
+158
+00:06:57,436 --> 00:06:58,946
+at our vertex and
+fragment shader here,
+
+
+159
+00:06:59,426 --> 00:07:01,336
+I do want to take a
+really quick little detour
+
+
+160
+00:07:01,336 --> 00:07:04,066
+and show you the vertex and
+fragment shader code itself.
+
+
+161
+00:07:04,836 --> 00:07:08,296
+So I'm not going to explain to
+you every part of the syntax,
+
+
+162
+00:07:08,326 --> 00:07:11,086
+because Aafi is going to
+tell you all about that
+
+
+163
+00:07:11,086 --> 00:07:12,126
+in just a few minutes.
+
+
+164
+00:07:12,876 --> 00:07:15,486
+But I'm going to show you
+just, I'm going to focus
+
+
+165
+00:07:15,486 --> 00:07:18,696
+on just the dataflow from the
+vertexArray through the vertex
+
+
+166
+00:07:18,696 --> 00:07:20,896
+and fragment shader and
+into the frame buffer.
+
+
+167
+00:07:21,616 --> 00:07:24,826
+So, I've split this
+up into two slides.
+
+
+168
+00:07:24,826 --> 00:07:26,686
+My first slide are
+a couple structures
+
+
+169
+00:07:26,976 --> 00:07:29,276
+that describe the input and
+output of the vertex shader.
+
+
+170
+00:07:30,156 --> 00:07:34,066
+The vertex structure defines
+how my vertexArray is laid
+
+
+171
+00:07:34,066 --> 00:07:34,586
+out in memory.
+
+
+172
+00:07:34,956 --> 00:07:39,186
+Position followed by a color.
+
+
+173
+00:07:39,376 --> 00:07:40,366
+My vertex shader is going
+
+
+174
+00:07:40,366 --> 00:07:42,086
+to be a really simple
+pass-through shader.
+
+
+175
+00:07:42,086 --> 00:07:44,666
+I'm going to read my position
+color from the vertexArray
+
+
+176
+00:07:44,666 --> 00:07:47,226
+and pass them right out
+down the pipeline unchanged.
+
+
+177
+00:07:47,556 --> 00:07:51,656
+So, unsurprisingly, my
+VertexOut struct looks,
+
+
+178
+00:07:51,886 --> 00:07:52,826
+well, just like it.
+
+
+179
+00:07:53,376 --> 00:07:56,766
+The only difference is that
+the rasterizer needs to know
+
+
+180
+00:07:56,766 --> 00:07:58,266
+which of the outputs
+is the position,
+
+
+181
+00:07:58,266 --> 00:07:59,966
+so we have to use an attribute
+
+
+182
+00:08:00,096 --> 00:08:03,126
+to identify that
+to the compiler.
+
+
+183
+00:08:03,206 --> 00:08:05,556
+All of the other outputs
+will get interpolated
+
+
+184
+00:08:05,556 --> 00:08:06,766
+across the triangle as usual.
+
+
+185
+00:08:06,766 --> 00:08:12,996
+So on to the body of
+the vertex shader.
+
+
+186
+00:08:13,226 --> 00:08:15,866
+So here's my simple
+pass-through VertexShader.
+
+
+187
+00:08:16,766 --> 00:08:21,226
+So we have a normal
+C-style declaration
+
+
+188
+00:08:21,256 --> 00:08:22,606
+with some extra key
+words and attributes.
+
+
+189
+00:08:22,606 --> 00:08:23,906
+We'll go into more
+detail on them later.
+
+
+190
+00:08:24,806 --> 00:08:27,316
+But I'm getting a
+pointer to my vertexArray
+
+
+191
+00:08:28,076 --> 00:08:31,036
+into my VertexShader, along
+with a vertex ID that tells me
+
+
+192
+00:08:31,296 --> 00:08:32,246
+which of the three vertexes
+
+
+193
+00:08:32,246 --> 00:08:33,686
+that this thread is
+going to be processing.
+
+
+194
+00:08:36,416 --> 00:08:38,645
+From those I'm going to
+read from the vertexArray,
+
+
+195
+00:08:39,035 --> 00:08:44,456
+copy to the output struct, and
+I'm going to return an instance
+
+
+196
+00:08:44,456 --> 00:08:45,636
+of the VertexOut struct.
+
+
+197
+00:08:45,636 --> 00:08:50,406
+So this is sort of in comparison
+to GLSL where all of the inputs
+
+
+198
+00:08:50,406 --> 00:08:52,016
+and outputs are specified
+as global scope.
+
+
+199
+00:08:52,076 --> 00:08:55,036
+In the Metal shading language,
+all of your inputs come
+
+
+200
+00:08:55,036 --> 00:08:56,146
+in via function arguments.
+
+
+201
+00:08:56,296 --> 00:08:59,206
+All of your outputs are
+returned via the C return pipe.
+
+
+202
+00:08:59,206 --> 00:08:59,856
+[ Applause ]
+
+
+203
+00:08:59,856 --> 00:09:02,496
+Okay, this guy likes that!
+
+
+204
+00:09:04,326 --> 00:09:07,236
+So now the FragmentShader
+is of course even easier.
+
+
+205
+00:09:07,956 --> 00:09:12,246
+The input to my FragmentShader
+is again, a single argument.
+
+
+206
+00:09:12,666 --> 00:09:14,686
+In this case the same
+VertexOut structs
+
+
+207
+00:09:14,686 --> 00:09:16,066
+that the VertexShader
+just returned.
+
+
+208
+00:09:16,976 --> 00:09:19,226
+Except now it contains
+an interpolated position
+
+
+209
+00:09:19,776 --> 00:09:21,016
+and an interpolated color.
+
+
+210
+00:09:21,016 --> 00:09:23,136
+So I'm going to go
+read my color.
+
+
+211
+00:09:23,136 --> 00:09:25,486
+And I'm going to
+return a float4,
+
+
+212
+00:09:25,486 --> 00:09:26,646
+which will write
+into the framebuffer.
+
+
+213
+00:09:27,426 --> 00:09:29,326
+And because we told them --
+
+
+214
+00:09:29,326 --> 00:09:31,446
+put in the pipeline state what
+the framebuffer for it is,
+
+
+215
+00:09:31,826 --> 00:09:33,706
+the compiler knows how it
+needs to pack this down
+
+
+216
+00:09:33,706 --> 00:09:35,956
+and compress it to the actual,
+final framebuffer format.
+
+
+217
+00:09:36,516 --> 00:09:38,776
+So that's the vertex
+
+
+218
+00:09:38,776 --> 00:09:41,346
+and frag-pass-through
+vertex and FragmentShaders.
+
+
+219
+00:09:41,816 --> 00:09:44,646
+And that's really the end of
+how to build a RenderPipeline.
+
+
+220
+00:09:45,026 --> 00:09:47,766
+The one last bit are just the
+function names themselves,
+
+
+221
+00:09:47,826 --> 00:09:49,976
+which are the strings that I
+use to pull up these functions
+
+
+222
+00:09:49,976 --> 00:09:51,336
+up when building
+another pipeline.
+
+
+223
+00:09:51,916 --> 00:09:59,946
+So our fifth and final step to
+initialize is creating the view.
+
+
+224
+00:10:00,346 --> 00:10:03,136
+So if you've been working
+on iOS for a while,
+
+
+225
+00:10:03,136 --> 00:10:05,576
+you're probably aware that
+if you want to get anything
+
+
+226
+00:10:05,726 --> 00:10:08,316
+on the screen, it
+basically needs to be part
+
+
+227
+00:10:08,316 --> 00:10:09,646
+of a core animation layer tree.
+
+
+228
+00:10:10,546 --> 00:10:13,566
+So, iOS 8 provides
+a new subclass
+
+
+229
+00:10:13,566 --> 00:10:15,606
+of CA layer called CAMetalLayer.
+
+
+230
+00:10:16,796 --> 00:10:18,436
+And that class is
+really interesting
+
+
+231
+00:10:18,476 --> 00:10:20,746
+because it can vend
+out textures.
+
+
+232
+00:10:20,746 --> 00:10:23,266
+It will manage a swap chain
+of typically three textures,
+
+
+233
+00:10:23,266 --> 00:10:24,756
+and you can ask for the
+next one in the chain.
+
+
+234
+00:10:25,276 --> 00:10:27,576
+And I can say, "Give me a
+texture," render into it,
+
+
+235
+00:10:27,576 --> 00:10:29,626
+and when I'm done
+I can push it back
+
+
+236
+00:10:29,626 --> 00:10:30,816
+to be swapped on to the display.
+
+
+237
+00:10:32,116 --> 00:10:34,046
+To create a layer,
+
+
+238
+00:10:34,126 --> 00:10:36,676
+that's typically owned
+by a UIView subclass.
+
+
+239
+00:10:37,306 --> 00:10:38,806
+I'm going to show you a very,
+
+
+240
+00:10:38,886 --> 00:10:41,826
+very bare bones UIView
+subclass on the next slide.
+
+
+241
+00:10:42,216 --> 00:10:44,156
+And you can find a much more
+complete implementation,
+
+
+242
+00:10:44,156 --> 00:10:46,146
+with a bunch of functionality,
+in our sample code.
+
+
+243
+00:10:46,816 --> 00:10:50,066
+And then because this is
+iOS, and this is you know,
+
+
+244
+00:10:50,206 --> 00:10:52,676
+entirely typical, your view
+is then typically owned
+
+
+245
+00:10:52,676 --> 00:10:54,946
+by a ViewController, which is
+usually typically completely
+
+
+246
+00:10:54,946 --> 00:10:56,066
+custom to your application.
+
+
+247
+00:10:56,526 --> 00:10:59,726
+So let's go look at our
+really bare bones view.
+
+
+248
+00:11:01,406 --> 00:11:03,696
+So really this is all
+you really need to do.
+
+
+249
+00:11:03,826 --> 00:11:05,226
+I need to subclass UIView,
+
+
+250
+00:11:05,596 --> 00:11:07,786
+and I need to override the
+layerClass method and say,
+
+
+251
+00:11:08,436 --> 00:11:11,046
+"I want this view to own
+a Metal layer as opposed
+
+
+252
+00:11:11,046 --> 00:11:12,906
+to any other kind of layer."
+
+
+253
+00:11:13,636 --> 00:11:16,356
+There is some other
+configuration we could do
+
+
+254
+00:11:16,456 --> 00:11:18,716
+on this view in this
+layer (primarily
+
+
+255
+00:11:18,716 --> 00:11:22,486
+for efficient compositing) but
+this is really the bare minimum
+
+
+256
+00:11:22,486 --> 00:11:23,866
+that you need to get
+something on to the screen.
+
+
+257
+00:11:24,416 --> 00:11:27,976
+So with that, we've been
+through all five our
+
+
+258
+00:11:27,976 --> 00:11:28,996
+initialization steps.
+
+
+259
+00:11:29,636 --> 00:11:34,556
+We breezed through getting the
+device, getting a CommandQueue,
+
+
+260
+00:11:34,816 --> 00:11:36,546
+and creating a resource.
+
+
+261
+00:11:37,056 --> 00:11:40,256
+Spent a little bit of time on
+the RenderPipelineDescriptor
+
+
+262
+00:11:40,556 --> 00:11:41,636
+and RenderPipelineState.
+
+
+263
+00:11:42,636 --> 00:11:43,856
+Also looked at the shaders.
+
+
+264
+00:11:43,856 --> 00:11:46,166
+And then we created a view.
+
+
+265
+00:11:46,246 --> 00:11:50,216
+So with that we can actually
+get to drawing something.
+
+
+266
+00:11:50,356 --> 00:11:52,786
+And so that has a
+few more steps.
+
+
+267
+00:11:52,786 --> 00:11:58,856
+So, we need to get a command
+buffer, since all of our work
+
+
+268
+00:11:58,856 --> 00:12:02,056
+that goes to the GPU will be
+enqueued into a command buffer.
+
+
+269
+00:12:02,796 --> 00:12:04,826
+We're going to encode
+a renderToTexture pass
+
+
+270
+00:12:05,096 --> 00:12:06,046
+into that command buffer.
+
+
+271
+00:12:06,046 --> 00:12:08,216
+We're going to put some stuff
+in that render texture pass.
+
+
+272
+00:12:08,926 --> 00:12:10,596
+And then finally we're going
+to send that CommandBuffer
+
+
+273
+00:12:10,746 --> 00:12:12,306
+to the GPU hardware
+to be executed.
+
+
+274
+00:12:13,516 --> 00:12:15,266
+So, step 1, getting
+the CommandBuffer.
+
+
+275
+00:12:16,176 --> 00:12:17,116
+That's another one-liner.
+
+
+276
+00:12:18,166 --> 00:12:20,256
+You can simply go to the
+command queue and say,
+
+
+277
+00:12:20,726 --> 00:12:22,246
+"give me the next
+available CommandBuffer."
+
+
+278
+00:12:22,896 --> 00:12:28,736
+The second step is setting
+up my renderToTexture pass.
+
+
+279
+00:12:29,726 --> 00:12:33,056
+One thing that sets Metal apart
+from other graphic APIs is
+
+
+280
+00:12:33,056 --> 00:12:35,806
+that we have a, sort of,
+very rigorous definition
+
+
+281
+00:12:35,806 --> 00:12:38,846
+of when a rendered texture
+pass begins and when it ends.
+
+
+282
+00:12:39,436 --> 00:12:41,336
+And when you start a
+renderToTexture pass,
+
+
+283
+00:12:41,906 --> 00:12:43,586
+we require that you tell us all
+
+
+284
+00:12:43,586 --> 00:12:46,386
+of the framebuffer configuration
+right up front so we know how
+
+
+285
+00:12:46,386 --> 00:12:47,206
+to configure the hardware.
+
+
+286
+00:12:48,506 --> 00:12:52,696
+And most of what goes into
+that configuration looks a lot
+
+
+287
+00:12:52,696 --> 00:12:54,506
+like a framebuffer
+object in open GL.
+
+
+288
+00:12:55,226 --> 00:12:58,066
+There's, you know, what color
+textures am I rendering too?
+
+
+289
+00:12:58,266 --> 00:12:59,056
+Up to four of those.
+
+
+290
+00:12:59,056 --> 00:12:59,846
+What depth texture?
+
+
+291
+00:12:59,846 --> 00:13:00,786
+What stencil texture?
+
+
+292
+00:13:00,786 --> 00:13:04,466
+Which bitmap levels that, the
+load actions and store actions
+
+
+293
+00:13:04,466 --> 00:13:05,806
+that you saw in Jeremy's
+presentation.
+
+
+294
+00:13:06,426 --> 00:13:10,396
+So given that there's so much
+configuration that happens here,
+
+
+295
+00:13:11,406 --> 00:13:14,416
+we've again taken that
+and packaged it all
+
+
+296
+00:13:14,416 --> 00:13:17,246
+up into a descriptor to do
+convenient configuration on.
+
+
+297
+00:13:18,056 --> 00:13:20,136
+And then once you have
+the descriptor configured,
+
+
+298
+00:13:20,416 --> 00:13:23,766
+you can then create the
+renderToTexture pass.
+
+
+299
+00:13:23,966 --> 00:13:25,216
+So, putting that into code.
+
+
+300
+00:13:25,706 --> 00:13:28,726
+Right off the top, we need
+
+
+301
+00:13:28,726 --> 00:13:30,666
+to know what texture we're
+going to render into.
+
+
+302
+00:13:30,786 --> 00:13:33,286
+So we're actually going to
+go back to our CA ,metalLayer
+
+
+303
+00:13:33,286 --> 00:13:35,736
+and say, "give me the
+next available drawable."
+
+
+304
+00:13:35,736 --> 00:13:39,176
+And a drawable is pretty
+much just a wraparound
+
+
+305
+00:13:39,176 --> 00:13:41,346
+to texture plus a little
+bit of extra bookkeeping.
+
+
+306
+00:13:42,876 --> 00:13:45,956
+This is one of the very
+few API calls in Metal
+
+
+307
+00:13:45,956 --> 00:13:47,486
+that will actually
+block your application
+
+
+308
+00:13:47,806 --> 00:13:49,396
+if there's no more
+available textures
+
+
+309
+00:13:49,396 --> 00:13:51,256
+in the swap chain,
+if they're all busy.
+
+
+310
+00:13:51,976 --> 00:13:53,466
+So this could block
+and wait awhile,
+
+
+311
+00:13:53,466 --> 00:13:54,646
+especially if you're GPU bound.
+
+
+312
+00:13:55,006 --> 00:14:00,256
+Next, I want to set up
+my RenderPassDescriptor.
+
+
+313
+00:14:01,206 --> 00:14:04,276
+I'm going to .colorAttachment
+zero at my drawables texture.
+
+
+314
+00:14:04,436 --> 00:14:06,516
+I'm going to configure
+the RenderPass
+
+
+315
+00:14:06,856 --> 00:14:09,246
+such that it will clear
+that texture at the start
+
+
+316
+00:14:09,246 --> 00:14:12,076
+of the pass, preventing
+the existing contents
+
+
+317
+00:14:12,076 --> 00:14:13,096
+of that texture from
+being loaded
+
+
+318
+00:14:13,226 --> 00:14:14,496
+into the GPU's tile cache.
+
+
+319
+00:14:14,796 --> 00:14:16,616
+And then I'm going to
+then actually, you know,
+
+
+320
+00:14:16,616 --> 00:14:20,216
+I'm going to choose some really
+boring array to clear it to.
+
+
+321
+00:14:20,886 --> 00:14:23,546
+So again, if I had a
+more complex framebuffer
+
+
+322
+00:14:23,546 --> 00:14:25,826
+configuration, there would be a
+bunch more similar stuff here.
+
+
+323
+00:14:25,896 --> 00:14:27,856
+But again, that's all
+I really need for my
+
+
+324
+00:14:28,336 --> 00:14:29,386
+"hello world" application.
+
+
+325
+00:14:29,806 --> 00:14:32,656
+So now I can go to the
+CommandBuffer, and I can say,
+
+
+326
+00:14:32,876 --> 00:14:34,926
+"the next thing on
+this CommandBuffer is
+
+
+327
+00:14:34,986 --> 00:14:35,846
+a renderCommand.
+
+
+328
+00:14:36,686 --> 00:14:37,536
+Here's the descriptor.
+
+
+329
+00:14:37,886 --> 00:14:40,056
+Give me back the interface
+I can use to encode."
+
+
+330
+00:14:40,906 --> 00:14:43,996
+And this renderCommand encoder
+you're getting back is the
+
+
+331
+00:14:43,996 --> 00:14:45,046
+object that has most
+
+
+332
+00:14:45,046 --> 00:14:47,976
+of the traditional 3D graphics
+API you're expecting to find.
+
+
+333
+00:14:48,346 --> 00:14:50,016
+Things like setting
+the depth stencil state
+
+
+334
+00:14:50,226 --> 00:14:53,176
+and binding textures and
+colNodes and all that stuff.
+
+
+335
+00:14:54,346 --> 00:14:58,716
+So let's go actually
+draw our triangle init.
+
+
+336
+00:14:58,856 --> 00:15:01,946
+So previously I created
+my RenderPipeline,
+
+
+337
+00:15:01,946 --> 00:15:03,316
+and I created my vertexArray.
+
+
+338
+00:15:03,516 --> 00:15:04,596
+So I want to set them both here:
+
+
+339
+00:15:04,996 --> 00:15:06,276
+which RenderPipeline
+we're going to use?
+
+
+340
+00:15:06,506 --> 00:15:07,526
+And I'm going to say, I'm going
+
+
+341
+00:15:07,526 --> 00:15:08,796
+to point right at
+the vertexArray.
+
+
+342
+00:15:09,056 --> 00:15:10,706
+And I can finally
+encode the command
+
+
+343
+00:15:10,806 --> 00:15:12,106
+to draw my single triangle.
+
+
+344
+00:15:13,556 --> 00:15:16,446
+So now we've gotten
+through our third step
+
+
+345
+00:15:16,446 --> 00:15:17,356
+of drawing the triangle.
+
+
+346
+00:15:17,456 --> 00:15:19,056
+And now we get to the final one,
+
+
+347
+00:15:19,306 --> 00:15:20,786
+committing the CommandBuffer
+to the GPU.
+
+
+348
+00:15:21,436 --> 00:15:26,066
+At this point we have basically
+a fully-formed CommandBuffer
+
+
+349
+00:15:26,066 --> 00:15:27,426
+just sitting in memory, idle.
+
+
+350
+00:15:27,426 --> 00:15:30,766
+It's not going -- GPU
+will not start executing
+
+
+351
+00:15:30,806 --> 00:15:31,566
+until you've committed.
+
+
+352
+00:15:32,566 --> 00:15:35,346
+So before we do that
+though, we actually want
+
+
+353
+00:15:35,346 --> 00:15:38,336
+to do one more thing
+and tell CoreAnimation
+
+
+354
+00:15:38,696 --> 00:15:40,376
+when you actually want
+to present this texture.
+
+
+355
+00:15:40,866 --> 00:15:43,586
+Because we got a texture from
+CoreAnimation, and now we need
+
+
+356
+00:15:43,586 --> 00:15:46,716
+to tell CA when we can
+display that texture safely.
+
+
+357
+00:15:47,646 --> 00:15:48,936
+Because we haven't
+rendered anything yet,
+
+
+358
+00:15:49,116 --> 00:15:49,926
+now's not the time.
+
+
+359
+00:15:50,866 --> 00:15:54,836
+So we want to be able to -- and
+so this API addPresent will set
+
+
+360
+00:15:54,836 --> 00:15:58,086
+up an automatic notification
+from Metal to CoreAnimation
+
+
+361
+00:15:58,536 --> 00:16:02,206
+that when this rendering is
+complete, it will cross-call
+
+
+362
+00:16:02,206 --> 00:16:03,596
+into CoreAnimation and say,
+
+
+363
+00:16:03,996 --> 00:16:05,386
+"it's time to put this
+on the display now."
+
+
+364
+00:16:06,046 --> 00:16:09,476
+And then finally we
+have the big red button.
+
+
+365
+00:16:10,216 --> 00:16:13,096
+You call commit, and this
+CommandBuffer gets encoded --
+
+
+366
+00:16:13,096 --> 00:16:15,026
+gets enqueued into the
+end of the command queue,
+
+
+367
+00:16:15,386 --> 00:16:17,266
+and it will execute
+on the GPU hardware.
+
+
+368
+00:16:17,896 --> 00:16:23,836
+So that is all of the steps to
+go and draw my single triangle.
+
+
+369
+00:16:24,676 --> 00:16:28,676
+We needed to get a command
+buffer, configure a render pass
+
+
+370
+00:16:28,676 --> 00:16:30,936
+with one target texture that
+we got from CoreAnimation,
+
+
+371
+00:16:32,256 --> 00:16:34,286
+draw my triangle
+with the vertexArray
+
+
+372
+00:16:34,286 --> 00:16:35,116
+and a pipeline state.
+
+
+373
+00:16:35,396 --> 00:16:38,706
+And commit the command encoder.
+
+
+374
+00:16:40,636 --> 00:16:42,326
+So that's my triangle.
+
+
+375
+00:16:42,546 --> 00:16:43,906
+That's pretty much all
+the codes you need.
+
+
+376
+00:16:44,406 --> 00:16:45,016
+Go -- do it, yeah.
+
+
+377
+00:16:45,016 --> 00:16:45,226
+[ Applause ]
+
+
+378
+00:16:45,226 --> 00:16:51,466
+So it's kind of a
+boring application.
+
+
+379
+00:16:51,706 --> 00:16:54,446
+So let's add at least
+one little thing more
+
+
+380
+00:16:54,476 --> 00:16:56,646
+that every single
+application is going to need
+
+
+381
+00:16:56,946 --> 00:16:59,026
+because I imagine
+you're all not going
+
+
+382
+00:16:59,026 --> 00:17:02,966
+to be happy drawing exactly the
+same thing over and over again.
+
+
+383
+00:17:02,996 --> 00:17:06,616
+We need to load some shader
+uniforms because, you know,
+
+
+384
+00:17:06,846 --> 00:17:09,816
+we actually want to make things
+move over time or what have you.
+
+
+385
+00:17:10,156 --> 00:17:12,445
+So, this is going to
+take the form of --
+
+
+386
+00:17:12,445 --> 00:17:15,826
+so I want to use this
+opportunity to show you how
+
+
+387
+00:17:15,826 --> 00:17:19,076
+to load shader uniforms,
+also known as constants.
+
+
+388
+00:17:21,205 --> 00:17:24,536
+So, in Metal, shader constants
+come in through buffers.
+
+
+389
+00:17:24,616 --> 00:17:26,455
+Just like vertexArrays
+or anything else.
+
+
+390
+00:17:27,616 --> 00:17:30,536
+So back to my vertex
+shader code.
+
+
+391
+00:17:31,336 --> 00:17:34,506
+I have declared a new
+struct, which describes
+
+
+392
+00:17:34,506 --> 00:17:37,416
+to the compiler how my
+uniforms are laid out in memory.
+
+
+393
+00:17:37,976 --> 00:17:40,306
+In this case it's just
+a single 4x4 matrix.
+
+
+394
+00:17:43,106 --> 00:17:45,626
+And I've added a second
+argument to my function.
+
+
+395
+00:17:45,626 --> 00:17:47,026
+I'm going to read from
+a different buffer.
+
+
+396
+00:17:47,026 --> 00:17:48,716
+Now I'm going to read
+from buffer location 1,
+
+
+397
+00:17:49,396 --> 00:17:52,146
+and that's where the compiler is
+going to expect to find a buffer
+
+
+398
+00:17:52,146 --> 00:17:55,246
+that it's going to actually
+load that struct from.
+
+
+399
+00:17:55,246 --> 00:17:58,816
+So that's the extent
+of the shader changes.
+
+
+400
+00:17:59,376 --> 00:18:05,266
+On the API side, I've
+allocated a second buffer
+
+
+401
+00:18:05,376 --> 00:18:06,556
+to -- hold my uniforms.
+
+
+402
+00:18:06,556 --> 00:18:08,446
+And I'm going to call
+the contents property,
+
+
+403
+00:18:08,446 --> 00:18:10,496
+and that's just going to
+return to me a void star.
+
+
+404
+00:18:10,956 --> 00:18:14,636
+And, err, these are CPU/GPU
+shared CommandBuffers,
+
+
+405
+00:18:14,636 --> 00:18:15,606
+or shared -- not
+Command Buffers.
+
+
+406
+00:18:15,606 --> 00:18:16,956
+These are CPU/GPU shared memory.
+
+
+407
+00:18:17,446 --> 00:18:19,226
+The GPU is reading from
+exactly the same memory
+
+
+408
+00:18:19,226 --> 00:18:19,996
+that GPU's writing.
+
+
+409
+00:18:20,316 --> 00:18:22,386
+There's no lock or
+unlock API calls
+
+
+410
+00:18:22,386 --> 00:18:23,446
+or flushing or any of that.
+
+
+411
+00:18:24,006 --> 00:18:26,116
+You can get a pointer,
+[inaudible] it to a type
+
+
+412
+00:18:26,116 --> 00:18:27,426
+of your choosing
+and start writing.
+
+
+413
+00:18:28,206 --> 00:18:33,096
+And then finally, I'm going to
+set a second buffer argument
+
+
+414
+00:18:33,186 --> 00:18:36,626
+to the vertex stage to point
+the hardware at uniformBuffer.
+
+
+415
+00:18:37,556 --> 00:18:40,346
+This is almost okay
+but not quite.
+
+
+416
+00:18:40,346 --> 00:18:43,266
+Because we actually have
+a race condition here.
+
+
+417
+00:18:45,176 --> 00:18:49,456
+So your application encodes
+a frame and also writes
+
+
+418
+00:18:49,456 --> 00:18:50,856
+to a uniform buffer
+at the same time.
+
+
+419
+00:18:50,896 --> 00:18:53,656
+And then we ship that off
+to the GPU to be executed.
+
+
+420
+00:18:55,436 --> 00:18:57,976
+The execution is going to take
+some amount of time depending
+
+
+421
+00:18:57,976 --> 00:19:01,636
+on the complexity of your scene.
+
+
+422
+00:19:02,486 --> 00:19:04,556
+So if you have like a
+conventional game loop,
+
+
+423
+00:19:04,556 --> 00:19:06,936
+you're probably going to turn
+around and immediately jump back
+
+
+424
+00:19:06,936 --> 00:19:07,786
+up to the top of your loop
+
+
+425
+00:19:08,126 --> 00:19:09,966
+and start encoding the
+next frame right away.
+
+
+426
+00:19:10,606 --> 00:19:13,556
+Of course the GPU, being
+an asynchronous device,
+
+
+427
+00:19:13,626 --> 00:19:15,906
+is still executing the
+previous commandbuffer.
+
+
+428
+00:19:16,886 --> 00:19:19,786
+So if I have go right to that
+unit, I have a new frame.
+
+
+429
+00:19:20,066 --> 00:19:20,886
+It's a new time stamp.
+
+
+430
+00:19:21,096 --> 00:19:22,316
+It's a new model view matrix.
+
+
+431
+00:19:22,726 --> 00:19:24,516
+But if I write that into
+my buffer right now,
+
+
+432
+00:19:24,516 --> 00:19:28,216
+I'm writing into the same memory
+that the GPU is reading from.
+
+
+433
+00:19:28,356 --> 00:19:29,636
+And I've created
+a race condition.
+
+
+434
+00:19:30,246 --> 00:19:32,926
+At that point what the GPU
+reads is completely undefined.
+
+
+435
+00:19:34,766 --> 00:19:37,726
+So, the easy thing to do is
+write to a different buffer.
+
+
+436
+00:19:38,646 --> 00:19:39,746
+So there's no conflict here.
+
+
+437
+00:19:40,256 --> 00:19:44,576
+Then I come down into my
+third frame and so forth.
+
+
+438
+00:19:44,576 --> 00:19:46,926
+But there comes a point where
+you just, where you, you know,
+
+
+439
+00:19:47,096 --> 00:19:48,666
+you can't allocate
+new buffers forever.
+
+
+440
+00:19:48,746 --> 00:19:50,226
+There comes a point where
+you're going to want
+
+
+441
+00:19:50,226 --> 00:19:52,446
+to recycle an existing
+buffer again.
+
+
+442
+00:19:53,216 --> 00:19:57,536
+And the problem here is that,
+a CPU can get, sometimes,
+
+
+443
+00:19:57,536 --> 00:19:59,306
+depending on how you
+structure your application,
+
+
+444
+00:19:59,606 --> 00:20:01,266
+several frames ahead of the GPU.
+
+
+445
+00:20:01,776 --> 00:20:04,346
+And the GPU might still
+be working on that frame
+
+
+446
+00:20:04,556 --> 00:20:05,866
+that you submitted
+two frames ago.
+
+
+447
+00:20:06,396 --> 00:20:08,526
+And we still have
+a race condition.
+
+
+448
+00:20:10,216 --> 00:20:13,636
+So the final step to resolving
+this is that we need to wait.
+
+
+449
+00:20:13,806 --> 00:20:16,486
+That your application needs
+to not write to that buffer
+
+
+450
+00:20:16,746 --> 00:20:18,686
+until you know that your code
+
+
+451
+00:20:18,686 --> 00:20:21,606
+on the GPU is no
+longer reading from it.
+
+
+452
+00:20:21,846 --> 00:20:23,406
+Fortunately, that's pretty easy.
+
+
+453
+00:20:23,546 --> 00:20:24,866
+It takes about four
+lines of code.
+
+
+454
+00:20:24,866 --> 00:20:28,266
+So I'm going to show
+you that now.
+
+
+455
+00:20:29,146 --> 00:20:33,096
+So I'm going to do this with
+dispatch semaphores, which are,
+
+
+456
+00:20:33,096 --> 00:20:36,696
+you know, a common low-level
+synchronization primitive
+
+
+457
+00:20:36,696 --> 00:20:37,266
+on iOS.
+
+
+458
+00:20:38,176 --> 00:20:39,606
+So for this example,
+I'm going to have a pool
+
+
+459
+00:20:39,606 --> 00:20:41,346
+of three uniform
+buffers I've created.
+
+
+460
+00:20:41,346 --> 00:20:43,456
+So I'm going to create
+a dispatch semaphore
+
+
+461
+00:20:43,456 --> 00:20:44,316
+with a count of 3.
+
+
+462
+00:20:45,316 --> 00:20:48,146
+I'm going to add my
+common CommandBuffer loop.
+
+
+463
+00:20:48,146 --> 00:20:49,356
+I'm going to build
+a Command Buffer.
+
+
+464
+00:20:49,356 --> 00:20:50,476
+And I'm going to
+send it to the GPU.
+
+
+465
+00:20:51,556 --> 00:20:54,856
+But right at the top, before
+I write to any shared memory
+
+
+466
+00:20:54,856 --> 00:20:57,386
+that I'm recycling, that the
+GPU is potentially still reading
+
+
+467
+00:20:57,386 --> 00:20:58,696
+from, I'm going to wait.
+
+
+468
+00:20:58,696 --> 00:20:59,726
+And I'm going to make sure
+
+
+469
+00:21:00,056 --> 00:21:03,436
+that the GPU has actually
+finished executing
+
+
+470
+00:21:03,436 --> 00:21:05,986
+that previous CommandBuffer
+before I reuse the memory.
+
+
+471
+00:21:06,296 --> 00:21:10,476
+So this is the second place,
+apart from next drawable,
+
+
+472
+00:21:10,806 --> 00:21:13,286
+where you probably see
+an application block
+
+
+473
+00:21:13,386 --> 00:21:14,056
+when using Metal.
+
+
+474
+00:21:14,546 --> 00:21:19,076
+Now the other side of this is
+we need to signal the semaphore
+
+
+475
+00:21:19,076 --> 00:21:21,016
+when it is safe for the
+application to proceed.
+
+
+476
+00:21:22,016 --> 00:21:24,966
+So, in Metal, you can
+add a completion handler
+
+
+477
+00:21:25,086 --> 00:21:25,906
+to a CommandBuffer.
+
+
+478
+00:21:26,576 --> 00:21:29,156
+When the GPU finishes
+executing this CommandBuffer,
+
+
+479
+00:21:30,446 --> 00:21:33,066
+the OS will invoke the
+block that you provide,
+
+
+480
+00:21:33,126 --> 00:21:34,646
+and you can do whatever
+you want in there.
+
+
+481
+00:21:35,306 --> 00:21:37,906
+In this case, I'm going to
+signal the semaphore and say,
+
+
+482
+00:21:38,556 --> 00:21:39,866
+"Hey a CommandBuffer finished.
+
+
+483
+00:21:40,216 --> 00:21:41,536
+There's a uniform
+buffer available.
+
+
+484
+00:21:42,266 --> 00:21:43,036
+Start writing to it.
+
+
+485
+00:21:43,036 --> 00:21:43,586
+Have a blast."
+
+
+486
+00:21:43,786 --> 00:21:46,246
+And that's really it.
+
+
+487
+00:21:46,976 --> 00:21:51,456
+So that's really the basic
+walk-through through a simple
+
+
+488
+00:21:51,456 --> 00:21:53,356
+"hello world" application
+with some animation.
+
+
+489
+00:21:53,356 --> 00:21:54,466
+It does shader constants.
+
+
+490
+00:21:54,726 --> 00:21:58,516
+Does vertexArrays, and we
+still have this setup 3D state.
+
+
+491
+00:22:00,096 --> 00:22:02,336
+Went through some of the
+basic initialization process.
+
+
+492
+00:22:03,036 --> 00:22:06,146
+We showed how to set up
+basic CommandBuffer draw.
+
+
+493
+00:22:06,146 --> 00:22:09,266
+And we said hey, the moment
+you produce any CPU dynamically
+
+
+494
+00:22:09,266 --> 00:22:12,106
+produced data, we saw how you
+have to synchronize access
+
+
+495
+00:22:12,106 --> 00:22:14,456
+to that because we're just
+giving you the raw memory
+
+
+496
+00:22:14,456 --> 00:22:16,476
+pointers now.
+
+
+497
+00:22:18,356 --> 00:22:22,766
+So, that thing -- these design
+patterns actually go really far.
+
+
+498
+00:22:22,766 --> 00:22:26,186
+For example, that same pattern
+of synchronizing with semaphores
+
+
+499
+00:22:26,186 --> 00:22:28,906
+or any other permit of your
+choice, and the callbacks,
+
+
+500
+00:22:29,416 --> 00:22:31,996
+for example, are just as
+useful for dynamic vertex data,
+
+
+501
+00:22:32,436 --> 00:22:34,626
+for streaming image
+up-, texture updates,
+
+
+502
+00:22:34,626 --> 00:22:36,746
+if you have a large open
+world kind of scene.
+
+
+503
+00:22:37,456 --> 00:22:39,056
+Or even if you're going
+the other direction
+
+
+504
+00:22:39,096 --> 00:22:40,456
+and having the GPU produce data,
+
+
+505
+00:22:41,256 --> 00:22:43,386
+you know that the CPU
+can read it as soon
+
+
+506
+00:22:43,386 --> 00:22:44,716
+as that callback fires.
+
+
+507
+00:22:46,076 --> 00:22:49,686
+So that's really your
+introduction to a really simple
+
+
+508
+00:22:49,686 --> 00:22:50,686
+"hello world" application.
+
+
+509
+00:22:50,836 --> 00:22:51,966
+We made a spinning triangle.
+
+
+510
+00:22:52,146 --> 00:22:56,376
+Hooray. So, with that,
+that wraps up this.
+
+
+511
+00:22:56,376 --> 00:22:58,356
+And so I'm going to turn the
+stage over to my colleague Aafi,
+
+
+512
+00:22:58,686 --> 00:23:01,436
+to talk to you in detail about
+the Metal shading language.
+
+
+513
+00:23:01,786 --> 00:23:02,216
+So thank you.
+
+
+514
+00:23:02,216 --> 00:23:03,766
+[ Applause ]
+
+
+515
+00:23:03,766 --> 00:23:06,996
+>> All right.
+
+
+516
+00:23:07,426 --> 00:23:08,066
+Thanks Richard.
+
+
+517
+00:23:08,766 --> 00:23:13,416
+All right, so we're going to
+talk about the shading language.
+
+
+518
+00:23:13,626 --> 00:23:16,456
+And so Jeremy mentioned
+in the first presentation
+
+
+519
+00:23:16,456 --> 00:23:20,986
+that this language is based
+on C++, so a lot of you --
+
+
+520
+00:23:21,156 --> 00:23:23,656
+most of you -- are all
+familiar with writing C++ code.
+
+
+521
+00:23:23,656 --> 00:23:26,336
+What we're going to talk
+about is how we extended this
+
+
+522
+00:23:26,686 --> 00:23:29,406
+to be able to write
+shaders in Metal.
+
+
+523
+00:23:30,626 --> 00:23:33,936
+So the things, the things
+we're going to cover
+
+
+524
+00:23:33,936 --> 00:23:36,946
+in this session is
+how to write shaders.
+
+
+525
+00:23:36,946 --> 00:23:39,326
+We're going to take a simple
+vertex in the fragment shader
+
+
+526
+00:23:39,326 --> 00:23:41,916
+and see how we can take
+C++ code and make it
+
+
+527
+00:23:41,916 --> 00:23:43,166
+into a vertex fragment shader.
+
+
+528
+00:23:43,586 --> 00:23:46,466
+We will talk about data
+types that Metal supports.
+
+
+529
+00:23:46,466 --> 00:23:50,896
+We will talk about, you know,
+well, shaders need inputs
+
+
+530
+00:23:50,896 --> 00:23:53,746
+and outputs, so how do
+you specify that in Metal.
+
+
+531
+00:23:54,226 --> 00:23:55,936
+And, you know, if I'm
+going to use them,
+
+
+532
+00:23:55,936 --> 00:23:58,216
+because in the RenderPipeline,
+I need a vertex shader
+
+
+533
+00:23:58,216 --> 00:24:01,126
+and a fragment shader, well
+how do I make sure I pair these
+
+
+534
+00:24:01,166 --> 00:24:01,856
+things together?
+
+
+535
+00:24:02,416 --> 00:24:04,896
+And then we'll talk
+about math, okay?
+
+
+536
+00:24:05,436 --> 00:24:09,236
+All right, so how to
+write shaders in Metal.
+
+
+537
+00:24:09,236 --> 00:24:13,126
+So let's take this in
+a pseudo C code here.
+
+
+538
+00:24:13,596 --> 00:24:17,526
+So what you see here in
+this function is it takes
+
+
+539
+00:24:17,596 --> 00:24:18,416
+three arguments.
+
+
+540
+00:24:18,416 --> 00:24:21,526
+The first two are some
+pointers to some structures
+
+
+541
+00:24:21,956 --> 00:24:24,676
+and the return's this
+vertex output struct which,
+
+
+542
+00:24:24,846 --> 00:24:25,806
+you declared it.
+
+
+543
+00:24:26,276 --> 00:24:28,696
+And what I want to
+happen here is --
+
+
+544
+00:24:28,756 --> 00:24:32,986
+remember, the vertex shader
+is executing for each vertex,
+
+
+545
+00:24:32,986 --> 00:24:35,706
+so if I have N vertices
+in my primitive I want,
+
+
+546
+00:24:36,026 --> 00:24:38,256
+there may be multiple threads
+executing these vertices
+
+
+547
+00:24:38,256 --> 00:24:39,616
+in parallel.
+
+
+548
+00:24:39,876 --> 00:24:43,616
+So what I want to be
+able to do is read
+
+
+549
+00:24:43,616 --> 00:24:45,426
+in that thread that's
+executing this vertex shader,
+
+
+550
+00:24:45,426 --> 00:24:49,096
+which vertex am I actually
+accessing so I can go
+
+
+551
+00:24:49,096 --> 00:24:50,716
+and get the right index --
+
+
+552
+00:24:50,786 --> 00:24:53,746
+use that index to access
+the right vertex data.
+
+
+553
+00:24:54,156 --> 00:24:56,536
+So, just you know,
+imagine, just imagine
+
+
+554
+00:24:56,536 --> 00:24:59,056
+that this is that ID, okay.
+
+
+555
+00:24:59,146 --> 00:25:01,716
+So in this code, what we see
+is we're going to use this ID
+
+
+556
+00:25:02,046 --> 00:25:04,936
+and reference into
+the input arguments.
+
+
+557
+00:25:04,936 --> 00:25:07,106
+This is the vertex
+data and UV data.
+
+
+558
+00:25:07,106 --> 00:25:08,866
+Arguments have passed
+to this function.
+
+
+559
+00:25:09,106 --> 00:25:11,316
+And you will typically
+probably do some computations.
+
+
+560
+00:25:11,316 --> 00:25:12,616
+In this case I'm not doing much.
+
+
+561
+00:25:12,616 --> 00:25:14,406
+I'm just going to copy
+them and return them back.
+
+
+562
+00:25:15,016 --> 00:25:17,986
+Well okay, how do I make this
+into a Metal vertex shader?
+
+
+563
+00:25:18,146 --> 00:25:22,716
+Well the first thing, note that
+we don't -- and Metal doesn't --
+
+
+564
+00:25:22,716 --> 00:25:24,916
+support the C++ standard
+library.
+
+
+565
+00:25:24,916 --> 00:25:27,116
+Instead Metal has its
+own standard library
+
+
+566
+00:25:27,506 --> 00:25:30,156
+that has been optimized
+for the GPU.
+
+
+567
+00:25:30,156 --> 00:25:31,366
+For the graphics and compute.
+
+
+568
+00:25:32,066 --> 00:25:33,846
+In addition to that, so
+I want to include that.
+
+
+569
+00:25:33,936 --> 00:25:37,016
+In addition to that, you know,
+types and functions defined
+
+
+570
+00:25:37,016 --> 00:25:39,276
+by Metal actually are in
+the Metal's namespace.
+
+
+571
+00:25:39,356 --> 00:25:40,886
+So I'm just being lazy.
+
+
+572
+00:25:40,886 --> 00:25:43,426
+Instead of explicitly calling
+them, I'm just saying I'm going
+
+
+573
+00:25:43,426 --> 00:25:45,336
+to use the Metal
+namespace in my shader here.
+
+
+574
+00:25:45,676 --> 00:25:47,776
+The next thing I'm
+going to do is I'm going
+
+
+575
+00:25:47,776 --> 00:25:48,876
+to tell the compiler, "hey,"
+
+
+576
+00:25:48,876 --> 00:25:50,436
+that "this function
+is a vertex function."
+
+
+577
+00:25:50,666 --> 00:25:53,316
+Okay, so that's what
+I'm going to do.
+
+
+578
+00:25:53,316 --> 00:25:57,966
+And then Jeremy showed you
+that any resource that's passed
+
+
+579
+00:25:57,966 --> 00:25:59,466
+as arguments to your functions,
+
+
+580
+00:25:59,826 --> 00:26:01,786
+you need to have the
+argument indices.
+
+
+581
+00:26:01,786 --> 00:26:03,206
+So in this case, you know,
+
+
+582
+00:26:03,206 --> 00:26:05,086
+anything that's a pointer
+is actually a buffer.
+
+
+583
+00:26:05,086 --> 00:26:07,366
+So I'm going to assign
+buffer indices.
+
+
+584
+00:26:07,666 --> 00:26:10,306
+And there's this global
+thing that I have added here.
+
+
+585
+00:26:10,306 --> 00:26:12,066
+So just ignore that for now.
+
+
+586
+00:26:12,066 --> 00:26:13,926
+I'll talk about what
+that is in a few slides.
+
+
+587
+00:26:14,196 --> 00:26:16,496
+So almost there.
+
+
+588
+00:26:16,946 --> 00:26:18,576
+And I need to tell the compiler
+
+
+589
+00:26:18,576 --> 00:26:21,126
+that that ID is actually
+the vertex ID
+
+
+590
+00:26:21,126 --> 00:26:22,936
+so it can generate
+the right code for me.
+
+
+591
+00:26:23,196 --> 00:26:23,696
+And that's it.
+
+
+592
+00:26:23,866 --> 00:26:26,476
+That's a Metal vertex
+shader, okay?
+
+
+593
+00:26:27,296 --> 00:26:33,666
+What, nobody's going to clap?
+
+
+594
+00:26:33,666 --> 00:26:33,733
+[ Applause ]
+
+
+595
+00:26:33,733 --> 00:26:33,800
+[Laughs ]
+
+
+596
+00:26:33,800 --> 00:26:34,136
+All right.
+
+
+597
+00:26:34,846 --> 00:26:37,866
+And you know a fragment shader
+is just very similar, OK?
+
+
+598
+00:26:38,026 --> 00:26:41,526
+So I need to tell the compiler
+it's a fragment function,
+
+
+599
+00:26:41,526 --> 00:26:43,436
+so I use the fragment qualifier.
+
+
+600
+00:26:43,856 --> 00:26:47,986
+Now note, remember the fragment
+shader typically takes inputs
+
+
+601
+00:26:48,036 --> 00:26:51,146
+that are generated
+by the vertex shader.
+
+
+602
+00:26:51,146 --> 00:26:53,386
+The output of the vertex
+shader goes to the rasterizer
+
+
+603
+00:26:53,386 --> 00:26:55,806
+and becomes inputs to
+the fragment shader.
+
+
+604
+00:26:56,216 --> 00:26:59,236
+So in this case, the vertex
+shader returns VertexOutput
+
+
+605
+00:26:59,236 --> 00:27:00,936
+and I want to use
+that as an input.
+
+
+606
+00:27:01,116 --> 00:27:05,776
+Now, this is some struct
+that you have declared.
+
+
+607
+00:27:05,816 --> 00:27:07,536
+So the compiler needs to know
+
+
+608
+00:27:07,806 --> 00:27:09,956
+that this is a per
+instance input.
+
+
+609
+00:27:10,006 --> 00:27:14,636
+So anything that's user defined
+and input to a vertex shader
+
+
+610
+00:27:14,636 --> 00:27:17,476
+or fragment shader that needs
+to be generated uniquely
+
+
+611
+00:27:17,476 --> 00:27:20,016
+for instance, also
+has to be qualified.
+
+
+612
+00:27:20,066 --> 00:27:22,376
+And so in Metal you do
+that by declaring that with
+
+
+613
+00:27:22,376 --> 00:27:24,176
+that stage and attribute, okay?
+
+
+614
+00:27:24,876 --> 00:27:27,596
+So what I'm doing is in this
+shader I'm going to look
+
+
+615
+00:27:27,596 --> 00:27:30,966
+at the texture coordinate per
+fragment and use that to sample
+
+
+616
+00:27:31,366 --> 00:27:33,096
+into a texture that'll
+return the color value.
+
+
+617
+00:27:33,096 --> 00:27:34,226
+So pretty straight forward.
+
+
+618
+00:27:34,226 --> 00:27:34,776
+So that's it.
+
+
+619
+00:27:34,906 --> 00:27:37,196
+It's really, you're going
+to find that writing shaders
+
+
+620
+00:27:37,196 --> 00:27:38,896
+in Metal is really, really easy.
+
+
+621
+00:27:39,086 --> 00:27:42,516
+All right so let's
+talk about data types.
+
+
+622
+00:27:42,816 --> 00:27:46,666
+So, I've broken data
+types into two categories.
+
+
+623
+00:27:47,166 --> 00:27:48,506
+One I call the basic types.
+
+
+624
+00:27:48,766 --> 00:27:50,646
+And then we have
+resources and state objects.
+
+
+625
+00:27:51,046 --> 00:27:55,466
+Note that one thing you
+see is that all the inputs
+
+
+626
+00:27:55,466 --> 00:27:57,296
+to a shader are passed
+as arguments.
+
+
+627
+00:27:57,336 --> 00:27:58,196
+There are no globals.
+
+
+628
+00:27:58,196 --> 00:28:00,226
+So you declare everything
+as arguments,
+
+
+629
+00:28:00,576 --> 00:28:03,096
+and then if these are
+resources or state objects,
+
+
+630
+00:28:03,576 --> 00:28:06,966
+then you specify the indices
+that the runtime will use
+
+
+631
+00:28:06,966 --> 00:28:08,416
+to set the right resources to.
+
+
+632
+00:28:08,726 --> 00:28:10,136
+Okay, so let's talk
+about the base types.
+
+
+633
+00:28:10,136 --> 00:28:10,856
+What are these?
+
+
+634
+00:28:10,856 --> 00:28:13,766
+These are scalars, vectors,
+matrices and atomics.
+
+
+635
+00:28:13,766 --> 00:28:16,866
+So... the scalar is
+pretty straightforward.
+
+
+636
+00:28:16,936 --> 00:28:18,656
+I mean it doesn't
+usually tell much.
+
+
+637
+00:28:18,826 --> 00:28:21,466
+We support the C++11
+scalar types.
+
+
+638
+00:28:22,376 --> 00:28:25,926
+In addition to that,
+we have the half type.
+
+
+639
+00:28:26,366 --> 00:28:26,636
+Okay.
+
+
+640
+00:28:26,636 --> 00:28:26,866
+[ Applause ]
+
+
+641
+00:28:26,866 --> 00:28:27,096
+[ Laughs ]
+
+
+642
+00:28:27,096 --> 00:28:27,616
+All right.
+
+
+643
+00:28:27,996 --> 00:28:31,486
+So the half type.
+
+
+644
+00:28:31,486 --> 00:28:36,026
+So this is the IEEE 754
+16-bit floating point type.
+
+
+645
+00:28:36,026 --> 00:28:38,766
+And so any operation
+you could do with Float,
+
+
+646
+00:28:38,766 --> 00:28:40,216
+is half of a first
+class citizen.
+
+
+647
+00:28:40,216 --> 00:28:42,226
+So anything you can do with
+Float, you can do with Half.
+
+
+648
+00:28:42,456 --> 00:28:44,556
+In fact, we really
+want you to use half
+
+
+649
+00:28:44,556 --> 00:28:46,236
+because they are
+both performance
+
+
+650
+00:28:46,236 --> 00:28:50,076
+and power optimizations that you
+surely can take advantage of.
+
+
+651
+00:28:50,586 --> 00:28:52,386
+Vectors: very similar.
+
+
+652
+00:28:52,626 --> 00:28:55,976
+So you have you know, two, three
+and four component vector types.
+
+
+653
+00:28:56,046 --> 00:29:00,266
+So for example, a half2
+is a two-component 16-bit
+
+
+654
+00:29:00,376 --> 00:29:01,286
+floating-plan vector.
+
+
+655
+00:29:01,786 --> 00:29:06,186
+Matrices: we have floating point
+matrices, and they're stored
+
+
+656
+00:29:06,186 --> 00:29:09,056
+in column major order,
+just like they are in GL.
+
+
+657
+00:29:09,426 --> 00:29:12,726
+The constructors and
+operators: the things you can do
+
+
+658
+00:29:12,726 --> 00:29:14,716
+on them are very similar
+to what you would find
+
+
+659
+00:29:14,716 --> 00:29:15,786
+in other shading languages,
+
+
+660
+00:29:15,976 --> 00:29:19,376
+so I'm not really
+going to cover that.
+
+
+661
+00:29:19,586 --> 00:29:21,016
+But here's the thing
+I want to talk about.
+
+
+662
+00:29:21,136 --> 00:29:22,856
+So, remember your path.
+
+
+663
+00:29:22,856 --> 00:29:23,996
+You're declaring a struct.
+
+
+664
+00:29:23,996 --> 00:29:25,696
+You're passing a
+pointer to that struct
+
+
+665
+00:29:26,066 --> 00:29:27,716
+as argument to your shader.
+
+
+666
+00:29:27,716 --> 00:29:31,096
+So what you want to be able
+to do is declare these --
+
+
+667
+00:29:31,306 --> 00:29:32,356
+let's say in a header file --
+
+
+668
+00:29:32,746 --> 00:29:35,336
+and then use them both on the
+host code because you're going
+
+
+669
+00:29:35,336 --> 00:29:36,886
+to build this data
+structure on the host.
+
+
+670
+00:29:37,366 --> 00:29:40,276
+And then use this header
+file also in your shader.
+
+
+671
+00:29:41,056 --> 00:29:43,456
+Well you can do that
+because these types --
+
+
+672
+00:29:44,206 --> 00:29:48,426
+So, in iOS 8 we have
+the SIMD math library,
+
+
+673
+00:29:48,426 --> 00:29:51,296
+and so these define the
+vector and matrices types.
+
+
+674
+00:29:51,296 --> 00:29:53,716
+And Metal uses the
+exact same types.
+
+
+675
+00:29:53,716 --> 00:29:56,936
+So, what that means is: if
+you include the SIMD header
+
+
+676
+00:29:57,036 --> 00:29:59,926
+in your host code and you
+can build the structures,
+
+
+677
+00:30:00,046 --> 00:30:00,916
+you can share them.
+
+
+678
+00:30:01,356 --> 00:30:02,726
+You don't have to
+do anything special.
+
+
+679
+00:30:02,726 --> 00:30:04,176
+It just works, okay?
+
+
+680
+00:30:04,176 --> 00:30:05,566
+[ Laughs ]
+
+
+681
+00:30:05,566 --> 00:30:09,976
+Not every slide, no
+clapping every slide.
+
+
+682
+00:30:10,496 --> 00:30:13,716
+Again, just like I said
+previously, use the half vector
+
+
+683
+00:30:13,716 --> 00:30:16,376
+and matrix types
+whenever you can, okay?
+
+
+684
+00:30:16,906 --> 00:30:20,896
+All right, so the last -- Oh, so
+one more point on vector types.
+
+
+685
+00:30:21,186 --> 00:30:23,276
+So they are aligned
+at vector length.
+
+
+686
+00:30:23,476 --> 00:30:24,226
+So what does that mean?
+
+
+687
+00:30:24,226 --> 00:30:28,216
+So if I look at the struct,
+what that means is: a float2,
+
+
+688
+00:30:28,386 --> 00:30:30,896
+which is what b is, is going
+to be aligned on 8 bytes.
+
+
+689
+00:30:31,156 --> 00:30:34,096
+And similarly c is going to
+be aligned with 16 bytes.
+
+
+690
+00:30:34,406 --> 00:30:37,666
+But if you notice, b is
+actually at an offset of 4.
+
+
+691
+00:30:38,626 --> 00:30:39,746
+So that's a problem.
+
+
+692
+00:30:39,856 --> 00:30:41,286
+So what the compiler will do is,
+
+
+693
+00:30:41,286 --> 00:30:43,976
+it's going to generate
+a padding variable.
+
+
+694
+00:30:44,196 --> 00:30:45,626
+Okay, so when you
+do sizeof(Foo),
+
+
+695
+00:30:45,626 --> 00:30:47,046
+you're only going
+to get 32 bytes.
+
+
+696
+00:30:47,046 --> 00:30:51,256
+So depending on how big your
+data structure is and what kind
+
+
+697
+00:30:51,256 --> 00:30:52,746
+of scalars and vectors you use,
+
+
+698
+00:30:53,086 --> 00:30:54,516
+the compiler may
+potentially have
+
+
+699
+00:30:54,516 --> 00:30:55,636
+to generate lots of padding.
+
+
+700
+00:30:55,636 --> 00:30:58,816
+And if you're going to declare
+an array of these structs, then,
+
+
+701
+00:30:58,816 --> 00:31:00,866
+you know, it has
+potential implications
+
+
+702
+00:31:00,866 --> 00:31:04,406
+to your allocation size
+and even memory bandwidth
+
+
+703
+00:31:04,406 --> 00:31:06,926
+when you access these data
+structures in a shader code.
+
+
+704
+00:31:07,326 --> 00:31:11,156
+So, well, you may want to
+be smart and say, "well,
+
+
+705
+00:31:11,156 --> 00:31:14,126
+let me declare them in
+order of decreasing size;
+
+
+706
+00:31:14,156 --> 00:31:15,906
+put all of my biggest
+data types first,
+
+
+707
+00:31:16,326 --> 00:31:17,836
+and then the smaller types."
+
+
+708
+00:31:18,586 --> 00:31:20,826
+Well if you try to do
+a sizeof(Foo) on that,
+
+
+709
+00:31:21,136 --> 00:31:22,496
+you're still going
+to get 32 bytes.
+
+
+710
+00:31:22,786 --> 00:31:24,376
+And you're like, "why is that?"
+
+
+711
+00:31:24,926 --> 00:31:28,356
+The reason for that is the
+compiler still has to guarantee
+
+
+712
+00:31:28,766 --> 00:31:31,626
+that each struct is
+aligned to the site
+
+
+713
+00:31:31,626 --> 00:31:33,836
+of the largest data
+type in that struct.
+
+
+714
+00:31:34,446 --> 00:31:37,136
+Because if you were to
+use an array of these,
+
+
+715
+00:31:37,136 --> 00:31:40,126
+if you type index C at index 1,
+
+
+716
+00:31:40,506 --> 00:31:42,386
+you have to make sure
+it's aligned on 16 bytes.
+
+
+717
+00:31:42,676 --> 00:31:43,456
+So that doesn't work.
+
+
+718
+00:31:44,026 --> 00:31:47,626
+So what if I wanted to tightly
+pack all my data structures?
+
+
+719
+00:31:48,126 --> 00:31:48,966
+Yes, you can do that.
+
+
+720
+00:31:48,966 --> 00:31:51,056
+And we have packed
+vector types for that.
+
+
+721
+00:31:51,796 --> 00:31:54,046
+So they are just like
+the aligned vector types.
+
+
+722
+00:31:54,096 --> 00:31:56,796
+They're declared with this
+"packed underscore" prefix.
+
+
+723
+00:31:57,746 --> 00:32:01,896
+You can do all of the operations
+on these types as you can
+
+
+724
+00:32:01,966 --> 00:32:03,246
+on the aligned vector types.
+
+
+725
+00:32:04,076 --> 00:32:07,436
+The only benefit is that a
+line is scalar type length.
+
+
+726
+00:32:07,606 --> 00:32:11,756
+So if I declare the same struct
+now, but use the packed types,
+
+
+727
+00:32:12,376 --> 00:32:14,066
+then these are aligned
+correctly.
+
+
+728
+00:32:14,066 --> 00:32:16,466
+And so the sizeof(Foo)
+is going to be 28 bytes.
+
+
+729
+00:32:16,786 --> 00:32:19,976
+So then you are ask, "well why
+shouldn't I always use these
+
+
+730
+00:32:19,976 --> 00:32:20,586
+packed types?"
+
+
+731
+00:32:21,486 --> 00:32:23,406
+And the reason, the
+answer to that depends
+
+
+732
+00:32:23,406 --> 00:32:26,186
+on how you are going to
+use these on the host.
+
+
+733
+00:32:26,186 --> 00:32:31,426
+Because the CPU, these types
+are not a good fit for the CPU.
+
+
+734
+00:32:31,426 --> 00:32:33,786
+But the CPU likes vector
+types to be aligned.
+
+
+735
+00:32:33,786 --> 00:32:35,766
+So if you're just
+building a data structure,
+
+
+736
+00:32:36,106 --> 00:32:38,696
+and just filling it
+out and going to pass
+
+
+737
+00:32:38,696 --> 00:32:41,776
+that to the shader (and
+most of your computations
+
+
+738
+00:32:41,776 --> 00:32:43,186
+on these data types
+are going to happen
+
+
+739
+00:32:43,186 --> 00:32:45,186
+in the shader) then you
+can use the packed types.
+
+
+740
+00:32:45,626 --> 00:32:48,436
+But if you're going to perform
+computations with these types
+
+
+741
+00:32:49,336 --> 00:32:51,916
+in host code, then you should
+use the aligned vector types.
+
+
+742
+00:32:52,256 --> 00:32:55,816
+So use that to determine like
+which types you need to use.
+
+
+743
+00:32:56,116 --> 00:32:58,796
+All right, so the last
+of the basic types,
+
+
+744
+00:32:58,796 --> 00:32:59,986
+and these are the atomic types.
+
+
+745
+00:33:00,476 --> 00:33:04,346
+And so we support a subset
+of the C++11 atomic types.
+
+
+746
+00:33:04,936 --> 00:33:07,686
+And the question is, "why
+should I use atomic types?"
+
+
+747
+00:33:07,796 --> 00:33:11,416
+Well, the operations on
+these types are race-free.
+
+
+748
+00:33:11,516 --> 00:33:12,886
+So, let's take an example.
+
+
+749
+00:33:12,886 --> 00:33:15,206
+Let's say I'm generating
+a histogram for an image.
+
+
+750
+00:33:15,616 --> 00:33:17,016
+And so I have 8 bits
+per channel.
+
+
+751
+00:33:17,016 --> 00:33:20,026
+So I have 256 bins for
+each color channel.
+
+
+752
+00:33:20,526 --> 00:33:22,196
+So I want to update a bin.
+
+
+753
+00:33:22,456 --> 00:33:23,666
+So I'm going to read
+the current value.
+
+
+754
+00:33:23,726 --> 00:33:25,826
+I'm going to increment
+it, and then write it out.
+
+
+755
+00:33:25,826 --> 00:33:28,936
+So what I want to make sure
+is that after I've read
+
+
+756
+00:33:29,076 --> 00:33:31,826
+but before I've written, nobody
+else comes and changes it.
+
+
+757
+00:33:31,976 --> 00:33:34,706
+And that's what these
+atomic operations guarantee.
+
+
+758
+00:33:35,226 --> 00:33:38,326
+Okay? All right, so that
+covers the basic types.
+
+
+759
+00:33:38,896 --> 00:33:42,136
+So let's talk about resource and
+state objects that you can pass
+
+
+760
+00:33:42,606 --> 00:33:43,796
+as data types to your shader.
+
+
+761
+00:33:45,826 --> 00:33:49,156
+All right, so we support the
+traditional texture types
+
+
+762
+00:33:49,156 --> 00:33:51,806
+like 1d, 1dArray, 2d, 2dArray,
+
+
+763
+00:33:52,096 --> 00:33:54,006
+but how do you declare
+these in Metal?
+
+
+764
+00:33:54,096 --> 00:33:58,556
+So these are declared
+as a template.
+
+
+765
+00:33:58,556 --> 00:33:58,926
+[ Laughs ]
+
+
+766
+00:33:58,926 --> 00:34:00,256
+He likes it, all right.
+
+
+767
+00:34:00,376 --> 00:34:03,416
+So the template takes
+two parameters.
+
+
+768
+00:34:03,416 --> 00:34:04,616
+One is the color type.
+
+
+769
+00:34:04,616 --> 00:34:07,656
+And this indicates if
+you're going to sample
+
+
+770
+00:34:07,656 --> 00:34:10,356
+from a texture the vector
+type you're going to return,
+
+
+771
+00:34:10,856 --> 00:34:13,676
+or as a color value, or
+if you're going to write
+
+
+772
+00:34:13,916 --> 00:34:15,346
+to the texture, what
+is the vector type
+
+
+773
+00:34:15,696 --> 00:34:17,206
+that would represent
+the color value?
+
+
+774
+00:34:17,416 --> 00:34:18,335
+And the access mode.
+
+
+775
+00:34:18,565 --> 00:34:21,275
+And this tells the compiler
+whether you're going
+
+
+776
+00:34:21,275 --> 00:34:24,886
+to be sampling from a
+texture or reading or writing.
+
+
+777
+00:34:25,005 --> 00:34:27,216
+Reading is just saying, "hey,
+
+
+778
+00:34:27,216 --> 00:34:31,496
+go read this specific
+location pixel in my texture"
+
+
+779
+00:34:31,545 --> 00:34:33,866
+or "write this color value
+
+
+780
+00:34:33,866 --> 00:34:35,636
+to this specific
+location in the texture."
+
+
+781
+00:34:36,255 --> 00:34:38,356
+You can sample and
+read or write.
+
+
+782
+00:34:38,505 --> 00:34:41,936
+You cannot do both to the
+same texture within a shader.
+
+
+783
+00:34:43,436 --> 00:34:44,896
+And that texture is
+of a different type
+
+
+784
+00:34:44,896 --> 00:34:47,656
+because the GPU actually
+optimizes them differently.
+
+
+785
+00:34:47,656 --> 00:34:48,565
+And so we need to know
+
+
+786
+00:34:48,565 --> 00:34:50,815
+that you're actually
+working with a depth texture.
+
+
+787
+00:34:51,656 --> 00:34:53,446
+So let's look at some examples.
+
+
+788
+00:34:54,246 --> 00:34:56,726
+So in this first one
+we have a 2d texture,
+
+
+789
+00:34:56,946 --> 00:34:58,416
+and its color type is float.
+
+
+790
+00:34:58,416 --> 00:34:59,796
+So if you sample from
+this, you're going
+
+
+791
+00:34:59,796 --> 00:35:00,816
+to return the float forward.
+
+
+792
+00:35:01,176 --> 00:35:02,806
+Notice I didn't specify
+the access mode
+
+
+793
+00:35:02,806 --> 00:35:05,526
+because it has a
+default, which is sample.
+
+
+794
+00:35:05,946 --> 00:35:11,326
+So the next one is a 2d texture
+again which uses the half type
+
+
+795
+00:35:11,326 --> 00:35:13,196
+and its access mode is write.
+
+
+796
+00:35:13,196 --> 00:35:16,286
+So if I try to read from
+this texture in my shader,
+
+
+797
+00:35:16,286 --> 00:35:17,576
+the compiler will
+throw an error.
+
+
+798
+00:35:17,616 --> 00:35:20,606
+And then finally we
+have a depth texture.
+
+
+799
+00:35:20,856 --> 00:35:24,546
+Okay? Samplers are
+separate from textures.
+
+
+800
+00:35:24,836 --> 00:35:26,656
+So, what does that mean?
+
+
+801
+00:35:26,656 --> 00:35:29,966
+That means I can use the same
+sampler with multiple textures.
+
+
+802
+00:35:29,966 --> 00:35:31,946
+Or I can use multiple samplers
+
+
+803
+00:35:31,946 --> 00:35:33,346
+of the same thing
+with one texture.
+
+
+804
+00:35:33,926 --> 00:35:34,706
+You have the freedom.
+
+
+805
+00:35:35,206 --> 00:35:36,206
+How do I pass these?
+
+
+806
+00:35:36,426 --> 00:35:39,326
+Well, like I said, everything
+is passed as an argument,
+
+
+807
+00:35:39,326 --> 00:35:41,636
+so you can pass them as an
+argument to your shader.
+
+
+808
+00:35:41,636 --> 00:35:44,646
+In addition though, you
+can actually declare them
+
+
+809
+00:35:44,646 --> 00:35:45,356
+in your source.
+
+
+810
+00:35:45,876 --> 00:35:47,856
+So it depends.
+
+
+811
+00:35:47,856 --> 00:35:50,846
+So like in a lot of cases,
+especially if you're doing, ah,
+
+
+812
+00:35:50,846 --> 00:35:53,396
+image processing filters -- you
+know, you just need a handful
+
+
+813
+00:35:53,396 --> 00:35:55,606
+of samplers that
+you're going to use.
+
+
+814
+00:35:56,106 --> 00:35:57,916
+And data declared is
+a variadic template.
+
+
+815
+00:35:57,916 --> 00:36:00,296
+And the reason for that
+is samples have a number
+
+
+816
+00:36:00,296 --> 00:36:02,926
+of properties like the filter
+mode, the addressing mode,
+
+
+817
+00:36:03,416 --> 00:36:05,706
+whether the coordinates I'm
+going to use are normalized
+
+
+818
+00:36:05,706 --> 00:36:07,626
+or pixel, and a bunch
+of other things.
+
+
+819
+00:36:07,716 --> 00:36:11,496
+I don't want to have to set
+them explicitly every time.
+
+
+820
+00:36:11,716 --> 00:36:13,106
+All of these have defaults.
+
+
+821
+00:36:13,396 --> 00:36:15,186
+So you only change
+the one you want to,
+
+
+822
+00:36:15,186 --> 00:36:16,656
+you are changing
+from the defaults.
+
+
+823
+00:36:16,656 --> 00:36:19,666
+So in this example, I'm changing
+the address more from clamp
+
+
+824
+00:36:19,666 --> 00:36:23,716
+to clamp to zero, and the other
+properties take the default.
+
+
+825
+00:36:24,276 --> 00:36:26,796
+So you can choose to
+pass them as an argument,
+
+
+826
+00:36:26,796 --> 00:36:28,746
+or you can choose them to
+declare them in your source,
+
+
+827
+00:36:28,746 --> 00:36:29,656
+depending on your needs.
+
+
+828
+00:36:30,966 --> 00:36:32,296
+All right, so last of the types.
+
+
+829
+00:36:32,566 --> 00:36:36,986
+All right, so buffers is just
+(as Jeremy mentioned) a bag
+
+
+830
+00:36:36,986 --> 00:36:37,356
+of bytes.
+
+
+831
+00:36:37,486 --> 00:36:40,856
+And so you just pass a pointer
+or a reference to this type.
+
+
+832
+00:36:41,086 --> 00:36:43,616
+And notice in the first slide
+I have this global qualifier.
+
+
+833
+00:36:43,616 --> 00:36:45,226
+Well let's talk about that now.
+
+
+834
+00:36:45,526 --> 00:36:48,366
+See, anything that's passed
+as a pointer, or a reference
+
+
+835
+00:36:48,366 --> 00:36:49,796
+to some memory, you need to say
+
+
+836
+00:36:49,796 --> 00:36:51,356
+which memory region
+it comes from.
+
+
+837
+00:36:51,866 --> 00:36:54,476
+And that's because GPUs actually
+implement the member hierarchy.
+
+
+838
+00:36:55,126 --> 00:36:57,206
+With compute, you got an
+additional memory region.
+
+
+839
+00:36:57,206 --> 00:36:58,876
+But if you're just writing
+vertex and fragment shaders,
+
+
+840
+00:36:58,916 --> 00:37:02,436
+the two memory regions (we
+call them address spaces),
+
+
+841
+00:37:02,436 --> 00:37:04,756
+you need to worry about
+our global and constant.
+
+
+842
+00:37:04,866 --> 00:37:07,096
+So the question is, "well
+when should I use which?"
+
+
+843
+00:37:07,976 --> 00:37:11,246
+All right, so if you are
+writing a vertex shader,
+
+
+844
+00:37:11,676 --> 00:37:14,666
+you pass pointers to some
+buffers, you're going
+
+
+845
+00:37:14,666 --> 00:37:16,796
+to use your vertex
+ID to index into it.
+
+
+846
+00:37:16,986 --> 00:37:20,926
+That means for each, if the
+vertex shader is being executed
+
+
+847
+00:37:20,926 --> 00:37:24,596
+over N vertices, all
+of these instances
+
+
+848
+00:37:24,596 --> 00:37:26,136
+that are executing the
+vertex shader are going
+
+
+849
+00:37:26,136 --> 00:37:27,566
+to be unique locations.
+
+
+850
+00:37:27,746 --> 00:37:30,916
+So when you see that data
+pattern, you want to use global.
+
+
+851
+00:37:32,196 --> 00:37:33,576
+Okay, and the same
+thing for compute.
+
+
+852
+00:37:33,626 --> 00:37:35,496
+You will find that
+out when we talk
+
+
+853
+00:37:35,496 --> 00:37:36,636
+about computing in
+the next session.
+
+
+854
+00:37:37,486 --> 00:37:41,906
+However, you will also find
+in your shader that you may,
+
+
+855
+00:37:42,136 --> 00:37:45,066
+you are actually accessing
+some data structures where all
+
+
+856
+00:37:45,066 --> 00:37:48,656
+of these instances actually
+access the same location.
+
+
+857
+00:37:48,856 --> 00:37:51,986
+For example, if you
+have a light descriptor.
+
+
+858
+00:37:52,296 --> 00:37:53,416
+Or if you're doing skinning.
+
+
+859
+00:37:53,416 --> 00:37:54,406
+Or if you're doing filtering.
+
+
+860
+00:37:55,046 --> 00:37:56,356
+So in this case you will find
+
+
+861
+00:37:56,356 --> 00:38:00,876
+that all these instances
+executing your vertex shader go
+
+
+862
+00:38:00,876 --> 00:38:02,536
+refer to the same
+light descriptor.
+
+
+863
+00:38:02,756 --> 00:38:04,416
+Or the same skinning matrix.
+
+
+864
+00:38:04,736 --> 00:38:05,826
+So let's look at an example.
+
+
+865
+00:38:06,336 --> 00:38:08,746
+One more thing here is
+that when you use constant,
+
+
+866
+00:38:08,986 --> 00:38:10,566
+we really want you
+to pass by reference.
+
+
+867
+00:38:11,006 --> 00:38:12,826
+Because that tells
+us what the size is
+
+
+868
+00:38:12,826 --> 00:38:15,186
+and we can actually optimize
+by prefetching the data.
+
+
+869
+00:38:15,246 --> 00:38:18,606
+And that can have a significant
+impact to improvement
+
+
+870
+00:38:18,606 --> 00:38:19,596
+of performance of your shader.
+
+
+871
+00:38:19,706 --> 00:38:23,146
+So definitely take
+advantage of that.
+
+
+872
+00:38:23,146 --> 00:38:24,346
+Okay, so let's take an example.
+
+
+873
+00:38:24,846 --> 00:38:27,926
+Here I have four arguments
+passing three buffers
+
+
+874
+00:38:28,396 --> 00:38:29,386
+and my vertex ID.
+
+
+875
+00:38:29,386 --> 00:38:30,976
+So let's look at the
+first data pattern.
+
+
+876
+00:38:31,516 --> 00:38:33,136
+Look at normal data
+and position data.
+
+
+877
+00:38:33,136 --> 00:38:35,876
+I'm actually accessing
+using my vertex ID,
+
+
+878
+00:38:35,876 --> 00:38:38,886
+so which address space
+should these belong in?
+
+
+879
+00:38:40,176 --> 00:38:42,376
+Global. But if you look
+
+
+880
+00:38:42,376 --> 00:38:46,786
+at the other three data
+pattern accesses and matrices,
+
+
+881
+00:38:46,786 --> 00:38:48,576
+you notice that if,
+
+
+882
+00:38:48,796 --> 00:38:51,056
+in a multiple vertices
+root exiting this function
+
+
+883
+00:38:51,056 --> 00:38:53,246
+across multiple vertices,
+they're going to refer
+
+
+884
+00:38:53,246 --> 00:38:56,536
+to the same normal matrix,
+the same projection matrix.
+
+
+885
+00:38:57,026 --> 00:38:59,696
+So, therefore, I
+should declare these
+
+
+886
+00:38:59,696 --> 00:39:00,826
+in a constant address space.
+
+
+887
+00:39:00,826 --> 00:39:02,886
+So hopefully this gives
+you an idea of how
+
+
+888
+00:39:02,886 --> 00:39:05,326
+to declare your buffers
+in which address space.
+
+
+889
+00:39:05,446 --> 00:39:06,786
+You don't have to do
+that for textures.
+
+
+890
+00:39:07,206 --> 00:39:11,056
+All right, so let's talk
+about inputs and outputs.
+
+
+891
+00:39:11,056 --> 00:39:14,526
+So that was a very high-level
+overview of the data types.
+
+
+892
+00:39:14,526 --> 00:39:17,736
+So, how do you pass input
+through your vertex shader?
+
+
+893
+00:39:17,886 --> 00:39:18,886
+Well there are two ways.
+
+
+894
+00:39:19,346 --> 00:39:21,026
+The first one we've
+actually shown you, right?
+
+
+895
+00:39:21,026 --> 00:39:24,186
+In all of the examples I have
+shown you, you pass the input
+
+
+896
+00:39:24,296 --> 00:39:27,266
+by passing a pointer to a
+struct, so you've declared,
+
+
+897
+00:39:27,266 --> 00:39:29,276
+and then you use your
+vertex ID to index into it.
+
+
+898
+00:39:29,626 --> 00:39:32,486
+So that means is you
+actually know the data layout
+
+
+899
+00:39:33,146 --> 00:39:34,726
+of your vertex inputting
+in a shader.
+
+
+900
+00:39:34,796 --> 00:39:38,056
+So if you do, this is
+the way to do it, okay?
+
+
+901
+00:39:38,056 --> 00:39:40,506
+So in addition to your vertex
+ID you can also use your
+
+
+902
+00:39:40,506 --> 00:39:41,206
+instance ID.
+
+
+903
+00:39:42,246 --> 00:39:45,076
+Like in this example, I
+have two inputs I'm passing
+
+
+904
+00:39:45,076 --> 00:39:49,736
+in as buffers, and I'm using
+the vertex ID and instance ID.
+
+
+905
+00:39:50,046 --> 00:39:52,946
+But there is also the
+traditional approach.
+
+
+906
+00:39:53,486 --> 00:39:57,216
+So in this approach, you
+don't know the data layout
+
+
+907
+00:39:57,456 --> 00:39:58,076
+in your shader.
+
+
+908
+00:39:58,546 --> 00:40:01,656
+And so if you want it all,
+you may want to decouple.
+
+
+909
+00:40:01,886 --> 00:40:05,276
+You may want to declare in your
+vertex shader the data types you
+
+
+910
+00:40:05,276 --> 00:40:07,056
+want to use for your
+vertex inputs
+
+
+911
+00:40:07,056 --> 00:40:09,106
+because of the computations
+you're doing in your shader,
+
+
+912
+00:40:09,606 --> 00:40:13,056
+and have the flexibility to be
+able to declare the actual input
+
+
+913
+00:40:13,296 --> 00:40:15,146
+at runtime in the
+buffers are showing,
+
+
+914
+00:40:15,146 --> 00:40:15,976
+and they may be different.
+
+
+915
+00:40:16,486 --> 00:40:20,376
+So, this is more like the
+OpenGL's Vertex Array API.
+
+
+916
+00:40:20,376 --> 00:40:25,006
+And so this, this approach in
+Metal is actually a good match.
+
+
+917
+00:40:25,096 --> 00:40:26,936
+And let me talk about
+how it works.
+
+
+918
+00:40:27,346 --> 00:40:28,176
+So the thing you'll do
+
+
+919
+00:40:28,176 --> 00:40:30,586
+in the runtime is you will
+create a vertex descriptor.
+
+
+920
+00:40:30,656 --> 00:40:32,906
+So in this descriptor for
+each input, you're going
+
+
+921
+00:40:32,906 --> 00:40:36,546
+to specify the buffer it comes
+from, where inside the buffer,
+
+
+922
+00:40:37,566 --> 00:40:39,936
+what is the format,
+things like that.
+
+
+923
+00:40:40,376 --> 00:40:43,106
+And you may have one or more
+buffers for your inputs.
+
+
+924
+00:40:43,346 --> 00:40:46,826
+In the shader, everything
+that is an input, you're going
+
+
+925
+00:40:46,826 --> 00:40:47,916
+to declare them in a struct.
+
+
+926
+00:40:47,916 --> 00:40:51,456
+And remember I said, anything
+that's user-defined information
+
+
+927
+00:40:51,456 --> 00:40:53,186
+that you want to
+generate per instance,
+
+
+928
+00:40:53,936 --> 00:40:54,846
+you have to use stage-in.
+
+
+929
+00:40:54,846 --> 00:40:55,936
+So that's how you declare it.
+
+
+930
+00:40:56,616 --> 00:40:58,506
+So let's look at a code example.
+
+
+931
+00:40:59,986 --> 00:41:00,816
+Ah, before that.
+
+
+932
+00:41:01,276 --> 00:41:02,986
+So I declared my
+struct and my shader,
+
+
+933
+00:41:03,196 --> 00:41:05,216
+and I declared my
+vertex descriptor.
+
+
+934
+00:41:05,556 --> 00:41:07,776
+All my inputs and my vertex
+descriptor, I need to be able
+
+
+935
+00:41:07,776 --> 00:41:08,926
+to say, "hey, this will work --
+
+
+936
+00:41:08,926 --> 00:41:11,246
+I need to be able to
+map one to the other."
+
+
+937
+00:41:11,346 --> 00:41:12,876
+And the way I do that is
+
+
+938
+00:41:12,876 --> 00:41:15,376
+by specifying an
+attribute index, okay?
+
+
+939
+00:41:15,466 --> 00:41:16,396
+So let's look at an example.
+
+
+940
+00:41:16,396 --> 00:41:19,236
+Let's say I want to
+pass four inputs.
+
+
+941
+00:41:19,406 --> 00:41:21,906
+The first one is going to be
+positioned, and it's going
+
+
+942
+00:41:21,906 --> 00:41:25,306
+to be an index 0,
+and 12 bytes in size.
+
+
+943
+00:41:25,376 --> 00:41:26,706
+The next one is normal.
+
+
+944
+00:41:27,186 --> 00:41:29,656
+It's also at offset 12
+and 12 bytes in size.
+
+
+945
+00:41:29,656 --> 00:41:31,356
+In fact, all four
+inputs are going
+
+
+946
+00:41:31,356 --> 00:41:32,426
+to come from the same buffer.
+
+
+947
+00:41:32,816 --> 00:41:36,486
+And so the next one is color
+at index 2, 4 bytes in size.
+
+
+948
+00:41:36,486 --> 00:41:39,606
+And then third is texture
+coordinate at index 3,
+
+
+949
+00:41:39,606 --> 00:41:40,926
+4 bytes in size, okay.
+
+
+950
+00:41:41,366 --> 00:41:43,026
+All right, so how do I
+declare this in the shader?
+
+
+951
+00:41:43,516 --> 00:41:44,526
+So I have a struct.
+
+
+952
+00:41:44,526 --> 00:41:47,716
+I have defined the data
+types I want to use,
+
+
+953
+00:41:48,146 --> 00:41:50,326
+and the attribute indices
+they're going to use.
+
+
+954
+00:41:50,326 --> 00:41:53,226
+And notice that I've declared
+them with the stage-in qualifier
+
+
+955
+00:41:53,226 --> 00:41:54,966
+because this is going
+to be per instance.
+
+
+956
+00:41:55,436 --> 00:41:57,376
+For every instance it
+executes as a vertex shader.
+
+
+957
+00:41:57,476 --> 00:41:59,276
+Okay, so let's look at the API.
+
+
+958
+00:41:59,776 --> 00:42:00,696
+So the first thing I'm going
+
+
+959
+00:42:00,696 --> 00:42:02,776
+to do is create the
+vertex descriptor.
+
+
+960
+00:42:03,536 --> 00:42:06,496
+So the first imput
+was my position.
+
+
+961
+00:42:06,576 --> 00:42:08,886
+So I'm going to say
+float3 is 12 bytes.
+
+
+962
+00:42:08,966 --> 00:42:11,296
+So it's going to
+start us off at 0.
+
+
+963
+00:42:11,926 --> 00:42:15,996
+And notice I had a single
+buffer for all of the input.
+
+
+964
+00:42:15,996 --> 00:42:18,406
+So my buffer index for all
+of these is going to be 0.
+
+
+965
+00:42:19,226 --> 00:42:20,446
+The attribute index is 0.
+
+
+966
+00:42:21,186 --> 00:42:24,696
+So next I set the
+normal, so at index1.
+
+
+967
+00:42:24,696 --> 00:42:28,286
+The next I set color, at index2.
+
+
+968
+00:42:28,676 --> 00:42:29,346
+Texture coordinate.
+
+
+969
+00:42:30,156 --> 00:42:32,466
+And for each buffer
+that I'm using
+
+
+970
+00:42:32,746 --> 00:42:35,286
+to declare my vertex
+inputs in my descriptor,
+
+
+971
+00:42:35,656 --> 00:42:37,786
+I have to say the
+stride, what is the stride
+
+
+972
+00:42:37,786 --> 00:42:39,376
+so I can fetch the
+right vertex data.
+
+
+973
+00:42:40,066 --> 00:42:41,476
+So in this case it's 32 bytes.
+
+
+974
+00:42:41,626 --> 00:42:42,366
+So I did that.
+
+
+975
+00:42:43,276 --> 00:42:44,826
+Then I put this vertex
+descriptor
+
+
+976
+00:42:45,376 --> 00:42:47,076
+to in my pipeline descriptor.
+
+
+977
+00:42:47,226 --> 00:42:49,536
+And then I create
+my pipeline object,
+
+
+978
+00:42:49,606 --> 00:42:50,736
+my RenderPipeline object.
+
+
+979
+00:42:51,026 --> 00:42:55,206
+And at that point in time,
+Metal will go figure out how
+
+
+980
+00:42:55,206 --> 00:42:57,016
+to generate the code
+to go fetch your input.
+
+
+981
+00:42:57,226 --> 00:42:58,576
+So, you have both
+options available.
+
+
+982
+00:42:58,576 --> 00:43:02,216
+Use which works best
+for your problem.
+
+
+983
+00:43:02,606 --> 00:43:06,606
+All right, outputs: well, there
+are two ways of writing inputs,
+
+
+984
+00:43:06,606 --> 00:43:08,516
+so we wanted to make
+sure you get two ways
+
+
+985
+00:43:08,516 --> 00:43:09,506
+of writing outputs too.
+
+
+986
+00:43:10,466 --> 00:43:13,576
+So, typically what you
+would do is the output
+
+
+987
+00:43:13,576 --> 00:43:15,906
+of your vertex shader will go
+the rasterizer, because you want
+
+
+988
+00:43:15,906 --> 00:43:17,446
+to show something on the screen,
+
+
+989
+00:43:17,446 --> 00:43:18,796
+so you want to rasterize
+triangles.
+
+
+990
+00:43:19,276 --> 00:43:22,856
+So anything that you
+return from the return type
+
+
+991
+00:43:22,856 --> 00:43:25,306
+of your vertex shader is what's
+going to go to the rasterizer.
+
+
+992
+00:43:25,566 --> 00:43:26,416
+So what can I return?
+
+
+993
+00:43:26,626 --> 00:43:27,786
+I can return a float4.
+
+
+994
+00:43:27,996 --> 00:43:30,996
+At a minimum I must return a
+float4, and I'll tell you why.
+
+
+995
+00:43:31,416 --> 00:43:33,106
+Or you can have a
+user-defined struct.
+
+
+996
+00:43:33,606 --> 00:43:35,106
+What can be in this struct?
+
+
+997
+00:43:35,316 --> 00:43:38,736
+So there can be a scalar,
+a vector or a matrix.
+
+
+998
+00:43:38,736 --> 00:43:39,966
+You can even have
+arrays of these.
+
+
+999
+00:43:40,776 --> 00:43:42,476
+There's some special
+variables we need to know
+
+
+1000
+00:43:42,476 --> 00:43:44,876
+about like position, point size
+
+
+1001
+00:43:44,876 --> 00:43:47,096
+if you're rendering a point
+sprite or clip distance.
+
+
+1002
+00:43:47,586 --> 00:43:49,946
+You must return a float4
+because position must always
+
+
+1003
+00:43:49,946 --> 00:43:50,376
+be returned.
+
+
+1004
+00:43:50,376 --> 00:43:51,616
+It's kind of hard
+for the rasterizer
+
+
+1005
+00:43:51,616 --> 00:43:54,306
+to generate rasterized triangles
+without knowing position.
+
+
+1006
+00:43:54,816 --> 00:43:55,376
+So that's why.
+
+
+1007
+00:43:57,336 --> 00:43:58,946
+All right, so here's an example.
+
+
+1008
+00:43:59,926 --> 00:44:01,076
+I'm returning four things.
+
+
+1009
+00:44:01,686 --> 00:44:05,706
+And I use the built-in variables
+attributes to identify things
+
+
+1010
+00:44:05,706 --> 00:44:07,146
+such as position and point size.
+
+
+1011
+00:44:07,226 --> 00:44:08,806
+This is really pretty
+straight forward.
+
+
+1012
+00:44:08,806 --> 00:44:11,596
+Declare your struct, declare
+some attributes and you're done.
+
+
+1013
+00:44:12,606 --> 00:44:14,146
+Okay. So it's great.
+
+
+1014
+00:44:14,936 --> 00:44:17,826
+I can generate output,
+pass it to the rasterizer.
+
+
+1015
+00:44:17,986 --> 00:44:18,976
+But I want to do more.
+
+
+1016
+00:44:20,256 --> 00:44:22,966
+I want to be able to
+write some buffer,
+
+
+1017
+00:44:23,066 --> 00:44:24,336
+maybe more than one buffer.
+
+
+1018
+00:44:24,336 --> 00:44:26,416
+I don't want to send
+anything to the rasterizer.
+
+
+1019
+00:44:26,616 --> 00:44:27,776
+Or maybe I want to do both.
+
+
+1020
+00:44:28,236 --> 00:44:28,826
+Can I do that?
+
+
+1021
+00:44:29,116 --> 00:44:34,216
+The answer is, "we
+are here to please."
+
+
+1022
+00:44:34,216 --> 00:44:35,306
+[ Laughs ]
+
+
+1023
+00:44:35,306 --> 00:44:36,396
+[ Applause ]
+
+
+1024
+00:44:36,396 --> 00:44:39,386
+So remember the vertex ID
+you can use that to input.
+
+
+1025
+00:44:39,386 --> 00:44:40,496
+Well guess what?
+
+
+1026
+00:44:40,496 --> 00:44:42,726
+You can use that to output too.
+
+
+1027
+00:44:42,856 --> 00:44:45,226
+So here is the structure
+I want to write out.
+
+
+1028
+00:44:45,256 --> 00:44:51,666
+I want to pass that as --
+declare that as a struct,
+
+
+1029
+00:44:51,666 --> 00:44:52,356
+ah, create a buffer...
+
+
+1030
+00:44:52,356 --> 00:44:54,206
+Pass that as an argument
+to my shader,
+
+
+1031
+00:44:55,036 --> 00:44:57,716
+and output to it
+using the vertex ID.
+
+
+1032
+00:44:58,236 --> 00:45:05,636
+In fact, I can pass up to 31
+buffers if one is not enough.
+
+
+1033
+00:45:05,636 --> 00:45:05,703
+[ Applause ]
+
+
+1034
+00:45:05,703 --> 00:45:08,056
+You notice I'm not
+returning anything here
+
+
+1035
+00:45:08,056 --> 00:45:11,296
+because of the return type.
+
+
+1036
+00:45:11,456 --> 00:45:13,226
+But I could have returned
+the same struct here,
+
+
+1037
+00:45:13,396 --> 00:45:15,366
+or I could return something
+completely different.
+
+
+1038
+00:45:15,656 --> 00:45:18,336
+So you have a lot
+of flexibility here.
+
+
+1039
+00:45:18,666 --> 00:45:19,006
+All right.
+
+
+1040
+00:45:19,846 --> 00:45:21,706
+So that's per-vertex
+inputs/outputs.
+
+
+1041
+00:45:21,926 --> 00:45:23,566
+Per-fragments are a lot simpler.
+
+
+1042
+00:45:23,696 --> 00:45:25,146
+There's only one way
+of doing things here.
+
+
+1043
+00:45:25,696 --> 00:45:31,786
+So, the inputs to a fragment
+shader are typically the outputs
+
+
+1044
+00:45:31,786 --> 00:45:33,906
+of the vertex shader because
+they go to the rasterizer
+
+
+1045
+00:45:34,016 --> 00:45:36,526
+and they generate fragments
+and that's the inputs.
+
+
+1046
+00:45:36,996 --> 00:45:38,776
+So what can I --
+must be declared
+
+
+1047
+00:45:38,776 --> 00:45:39,926
+in with this stage-in qualifier.
+
+
+1048
+00:45:41,776 --> 00:45:44,666
+Sometimes the raster also
+generates information
+
+
+1049
+00:45:44,666 --> 00:45:46,546
+that you may actually
+want to know about, like,
+
+
+1050
+00:45:46,546 --> 00:45:48,066
+"is my triangle front-facing?"
+
+
+1051
+00:45:48,616 --> 00:45:50,176
+Or if I'm doing multi-sampling.
+
+
+1052
+00:45:51,226 --> 00:45:53,186
+So things like that,
+you can use attributes
+
+
+1053
+00:45:53,726 --> 00:45:55,646
+to identify these inputs.
+
+
+1054
+00:45:55,736 --> 00:45:57,896
+And if you wanted to
+program a blending,
+
+
+1055
+00:45:58,216 --> 00:45:59,996
+you want to read the
+frame buffer color value.
+
+
+1056
+00:46:00,276 --> 00:46:01,076
+So, you can.
+
+
+1057
+00:46:01,666 --> 00:46:02,926
+So let's talk about
+how I do that.
+
+
+1058
+00:46:03,136 --> 00:46:04,276
+So here's an example.
+
+
+1059
+00:46:05,136 --> 00:46:08,716
+In this case, my fragment
+input was the output
+
+
+1060
+00:46:08,716 --> 00:46:09,636
+of the vertex shader.
+
+
+1061
+00:46:09,926 --> 00:46:12,136
+So I used the staging
+qualifier to say
+
+
+1062
+00:46:12,136 --> 00:46:13,676
+that this is a per-fragment
+input.
+
+
+1063
+00:46:14,686 --> 00:46:18,106
+I want to read whether the
+triangle is front-facing or not.
+
+
+1064
+00:46:18,106 --> 00:46:20,696
+So I use this attribute
+to identify
+
+
+1065
+00:46:20,696 --> 00:46:22,986
+that this front face is
+a front-facing variable.
+
+
+1066
+00:46:23,056 --> 00:46:25,386
+And I also want to do
+blending in my shader.
+
+
+1067
+00:46:25,646 --> 00:46:28,066
+So I'm going to read
+front color attachment 0.
+
+
+1068
+00:46:29,856 --> 00:46:31,936
+Though I passed as a
+separate arguments here,
+
+
+1069
+00:46:31,936 --> 00:46:32,866
+they don't have to be.
+
+
+1070
+00:46:32,866 --> 00:46:37,406
+I could have declared them
+in the struct itself, okay?
+
+
+1071
+00:46:38,126 --> 00:46:40,166
+Outputs from a fragment
+shader work just
+
+
+1072
+00:46:40,166 --> 00:46:41,906
+like outputs from
+a vertex shader.
+
+
+1073
+00:46:42,226 --> 00:46:43,256
+You can't write to
+memory though.
+
+
+1074
+00:46:43,356 --> 00:46:44,176
+Only the first one.
+
+
+1075
+00:46:44,176 --> 00:46:45,106
+So you only return type.
+
+
+1076
+00:46:45,106 --> 00:46:49,016
+And you can return a scalar,
+vector or user-defined struct.
+
+
+1077
+00:46:49,016 --> 00:46:50,146
+A lot of flexibility here.
+
+
+1078
+00:46:50,476 --> 00:46:51,756
+But the only thing
+you can return
+
+
+1079
+00:46:51,756 --> 00:46:55,536
+in a fragment shader is a
+color, a depth or a sample mask.
+
+
+1080
+00:46:55,796 --> 00:46:57,676
+And we need to know so you have
+
+
+1081
+00:46:57,676 --> 00:46:59,546
+to four color attachments,
+one depth.
+
+
+1082
+00:46:59,966 --> 00:47:00,866
+And sample mask.
+
+
+1083
+00:47:00,866 --> 00:47:02,126
+We need to know what
+you're writing to.
+
+
+1084
+00:47:02,186 --> 00:47:05,156
+And so you identify them
+with attributes, okay?
+
+
+1085
+00:47:06,036 --> 00:47:10,696
+So in this example, I'm
+just returning a single
+
+
+1086
+00:47:10,696 --> 00:47:11,836
+and a color value back.
+
+
+1087
+00:47:11,836 --> 00:47:13,826
+This is going to be returned
+to color attachment zero.
+
+
+1088
+00:47:14,676 --> 00:47:17,646
+Here's another example where I'm
+returning more than one color.
+
+
+1089
+00:47:17,946 --> 00:47:20,726
+And notice here that the color
+attachments don't have to be
+
+
+1090
+00:47:20,726 --> 00:47:22,356
+in the right order, okay?
+
+
+1091
+00:47:22,426 --> 00:47:23,396
+They can be sparse.
+
+
+1092
+00:47:24,836 --> 00:47:27,166
+All right, you guys ready
+for some matchmaking?
+
+
+1093
+00:47:28,436 --> 00:47:33,176
+All right, so I've written,
+you've written a vertex shader
+
+
+1094
+00:47:33,176 --> 00:47:34,086
+and a fragment shader.
+
+
+1095
+00:47:34,516 --> 00:47:36,986
+I want to pair them because
+I can't do the RenderPipeline
+
+
+1096
+00:47:36,986 --> 00:47:37,496
+without it.
+
+
+1097
+00:47:37,496 --> 00:47:38,496
+So how do I pair?
+
+
+1098
+00:47:38,786 --> 00:47:39,516
+What are the rules?
+
+
+1099
+00:47:39,976 --> 00:47:41,916
+The simplest rule
+is that types match.
+
+
+1100
+00:47:42,776 --> 00:47:46,536
+That means the return type of
+the vertex shader is the input
+
+
+1101
+00:47:46,756 --> 00:47:47,556
+to the fragment sharer.
+
+
+1102
+00:47:47,626 --> 00:47:49,406
+In this example,
+that's what it is.
+
+
+1103
+00:47:50,356 --> 00:47:52,576
+And this will always pair, okay?
+
+
+1104
+00:47:53,386 --> 00:47:54,586
+But that's boring.
+
+
+1105
+00:47:54,736 --> 00:47:59,856
+I want to just, I want
+to declare my own struct
+
+
+1106
+00:47:59,946 --> 00:48:01,626
+as my input to my
+fragment shader,
+
+
+1107
+00:48:01,626 --> 00:48:03,976
+and that can be a subset.
+
+
+1108
+00:48:03,976 --> 00:48:05,606
+In fact, that's typically
+very common
+
+
+1109
+00:48:05,636 --> 00:48:08,696
+if I use one vertex shader with
+many, many fragment shaders.
+
+
+1110
+00:48:08,696 --> 00:48:09,936
+So where's the rule here then?
+
+
+1111
+00:48:09,936 --> 00:48:10,566
+How do I pair?
+
+
+1112
+00:48:10,566 --> 00:48:11,906
+The rule is really simple.
+
+
+1113
+00:48:12,036 --> 00:48:14,556
+For anything that's an
+input to the fragment,
+
+
+1114
+00:48:15,696 --> 00:48:20,726
+it's attribute name and type
+must exist in the vertex output.
+
+
+1115
+00:48:20,916 --> 00:48:23,856
+So in this example,
+you know, I have:
+
+
+1116
+00:48:24,746 --> 00:48:27,196
+position is a float4
+in my fragment input.
+
+
+1117
+00:48:27,646 --> 00:48:29,066
+It exists, and it's the same!
+
+
+1118
+00:48:29,766 --> 00:48:32,386
+Same thing for this
+attribute, user(T).
+
+
+1119
+00:48:32,386 --> 00:48:35,406
+So anything that's not a
+built-in variable, you can come
+
+
+1120
+00:48:35,616 --> 00:48:36,766
+up with your own name.
+
+
+1121
+00:48:37,006 --> 00:48:39,726
+It just needs to use
+the user-parentheses,
+
+
+1122
+00:48:39,726 --> 00:48:40,526
+braces, and tags.
+
+
+1123
+00:48:41,096 --> 00:48:42,546
+So that's the same thing here.
+
+
+1124
+00:48:43,806 --> 00:48:46,726
+And so if I create a vertex
+shader and a fragment shader
+
+
+1125
+00:48:46,896 --> 00:48:48,876
+that uses these types,
+they will pair.
+
+
+1126
+00:48:49,516 --> 00:48:50,956
+Note that there is
+no requirement
+
+
+1127
+00:48:50,956 --> 00:48:52,666
+that all the elements
+that I have
+
+
+1128
+00:48:52,666 --> 00:48:55,266
+in my fragment input must
+occur in the same order.
+
+
+1129
+00:48:55,446 --> 00:48:57,976
+They can occur in any order,
+they just need to occur.
+
+
+1130
+00:48:58,276 --> 00:48:58,586
+That's it.
+
+
+1131
+00:48:58,626 --> 00:49:00,926
+All right so that's
+matchmaking for you guys.
+
+
+1132
+00:49:01,806 --> 00:49:04,026
+Okay? All right, my
+favorite topic: math.
+
+
+1133
+00:49:04,836 --> 00:49:08,776
+Is anyone interested in math?
+
+
+1134
+00:49:08,776 --> 00:49:08,866
+[ Applause ]
+
+
+1135
+00:49:08,866 --> 00:49:13,876
+But why? Well because the two
+common operations you guys are
+
+
+1136
+00:49:13,876 --> 00:49:15,816
+going to do are loads
+and stores.
+
+
+1137
+00:49:16,136 --> 00:49:18,026
+And the rest is math.
+
+
+1138
+00:49:19,346 --> 00:49:21,776
+By default, all operation
+math operations
+
+
+1139
+00:49:21,776 --> 00:49:23,876
+in Metal are in fast math mode.
+
+
+1140
+00:49:23,876 --> 00:49:27,016
+So want to make sure you get
+the absolute fastest experience
+
+
+1141
+00:49:27,016 --> 00:49:28,366
+of your shaders running
+on the GPU.
+
+
+1142
+00:49:28,746 --> 00:49:31,656
+Did anyone say, "well, if you
+want to give me fast mode,
+
+
+1143
+00:49:31,656 --> 00:49:33,656
+why do I care about
+precise mode?"
+
+
+1144
+00:49:34,316 --> 00:49:36,286
+Well because, you
+know, fast mode comes
+
+
+1145
+00:49:36,286 --> 00:49:38,206
+with some caveats, it's fast.
+
+
+1146
+00:49:39,116 --> 00:49:42,746
+So sometimes, like in fast
+mode, we tell you behavior
+
+
+1147
+00:49:42,746 --> 00:49:44,666
+of NaNs is not defined.
+
+
+1148
+00:49:44,666 --> 00:49:45,756
+So NaN is not a number.
+
+
+1149
+00:49:46,486 --> 00:49:47,556
+Well then what do
+I care about that?
+
+
+1150
+00:49:47,556 --> 00:49:48,146
+It's not a number.
+
+
+1151
+00:49:48,146 --> 00:49:50,456
+"I'm not going to do math on
+a not-a-number," you're like.
+
+
+1152
+00:49:50,456 --> 00:49:51,806
+Well, sometimes you do.
+
+
+1153
+00:49:52,346 --> 00:49:55,626
+So for example, if I'm clamping
+an input with some minimum
+
+
+1154
+00:49:55,626 --> 00:49:59,996
+and a maximum, if I pass
+an input that's NaN,
+
+
+1155
+00:49:59,996 --> 00:50:02,646
+in fast mode we're
+going to say "ah,
+
+
+1156
+00:50:02,646 --> 00:50:03,976
+we don't know what the
+answer is going to be."
+
+
+1157
+00:50:04,446 --> 00:50:06,736
+But if you actually follow
+iTripoli's [inaudible] rules,
+
+
+1158
+00:50:06,736 --> 00:50:08,246
+there's guaranteed
+defined behavior.
+
+
+1159
+00:50:08,246 --> 00:50:09,656
+And you may actually
+care about that.
+
+
+1160
+00:50:10,426 --> 00:50:12,716
+Or, let's say you're using
+trigonometric functions
+
+
+1161
+00:50:12,716 --> 00:50:13,336
+in your shader.
+
+
+1162
+00:50:13,806 --> 00:50:16,936
+In fast mode, they work
+great over a small range.
+
+
+1163
+00:50:17,556 --> 00:50:20,006
+If your inputs go above
+and beyond that range,
+
+
+1164
+00:50:20,326 --> 00:50:21,446
+behavior is undefined.
+
+
+1165
+00:50:22,046 --> 00:50:25,126
+So, let's say you want
+correct behavior for those.
+
+
+1166
+00:50:26,216 --> 00:50:28,516
+Then you want to
+use precise mode.
+
+
+1167
+00:50:29,036 --> 00:50:32,576
+So one option is you're going
+to say, "I want my entire shader
+
+
+1168
+00:50:32,576 --> 00:50:33,616
+to run in precise mode."
+
+
+1169
+00:50:33,816 --> 00:50:34,666
+You can do that.
+
+
+1170
+00:50:34,666 --> 00:50:36,016
+You can set the compiler option.
+
+
+1171
+00:50:36,196 --> 00:50:38,706
+But that may actually...
+
+
+1172
+00:50:38,706 --> 00:50:40,776
+So, you need to really know
+what you're doing before you set
+
+
+1173
+00:50:40,776 --> 00:50:41,436
+that option.
+
+
+1174
+00:50:41,556 --> 00:50:43,306
+So. But that option does exist.
+
+
+1175
+00:50:43,646 --> 00:50:47,296
+OK? All right, I think the more
+common scenario is, you know,
+
+
+1176
+00:50:47,296 --> 00:50:49,936
+you're going to do most of
+your stuff in fast mode.
+
+
+1177
+00:50:50,416 --> 00:50:55,156
+There may be some functions you
+want to run in precise mode.
+
+
+1178
+00:50:55,296 --> 00:50:56,776
+So, you can do that in Metal.
+
+
+1179
+00:50:57,586 --> 00:50:59,896
+Because guess what, these
+functions actually occur
+
+
+1180
+00:50:59,896 --> 00:51:00,916
+in nested name spaces.
+
+
+1181
+00:51:00,916 --> 00:51:02,256
+[ Applause ]
+
+
+1182
+00:51:02,256 --> 00:51:09,266
+So by default, you get
+the fast name space.
+
+
+1183
+00:51:09,566 --> 00:51:12,976
+But you can call the precise
+math function explicitly.
+
+
+1184
+00:51:13,286 --> 00:51:15,616
+Okay? So that's it.
+
+
+1185
+00:51:17,026 --> 00:51:18,536
+Ah! Metal standard library.
+
+
+1186
+00:51:18,646 --> 00:51:20,346
+So we don't do the
+C++ standard library.
+
+
+1187
+00:51:20,676 --> 00:51:21,446
+We do our own.
+
+
+1188
+00:51:21,776 --> 00:51:23,976
+And it is really
+optimized for the GPU.
+
+
+1189
+00:51:23,976 --> 00:51:25,776
+And I think you guys
+are going to love it.
+
+
+1190
+00:51:25,776 --> 00:51:27,326
+I think it has a nice
+list of functions.
+
+
+1191
+00:51:28,036 --> 00:51:30,066
+It's all described
+in the documentation.
+
+
+1192
+00:51:30,486 --> 00:51:33,366
+I'm not going to cover
+details of these functions,
+
+
+1193
+00:51:33,366 --> 00:51:34,976
+but please refer to
+the specs, but...
+
+
+1194
+00:51:34,976 --> 00:51:36,016
+these are some of the functions.
+
+
+1195
+00:51:36,016 --> 00:51:36,556
+[ Laughter ]
+
+
+1196
+00:51:36,556 --> 00:51:38,486
+There's quite a few, okay.
+
+
+1197
+00:51:39,186 --> 00:51:42,276
+All right, so what did we do?
+
+
+1198
+00:51:43,226 --> 00:51:45,016
+We covered, Richard talked
+
+
+1199
+00:51:45,016 --> 00:51:46,936
+about how you build
+a Metal application.
+
+
+1200
+00:51:47,156 --> 00:51:49,306
+And he showed you how to
+draw a simple triangle.
+
+
+1201
+00:51:49,306 --> 00:51:51,626
+But then he took
+it even further.
+
+
+1202
+00:51:51,866 --> 00:51:56,656
+He showed you how to do
+stream uniforms, okay,
+
+
+1203
+00:51:57,056 --> 00:51:59,616
+with multiple buffers and how
+to synchronize them efficiently.
+
+
+1204
+00:52:00,186 --> 00:52:02,096
+Then I talked to you guys
+about the shading language.
+
+
+1205
+00:52:02,096 --> 00:52:02,896
+We went on a tour.
+
+
+1206
+00:52:03,256 --> 00:52:06,496
+We didn't go much deeper,
+but a very high-level tour.
+
+
+1207
+00:52:06,806 --> 00:52:09,626
+We talked about how to write
+shaders, given that it's based
+
+
+1208
+00:52:09,626 --> 00:52:12,496
+on C++, it's actually going to
+be really, really easy for you
+
+
+1209
+00:52:12,496 --> 00:52:13,726
+to write these shaders.
+
+
+1210
+00:52:14,246 --> 00:52:16,046
+We talked about the data
+types Metal supports.
+
+
+1211
+00:52:16,526 --> 00:52:18,806
+We talked about inputs
+and outputs to shaders.
+
+
+1212
+00:52:18,996 --> 00:52:20,566
+We talked about how
+to match them.
+
+
+1213
+00:52:21,016 --> 00:52:22,146
+We talked about math.
+
+
+1214
+00:52:23,986 --> 00:52:25,636
+So really, now it's your turn.
+
+
+1215
+00:52:26,326 --> 00:52:27,836
+I'm excited about how,
+
+
+1216
+00:52:27,836 --> 00:52:29,636
+the amazing ways you guys
+are going to use Metal.
+
+
+1217
+00:52:30,316 --> 00:52:32,096
+And we want to hear from you.
+
+
+1218
+00:52:32,236 --> 00:52:34,106
+We want to know how we can
+improve this even better.
+
+
+1219
+00:52:34,106 --> 00:52:37,156
+So, please come talk to us.
+
+
+1220
+00:52:38,166 --> 00:52:40,096
+So, for more information,
+please --
+
+
+1221
+00:52:41,216 --> 00:52:43,556
+Filip Iliescu and Allan
+Schaffer are our evangelists.
+
+
+1222
+00:52:43,636 --> 00:52:45,086
+Their email addresses are here,
+
+
+1223
+00:52:45,286 --> 00:52:47,826
+so bug them as much
+as you can, okay?
+
+
+1224
+00:52:48,666 --> 00:52:50,266
+And Jeremy talked
+about documentation.
+
+
+1225
+00:52:50,266 --> 00:52:52,456
+All documentation
+for both the API
+
+
+1226
+00:52:52,456 --> 00:52:54,876
+and the language
+are on our website.
+
+
+1227
+00:52:55,376 --> 00:52:58,456
+Please, you can use the
+forums to ask questions.
+
+
+1228
+00:52:58,966 --> 00:53:01,946
+But actually, there's
+one more session.
+
+
+1229
+00:53:02,266 --> 00:53:06,426
+The next session covers -- goes
+into a deeper dive in Metal,
+
+
+1230
+00:53:06,426 --> 00:53:07,046
+and we're going to talk
+
+
+1231
+00:53:07,046 --> 00:53:09,576
+about data power
+computing and tools as well.
+
+
+1232
+00:53:10,236 --> 00:53:11,416
+The one session I
+actually wanted
+
+
+1233
+00:53:11,466 --> 00:53:13,966
+to highlight was what's new
+in the Accelerate Framework.
+
+
+1234
+00:53:13,966 --> 00:53:16,396
+And it actually happened
+yesterday, okay.
+
+
+1235
+00:53:16,726 --> 00:53:18,856
+But I think this is really
+important because we talked
+
+
+1236
+00:53:18,856 --> 00:53:21,546
+about sharing data structures
+between the CPU and the GPU.
+
+
+1237
+00:53:21,866 --> 00:53:24,466
+So this, actually, session
+talks about the same library.
+
+
+1238
+00:53:24,566 --> 00:53:26,356
+So I definitely recommend
+you go listen to it.
+
+
+1239
+00:53:26,806 --> 00:53:28,276
+And that's it.
+
+
+1240
+00:53:28,666 --> 00:53:29,346
+Thank you for coming.
+

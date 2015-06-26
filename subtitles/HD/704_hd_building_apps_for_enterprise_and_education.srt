@@ -1,0 +1,5899 @@
+1
+00:00:11,316 --> 00:00:12,056
+>> Good morning!
+
+
+2
+00:00:13,416 --> 00:00:14,766
+Hi there!
+
+
+3
+00:00:15,516 --> 00:00:20,116
+[ Applause ]
+
+
+4
+00:00:20,616 --> 00:00:23,736
+Welcome to Session
+704, "Building Apps
+
+
+5
+00:00:23,736 --> 00:00:25,076
+for Enterprise and Education."
+
+
+6
+00:00:25,866 --> 00:00:27,536
+My name is Dave Rahardja.
+
+
+7
+00:00:27,786 --> 00:00:30,996
+I'm a software developer in
+iOS, and today I'll be joined
+
+
+8
+00:00:31,496 --> 00:00:34,376
+by Alex Botkin, who
+also works with me
+
+
+9
+00:00:34,796 --> 00:00:37,486
+on iOS device management.
+
+
+10
+00:00:39,956 --> 00:00:44,626
+So building apps
+for the enterprise
+
+
+11
+00:00:44,626 --> 00:00:47,516
+and for the education
+market really is not
+
+
+12
+00:00:47,516 --> 00:00:50,276
+that much different
+from building apps
+
+
+13
+00:00:50,276 --> 00:00:51,266
+in the App Store, right?
+
+
+14
+00:00:52,296 --> 00:00:55,906
+You've got to get an app
+that solves a problem.
+
+
+15
+00:00:57,306 --> 00:00:59,846
+You have to have an app
+that is well-designed.
+
+
+16
+00:01:01,196 --> 00:01:04,525
+And it's got to be a
+pleasure to use for the user.
+
+
+17
+00:01:05,916 --> 00:01:10,436
+But in an enterprise,
+you've got some unique
+
+
+18
+00:01:10,436 --> 00:01:11,576
+requirements usually.
+
+
+19
+00:01:12,916 --> 00:01:16,096
+Your client's devices are very
+likely going to be managed
+
+
+20
+00:01:16,486 --> 00:01:17,866
+under mobile device management.
+
+
+21
+00:01:19,636 --> 00:01:21,926
+These devices may be supervised.
+
+
+22
+00:01:22,016 --> 00:01:24,166
+And if you're not familiar
+with what supervised means,
+
+
+23
+00:01:24,166 --> 00:01:26,636
+we'll talk about
+that in a minute.
+
+
+24
+00:01:27,066 --> 00:01:30,236
+And there may be special use
+cases that are kind of peculiar
+
+
+25
+00:01:30,236 --> 00:01:32,566
+to the business and
+education market.
+
+
+26
+00:01:32,996 --> 00:01:37,956
+So today what I'm going to
+present to you is some tips
+
+
+27
+00:01:37,956 --> 00:01:41,356
+and tricks to help you to
+write your next enterprise
+
+
+28
+00:01:41,356 --> 00:01:44,766
+and education apps
+so that they're
+
+
+29
+00:01:44,766 --> 00:01:46,616
+that much more pleasurable
+to use
+
+
+30
+00:01:47,096 --> 00:01:50,296
+and makes you a much better
+developer in this field.
+
+
+31
+00:01:52,626 --> 00:01:56,706
+So let's get started by talking
+about mobile device management.
+
+
+32
+00:02:00,296 --> 00:02:03,466
+So what's mobile
+device management?
+
+
+33
+00:02:04,706 --> 00:02:09,316
+Mobile device management is a
+protocol that's built into iOS
+
+
+34
+00:02:09,316 --> 00:02:15,886
+and OS X that allows a server
+to remotely manage that device.
+
+
+35
+00:02:16,446 --> 00:02:23,366
+A server that's managing a
+device using MDM can install
+
+
+36
+00:02:23,366 --> 00:02:26,566
+network access such
+as VPN or Wi-Fi.
+
+
+37
+00:02:27,276 --> 00:02:31,946
+It can install accounts
+such as email,
+
+
+38
+00:02:31,946 --> 00:02:33,546
+calendar contacts and so forth.
+
+
+39
+00:02:34,776 --> 00:02:39,246
+New in iOS 8, they can now
+install books such as PDFs,
+
+
+40
+00:02:39,386 --> 00:02:42,696
+ePubs and iBooks
+Author as well as books
+
+
+41
+00:02:42,696 --> 00:02:45,406
+from the iBookstore
+and manage them.
+
+
+42
+00:02:46,976 --> 00:02:50,186
+They can install single
+sign-on using Kerberos.
+
+
+43
+00:02:51,016 --> 00:02:56,326
+And new in iOS 8, Kerberos can
+now use an identity certificate
+
+
+44
+00:02:56,546 --> 00:02:58,886
+so that their identity
+can be renewed
+
+
+45
+00:02:58,886 --> 00:03:01,976
+without the user ever having
+to type in a password.
+
+
+46
+00:03:02,516 --> 00:03:08,706
+[ Applause ]
+
+
+47
+00:03:09,206 --> 00:03:14,766
+And most important to you
+today, an MDM server can install
+
+
+48
+00:03:14,766 --> 00:03:18,596
+and configure your apps,
+so this is very important.
+
+
+49
+00:03:19,716 --> 00:03:22,026
+And here's your first
+tip for today.
+
+
+50
+00:03:22,996 --> 00:03:26,156
+Allow MDM to configure
+your apps.
+
+
+51
+00:03:26,886 --> 00:03:28,356
+And we'll talk about how
+
+
+52
+00:03:28,356 --> 00:03:31,576
+that can be done
+exactly in a few minutes.
+
+
+53
+00:03:33,666 --> 00:03:35,216
+So mobile device management.
+
+
+54
+00:03:35,706 --> 00:03:42,706
+Let's talk a few minutes about
+managed apps and accounts.
+
+
+55
+00:03:42,976 --> 00:03:46,776
+So this is a little bit of
+a terminology that we have.
+
+
+56
+00:03:48,186 --> 00:03:54,656
+Anything that MDM installs
+on iOS, we call "managed".
+
+
+57
+00:03:56,076 --> 00:03:59,396
+These include everything that
+you saw from the last slide.
+
+
+58
+00:04:00,286 --> 00:04:01,926
+Managed apps.
+
+
+59
+00:04:02,746 --> 00:04:03,706
+Managed accounts.
+
+
+60
+00:04:04,956 --> 00:04:07,996
+In iOS 8, as you know, you
+can install third party
+
+
+61
+00:04:07,996 --> 00:04:08,976
+keyboard extensions.
+
+
+62
+00:04:09,446 --> 00:04:11,916
+The way you install third
+party keyboard extensions
+
+
+63
+00:04:12,056 --> 00:04:17,526
+on iOS 8 is you install an app
+that has an extension in it.
+
+
+64
+00:04:17,526 --> 00:04:19,826
+If that app was installed
+using MDM,
+
+
+65
+00:04:20,375 --> 00:04:24,266
+that keyboard extension is then
+considered as managed as well.
+
+
+66
+00:04:24,826 --> 00:04:30,746
+Of course in iOS 8 we have
+this great new feature called
+
+
+67
+00:04:30,746 --> 00:04:34,336
+"document providers," thank you.
+
+
+68
+00:04:36,286 --> 00:04:38,256
+It's a really powerful feature.
+
+
+69
+00:04:39,106 --> 00:04:42,156
+And if you install
+an app that happens
+
+
+70
+00:04:42,156 --> 00:04:47,256
+to vend a document provider
+extension, such as an app
+
+
+71
+00:04:47,256 --> 00:04:52,206
+that gives access to your
+intranet resources, or you know,
+
+
+72
+00:04:52,206 --> 00:04:58,836
+your network file storage, that
+app also becomes "managed."
+
+
+73
+00:05:00,456 --> 00:05:03,296
+So this is in contrast
+with things
+
+
+74
+00:05:03,296 --> 00:05:05,186
+that the user installed
+themselves.
+
+
+75
+00:05:05,186 --> 00:05:07,406
+If the user goes out
+and installs an app
+
+
+76
+00:05:07,686 --> 00:05:11,316
+from the App Store on their
+own BYOD device for example,
+
+
+77
+00:05:11,966 --> 00:05:14,276
+those things are
+considered not managed.
+
+
+78
+00:05:15,206 --> 00:05:18,946
+So we have managed, which is
+the stuff that MDM installed.
+
+
+79
+00:05:18,946 --> 00:05:22,196
+And you have not managed, which
+is what the user installs.
+
+
+80
+00:05:22,936 --> 00:05:26,346
+So why do we do this?
+
+
+81
+00:05:26,346 --> 00:05:31,956
+Well it helps iOS to
+restrict data flow
+
+
+82
+00:05:32,296 --> 00:05:35,306
+so that your enterprise
+data doesn't flow
+
+
+83
+00:05:35,306 --> 00:05:38,246
+into your user's data
+space and vice versa.
+
+
+84
+00:05:39,526 --> 00:05:45,606
+So for example, if you are in a
+managed app and you are looking
+
+
+85
+00:05:45,606 --> 00:05:50,396
+at a document and you tap open
+in - you know that list of apps
+
+
+86
+00:05:50,396 --> 00:05:53,396
+that shows up on the
+bottom of your screen?
+
+
+87
+00:05:53,396 --> 00:05:54,996
+All the apps that can
+handle that document.
+
+
+88
+00:05:56,416 --> 00:06:01,066
+That list of apps will
+be filtered down so that,
+
+
+89
+00:06:01,196 --> 00:06:02,746
+because you started
+from a managed app,
+
+
+90
+00:06:02,916 --> 00:06:04,456
+only other managed apps
+
+
+91
+00:06:04,456 --> 00:06:06,556
+and accounts will
+show up on that list.
+
+
+92
+00:06:07,066 --> 00:06:09,306
+And we do this automatically.
+
+
+93
+00:06:11,216 --> 00:06:15,886
+Conversely, when you
+are in an unmanaged app
+
+
+94
+00:06:16,966 --> 00:06:21,176
+and you tap open
+in, the list of apps
+
+
+95
+00:06:21,176 --> 00:06:23,956
+that you see will not
+include managed apps.
+
+
+96
+00:06:25,146 --> 00:06:28,646
+So in that way, without
+the user ever having
+
+
+97
+00:06:28,646 --> 00:06:30,986
+to do any switching
+of, you know,
+
+
+98
+00:06:31,496 --> 00:06:35,806
+work and home, we
+protect your data.
+
+
+99
+00:06:36,796 --> 00:06:37,896
+And we do this everywhere.
+
+
+100
+00:06:38,606 --> 00:06:42,116
+Emails. So you can't forward
+a corporate email using your
+
+
+101
+00:06:42,116 --> 00:06:43,266
+iCloud account for example.
+
+
+102
+00:06:43,926 --> 00:06:45,396
+We do it in calendars.
+
+
+103
+00:06:45,886 --> 00:06:46,716
+In attachments.
+
+
+104
+00:06:47,296 --> 00:06:51,396
+We do it - in iOS 8 we have
+managed domains in Safari.
+
+
+105
+00:06:51,566 --> 00:06:55,956
+So if you specify certain
+domains in Safari as belonging
+
+
+106
+00:06:55,956 --> 00:07:00,276
+to your corporate intranet,
+documents that you download
+
+
+107
+00:07:00,276 --> 00:07:04,186
+from those domains will
+only go into managed apps.
+
+
+108
+00:07:04,686 --> 00:07:05,886
+Make sense?
+
+
+109
+00:07:06,516 --> 00:07:12,636
+[ Applause ]
+
+
+110
+00:07:13,136 --> 00:07:18,286
+And managed apps get
+access to Per-App VPN.
+
+
+111
+00:07:18,816 --> 00:07:21,876
+This is a feature
+we've had since iOS 7,
+
+
+112
+00:07:22,246 --> 00:07:23,626
+and it's proven very popular.
+
+
+113
+00:07:24,776 --> 00:07:26,756
+And what this is,
+just as a review,
+
+
+114
+00:07:28,006 --> 00:07:31,416
+is that managed apps will
+get the data tunneled
+
+
+115
+00:07:31,416 --> 00:07:34,246
+through this VPN, but
+not anything else,
+
+
+116
+00:07:34,346 --> 00:07:35,246
+not the user's data.
+
+
+117
+00:07:36,206 --> 00:07:40,436
+So your VPN carries your
+data and not the user's data.
+
+
+118
+00:07:41,186 --> 00:07:44,806
+Yet another way to separate
+enterprise and personal data.
+
+
+119
+00:07:46,896 --> 00:07:48,156
+So what's the takeaway?
+
+
+120
+00:07:49,546 --> 00:07:55,796
+Rely on iOS to manage the data
+flow between apps and accounts.
+
+
+121
+00:07:56,626 --> 00:07:57,696
+Don't try to do it yourself.
+
+
+122
+00:07:58,476 --> 00:08:03,286
+iOS has a great way of allowing
+this to happen in a very clean
+
+
+123
+00:08:03,676 --> 00:08:06,136
+and intuitive way,
+using the fact
+
+
+124
+00:08:06,136 --> 00:08:08,256
+that you're managing
+a device over MDM.
+
+
+125
+00:08:08,776 --> 00:08:09,886
+All right.
+
+
+126
+00:08:10,066 --> 00:08:11,896
+So that's MDM.
+
+
+127
+00:08:20,156 --> 00:08:22,626
+Next let's talk about
+supervised devices.
+
+
+128
+00:08:23,696 --> 00:08:25,016
+So what's this?
+
+
+129
+00:08:26,016 --> 00:08:31,946
+A supervised device is a device
+that has been activated into,
+
+
+130
+00:08:31,986 --> 00:08:33,275
+you know, a supervision.
+
+
+131
+00:08:34,296 --> 00:08:39,596
+It tells iOS that the device
+is owned by the enterprise.
+
+
+132
+00:08:40,275 --> 00:08:43,446
+This is in contrast to a
+device that's owned by a user
+
+
+133
+00:08:43,446 --> 00:08:44,696
+such as Bring Your Own Device.
+
+
+134
+00:08:45,576 --> 00:08:50,126
+Right? Supervision can
+only be set at activation.
+
+
+135
+00:08:51,466 --> 00:08:54,606
+There are two ways to set
+supervision during activation.
+
+
+136
+00:08:55,736 --> 00:08:59,366
+The first way, and you saw
+this in the keynote yesterday,
+
+
+137
+00:08:59,996 --> 00:09:01,526
+is Device Enrollment Program.
+
+
+138
+00:09:02,886 --> 00:09:07,506
+With DEP, devices that
+your enterprise purchased
+
+
+139
+00:09:07,506 --> 00:09:12,626
+from Apple can be configured
+so that they're supervised
+
+
+140
+00:09:12,626 --> 00:09:15,666
+and enrolled into your
+MDM right out of the box.
+
+
+141
+00:09:16,216 --> 00:09:17,586
+You don't have to
+touch it at all.
+
+
+142
+00:09:18,176 --> 00:09:20,066
+You hand the shrink-wrapped
+box to the end user.
+
+
+143
+00:09:20,556 --> 00:09:21,266
+They unbox it.
+
+
+144
+00:09:21,686 --> 00:09:23,696
+They walk through
+the setup assistant.
+
+
+145
+00:09:24,156 --> 00:09:25,736
+And they're supervised
+and enrolled.
+
+
+146
+00:09:28,696 --> 00:09:32,646
+The second way is Apple
+Configurator, which requires you
+
+
+147
+00:09:32,646 --> 00:09:35,016
+to take the device out
+and plug it into USB.
+
+
+148
+00:09:36,256 --> 00:09:38,986
+Depending on your use
+case and your scenarios,
+
+
+149
+00:09:39,166 --> 00:09:43,716
+one of these should
+serve your needs.
+
+
+150
+00:09:43,856 --> 00:09:46,526
+So why do we supervise devices?
+
+
+151
+00:09:48,036 --> 00:09:48,796
+Well, I'll tell you why.
+
+
+152
+00:09:49,696 --> 00:09:52,596
+You get access to a whole
+bunch of different restrictions
+
+
+153
+00:09:52,596 --> 00:09:57,856
+and controls that we only allow
+on enterprise-owned devices.
+
+
+154
+00:09:58,756 --> 00:10:02,426
+Such as Always-On
+VPN -- new in iOS 8.
+
+
+155
+00:10:03,836 --> 00:10:08,326
+Global HTTP proxy.
+
+
+156
+00:10:08,876 --> 00:10:12,866
+Third-party content
+filter, also new in iOS 8.
+
+
+157
+00:10:14,456 --> 00:10:19,596
+Single App Mode, which locks
+your device into a single app.
+
+
+158
+00:10:19,596 --> 00:10:20,746
+Perfect for kiosks.
+
+
+159
+00:10:21,266 --> 00:10:24,456
+And we'll see some
+examples of that later.
+
+
+160
+00:10:25,466 --> 00:10:27,856
+We've got restriction
+to prevent the user
+
+
+161
+00:10:27,856 --> 00:10:31,906
+from erasing their own device
+-- anyone with students here?
+
+
+162
+00:10:32,446 --> 00:10:37,266
+And preventing enabling
+restrictions -- also students.
+
+
+163
+00:10:37,336 --> 00:10:40,676
+When you're local, you
+know, in your settings.
+
+
+164
+00:10:41,296 --> 00:10:42,336
+And many more.
+
+
+165
+00:10:42,536 --> 00:10:45,766
+The takeaway here is
+please supervise your
+
+
+166
+00:10:45,766 --> 00:10:46,996
+enterprise-owned devices.
+
+
+167
+00:10:47,656 --> 00:10:49,646
+If you own it, supervise it.
+
+
+168
+00:10:49,956 --> 00:10:54,326
+You won't regret it.
+
+
+169
+00:10:54,596 --> 00:11:03,676
+OK. So for the next part
+of our presentation,
+
+
+170
+00:11:05,436 --> 00:11:08,656
+we're going to show
+you some example apps
+
+
+171
+00:11:09,336 --> 00:11:15,346
+that may illustrate some of
+the use cases that you may face
+
+
+172
+00:11:15,916 --> 00:11:18,456
+when developing apps
+for the enterprise.
+
+
+173
+00:11:19,126 --> 00:11:21,896
+The first app we're going
+
+
+174
+00:11:21,896 --> 00:11:25,626
+to show you is a
+Document Access app.
+
+
+175
+00:11:25,626 --> 00:11:32,846
+This app is designed to
+access a secure document,
+
+
+176
+00:11:32,846 --> 00:11:38,146
+like a sensitive document maybe
+over your intranet, and store it
+
+
+177
+00:11:38,146 --> 00:11:40,356
+on the device in
+a secure manner.
+
+
+178
+00:11:40,756 --> 00:11:47,886
+The second app that we're going
+to see is a Point of Sale app.
+
+
+179
+00:11:47,886 --> 00:11:52,346
+This may be something like you
+use in a retail store to check
+
+
+180
+00:11:52,346 --> 00:11:54,236
+out customers, you
+know, buying your items.
+
+
+181
+00:11:54,886 --> 00:11:59,236
+And the third will be something
+that education may use,
+
+
+182
+00:11:59,336 --> 00:12:03,366
+an Assessment app where
+the student uses your app
+
+
+183
+00:12:04,036 --> 00:12:05,286
+to take exams.
+
+
+184
+00:12:05,486 --> 00:12:08,266
+All right, so three
+example apps.
+
+
+185
+00:12:08,766 --> 00:12:09,836
+Document Access.
+
+
+186
+00:12:10,326 --> 00:12:11,046
+Point of Sale.
+
+
+187
+00:12:11,696 --> 00:12:12,366
+And Assessment.
+
+
+188
+00:12:13,386 --> 00:12:16,716
+And along the way, we will
+illustrate some of the things
+
+
+189
+00:12:16,716 --> 00:12:19,246
+that we talked about earlier.
+
+
+190
+00:12:20,666 --> 00:12:23,166
+So let's start with
+the first app.
+
+
+191
+00:12:25,946 --> 00:12:28,206
+Okay, Secure Document Access.
+
+
+192
+00:12:31,336 --> 00:12:35,826
+Again, this app retrieves
+a document securely
+
+
+193
+00:12:36,476 --> 00:12:37,946
+and displays it to the end user.
+
+
+194
+00:12:42,776 --> 00:12:43,416
+All right.
+
+
+195
+00:12:43,846 --> 00:12:49,806
+So let's talk a little bit
+about MDM App Configuration.
+
+
+196
+00:12:51,416 --> 00:12:55,056
+So you remember a few
+minutes ago I talked
+
+
+197
+00:12:55,056 --> 00:13:00,246
+about allowing an MDM server
+to configure your apps.
+
+
+198
+00:13:01,546 --> 00:13:04,516
+Well how do you do this?
+
+
+199
+00:13:05,156 --> 00:13:06,526
+It's really very simple.
+
+
+200
+00:13:07,546 --> 00:13:10,166
+All you have to do is to
+watch for the special key
+
+
+201
+00:13:10,566 --> 00:13:16,656
+in NSUserDefaults
+com.apple.configuration.managed.
+
+
+202
+00:13:18,086 --> 00:13:21,096
+When you read this key
+from your NSUserDefaults,
+
+
+203
+00:13:21,566 --> 00:13:24,276
+you get a dictionary
+that magically appears
+
+
+204
+00:13:24,936 --> 00:13:29,156
+when the MDM server pushes a
+configuration down to your app.
+
+
+205
+00:13:29,856 --> 00:13:32,616
+So the MDM server
+pushes down a dictionary,
+
+
+206
+00:13:32,616 --> 00:13:35,856
+and you can access
+it using this key.
+
+
+207
+00:13:36,156 --> 00:13:41,986
+Your app can then respond
+to configuration changes.
+
+
+208
+00:13:44,296 --> 00:13:45,816
+So why do you want to do this?
+
+
+209
+00:13:46,616 --> 00:13:49,796
+Well what's the first
+thing that you want to do
+
+
+210
+00:13:50,096 --> 00:13:52,136
+when you install an app?
+
+
+211
+00:13:52,136 --> 00:13:56,006
+You want to configure its URL
+probably, hit some server.
+
+
+212
+00:13:57,506 --> 00:14:02,946
+You may have an app that is
+deployed in more than one branch
+
+
+213
+00:14:03,066 --> 00:14:05,636
+of your business, and
+you want to configure it
+
+
+214
+00:14:06,156 --> 00:14:07,626
+for that particular location.
+
+
+215
+00:14:08,986 --> 00:14:13,886
+Instead of having the end user
+read instructions and say,
+
+
+216
+00:14:13,886 --> 00:14:16,806
+"Oh tap this and tap that
+and go here and go there.
+
+
+217
+00:14:16,926 --> 00:14:17,836
+Type this URL in.
+
+
+218
+00:14:18,946 --> 00:14:21,826
+What could go wrong?"
+
+
+219
+00:14:21,826 --> 00:14:28,596
+You define your own keys and
+say, "Hey if you install my app
+
+
+220
+00:14:28,596 --> 00:14:32,926
+over MDM, push down these
+keys and I'll see them
+
+
+221
+00:14:32,926 --> 00:14:36,656
+and I'll use them for my app
+without any user intervention."
+
+
+222
+00:14:37,646 --> 00:14:39,136
+Right? So app configuration.
+
+
+223
+00:14:40,606 --> 00:14:44,806
+So URLs are great, so in
+this example we are going
+
+
+224
+00:14:44,806 --> 00:14:46,506
+to do some URL configuration.
+
+
+225
+00:14:47,666 --> 00:14:52,756
+And a trusted list of server
+root certificates is also
+
+
+226
+00:14:52,756 --> 00:14:53,456
+very important.
+
+
+227
+00:14:53,756 --> 00:14:59,416
+It helps you to prevent
+man-in-the-middle attacks.
+
+
+228
+00:14:59,416 --> 00:15:03,476
+And we'll show you how to
+do that in the code example.
+
+
+229
+00:15:04,466 --> 00:15:06,946
+I'm going to ask
+Alex to come up here.
+
+
+230
+00:15:06,946 --> 00:15:10,376
+And he's going to show
+you a little code example
+
+
+231
+00:15:11,936 --> 00:15:14,676
+that demonstrates MDM
+App Configuration.
+
+
+232
+00:15:15,326 --> 00:15:18,356
+>> So, good morning developers.
+
+
+233
+00:15:19,016 --> 00:15:21,986
+So, we're going to switch
+over to our demo laptop.
+
+
+234
+00:15:22,596 --> 00:15:24,256
+We're going to look
+at some code.
+
+
+235
+00:15:24,686 --> 00:15:26,976
+So our first application
+that we're looking
+
+
+236
+00:15:26,976 --> 00:15:29,646
+at today is our Secured
+Document Access App.
+
+
+237
+00:15:29,646 --> 00:15:32,696
+Which we've called
+"Secretive" in our example.
+
+
+238
+00:15:32,996 --> 00:15:36,366
+With MDM App Configuration,
+the most important thing
+
+
+239
+00:15:36,366 --> 00:15:39,306
+that you need to do is to
+make sure that you register
+
+
+240
+00:15:39,446 --> 00:15:43,776
+for the NSUserDefaultsDid
+ChangeNotification.
+
+
+241
+00:15:44,146 --> 00:15:46,216
+This is the notification
+that will be sent
+
+
+242
+00:15:46,216 --> 00:15:49,216
+out when an MDM app
+configuration is pushed
+
+
+243
+00:15:49,216 --> 00:15:50,176
+down to your device.
+
+
+244
+00:15:50,176 --> 00:15:53,106
+So you need to be listening
+to this notification,
+
+
+245
+00:15:53,316 --> 00:15:55,826
+and then rereading the
+defaults when you receive it.
+
+
+246
+00:15:56,256 --> 00:15:58,576
+So in our example I
+have a ViewController.
+
+
+247
+00:15:58,576 --> 00:16:00,856
+When the ViewController
+loads, I'm going to register
+
+
+248
+00:16:00,856 --> 00:16:01,996
+for this notification.
+
+
+249
+00:16:02,336 --> 00:16:05,806
+And every time I receive it, I'm
+going to call re-default values
+
+
+250
+00:16:05,806 --> 00:16:08,076
+so that I can get my
+values back again.
+
+
+251
+00:16:08,336 --> 00:16:12,446
+And in this example, I'm going
+to load up re-default values
+
+
+252
+00:16:12,626 --> 00:16:14,066
+as soon as I get the view up,
+
+
+253
+00:16:14,316 --> 00:16:16,696
+so that I can get the
+first initial load.
+
+
+254
+00:16:17,226 --> 00:16:20,466
+So in my example here - so
+you remember that we talked
+
+
+255
+00:16:20,466 --> 00:16:23,596
+about the
+com.apple.configuration.manage
+
+
+256
+00:16:23,596 --> 00:16:23,786
+key?
+
+
+257
+00:16:24,156 --> 00:16:26,836
+This is the key in
+NSUserDefault where we're going
+
+
+258
+00:16:26,836 --> 00:16:30,766
+to be stuffing the NSDictionary
+with your configuration.
+
+
+259
+00:16:31,246 --> 00:16:34,596
+And so you'll notice that I've
+suggested some other keys here.
+
+
+260
+00:16:34,596 --> 00:16:36,846
+And in my dictionary
+I'm going to have a key
+
+
+261
+00:16:36,846 --> 00:16:39,106
+which has a string
+for my server URL.
+
+
+262
+00:16:39,456 --> 00:16:40,846
+Which is going to be the URL
+
+
+263
+00:16:40,846 --> 00:16:42,816
+for the document I'm
+going to be retrieving.
+
+
+264
+00:16:43,416 --> 00:16:45,996
+And you'll also notice
+that I have a key
+
+
+265
+00:16:46,126 --> 00:16:47,986
+for a server root certificate.
+
+
+266
+00:16:48,266 --> 00:16:50,346
+We'll get to this later
+in the presentation,
+
+
+267
+00:16:50,486 --> 00:16:52,706
+but that's also why
+I'm going to be pushing
+
+
+268
+00:16:52,706 --> 00:16:54,636
+down in this MDM
+App Configuration.
+
+
+269
+00:16:55,106 --> 00:16:56,546
+So you'll notice
+some re-defaults.
+
+
+270
+00:16:56,596 --> 00:16:59,156
+All I do is I call
+into NSUserDefaults.
+
+
+271
+00:16:59,526 --> 00:17:02,526
+I make sure I call into
+that configuration key.
+
+
+272
+00:17:02,996 --> 00:17:05,006
+And then from the
+dictionary I pull
+
+
+273
+00:17:05,006 --> 00:17:07,596
+out the relevant
+information that I need,
+
+
+274
+00:17:07,806 --> 00:17:08,826
+such as the server URL.
+
+
+275
+00:17:09,146 --> 00:17:12,675
+An important thing to note is
+do put error checking on this
+
+
+276
+00:17:12,675 --> 00:17:15,506
+to make sure that you're
+not loading bad values.
+
+
+277
+00:17:16,205 --> 00:17:19,846
+And so now what we'll do is
+I'll switch over to the iPad
+
+
+278
+00:17:19,846 --> 00:17:24,126
+and I'll push down an examp
+MDM App Configuration.
+
+
+279
+00:17:24,126 --> 00:17:26,746
+So you'll notice
+that I have my app
+
+
+280
+00:17:26,746 --> 00:17:28,826
+over here called "Secretive."
+
+
+281
+00:17:29,536 --> 00:17:33,706
+And when I open it up, I don't
+have an MDM App Configuration
+
+
+282
+00:17:33,706 --> 00:17:34,436
+here currently.
+
+
+283
+00:17:34,436 --> 00:17:36,456
+I've installed the
+managed app, but you know,
+
+
+284
+00:17:36,456 --> 00:17:38,146
+right now I don't
+have my server URL.
+
+
+285
+00:17:38,376 --> 00:17:43,056
+So over on my MDM server, I've
+loaded up a command to send
+
+
+286
+00:17:43,056 --> 00:17:46,756
+down the magical
+app configuration.
+
+
+287
+00:17:47,636 --> 00:17:49,606
+And so I'm going to send
+that notification down.
+
+
+288
+00:17:50,456 --> 00:17:53,166
+And you'll notice that when
+I receive the notification
+
+
+289
+00:17:53,166 --> 00:17:56,656
+for NSUserDefaultsDidChange,
+I automatically started
+
+
+290
+00:17:56,656 --> 00:17:58,546
+up a session and
+retrieved this document
+
+
+291
+00:17:58,546 --> 00:18:00,036
+from the server URL
+that I was given.
+
+
+292
+00:18:00,606 --> 00:18:02,766
+So that is MDM App
+Configuration.
+
+
+293
+00:18:02,766 --> 00:18:03,976
+And we'll return to Dave.
+
+
+294
+00:18:04,516 --> 00:18:07,956
+[ Applause ]
+
+
+295
+00:18:08,456 --> 00:18:09,186
+>> Thanks Alex.
+
+
+296
+00:18:10,266 --> 00:18:11,226
+It's like magic.
+
+
+297
+00:18:12,486 --> 00:18:15,066
+Your apps get configured
+correctly,
+
+
+298
+00:18:15,616 --> 00:18:17,316
+without having your
+user do anything.
+
+
+299
+00:18:17,366 --> 00:18:17,806
+It's great.
+
+
+300
+00:18:19,036 --> 00:18:23,016
+I hope you caught that
+little remark that Alex made.
+
+
+301
+00:18:23,736 --> 00:18:27,206
+"Please validate the input
+that you get from the server."
+
+
+302
+00:18:28,116 --> 00:18:30,736
+Because as far as you are
+concerned as an app writer,
+
+
+303
+00:18:31,036 --> 00:18:34,706
+the server is an unknown network
+entity, and they're going
+
+
+304
+00:18:34,706 --> 00:18:37,446
+to be pushing down keys
+that may be misformatted
+
+
+305
+00:18:37,816 --> 00:18:39,996
+or of the wrong type.
+
+
+306
+00:18:40,276 --> 00:18:42,986
+So please validate
+the keys and make sure
+
+
+307
+00:18:42,986 --> 00:18:44,676
+that you understand
+what they are.
+
+
+308
+00:18:44,986 --> 00:18:46,596
+Also publish what you understand
+
+
+309
+00:18:46,716 --> 00:18:50,586
+so that the server admins
+can configure you correctly.
+
+
+310
+00:18:51,146 --> 00:18:54,966
+So that's MDM App Configuration.
+
+
+311
+00:18:56,466 --> 00:18:57,566
+Next. All right.
+
+
+312
+00:18:57,796 --> 00:19:01,886
+Let's talk about Single Sign-on.
+
+
+313
+00:19:03,756 --> 00:19:07,986
+Single sign-on is a Kerberos -
+
+
+314
+00:19:08,356 --> 00:19:12,476
+we offer a Kerberos
+single sign-on on iOS
+
+
+315
+00:19:13,186 --> 00:19:18,306
+that can be applied by the MDM
+server across the entire system.
+
+
+316
+00:19:19,136 --> 00:19:23,186
+So that once you log
+in, you will be logged
+
+
+317
+00:19:23,186 --> 00:19:25,936
+in across several different apps
+
+
+318
+00:19:26,106 --> 00:19:29,736
+when you're accessing the
+same network resource.
+
+
+319
+00:19:30,356 --> 00:19:35,436
+So using Single Sign-on
+couldn't be easier.
+
+
+320
+00:19:36,126 --> 00:19:40,066
+You just have to
+use HTTP or HTTPS.
+
+
+321
+00:19:40,066 --> 00:19:42,636
+Which most of you probably are.
+
+
+322
+00:19:43,426 --> 00:19:47,286
+If you use NSURLConnection,
+or NSURLSession,
+
+
+323
+00:19:48,236 --> 00:19:51,046
+Kerberos Single Sign-on
+is free to you.
+
+
+324
+00:19:51,976 --> 00:19:53,816
+So here's the takeaway.
+
+
+325
+00:19:54,386 --> 00:19:58,156
+Don't do anything, and
+it works; it's great.
+
+
+326
+00:19:59,346 --> 00:20:02,206
+The MDM server will
+apply the configuration,
+
+
+327
+00:20:02,656 --> 00:20:07,466
+and your apps will either
+get a 200 OK or a 401 Fail.
+
+
+328
+00:20:08,026 --> 00:20:12,536
+If it's a 200 OK, assume that
+the resource is available
+
+
+329
+00:20:12,536 --> 00:20:14,966
+to you and just use it.
+
+
+330
+00:20:15,586 --> 00:20:21,206
+Of course your apps may provide
+alternate authentication,
+
+
+331
+00:20:21,626 --> 00:20:25,366
+such as you know, HTTP Digest.
+
+
+332
+00:20:25,966 --> 00:20:29,666
+And Kerberos authentication
+will be attempted first.
+
+
+333
+00:20:30,596 --> 00:20:33,416
+And if that doesn't
+work, iOS will fall back
+
+
+334
+00:20:33,416 --> 00:20:36,506
+to reporting an error to your
+app, and you get the chance
+
+
+335
+00:20:36,546 --> 00:20:40,026
+to authenticate using
+a different scheme.
+
+
+336
+00:20:40,596 --> 00:20:43,346
+So don't do anything.
+
+
+337
+00:20:43,976 --> 00:20:44,826
+No example.
+
+
+338
+00:20:46,236 --> 00:20:51,006
+Next. Okay.
+
+
+339
+00:20:51,626 --> 00:20:56,226
+Here is something that we've
+gotten asked several times.
+
+
+340
+00:20:57,526 --> 00:21:02,656
+How do I download files securely
+all the way from my server
+
+
+341
+00:21:03,236 --> 00:21:08,246
+down to the flash on iOS?
+
+
+342
+00:21:08,356 --> 00:21:12,666
+As you may or may not know,
+all files that you create
+
+
+343
+00:21:12,746 --> 00:21:18,196
+from your app already get
+this protection level.
+
+
+344
+00:21:18,946 --> 00:21:23,586
+FileProtectionCompleteUntil
+FirstUserAuthentication.
+
+
+345
+00:21:24,316 --> 00:21:27,806
+So just a recap, this means
+that the file is encrypted.
+
+
+346
+00:21:28,856 --> 00:21:32,746
+Unreadable after you
+restart your iOS device.
+
+
+347
+00:21:33,856 --> 00:21:36,676
+Once you enter your
+passcode, the device -
+
+
+348
+00:21:36,676 --> 00:21:38,236
+the file is readable
+
+
+349
+00:21:39,156 --> 00:21:42,666
+and it remains readable
+across device locks.
+
+
+350
+00:21:43,416 --> 00:21:45,586
+Until you restart
+the device again.
+
+
+351
+00:21:46,926 --> 00:21:51,666
+So what we want to do is we
+want to upgrade this file.
+
+
+352
+00:21:51,716 --> 00:21:54,276
+If you do nothing and you use,
+you know, just write a file
+
+
+353
+00:21:54,276 --> 00:21:55,766
+to disk, this is what
+you're going to get.
+
+
+354
+00:21:56,626 --> 00:21:58,126
+But we want to upgrade that.
+
+
+355
+00:21:58,396 --> 00:22:02,646
+So we want to have
+the file be specified
+
+
+356
+00:22:02,646 --> 00:22:03,986
+as data protection complete.
+
+
+357
+00:22:05,436 --> 00:22:07,966
+Which means that whenever
+you lock the device,
+
+
+358
+00:22:08,146 --> 00:22:11,116
+the file becomes
+unreadable, cryptographically.
+
+
+359
+00:22:11,826 --> 00:22:15,476
+And the next time the user
+enters their passcode,
+
+
+360
+00:22:15,976 --> 00:22:18,446
+the file becomes
+readable again etcetera.
+
+
+361
+00:22:20,536 --> 00:22:22,566
+So we're going
+
+
+362
+00:22:22,566 --> 00:22:26,486
+to use NSURLSession
+data task to do this.
+
+
+363
+00:22:27,606 --> 00:22:30,156
+And as a little bonus here,
+
+
+364
+00:22:30,156 --> 00:22:32,326
+so maybe this document
+is extra sensitive,
+
+
+365
+00:22:32,606 --> 00:22:36,756
+you don't want this document to
+appear in your user's backup.
+
+
+366
+00:22:37,826 --> 00:22:40,396
+So iCloud backup
+or iTunes backup.
+
+
+367
+00:22:41,006 --> 00:22:43,896
+So we're going to show
+you how to mark files
+
+
+368
+00:22:44,196 --> 00:22:46,536
+so that they don't
+get backed up.
+
+
+369
+00:22:46,536 --> 00:22:49,726
+All right, let's switch over
+back to Alex and he's going
+
+
+370
+00:22:49,726 --> 00:22:53,346
+to show you some
+code to do this.
+
+
+371
+00:22:53,556 --> 00:22:56,016
+>> So back on our demo machine.
+
+
+372
+00:22:56,256 --> 00:22:59,186
+You'll notice that we have
+on our ViewController set it
+
+
+373
+00:22:59,186 --> 00:23:01,456
+as implementing the delegates
+
+
+374
+00:23:01,486 --> 00:23:04,816
+of NSURLSession and
+NSURLSessionData.
+
+
+375
+00:23:05,366 --> 00:23:08,496
+And the reason we've
+done this is we're going
+
+
+376
+00:23:08,496 --> 00:23:12,316
+to use those delegate callbacks
+during our secure download.
+
+
+377
+00:23:12,766 --> 00:23:17,036
+So down here in SecureURLSession
+that I have set up here,
+
+
+378
+00:23:17,366 --> 00:23:19,996
+I'm going to take that
+server URL that I pulled
+
+
+379
+00:23:19,996 --> 00:23:22,216
+down from MDM App Configuration,
+
+
+380
+00:23:22,536 --> 00:23:26,446
+and I going to create an
+NSURLSessionDataTask right here.
+
+
+381
+00:23:26,446 --> 00:23:29,846
+And you'll notice that I've left
+the completionHandler as a nil.
+
+
+382
+00:23:30,046 --> 00:23:32,426
+And the reason I've done
+this is by setting nil
+
+
+383
+00:23:32,426 --> 00:23:33,456
+for the completionHandler,
+
+
+384
+00:23:33,656 --> 00:23:36,826
+I will get the delegate
+callbacks for the data task.
+
+
+385
+00:23:37,656 --> 00:23:39,606
+And that's the most
+important thing for me.
+
+
+386
+00:23:40,056 --> 00:23:44,356
+So in URLSession
+DataTaskDid ReceiveResponse.
+
+
+387
+00:23:44,776 --> 00:23:47,446
+I'm going to get this call as
+soon as we make the connection,
+
+
+388
+00:23:47,486 --> 00:23:49,956
+and I'm going to create
+a file where I'm going
+
+
+389
+00:23:49,956 --> 00:23:52,626
+to download my strategic
+plan PDF.
+
+
+390
+00:23:53,416 --> 00:23:56,876
+And so you'll notice that I call
+NSFileManager defaultManager
+
+
+391
+00:23:56,966 --> 00:23:59,726
+createFileAtPath
+contents and attributes.
+
+
+392
+00:23:59,726 --> 00:24:01,476
+And the attribute
+I'm going to pass
+
+
+393
+00:24:01,476 --> 00:24:03,846
+into it is this
+NSFileProtectionKey.
+
+
+394
+00:24:04,226 --> 00:24:07,166
+And in that NSFileProtectionKey
+I'm going to specify
+
+
+395
+00:24:07,166 --> 00:24:10,576
+that I want NSFile protection
+complete and less open.
+
+
+396
+00:24:10,576 --> 00:24:13,256
+What this means is that
+the file will be unreadable
+
+
+397
+00:24:13,256 --> 00:24:17,106
+when the device is locked,
+unless the file is already open
+
+
+398
+00:24:17,426 --> 00:24:18,646
+when the device locks.
+
+
+399
+00:24:19,146 --> 00:24:20,626
+So while I'm downloading
+I'm going
+
+
+400
+00:24:20,626 --> 00:24:21,836
+to set the attribute to that.
+
+
+401
+00:24:22,536 --> 00:24:25,866
+And so the other important thing
+that we've mentioned already is
+
+
+402
+00:24:25,866 --> 00:24:28,526
+that we want to turn
+off file backup.
+
+
+403
+00:24:29,296 --> 00:24:31,436
+And so what I'm going to
+do is I'm going to set
+
+
+404
+00:24:31,576 --> 00:24:34,836
+onto the file URL
+a resource value.
+
+
+405
+00:24:35,026 --> 00:24:37,536
+The key I'm going to set it
+
+
+406
+00:24:37,536 --> 00:24:40,816
+on is NSURLisExcluded
+fromBackupKey.
+
+
+407
+00:24:41,156 --> 00:24:42,236
+And this key will make it
+
+
+408
+00:24:42,236 --> 00:24:44,306
+so that this file
+will not be backed
+
+
+409
+00:24:44,306 --> 00:24:46,376
+up in iTunes or in iCloud.
+
+
+410
+00:24:47,176 --> 00:24:48,316
+And so we'll go
+
+
+411
+00:24:48,316 --> 00:24:51,166
+on in URLSessionDataTask
+to receive data.
+
+
+412
+00:24:51,166 --> 00:24:53,136
+This delegate method
+is going to be called,
+
+
+413
+00:24:53,136 --> 00:24:55,396
+every time I receive
+new data from my server.
+
+
+414
+00:24:55,746 --> 00:24:57,326
+And I'm just going
+to store it all
+
+
+415
+00:24:57,326 --> 00:24:59,466
+into that file I
+created earlier.
+
+
+416
+00:25:00,016 --> 00:25:01,596
+And then at the very end
+
+
+417
+00:25:01,596 --> 00:25:04,306
+in URLSession
+taskDidCompleteWithError.
+
+
+418
+00:25:04,306 --> 00:25:05,956
+I'm going to make sure
+there were no errors.
+
+
+419
+00:25:05,956 --> 00:25:09,126
+And if there were no errors
+I'm going to then change it
+
+
+420
+00:25:09,126 --> 00:25:10,226
+so that the attribute
+
+
+421
+00:25:10,256 --> 00:25:12,626
+for NSFileProtectionKey
+is changed to complete.
+
+
+422
+00:25:12,626 --> 00:25:15,796
+Because at this point I decided,
+you know, when the device locks,
+
+
+423
+00:25:15,796 --> 00:25:17,596
+I want this file
+to be unreadable.
+
+
+424
+00:25:18,656 --> 00:25:21,816
+And that's pretty much it.
+
+
+425
+00:25:22,216 --> 00:25:24,176
+I would show you the demo,
+but we've already shown you
+
+
+426
+00:25:24,176 --> 00:25:25,836
+that in MDM App Configurations.
+
+
+427
+00:25:25,836 --> 00:25:26,986
+So let's go back to Dave.
+
+
+428
+00:25:27,616 --> 00:25:28,166
+>> Thanks Alex.
+
+
+429
+00:25:30,766 --> 00:25:33,566
+So Downloading to a Secure File.
+
+
+430
+00:25:33,566 --> 00:25:34,296
+Here's how you do it.
+
+
+431
+00:25:34,976 --> 00:25:36,476
+You create an NSURLSession.
+
+
+432
+00:25:37,736 --> 00:25:42,156
+Create a file, when the
+request begins, create a file
+
+
+433
+00:25:42,156 --> 00:25:45,656
+with dataProtection
+CompleteUnlessOpen
+
+
+434
+00:25:46,256 --> 00:25:49,026
+so that you can continue
+to write data to that file
+
+
+435
+00:25:49,456 --> 00:25:52,116
+as you're downloading it,
+even if your device is locked.
+
+
+436
+00:25:53,266 --> 00:25:55,646
+When the file has
+completely downloaded,
+
+
+437
+00:25:55,916 --> 00:25:58,806
+upgrade that protection
+to FileProtectionComplete.
+
+
+438
+00:25:59,886 --> 00:26:02,676
+And as you can tell,
+as you can see,
+
+
+439
+00:26:02,676 --> 00:26:06,206
+there's an NSURLMethod
+you can call to set a bit
+
+
+440
+00:26:06,256 --> 00:26:10,016
+that says don't backup this
+file to iTunes and iCloud.
+
+
+441
+00:26:11,526 --> 00:26:12,346
+All right.
+
+
+442
+00:26:13,216 --> 00:26:18,466
+Next. HTTPS Certificate Pinning.
+
+
+443
+00:26:18,586 --> 00:26:24,096
+We all know that HTTPS
+is a way for the client
+
+
+444
+00:26:24,096 --> 00:26:26,806
+to tell whether it's talking
+to the correct server.
+
+
+445
+00:26:28,196 --> 00:26:30,376
+This only works
+
+
+446
+00:26:30,376 --> 00:26:33,146
+if the certificate
+chain is trustworthy.
+
+
+447
+00:26:34,336 --> 00:26:40,246
+So one of the things that we
+usually do is we can specify
+
+
+448
+00:26:40,486 --> 00:26:43,476
+for this connection that
+only these certificates are
+
+
+449
+00:26:43,476 --> 00:26:46,596
+to be trusted and not any other
+certificate in your database
+
+
+450
+00:26:46,786 --> 00:26:51,976
+that may otherwise be
+trusted, for example, Safari.
+
+
+451
+00:26:52,046 --> 00:26:56,196
+And to do this of
+course you need HTTPS.
+
+
+452
+00:26:56,376 --> 00:27:00,126
+You need to specify your
+trusted root certificates during
+
+
+453
+00:27:00,126 --> 00:27:02,016
+HTTPS authentication.
+
+
+454
+00:27:03,096 --> 00:27:06,836
+And you do this to prevent
+man-in-the-middle attacks
+
+
+455
+00:27:07,326 --> 00:27:08,586
+that pretend to be your server.
+
+
+456
+00:27:08,586 --> 00:27:15,666
+And here's the takeaway - use
+certificate pinning instead
+
+
+457
+00:27:16,156 --> 00:27:18,776
+of doing things like
+SSID detection.
+
+
+458
+00:27:19,696 --> 00:27:22,716
+Especially in, you know,
+like retail scenarios.
+
+
+459
+00:27:22,716 --> 00:27:27,686
+A lot of people use SSIDs or
+some other kind of heuristic
+
+
+460
+00:27:27,956 --> 00:27:31,976
+to tell whether or not they're
+talking to the correct server.
+
+
+461
+00:27:32,706 --> 00:27:35,366
+Instead of doing that,
+make sure you are talking
+
+
+462
+00:27:35,366 --> 00:27:37,176
+to the correct server regardless
+
+
+463
+00:27:37,486 --> 00:27:39,496
+of the environment
+that you're in.
+
+
+464
+00:27:40,516 --> 00:27:41,086
+All right.
+
+
+465
+00:27:41,506 --> 00:27:44,336
+To show you a short example of
+how we do certificate pinning,
+
+
+466
+00:27:44,336 --> 00:27:49,106
+let's switch back to
+Alex and his code.
+
+
+467
+00:27:49,316 --> 00:27:52,156
+>> So you will remember
+that I mentioned that we had
+
+
+468
+00:27:52,156 --> 00:27:54,026
+that root certificate
+key that I set.
+
+
+469
+00:27:54,466 --> 00:27:56,836
+So when I push down the
+MDM App Configuration,
+
+
+470
+00:27:56,896 --> 00:28:00,056
+I push down the data for my
+server's root certificate.
+
+
+471
+00:28:00,416 --> 00:28:03,056
+Because I want to check to make
+sure that I'm not connecting
+
+
+472
+00:28:03,056 --> 00:28:06,626
+to the wrong server, and verify
+that my users are connecting
+
+
+473
+00:28:06,626 --> 00:28:07,976
+to the server I want them to.
+
+
+474
+00:28:08,626 --> 00:28:11,146
+So you will notice that
+I have here a method
+
+
+475
+00:28:11,146 --> 00:28:14,886
+that I've implemented called
+URLSession didReceiveChallenge
+
+
+476
+00:28:15,016 --> 00:28:16,056
+with completionHandler.
+
+
+477
+00:28:16,056 --> 00:28:17,826
+And this is going to
+be called when I try
+
+
+478
+00:28:17,826 --> 00:28:20,376
+and connect to my HTTPS server.
+
+
+479
+00:28:20,926 --> 00:28:23,376
+And when I try and connect,
+I want to double check
+
+
+480
+00:28:23,426 --> 00:28:25,516
+that the authentication
+method that was
+
+
+481
+00:28:25,986 --> 00:28:30,476
+in the challenge's protection
+space is a NSURLAuthentication
+
+
+482
+00:28:30,476 --> 00:28:31,856
+MethodServerTrust.
+
+
+483
+00:28:32,186 --> 00:28:36,076
+If so, I'm going to get the
+SecTrustRef from the server,
+
+
+484
+00:28:36,076 --> 00:28:39,616
+which is in challenge.protection
+Space.serverTrust.
+
+
+485
+00:28:40,326 --> 00:28:42,406
+The next thing I'm going
+to do is I'm going to load
+
+
+486
+00:28:42,406 --> 00:28:45,596
+up that root certificate that I
+got from MDM App Configuration.
+
+
+487
+00:28:46,206 --> 00:28:48,066
+In this example,
+I've already loaded
+
+
+488
+00:28:48,066 --> 00:28:50,566
+that when I did the
+NSUserDefaultsReadback.
+
+
+489
+00:28:50,566 --> 00:28:52,496
+I put it into a variable
+called self -
+
+
+490
+00:28:52,496 --> 00:28:54,986
+or into
+serverRootCertificateData.
+
+
+491
+00:28:54,986 --> 00:28:56,576
+So I'm going to load
+up that data.
+
+
+492
+00:28:56,816 --> 00:28:59,126
+And I'm going to create
+a SecCertificate with it.
+
+
+493
+00:28:59,826 --> 00:29:00,906
+And I want to double check
+
+
+494
+00:29:00,936 --> 00:29:02,586
+that the certificate
+was created correctly
+
+
+495
+00:29:02,586 --> 00:29:04,066
+by making sure that's not null.
+
+
+496
+00:29:04,446 --> 00:29:08,346
+If so, I'm going to then
+set the anchor certificates
+
+
+497
+00:29:08,766 --> 00:29:11,806
+on the server's challenge
+trust that I got.
+
+
+498
+00:29:12,126 --> 00:29:14,076
+The reason I do this
+is I want to make sure
+
+
+499
+00:29:14,076 --> 00:29:17,166
+that I only trust the root
+certificate I sent down.
+
+
+500
+00:29:17,166 --> 00:29:20,936
+I don't want to trust any
+of the default certificates
+
+
+501
+00:29:20,936 --> 00:29:22,906
+that are included
+in the iOS device.
+
+
+502
+00:29:23,156 --> 00:29:25,236
+And by saying the root
+anchor certificates,
+
+
+503
+00:29:25,356 --> 00:29:26,256
+I can exclude them.
+
+
+504
+00:29:26,636 --> 00:29:27,706
+You'll notice that I've called -
+
+
+505
+00:29:27,706 --> 00:29:30,136
+also have this method
+SecTrustSetAnchor
+
+
+506
+00:29:30,136 --> 00:29:31,176
+CertificatesOnly.
+
+
+507
+00:29:31,406 --> 00:29:34,356
+If I wanted to make it so
+that I also trust the default
+
+
+508
+00:29:34,356 --> 00:29:35,856
+certificates installed
+on the device,
+
+
+509
+00:29:36,146 --> 00:29:39,236
+I would set this yes
+value at the end to no.
+
+
+510
+00:29:39,316 --> 00:29:42,856
+If you are only setting it
+for the anchor certificates
+
+
+511
+00:29:43,176 --> 00:29:45,386
+that you trust, you do
+not have to set this.
+
+
+512
+00:29:45,616 --> 00:29:46,976
+I've only done it
+in this example
+
+
+513
+00:29:46,976 --> 00:29:49,526
+to show you how you can trust
+the device's certificates
+
+
+514
+00:29:49,576 --> 00:29:50,246
+if you want to.
+
+
+515
+00:29:50,926 --> 00:29:53,606
+And so the last thing that
+I'm going to do is I'm going
+
+
+516
+00:29:53,606 --> 00:29:57,256
+to do a SecTrustEvaluate with
+the serversChallengeTrust
+
+
+517
+00:29:57,576 --> 00:29:59,176
+and I'm going to
+get a trust result.
+
+
+518
+00:29:59,176 --> 00:30:01,526
+From that trust result I'm going
+to make sure that, you know,
+
+
+519
+00:30:01,666 --> 00:30:02,996
+I didn't receive any errors.
+
+
+520
+00:30:03,466 --> 00:30:05,926
+And make sure that the
+SecTrustResult is either
+
+
+521
+00:30:05,926 --> 00:30:07,516
+unspecified or proceed.
+
+
+522
+00:30:08,296 --> 00:30:12,086
+And then if I find out that
+I do trust this certificate,
+
+
+523
+00:30:12,086 --> 00:30:13,996
+or if I've turned off
+certificate pinning,
+
+
+524
+00:30:14,396 --> 00:30:18,016
+I'm going to automatically just
+say, call the completionHandler
+
+
+525
+00:30:18,046 --> 00:30:20,796
+with NSURLSessionAuth
+ChallengeUseCredential
+
+
+526
+00:30:20,866 --> 00:30:23,046
+and give it the credential
+that the server gave me.
+
+
+527
+00:30:23,606 --> 00:30:25,596
+If I don't trust
+the certificate,
+
+
+528
+00:30:25,886 --> 00:30:28,106
+I will call instead
+completionHandler
+
+
+529
+00:30:28,506 --> 00:30:31,916
+NSURLSessionAuthChallengeReject
+ProtectionSpace.
+
+
+530
+00:30:32,106 --> 00:30:34,476
+And that will tell the
+app that no, I'm not going
+
+
+531
+00:30:34,476 --> 00:30:35,866
+to allow you to download this.
+
+
+532
+00:30:36,416 --> 00:30:41,536
+So in our example, we'll
+go back to the iPad again.
+
+
+533
+00:30:42,546 --> 00:30:44,256
+You'll notice I've already
+downloaded this file.
+
+
+534
+00:30:44,256 --> 00:30:47,856
+In settings I've set up a pin
+here called certificate pinning,
+
+
+535
+00:30:47,856 --> 00:30:48,866
+and I'm going to turn it on.
+
+
+536
+00:30:49,696 --> 00:30:54,246
+The next thing I'm going to
+do is - oop they already went
+
+
+537
+00:30:54,246 --> 00:30:56,426
+through this, so let
+me just reset this.
+
+
+538
+00:30:56,966 --> 00:31:01,006
+So when I call into
+the app - yeah,
+
+
+539
+00:31:01,406 --> 00:31:03,446
+so you'll notice,
+ignore the crash.
+
+
+540
+00:31:04,846 --> 00:31:08,616
+With this, when I called back
+into the app it tried to load
+
+
+541
+00:31:08,616 --> 00:31:10,816
+up the document again
+from the server.
+
+
+542
+00:31:11,056 --> 00:31:12,756
+And you'll notice
+that it's telling me
+
+
+543
+00:31:12,756 --> 00:31:14,666
+that my certificate
+pinned by the server -
+
+
+544
+00:31:15,056 --> 00:31:17,446
+the certificate presented by
+the server is not the same
+
+
+545
+00:31:17,446 --> 00:31:18,476
+as my pin certificate.
+
+
+546
+00:31:18,836 --> 00:31:22,186
+Let me go back to my server,
+and I'm going to change it
+
+
+547
+00:31:22,186 --> 00:31:24,096
+so that it presents
+the right certificate.
+
+
+548
+00:31:24,596 --> 00:31:29,316
+So I've set up my server;
+I've fixed the certificate.
+
+
+549
+00:31:29,686 --> 00:31:30,456
+Everything's good.
+
+
+550
+00:31:30,996 --> 00:31:32,936
+So I'm going to click
+on my refresh.
+
+
+551
+00:31:33,976 --> 00:31:37,146
+And when I refresh, the pin
+certificate was correct this
+
+
+552
+00:31:37,146 --> 00:31:38,976
+time, and so I was able
+to load the document.
+
+
+553
+00:31:39,466 --> 00:31:40,976
+And so that is how you
+do certificate pinning.
+
+
+554
+00:31:41,516 --> 00:31:46,266
+[ Applause ]
+
+
+555
+00:31:46,766 --> 00:31:47,406
+>> Thanks Alex.
+
+
+556
+00:31:48,646 --> 00:31:52,656
+HTTPS Certificate
+Pinning assures you
+
+
+557
+00:31:52,656 --> 00:31:54,216
+that there's no
+man-in-the-middle attack
+
+
+558
+00:31:55,046 --> 00:31:57,456
+with your connection
+to your trusted server.
+
+
+559
+00:31:59,296 --> 00:32:04,296
+So what have we learned
+from the first example app?
+
+
+560
+00:32:04,296 --> 00:32:06,106
+The Secure Document Viewer?
+
+
+561
+00:32:07,516 --> 00:32:11,386
+We learned that MDM App
+Configuration is awesome.
+
+
+562
+00:32:12,036 --> 00:32:13,686
+It's magical.
+
+
+563
+00:32:14,266 --> 00:32:17,316
+Server can configure
+your apps just right.
+
+
+564
+00:32:17,776 --> 00:32:19,276
+The user doesn't have to do it.
+
+
+565
+00:32:20,006 --> 00:32:24,406
+And you can offer keys to the
+server admin to configure,
+
+
+566
+00:32:24,406 --> 00:32:27,816
+to set up your app just
+the way they'd like it.
+
+
+567
+00:32:28,366 --> 00:32:31,266
+By the way, app configuration
+can be delivered
+
+
+568
+00:32:32,246 --> 00:32:34,216
+as you're installing the app.
+
+
+569
+00:32:34,216 --> 00:32:37,496
+There is no race between app
+installation and configuration.
+
+
+570
+00:32:39,476 --> 00:32:44,146
+We also learned that Single
+Sign-on is also awesome.
+
+
+571
+00:32:44,146 --> 00:32:47,496
+Because you don't have to
+do anything and it works.
+
+
+572
+00:32:47,996 --> 00:32:51,166
+All you have to do
+is use HTTP or HTTPS.
+
+
+573
+00:32:51,696 --> 00:32:56,336
+And if your admin has configured
+Single Sign-on on the device,
+
+
+574
+00:32:56,736 --> 00:33:00,076
+then it will just work or
+you will get an auth failure.
+
+
+575
+00:33:02,496 --> 00:33:07,506
+We learned how to download files
+securely using NSURLSession
+
+
+576
+00:33:07,766 --> 00:33:11,316
+DataTask and setting the
+correct protection level
+
+
+577
+00:33:11,316 --> 00:33:13,866
+at different parts of
+the download as well
+
+
+578
+00:33:13,866 --> 00:33:14,946
+as excluding from backup.
+
+
+579
+00:33:15,796 --> 00:33:20,786
+And, of course, we saw how to
+pin our HTTPS certificates.
+
+
+580
+00:33:21,796 --> 00:33:23,206
+So that's our first app.
+
+
+581
+00:33:26,056 --> 00:33:27,586
+All right, next app.
+
+
+582
+00:33:28,266 --> 00:33:28,866
+Point of sale.
+
+
+583
+00:33:30,196 --> 00:33:34,776
+For this example we're
+going to show you a little -
+
+
+584
+00:33:35,056 --> 00:33:38,836
+maybe a device that a sales
+associate might carry.
+
+
+585
+00:33:39,076 --> 00:33:41,466
+So we have a scanner on
+the left-hand side here
+
+
+586
+00:33:41,466 --> 00:33:44,036
+on the tab bar which
+will scan barcodes.
+
+
+587
+00:33:44,626 --> 00:33:48,226
+And we have a catalog that
+lets them look up prices
+
+
+588
+00:33:48,296 --> 00:33:49,386
+for products, etcetera.
+
+
+589
+00:33:50,526 --> 00:33:51,106
+Baby clothes.
+
+
+590
+00:33:51,196 --> 00:33:54,986
+So the first thing I
+want to talk to you
+
+
+591
+00:33:54,986 --> 00:33:59,106
+about is Single App Mode.
+
+
+592
+00:33:59,106 --> 00:34:05,736
+Single App Mode is a way that an
+MDM server can lock the device
+
+
+593
+00:34:06,236 --> 00:34:08,735
+into just your app.
+
+
+594
+00:34:08,735 --> 00:34:10,386
+You can send a command down
+
+
+595
+00:34:11,096 --> 00:34:13,806
+and tell the device
+just run this app.
+
+
+596
+00:34:14,255 --> 00:34:16,096
+If the app crashes,
+it relaunches the app.
+
+
+597
+00:34:16,266 --> 00:34:18,846
+If the user presses
+the Home button,
+
+
+598
+00:34:18,846 --> 00:34:19,775
+this gets stuck in the app.
+
+
+599
+00:34:20,786 --> 00:34:22,045
+So that's all in
+Single App Mode.
+
+
+600
+00:34:22,045 --> 00:34:23,946
+We'll show that later
+in a later example.
+
+
+601
+00:34:25,416 --> 00:34:29,356
+But first, I'd like
+to talk about iBeacon.
+
+
+602
+00:34:30,616 --> 00:34:33,216
+So iBeacon is awesome.
+
+
+603
+00:34:33,795 --> 00:34:35,326
+It gives you context.
+
+
+604
+00:34:35,536 --> 00:34:38,846
+It tells your device,
+it tells your app
+
+
+605
+00:34:38,985 --> 00:34:40,866
+that you're near
+something, right?
+
+
+606
+00:34:41,426 --> 00:34:44,766
+You're near something
+that you specify.
+
+
+607
+00:34:45,146 --> 00:34:49,386
+So you can use iBeacon to
+provide your app with context.
+
+
+608
+00:34:49,386 --> 00:34:51,056
+In this case, for the
+Point of Sale app,
+
+
+609
+00:34:51,545 --> 00:34:53,996
+we want to provide
+the app the knowledge
+
+
+610
+00:34:53,996 --> 00:34:57,466
+that you're actually using
+the barcode scanner near the
+
+
+611
+00:34:57,466 --> 00:34:58,886
+checkout register, right?
+
+
+612
+00:34:59,086 --> 00:35:00,686
+So if you take the
+device elsewhere,
+
+
+613
+00:35:01,296 --> 00:35:06,006
+they will not allow you to
+scan prices, to scan barcodes.
+
+
+614
+00:35:07,276 --> 00:35:10,426
+So using iBeacon in conjunction
+
+
+615
+00:35:10,426 --> 00:35:13,066
+with other core location
+technologies such as, you know,
+
+
+616
+00:35:13,066 --> 00:35:17,716
+GPS and location, gives you
+a really fine-grained control
+
+
+617
+00:35:17,716 --> 00:35:19,296
+over how your app is used.
+
+
+618
+00:35:20,036 --> 00:35:24,836
+And it gives you an ability
+using MDM App Configuration
+
+
+619
+00:35:25,546 --> 00:35:28,336
+to let the admins
+configure your apps
+
+
+620
+00:35:28,936 --> 00:35:30,816
+so that your app
+can only be used
+
+
+621
+00:35:30,816 --> 00:35:32,306
+in this particular retail store.
+
+
+622
+00:35:32,596 --> 00:35:34,176
+Or in that particular context.
+
+
+623
+00:35:34,976 --> 00:35:36,476
+Right? So here's a tip.
+
+
+624
+00:35:36,786 --> 00:35:42,096
+Use iBeacon to verify your
+location-sensitive operation.
+
+
+625
+00:35:42,976 --> 00:35:45,686
+So now I'm going to hand it off
+to Alex again, and he's going
+
+
+626
+00:35:45,686 --> 00:35:48,186
+to show you a little example.
+
+
+627
+00:35:49,466 --> 00:35:53,456
+>> So for our point of sale app,
+I have a [inaudible] app called
+
+
+628
+00:35:53,456 --> 00:35:55,876
+"Moolah," which is for
+selling baby clothes.
+
+
+629
+00:35:56,196 --> 00:35:57,826
+And so in my example,
+
+
+630
+00:35:58,086 --> 00:35:59,856
+what I have is I have
+this app delegate.
+
+
+631
+00:35:59,856 --> 00:36:01,446
+In this app delegate I'm going
+
+
+632
+00:36:01,446 --> 00:36:04,036
+to create a CLLocationManager
+object.
+
+
+633
+00:36:04,546 --> 00:36:07,726
+I'm going to set the app
+delegate as the delegate
+
+
+634
+00:36:07,796 --> 00:36:09,086
+for the Location Manager.
+
+
+635
+00:36:09,136 --> 00:36:12,636
+The important thing for the
+iBeacon, where we're going
+
+
+636
+00:36:12,636 --> 00:36:13,836
+to this method here
+
+
+637
+00:36:14,306 --> 00:36:15,876
+of
+startMonitoringForRegisterBeacon
+
+
+638
+00:36:16,226 --> 00:36:20,366
+is that what I need to do is
+I need to set up an NSUUID
+
+
+639
+00:36:20,446 --> 00:36:23,076
+for the region that I
+want this to work in.
+
+
+640
+00:36:23,076 --> 00:36:26,826
+In my example, let's imagine
+in our point of sale example
+
+
+641
+00:36:26,826 --> 00:36:30,146
+that we have - we want our
+people at the register to be,
+
+
+642
+00:36:30,146 --> 00:36:31,416
+you know, in a general area.
+
+
+643
+00:36:31,416 --> 00:36:33,696
+We don't want them in the
+back room scanning things
+
+
+644
+00:36:33,696 --> 00:36:37,866
+and selling things without the
+security cameras around them.
+
+
+645
+00:36:37,906 --> 00:36:41,296
+So for our region I'm going to
+create a UUID specified here,
+
+
+646
+00:36:41,346 --> 00:36:44,186
+and I'm going to give an
+identifier of the app -
+
+
+647
+00:36:44,186 --> 00:36:45,476
+so "Moolah" in this case.
+
+
+648
+00:36:45,476 --> 00:36:48,616
+And I'm going to create a
+CLBeaconRegion using the
+
+
+649
+00:36:48,616 --> 00:36:51,266
+proximityUUID I created
+and the identifier.
+
+
+650
+00:36:51,686 --> 00:36:54,186
+I'm going to call on
+to the location manager
+
+
+651
+00:36:54,186 --> 00:36:56,456
+to start monitoring
+for this region.
+
+
+652
+00:36:57,196 --> 00:36:59,646
+One of the important
+things that you need
+
+
+653
+00:36:59,646 --> 00:37:01,846
+to make sure you
+implement is this method
+
+
+654
+00:37:01,846 --> 00:37:05,496
+of locationManager
+didDetermineState forRegion.
+
+
+655
+00:37:05,886 --> 00:37:08,546
+This method will be called
+when your app is not -
+
+
+656
+00:37:08,696 --> 00:37:11,966
+is in the background, so that
+your app can receive region
+
+
+657
+00:37:11,966 --> 00:37:13,206
+notification changes.
+
+
+658
+00:37:13,206 --> 00:37:16,076
+So let's say, they
+closed my register app.
+
+
+659
+00:37:16,156 --> 00:37:17,476
+They walked out of the store.
+
+
+660
+00:37:17,476 --> 00:37:20,486
+And then they opened -
+walked out of the store.
+
+
+661
+00:37:20,726 --> 00:37:24,086
+You will receive
+this method callback
+
+
+662
+00:37:24,436 --> 00:37:25,556
+when they leave the region.
+
+
+663
+00:37:25,926 --> 00:37:29,716
+And so in this example I'm just
+going to - I have it so that
+
+
+664
+00:37:29,716 --> 00:37:33,826
+when you are inside the Beacon
+region, I want to start figuring
+
+
+665
+00:37:33,826 --> 00:37:35,576
+out how far away they
+are from the iBeacon.
+
+
+666
+00:37:35,576 --> 00:37:36,436
+Because I want to make sure
+
+
+667
+00:37:36,436 --> 00:37:39,696
+that my cashiers are
+right close to the beacon.
+
+
+668
+00:37:39,696 --> 00:37:40,666
+I don't want them, you know,
+
+
+669
+00:37:41,016 --> 00:37:42,736
+all the way on the
+other side of the store.
+
+
+670
+00:37:43,236 --> 00:37:45,846
+So I'm going to start ranging
+the beacons in the region,
+
+
+671
+00:37:45,986 --> 00:37:48,056
+and one of the things I'm
+going to do is I'm going
+
+
+672
+00:37:48,056 --> 00:37:49,246
+to implement this method
+
+
+673
+00:37:49,246 --> 00:37:52,596
+of locationManager
+didRangeBeacons inRegion.
+
+
+674
+00:37:52,886 --> 00:37:55,216
+And I'm just going to
+get the closest beacon,
+
+
+675
+00:37:55,216 --> 00:37:56,646
+because I don't particularly
+care
+
+
+676
+00:37:56,646 --> 00:37:58,106
+about which iBeacon
+they're close to,
+
+
+677
+00:37:58,106 --> 00:37:59,346
+as long as they're
+close to one of them.
+
+
+678
+00:37:59,346 --> 00:38:01,546
+And I'm going to check the
+proximity and make sure
+
+
+679
+00:38:01,546 --> 00:38:03,026
+that it's not far or unknown.
+
+
+680
+00:38:03,396 --> 00:38:06,046
+If it's not, I'm going to say
+that they're near the register.
+
+
+681
+00:38:06,046 --> 00:38:07,906
+Otherwise they're not
+near the register,
+
+
+682
+00:38:08,236 --> 00:38:10,066
+and I set that variable
+appropriately.
+
+
+683
+00:38:10,396 --> 00:38:11,556
+One of the other
+things you're going
+
+
+684
+00:38:11,556 --> 00:38:13,416
+to notice is I've also
+implemented the methods
+
+
+685
+00:38:13,416 --> 00:38:15,476
+of locationManager
+didEnterRegion
+
+
+686
+00:38:15,536 --> 00:38:17,656
+and locationManager
+didExitRegion.
+
+
+687
+00:38:17,656 --> 00:38:20,556
+Which will be called when
+the app is in the foreground.
+
+
+688
+00:38:21,006 --> 00:38:23,216
+For my example I'm going to go
+
+
+689
+00:38:23,216 --> 00:38:26,296
+over to the trusty
+iPhone I have over here.
+
+
+690
+00:38:27,136 --> 00:38:28,906
+You'll notice I have
+my "Moolah" app here.
+
+
+691
+00:38:28,906 --> 00:38:30,466
+I'm going to open it up.
+
+
+692
+00:38:31,086 --> 00:38:34,206
+You'll notice right here I
+have my Scan Barcodes View.
+
+
+693
+00:38:34,456 --> 00:38:36,846
+You'll notice right now
+it's telling them to return
+
+
+694
+00:38:36,846 --> 00:38:38,946
+to the register area
+because there's no iBeacon
+
+
+695
+00:38:38,946 --> 00:38:39,866
+that it can currently detect.
+
+
+696
+00:38:40,516 --> 00:38:42,926
+So back here on my
+demo machines I'm going
+
+
+697
+00:38:42,926 --> 00:38:44,356
+to start up an iBeacon.
+
+
+698
+00:38:45,436 --> 00:38:47,426
+And so you'll notice that
+as soon as it detected
+
+
+699
+00:38:47,426 --> 00:38:50,136
+that the iBeacon - that
+I was within the region
+
+
+700
+00:38:50,136 --> 00:38:51,326
+and that I was ranged correctly,
+
+
+701
+00:38:51,666 --> 00:38:53,506
+I got this nice little
+barcode view,
+
+
+702
+00:38:53,506 --> 00:38:55,466
+so I have a nice little camera.
+
+
+703
+00:38:55,766 --> 00:39:00,276
+My cashiers can just run through
+the barcodes and do that.
+
+
+704
+00:39:00,276 --> 00:39:03,436
+This view will only show
+up while I'm in the -
+
+
+705
+00:39:03,776 --> 00:39:07,316
+near the iBeacon that's
+appropriate for it.
+
+
+706
+00:39:07,516 --> 00:39:08,906
+And so when I turn this off,
+
+
+707
+00:39:08,906 --> 00:39:11,326
+eventually this app will
+receive a notification
+
+
+708
+00:39:11,326 --> 00:39:12,956
+that I've left the region
+
+
+709
+00:39:12,956 --> 00:39:15,366
+and that this view should
+probably be turned off.
+
+
+710
+00:39:16,736 --> 00:39:20,356
+And you'll notice that I
+also have a catalog section.
+
+
+711
+00:39:20,726 --> 00:39:23,696
+So you'll notice now that
+I've turned off the iBeacon
+
+
+712
+00:39:23,696 --> 00:39:25,946
+that I am no longer
+near the register,
+
+
+713
+00:39:25,946 --> 00:39:27,176
+and so the view is turned off.
+
+
+714
+00:39:28,156 --> 00:39:29,786
+And that is how you
+use iBeacons.
+
+
+715
+00:39:30,516 --> 00:39:34,816
+[ Applause ]
+
+
+716
+00:39:35,316 --> 00:39:36,126
+>> Thanks Alex.
+
+
+717
+00:39:37,536 --> 00:39:40,426
+There's so much you
+can do with iBeacons
+
+
+718
+00:39:40,426 --> 00:39:44,206
+that can provide a really
+awesome user experience.
+
+
+719
+00:39:44,616 --> 00:39:47,266
+Both for your admins
+and for the end users.
+
+
+720
+00:39:47,796 --> 00:39:53,746
+All right, next I'd like to
+talk about Network Reachability.
+
+
+721
+00:39:55,146 --> 00:39:57,586
+Network Reachability
+is a set of APIs
+
+
+722
+00:39:57,676 --> 00:40:00,186
+that lets you know whether
+a server is reachable
+
+
+723
+00:40:00,186 --> 00:40:01,436
+at all on the network.
+
+
+724
+00:40:01,796 --> 00:40:06,116
+And best of all, it
+actually tells you
+
+
+725
+00:40:06,206 --> 00:40:07,766
+when the server becomes
+reachable
+
+
+726
+00:40:07,766 --> 00:40:08,856
+or becomes unreachable.
+
+
+727
+00:40:09,396 --> 00:40:13,576
+So for the following
+example I want you
+
+
+728
+00:40:13,576 --> 00:40:16,006
+to note you can use
+Network Reachability
+
+
+729
+00:40:16,726 --> 00:40:20,016
+to provide intelligent,
+offline behavior.
+
+
+730
+00:40:20,356 --> 00:40:25,066
+So back to Alex, and he's going
+to show you how that's done.
+
+
+731
+00:40:25,276 --> 00:40:29,026
+>> So back in our "Moolah"
+app, I have this method.
+
+
+732
+00:40:29,716 --> 00:40:32,606
+So I created an
+SCNetworkReachabiltyFlags.
+
+
+733
+00:40:32,816 --> 00:40:35,266
+And I'm going to create
+a reachability reference.
+
+
+734
+00:40:35,616 --> 00:40:36,096
+Which I do
+
+
+735
+00:40:36,096 --> 00:40:38,706
+by SCNetworkReachability
+CreateWithName.
+
+
+736
+00:40:39,056 --> 00:40:41,336
+And the name I'm going to
+pass into here is a domain.
+
+
+737
+00:40:41,336 --> 00:40:44,486
+So in my example up above,
+I have defined apple.com
+
+
+738
+00:40:44,486 --> 00:40:48,126
+as the domain I want to watch
+for and see the reachability of.
+
+
+739
+00:40:48,706 --> 00:40:51,006
+So once I do that, if
+the reachability is null,
+
+
+740
+00:40:51,136 --> 00:40:53,886
+I can call
+SCNetworkReachabilityGetFlags.
+
+
+741
+00:40:54,396 --> 00:40:57,106
+Then once I do that I can
+check the flags, and I'm going
+
+
+742
+00:40:57,106 --> 00:40:57,406
+to check
+
+
+743
+00:40:57,466 --> 00:41:00,986
+that SCNetworkReachabilityFlags
+is reachable.
+
+
+744
+00:41:01,476 --> 00:41:03,046
+And using that flag I'll know
+
+
+745
+00:41:03,046 --> 00:41:07,726
+when I cannot send a network
+operations because the user is
+
+
+746
+00:41:07,726 --> 00:41:09,346
+in airplane mode for example.
+
+
+747
+00:41:09,846 --> 00:41:12,966
+Now this is nice and good, but
+this is just one off method.
+
+
+748
+00:41:12,966 --> 00:41:14,666
+I don't want to be
+calling this all the time.
+
+
+749
+00:41:15,026 --> 00:41:17,956
+So what I really want to do
+is I want to register this
+
+
+750
+00:41:18,236 --> 00:41:20,886
+so that every time the
+reachability configuration
+
+
+751
+00:41:20,886 --> 00:41:22,436
+changes, I get notified.
+
+
+752
+00:41:23,016 --> 00:41:26,156
+And so what I've done down
+here is I've created an
+
+
+753
+00:41:26,156 --> 00:41:29,376
+SCNetworkReachabilityContext,
+which I'm feeding
+
+
+754
+00:41:29,376 --> 00:41:32,236
+in the nice little block that
+I've created to check the flags.
+
+
+755
+00:41:32,606 --> 00:41:34,886
+If the flags say that
+it's not reachable,
+
+
+756
+00:41:34,886 --> 00:41:37,566
+I'm going to set my offline
+variable appropriately.
+
+
+757
+00:41:37,566 --> 00:41:39,196
+And what I'm going to do is
+I'm going to is I'm going
+
+
+758
+00:41:39,196 --> 00:41:41,976
+to call SCNetworkReachability
+SetCallback.
+
+
+759
+00:41:42,426 --> 00:41:43,836
+I'm going to feed
+it the reachability.
+
+
+760
+00:41:44,096 --> 00:41:46,956
+And I have to give it this
+method, reachability change,
+
+
+761
+00:41:46,956 --> 00:41:48,076
+which is written in C.
+
+
+762
+00:41:48,366 --> 00:41:52,046
+The reason I put earlier
+in that context that info
+
+
+763
+00:41:52,326 --> 00:41:53,816
+with that call block is I want
+
+
+764
+00:41:53,816 --> 00:41:55,316
+to keep all my code
+in Objective-C.
+
+
+765
+00:41:55,316 --> 00:41:59,096
+So all I'm going to have my C
+method reachabilityChanged do
+
+
+766
+00:41:59,096 --> 00:42:02,356
+up here is I'm just going
+to have it call that block
+
+
+767
+00:42:02,356 --> 00:42:04,166
+that I feed into the info.
+
+
+768
+00:42:04,686 --> 00:42:07,166
+So that I don't have to mess
+around with C code that much.
+
+
+769
+00:42:07,646 --> 00:42:10,466
+With the SCNetworkReachability
+I set the callback.
+
+
+770
+00:42:10,636 --> 00:42:13,946
+I set the C method that I'm
+calling into in the context.
+
+
+771
+00:42:14,226 --> 00:42:15,816
+And the next thing I
+need to do is I need
+
+
+772
+00:42:15,816 --> 00:42:17,216
+to make sure I schedule this
+
+
+773
+00:42:17,216 --> 00:42:19,426
+so that this gets called
+every once in a while.
+
+
+774
+00:42:19,426 --> 00:42:22,516
+The way I do that is I
+call SCNetworkReachability
+
+
+775
+00:42:22,516 --> 00:42:23,476
+SetDispatchQueue.
+
+
+776
+00:42:23,966 --> 00:42:26,246
+I give it the reachability
+reference I've created.
+
+
+777
+00:42:26,246 --> 00:42:28,836
+And I'm going to call this on
+the main queue in my example.
+
+
+778
+00:42:29,146 --> 00:42:30,486
+You can do this on other queues.
+
+
+779
+00:42:30,586 --> 00:42:32,366
+I've chosen this
+just for simplicity.
+
+
+780
+00:42:32,916 --> 00:42:35,986
+So now, if we return to my
+iPhone example, you're going
+
+
+781
+00:42:36,796 --> 00:42:38,796
+to notice I have this
+nice little catalog
+
+
+782
+00:42:38,796 --> 00:42:40,176
+of baby clothes that I can buy.
+
+
+783
+00:42:40,656 --> 00:42:42,386
+What I want to do
+is I'm just going
+
+
+784
+00:42:42,386 --> 00:42:45,726
+to switch the app
+into airplane mode.
+
+
+785
+00:42:46,726 --> 00:42:48,166
+When I switch it off
+you're going to notice
+
+
+786
+00:42:48,166 --> 00:42:50,636
+that SCNetworkReachability
+has changed my label
+
+
+787
+00:42:50,636 --> 00:42:53,406
+to inform the user that
+they are currently offline.
+
+
+788
+00:42:53,766 --> 00:42:55,586
+And so you can use
+this to gate behavior
+
+
+789
+00:42:55,586 --> 00:42:59,086
+that you don't want users to do
+while they're offline, like try
+
+
+790
+00:42:59,086 --> 00:43:01,596
+and edit a document
+that you want to sync
+
+
+791
+00:43:01,596 --> 00:43:02,986
+up between multiple users.
+
+
+792
+00:43:03,536 --> 00:43:05,426
+And so that's SCNetwork
+Reachability.
+
+
+793
+00:43:06,266 --> 00:43:08,236
+>> Well thanks Alex.
+
+
+794
+00:43:10,866 --> 00:43:14,656
+Network Reachability allows
+you to provide intelligent,
+
+
+795
+00:43:15,006 --> 00:43:18,476
+offline behavior without having
+to send a request and timing
+
+
+796
+00:43:18,476 --> 00:43:19,476
+out and things like that.
+
+
+797
+00:43:19,896 --> 00:43:21,486
+You know up front
+that the network,
+
+
+798
+00:43:21,676 --> 00:43:25,176
+or your particular server
+actually is not reachable
+
+
+799
+00:43:25,176 --> 00:43:27,706
+and you can take the
+appropriate action.
+
+
+800
+00:43:29,476 --> 00:43:35,056
+So in summary, our second
+app example shows us
+
+
+801
+00:43:35,056 --> 00:43:37,946
+that you can put an app into
+Single App Mode using MDM,
+
+
+802
+00:43:37,946 --> 00:43:40,346
+again example to follow.
+
+
+803
+00:43:41,466 --> 00:43:45,986
+You can use iBeacon to
+provide context for your app
+
+
+804
+00:43:46,636 --> 00:43:48,116
+and change your app's behavior,
+
+
+805
+00:43:48,116 --> 00:43:50,096
+depending on whether
+it's near something.
+
+
+806
+00:43:50,666 --> 00:43:54,356
+You can use this with core
+location to allow your admins
+
+
+807
+00:43:54,506 --> 00:43:57,776
+to really configure your
+apps to a very fine grain.
+
+
+808
+00:43:59,396 --> 00:44:02,476
+And finally, network
+reachability allows you
+
+
+809
+00:44:02,476 --> 00:44:06,096
+to behave intelligently when
+a server is not available.
+
+
+810
+00:44:06,466 --> 00:44:12,266
+Let's talk about our third and
+final app example, Assessment.
+
+
+811
+00:44:13,006 --> 00:44:16,446
+So this is your typical
+exam-taking app.
+
+
+812
+00:44:17,296 --> 00:44:22,896
+There are several modes of
+operation here for exams.
+
+
+813
+00:44:24,106 --> 00:44:27,976
+For our example the
+flow that we want
+
+
+814
+00:44:27,976 --> 00:44:31,126
+to show you is a
+student operating
+
+
+815
+00:44:31,126 --> 00:44:34,586
+on an iPad, taking an exam.
+
+
+816
+00:44:35,466 --> 00:44:38,686
+And we're going to
+download the exam packet
+
+
+817
+00:44:38,746 --> 00:44:41,976
+from a document provider from
+your school's file system.
+
+
+818
+00:44:42,886 --> 00:44:46,706
+Once the user begins
+taking the exam,
+
+
+819
+00:44:47,586 --> 00:44:51,626
+the exam app will lock them
+in and they'll take the exam
+
+
+820
+00:44:51,626 --> 00:44:53,246
+and they'll submit it.
+
+
+821
+00:44:53,246 --> 00:44:56,576
+And the students will be
+allowed to use the iPad again.
+
+
+822
+00:44:57,296 --> 00:45:01,796
+So let's start with
+Document Providers.
+
+
+823
+00:45:02,346 --> 00:45:04,966
+So document Providers,
+as I mentioned before,
+
+
+824
+00:45:04,966 --> 00:45:07,716
+is a really awesome,
+new feature of iOS 8.
+
+
+825
+00:45:08,496 --> 00:45:13,216
+It allows you to exchange
+documents between apps.
+
+
+826
+00:45:13,446 --> 00:45:16,006
+When you install an app
+as a document provider,
+
+
+827
+00:45:16,446 --> 00:45:21,686
+you are actually installing
+network access for other apps.
+
+
+828
+00:45:22,856 --> 00:45:25,566
+To access Document Providers,
+
+
+829
+00:45:26,386 --> 00:45:28,566
+use the
+UIDocumentPickerViewController.
+
+
+830
+00:45:28,946 --> 00:45:31,536
+This is the same one you
+use for iCloud Doc folder.
+
+
+831
+00:45:32,006 --> 00:45:36,176
+Use Document Providers
+to get access
+
+
+832
+00:45:36,296 --> 00:45:38,526
+to enterprise network resources.
+
+
+833
+00:45:39,156 --> 00:45:42,786
+Don't build in network
+protocols into your app.
+
+
+834
+00:45:44,106 --> 00:45:48,646
+Instead, rely on the admin to
+configure network access apps
+
+
+835
+00:45:48,976 --> 00:45:51,756
+that allows your app to access
+those network resources.
+
+
+836
+00:45:52,366 --> 00:45:52,766
+All right.
+
+
+837
+00:45:52,816 --> 00:45:55,056
+So let's go back to
+Alex and he's going
+
+
+838
+00:45:55,056 --> 00:45:59,306
+to show you a little
+bit of an example.
+
+
+839
+00:45:59,356 --> 00:46:01,906
+>> So you'll notice that
+I have an application,
+
+
+840
+00:46:01,906 --> 00:46:03,356
+which I've called
+"Pencils Down."
+
+
+841
+00:46:03,536 --> 00:46:05,076
+What Pencils Down
+is going to do is
+
+
+842
+00:46:05,076 --> 00:46:08,156
+that when the user starts
+the test, I want them to go
+
+
+843
+00:46:08,156 --> 00:46:12,226
+into their high school's
+document app,
+
+
+844
+00:46:12,626 --> 00:46:15,336
+and I want them to
+retrieve the test.
+
+
+845
+00:46:15,336 --> 00:46:17,696
+And then I'm going
+to proctor the exam
+
+
+846
+00:46:17,696 --> 00:46:18,726
+on behalf of the high school.
+
+
+847
+00:46:19,216 --> 00:46:21,616
+So in this example,
+when I do start tests,
+
+
+848
+00:46:21,616 --> 00:46:24,126
+I have this
+UIDocumentPickerViewController.
+
+
+849
+00:46:24,366 --> 00:46:27,136
+And I'm going to create one
+in initWithDocumentTypes
+
+
+850
+00:46:27,136 --> 00:46:27,916
+that I'm going to allow.
+
+
+851
+00:46:27,916 --> 00:46:31,216
+In this case I'm going to choose
+HTML, Tacs [phonetic] and RTF.
+
+
+852
+00:46:31,726 --> 00:46:33,076
+I'm going to set the mode.
+
+
+853
+00:46:33,076 --> 00:46:36,506
+In this case I'm going to use
+UIDocumentPickerModeImport.
+
+
+854
+00:46:36,856 --> 00:46:39,936
+Because I want to get the file
+and keep it in my app bundle.
+
+
+855
+00:46:40,466 --> 00:46:43,526
+The other thing I'm going to do
+is I'm going to set the delegate
+
+
+856
+00:46:43,656 --> 00:46:45,876
+on the
+UIDocumentPickerViewController
+
+
+857
+00:46:45,876 --> 00:46:46,616
+to myself.
+
+
+858
+00:46:46,786 --> 00:46:49,146
+And I'm going to present that
+ViewController to the user.
+
+
+859
+00:46:49,546 --> 00:46:52,056
+Now when they go into
+that document pick,
+
+
+860
+00:46:52,386 --> 00:46:54,086
+I can get two different
+callbacks.
+
+
+861
+00:46:54,156 --> 00:46:56,086
+If, for example, they
+fail to pick something,
+
+
+862
+00:46:56,086 --> 00:46:58,866
+they click done they don't find
+the test file that they want,
+
+
+863
+00:46:59,276 --> 00:47:01,536
+I'm going to get
+this documentPicker
+
+
+864
+00:47:01,536 --> 00:47:02,756
+WasCancelled callback.
+
+
+865
+00:47:03,236 --> 00:47:05,706
+And in this case I'm just
+going to send a notification
+
+
+866
+00:47:05,766 --> 00:47:08,826
+on the console that "Hey, I
+couldn't find the document."
+
+
+867
+00:47:09,826 --> 00:47:12,266
+If, for example, they
+actually did pick a document,
+
+
+868
+00:47:12,266 --> 00:47:15,756
+I will call this documentPicker
+didPickDocumentAtURL will get
+
+
+869
+00:47:15,786 --> 00:47:16,846
+called by the system.
+
+
+870
+00:47:17,216 --> 00:47:19,876
+What I'll do is I will double
+check that there's a natural URL
+
+
+871
+00:47:19,876 --> 00:47:22,636
+and then I'm going to
+open up the document.
+
+
+872
+00:47:22,846 --> 00:47:25,526
+And if I am successful in
+opening up the document,
+
+
+873
+00:47:25,926 --> 00:47:27,946
+I am going to request
+Single App Mode
+
+
+874
+00:47:28,166 --> 00:47:30,396
+and load up the test for them.
+
+
+875
+00:47:30,786 --> 00:47:34,236
+If we go over to the simulator,
+we have our example here.
+
+
+876
+00:47:34,236 --> 00:47:35,686
+So I have "Pencils Down."
+
+
+877
+00:47:36,126 --> 00:47:36,956
+I go into my app.
+
+
+878
+00:47:37,916 --> 00:47:39,956
+You notice I have this
+nice little testing view.
+
+
+879
+00:47:39,956 --> 00:47:42,986
+I'm going to click start test,
+because I want to start a test
+
+
+880
+00:47:43,106 --> 00:47:44,576
+with - that my high
+school has given me.
+
+
+881
+00:47:44,986 --> 00:47:45,986
+So I go into locations.
+
+
+882
+00:47:45,986 --> 00:47:48,346
+And you'll notice that
+I have this MHS Doc
+
+
+883
+00:47:48,346 --> 00:47:49,916
+which is a Document Provider.
+
+
+884
+00:47:50,326 --> 00:47:53,106
+I'm going to go into
+here, and you'll notice
+
+
+885
+00:47:53,106 --> 00:47:53,846
+that it has this view.
+
+
+886
+00:47:53,846 --> 00:47:56,906
+This view is actually
+coming from the MHS Docs App
+
+
+887
+00:47:56,906 --> 00:47:58,516
+that I have installed
+in the simulator.
+
+
+888
+00:47:58,766 --> 00:48:00,596
+This view is not
+created by your app.
+
+
+889
+00:48:00,886 --> 00:48:03,386
+And so in this case if I
+wanted to, I could log in.
+
+
+890
+00:48:03,786 --> 00:48:05,756
+MHS Docs would check
+my credentials;
+
+
+891
+00:48:05,756 --> 00:48:07,486
+make sure I'm actually
+a high school student.
+
+
+892
+00:48:07,906 --> 00:48:10,056
+So I'm just going to log in
+with some blank credentials,
+
+
+893
+00:48:10,106 --> 00:48:12,276
+and I'm going to select
+my programming test
+
+
+894
+00:48:12,276 --> 00:48:13,226
+that I need to do.
+
+
+895
+00:48:13,486 --> 00:48:15,906
+And so you'll notice
+that once I selected it,
+
+
+896
+00:48:16,166 --> 00:48:19,346
+my app got that document
+back, and I loaded it
+
+
+897
+00:48:19,346 --> 00:48:22,016
+up into my nice little web
+views, and started the test.
+
+
+898
+00:48:22,536 --> 00:48:24,786
+And so that's how
+Document Providers work.
+
+
+899
+00:48:25,896 --> 00:48:26,506
+>> All right.
+
+
+900
+00:48:27,516 --> 00:48:31,716
+[ Applause ]
+
+
+901
+00:48:32,216 --> 00:48:35,406
+Document Providers are very
+powerful, but they're very easy
+
+
+902
+00:48:35,406 --> 00:48:38,716
+to use as you can tell.
+
+
+903
+00:48:38,936 --> 00:48:42,666
+Next, let's talk about
+Autonomous Single App Mode.
+
+
+904
+00:48:42,796 --> 00:48:48,386
+We've mentioned before that
+MDM can put your device
+
+
+905
+00:48:48,386 --> 00:48:49,366
+into Single App Mode.
+
+
+906
+00:48:49,946 --> 00:48:53,206
+Which means that it
+will only run one app.
+
+
+907
+00:48:54,086 --> 00:48:57,786
+But in the case of this exam
+app, we want the app to be able
+
+
+908
+00:48:57,786 --> 00:48:59,836
+to put itself into
+Single App Mode.
+
+
+909
+00:49:00,586 --> 00:49:04,096
+So this mode of operation
+is called Autonomous Single
+
+
+910
+00:49:04,096 --> 00:49:04,546
+App Mode.
+
+
+911
+00:49:05,496 --> 00:49:09,686
+Your app has to be preauthorized
+by the MDM Server to do this.
+
+
+912
+00:49:10,166 --> 00:49:12,516
+This can only be done
+on a supervised device.
+
+
+913
+00:49:13,426 --> 00:49:17,396
+But once that's in place,
+your app can offer itself
+
+
+914
+00:49:17,396 --> 00:49:21,156
+and say "Hey, I want
+control of the iPad for now."
+
+
+915
+00:49:21,266 --> 00:49:23,686
+So use Autonomous
+Single App Mode
+
+
+916
+00:49:23,986 --> 00:49:25,816
+to lock the user into your app.
+
+
+917
+00:49:27,226 --> 00:49:31,276
+But please do it sparingly
+because the user will get stuck
+
+
+918
+00:49:31,276 --> 00:49:32,636
+in your app if you
+don't get them out.
+
+
+919
+00:49:33,496 --> 00:49:36,626
+Your app will crash and
+restart, crash and restart.
+
+
+920
+00:49:37,206 --> 00:49:38,876
+And the user will
+not get out of it.
+
+
+921
+00:49:38,876 --> 00:49:40,606
+So please be careful
+when you do this.
+
+
+922
+00:49:40,906 --> 00:49:42,836
+But it is a really
+powerful feature.
+
+
+923
+00:49:43,666 --> 00:49:48,746
+So Alex is going to
+demonstrate how you can do this.
+
+
+924
+00:49:49,286 --> 00:49:51,896
+>> So we're back to my
+"Pencils Down" application.
+
+
+925
+00:49:51,896 --> 00:49:54,946
+You're going to notice that here
+I have this requestSingleAppMode
+
+
+926
+00:49:55,216 --> 00:49:56,296
+method that I've created.
+
+
+927
+00:49:56,556 --> 00:50:00,286
+What I'm going to call into
+is UIAccessibilityRequest
+
+
+928
+00:50:00,346 --> 00:50:01,396
+GuidedAccessSession.
+
+
+929
+00:50:01,726 --> 00:50:04,456
+This is the method that will
+start up Single App Mode.
+
+
+930
+00:50:04,786 --> 00:50:06,486
+What I do is I feed it a Boolean
+
+
+931
+00:50:06,486 --> 00:50:08,676
+of whether I want Single
+App Mode on or off.
+
+
+932
+00:50:09,066 --> 00:50:11,706
+The other thing I'll feed
+into it is a completion block
+
+
+933
+00:50:11,706 --> 00:50:14,136
+which is void BOOL didSucceed.
+
+
+934
+00:50:14,326 --> 00:50:17,316
+This Boolean that I get
+will tell me if I was able
+
+
+935
+00:50:17,316 --> 00:50:20,266
+to successfully enter
+or exit Single App Mode,
+
+
+936
+00:50:20,506 --> 00:50:23,026
+depending on which mode I
+set in the other Boolean.
+
+
+937
+00:50:24,066 --> 00:50:26,726
+It's very important
+to balance your calls.
+
+
+938
+00:50:26,726 --> 00:50:29,866
+Because as we mentioned, you
+will lock the user into your app
+
+
+939
+00:50:30,506 --> 00:50:32,806
+if you don't call back into this
+
+
+940
+00:50:32,806 --> 00:50:34,596
+to turn off Single
+App Mode as well.
+
+
+941
+00:50:35,096 --> 00:50:38,276
+Another important point is to
+make sure that you register
+
+
+942
+00:50:38,276 --> 00:50:41,396
+for the
+UIAccessibilityGuidedAccess
+
+
+943
+00:50:41,396 --> 00:50:43,036
+StatusDidChangeNotification.
+
+
+944
+00:50:43,326 --> 00:50:44,826
+This notification will be sent
+
+
+945
+00:50:44,826 --> 00:50:46,786
+out when Single App
+Mode changes.
+
+
+946
+00:50:47,186 --> 00:50:50,866
+And so what I've done is I've
+created a little method called
+
+
+947
+00:50:50,966 --> 00:50:52,656
+GuidedAccess DidChange
+Notification.
+
+
+948
+00:50:52,996 --> 00:50:55,796
+When I receive that
+notification, I am just going
+
+
+949
+00:50:55,796 --> 00:50:59,506
+to update my Single
+App Mode - what is it?
+
+
+950
+00:50:59,546 --> 00:51:03,106
+State. So you'll notice here I
+have GuidedAccess StatusChanged.
+
+
+951
+00:51:03,246 --> 00:51:05,346
+And I said, you know,
+I am in Single App Mode
+
+
+952
+00:51:05,346 --> 00:51:06,756
+if I receive this notification.
+
+
+953
+00:51:06,886 --> 00:51:10,516
+And so we'll move
+over to our iPad.
+
+
+954
+00:51:10,516 --> 00:51:13,476
+On this iPad is a supervised
+device I've already set up.
+
+
+955
+00:51:13,476 --> 00:51:17,286
+I've also pushed down an MDM
+profile that defined that
+
+
+956
+00:51:17,286 --> 00:51:20,286
+"Pencils Down," giving
+its bundle ID is allowed
+
+
+957
+00:51:20,286 --> 00:51:22,906
+to start Single App
+Mode autonomously.
+
+
+958
+00:51:22,976 --> 00:51:24,826
+So if I go into "Pencils Down."
+
+
+959
+00:51:25,876 --> 00:51:27,416
+I'm going to start my tests.
+
+
+960
+00:51:27,486 --> 00:51:30,046
+I'm going to skip over the
+file provider section for now.
+
+
+961
+00:51:30,556 --> 00:51:32,616
+You'll notice that
+I am now in my test.
+
+
+962
+00:51:32,616 --> 00:51:33,936
+If I try and exit the app
+
+
+963
+00:51:34,406 --> 00:51:36,916
+by pressing the Home
+button, nothing happens.
+
+
+964
+00:51:37,286 --> 00:51:38,466
+I'm locked into here.
+
+
+965
+00:51:38,906 --> 00:51:42,006
+Let's say I don't know
+any of these questions
+
+
+966
+00:51:42,006 --> 00:51:43,376
+so I'm just going
+to submit the test.
+
+
+967
+00:51:43,886 --> 00:51:46,446
+And the test was
+successfully submitted.
+
+
+968
+00:51:46,446 --> 00:51:48,626
+And so you'll now notice if I
+press the Home button I'm able
+
+
+969
+00:51:48,796 --> 00:51:49,976
+to exit because I
+balanced the calls.
+
+
+970
+00:51:50,516 --> 00:51:55,566
+[ Applause ]
+
+
+971
+00:51:56,066 --> 00:51:56,736
+>> Thanks Alex.
+
+
+972
+00:51:57,386 --> 00:51:58,636
+Autonomous Single App Mode.
+
+
+973
+00:51:59,256 --> 00:52:00,216
+Very powerful.
+
+
+974
+00:52:00,916 --> 00:52:01,866
+Use it sparingly.
+
+
+975
+00:52:02,516 --> 00:52:06,876
+Make sure the user can
+get out of it eventually.
+
+
+976
+00:52:07,656 --> 00:52:09,506
+Okay. Summary of the third app.
+
+
+977
+00:52:10,256 --> 00:52:11,666
+Document Providers.
+
+
+978
+00:52:12,086 --> 00:52:13,156
+Super powerful.
+
+
+979
+00:52:13,156 --> 00:52:14,506
+New feature in iOS 8.
+
+
+980
+00:52:14,826 --> 00:52:19,376
+Use it to gain access to network
+resources in your enterprise.
+
+
+981
+00:52:20,206 --> 00:52:24,316
+Add an app equals
+at network access.
+
+
+982
+00:52:24,726 --> 00:52:25,906
+Autonomous Single App Mode.
+
+
+983
+00:52:26,516 --> 00:52:29,136
+Allows you to lock your own
+app into Single App Mode
+
+
+984
+00:52:29,286 --> 00:52:32,046
+so the user cannot go
+to a different app.
+
+
+985
+00:52:33,836 --> 00:52:36,266
+So what have we learned today?
+
+
+986
+00:52:36,266 --> 00:52:40,236
+We learned that we should
+assume that MDM will be used
+
+
+987
+00:52:40,236 --> 00:52:41,816
+to manage your apps and devices.
+
+
+988
+00:52:42,236 --> 00:52:44,806
+When you're writing apps
+for business and education,
+
+
+989
+00:52:45,196 --> 00:52:47,506
+assume MDM's going to
+be there and is going
+
+
+990
+00:52:47,506 --> 00:52:51,606
+to configure the
+environment for your app.
+
+
+991
+00:52:51,876 --> 00:52:53,196
+You can safely assume
+
+
+992
+00:52:53,196 --> 00:52:56,656
+that enterprise owned
+devices will be supervised.
+
+
+993
+00:52:57,016 --> 00:53:00,616
+So check out the list of
+features that are available
+
+
+994
+00:53:00,616 --> 00:53:03,806
+to you when the device is
+supervised and use them.
+
+
+995
+00:53:04,356 --> 00:53:07,106
+On the other hand,
+if you're writing
+
+
+996
+00:53:07,106 --> 00:53:10,596
+for Bring Your Own Device
+environment, you can assume
+
+
+997
+00:53:10,596 --> 00:53:13,736
+that the devices will
+not be supervised.
+
+
+998
+00:53:14,426 --> 00:53:17,406
+So if your app is going to
+work in both environments,
+
+
+999
+00:53:17,716 --> 00:53:20,786
+be aware of the features that
+are available in each case.
+
+
+1000
+00:53:21,206 --> 00:53:27,726
+And finally, rely on iOS
+to provide a great set
+
+
+1001
+00:53:27,726 --> 00:53:30,356
+of systemwide features that
+your apps can leverage.
+
+
+1002
+00:53:31,066 --> 00:53:32,056
+Single Sign-on.
+
+
+1003
+00:53:32,706 --> 00:53:35,046
+VPN. Global Proxy.
+
+
+1004
+00:53:35,966 --> 00:53:38,276
+Manage data flow
+between the managed apps
+
+
+1005
+00:53:38,576 --> 00:53:40,296
+and the unmanaged
+apps and accounts.
+
+
+1006
+00:53:41,296 --> 00:53:42,206
+Single App Mode.
+
+
+1007
+00:53:42,266 --> 00:53:45,276
+Both MDM driven and autonomous.
+
+
+1008
+00:53:46,636 --> 00:53:47,736
+Document Providers.
+
+
+1009
+00:53:49,226 --> 00:53:52,316
+iBeacon and Core
+Location for context.
+
+
+1010
+00:53:52,316 --> 00:53:57,376
+All right, finally I want
+to call your attention
+
+
+1011
+00:53:57,376 --> 00:54:00,006
+to a great new portal that
+we've just put online,
+
+
+1012
+00:54:00,206 --> 00:54:02,516
+developer.apple.com/enterprise,
+
+
+1013
+00:54:02,896 --> 00:54:04,466
+made for developers
+just like you.
+
+
+1014
+00:54:05,516 --> 00:54:11,586
+[ Applause ]
+
+
+1015
+00:54:12,086 --> 00:54:14,236
+For more information, our
+Evangelist is Paul Danbold.
+
+
+1016
+00:54:14,866 --> 00:54:16,796
+There's that enterprise
+portal again.
+
+
+1017
+00:54:16,946 --> 00:54:18,616
+You will find most of
+what you need in there.
+
+
+1018
+00:54:19,196 --> 00:54:22,156
+And of course the developer
+forums is a great resource.
+
+
+1019
+00:54:23,586 --> 00:54:24,946
+Some related sessions.
+
+
+1020
+00:54:24,946 --> 00:54:28,056
+This morning we had
+"Managing Apple Devices."
+
+
+1021
+00:54:29,016 --> 00:54:30,106
+Please check out that video.
+
+
+1022
+00:54:30,946 --> 00:54:33,076
+We have "Distributing
+Enterprise Apps" right here,
+
+
+1023
+00:54:33,806 --> 00:54:34,726
+following this session.
+
+
+1024
+00:54:35,736 --> 00:54:39,676
+And if you're interested in
+digging into Doc Providers -
+
+
+1025
+00:54:39,676 --> 00:54:43,236
+Document Providers - "Building
+a Document-Based App" is
+
+
+1026
+00:54:43,236 --> 00:54:44,166
+a must-attend.
+
+
+1027
+00:54:44,926 --> 00:54:45,926
+Thursday, 11:30.
+
+
+1028
+00:54:46,616 --> 00:54:47,616
+Thank you very much.
+
+
+1029
+00:54:48,516 --> 00:54:52,500
+[ Applause ]
+

@@ -1,0 +1,7163 @@
+1
+00:00:00,506 --> 00:00:11,596
+[ Silence ]
+
+
+2
+00:00:12,096 --> 00:00:14,276
+>> And please welcome
+your hosts,
+
+
+3
+00:00:14,346 --> 00:00:20,066
+Shaan Pruden and John Geleynse.
+
+
+4
+00:00:20,566 --> 00:00:24,996
+[ Applause ]
+
+
+5
+00:00:25,496 --> 00:00:28,126
+>> Good afternoon, and
+thank you for joining us.
+
+
+6
+00:00:29,846 --> 00:00:33,076
+>> Yeah, thanks for coming
+to spend time with us
+
+
+7
+00:00:33,076 --> 00:00:34,486
+at the end of this long day.
+
+
+8
+00:00:34,486 --> 00:00:39,266
+It's for many of you who
+were out there last night
+
+
+9
+00:00:39,266 --> 00:00:41,416
+when I was leaving the
+student event and putting
+
+
+10
+00:00:41,416 --> 00:00:44,876
+out your chairs, it got real
+cool on the sidewalk, I'm sure,
+
+
+11
+00:00:44,876 --> 00:00:47,776
+and you spent a whole long
+night waiting for this day,
+
+
+12
+00:00:47,776 --> 00:00:50,106
+and you've been here,
+and now you've joined us
+
+
+13
+00:00:50,166 --> 00:00:52,206
+to celebrate some
+excellent apps.
+
+
+14
+00:00:52,726 --> 00:00:54,796
+>> And we are here
+to award excellence
+
+
+15
+00:00:54,796 --> 00:00:57,386
+in innovation on
+both iOS and OS X.
+
+
+16
+00:00:58,176 --> 00:01:00,386
+And every year it gets
+more and more difficult
+
+
+17
+00:01:00,586 --> 00:01:02,346
+to pick our design winners
+
+
+18
+00:01:02,416 --> 00:01:04,906
+because there are
+so many great apps.
+
+
+19
+00:01:05,766 --> 00:01:10,186
+>> Yeah. So many of you, we
+shared a statistic this morning
+
+
+20
+00:01:10,186 --> 00:01:12,246
+that 70 percent of
+the audience here
+
+
+21
+00:01:12,246 --> 00:01:14,336
+at WWDC are new to the show.
+
+
+22
+00:01:14,336 --> 00:01:16,296
+And so many of you
+have never been
+
+
+23
+00:01:16,296 --> 00:01:17,726
+to this show, the design awards.
+
+
+24
+00:01:18,246 --> 00:01:19,846
+And so we thought
+we'd take a moment
+
+
+25
+00:01:19,846 --> 00:01:21,786
+to explain how we
+pick the winners.
+
+
+26
+00:01:22,646 --> 00:01:26,676
+We judge the winning apps
+using sort of three major --
+
+
+27
+00:01:27,056 --> 00:01:29,956
+we judge the winning apps
+in three major areas.
+
+
+28
+00:01:30,296 --> 00:01:32,396
+The first is around design.
+
+
+29
+00:01:32,986 --> 00:01:35,736
+So for design, we look
+at apps that are --
+
+
+30
+00:01:35,736 --> 00:01:38,226
+we're looking for apps
+that are easy to use.
+
+
+31
+00:01:38,226 --> 00:01:40,406
+Apps that are familiar.
+
+
+32
+00:01:40,666 --> 00:01:43,336
+That are consistent within
+themselves, but consistent
+
+
+33
+00:01:43,336 --> 00:01:44,786
+within the operating
+system as well.
+
+
+34
+00:01:45,286 --> 00:01:48,166
+They have a great game loop,
+so really excellent game play.
+
+
+35
+00:01:48,166 --> 00:01:49,846
+They're intuitive
+and understandable
+
+
+36
+00:01:49,846 --> 00:01:53,486
+and immediately useable by the
+people who they were built for.
+
+
+37
+00:01:54,896 --> 00:01:57,966
+And then we look at apps
+in the technology --
+
+
+38
+00:01:58,116 --> 00:01:59,906
+we judge apps around technology.
+
+
+39
+00:02:00,086 --> 00:02:04,196
+So we're evaluating the
+apps on their use of iOS
+
+
+40
+00:02:04,276 --> 00:02:07,386
+or OS X frameworks to
+do really cool stuff
+
+
+41
+00:02:07,386 --> 00:02:10,076
+or to add really
+valuable functionality.
+
+
+42
+00:02:10,946 --> 00:02:15,096
+Or we're also looking at whether
+the app launches quickly.
+
+
+43
+00:02:15,416 --> 00:02:16,496
+Is it responsive?
+
+
+44
+00:02:16,596 --> 00:02:20,496
+Does it take, you know, does it
+work the way you would expect it
+
+
+45
+00:02:20,496 --> 00:02:21,026
+to work?
+
+
+46
+00:02:21,026 --> 00:02:23,976
+And is there smooth scrolling?
+
+
+47
+00:02:24,076 --> 00:02:27,446
+We look at whether or not the
+app runs on the latest OSs,
+
+
+48
+00:02:28,106 --> 00:02:30,216
+whether it takes advantage
+of the newest hardware.
+
+
+49
+00:02:30,586 --> 00:02:34,136
+And takes advantage of
+things like M7 or A7 on iOS
+
+
+50
+00:02:34,206 --> 00:02:37,426
+or multicore or other
+technologies
+
+
+51
+00:02:37,426 --> 00:02:38,946
+and hardware technologies
+on OS X.
+
+
+52
+00:02:38,946 --> 00:02:43,506
+And then thirdly, we're
+looking at apps from the point
+
+
+53
+00:02:43,506 --> 00:02:44,576
+of view of innovation.
+
+
+54
+00:02:45,586 --> 00:02:48,976
+And innovation really is that
+spark of brilliance, right,
+
+
+55
+00:02:48,976 --> 00:02:53,796
+that uniqueness, the clever
+implementation of something
+
+
+56
+00:02:53,796 --> 00:02:56,556
+that you wouldn't have
+expected in the first place,
+
+
+57
+00:02:56,556 --> 00:02:59,456
+but then when you see it,
+you're blown away by it.
+
+
+58
+00:02:59,456 --> 00:03:02,946
+And there's just so many ways
+to talk about innovation,
+
+
+59
+00:03:02,946 --> 00:03:06,376
+but really it comes down to
+the implementation of something
+
+
+60
+00:03:06,376 --> 00:03:10,716
+that is just so fresh
+and so compelling
+
+
+61
+00:03:10,996 --> 00:03:12,286
+and done in a unique way.
+
+
+62
+00:03:12,576 --> 00:03:15,456
+So those three areas are
+how we judge the apps.
+
+
+63
+00:03:15,656 --> 00:03:18,876
+There's so many more things
+we look at, but in a nutshell,
+
+
+64
+00:03:18,876 --> 00:03:21,636
+they're grouped in
+those three areas.
+
+
+65
+00:03:22,486 --> 00:03:24,036
+>> So let's talk
+about the prizes
+
+
+66
+00:03:24,036 --> 00:03:26,676
+that our award winners
+will be given to take home.
+
+
+67
+00:03:27,056 --> 00:03:29,746
+It's pretty much one of every
+piece of hardware that we make.
+
+
+68
+00:03:30,296 --> 00:03:31,906
+A Mac Pro with a cinema display.
+
+
+69
+00:03:31,906 --> 00:03:33,246
+A 27-inch iMac.
+
+
+70
+00:03:33,636 --> 00:03:34,726
+An Apple TV.
+
+
+71
+00:03:35,146 --> 00:03:36,146
+A MacBook Air.
+
+
+72
+00:03:36,146 --> 00:03:37,166
+A MacBook Pro.
+
+
+73
+00:03:37,166 --> 00:03:39,586
+An iPad. And an iPod touch.
+
+
+74
+00:03:40,986 --> 00:03:41,716
+>> Not a bad haul.
+
+
+75
+00:03:42,516 --> 00:03:45,236
+[ Applause ]
+
+
+76
+00:03:45,736 --> 00:03:48,126
+>> And, last but not least,
+
+
+77
+00:03:48,126 --> 00:03:50,566
+probably the most coveted
+part of the award is:
+
+
+78
+00:03:51,036 --> 00:03:54,056
+>> Yeah, you get to take home
+one of these 88 trophy cubes
+
+
+79
+00:03:54,306 --> 00:03:59,206
+and these are, you know,
+statically they detect touch,
+
+
+80
+00:03:59,256 --> 00:04:02,406
+they're touch sensitive, so
+you touch them, they light up,
+
+
+81
+00:04:02,526 --> 00:04:05,966
+on the top just like the
+back of your MacBook Pro,
+
+
+82
+00:04:06,046 --> 00:04:07,506
+the Apple logo lights up.
+
+
+83
+00:04:07,816 --> 00:04:12,806
+And these are to die for,
+must-have Apple products.
+
+
+84
+00:04:13,306 --> 00:04:14,786
+And a few of you are
+going to get one tonight.
+
+
+85
+00:04:15,396 --> 00:04:18,055
+>> So without any further ado,
+let us get to the winners.
+
+
+86
+00:04:19,226 --> 00:04:21,995
+We're going to start with
+a few student winners.
+
+
+87
+00:04:22,416 --> 00:04:25,446
+Students have been part of
+WWDC for many, many years.
+
+
+88
+00:04:25,986 --> 00:04:28,916
+In fact, we have got a
+student scholarship program
+
+
+89
+00:04:28,916 --> 00:04:31,456
+where we awarded 200
+students this year.
+
+
+90
+00:04:31,716 --> 00:04:33,006
+>> Yeah, 200 students.
+
+
+91
+00:04:33,006 --> 00:04:34,156
+If you're in the house
+
+
+92
+00:04:34,856 --> 00:04:37,506
+and you're a student
+scholarship winner this week,
+
+
+93
+00:04:37,506 --> 00:04:38,626
+could you stand up for a moment?
+
+
+94
+00:04:38,626 --> 00:04:41,456
+We just want to award you
+with some recognition.
+
+
+95
+00:04:42,516 --> 00:04:52,566
+[ Applause ]
+
+
+96
+00:04:53,066 --> 00:04:53,246
+>> Thank you.
+
+
+97
+00:04:54,056 --> 00:04:54,626
+>> Thank you.
+
+
+98
+00:04:55,416 --> 00:04:57,166
+Please be seated.
+
+
+99
+00:04:57,196 --> 00:05:01,486
+You guys have done some great
+work to get here, and the apps
+
+
+100
+00:05:01,486 --> 00:05:05,466
+that we looked at were
+really impressive.
+
+
+101
+00:05:05,566 --> 00:05:08,456
+So you deserve to
+be here this week,
+
+
+102
+00:05:08,456 --> 00:05:09,766
+and we hope that
+you're going to continue
+
+
+103
+00:05:09,766 --> 00:05:12,156
+to produce some incredible apps
+
+
+104
+00:05:12,226 --> 00:05:14,846
+that put the more
+veteran developers who are
+
+
+105
+00:05:14,846 --> 00:05:18,016
+in the audience, you know, give
+them a run for the money, right?
+
+
+106
+00:05:18,136 --> 00:05:19,606
+>> Like these apps,
+who have been.
+
+
+107
+00:05:19,606 --> 00:05:20,536
+>> Like some of these apps.
+
+
+108
+00:05:20,536 --> 00:05:22,996
+These were student
+winners that we highlighted
+
+
+109
+00:05:22,996 --> 00:05:25,706
+in previous years, that
+we demoed here on stage.
+
+
+110
+00:05:25,926 --> 00:05:28,036
+Some of them maybe have
+changed names or what have you,
+
+
+111
+00:05:28,036 --> 00:05:30,606
+but they were great
+apps written by students
+
+
+112
+00:05:30,906 --> 00:05:31,916
+over the past three years.
+
+
+113
+00:05:32,966 --> 00:05:34,626
+>> So let's move on
+to our first winner.
+
+
+114
+00:05:35,236 --> 00:05:39,486
+Our first winner
+is "PanoPerfect"
+
+
+115
+00:05:40,516 --> 00:05:42,016
+by HalfPeeled and TwoBros.
+
+
+116
+00:05:42,716 --> 00:05:44,066
+Winners, please come
+up the stairs
+
+
+117
+00:05:44,066 --> 00:05:44,946
+on the front of the stage here.
+
+
+118
+00:05:45,516 --> 00:06:09,596
+[ Music and Applause ]
+
+
+119
+00:06:10,096 --> 00:06:10,936
+>> Congratulations.
+
+
+120
+00:06:13,296 --> 00:06:15,726
+"PanoPerfect" is a
+fun and simple way
+
+
+121
+00:06:15,726 --> 00:06:17,646
+to share beautiful
+panoramic photos.
+
+
+122
+00:06:18,296 --> 00:06:21,936
+These are two former high school
+students that attended WWDC
+
+
+123
+00:06:21,936 --> 00:06:25,616
+in 2012 on student
+scholarships and built this app
+
+
+124
+00:06:25,806 --> 00:06:28,986
+when they were inspired by our
+'06 announcement of panoramics.
+
+
+125
+00:06:29,026 --> 00:06:30,216
+And John's going to show us now.
+
+
+126
+00:06:31,086 --> 00:06:32,896
+>> Yeah, it's a great story,
+sitting in the keynote,
+
+
+127
+00:06:32,956 --> 00:06:35,946
+watching something, and then
+deciding to write an app.
+
+
+128
+00:06:36,116 --> 00:06:39,156
+I think that's a great story.
+
+
+129
+00:06:39,546 --> 00:06:43,206
+So "PanoPerfect" is
+this app that allows you
+
+
+130
+00:06:43,206 --> 00:06:49,166
+to view panoramic photos, and
+it's there's just a community
+
+
+131
+00:06:49,166 --> 00:06:50,976
+of people who love panoramas
+
+
+132
+00:06:51,086 --> 00:06:54,326
+that are submitting
+photos into the app.
+
+
+133
+00:06:54,496 --> 00:06:56,156
+So it's a familiar interface.
+
+
+134
+00:06:56,156 --> 00:06:57,686
+You're just scrolling
+through this,
+
+
+135
+00:06:57,686 --> 00:07:00,926
+these guys are using UI kit
+dynamics and image effects
+
+
+136
+00:07:00,926 --> 00:07:05,156
+for blurs on some of the UI,
+which we'll get to in a moment.
+
+
+137
+00:07:05,676 --> 00:07:07,436
+So this is the explorer,
+this is kind
+
+
+138
+00:07:07,436 --> 00:07:09,106
+of a curated set of panoramas.
+
+
+139
+00:07:09,486 --> 00:07:11,716
+If we go to nearby
+they're using core location
+
+
+140
+00:07:11,716 --> 00:07:12,696
+to determine where you are.
+
+
+141
+00:07:12,696 --> 00:07:17,236
+And we're going to go in here,
+hopefully, and load some panos.
+
+
+142
+00:07:18,736 --> 00:07:20,196
+Yeah, here's some
+panos that are nearby.
+
+
+143
+00:07:20,196 --> 00:07:22,926
+A couple of them posted by
+the creators of the app.
+
+
+144
+00:07:23,346 --> 00:07:25,406
+But let's just go into
+this one: We double tap,
+
+
+145
+00:07:25,896 --> 00:07:28,766
+you can favorite it, you can
+like it, you can comment on it.
+
+
+146
+00:07:28,766 --> 00:07:32,476
+And then you can double tap
+and just go in and gesture
+
+
+147
+00:07:32,476 --> 00:07:36,156
+through the UI to go and
+look at the entire panorama.
+
+
+148
+00:07:36,926 --> 00:07:41,856
+And they're doing low res
+thumbnails in the feed
+
+
+149
+00:07:41,856 --> 00:07:44,026
+that you see here,
+and then they're going
+
+
+150
+00:07:44,026 --> 00:07:47,296
+to the high res full
+panoramas when you go and look
+
+
+151
+00:07:47,296 --> 00:07:50,476
+into the individual image.
+
+
+152
+00:07:50,806 --> 00:07:54,696
+So super cool app that
+really was created
+
+
+153
+00:07:54,696 --> 00:07:59,546
+to address the experience that
+at the time there was no support
+
+
+154
+00:07:59,546 --> 00:08:02,106
+for panoramic images in a lot
+of social networking apps.
+
+
+155
+00:08:02,106 --> 00:08:04,556
+And so these guys stepped up
+and made something really cool.
+
+
+156
+00:08:04,686 --> 00:08:05,416
+Congratulations.
+
+
+157
+00:08:07,516 --> 00:08:16,776
+[ Applause ]
+
+
+158
+00:08:17,276 --> 00:08:21,596
+All right, the next
+app was created
+
+
+159
+00:08:21,596 --> 00:08:24,766
+because of the incredible
+movement
+
+
+160
+00:08:24,766 --> 00:08:27,346
+and growth of iPad in education.
+
+
+161
+00:08:27,986 --> 00:08:31,076
+And, you know, people
+are changing,
+
+
+162
+00:08:31,076 --> 00:08:33,846
+iPad has changed the way that
+we're learning in the classroom.
+
+
+163
+00:08:34,176 --> 00:08:36,596
+Changing the way that adults are
+learning and kids are learning.
+
+
+164
+00:08:37,015 --> 00:08:41,275
+And the mix of iPad in
+education is really taking off
+
+
+165
+00:08:41,275 --> 00:08:44,636
+because of the incredible
+new apps that are available,
+
+
+166
+00:08:44,636 --> 00:08:47,926
+interactive textbooks,
+really tremendous content.
+
+
+167
+00:08:48,466 --> 00:08:52,406
+And the creators of this
+next app saw all of that,
+
+
+168
+00:08:52,406 --> 00:08:55,536
+saw the growth that was going
+on and also saw a specific need
+
+
+169
+00:08:55,536 --> 00:08:58,106
+that they wanted to
+step up to and solve.
+
+
+170
+00:08:58,106 --> 00:09:00,186
+So our winner does that.
+
+
+171
+00:09:00,636 --> 00:09:03,236
+>> And they are "Addimal
+Adventure" by Teachley.
+
+
+172
+00:09:05,516 --> 00:09:24,696
+[ Music and Applause ]
+
+
+173
+00:09:25,196 --> 00:09:25,926
+>> Congratulations.
+
+
+174
+00:09:25,926 --> 00:09:27,076
+>> Thank you.
+
+
+175
+00:09:27,336 --> 00:09:27,796
+>> You're welcome.
+
+
+176
+00:09:32,066 --> 00:09:34,306
+"Addimal Adventure" is
+a fun and engaging app
+
+
+177
+00:09:34,516 --> 00:09:36,046
+that teaches single-digit
+addition.
+
+
+178
+00:09:36,046 --> 00:09:36,756
+Why don't you come over here?
+
+
+179
+00:09:36,756 --> 00:09:37,916
+There we go.
+
+
+180
+00:09:37,916 --> 00:09:40,746
+It was created by grad students
+from Columbia University
+
+
+181
+00:09:40,746 --> 00:09:42,456
+who were involved in
+research and cognition,
+
+
+182
+00:09:42,656 --> 00:09:44,646
+the way kids learn,
+and technology.
+
+
+183
+00:09:45,406 --> 00:09:48,576
+Sinister Professor Possum
+has destroyed El Sumado
+
+
+184
+00:09:48,896 --> 00:09:50,906
+and is building a robot
+that could ruin the world.
+
+
+185
+00:09:51,146 --> 00:09:52,866
+Join the animals
+to win back blocks
+
+
+186
+00:09:52,866 --> 00:09:54,946
+and rebuild the golden
+city to its former glory.
+
+
+187
+00:09:55,246 --> 00:09:55,546
+John.
+
+
+188
+00:09:56,266 --> 00:09:57,676
+>> Right, let's take
+a look at this app.
+
+
+189
+00:09:57,806 --> 00:10:01,456
+So I'm not going to get into
+sinister, you know, situation,
+
+
+190
+00:10:01,456 --> 00:10:04,836
+get into that whole game
+play, but these folks worked
+
+
+191
+00:10:04,836 --> 00:10:07,616
+with folks from Sesame Workshop
+
+
+192
+00:10:08,136 --> 00:10:10,496
+and created some really
+great artwork in the app.
+
+
+193
+00:10:10,896 --> 00:10:14,116
+The app is focused on teaching
+children basic addition,
+
+
+194
+00:10:14,556 --> 00:10:17,396
+and for a lot of kids
+this is a real struggle.
+
+
+195
+00:10:17,706 --> 00:10:20,966
+And so this developer set
+out to solve this problem.
+
+
+196
+00:10:20,966 --> 00:10:22,566
+So we're going to
+get into the app -
+
+
+197
+00:10:23,236 --> 00:10:24,986
+we'll skip over the narrative
+at the beginning here.
+
+
+198
+00:10:25,206 --> 00:10:28,056
+This is pretty straightforward
+stuff.
+
+
+199
+00:10:28,056 --> 00:10:29,706
+So most of you are going
+to get the answers right
+
+
+200
+00:10:29,816 --> 00:10:31,396
+without even using the app.
+
+
+201
+00:10:31,626 --> 00:10:36,816
+But the key here is that the app
+is teaching children addition,
+
+
+202
+00:10:37,176 --> 00:10:40,896
+and when you're first learning
+addition, you just, you know,
+
+
+203
+00:10:40,896 --> 00:10:43,196
+the first thing you do is you
+count on fingers, you just kind
+
+
+204
+00:10:43,196 --> 00:10:45,666
+of like 1, 2, 3, you count
+them off individually.
+
+
+205
+00:10:45,666 --> 00:10:47,556
+And so the app lets you do that.
+
+
+206
+00:10:47,556 --> 00:10:52,126
+And so I can just tap,
+you know, I got 5,
+
+
+207
+00:10:52,216 --> 00:10:53,556
+I got some feedback in the UI.
+
+
+208
+00:10:53,556 --> 00:10:57,686
+I move the slider bar with
+the tactile fields to 5,
+
+
+209
+00:10:57,766 --> 00:11:00,656
+and I get confirmation that it's
+the right answer, or I don't,
+
+
+210
+00:11:00,696 --> 00:11:01,526
+it was the wrong answer.
+
+
+211
+00:11:01,526 --> 00:11:05,766
+I can also do count on, which is
+a second kind of addition tool.
+
+
+212
+00:11:05,766 --> 00:11:07,946
+So once the child has
+learned to basically count
+
+
+213
+00:11:08,036 --> 00:11:10,186
+through the numbers,
+you know, the numbers,
+
+
+214
+00:11:10,626 --> 00:11:13,376
+then they can start moving on
+to different kinds of addition
+
+
+215
+00:11:13,376 --> 00:11:15,596
+where they're going
+to take a big number
+
+
+216
+00:11:15,596 --> 00:11:17,276
+and add some smaller
+numbers to it.
+
+
+217
+00:11:17,276 --> 00:11:20,666
+So in this case, the child's
+going to start to learn
+
+
+218
+00:11:20,666 --> 00:11:24,676
+that you can start with 3 and
+then do 1 more and get 4, right?
+
+
+219
+00:11:25,526 --> 00:11:26,816
+There we go.
+
+
+220
+00:11:26,816 --> 00:11:29,286
+And the app continues to
+go on and teach all kinds
+
+
+221
+00:11:29,286 --> 00:11:32,436
+of other tools and techniques
+for learning, addition.
+
+
+222
+00:11:32,656 --> 00:11:35,126
+Another one is doubles,
+where you basically start off
+
+
+223
+00:11:35,126 --> 00:11:38,936
+with say, you know, 3 and 4 is
+7, and so first it shows you
+
+
+224
+00:11:38,936 --> 00:11:42,656
+that you can cut the 4 into a
+3 and you get 3, 3, and 1 is 7.
+
+
+225
+00:11:43,146 --> 00:11:44,986
+The app is full of these
+kinds of techniques
+
+
+226
+00:11:44,986 --> 00:11:46,866
+that take advantage
+of iOS technologies
+
+
+227
+00:11:46,936 --> 00:11:50,676
+to do a really great experience
+with large text, great colors,
+
+
+228
+00:11:51,136 --> 00:11:53,936
+and an experience I think that
+is really going to resonate
+
+
+229
+00:11:53,936 --> 00:11:54,846
+with little, little kids.
+
+
+230
+00:11:55,336 --> 00:11:56,396
+So congratulations.
+
+
+231
+00:11:56,566 --> 00:11:57,236
+Extremely well done.
+
+
+232
+00:11:57,596 --> 00:11:58,176
+>> Thank you very much.
+
+
+233
+00:12:00,516 --> 00:12:10,366
+[ Music and Applause ]
+
+
+234
+00:12:10,866 --> 00:12:12,866
+>> Can we get the
+slides back, Chuck?
+
+
+235
+00:12:19,696 --> 00:12:20,396
+There we are.
+
+
+236
+00:12:23,146 --> 00:12:26,996
+>> All right, everybody loves
+a great game, and there are
+
+
+237
+00:12:27,206 --> 00:12:28,856
+so many games on the App Store.
+
+
+238
+00:12:29,346 --> 00:12:34,306
+And we had a lot of fun
+looking through the best games
+
+
+239
+00:12:34,426 --> 00:12:37,336
+and trying to figure out which
+one was the one that needed
+
+
+240
+00:12:37,336 --> 00:12:39,706
+to be a winner, and there are
+many that needed to be a winner.
+
+
+241
+00:12:39,706 --> 00:12:42,316
+Unfortunately we can only
+award so many tonight.
+
+
+242
+00:12:42,316 --> 00:12:45,856
+But one of the types of gaming
+- one of the types of games
+
+
+243
+00:12:45,856 --> 00:12:48,486
+on the App Store that is super
+popular that everybody loves,
+
+
+244
+00:12:48,686 --> 00:12:53,426
+that originated in the
+'80s, is the platformer.
+
+
+245
+00:12:53,426 --> 00:12:56,576
+And in the platformer
+game, it's a genre,
+
+
+246
+00:12:56,576 --> 00:12:59,106
+what you're doing is you're
+basically, you know, running
+
+
+247
+00:12:59,106 --> 00:13:04,156
+and jumping, moving and jumping,
+to avoid obstacles and get coins
+
+
+248
+00:13:04,156 --> 00:13:06,716
+and save people and get
+money, and you know,
+
+
+249
+00:13:06,716 --> 00:13:07,536
+whatever you're getting.
+
+
+250
+00:13:07,946 --> 00:13:11,236
+And the whole point is to not
+fall off the platform, right?
+
+
+251
+00:13:11,766 --> 00:13:14,766
+And the way you fall off the
+platform is you get, you know,
+
+
+252
+00:13:15,036 --> 00:13:17,226
+speared, or some
+obstacle hits you,
+
+
+253
+00:13:17,226 --> 00:13:18,876
+or something falls
+on you or whatever.
+
+
+254
+00:13:18,876 --> 00:13:21,726
+But the point is that the
+platform is a pretty loose term,
+
+
+255
+00:13:21,726 --> 00:13:23,246
+but you're moving
+across this thing,
+
+
+256
+00:13:23,246 --> 00:13:25,366
+and it just goes
+on and on and on.
+
+
+257
+00:13:25,956 --> 00:13:29,026
+And our next winner
+has created, I think,
+
+
+258
+00:13:29,026 --> 00:13:31,786
+one of the most incredible
+platformer games today
+
+
+259
+00:13:31,786 --> 00:13:32,586
+on the App Store.
+
+
+260
+00:13:32,586 --> 00:13:33,746
+They're a recent arrival.
+
+
+261
+00:13:34,246 --> 00:13:37,016
+And we're thrilled to award
+them with something today.
+
+
+262
+00:13:37,806 --> 00:13:40,866
+>> To "Leo's Fortune"
+from 1337 & Senri.
+
+
+263
+00:13:41,516 --> 00:14:05,276
+[ Music and Applause ]
+
+
+264
+00:14:05,776 --> 00:14:07,236
+>> Congratulations.
+
+
+265
+00:14:07,496 --> 00:14:08,066
+You're welcome.
+
+
+266
+00:14:09,096 --> 00:14:09,786
+Congratulations.
+
+
+267
+00:14:12,076 --> 00:14:14,426
+In "Leo's Fortune,"
+you hunt down a cunning
+
+
+268
+00:14:14,426 --> 00:14:15,746
+and mysterious gold thief.
+
+
+269
+00:14:15,746 --> 00:14:17,126
+Why don't you stand
+over here, folks?
+
+
+270
+00:14:17,876 --> 00:14:23,626
+Sorry, a cunning and
+mysterious gold thief traveling
+
+
+271
+00:14:23,666 --> 00:14:26,606
+through lush environments such
+as mossy forests, arid deserts,
+
+
+272
+00:14:26,876 --> 00:14:29,536
+snow-capped mountains
+and pirate cities
+
+
+273
+00:14:29,906 --> 00:14:32,016
+to uncover the truth
+behind Leo's stolen fortune.
+
+
+274
+00:14:33,206 --> 00:14:37,046
+>> Great. Well, I'm not going
+to go to the snow-capped peaks
+
+
+275
+00:14:37,236 --> 00:14:38,976
+or underwater or
+anything like that.
+
+
+276
+00:14:38,976 --> 00:14:41,006
+I'm going to show you
+the basic game play
+
+
+277
+00:14:41,426 --> 00:14:44,316
+so that you get a sense
+for what's going on.
+
+
+278
+00:14:44,316 --> 00:14:45,416
+If I can get the volume brought
+
+
+279
+00:14:45,416 --> 00:14:47,666
+down a little bit,
+that would be great.
+
+
+280
+00:14:48,326 --> 00:14:52,576
+All right, so "Leo's Fortune,"
+you've got about 25 levels
+
+
+281
+00:14:52,576 --> 00:14:54,166
+or more that you can just swipe
+
+
+282
+00:14:54,166 --> 00:14:56,816
+through in a very
+familiar user interface.
+
+
+283
+00:14:57,176 --> 00:14:59,476
+I'm going to start on level
+1 because I want to point
+
+
+284
+00:14:59,476 --> 00:15:02,936
+out something that is such a
+great example of their attention
+
+
+285
+00:15:02,936 --> 00:15:04,216
+to detail and the way
+
+
+286
+00:15:04,216 --> 00:15:05,756
+that they've done
+things in this game.
+
+
+287
+00:15:06,186 --> 00:15:07,446
+So I'm going to start
+the tutorial.
+
+
+288
+00:15:07,446 --> 00:15:09,756
+And this is really sort
+
+
+289
+00:15:09,756 --> 00:15:11,546
+of the onboarding
+experience for the app.
+
+
+290
+00:15:11,546 --> 00:15:14,016
+And there are so many apps
+nowadays that are needing
+
+
+291
+00:15:14,016 --> 00:15:17,936
+to do this, they want to get
+you up, you know, into the app,
+
+
+292
+00:15:18,526 --> 00:15:21,126
+and help you understand
+how to use the app.
+
+
+293
+00:15:21,316 --> 00:15:23,466
+And, you know, you don't
+need something that's very,
+
+
+294
+00:15:23,466 --> 00:15:25,286
+you know, that's super intense.
+
+
+295
+00:15:25,476 --> 00:15:28,776
+But to do this well
+takes a lot of design
+
+
+296
+00:15:28,776 --> 00:15:29,996
+and I think a lot of thinking.
+
+
+297
+00:15:29,996 --> 00:15:31,086
+And so I want to show you.
+
+
+298
+00:15:31,086 --> 00:15:32,666
+So the game starts
+off like this,
+
+
+299
+00:15:33,116 --> 00:15:35,616
+and the first thing you're told
+is where to place your thumbs.
+
+
+300
+00:15:35,886 --> 00:15:38,436
+And in order to do that,
+you're immediately learning how
+
+
+301
+00:15:38,496 --> 00:15:39,996
+to hold the iPad
+to play the game.
+
+
+302
+00:15:39,996 --> 00:15:42,436
+So I'm going to put my left
+thumb here, my right thumb here,
+
+
+303
+00:15:42,786 --> 00:15:45,516
+and now the game starts to work,
+and it's got these coach marks.
+
+
+304
+00:15:46,096 --> 00:15:48,096
+So I'm going to move the left
+thumb, and we're going to start
+
+
+305
+00:15:48,096 --> 00:15:50,656
+to collect coins with Leo here.
+
+
+306
+00:15:51,616 --> 00:15:53,626
+Okay, so here's the
+platformer experience, right?
+
+
+307
+00:15:53,626 --> 00:15:57,816
+You're driving along on this
+so-called platform, and boom,
+
+
+308
+00:15:57,816 --> 00:15:59,306
+I'm stuck, I can't
+get over this thing.
+
+
+309
+00:15:59,416 --> 00:16:02,436
+But this onboarding experience
+has these ghosting images,
+
+
+310
+00:16:02,626 --> 00:16:05,066
+and they tell me that if
+I move my right thumb up,
+
+
+311
+00:16:05,246 --> 00:16:08,836
+I can inflate Leo and
+move him up and down.
+
+
+312
+00:16:08,886 --> 00:16:12,316
+And now I'm dealing with
+an obstacle in this case.
+
+
+313
+00:16:12,316 --> 00:16:17,286
+Let's keep going.
+
+
+314
+00:16:17,366 --> 00:16:19,886
+I'm down there, no
+problem, I can go back up.
+
+
+315
+00:16:19,886 --> 00:16:21,736
+I can inflate, nope, sorry.
+
+
+316
+00:16:23,206 --> 00:16:23,916
+Oh come on.
+
+
+317
+00:16:24,286 --> 00:16:26,826
+This is the problem
+with these demos, right?
+
+
+318
+00:16:27,506 --> 00:16:31,416
+Okay, here we go, we land
+on there, boom, ta-da,
+
+
+319
+00:16:31,516 --> 00:16:32,706
+here we are, we're
+driving around.
+
+
+320
+00:16:32,706 --> 00:16:35,736
+And notice just the
+effects in the background.
+
+
+321
+00:16:35,736 --> 00:16:39,556
+There's this perspective going
+on, you've got petals flying
+
+
+322
+00:16:39,556 --> 00:16:42,696
+through the air, on other
+levels there's rain falling,
+
+
+323
+00:16:42,696 --> 00:16:46,156
+there's all kinds of stuff
+happening in the distance.
+
+
+324
+00:16:46,156 --> 00:16:49,446
+And here, you're dealing
+with this obstacle,
+
+
+325
+00:16:49,446 --> 00:16:51,706
+and the game is full of
+these kinds of obstacles,
+
+
+326
+00:16:51,756 --> 00:16:54,636
+where Leo has to solve - he
+has to do something in one spot
+
+
+327
+00:16:54,996 --> 00:16:57,426
+to open a door or
+some kind of a bridge.
+
+
+328
+00:16:57,676 --> 00:16:59,726
+In this case, if I landed
+on top, I would die.
+
+
+329
+00:17:00,086 --> 00:17:02,346
+And so I'm just going to
+inflate him, flip this around,
+
+
+330
+00:17:02,686 --> 00:17:05,276
+and then move along
+and keep jumping.
+
+
+331
+00:17:05,276 --> 00:17:08,576
+And this is just a real
+quick view of what's going
+
+
+332
+00:17:08,576 --> 00:17:10,586
+on in this game, but we
+just thought they did
+
+
+333
+00:17:10,586 --> 00:17:13,465
+such a good job, for example,
+with this kind of an S curve,
+
+
+334
+00:17:13,915 --> 00:17:16,866
+which is really hard to
+get, you know, to do well.
+
+
+335
+00:17:17,386 --> 00:17:19,306
+You're going down through mines.
+
+
+336
+00:17:19,906 --> 00:17:23,506
+You're in rainstorms,
+all kinds of stuff.
+
+
+337
+00:17:23,695 --> 00:17:26,205
+And then here again, this
+onboarding experience,
+
+
+338
+00:17:26,236 --> 00:17:27,606
+but I'm actually playing it.
+
+
+339
+00:17:27,786 --> 00:17:32,036
+And you see that I'm supposed
+to jump this guy, right, boom.
+
+
+340
+00:17:32,716 --> 00:17:34,386
+And then now I'm moving along.
+
+
+341
+00:17:34,386 --> 00:17:35,626
+And this is just
+the first level.
+
+
+342
+00:17:36,026 --> 00:17:38,956
+But the game goes on, and
+we just we love this game.
+
+
+343
+00:17:39,376 --> 00:17:42,026
+For that attention to detail
+across all their levels,
+
+
+344
+00:17:42,446 --> 00:17:45,586
+for the great integration
+with touch, for the leveraging
+
+
+345
+00:17:45,586 --> 00:17:48,996
+of iOS technologies and
+graphics, for the sound system,
+
+
+346
+00:17:49,266 --> 00:17:52,796
+there's so much that these guys
+did right, and we just want
+
+
+347
+00:17:52,796 --> 00:17:53,916
+to say congratulations.
+
+
+348
+00:17:54,006 --> 00:17:54,896
+This is an awesome app.
+
+
+349
+00:17:55,516 --> 00:18:09,216
+[ Music and Applause ]
+
+
+350
+00:18:09,716 --> 00:18:13,826
+>> All right, we all live busy
+lives, and one of the things
+
+
+351
+00:18:13,866 --> 00:18:16,156
+that I've learned over time and
+other people have learned is
+
+
+352
+00:18:16,156 --> 00:18:19,406
+that if you can capture some
+of the things that are going on
+
+
+353
+00:18:19,406 --> 00:18:24,756
+and take a moment to record
+an idea, a thought, a memory -
+
+
+354
+00:18:25,346 --> 00:18:27,996
+or something happens and it
+triggers a thought and you want
+
+
+355
+00:18:27,996 --> 00:18:32,836
+to capture it - that that
+exercise of writing things
+
+
+356
+00:18:32,836 --> 00:18:36,426
+down for a moment, to just
+capturing these little bits
+
+
+357
+00:18:37,066 --> 00:18:39,006
+of information throughout
+the day,
+
+
+358
+00:18:39,096 --> 00:18:40,796
+is actually a great
+way to relieve stress.
+
+
+359
+00:18:40,796 --> 00:18:42,826
+It's actually a great
+way to build memories
+
+
+360
+00:18:42,826 --> 00:18:45,296
+and kind of catalog your day.
+
+
+361
+00:18:45,296 --> 00:18:48,086
+It can also be an
+idea incubator.
+
+
+362
+00:18:48,526 --> 00:18:52,006
+And so this is something,
+it's a good discipline
+
+
+363
+00:18:52,006 --> 00:18:53,006
+for us all to get into.
+
+
+364
+00:18:53,606 --> 00:18:55,936
+And this developer, the
+developer of the next app,
+
+
+365
+00:18:55,936 --> 00:18:58,646
+or the next winner, totally
+understands this idea.
+
+
+366
+00:18:58,646 --> 00:19:02,916
+>> And they are Bloom
+Built, who's made "Day One."
+
+
+367
+00:19:03,516 --> 00:19:39,436
+[ Music and Applause ]
+
+
+368
+00:19:39,936 --> 00:19:40,206
+>> Come this way.
+
+
+369
+00:19:40,206 --> 00:19:40,556
+Come this way.
+
+
+370
+00:19:40,556 --> 00:19:41,266
+Congratulations.
+
+
+371
+00:19:41,496 --> 00:19:42,676
+Here you go.
+
+
+372
+00:19:43,836 --> 00:19:44,266
+Congratulations.
+
+
+373
+00:19:44,266 --> 00:19:46,546
+"Day One" lets you record
+your life as you live it.
+
+
+374
+00:19:46,926 --> 00:19:49,176
+From everyday moments to
+once in a lifetime events,
+
+
+375
+00:19:49,176 --> 00:19:50,466
+the elegant interface of
+
+
+376
+00:19:50,466 --> 00:19:53,146
+"Day One" makes journaling
+your life a simple pleasure.
+
+
+377
+00:19:54,886 --> 00:19:57,726
+>> Right, so this is a Mac app,
+
+
+378
+00:19:57,896 --> 00:20:00,936
+it's also available
+on iOS as well.
+
+
+379
+00:20:01,116 --> 00:20:04,806
+But we thought we'd award it
+for the Mac and show it off
+
+
+380
+00:20:04,806 --> 00:20:08,226
+on the Mac, because so many of
+us are so busy as developers,
+
+
+381
+00:20:08,726 --> 00:20:10,586
+on our Macs every day
+- we're writing code,
+
+
+382
+00:20:10,586 --> 00:20:14,106
+we're spending time in Xcode
+or we're doing, you know,
+
+
+383
+00:20:14,106 --> 00:20:16,176
+using various tools, you
+could be in a spreadsheet,
+
+
+384
+00:20:16,176 --> 00:20:18,366
+you could be writing
+some sort of a document.
+
+
+385
+00:20:18,886 --> 00:20:21,106
+But along the way,
+something might happen -
+
+
+386
+00:20:21,106 --> 00:20:22,796
+you might get a phone
+call, a thought pops
+
+
+387
+00:20:22,796 --> 00:20:24,556
+into mind, an email arrives.
+
+
+388
+00:20:24,556 --> 00:20:27,176
+And you might want
+to record an idea
+
+
+389
+00:20:27,176 --> 00:20:28,476
+or put something quickly down,
+
+
+390
+00:20:28,476 --> 00:20:30,016
+which is a big part
+of journaling.
+
+
+391
+00:20:30,376 --> 00:20:31,976
+Not sitting down to
+write something huge -
+
+
+392
+00:20:31,976 --> 00:20:33,546
+it's just capturing
+these little nuggets.
+
+
+393
+00:20:34,076 --> 00:20:37,866
+And so "Day One" just
+builds a little menu extra
+
+
+394
+00:20:37,866 --> 00:20:40,346
+that you can type in and
+put some sort of entry in,
+
+
+395
+00:20:40,346 --> 00:20:43,516
+and that'll go straight into the
+blog and then into the journal,
+
+
+396
+00:20:43,516 --> 00:20:45,206
+and then you're back
+to your work.
+
+
+397
+00:20:45,746 --> 00:20:50,816
+Or we could just go up here,
+and we'll just launch the app,
+
+
+398
+00:20:50,816 --> 00:20:52,886
+and we can inside of the app,
+
+
+399
+00:20:52,886 --> 00:20:54,776
+immediately create
+a journal entry.
+
+
+400
+00:20:54,816 --> 00:21:01,006
+So I can say, you know, here I
+am at the Apple Design Awards,
+
+
+401
+00:21:01,766 --> 00:21:12,236
+sorry, the trophies are great,
+want one of these soon, right?
+
+
+402
+00:21:12,236 --> 00:21:13,786
+There's my entry.
+
+
+403
+00:21:13,846 --> 00:21:16,406
+I can take - turns out I've
+actually taken a trophy picture
+
+
+404
+00:21:16,406 --> 00:21:20,006
+earlier, so I can take this
+picture, drop it into here,
+
+
+405
+00:21:20,006 --> 00:21:22,516
+and "Day One"'s going to either
+take the date from the picture
+
+
+406
+00:21:22,516 --> 00:21:24,126
+or just say leave
+it unchanged based
+
+
+407
+00:21:24,126 --> 00:21:25,876
+on the date I'm answering
+this journal entry.
+
+
+408
+00:21:26,356 --> 00:21:29,556
+And then I say I'm done, I
+can tag it with various tags
+
+
+409
+00:21:29,556 --> 00:21:31,956
+that are in the system,
+I can add a location,
+
+
+410
+00:21:31,956 --> 00:21:33,356
+they've got maps integration,
+
+
+411
+00:21:33,616 --> 00:21:35,366
+so I could say use current
+location if I'd like.
+
+
+412
+00:21:36,016 --> 00:21:39,266
+And I'm done, and there's the
+entry in there, and I can look
+
+
+413
+00:21:39,266 --> 00:21:44,156
+at my journal over time
+using the overall view
+
+
+414
+00:21:44,156 --> 00:21:45,296
+of all my journal entries.
+
+
+415
+00:21:45,296 --> 00:21:48,936
+And so here's just a sample
+journal that we've got
+
+
+416
+00:21:49,056 --> 00:21:52,396
+in the app here where you can
+take a look at all these entries
+
+
+417
+00:21:52,766 --> 00:21:56,796
+and go back in time and
+see what's going on.
+
+
+418
+00:21:56,796 --> 00:21:58,336
+And really that is
+the whole point
+
+
+419
+00:21:58,336 --> 00:22:02,226
+of journaling is capturing these
+moments in time as they occur,
+
+
+420
+00:22:02,226 --> 00:22:03,326
+as they pop into your mind.
+
+
+421
+00:22:03,736 --> 00:22:06,966
+And we felt that "Day One"
+did such a great job at this.
+
+
+422
+00:22:07,406 --> 00:22:10,666
+As well, they've got built-in
+notifications so you can set
+
+
+423
+00:22:10,666 --> 00:22:13,806
+up reminders to put
+things into your journal.
+
+
+424
+00:22:14,026 --> 00:22:16,246
+They've got inspirational
+quotes that will pop
+
+
+425
+00:22:16,246 --> 00:22:18,176
+up when you're going to
+create a journal entry
+
+
+426
+00:22:18,386 --> 00:22:20,246
+that can be inspiring
+and get you writing.
+
+
+427
+00:22:20,636 --> 00:22:23,566
+And really that's the essence
+of a great tool, right,
+
+
+428
+00:22:23,566 --> 00:22:27,846
+is that it gets the job done,
+it doesn't get in the way,
+
+
+429
+00:22:27,846 --> 00:22:29,726
+and it's perfectly balanced.
+
+
+430
+00:22:29,726 --> 00:22:32,396
+And we selected this tool
+for being super well designed
+
+
+431
+00:22:32,396 --> 00:22:35,796
+on OS X, and in being
+exactly what it needs
+
+
+432
+00:22:35,796 --> 00:22:37,516
+to be and nothing more.
+
+
+433
+00:22:37,856 --> 00:22:39,566
+So congratulations
+on a job well done.
+
+
+434
+00:22:41,516 --> 00:22:54,006
+[ Music and Applause ]
+
+
+435
+00:22:54,506 --> 00:23:00,346
+>> All right, our next winner
+is just such a great example
+
+
+436
+00:23:01,026 --> 00:23:03,616
+of the principle of
+minimalist design.
+
+
+437
+00:23:03,796 --> 00:23:07,126
+You know, design is all
+about fit and finish.
+
+
+438
+00:23:07,726 --> 00:23:10,136
+It's all about the marriage
+between form and function.
+
+
+439
+00:23:10,996 --> 00:23:14,326
+It's about, you know,
+communicating clearly.
+
+
+440
+00:23:14,906 --> 00:23:19,956
+And iOS really helps
+you to do this, right,
+
+
+441
+00:23:19,956 --> 00:23:26,096
+by helping you focus on
+content, getting out of the way,
+
+
+442
+00:23:26,096 --> 00:23:30,526
+giving you a system that
+allows you to draw, you know,
+
+
+443
+00:23:30,526 --> 00:23:34,496
+the UI from iOS 7 that
+is minimalist in nature.
+
+
+444
+00:23:34,496 --> 00:23:40,066
+And, you know, it takes a lot
+of attention and a lot of focus
+
+
+445
+00:23:40,546 --> 00:23:43,366
+and refinements to actually
+end up with something that is
+
+
+446
+00:23:43,786 --> 00:23:45,846
+in its purest form,
+that is something
+
+
+447
+00:23:45,846 --> 00:23:50,196
+that is exactly what you wanted
+it to be and nothing more,
+
+
+448
+00:23:50,196 --> 00:23:51,306
+there's no extra adornments.
+
+
+449
+00:23:51,566 --> 00:23:53,996
+And our next winner did
+that with their game.
+
+
+450
+00:23:54,766 --> 00:23:58,146
+>> And they are "Blek"
+by kunabi brother.
+
+
+451
+00:23:59,516 --> 00:24:14,226
+[ Music and Applause ]
+
+
+452
+00:24:14,726 --> 00:24:15,366
+>> Congratulations.
+
+
+453
+00:24:19,256 --> 00:24:21,526
+The goal of this game is
+to shape a line through all
+
+
+454
+00:24:21,526 --> 00:24:24,576
+of the colored circles while
+avoiding black holes along
+
+
+455
+00:24:24,576 --> 00:24:24,986
+its route.
+
+
+456
+00:24:25,606 --> 00:24:28,446
+From delightfully simple to
+exceptionally deep and complex,
+
+
+457
+00:24:28,626 --> 00:24:29,956
+it's a stroke of genius.
+
+
+458
+00:24:30,366 --> 00:24:30,696
+John.
+
+
+459
+00:24:31,286 --> 00:24:33,676
+>> Yeah, this app is awesome.
+
+
+460
+00:24:33,866 --> 00:24:36,686
+And if you've not
+played this game,
+
+
+461
+00:24:36,686 --> 00:24:39,256
+you need to see it
+from the start.
+
+
+462
+00:24:39,636 --> 00:24:42,686
+So the basic point of the game
+is, you know, as Shaan said,
+
+
+463
+00:24:42,686 --> 00:24:46,656
+you gesture and you draw
+this little line to knock
+
+
+464
+00:24:46,726 --> 00:24:49,586
+out the colored dots, and
+when you get to a level
+
+
+465
+00:24:49,586 --> 00:24:51,636
+where there are black dots,
+you want to avoid those.
+
+
+466
+00:24:52,016 --> 00:24:53,236
+But, you know, at
+the first level,
+
+
+467
+00:24:53,236 --> 00:24:56,886
+you're just starting off
+here with this gesture.
+
+
+468
+00:24:57,586 --> 00:25:00,896
+And you know, notice
+as I'm playing here,
+
+
+469
+00:25:00,896 --> 00:25:03,966
+that there is nothing
+extra onscreen,
+
+
+470
+00:25:03,966 --> 00:25:06,746
+it's just the dots,
+it's just my gesture.
+
+
+471
+00:25:07,156 --> 00:25:10,586
+And the gesture, the rendering
+of the gesture is almost
+
+
+472
+00:25:10,586 --> 00:25:15,056
+like calligraphy, I mean,
+it has a flair to it,
+
+
+473
+00:25:15,056 --> 00:25:19,746
+it's representative of the speed
+of my stroke, the exact timing,
+
+
+474
+00:25:20,126 --> 00:25:22,336
+the length and everything.
+
+
+475
+00:25:22,336 --> 00:25:23,496
+So let me get rid
+of these three.
+
+
+476
+00:25:24,326 --> 00:25:25,456
+So those are easy levels.
+
+
+477
+00:25:25,456 --> 00:25:28,826
+Let me jump up to level 8 here
+
+
+478
+00:25:28,826 --> 00:25:30,076
+for a moment, which
+is kind of fun.
+
+
+479
+00:25:30,826 --> 00:25:33,016
+So here I've got an
+instance where I've got
+
+
+480
+00:25:33,016 --> 00:25:35,306
+to avoid the black dots
+but get the white ones -
+
+
+481
+00:25:35,386 --> 00:25:36,486
+or get the colored ones.
+
+
+482
+00:25:36,486 --> 00:25:39,466
+And to do that I've got to
+figure out what gesture to do
+
+
+483
+00:25:39,466 --> 00:25:41,786
+that will repeat
+across the screen
+
+
+484
+00:25:41,786 --> 00:25:43,386
+to remove these colored dots.
+
+
+485
+00:25:43,746 --> 00:25:46,236
+Now, the other thing that's
+super cool about this app is
+
+
+486
+00:25:46,236 --> 00:25:49,776
+that it leverages audio
+for great feedback.
+
+
+487
+00:25:50,086 --> 00:25:56,426
+And so there's some very
+fun, lightweight, you know,
+
+
+488
+00:25:56,426 --> 00:26:02,776
+sounds that come through
+as you screw up, basically.
+
+
+489
+00:26:05,246 --> 00:26:06,696
+You know, so here
+I'm messing up.
+
+
+490
+00:26:06,696 --> 00:26:07,986
+Let me try to do it right.
+
+
+491
+00:26:08,886 --> 00:26:14,486
+Not quite, not quite, not quite.
+
+
+492
+00:26:15,046 --> 00:26:18,186
+And the thing about this
+game is it's like that.
+
+
+493
+00:26:18,186 --> 00:26:20,526
+You're like "Oh blast," and
+the sound just gives you this
+
+
+494
+00:26:20,636 --> 00:26:21,866
+great feedback.
+
+
+495
+00:26:21,866 --> 00:26:24,216
+One last try.
+
+
+496
+00:26:24,216 --> 00:26:29,536
+No, come on, John.
+
+
+497
+00:26:31,116 --> 00:26:33,276
+Okay, I give up.
+
+
+498
+00:26:33,276 --> 00:26:36,386
+That's the problem
+with these demos.
+
+
+499
+00:26:36,736 --> 00:26:39,086
+Yeah, we love this game
+for the minimalist design,
+
+
+500
+00:26:39,136 --> 00:26:43,106
+the great integration with the
+touch, you know, system of iOS,
+
+
+501
+00:26:43,106 --> 00:26:47,956
+just that expression of
+just a great engagement,
+
+
+502
+00:26:47,956 --> 00:26:51,736
+this great expression of the
+game in a very simplistic way
+
+
+503
+00:26:51,906 --> 00:26:53,556
+with no extra adornment.
+
+
+504
+00:26:53,556 --> 00:26:56,276
+And so congratulations
+on an excellent job.
+
+
+505
+00:26:59,516 --> 00:27:07,846
+[ Music and Applause ]
+
+
+506
+00:27:08,346 --> 00:27:09,826
+>> Nice play there.
+
+
+507
+00:27:10,286 --> 00:27:16,226
+>> Right. So you know,
+we're all, you know,
+
+
+508
+00:27:16,226 --> 00:27:18,296
+at the conference this
+week, and we're crazy busy.
+
+
+509
+00:27:18,296 --> 00:27:21,136
+You've got 100 and what is
+it, 10 sessions to attend,
+
+
+510
+00:27:21,136 --> 00:27:24,696
+and so this is just a great
+example of how busy we are.
+
+
+511
+00:27:24,696 --> 00:27:27,846
+If we're not at a conference,
+you guys are writing code,
+
+
+512
+00:27:28,246 --> 00:27:30,606
+you're going to school,
+you're doing life.
+
+
+513
+00:27:30,606 --> 00:27:34,806
+And if you're anything like me,
+you know that it's hard to keep
+
+
+514
+00:27:34,806 --> 00:27:37,146
+on top of all of the
+things that are going
+
+
+515
+00:27:37,146 --> 00:27:38,276
+on in the world around us.
+
+
+516
+00:27:38,676 --> 00:27:43,506
+Whether it's in our industry,
+whether it's not in our industry
+
+
+517
+00:27:43,506 --> 00:27:45,506
+but something that interests
+us, whether it's sports
+
+
+518
+00:27:45,506 --> 00:27:46,836
+or world news or what have you.
+
+
+519
+00:27:47,566 --> 00:27:51,016
+And so, you know, it's not
+for a lack of news sources,
+
+
+520
+00:27:51,016 --> 00:27:53,256
+it's just that there's so
+much news coming at us.
+
+
+521
+00:27:54,616 --> 00:27:59,136
+And it's often hard to pick
+a quality source of news.
+
+
+522
+00:27:59,406 --> 00:28:03,886
+It's hard to find one
+that is, you know, curated
+
+
+523
+00:28:03,886 --> 00:28:06,666
+and that's going to give you
+what you are really interested
+
+
+524
+00:28:06,666 --> 00:28:09,246
+in, in the length that
+you want it to be in.
+
+
+525
+00:28:09,926 --> 00:28:11,696
+And more importantly,
+it's even hard
+
+
+526
+00:28:11,696 --> 00:28:13,536
+to find time to read it all.
+
+
+527
+00:28:14,316 --> 00:28:18,606
+And the developer of our next
+app the next app the winner has
+
+
+528
+00:28:18,796 --> 00:28:22,696
+set out to solve this dilemma
+of getting information to people
+
+
+529
+00:28:22,696 --> 00:28:25,946
+in a timely manner in a way
+that they can consume it easily.
+
+
+530
+00:28:27,286 --> 00:28:28,726
+>> And our winner is "Yahoo!
+
+
+531
+00:28:28,726 --> 00:28:30,166
+News Digest" by Yahoo!
+
+
+532
+00:28:31,516 --> 00:29:00,186
+[ Music and Applause ]
+
+
+533
+00:29:00,686 --> 00:29:03,346
+>> Congratulations,
+sir, there you go.
+
+
+534
+00:29:03,616 --> 00:29:04,766
+Adam. Congratulations.
+
+
+535
+00:29:07,886 --> 00:29:11,066
+This app gets you in
+the know in no time.
+
+
+536
+00:29:11,976 --> 00:29:14,986
+It delivers definitive
+summaries of all the important
+
+
+537
+00:29:14,986 --> 00:29:17,766
+and need-to-know news of the
+day in two beautiful digests.
+
+
+538
+00:29:18,806 --> 00:29:21,226
+Stories are both
+hand curated as well
+
+
+539
+00:29:21,226 --> 00:29:23,676
+as algorithmically generated
+to ensure high quality
+
+
+540
+00:29:23,916 --> 00:29:26,076
+and keep you informed of all
+the key headlines of the day.
+
+
+541
+00:29:26,666 --> 00:29:31,356
+>> Let's take a quick
+look at "Yahoo!
+
+
+542
+00:29:31,356 --> 00:29:32,036
+News Digest."
+
+
+543
+00:29:32,036 --> 00:29:36,606
+So what you get is these
+two digests of news
+
+
+544
+00:29:36,606 --> 00:29:39,816
+with about eight stories in
+them in the morning at 8 a.m.
+
+
+545
+00:29:40,226 --> 00:29:43,926
+and at 6 p.m. in the
+evening, and that's it.
+
+
+546
+00:29:44,286 --> 00:29:47,186
+And so this is one of my
+go-to news apps all the time.
+
+
+547
+00:29:47,276 --> 00:29:50,276
+I wait for these digests to
+arrive, and once they arrive,
+
+
+548
+00:29:50,636 --> 00:29:54,976
+you can just scroll through
+this really simple UI,
+
+
+549
+00:29:55,756 --> 00:29:58,166
+that lists the stories, the
+top stories, of the day.
+
+
+550
+00:29:58,696 --> 00:30:01,886
+And what they've done really
+well is they've, you know,
+
+
+551
+00:30:01,886 --> 00:30:05,386
+done this automatic collection
+of information and aggregation
+
+
+552
+00:30:05,386 --> 00:30:07,856
+and all the work that they do
+behind the scenes [inaudible],
+
+
+553
+00:30:08,136 --> 00:30:10,606
+but then they're doing human
+curation of the content
+
+
+554
+00:30:10,926 --> 00:30:12,256
+in addition with their editors.
+
+
+555
+00:30:12,256 --> 00:30:15,036
+And so the content that you get,
+
+
+556
+00:30:15,066 --> 00:30:19,106
+the news stories are
+extremely high quality.
+
+
+557
+00:30:19,606 --> 00:30:22,006
+So here we are, we're
+moving through this list,
+
+
+558
+00:30:22,006 --> 00:30:23,816
+and you see a political story,
+
+
+559
+00:30:23,816 --> 00:30:26,806
+there's a U.S. news
+story, technology, world.
+
+
+560
+00:30:27,156 --> 00:30:31,126
+Below each of these story
+headlines you've got these
+
+
+561
+00:30:31,126 --> 00:30:34,596
+little atoms, these little
+circles, and you can tap them
+
+
+562
+00:30:34,596 --> 00:30:36,596
+to get the legend of
+what each of these mean,
+
+
+563
+00:30:36,816 --> 00:30:38,976
+but basically they're telling
+you how much information there
+
+
+564
+00:30:38,976 --> 00:30:40,366
+is available for
+one of the stories.
+
+
+565
+00:30:40,506 --> 00:30:43,636
+So let's go into the story
+about Apple - hey, why not?
+
+
+566
+00:30:43,636 --> 00:30:46,716
+And you know, the first
+time you use it, it says,
+
+
+567
+00:30:46,716 --> 00:30:49,746
+how to use the app, and so you
+can swipe just right to left
+
+
+568
+00:30:50,286 --> 00:30:53,496
+around the stories, or
+go back into a story
+
+
+569
+00:30:53,496 --> 00:30:56,036
+and read it in more detail.
+
+
+570
+00:30:56,036 --> 00:30:58,666
+And I find that these are,
+you know, if I just take
+
+
+571
+00:30:58,666 --> 00:31:01,206
+about 10 minutes to plow
+through this digest,
+
+
+572
+00:31:01,206 --> 00:31:04,696
+I've got some great information
+about the latest headlines.
+
+
+573
+00:31:05,076 --> 00:31:07,566
+And so you get these great
+call-outs, you're moving
+
+
+574
+00:31:07,566 --> 00:31:09,316
+through the stories,
+that's pretty much it.
+
+
+575
+00:31:09,316 --> 00:31:10,216
+It's well laid out.
+
+
+576
+00:31:10,216 --> 00:31:13,586
+At the bottom you're getting
+extra information like photos
+
+
+577
+00:31:13,586 --> 00:31:15,536
+that might be associated with
+this story, that are coming
+
+
+578
+00:31:15,536 --> 00:31:16,756
+from really good sources.
+
+
+579
+00:31:17,166 --> 00:31:18,926
+There might be a
+topic breakdown.
+
+
+580
+00:31:19,196 --> 00:31:21,376
+There might be a video that
+loads very, very quickly
+
+
+581
+00:31:21,376 --> 00:31:23,866
+that it's a quick
+summary of the story.
+
+
+582
+00:31:24,026 --> 00:31:27,116
+There's maps integration,
+if it's appropriate.
+
+
+583
+00:31:27,116 --> 00:31:30,186
+And then you can go
+through some top tweets
+
+
+584
+00:31:30,786 --> 00:31:34,246
+or other social networking
+posts that apply to this story.
+
+
+585
+00:31:35,166 --> 00:31:38,366
+And so that's how each of
+the stories is laid out,
+
+
+586
+00:31:38,606 --> 00:31:41,606
+and so you just flip through
+them one by one, and read them,
+
+
+587
+00:31:41,856 --> 00:31:43,706
+some really great
+visual effects and kind
+
+
+588
+00:31:43,706 --> 00:31:45,426
+of a playful UI in the app.
+
+
+589
+00:31:46,256 --> 00:31:48,906
+Another example of playful
+UI is the share button.
+
+
+590
+00:31:48,906 --> 00:31:50,836
+These guys kind of pop up from
+the bottom and then they kind
+
+
+591
+00:31:50,836 --> 00:31:52,246
+of bounce and go away.
+
+
+592
+00:31:52,686 --> 00:31:56,396
+So really great experience,
+and then when you're done,
+
+
+593
+00:31:56,776 --> 00:31:59,296
+I love the -- what they've done.
+
+
+594
+00:31:59,296 --> 00:32:00,346
+This bear's having a good time.
+
+
+595
+00:32:00,566 --> 00:32:04,406
+I love what they've done at
+the very end because you read
+
+
+596
+00:32:04,406 --> 00:32:05,956
+through this and the
+news is really great,
+
+
+597
+00:32:05,956 --> 00:32:07,706
+but they've done a
+great job of kind
+
+
+598
+00:32:07,706 --> 00:32:11,096
+of just gamifying this a little
+bit by giving you feedback
+
+
+599
+00:32:11,096 --> 00:32:13,596
+on how many of the stories they
+just sent you that you read.
+
+
+600
+00:32:13,716 --> 00:32:15,736
+And so while we just
+swiped through them now,
+
+
+601
+00:32:15,736 --> 00:32:18,236
+it doesn't mean we read them,
+but in theory you've read them,
+
+
+602
+00:32:18,236 --> 00:32:20,026
+and at the end you
+just get told, hey,
+
+
+603
+00:32:20,026 --> 00:32:21,016
+you've read seven of nine.
+
+
+604
+00:32:21,526 --> 00:32:25,446
+And I just find that kind
+of a cool bit of feedback.
+
+
+605
+00:32:25,446 --> 00:32:28,076
+Now, this digest
+that we're looking
+
+
+606
+00:32:28,076 --> 00:32:29,586
+at right here has
+a black background
+
+
+607
+00:32:29,586 --> 00:32:31,796
+because it's the
+end of day digest.
+
+
+608
+00:32:31,796 --> 00:32:33,966
+But we can tap the
+top right-hand corner,
+
+
+609
+00:32:34,316 --> 00:32:37,146
+see the next digest
+is coming in 11 hours.
+
+
+610
+00:32:37,146 --> 00:32:38,766
+If I tap the center of
+the screen, it says,
+
+
+611
+00:32:38,766 --> 00:32:40,406
+"Patience is a virtue."
+
+
+612
+00:32:40,726 --> 00:32:42,736
+I loved that the
+first time I saw that.
+
+
+613
+00:32:42,736 --> 00:32:44,886
+And I can go back
+across the last week
+
+
+614
+00:32:45,206 --> 00:32:48,496
+and pick one maybe a
+digest that I hadn't read,
+
+
+615
+00:32:48,496 --> 00:32:52,656
+so I'll pick a morning digest,
+and here the news comes in
+
+
+616
+00:32:52,656 --> 00:32:54,306
+and it's the white background.
+
+
+617
+00:32:54,826 --> 00:32:57,906
+So little bits of attention
+to detail, little attention
+
+
+618
+00:32:57,906 --> 00:33:01,476
+to detail on things like
+white background for day news,
+
+
+619
+00:33:01,476 --> 00:33:03,556
+black background for
+nighttime news digest.
+
+
+620
+00:33:03,556 --> 00:33:05,186
+Very playful interface.
+
+
+621
+00:33:05,326 --> 00:33:08,096
+Really well integrated
+with touch.
+
+
+622
+00:33:08,096 --> 00:33:10,166
+And, you know, beautiful
+typography and layout.
+
+
+623
+00:33:10,166 --> 00:33:12,266
+And excellent quality news.
+
+
+624
+00:33:12,346 --> 00:33:14,896
+So really, really well
+done, congratulations.
+
+
+625
+00:33:15,516 --> 00:33:31,756
+[ Music and Applause ]
+
+
+626
+00:33:32,256 --> 00:33:36,976
+We talk about great apps a
+lot on the evangelism team.
+
+
+627
+00:33:36,976 --> 00:33:40,426
+We work with many of
+you on Shaan's team.
+
+
+628
+00:33:40,426 --> 00:33:42,056
+She works with many,
+many developers.
+
+
+629
+00:33:42,416 --> 00:33:44,566
+And we're always talking
+with the developer community
+
+
+630
+00:33:44,566 --> 00:33:47,526
+about the need to create
+something that is really great,
+
+
+631
+00:33:48,186 --> 00:33:51,036
+that is truly impactful
+in people's lives.
+
+
+632
+00:33:51,576 --> 00:33:56,436
+And one of the ways to create a
+really great game is of course
+
+
+633
+00:33:56,436 --> 00:33:58,946
+to use technology, have a
+great game loop, have a great,
+
+
+634
+00:33:58,996 --> 00:34:00,676
+you know, game mechanic,
+etcetera.
+
+
+635
+00:34:01,126 --> 00:34:04,186
+But more important
+than any of that is
+
+
+636
+00:34:04,186 --> 00:34:06,336
+to add personality to a game.
+
+
+637
+00:34:07,016 --> 00:34:08,656
+That's what makes it engaging.
+
+
+638
+00:34:08,735 --> 00:34:11,416
+That's what makes a
+connection with people.
+
+
+639
+00:34:11,886 --> 00:34:13,956
+And some of the you know,
+some of the biggest names
+
+
+640
+00:34:14,396 --> 00:34:21,576
+that we all know, "Plants
+Versus Zombies," "Cut the Rope,"
+
+
+641
+00:34:22,045 --> 00:34:23,065
+"Angry Birds," "Where's
+My Water?"
+
+
+642
+00:34:23,065 --> 00:34:27,565
+by Disney, all of those games
+had a great game experience,
+
+
+643
+00:34:27,666 --> 00:34:30,956
+but more importantly, they
+had really great personality,
+
+
+644
+00:34:31,085 --> 00:34:32,286
+very unique to their game.
+
+
+645
+00:34:32,726 --> 00:34:36,926
+And this next game does
+everything right in addition
+
+
+646
+00:34:36,926 --> 00:34:39,585
+to also adding personality
+to the game.
+
+
+647
+00:34:39,585 --> 00:34:42,596
+And so we're pleased
+to award an ADA to --
+
+
+648
+00:34:43,226 --> 00:34:43,646
+>> "Threes!"
+
+
+649
+00:34:43,735 --> 00:34:44,366
+by Sirvo.
+
+
+650
+00:34:45,516 --> 00:35:15,926
+[ Music and Applause ]
+
+
+651
+00:35:16,426 --> 00:35:17,856
+>> I'm totally addicted
+to this game.
+
+
+652
+00:35:17,856 --> 00:35:18,776
+Congratulations.
+
+
+653
+00:35:20,516 --> 00:35:21,996
+I personally am addicted
+to this game.
+
+
+654
+00:35:22,706 --> 00:35:24,786
+"Threes!" is a tiny puzzle
+that will grow on you.
+
+
+655
+00:35:24,786 --> 00:35:27,166
+It's an engaging number-matching
+puzzle that you'll learn
+
+
+656
+00:35:27,166 --> 00:35:28,816
+in a minute but play endlessly.
+
+
+657
+00:35:29,186 --> 00:35:30,936
+With an endearing
+cast of characters
+
+
+658
+00:35:30,936 --> 00:35:32,266
+and an enchanting soundtrack,
+
+
+659
+00:35:32,566 --> 00:35:34,696
+it's been broadly
+imitated but never equaled.
+
+
+660
+00:35:35,246 --> 00:35:35,506
+John.
+
+
+661
+00:35:36,806 --> 00:35:37,736
+>> Yeah, it's so true.
+
+
+662
+00:35:37,926 --> 00:35:41,766
+So, you know, most of you have
+probably played this way more
+
+
+663
+00:35:41,766 --> 00:35:47,426
+than I have, by your
+response when we awarded them.
+
+
+664
+00:35:47,936 --> 00:35:52,256
+But, you know, talk about
+personality, you know,
+
+
+665
+00:35:52,256 --> 00:35:53,846
+this game has got
+attitude, right.
+
+
+666
+00:35:53,846 --> 00:35:57,146
+So the longer I talk the more
+annoyed they're going to get
+
+
+667
+00:35:57,146 --> 00:36:00,086
+because these tiles are
+individual characters.
+
+
+668
+00:36:00,486 --> 00:36:03,596
+And we can find out
+who they are.
+
+
+669
+00:36:03,596 --> 00:36:04,546
+This is Trin.
+
+
+670
+00:36:04,946 --> 00:36:06,716
+We can tap on Thumbert, right.
+
+
+671
+00:36:06,946 --> 00:36:11,346
+Each of these guys
+has got character.
+
+
+672
+00:36:11,766 --> 00:36:13,616
+I love Treycee.
+
+
+673
+00:36:13,616 --> 00:36:16,456
+Hey. And you can see on
+the front of these tiles
+
+
+674
+00:36:16,456 --> 00:36:18,726
+that they're, you know,
+there's two eyes, there's a nose
+
+
+675
+00:36:18,726 --> 00:36:22,496
+or a mouth, the tiles
+are constantly, you know,
+
+
+676
+00:36:22,496 --> 00:36:26,736
+they're blinking, they're
+doing things with their face,
+
+
+677
+00:36:26,736 --> 00:36:28,416
+they're connecting
+up with each other.
+
+
+678
+00:36:28,416 --> 00:36:30,956
+So the game is, you know,
+you're doing ones and twos
+
+
+679
+00:36:30,956 --> 00:36:34,076
+to create threes and then you
+can combine threes together.
+
+
+680
+00:36:34,076 --> 00:36:36,126
+So let's start to move here.
+
+
+681
+00:36:36,126 --> 00:36:37,366
+We've got to start playing here.
+
+
+682
+00:36:37,836 --> 00:36:42,066
+So we can combine one and
+two with three, threes,
+
+
+683
+00:36:42,476 --> 00:36:46,316
+combining the sixes,
+right, threes here, right.
+
+
+684
+00:36:47,256 --> 00:36:56,506
+And as you play, you get
+this really great experience,
+
+
+685
+00:36:56,666 --> 00:37:00,436
+you know, these tiles talking
+to you, and I love this.
+
+
+686
+00:37:00,436 --> 00:37:03,986
+And this is I think what
+puts this game over the top
+
+
+687
+00:37:03,986 --> 00:37:05,996
+and helps it stand
+out from the crowd.
+
+
+688
+00:37:05,996 --> 00:37:08,566
+I mean, it's not just
+a tile sorting game -
+
+
+689
+00:37:08,906 --> 00:37:14,276
+the personality is this extra
+layer, you know, brilliant layer
+
+
+690
+00:37:14,276 --> 00:37:15,846
+on top of the technology.
+
+
+691
+00:37:15,916 --> 00:37:18,766
+So this is why we picked
+this game as a winner.
+
+
+692
+00:37:18,766 --> 00:37:22,176
+It's just great game play, very
+engaging, great technology use
+
+
+693
+00:37:22,176 --> 00:37:23,726
+and excellent personality.
+
+
+694
+00:37:23,916 --> 00:37:26,406
+>> Thank you very much.
+
+
+695
+00:37:26,546 --> 00:37:27,386
+Congratulations.
+
+
+696
+00:37:28,516 --> 00:37:41,936
+[ Music and Applause ]
+
+
+697
+00:37:42,436 --> 00:37:44,456
+>> All right, so if you're
+a creative professional,
+
+
+698
+00:37:44,756 --> 00:37:47,436
+the Mac has, you
+know, the chances are,
+
+
+699
+00:37:47,436 --> 00:37:49,176
+the Mac has been
+your tool of choice.
+
+
+700
+00:37:49,836 --> 00:37:52,926
+And, you know, across
+all creative markets,
+
+
+701
+00:37:52,926 --> 00:37:55,206
+whether professional
+or consumer, you know,
+
+
+702
+00:37:55,206 --> 00:37:58,856
+in the creative space, it's
+pretty much always been the case
+
+
+703
+00:37:58,896 --> 00:38:04,006
+that the best apps are first
+on the Mac or they're Mac only.
+
+
+704
+00:38:04,606 --> 00:38:10,796
+And our winner our next winner
+stays in this tradition and we'd
+
+
+705
+00:38:10,796 --> 00:38:13,036
+like to award an
+ADA tonight to --
+
+
+706
+00:38:13,606 --> 00:38:15,556
+>> "Cinemagraph Pro"
+by Flixel Photos.
+
+
+707
+00:38:16,516 --> 00:38:39,066
+[ Music and Applause ]
+
+
+708
+00:38:39,566 --> 00:38:40,256
+>> Congratulations.
+
+
+709
+00:38:41,716 --> 00:38:43,826
+"Cinemagraph Pro" is
+a professional tool
+
+
+710
+00:38:43,826 --> 00:38:45,756
+that allows you to
+create living photos.
+
+
+711
+00:38:46,166 --> 00:38:49,036
+With its unique live masking
+technology, it allows artists
+
+
+712
+00:38:49,036 --> 00:38:51,016
+to preview their
+images in real time
+
+
+713
+00:38:51,386 --> 00:38:53,776
+and it creates ultrahigh
+definition output
+
+
+714
+00:38:53,776 --> 00:38:54,746
+of your hybrid photos.
+
+
+715
+00:38:54,746 --> 00:39:02,126
+>> All right, so first
+thing is, you know,
+
+
+716
+00:39:02,126 --> 00:39:05,856
+we all know how compelling video
+is, and we see video on the Web
+
+
+717
+00:39:05,976 --> 00:39:08,776
+for advertisements or for,
+you know, merchandising
+
+
+718
+00:39:08,776 --> 00:39:10,366
+or in catalogs or whatever,
+
+
+719
+00:39:10,736 --> 00:39:13,646
+for things that we might be
+interested in that we want
+
+
+720
+00:39:13,646 --> 00:39:15,856
+to know about, and
+video is really great.
+
+
+721
+00:39:15,856 --> 00:39:19,306
+But the problem with video is
+it's hard to make and it's,
+
+
+722
+00:39:19,306 --> 00:39:21,246
+you know, got a big footprint,
+
+
+723
+00:39:21,246 --> 00:39:24,236
+it's got to be brought
+down, it takes bandwidth.
+
+
+724
+00:39:24,526 --> 00:39:27,806
+And so, you know, there's
+a better way to do this,
+
+
+725
+00:39:27,806 --> 00:39:28,936
+as far as these guys
+are concerned,
+
+
+726
+00:39:28,936 --> 00:39:30,646
+they built this tool
+that's optimized
+
+
+727
+00:39:30,696 --> 00:39:34,546
+to create something they're
+calling Flixels or Cinemagraphs,
+
+
+728
+00:39:34,546 --> 00:39:37,536
+which are basically living
+images that are a combination
+
+
+729
+00:39:37,536 --> 00:39:39,216
+of a photo and a video.
+
+
+730
+00:39:39,546 --> 00:39:42,776
+And they benefit from being
+a whole lot more lightweight
+
+
+731
+00:39:43,256 --> 00:39:46,926
+than video and a lot more
+interesting and compelling
+
+
+732
+00:39:47,126 --> 00:39:49,586
+than photos, just still photos.
+
+
+733
+00:39:49,586 --> 00:39:53,796
+So what I want to do
+here is show you first
+
+
+734
+00:39:53,796 --> 00:39:56,456
+of all just an animated gif --
+
+
+735
+00:39:56,556 --> 00:40:00,176
+gif, sorry, animated gif that
+I'm going to create in a moment,
+
+
+736
+00:40:00,676 --> 00:40:03,646
+and now this is sort of an
+old file format on the Web,
+
+
+737
+00:40:03,646 --> 00:40:04,706
+but it's still prevalent.
+
+
+738
+00:40:04,706 --> 00:40:07,616
+And to create one of
+these is difficult
+
+
+739
+00:40:07,616 --> 00:40:09,706
+to do what we're going
+to do in a minute.
+
+
+740
+00:40:09,706 --> 00:40:11,226
+And so here's an animated gif.
+
+
+741
+00:40:11,466 --> 00:40:12,706
+And we're going to
+end up with that,
+
+
+742
+00:40:12,706 --> 00:40:16,476
+and that started
+with this raw video.
+
+
+743
+00:40:18,416 --> 00:40:22,166
+So this is just video taken
+in a subway in New York.
+
+
+744
+00:40:22,166 --> 00:40:24,356
+And we're going to start
+with that and quickly
+
+
+745
+00:40:24,356 --> 00:40:27,706
+in like three steps
+create the animated gif
+
+
+746
+00:40:27,706 --> 00:40:28,586
+and create a Flixel.
+
+
+747
+00:40:28,586 --> 00:40:32,606
+So let me switch over
+to "Cinemagraph Pro."
+
+
+748
+00:40:33,106 --> 00:40:38,356
+Now, what you do is you open up
+the raw video that you've got,
+
+
+749
+00:40:38,356 --> 00:40:40,936
+and in this case we've got
+somebody walking by on the left,
+
+
+750
+00:40:40,936 --> 00:40:43,486
+we've got the train
+coming in here.
+
+
+751
+00:40:43,486 --> 00:40:45,396
+If you just look to the
+left of the escalator,
+
+
+752
+00:40:45,396 --> 00:40:48,096
+you'll see as this loops,
+the train's pulling in,
+
+
+753
+00:40:48,486 --> 00:40:50,526
+and there's the light,
+and it stops, right.
+
+
+754
+00:40:50,526 --> 00:40:51,516
+So it's a very short clip.
+
+
+755
+00:40:51,516 --> 00:40:53,866
+But we don't want any of
+those noise on the side,
+
+
+756
+00:40:53,866 --> 00:40:55,656
+we don't want any of the
+reflection from the lights
+
+
+757
+00:40:55,656 --> 00:40:58,106
+and different things that are
+in the station on the walls.
+
+
+758
+00:40:58,536 --> 00:41:01,166
+And so we start in the top
+left corner we choose trim,
+
+
+759
+00:41:02,006 --> 00:41:04,616
+we pull in the trim, and
+we figure out exactly,
+
+
+760
+00:41:04,616 --> 00:41:07,736
+you notice the lady on the left,
+we decide where we want her
+
+
+761
+00:41:07,736 --> 00:41:10,416
+to freeze in the image
+that we're going to create
+
+
+762
+00:41:10,416 --> 00:41:12,406
+or in the Cinemagraph that
+we're going to create,
+
+
+763
+00:41:12,406 --> 00:41:14,526
+and we stop it there with
+the left side of the trim.
+
+
+764
+00:41:15,206 --> 00:41:17,916
+The right side of the trim,
+I'm just going to pull in here
+
+
+765
+00:41:17,916 --> 00:41:20,026
+and adjust just slightly
+so I get the light
+
+
+766
+00:41:20,116 --> 00:41:21,496
+from the train coming
+in to the left
+
+
+767
+00:41:21,496 --> 00:41:23,146
+of the escalator
+there, you see that?
+
+
+768
+00:41:23,476 --> 00:41:24,436
+It's in there.
+
+
+769
+00:41:24,436 --> 00:41:26,626
+So that's just pulling
+it in for the right side.
+
+
+770
+00:41:26,626 --> 00:41:28,926
+And then next is where
+the magic happens.
+
+
+771
+00:41:28,926 --> 00:41:29,906
+I'm going to go to
+the mask tool,
+
+
+772
+00:41:29,906 --> 00:41:32,806
+it's a little bit too big here,
+so I'm going to adjust its size.
+
+
+773
+00:41:33,286 --> 00:41:38,556
+Go down and I'm going to
+mask the portion of the image
+
+
+774
+00:41:38,596 --> 00:41:40,526
+that of the video
+that I want to keep,
+
+
+775
+00:41:40,526 --> 00:41:44,336
+everything else now becomes
+basically masked out.
+
+
+776
+00:41:44,336 --> 00:41:48,336
+And then I'm going to go to loop
+and decide what kind of a loop,
+
+
+777
+00:41:48,336 --> 00:41:50,516
+I've got several types
+of loops that I can do.
+
+
+778
+00:41:50,646 --> 00:41:51,856
+I'll just stick with repeat.
+
+
+779
+00:41:52,356 --> 00:41:55,416
+I'm going to, you know, leave
+the speed the way it is.
+
+
+780
+00:41:55,646 --> 00:41:57,716
+Leave the lay the way it is.
+
+
+781
+00:41:57,716 --> 00:41:58,926
+And just increase crossfade.
+
+
+782
+00:41:58,926 --> 00:42:01,136
+Crossfade is what happens
+when the video ends
+
+
+783
+00:42:01,136 --> 00:42:03,216
+and then it loops
+back to the beginning.
+
+
+784
+00:42:03,716 --> 00:42:05,176
+So we'll just make
+that smooth so it looks
+
+
+785
+00:42:05,176 --> 00:42:07,056
+like a continuous
+movement of the escalator.
+
+
+786
+00:42:07,446 --> 00:42:11,256
+And lastly, we'll go to look
+quickly at adjustments -
+
+
+787
+00:42:11,256 --> 00:42:14,806
+I can adjust all kinds of
+the attributes on this video.
+
+
+788
+00:42:14,806 --> 00:42:17,416
+But I'll just go to the
+canned effects that are here,
+
+
+789
+00:42:17,696 --> 00:42:20,416
+and you can see that you can
+apply these super quickly
+
+
+790
+00:42:20,666 --> 00:42:23,066
+to this image.
+
+
+791
+00:42:23,896 --> 00:42:27,016
+And so let's grab black
+and white cold sun,
+
+
+792
+00:42:27,466 --> 00:42:30,726
+and then we'll do a
+render, and we can save it
+
+
+793
+00:42:30,726 --> 00:42:35,586
+out as [inaudible] or pro
+res 422, so we'll do that,
+
+
+794
+00:42:36,586 --> 00:42:37,886
+save it to the desktop.
+
+
+795
+00:42:38,136 --> 00:42:39,786
+Let's call it demo.
+
+
+796
+00:42:40,186 --> 00:42:45,376
+And what it's creating now is
+it's creating this Flixel file,
+
+
+797
+00:42:45,376 --> 00:42:49,716
+this cinemagraph that the folks
+at "Cinemagraph Pro" sorry
+
+
+798
+00:42:49,716 --> 00:42:52,526
+at Flixel can host on
+their servers for you,
+
+
+799
+00:42:52,806 --> 00:42:55,306
+and it's super lightweight,
+comes down,
+
+
+800
+00:42:55,306 --> 00:43:00,286
+works with every browser, and
+gives you that exact experience.
+
+
+801
+00:43:00,596 --> 00:43:04,376
+And so the end result is
+basically this, you know,
+
+
+802
+00:43:04,376 --> 00:43:07,516
+you can see that the woman
+on the left is frozen,
+
+
+803
+00:43:07,516 --> 00:43:09,106
+everything about
+the scene is frozen,
+
+
+804
+00:43:09,206 --> 00:43:10,946
+except the one piece
+that we want.
+
+
+805
+00:43:11,166 --> 00:43:12,976
+We did this in three
+simple steps.
+
+
+806
+00:43:13,636 --> 00:43:19,546
+This app is brand new on the Mac
+App Store, it's super gorgeous,
+
+
+807
+00:43:19,546 --> 00:43:21,026
+it's really streamlined.
+
+
+808
+00:43:21,026 --> 00:43:24,726
+It does one thing extremely
+well, saving you 30 steps
+
+
+809
+00:43:24,726 --> 00:43:28,666
+in other tools, and they
+have a really great model
+
+
+810
+00:43:28,666 --> 00:43:30,946
+for hosting these things and
+serving them out to your site.
+
+
+811
+00:43:31,506 --> 00:43:34,446
+And we just love this app,
+and it makes a Mac Pro sing.
+
+
+812
+00:43:34,486 --> 00:43:36,606
+So really well done
+work, thank you.
+
+
+813
+00:43:37,516 --> 00:43:49,566
+[ Music and Applause ]
+
+
+814
+00:43:50,066 --> 00:43:53,176
+All right, we talked
+about a moment ago
+
+
+815
+00:43:53,176 --> 00:43:55,126
+about how great apps
+have personality,
+
+
+816
+00:43:55,126 --> 00:43:58,506
+and earlier on I talked
+
+
+817
+00:43:58,506 --> 00:44:00,506
+about how we judge
+the apps for the ADA.
+
+
+818
+00:44:00,506 --> 00:44:02,146
+We talked about design.
+
+
+819
+00:44:02,146 --> 00:44:06,556
+We talk about technology or we
+evaluate on technology adoption.
+
+
+820
+00:44:06,556 --> 00:44:08,066
+We evaluate on innovation.
+
+
+821
+00:44:08,066 --> 00:44:11,676
+And we all know that great
+apps are also innovative.
+
+
+822
+00:44:12,056 --> 00:44:14,776
+And, you know, innovation is
+hard to define, but it's sort
+
+
+823
+00:44:14,776 --> 00:44:16,706
+of that spark of brilliance.
+
+
+824
+00:44:17,296 --> 00:44:21,416
+It's that ingredient
+that if an app has it,
+
+
+825
+00:44:21,416 --> 00:44:23,496
+it just makes your
+jaw drop, right.
+
+
+826
+00:44:23,766 --> 00:44:28,216
+It's the kind of thing that
+makes a category, you know,
+
+
+827
+00:44:28,216 --> 00:44:29,356
+appear out of nowhere, right.
+
+
+828
+00:44:29,356 --> 00:44:31,956
+They're category-defining
+apps that are innovative.
+
+
+829
+00:44:31,956 --> 00:44:33,306
+They do something clever.
+
+
+830
+00:44:33,756 --> 00:44:37,806
+And, you know, you really
+know it when you see it.
+
+
+831
+00:44:37,806 --> 00:44:40,886
+And we've all run
+across innovative apps.
+
+
+832
+00:44:40,886 --> 00:44:43,396
+And we've run across one
+for the ADA this year
+
+
+833
+00:44:43,396 --> 00:44:46,626
+that we thought was that was
+just over the top in terms
+
+
+834
+00:44:46,626 --> 00:44:51,526
+of just approaching this game
+situation in a very clever way.
+
+
+835
+00:44:52,096 --> 00:44:52,816
+Our next winner.
+
+
+836
+00:44:53,456 --> 00:44:55,126
+>> Is "Device 6" by Simogo.
+
+
+837
+00:44:56,516 --> 00:45:17,916
+[ Music and Applause ]
+
+
+838
+00:45:18,416 --> 00:45:19,876
+>> Look at this tie,
+that's nice.
+
+
+839
+00:45:20,566 --> 00:45:25,326
+>> Nice tie.
+
+
+840
+00:45:25,576 --> 00:45:27,836
+"Device 6" plays
+with the conventions
+
+
+841
+00:45:27,836 --> 00:45:28,986
+of games and literature.
+
+
+842
+00:45:29,786 --> 00:45:30,926
+It's a captivating thriller
+
+
+843
+00:45:30,926 --> 00:45:32,886
+in which the written
+word is both your map
+
+
+844
+00:45:33,166 --> 00:45:34,186
+as well as your narrator.
+
+
+845
+00:45:34,656 --> 00:45:39,046
+Entwining story with puzzle and
+blending puzzle with novella,
+
+
+846
+00:45:39,376 --> 00:45:41,526
+it draws the players into
+an intriguing mystery
+
+
+847
+00:45:41,526 --> 00:45:42,946
+of neuroscience and technology.
+
+
+848
+00:45:48,646 --> 00:45:53,666
+>> Right, so I'm
+in landscape mode.
+
+
+849
+00:45:54,576 --> 00:45:56,436
+Just bear with me here.
+
+
+850
+00:45:56,686 --> 00:45:59,216
+We're in landscape mode,
+you're holding the iPad,
+
+
+851
+00:45:59,636 --> 00:46:01,746
+this is a narrative that
+you're reading through,
+
+
+852
+00:46:01,746 --> 00:46:03,286
+it's a book that
+you read through.
+
+
+853
+00:46:03,626 --> 00:46:05,186
+And we're starting
+sort of halfway
+
+
+854
+00:46:05,186 --> 00:46:06,696
+through the first chapter.
+
+
+855
+00:46:07,146 --> 00:46:10,486
+But as you move here, you can
+see this parallax effect behind
+
+
+856
+00:46:10,486 --> 00:46:11,496
+these images, yeah.
+
+
+857
+00:46:12,146 --> 00:46:14,896
+And that is pervasive
+through the app.
+
+
+858
+00:46:15,576 --> 00:46:20,806
+But not only are the words
+onscreen things that you read
+
+
+859
+00:46:20,806 --> 00:46:24,796
+to tell you the story, but
+you're also going to get clues
+
+
+860
+00:46:24,996 --> 00:46:26,586
+about the puzzle that
+you have to solve,
+
+
+861
+00:46:26,586 --> 00:46:28,096
+because fundamentally,
+this is a game.
+
+
+862
+00:46:28,896 --> 00:46:30,786
+But it's a combination
+novel game.
+
+
+863
+00:46:31,086 --> 00:46:34,856
+And so you're reading along,
+you're looking at these photos,
+
+
+864
+00:46:34,856 --> 00:46:37,176
+they do really interesting
+interactions,
+
+
+865
+00:46:37,176 --> 00:46:40,686
+and they have a great
+sound system built in.
+
+
+866
+00:46:40,686 --> 00:46:43,546
+So sometimes you approach
+sounds and, you know,
+
+
+867
+00:46:43,546 --> 00:46:46,846
+they'll become louder and
+softer as you're near them.
+
+
+868
+00:46:47,206 --> 00:46:48,916
+Here we've run into
+an interactive,
+
+
+869
+00:46:48,916 --> 00:46:52,606
+an interactive piece, which at
+the moment doesn't do anything.
+
+
+870
+00:46:52,606 --> 00:46:55,186
+But we're going to need it at
+some point to solve the puzzle.
+
+
+871
+00:46:55,646 --> 00:46:57,946
+And we move on here and
+you'll see that, you know,
+
+
+872
+00:46:57,946 --> 00:47:01,566
+while I'm reading this text, the
+text is actually doing all kinds
+
+
+873
+00:47:01,566 --> 00:47:02,506
+of interesting things.
+
+
+874
+00:47:02,506 --> 00:47:04,256
+So I'm moving along,
+don't worry about the fact
+
+
+875
+00:47:04,256 --> 00:47:06,356
+that it's portrait up there
+because we're going to go
+
+
+876
+00:47:06,356 --> 00:47:07,706
+in different directions
+here in a moment.
+
+
+877
+00:47:07,746 --> 00:47:09,916
+And you see that I'm
+just scrolling left
+
+
+878
+00:47:09,916 --> 00:47:12,546
+but the text is actually
+moving things.
+
+
+879
+00:47:13,046 --> 00:47:16,076
+Here I get to the third
+floor study, I keep going,
+
+
+880
+00:47:16,476 --> 00:47:20,056
+and here I've got a device I
+can interact with, you know,
+
+
+881
+00:47:20,186 --> 00:47:21,976
+probably put a combo
+in or something.
+
+
+882
+00:47:22,546 --> 00:47:25,426
+I keep going here and now
+I've got a choice, I can go up
+
+
+883
+00:47:25,426 --> 00:47:27,556
+or down, I'm going to keep
+going here a little bit.
+
+
+884
+00:47:27,556 --> 00:47:29,416
+And now we're starting
+to get to a point
+
+
+885
+00:47:29,416 --> 00:47:31,216
+where we have to
+rotate the device.
+
+
+886
+00:47:31,496 --> 00:47:34,666
+And now for you guys you'll be
+able to read it, no problem.
+
+
+887
+00:47:35,726 --> 00:47:37,666
+Now I'm approaching
+a source of sound.
+
+
+888
+00:47:38,516 --> 00:47:45,556
+[ App Sounds ]
+
+
+889
+00:47:46,056 --> 00:47:47,976
+And we'll leave that behind.
+
+
+890
+00:47:48,546 --> 00:47:52,506
+We go here, I have to turn
+the device this way to read.
+
+
+891
+00:47:52,506 --> 00:47:54,076
+I've got to turn
+the device this way-
+
+
+892
+00:47:54,076 --> 00:47:55,886
+of course it's screwing
+up our projection.
+
+
+893
+00:47:56,066 --> 00:47:59,836
+There we pass that, and
+now we're going here,
+
+
+894
+00:47:59,836 --> 00:48:01,516
+we're going this way,
+we're reading the text.
+
+
+895
+00:48:02,086 --> 00:48:03,346
+Now we're going to
+flip this way.
+
+
+896
+00:48:04,876 --> 00:48:08,146
+And essentially this
+entire game is -
+
+
+897
+00:48:08,146 --> 00:48:09,896
+here we're moving
+into a dining hall.
+
+
+898
+00:48:10,516 --> 00:48:18,546
+[ App Sounds ]
+
+
+899
+00:48:19,046 --> 00:48:22,936
+I've got to get authorization.
+
+
+900
+00:48:23,046 --> 00:48:25,116
+And what is so innovative
+
+
+901
+00:48:25,116 --> 00:48:29,956
+about this game is just this
+combination of novel with game
+
+
+902
+00:48:29,956 --> 00:48:34,696
+with puzzle and just you're
+constantly rotating your device,
+
+
+903
+00:48:35,566 --> 00:48:37,866
+tapping, pinching,
+zooming, moving around,
+
+
+904
+00:48:37,866 --> 00:48:39,836
+reading this story,
+trying to figure it out.
+
+
+905
+00:48:40,336 --> 00:48:43,126
+And we'd never seen
+anything like this really.
+
+
+906
+00:48:43,126 --> 00:48:45,946
+And so great job,
+congratulations.
+
+
+907
+00:48:47,516 --> 00:48:58,986
+[ Music and Applause ]
+
+
+908
+00:48:59,486 --> 00:49:01,846
+Talked a little bit before
+about how we're so busy
+
+
+909
+00:49:01,846 --> 00:49:06,906
+that getting news in a
+digestible format was a dilemma,
+
+
+910
+00:49:06,996 --> 00:49:08,676
+and the folks from "Yahoo!
+
+
+911
+00:49:08,676 --> 00:49:10,166
+News Digest" solved
+that problem.
+
+
+912
+00:49:10,946 --> 00:49:13,486
+But, you know, there's
+also something else
+
+
+913
+00:49:13,486 --> 00:49:15,196
+that we're all doing every day,
+
+
+914
+00:49:15,196 --> 00:49:18,666
+and that is sharing these
+tidbits from our lives
+
+
+915
+00:49:19,236 --> 00:49:21,916
+with family, with
+friends, with the world.
+
+
+916
+00:49:21,916 --> 00:49:24,206
+If you're here at WWDC
+and telling the world
+
+
+917
+00:49:24,646 --> 00:49:25,956
+about what's going on.
+
+
+918
+00:49:26,756 --> 00:49:31,666
+But as interesting and
+valuable as these tidbits are,
+
+
+919
+00:49:31,766 --> 00:49:35,486
+they don't I don't think
+they replace the need
+
+
+920
+00:49:35,576 --> 00:49:37,946
+for sometimes telling
+a much longer story,
+
+
+921
+00:49:38,486 --> 00:49:43,746
+a much more visual story,
+that captures an emotion
+
+
+922
+00:49:43,746 --> 00:49:47,186
+and something much deeper than
+any tweet or any, you know,
+
+
+923
+00:49:47,186 --> 00:49:50,336
+Facebook post or any other
+social media post could do.
+
+
+924
+00:49:50,796 --> 00:49:53,666
+And our next winner
+is an app that allows
+
+
+925
+00:49:53,666 --> 00:49:55,346
+for that type of
+rich storytelling.
+
+
+926
+00:49:55,876 --> 00:49:58,616
+>> And it is "Storehouse
+Visual Storytelling"
+
+
+927
+00:49:58,666 --> 00:49:59,626
+by Storehouse Media.
+
+
+928
+00:50:01,516 --> 00:50:34,066
+[ Music and Applause ]
+
+
+929
+00:50:34,566 --> 00:50:35,386
+>> Congratulations.
+
+
+930
+00:50:39,216 --> 00:50:41,806
+Instantly travel the
+world, learn a new skill
+
+
+931
+00:50:41,806 --> 00:50:43,096
+or discover interesting people
+
+
+932
+00:50:43,096 --> 00:50:44,486
+as you explore the
+stories created
+
+
+933
+00:50:44,486 --> 00:50:45,636
+by the Storehouse community.
+
+
+934
+00:50:46,056 --> 00:50:48,966
+Or you can simply put together
+photos, videos and texts
+
+
+935
+00:50:48,966 --> 00:50:50,016
+to build your own stories.
+
+
+936
+00:50:50,306 --> 00:50:51,546
+And you don't have
+to be a designer
+
+
+937
+00:50:51,546 --> 00:50:52,946
+to put together something
+stunning.
+
+
+938
+00:50:57,496 --> 00:51:00,336
+>> All right, like all
+of our winners tonight,
+
+
+939
+00:51:00,336 --> 00:51:03,266
+this app was designed, you
+know, optimally designed
+
+
+940
+00:51:03,356 --> 00:51:08,626
+for the device it's running on,
+for iPad, for iPhone, for OS X.
+
+
+941
+00:51:08,856 --> 00:51:12,486
+And this app is the storytelling
+app that's built exclusively
+
+
+942
+00:51:12,486 --> 00:51:13,056
+for iPad.
+
+
+943
+00:51:13,566 --> 00:51:16,546
+And the stories are told
+using photos and video.
+
+
+944
+00:51:16,846 --> 00:51:19,276
+And so what you do is -
+and they're contributed
+
+
+945
+00:51:19,276 --> 00:51:23,346
+by the community of
+Storehouse users.
+
+
+946
+00:51:23,756 --> 00:51:25,176
+So, you know, you create
+an account with them
+
+
+947
+00:51:25,176 --> 00:51:27,686
+and then you can just use
+this to push out your stories
+
+
+948
+00:51:27,806 --> 00:51:29,776
+to the world or to
+a set of people
+
+
+949
+00:51:29,776 --> 00:51:31,136
+that you want to view them.
+
+
+950
+00:51:31,646 --> 00:51:34,956
+And so, you know, just some
+really gorgeous animations here.
+
+
+951
+00:51:34,956 --> 00:51:38,166
+We can flip through these
+books, these stories,
+
+
+952
+00:51:38,166 --> 00:51:41,416
+that have been pushed
+out into the app.
+
+
+953
+00:51:41,416 --> 00:51:43,236
+They can contain
+video and audio.
+
+
+954
+00:51:43,696 --> 00:51:46,236
+So let's go in here and take
+a look at this one, Chicago.
+
+
+955
+00:51:46,236 --> 00:51:46,956
+I love this one.
+
+
+956
+00:51:46,956 --> 00:51:49,546
+So you just tap to go into this
+story that someone published.
+
+
+957
+00:51:50,006 --> 00:51:52,636
+And we gesture through and
+you get to see this, you know,
+
+
+958
+00:51:52,636 --> 00:51:55,206
+the great effect on text
+that's happening here.
+
+
+959
+00:51:55,206 --> 00:51:57,406
+You can follow this publisher.
+
+
+960
+00:51:57,406 --> 00:51:59,216
+You can look at these photos.
+
+
+961
+00:51:59,336 --> 00:52:00,896
+You can apply effects
+to the images.
+
+
+962
+00:52:00,896 --> 00:52:05,866
+You know, so this is
+pretty gorgeous photography.
+
+
+963
+00:52:05,866 --> 00:52:09,316
+And it's just laid out in
+such a really compelling way
+
+
+964
+00:52:09,646 --> 00:52:15,146
+that makes it really
+digestible and easy to consume.
+
+
+965
+00:52:15,446 --> 00:52:17,866
+And then laying out text
+on it is super easy.
+
+
+966
+00:52:18,056 --> 00:52:20,616
+Anyway, and so when
+you're done with a story,
+
+
+967
+00:52:20,616 --> 00:52:22,286
+you can just pinch
+to get out of it.
+
+
+968
+00:52:22,786 --> 00:52:26,086
+They're using, you know,
+UI effects and UI dynamics
+
+
+969
+00:52:26,276 --> 00:52:27,986
+and stuff for the transitions.
+
+
+970
+00:52:28,536 --> 00:52:31,186
+Let me go into one
+that's got some video,
+
+
+971
+00:52:31,186 --> 00:52:32,476
+so let's go into this story
+
+
+972
+00:52:32,476 --> 00:52:36,306
+by a photojournalist
+who went to Rwanda.
+
+
+973
+00:52:36,446 --> 00:52:39,436
+And so this one's got, you
+know, much larger photos,
+
+
+974
+00:52:39,536 --> 00:52:42,516
+a lot more texts, these
+individual portraits.
+
+
+975
+00:52:43,006 --> 00:52:45,186
+And quickly here we're
+going to get to a video,
+
+
+976
+00:52:45,436 --> 00:52:47,146
+just embedded right in,
+you don't have to tap
+
+
+977
+00:52:47,396 --> 00:52:49,516
+to start playing the
+video, it just does
+
+
+978
+00:52:50,086 --> 00:52:54,096
+as it pulls the majority
+of it onscreen, right.
+
+
+979
+00:52:54,096 --> 00:52:55,206
+You keep reading.
+
+
+980
+00:52:55,476 --> 00:52:57,836
+Again, it's a much more
+significant, deeper,
+
+
+981
+00:52:57,836 --> 00:53:00,766
+more emotional story that's
+being told here, right.
+
+
+982
+00:53:01,776 --> 00:53:06,406
+And so these are being created
+by chefs, by fashion designers,
+
+
+983
+00:53:06,406 --> 00:53:08,416
+by photojournalists
+around the world,
+
+
+984
+00:53:08,746 --> 00:53:11,766
+and families are creating them,
+individuals are creating them.
+
+
+985
+00:53:11,766 --> 00:53:16,336
+So one of the things about this
+app is it lets you create one
+
+
+986
+00:53:16,336 --> 00:53:20,876
+of these books or these
+stories sorry super easily.
+
+
+987
+00:53:20,876 --> 00:53:22,746
+So you just tap the
+create button.
+
+
+988
+00:53:22,746 --> 00:53:24,716
+We're going to add
+from the photo library.
+
+
+989
+00:53:24,756 --> 00:53:30,626
+Let's say we went to the lake,
+we import these 14 images,
+
+
+990
+00:53:31,036 --> 00:53:34,676
+and immediately they're
+laid out in the format
+
+
+991
+00:53:34,676 --> 00:53:36,466
+that the app provides.
+
+
+992
+00:53:36,466 --> 00:53:45,286
+So let's say, you know, trip
+to the lake, great memories,
+
+
+993
+00:53:45,796 --> 00:53:49,946
+and we say done on that.
+
+
+994
+00:53:50,236 --> 00:53:54,196
+Okay, so now we're
+down in the basic view,
+
+
+995
+00:53:54,196 --> 00:53:56,466
+which is thumbnail view, but
+it's like I want to do more
+
+
+996
+00:53:56,466 --> 00:53:57,956
+than this, I want to
+make something compelling
+
+
+997
+00:53:57,956 --> 00:53:59,746
+like the Chicago one
+I saw a moment ago.
+
+
+998
+00:53:59,746 --> 00:54:03,196
+So you could say, well, you
+know what, this image here
+
+
+999
+00:54:03,196 --> 00:54:05,016
+of the cyclist is pretty cool.
+
+
+1000
+00:54:05,016 --> 00:54:07,786
+So we just tap and
+drag, make that larger.
+
+
+1001
+00:54:07,956 --> 00:54:10,876
+This one of her on the
+tree stump is pretty cool,
+
+
+1002
+00:54:10,876 --> 00:54:12,296
+so we can just tap
+and drag that.
+
+
+1003
+00:54:12,296 --> 00:54:16,806
+We can double tap and you know,
+and crop it in the way we want.
+
+
+1004
+00:54:17,376 --> 00:54:19,646
+Go around, make something
+really big, like this,
+
+
+1005
+00:54:19,646 --> 00:54:21,476
+everything else moves
+out of the way.
+
+
+1006
+00:54:21,696 --> 00:54:23,516
+Great feedback through
+animation.
+
+
+1007
+00:54:23,936 --> 00:54:26,536
+And you just go on and on,
+and you can add the texts,
+
+
+1008
+00:54:26,536 --> 00:54:27,876
+you can create the
+breaks you want,
+
+
+1009
+00:54:27,876 --> 00:54:31,446
+and then you can publish this
+out to the Storehouse community.
+
+
+1010
+00:54:31,636 --> 00:54:34,626
+And if people are following you,
+they're going to see your story.
+
+
+1011
+00:54:34,626 --> 00:54:36,986
+In this case I'm just going
+to save it as a draft.
+
+
+1012
+00:54:37,506 --> 00:54:40,766
+But this is just such a
+compelling app, just to browse
+
+
+1013
+00:54:40,766 --> 00:54:44,166
+through these stories and
+see what people are posting.
+
+
+1014
+00:54:44,166 --> 00:54:47,656
+And they are far more
+significant and more meaningful
+
+
+1015
+00:54:47,656 --> 00:54:50,896
+and more emotionally charged
+than just something small
+
+
+1016
+00:54:50,896 --> 00:54:51,796
+that we put out to the world
+
+
+1017
+00:54:51,796 --> 00:54:53,476
+which is equally valuable
+but very different.
+
+
+1018
+00:54:53,676 --> 00:54:56,166
+So great adoption
+of iOS technologies.
+
+
+1019
+00:54:56,246 --> 00:54:58,306
+Thanks for making
+something exclusive for iPad
+
+
+1020
+00:54:58,346 --> 00:54:59,206
+that is so compelling.
+
+
+1021
+00:55:02,516 --> 00:55:13,686
+[ Music and Applause ]
+
+
+1022
+00:55:14,186 --> 00:55:18,136
+Now, people have been
+captivated for, you know,
+
+
+1023
+00:55:18,306 --> 00:55:21,856
+all of time pretty
+much by the night sky.
+
+
+1024
+00:55:22,696 --> 00:55:27,136
+I mean, who hasn't sat out,
+you know, on a campground
+
+
+1025
+00:55:27,596 --> 00:55:29,506
+with friends in the
+back of a truck
+
+
+1026
+00:55:29,616 --> 00:55:31,306
+on a country road
+somewhere looking
+
+
+1027
+00:55:31,306 --> 00:55:34,076
+up at the night sky watching,
+you know, airplane lights,
+
+
+1028
+00:55:34,626 --> 00:55:37,926
+watching satellites pass
+over, identifying, you know,
+
+
+1029
+00:55:37,926 --> 00:55:43,336
+constellations or trying to,
+you know, pointing out things
+
+
+1030
+00:55:43,376 --> 00:55:45,856
+that are known like the Big
+Dipper or the North Star
+
+
+1031
+00:55:45,856 --> 00:55:46,696
+or something like that.
+
+
+1032
+00:55:47,206 --> 00:55:50,056
+We've all done that, and we've
+all been captivated by that.
+
+
+1033
+00:55:50,056 --> 00:55:52,376
+And it's certainly
+a very humbling
+
+
+1034
+00:55:52,576 --> 00:55:55,366
+and powerful experience
+to see the night sky.
+
+
+1035
+00:55:56,096 --> 00:55:59,256
+And the developer of our next
+winner has created an app
+
+
+1036
+00:55:59,356 --> 00:56:01,256
+that takes that to
+a whole new level.
+
+
+1037
+00:56:01,926 --> 00:56:07,886
+>> And it is "Sky Guide"
+by Fifth Star Labs.
+
+
+1038
+00:56:08,516 --> 00:56:27,516
+[ Music and Applause ]
+
+
+1039
+00:56:28,016 --> 00:56:30,566
+Discovering what's in the
+night sky is effortless
+
+
+1040
+00:56:30,566 --> 00:56:31,276
+with "Sky Guide."
+
+
+1041
+00:56:32,296 --> 00:56:34,536
+You can search for
+thousands of celestial objects
+
+
+1042
+00:56:34,536 --> 00:56:37,086
+and simply follow the arrow in
+the sky above you to see them.
+
+
+1043
+00:56:37,476 --> 00:56:39,306
+And "Sky Guide" works offline,
+
+
+1044
+00:56:39,366 --> 00:56:40,686
+so you can take it
+with you anywhere.
+
+
+1045
+00:56:44,306 --> 00:56:46,256
+>> All right, let's
+take a look at this app.
+
+
+1046
+00:56:46,256 --> 00:56:48,196
+You know, first and foremost,
+
+
+1047
+00:56:48,196 --> 00:56:52,296
+the app just does
+everything right technically.
+
+
+1048
+00:56:52,296 --> 00:56:56,166
+It is optimized, you
+know, to the nth degree.
+
+
+1049
+00:56:56,166 --> 00:56:59,276
+They're using OpenGL ES 3.
+
+
+1050
+00:56:59,276 --> 00:57:01,406
+They're using Core Audio.
+
+
+1051
+00:57:01,406 --> 00:57:05,196
+They're, you know, leveraging
+all of the technologies
+
+
+1052
+00:57:05,196 --> 00:57:07,336
+that are appropriate and
+relevant for this app.
+
+
+1053
+00:57:07,336 --> 00:57:09,426
+And the performance
+is just stunning.
+
+
+1054
+00:57:10,376 --> 00:57:12,806
+One of the first things
+you'll notice in the app, too,
+
+
+1055
+00:57:12,806 --> 00:57:16,336
+and you're hearing it now is
+just this ambient music that's
+
+
+1056
+00:57:16,336 --> 00:57:17,316
+playing in the background.
+
+
+1057
+00:57:17,526 --> 00:57:21,666
+The composer of the
+music was the same guy
+
+
+1058
+00:57:21,666 --> 00:57:25,086
+who composed the
+sounds for an ADA winner
+
+
+1059
+00:57:25,086 --> 00:57:27,266
+of a couple years
+ago called "Osmos."
+
+
+1060
+00:57:27,266 --> 00:57:27,906
+Great game.
+
+
+1061
+00:57:27,906 --> 00:57:34,216
+And this soundtrack here for
+this game is just so compelling.
+
+
+1062
+00:57:35,056 --> 00:57:37,876
+So as you're in this, you can
+just, you know, tap around
+
+
+1063
+00:57:37,876 --> 00:57:38,976
+and look at the night sky.
+
+
+1064
+00:57:39,076 --> 00:57:42,806
+It automatically is showing
+you the various constellations.
+
+
+1065
+00:57:43,456 --> 00:57:47,706
+I can tap on stars, and
+I'm going to stop talking
+
+
+1066
+00:57:47,706 --> 00:57:49,036
+for a minute as I
+tap on these stars,
+
+
+1067
+00:57:49,116 --> 00:57:51,636
+small stars produce
+a small sound,
+
+
+1068
+00:57:51,986 --> 00:57:53,606
+larger stars produce
+a large sound.
+
+
+1069
+00:57:53,606 --> 00:57:56,836
+But just you tap around and you
+can almost make your own music
+
+
+1070
+00:57:56,836 --> 00:57:59,976
+as you're just experiencing
+this.
+
+
+1071
+00:58:00,516 --> 00:58:12,556
+[ App Sounds ]
+
+
+1072
+00:58:13,056 --> 00:58:15,796
+You can lift it up, but
+because of the shortness
+
+
+1073
+00:58:15,796 --> 00:58:17,146
+of the cords I'm not
+going to do that.
+
+
+1074
+00:58:17,146 --> 00:58:18,776
+You can lift it up and
+as soon as it detects
+
+
+1075
+00:58:18,776 --> 00:58:22,496
+that you're looking at the
+sky, it activates the compass
+
+
+1076
+00:58:22,496 --> 00:58:25,376
+and gyroscope and so now
+you can pan around the sky
+
+
+1077
+00:58:25,376 --> 00:58:27,356
+above us and around us.
+
+
+1078
+00:58:27,496 --> 00:58:30,086
+In this case I'm just going
+to go search for something
+
+
+1079
+00:58:30,086 --> 00:58:32,856
+that we all are familiar with,
+which is the Space Station.
+
+
+1080
+00:58:32,956 --> 00:58:39,106
+And you know, you saw it
+pointing to where we're going,
+
+
+1081
+00:58:39,106 --> 00:58:40,816
+and now you can see
+the trajectory
+
+
+1082
+00:58:40,816 --> 00:58:43,696
+of the Space Station,
+which is pretty cool.
+
+
+1083
+00:58:43,696 --> 00:58:45,966
+I can zoom in on stuff,
+I won't be able to see it
+
+
+1084
+00:58:45,966 --> 00:58:49,346
+in great detail because
+it's, you know, pretty small.
+
+
+1085
+00:58:50,106 --> 00:58:52,806
+But let's go back
+out here and look
+
+
+1086
+00:58:52,806 --> 00:58:55,816
+at the different part
+of the night sky.
+
+
+1087
+00:58:55,816 --> 00:58:58,436
+One of the things you can
+do is you could just --
+
+
+1088
+00:58:58,436 --> 00:59:01,636
+because of the light
+pollution that's around us
+
+
+1089
+00:59:01,636 --> 00:59:04,746
+when we're outside, you can
+actually just tap two fingers
+
+
+1090
+00:59:04,746 --> 00:59:09,196
+onscreen and drag up or
+down to adjust the amount
+
+
+1091
+00:59:09,196 --> 00:59:13,426
+of stars onscreen in "Sky Guide"
+relative to what you're seeing,
+
+
+1092
+00:59:13,426 --> 00:59:15,996
+you know, when you're
+outside, so that's kind
+
+
+1093
+00:59:15,996 --> 00:59:18,216
+of cool, so it's a good match.
+
+
+1094
+00:59:18,216 --> 00:59:21,246
+You can also learn a
+lot about the night sky
+
+
+1095
+00:59:21,326 --> 00:59:25,376
+by leveraging a tool inside of
+the app, and this is the loop.
+
+
+1096
+00:59:25,636 --> 00:59:30,516
+So this lets you see different
+spectra beyond what's visible
+
+
+1097
+00:59:30,516 --> 00:59:31,196
+to the human eye.
+
+
+1098
+00:59:31,336 --> 00:59:32,646
+And so you just bring
+up this loop,
+
+
+1099
+00:59:32,686 --> 00:59:34,246
+you can drag it around the sky.
+
+
+1100
+00:59:34,776 --> 00:59:38,816
+But you could just take this
+and move through, you know,
+
+
+1101
+00:59:38,816 --> 00:59:43,576
+microwave, infrared, h-alpha,
+and you can leave it there
+
+
+1102
+00:59:43,916 --> 00:59:47,286
+and simply move around the night
+sky and look at different things
+
+
+1103
+00:59:47,286 --> 00:59:49,796
+that are going on that
+you wouldn't know about
+
+
+1104
+00:59:49,886 --> 00:59:51,966
+but might be behind one
+of your most, you know,
+
+
+1105
+00:59:52,226 --> 00:59:55,276
+most favorite constellations
+or something.
+
+
+1106
+00:59:55,556 --> 00:59:58,696
+If I tap on an individual
+item, I get this little eye
+
+
+1107
+00:59:58,696 --> 01:00:01,086
+on the side here, you'll see
+it on the right side there.
+
+
+1108
+01:00:01,406 --> 01:00:04,246
+It's blinking to say,
+you know, look at me.
+
+
+1109
+01:00:04,406 --> 01:00:07,226
+And I could read through
+information about the object,
+
+
+1110
+01:00:07,446 --> 01:00:09,116
+Sirius, in this case,
+that I selected.
+
+
+1111
+01:00:09,496 --> 01:00:12,466
+I can tap something like Canis
+Minor, and it will go to that.
+
+
+1112
+01:00:12,926 --> 01:00:17,886
+I can tap the name of another
+star, and it'll go there.
+
+
+1113
+01:00:17,886 --> 01:00:20,446
+I can tap the sun, and it
+will rotate to the sun.
+
+
+1114
+01:00:21,086 --> 01:00:23,546
+So, you know, and this is
+just scratching the surface
+
+
+1115
+01:00:23,606 --> 01:00:24,276
+of this app.
+
+
+1116
+01:00:24,466 --> 01:00:26,916
+It's incredible the
+attention to detail
+
+
+1117
+01:00:26,916 --> 01:00:28,156
+that these guys put into it.
+
+
+1118
+01:00:28,356 --> 01:00:30,626
+The optimization for iOS.
+
+
+1119
+01:00:30,626 --> 01:00:31,466
+The soundtrack.
+
+
+1120
+01:00:31,666 --> 01:00:33,806
+It's just a pleasure
+to use this app.
+
+
+1121
+01:00:33,806 --> 01:00:37,526
+And I think it sets a standard
+that all of us should aspire
+
+
+1122
+01:00:37,616 --> 01:00:40,296
+to in our particular
+individual categories.
+
+
+1123
+01:00:40,406 --> 01:00:41,966
+So thank you for great work.
+
+
+1124
+01:00:42,516 --> 01:00:57,216
+[ Music and Applause ]
+
+
+1125
+01:00:57,716 --> 01:01:00,396
+Now, speaking of great
+work, we all aspire
+
+
+1126
+01:01:00,396 --> 01:01:02,886
+to do great things
+in our lives, right.
+
+
+1127
+01:01:02,886 --> 01:01:04,246
+We've all got these great ideas.
+
+
+1128
+01:01:04,626 --> 01:01:08,926
+All of you have got undoubtedly
+ideas already coming to mind
+
+
+1129
+01:01:08,926 --> 01:01:16,286
+for things you're going to do
+with iOS 8 and OS X Yosemite.
+
+
+1130
+01:01:16,286 --> 01:01:21,336
+And you know, when we've
+got these great ideas,
+
+
+1131
+01:01:21,336 --> 01:01:22,796
+we also have these
+very high standards
+
+
+1132
+01:01:22,796 --> 01:01:24,086
+for ourselves in many cases.
+
+
+1133
+01:01:24,556 --> 01:01:26,076
+And when you've got
+these high standards,
+
+
+1134
+01:01:26,076 --> 01:01:29,006
+it's often difficult though
+to actually realize them
+
+
+1135
+01:01:29,086 --> 01:01:31,506
+for a variety of reasons
+beyond our own control, right.
+
+
+1136
+01:01:32,116 --> 01:01:35,216
+Life has a way of taking charge.
+
+
+1137
+01:01:35,486 --> 01:01:38,556
+But and that's why some
+of these great ideas are
+
+
+1138
+01:01:38,556 --> 01:01:39,596
+such a big challenge.
+
+
+1139
+01:01:39,706 --> 01:01:44,326
+But when you can pull
+them off, it's amazing,
+
+
+1140
+01:01:44,846 --> 01:01:48,436
+and it's definitely
+something that's worth noting,
+
+
+1141
+01:01:48,436 --> 01:01:50,276
+it's a definitely
+notable moment.
+
+
+1142
+01:01:50,806 --> 01:01:54,566
+And so our next winner
+is just an incredible app
+
+
+1143
+01:01:55,026 --> 01:02:00,746
+that was definitely a big
+idea I think for them.
+
+
+1144
+01:02:00,746 --> 01:02:04,016
+And they set out to do
+something fantastic,
+
+
+1145
+01:02:04,586 --> 01:02:06,316
+and I think they achieved that.
+
+
+1146
+01:02:07,066 --> 01:02:09,406
+>> And our final award
+this afternoon goes
+
+
+1147
+01:02:09,496 --> 01:02:12,406
+to "Monument Valley"
+by ustwo studio.
+
+
+1148
+01:02:13,516 --> 01:02:54,166
+[ Music and Applause ]
+
+
+1149
+01:02:54,666 --> 01:02:57,116
+"Monument Valley" is
+a surreal exploration
+
+
+1150
+01:02:57,186 --> 01:02:58,796
+through fantastical
+architectures
+
+
+1151
+01:02:58,796 --> 01:03:00,136
+and impossible geometry.
+
+
+1152
+01:03:00,656 --> 01:03:03,936
+Guide the silent Princess Ida
+through mysterious monuments,
+
+
+1153
+01:03:03,936 --> 01:03:06,866
+uncovering hidden paths and
+unfolding optical illusions
+
+
+1154
+01:03:07,156 --> 01:03:09,346
+to outsmart the enigmatic
+crow people.
+
+
+1155
+01:03:13,996 --> 01:03:16,416
+>> This is such an awesome game.
+
+
+1156
+01:03:16,416 --> 01:03:19,356
+And I don't know where
+the idea came from,
+
+
+1157
+01:03:19,676 --> 01:03:23,146
+we'll have to hear the
+story someday, but it is -
+
+
+1158
+01:03:23,416 --> 01:03:26,026
+they just set out to
+do something so big
+
+
+1159
+01:03:26,026 --> 01:03:27,636
+and the result is amazing.
+
+
+1160
+01:03:27,706 --> 01:03:30,536
+So what you're doing is you're
+taking this little Princess Ida
+
+
+1161
+01:03:30,536 --> 01:03:33,066
+and you've got to get her to
+the top of these, you know,
+
+
+1162
+01:03:33,146 --> 01:03:34,316
+to the top of the scenes.
+
+
+1163
+01:03:34,316 --> 01:03:35,936
+In this case the top
+of the tower there.
+
+
+1164
+01:03:35,936 --> 01:03:40,016
+But we're looking at this
+very Escheresque 3-D model,
+
+
+1165
+01:03:40,246 --> 01:03:41,726
+and a lot of things
+don't line up.
+
+
+1166
+01:03:42,066 --> 01:03:44,876
+Anyway, so we'll
+figure it out as we go.
+
+
+1167
+01:03:45,386 --> 01:03:48,576
+No. 1, you know, you can
+interact with objects onscreen.
+
+
+1168
+01:03:48,576 --> 01:03:50,566
+So this one's pretty
+straightforward - let's just tap
+
+
+1169
+01:03:50,566 --> 01:03:51,756
+and tell her where to go.
+
+
+1170
+01:03:52,466 --> 01:03:55,156
+She's going to go up here,
+we're going to put her up here.
+
+
+1171
+01:03:55,156 --> 01:03:56,676
+But now, now what do we do?
+
+
+1172
+01:03:57,166 --> 01:04:01,716
+But you get these hints onscreen
+that so you can turn this
+
+
+1173
+01:04:02,246 --> 01:04:06,156
+and so we'll walk around here,
+we're going to walk her around,
+
+
+1174
+01:04:06,256 --> 01:04:09,266
+flip this around, and now
+she's got to go and step
+
+
+1175
+01:04:09,266 --> 01:04:11,276
+on this special platform,
+which is now going
+
+
+1176
+01:04:11,276 --> 01:04:13,236
+to deconstruct things.
+
+
+1177
+01:04:13,746 --> 01:04:16,346
+But you know, when you
+look at this, okay,
+
+
+1178
+01:04:16,346 --> 01:04:17,326
+now where's she going to go?
+
+
+1179
+01:04:17,326 --> 01:04:19,966
+She can't climb that
+center pole.
+
+
+1180
+01:04:19,966 --> 01:04:22,646
+She can't you know,
+what are we going to do?
+
+
+1181
+01:04:22,646 --> 01:04:28,586
+But what's just so cool about
+this app is that once you start
+
+
+1182
+01:04:28,586 --> 01:04:30,126
+to interact with these objects,
+
+
+1183
+01:04:30,796 --> 01:04:34,486
+you realize like look what's
+going on here, you didn't think
+
+
+1184
+01:04:34,486 --> 01:04:36,946
+that that top bar
+was the same height
+
+
+1185
+01:04:36,946 --> 01:04:38,226
+as the other walkway, right.
+
+
+1186
+01:04:38,766 --> 01:04:40,286
+But as you start to
+rotate it around,
+
+
+1187
+01:04:40,286 --> 01:04:46,356
+they've just done this great job
+of showing what you're doing.
+
+
+1188
+01:04:48,516 --> 01:04:50,546
+[ Applause ]
+
+
+1189
+01:04:51,046 --> 01:04:52,686
+You know, it's like that
+you know, those stairs
+
+
+1190
+01:04:52,726 --> 01:04:55,316
+that just never end, right,
+it's exactly that experience.
+
+
+1191
+01:04:55,786 --> 01:04:58,486
+So here you turn around,
+now she's going to get
+
+
+1192
+01:04:58,486 --> 01:05:00,926
+to the final destination, right.
+
+
+1193
+01:05:01,026 --> 01:05:04,376
+And so she gets there, we
+get this path that appears,
+
+
+1194
+01:05:04,946 --> 01:05:07,086
+and now we get onto
+this next level.
+
+
+1195
+01:05:07,086 --> 01:05:10,076
+So she's going to
+walk around here.
+
+
+1196
+01:05:10,886 --> 01:05:13,166
+And this just goes
+on and on and on.
+
+
+1197
+01:05:13,166 --> 01:05:17,286
+And it's just so awesome,
+because in this level here,
+
+
+1198
+01:05:17,286 --> 01:05:20,366
+she suddenly learns to
+walk sideways and walk
+
+
+1199
+01:05:20,366 --> 01:05:21,276
+on different surfaces.
+
+
+1200
+01:05:21,276 --> 01:05:24,096
+So here she's going up here.
+
+
+1201
+01:05:24,156 --> 01:05:25,926
+We're going to walk
+her around here.
+
+
+1202
+01:05:27,236 --> 01:05:29,246
+And just listen to this
+soundtrack that's going
+
+
+1203
+01:05:29,246 --> 01:05:30,086
+on behind the scenes.
+
+
+1204
+01:05:30,086 --> 01:05:33,266
+Now you're like what is
+happening here, right?
+
+
+1205
+01:05:33,396 --> 01:05:36,636
+But if we turn let's see -
+can I remember how to do this?
+
+
+1206
+01:05:37,386 --> 01:05:39,876
+Well, let's just end the
+demo there because - oh,
+
+
+1207
+01:05:39,876 --> 01:05:41,316
+I know what to do, I know
+what to do, that's right.
+
+
+1208
+01:05:41,856 --> 01:05:44,446
+I want to get to the backside of
+this thing, no I can't do that.
+
+
+1209
+01:05:44,446 --> 01:05:47,426
+I can't remember, it's okay,
+you've got to play the game.
+
+
+1210
+01:05:47,946 --> 01:05:49,776
+Awesome use of technology.
+
+
+1211
+01:05:50,096 --> 01:05:51,516
+A great user experience.
+
+
+1212
+01:05:52,066 --> 01:05:54,916
+Fabulous art that's
+optimized for retina display.
+
+
+1213
+01:05:55,306 --> 01:05:57,846
+And just such an
+intriguing experience.
+
+
+1214
+01:05:58,056 --> 01:06:00,796
+And you should just be
+super proud of your work.
+
+
+1215
+01:06:00,796 --> 01:06:03,436
+We really appreciate what
+you've done for iPad, thank you.
+
+
+1216
+01:06:04,516 --> 01:06:18,546
+[ Music and Applause ]
+
+
+1217
+01:06:19,046 --> 01:06:21,296
+>> So that's it, those
+are our 12 winners
+
+
+1218
+01:06:21,296 --> 01:06:27,916
+for the Apple Design Awards in
+2014; 12 incredible apps built
+
+
+1219
+01:06:27,916 --> 01:06:31,986
+on and for iOS 7
+and OS X Mavericks.
+
+
+1220
+01:06:33,496 --> 01:06:36,886
+>> These are 12 incredible
+developers who we'd love
+
+
+1221
+01:06:36,886 --> 01:06:38,366
+to invite back on stage now.
+
+
+1222
+01:06:39,566 --> 01:06:41,136
+So come on up, you guys.
+
+
+1223
+01:06:42,516 --> 01:07:13,206
+[ Music and Applause ]
+
+
+1224
+01:07:13,706 --> 01:07:18,296
+You know, these folks
+have done such great work.
+
+
+1225
+01:07:18,296 --> 01:07:21,286
+You've just seen, you
+know, you've seen a little,
+
+
+1226
+01:07:21,286 --> 01:07:22,906
+a few seconds of
+each of their apps,
+
+
+1227
+01:07:22,966 --> 01:07:25,616
+but already you get a glimpse of
+why these apps are really great.
+
+
+1228
+01:07:26,036 --> 01:07:29,816
+These guys have set a new
+benchmark with these apps
+
+
+1229
+01:07:30,396 --> 01:07:33,456
+for excellence, for creativity,
+for technology adoption,
+
+
+1230
+01:07:33,536 --> 01:07:36,366
+for innovation, for
+so many things.
+
+
+1231
+01:07:36,366 --> 01:07:40,296
+And really these
+apps set a standard
+
+
+1232
+01:07:40,296 --> 01:07:43,326
+that we're really saying to
+you as a community, you know,
+
+
+1233
+01:07:43,326 --> 01:07:47,056
+your work needs to be just
+like these guys, it needs to be
+
+
+1234
+01:07:47,056 --> 01:07:48,526
+of this quality or higher.
+
+
+1235
+01:07:48,526 --> 01:07:49,666
+They've set the new bar.
+
+
+1236
+01:07:50,116 --> 01:07:53,406
+And I think just for a
+moment it would be great just
+
+
+1237
+01:07:53,406 --> 01:07:54,436
+to give these people a hand.
+
+
+1238
+01:07:54,436 --> 01:07:55,486
+They've worked so hard.
+
+
+1239
+01:07:55,486 --> 01:07:56,456
+They're so creative.
+
+
+1240
+01:07:57,516 --> 01:08:07,546
+[ Applause ]
+
+
+1241
+01:08:08,046 --> 01:08:09,316
+So thank you for
+all your hard work.
+
+
+1242
+01:08:09,886 --> 01:08:10,806
+Keep doing it.
+
+
+1243
+01:08:10,806 --> 01:08:13,236
+>> And we can't wait to see
+what these developers and you do
+
+
+1244
+01:08:13,236 --> 01:08:15,306
+with iOS 8 and OS X Yosemite.
+
+
+1245
+01:08:15,756 --> 01:08:16,456
+Thank you very much.
+

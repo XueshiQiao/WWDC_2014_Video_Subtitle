@@ -1,0 +1,5022 @@
+1
+00:00:13,136 --> 00:00:13,976
+>> Hello, everyone.
+
+
+2
+00:00:14,516 --> 00:00:19,106
+[ Applause ]
+
+
+3
+00:00:19,606 --> 00:00:20,176
+How's it going?
+
+
+4
+00:00:20,276 --> 00:00:23,706
+I heard the bash was
+pretty amazing last night,
+
+
+5
+00:00:23,786 --> 00:00:25,766
+and I'm sure a lot
+of you are hungover
+
+
+6
+00:00:26,186 --> 00:00:28,776
+so I'll speak really
+softly to soothe it.
+
+
+7
+00:00:29,396 --> 00:00:30,336
+Nah, just kidding.
+
+
+8
+00:00:30,546 --> 00:00:31,506
+There's no mercy here.
+
+
+9
+00:00:31,766 --> 00:00:33,256
+Let's get right started.
+
+
+10
+00:00:33,646 --> 00:00:35,966
+We have a lot of great
+content for you this morning.
+
+
+11
+00:00:36,926 --> 00:00:40,556
+You may have heard that Apple
+released a new programming
+
+
+12
+00:00:40,556 --> 00:00:41,416
+language this week.
+
+
+13
+00:00:42,026 --> 00:00:45,156
+It's called Swift, apparently,
+and it's the new language
+
+
+14
+00:00:45,156 --> 00:00:47,176
+for the Cocoa and
+Cocoa Touch platforms.
+
+
+15
+00:00:47,616 --> 00:00:50,356
+It's a language we totally
+love and it feels just awesome.
+
+
+16
+00:00:50,776 --> 00:00:54,346
+And what's even better is that
+the tools you know and love,
+
+
+17
+00:00:54,416 --> 00:00:57,196
+the Xcode you know and love, the
+source editor you know and love,
+
+
+18
+00:00:57,476 --> 00:01:01,256
+they all just feel great, and
+the debugger you know and love,
+
+
+19
+00:01:01,526 --> 00:01:04,946
+LLDB, also feels just great.
+
+
+20
+00:01:06,736 --> 00:01:09,976
+The thing is, you've
+heard about tools
+
+
+21
+00:01:10,036 --> 00:01:12,636
+that can help you explore Swift.
+
+
+22
+00:01:13,446 --> 00:01:17,376
+One of them, one of them that is
+not usually thought of as a tool
+
+
+23
+00:01:17,376 --> 00:01:20,166
+for exploration is the debugger.
+
+
+24
+00:01:21,096 --> 00:01:23,766
+The debugger has
+the unique property
+
+
+25
+00:01:24,116 --> 00:01:27,646
+that it can help you explore in
+the context of your application.
+
+
+26
+00:01:28,416 --> 00:01:31,286
+Most of you probably do have
+apps and those were written
+
+
+27
+00:01:31,286 --> 00:01:34,656
+in Objective-C and you might
+have started off things
+
+
+28
+00:01:34,656 --> 00:01:35,456
+with features.
+
+
+29
+00:01:35,966 --> 00:01:39,256
+So, what you can do is you can
+code some Swift inside your
+
+
+30
+00:01:39,256 --> 00:01:43,076
+application and you can use
+the debugger to help you step
+
+
+31
+00:01:43,076 --> 00:01:45,656
+through your code, look
+at your data and figure
+
+
+32
+00:01:45,656 --> 00:01:49,296
+out how your fancy new Swift
+features are interacting
+
+
+33
+00:01:49,296 --> 00:01:50,486
+with your existing code base.
+
+
+34
+00:01:51,396 --> 00:01:55,386
+And of course, if it ever
+happened that there were bugs
+
+
+35
+00:01:55,516 --> 00:01:58,466
+in your code, you could
+actually use the debugger
+
+
+36
+00:01:58,466 --> 00:02:00,186
+to be productive to fix them.
+
+
+37
+00:02:00,816 --> 00:02:05,986
+We have a lot of stuff to cover.
+
+
+38
+00:02:06,266 --> 00:02:10,276
+We're going to talk about
+some Swift types in LLDB.
+
+
+39
+00:02:10,276 --> 00:02:13,146
+We're going to talk
+about optional types,
+
+
+40
+00:02:13,546 --> 00:02:15,606
+protocols and generics.
+
+
+41
+00:02:16,086 --> 00:02:19,196
+These are all categories of
+types that Swift introduces.
+
+
+42
+00:02:19,566 --> 00:02:22,046
+What can you expect when
+you're debugging your code
+
+
+43
+00:02:22,046 --> 00:02:23,236
+and you try to use this?
+
+
+44
+00:02:24,466 --> 00:02:27,226
+We're going to talk about
+the mix and match situation
+
+
+45
+00:02:27,506 --> 00:02:30,046
+where you have some Objective-C
+code and some Swift code
+
+
+46
+00:02:30,046 --> 00:02:32,316
+that are interoperating
+together and you have
+
+
+47
+00:02:32,356 --> 00:02:34,716
+to debug the result of that.
+
+
+48
+00:02:35,126 --> 00:02:36,496
+We're going to cover stepping.
+
+
+49
+00:02:37,196 --> 00:02:39,576
+We're going to talk
+about data formatters
+
+
+50
+00:02:39,706 --> 00:02:42,646
+and how you can expect data
+formatters to work in Swift.
+
+
+51
+00:02:42,646 --> 00:02:45,966
+And we're going to start
+with name uniqueness,
+
+
+52
+00:02:46,286 --> 00:02:50,476
+explain how Swift solves name
+clashes in your, in your code
+
+
+53
+00:02:50,476 --> 00:02:53,016
+between different frameworks
+and libraries and from there,
+
+
+54
+00:02:53,016 --> 00:02:56,366
+we're going to see how that very
+same feature also helps make
+
+
+55
+00:02:56,416 --> 00:02:57,516
+debugging awesome.
+
+
+56
+00:02:59,636 --> 00:03:01,566
+Optional types.
+
+
+57
+00:03:02,496 --> 00:03:05,536
+Optional types introduce
+a level of indirection.
+
+
+58
+00:03:06,346 --> 00:03:09,476
+Is it something inside
+the optional or is it not?
+
+
+59
+00:03:10,526 --> 00:03:14,956
+The way I like to think of
+optional types is a box.
+
+
+60
+00:03:15,666 --> 00:03:19,516
+I got a box and it says
+there's a string here.
+
+
+61
+00:03:20,076 --> 00:03:23,726
+But I have to actually open
+the box to look at the string
+
+
+62
+00:03:23,726 --> 00:03:27,706
+and see there's a string here,
+actually there's nothing here.
+
+
+63
+00:03:28,866 --> 00:03:32,696
+In codes, that unwrapping the
+box is something you have to do
+
+
+64
+00:03:32,786 --> 00:03:35,306
+and it's called interrupting
+the optional.
+
+
+65
+00:03:36,076 --> 00:03:37,846
+LLDB helps you out.
+
+
+66
+00:03:37,896 --> 00:03:40,766
+When you're debugging,
+it will implicitly,
+
+
+67
+00:03:40,766 --> 00:03:44,026
+automatically unwrap the
+optional, open the box for you
+
+
+68
+00:03:44,306 --> 00:03:45,536
+and show you the contents.
+
+
+69
+00:03:46,026 --> 00:03:48,706
+And if there are no
+contents, will just say nil.
+
+
+70
+00:03:49,406 --> 00:03:53,146
+How can we expect that to look?
+
+
+71
+00:03:53,416 --> 00:03:56,216
+Let's say we're writing code and
+we create a bunch of variables.
+
+
+72
+00:03:56,796 --> 00:03:59,216
+We create a native
+Swift string optional.
+
+
+73
+00:03:59,766 --> 00:04:03,386
+We create an NSRect as
+bridge C struct optional
+
+
+74
+00:04:03,766 --> 00:04:06,836
+and we create an NSURL
+optional, and we choose
+
+
+75
+00:04:06,836 --> 00:04:08,626
+to not put anything
+in the NSURL.
+
+
+76
+00:04:09,556 --> 00:04:12,956
+The variable views will
+transparently unwrap for you.
+
+
+77
+00:04:13,636 --> 00:04:17,026
+Your string will show
+just the contents
+
+
+78
+00:04:17,026 --> 00:04:19,856
+of the string literal you
+put in the, in the optional.
+
+
+79
+00:04:20,055 --> 00:04:21,755
+The boxes open, oh,
+there's a string.
+
+
+80
+00:04:21,956 --> 00:04:23,436
+LLDB will show you the string.
+
+
+81
+00:04:24,136 --> 00:04:26,556
+The same thing is
+true for the NSRect.
+
+
+82
+00:04:27,066 --> 00:04:28,536
+Oh, that's actually
+a rectangle in there.
+
+
+83
+00:04:28,646 --> 00:04:31,276
+I'll tell you about its
+origin and its size.
+
+
+84
+00:04:32,146 --> 00:04:36,826
+And since the NSURL happens
+to be nil, we'll just say nil.
+
+
+85
+00:04:38,716 --> 00:04:41,776
+There's a point when
+this situation gets a
+
+
+86
+00:04:41,776 --> 00:04:42,586
+little trickier.
+
+
+87
+00:04:43,386 --> 00:04:47,336
+Since optionals are like boxes,
+I can put boxes into boxes.
+
+
+88
+00:04:48,146 --> 00:04:50,556
+It probably happened to
+all of us at some point.
+
+
+89
+00:04:50,676 --> 00:04:52,086
+We order something online
+
+
+90
+00:04:52,396 --> 00:04:56,096
+and the shipping company sends
+us a really big, bulky box.
+
+
+91
+00:04:56,096 --> 00:04:58,626
+And then we open the
+really big, bulky box
+
+
+92
+00:04:58,806 --> 00:05:00,306
+and there's a smaller
+box inside.
+
+
+93
+00:05:00,306 --> 00:05:02,556
+And then there's another
+smaller box inside.
+
+
+94
+00:05:02,556 --> 00:05:04,716
+And then eventually
+for all that packaging,
+
+
+95
+00:05:04,876 --> 00:05:07,586
+all we ordered is a tiny
+little thing like a clicker.
+
+
+96
+00:05:08,366 --> 00:05:10,606
+In Swift, you can
+do a similar thing
+
+
+97
+00:05:10,816 --> 00:05:12,746
+by having nested optionals.
+
+
+98
+00:05:13,566 --> 00:05:15,986
+In this example, we have
+an optional of an optional
+
+
+99
+00:05:16,466 --> 00:05:19,616
+and what we say is in
+the outermost optional
+
+
+100
+00:05:19,616 --> 00:05:23,006
+in the big box, we're
+actually putting a smaller box,
+
+
+101
+00:05:23,406 --> 00:05:24,896
+but the smaller box is empty.
+
+
+102
+00:05:26,936 --> 00:05:30,406
+There's a fundamental
+tension at work here.
+
+
+103
+00:05:30,916 --> 00:05:33,786
+If I am the debugger,
+I have to decide what
+
+
+104
+00:05:33,786 --> 00:05:34,876
+to tell in this story.
+
+
+105
+00:05:35,156 --> 00:05:37,656
+I have to decide if
+I want to tell you
+
+
+106
+00:05:37,656 --> 00:05:41,226
+that there's two boxes here
+and one of them is full and one
+
+
+107
+00:05:41,226 --> 00:05:45,946
+of them is empty, or I can just
+look inside the whole layering
+
+
+108
+00:05:45,946 --> 00:05:48,286
+of boxes and be the smart guy
+
+
+109
+00:05:48,286 --> 00:05:50,086
+that tells you, eh,
+you know what?
+
+
+110
+00:05:50,086 --> 00:05:51,256
+There's nothing here.
+
+
+111
+00:05:51,256 --> 00:05:52,186
+Just forget it.
+
+
+112
+00:05:52,186 --> 00:05:53,376
+Just don't bother with it.
+
+
+113
+00:05:54,406 --> 00:05:58,346
+By default, LLDB chooses
+to be that smart guy.
+
+
+114
+00:05:58,726 --> 00:06:00,766
+It looks inside all
+the level of boxes
+
+
+115
+00:06:01,476 --> 00:06:03,316
+and it tells you, you know what?
+
+
+116
+00:06:03,316 --> 00:06:04,636
+I looked. There's
+really nothing here.
+
+
+117
+00:06:04,636 --> 00:06:06,296
+There's no string at
+the end of the day.
+
+
+118
+00:06:06,846 --> 00:06:12,636
+But in some cases, I may
+actually want to know
+
+
+119
+00:06:12,936 --> 00:06:14,866
+that there's a box with a box
+
+
+120
+00:06:14,866 --> 00:06:16,876
+and that the smaller box
+is the one that's empty.
+
+
+121
+00:06:17,186 --> 00:06:19,396
+Maybe it matters
+for my API contact
+
+
+122
+00:06:19,396 --> 00:06:21,506
+that that's the way things are.
+
+
+123
+00:06:22,076 --> 00:06:24,726
+For those cases, what you want
+
+
+124
+00:06:24,726 --> 00:06:26,966
+to be using is the
+row display mode.
+
+
+125
+00:06:27,296 --> 00:06:29,996
+Let me give you a
+little background here.
+
+
+126
+00:06:30,786 --> 00:06:34,676
+By default, LLDB has a
+feature called data formatters.
+
+
+127
+00:06:35,496 --> 00:06:38,796
+The data formatter feature is
+used throughout the debugger
+
+
+128
+00:06:38,796 --> 00:06:42,876
+when you're looking at data
+to present you is no frills,
+
+
+129
+00:06:43,276 --> 00:06:46,556
+just get me the data that
+matters in my contact situation.
+
+
+130
+00:06:47,196 --> 00:06:49,226
+But sometimes you need
+
+
+131
+00:06:49,226 --> 00:06:52,266
+to actually see the
+underlying truth
+
+
+132
+00:06:52,576 --> 00:06:55,846
+without the debugger trying to
+be smart about what to show you.
+
+
+133
+00:06:56,436 --> 00:06:58,626
+In those situations,
+what you want
+
+
+134
+00:06:58,626 --> 00:07:00,796
+to use is this row display mode.
+
+
+135
+00:07:01,506 --> 00:07:04,246
+At the LLDB consult,
+the row display,
+
+
+136
+00:07:04,446 --> 00:07:07,866
+the show me the real guts
+of my objective memory
+
+
+137
+00:07:07,866 --> 00:07:10,196
+without formatting it
+in an intelligent way,
+
+
+138
+00:07:10,656 --> 00:07:14,896
+is invoked with the dash
+dash row, or for short,
+
+
+139
+00:07:14,896 --> 00:07:17,596
+-R option to the
+expression command
+
+
+140
+00:07:18,066 --> 00:07:20,826
+or the frame variable command.
+
+
+141
+00:07:21,756 --> 00:07:25,446
+Some of you have probably
+not used the frame variable
+
+
+142
+00:07:25,446 --> 00:07:26,346
+command before.
+
+
+143
+00:07:26,896 --> 00:07:29,266
+It's a little bit of
+useful debugger trivia.
+
+
+144
+00:07:29,556 --> 00:07:33,876
+There are some cases where
+maybe you're debugging a really,
+
+
+145
+00:07:33,876 --> 00:07:38,496
+really tricky situation and
+you're trying to disturb
+
+
+146
+00:07:38,696 --> 00:07:41,216
+to preserve the state
+of your app as little
+
+
+147
+00:07:41,266 --> 00:07:42,916
+as possible while
+you try to figure
+
+
+148
+00:07:42,916 --> 00:07:44,716
+out this really weird situation.
+
+
+149
+00:07:45,316 --> 00:07:49,906
+In those cases, you want to look
+at your data but you don't want
+
+
+150
+00:07:49,906 --> 00:07:52,566
+to be running code that
+could change the state
+
+
+151
+00:07:52,566 --> 00:07:54,026
+of your app as you look at data.
+
+
+152
+00:07:55,106 --> 00:07:57,876
+You can use the frame
+variable command to say,
+
+
+153
+00:07:57,876 --> 00:07:58,856
+"Show me one variable.
+
+
+154
+00:07:58,936 --> 00:08:00,266
+Show me a bunch of variables.
+
+
+155
+00:08:00,556 --> 00:08:04,296
+Show me all my locals"
+without having to execute code.
+
+
+156
+00:08:04,696 --> 00:08:07,246
+And that is the frame
+variable command.
+
+
+157
+00:08:08,216 --> 00:08:12,166
+If you also pass it the -R
+option, you get the row display.
+
+
+158
+00:08:12,296 --> 00:08:14,966
+You get things for what they
+really are under the covers.
+
+
+159
+00:08:15,756 --> 00:08:18,906
+And if we do that to our
+big box with smaller box
+
+
+160
+00:08:18,906 --> 00:08:20,896
+with nothing inside, we see
+
+
+161
+00:08:20,896 --> 00:08:25,366
+that the first thing LLDB
+tells us is that, "Yeah,
+
+
+162
+00:08:25,936 --> 00:08:28,846
+there is a big box and I see
+
+
+163
+00:08:28,846 --> 00:08:30,236
+that there's something
+in there."
+
+
+164
+00:08:30,306 --> 00:08:31,466
+That's what that Some means.
+
+
+165
+00:08:32,346 --> 00:08:36,716
+Now let me open this big box and
+see exactly what is in there,
+
+
+166
+00:08:37,635 --> 00:08:42,946
+and we see that there is a
+smaller box with nothing inside.
+
+
+167
+00:08:43,586 --> 00:08:45,856
+But it doesn't stop here.
+
+
+168
+00:08:46,956 --> 00:08:50,716
+We told the Swift compiler
+that we wanted a box
+
+
+169
+00:08:50,996 --> 00:08:55,146
+that would fit a string, and
+the Swift compiler made us a box
+
+
+170
+00:08:55,396 --> 00:08:56,446
+that would fit a string.
+
+
+171
+00:08:56,936 --> 00:09:00,176
+If there was a string here,
+we would pretty much see that.
+
+
+172
+00:09:00,766 --> 00:09:02,646
+We would see the low-level,
+
+
+173
+00:09:02,646 --> 00:09:05,556
+no-frills representation
+of a Swift string.
+
+
+174
+00:09:06,796 --> 00:09:08,306
+But there's no string
+in this case.
+
+
+175
+00:09:08,856 --> 00:09:11,936
+So, everything in the storage
+that the compiler reserved
+
+
+176
+00:09:11,936 --> 00:09:13,886
+for the string is zeroed
+
+
+177
+00:09:13,886 --> 00:09:16,086
+out because there
+actually is nothing.
+
+
+178
+00:09:20,836 --> 00:09:24,736
+We've been talking
+about optional types,
+
+
+179
+00:09:25,296 --> 00:09:28,156
+but we could also talk more
+in general about types.
+
+
+180
+00:09:29,046 --> 00:09:31,616
+We could ask ourselves
+the question, when we talk
+
+
+181
+00:09:31,616 --> 00:09:34,516
+about a type, what
+are we talking about?
+
+
+182
+00:09:35,066 --> 00:09:38,636
+And that's a deep,
+philosophical question.
+
+
+183
+00:09:38,926 --> 00:09:41,676
+That's a question with
+potentially a lot of answers,
+
+
+184
+00:09:42,566 --> 00:09:45,026
+and I'm sure we would all
+like to spend the rest
+
+
+185
+00:09:45,026 --> 00:09:47,926
+of the session going back and
+forth exchanging definitions
+
+
+186
+00:09:47,926 --> 00:09:51,786
+of type, or you could just
+trust me for a moment,
+
+
+187
+00:09:51,906 --> 00:09:54,206
+I could give you a definition
+that works in the context
+
+
+188
+00:09:54,206 --> 00:09:56,556
+of the following slides,
+and we could keep moving.
+
+
+189
+00:09:57,496 --> 00:09:59,906
+Let's just do that, will we?
+
+
+190
+00:10:00,096 --> 00:10:04,026
+I'm going to go with the idea
+that a type is a classification
+
+
+191
+00:10:04,236 --> 00:10:07,436
+that tells me, given some
+data, how can I expect
+
+
+192
+00:10:07,526 --> 00:10:09,206
+that data to be represented?
+
+
+193
+00:10:09,566 --> 00:10:12,866
+How can I expect to be
+interacting with that data?
+
+
+194
+00:10:12,866 --> 00:10:18,916
+In a sense, I'm going to talk
+about a type as if it was a hat
+
+
+195
+00:10:19,216 --> 00:10:20,586
+that a piece of data can wear.
+
+
+196
+00:10:21,006 --> 00:10:24,576
+A hat, data can wear a
+little hat saying I'm an int,
+
+
+197
+00:10:25,246 --> 00:10:27,726
+and our piece of data
+can say, I'm a string.
+
+
+198
+00:10:28,506 --> 00:10:31,846
+And the fancy guy down the
+hall can say, I'm a UIView,
+
+
+199
+00:10:31,846 --> 00:10:33,206
+I'm really pretty, look at me.
+
+
+200
+00:10:35,976 --> 00:10:40,106
+The interesting thing
+is unlike people's hats,
+
+
+201
+00:10:40,836 --> 00:10:42,486
+data can have multiple types.
+
+
+202
+00:10:42,666 --> 00:10:46,486
+The same piece of data can wear
+multiple hats at the same time.
+
+
+203
+00:10:47,836 --> 00:10:49,156
+How is that possible?
+
+
+204
+00:10:50,256 --> 00:10:52,976
+There's a number of
+ways to look at that.
+
+
+205
+00:10:53,076 --> 00:10:55,866
+One of the ways, the one
+that is actually interesting
+
+
+206
+00:10:55,866 --> 00:10:59,676
+in the context about language
+run times and debuggers is,
+
+
+207
+00:10:59,676 --> 00:11:02,626
+for instance, the static
+dynamic type distinction.
+
+
+208
+00:11:03,926 --> 00:11:08,116
+We're all pretty familiar
+I assume with the concept
+
+
+209
+00:11:08,116 --> 00:11:09,646
+of declaring a variable.
+
+
+210
+00:11:10,076 --> 00:11:11,856
+We've all done that at
+one point or another.
+
+
+211
+00:11:12,786 --> 00:11:18,296
+One of the things we do when we
+declare a variable is give it a
+
+
+212
+00:11:18,886 --> 00:11:21,936
+type, whether we do it
+explicitly like in C
+
+
+213
+00:11:21,936 --> 00:11:26,126
+or Objective-C or we let
+the Swift compiler infer
+
+
+214
+00:11:26,126 --> 00:11:27,246
+that for us.
+
+
+215
+00:11:27,586 --> 00:11:31,476
+We declare a variable and that
+variable ends up having a type.
+
+
+216
+00:11:32,756 --> 00:11:35,896
+What does that type
+do in the declaration?
+
+
+217
+00:11:37,306 --> 00:11:41,376
+In a sense, that type is
+telling the compiler to keep us,
+
+
+218
+00:11:41,916 --> 00:11:43,526
+the code writers, honest.
+
+
+219
+00:11:44,666 --> 00:11:50,556
+When I, when I tell the compiler
+that thing is an AnyObject, I'm,
+
+
+220
+00:11:50,606 --> 00:11:54,396
+in a sense I'm telling the
+compiler, "Please make sure
+
+
+221
+00:11:54,546 --> 00:11:56,416
+that whenever I use that object,
+
+
+222
+00:11:56,846 --> 00:11:59,486
+I play by the rules
+of any object."
+
+
+223
+00:12:00,176 --> 00:12:03,586
+And as long as I do that,
+the compiler will be happy,
+
+
+224
+00:12:04,636 --> 00:12:07,586
+and if I break the contract,
+when I told the compiler
+
+
+225
+00:12:07,586 --> 00:12:09,656
+if this is an AnyObject,
+keep me honest,
+
+
+226
+00:12:10,226 --> 00:12:12,046
+then the compiler will complain.
+
+
+227
+00:12:14,496 --> 00:12:19,036
+When I run time, however, things
+become a little different.
+
+
+228
+00:12:20,426 --> 00:12:23,146
+Let's say I want to
+get the hash code
+
+
+229
+00:12:23,256 --> 00:12:25,856
+for an NSURL object
+or that object.
+
+
+230
+00:12:26,976 --> 00:12:28,616
+There's a lot of different ways
+
+
+231
+00:12:29,276 --> 00:12:30,896
+to get the hash code
+for something.
+
+
+232
+00:12:31,966 --> 00:12:35,916
+How does the system know
+that when I say "url.hash",
+
+
+233
+00:12:36,626 --> 00:12:40,436
+the implementation that I expect
+is the one that will get called?
+
+
+234
+00:12:40,916 --> 00:12:42,196
+How does that work?
+
+
+235
+00:12:43,256 --> 00:12:46,866
+Well, that can't rely on the
+fact that that's an AnyObject,
+
+
+236
+00:12:47,196 --> 00:12:50,556
+because an any object could
+potentially be almost anything.
+
+
+237
+00:12:51,116 --> 00:12:53,326
+At that point, I could just
+as well choose randomly.
+
+
+238
+00:12:54,516 --> 00:12:56,776
+What happens is there's
+a reliance
+
+
+239
+00:12:57,366 --> 00:12:59,576
+on the runtime type
+of the object.
+
+
+240
+00:13:00,146 --> 00:13:02,046
+The system looks at the type
+
+
+241
+00:13:02,126 --> 00:13:05,546
+that that object has while my
+code is running at that moment,
+
+
+242
+00:13:05,816 --> 00:13:09,186
+and that's called the
+runtime dynamic type,
+
+
+243
+00:13:09,466 --> 00:13:14,316
+and it uses that information to
+decide which hash gets called.
+
+
+244
+00:13:14,386 --> 00:13:18,216
+That's the magic of a
+little mechanism called
+
+
+245
+00:13:18,296 --> 00:13:19,886
+dynamic dispatch.
+
+
+246
+00:13:21,556 --> 00:13:25,086
+So, we're here, and we
+have our little URL object,
+
+
+247
+00:13:25,426 --> 00:13:27,176
+and we're trying
+to call hash on it.
+
+
+248
+00:13:28,486 --> 00:13:33,416
+We said there's a hat on our URL
+object that says "I'm a URL".
+
+
+249
+00:13:34,366 --> 00:13:37,996
+It turns out, that's
+sort of true.
+
+
+250
+00:13:38,116 --> 00:13:40,226
+That object has ivars,
+of course,
+
+
+251
+00:13:40,846 --> 00:13:42,956
+but it also has type
+information.
+
+
+252
+00:13:43,546 --> 00:13:46,416
+For those of you
+that use Objective-C,
+
+
+253
+00:13:46,416 --> 00:13:47,486
+that would be the iSA.
+
+
+254
+00:13:47,916 --> 00:13:51,136
+The iSA finder for that object
+would be the type information.
+
+
+255
+00:13:52,226 --> 00:13:57,046
+One of the things that the
+type information tells us is
+
+
+256
+00:13:57,566 --> 00:14:00,866
+which methods that this
+objects type implement.
+
+
+257
+00:14:00,866 --> 00:14:05,646
+And in this case, one of the
+ones that NSURL implements,
+
+
+258
+00:14:05,646 --> 00:14:07,816
+the example on the
+slide, is hash.
+
+
+259
+00:14:08,646 --> 00:14:09,566
+So, we found it.
+
+
+260
+00:14:10,026 --> 00:14:12,346
+We know which hash to
+call, and we're done.
+
+
+261
+00:14:12,626 --> 00:14:14,466
+Dynamic dispatch actually works.
+
+
+262
+00:14:15,706 --> 00:14:19,786
+What if we're trying to call
+something that is not in the
+
+
+263
+00:14:19,786 --> 00:14:22,416
+in the list of methods that
+that objects type implements?
+
+
+264
+00:14:23,116 --> 00:14:24,856
+Well, we could try
+asking the base class.
+
+
+265
+00:14:25,436 --> 00:14:29,306
+If something had the NSURL hat,
+
+
+266
+00:14:29,866 --> 00:14:32,376
+it probably also has
+the NSObject hat,
+
+
+267
+00:14:33,096 --> 00:14:36,946
+and that means we can say,
+eh, that didn't work for you
+
+
+268
+00:14:36,946 --> 00:14:39,996
+as an NSURL, maybe that will
+work for you as NSObject.
+
+
+269
+00:14:40,936 --> 00:14:43,846
+And that's what happens
+in dynamic dispatch.
+
+
+270
+00:14:43,956 --> 00:14:47,396
+We go to the base type, we
+try to find a method there,
+
+
+271
+00:14:47,396 --> 00:14:49,796
+and if that succeeds,
+then we found it.
+
+
+272
+00:14:50,336 --> 00:14:52,606
+We can tell the method, "Hey,
+here's an option for you,
+
+
+273
+00:14:52,606 --> 00:14:54,056
+please do your thing for me.
+
+
+274
+00:14:54,406 --> 00:14:54,806
+Thank you."
+
+
+275
+00:14:57,136 --> 00:15:00,446
+This same concept
+is also interesting
+
+
+276
+00:15:00,906 --> 00:15:02,726
+in the context of me debugging.
+
+
+277
+00:15:02,726 --> 00:15:06,546
+Let's say we have a
+code example like that.
+
+
+278
+00:15:07,406 --> 00:15:10,236
+We have a base class,
+we have a derived class,
+
+
+279
+00:15:10,556 --> 00:15:14,016
+which adds some information,
+and we have a method.
+
+
+280
+00:15:14,326 --> 00:15:17,236
+We have a function that takes
+an object of the base class.
+
+
+281
+00:15:18,026 --> 00:15:21,486
+We're telling the compiler in
+that function, "Keep me honest
+
+
+282
+00:15:21,926 --> 00:15:26,016
+and make sure I only do things
+that are okay for me to do
+
+
+283
+00:15:26,276 --> 00:15:27,596
+with the base class type."
+
+
+284
+00:15:28,226 --> 00:15:33,546
+But I can call it with an object
+of the derived class, can I not?
+
+
+285
+00:15:34,146 --> 00:15:36,036
+That's perfectly okay.
+
+
+286
+00:15:38,016 --> 00:15:42,696
+When I hit my breakpoint, the
+compiler has to keep me honest,
+
+
+287
+00:15:43,176 --> 00:15:45,306
+but the debugger doesn't
+have to keep me that honest.
+
+
+288
+00:15:45,826 --> 00:15:47,756
+Actually, the very opposite.
+
+
+289
+00:15:48,536 --> 00:15:52,976
+I want the debugger to tell me
+as much information as possible
+
+
+290
+00:15:52,976 --> 00:15:54,716
+about that argument, X.
+
+
+291
+00:15:54,956 --> 00:15:59,896
+I want the debugger to tell me
+the dynamic type of X because on
+
+
+292
+00:15:59,896 --> 00:16:02,446
+that dynamic type
+relies the fact
+
+
+293
+00:16:02,926 --> 00:16:04,406
+that I could have
+more insets data,
+
+
+294
+00:16:04,656 --> 00:16:06,346
+that I could have
+changes in behavior.
+
+
+295
+00:16:07,096 --> 00:16:11,406
+And indeed, that is exactly
+what LLDB does by default.
+
+
+296
+00:16:12,026 --> 00:16:19,546
+It shows you the dynamic
+type in your variables view.
+
+
+297
+00:16:19,546 --> 00:16:23,256
+Similar things apply
+to protocols.
+
+
+298
+00:16:24,156 --> 00:16:26,356
+In Swift, protocols are types.
+
+
+299
+00:16:27,436 --> 00:16:29,526
+That means a number of things.
+
+
+300
+00:16:30,676 --> 00:16:33,326
+Among them, it means that
+I can declare my variables
+
+
+301
+00:16:33,736 --> 00:16:35,186
+as of some protocol type.
+
+
+302
+00:16:35,706 --> 00:16:39,676
+It means that I can declare
+functions taking their arguments
+
+
+303
+00:16:39,676 --> 00:16:42,596
+of protocol type or returning
+object of protocol type.
+
+
+304
+00:16:45,356 --> 00:16:50,316
+By design, objects of
+protocol type are limited.
+
+
+305
+00:16:50,656 --> 00:16:51,866
+They're constrained.
+
+
+306
+00:16:52,386 --> 00:16:56,526
+They may only let you play
+by the rules of the protocol.
+
+
+307
+00:16:57,876 --> 00:16:58,936
+That's the whole point.
+
+
+308
+00:16:59,446 --> 00:17:02,566
+I want to make sure
+that I only do what's OK
+
+
+309
+00:17:02,566 --> 00:17:04,296
+to do on the protocol type.
+
+
+310
+00:17:05,146 --> 00:17:09,366
+But again, when I'm debugging,
+I want to see the full truth.
+
+
+311
+00:17:09,425 --> 00:17:11,616
+I actually want to see
+my implementing object,
+
+
+312
+00:17:12,286 --> 00:17:14,336
+and that's what LLDB
+will show you.
+
+
+313
+00:17:14,796 --> 00:17:17,665
+Let's look at an example.
+
+
+314
+00:17:17,715 --> 00:17:21,586
+Let's say I'm writing
+an app for a zoo system
+
+
+315
+00:17:21,586 --> 00:17:27,076
+and I'm prototyping things, so
+I have a bunch of critters here.
+
+
+316
+00:17:27,306 --> 00:17:28,516
+I have a cat and a dog.
+
+
+317
+00:17:28,516 --> 00:17:29,876
+I don't have a dog collar
+
+
+318
+00:17:29,876 --> 00:17:34,806
+yet because it's a
+prototype but I'll get there.
+
+
+319
+00:17:34,986 --> 00:17:39,086
+I have a function that takes
+one of my creatures and asks it,
+
+
+320
+00:17:39,356 --> 00:17:41,346
+"Could you please speak
+your voice for me?"
+
+
+321
+00:17:41,686 --> 00:17:44,466
+We can hit a breakpoint there.
+
+
+322
+00:17:45,086 --> 00:17:48,026
+We're in a similar
+situation as before.
+
+
+323
+00:17:48,446 --> 00:17:49,626
+We declared something.
+
+
+324
+00:17:49,886 --> 00:17:51,576
+We gave something a static type
+
+
+325
+00:17:51,916 --> 00:17:56,056
+that is somehow abstract
+compared to the real thing
+
+
+326
+00:17:56,056 --> 00:18:00,796
+that we're probably passing
+at run time, and LLDB knows
+
+
+327
+00:18:00,846 --> 00:18:04,496
+to figure out the dynamic
+type information on our behalf
+
+
+328
+00:18:04,606 --> 00:18:08,396
+and show us that even though
+we said we wanted just any
+
+
+329
+00:18:08,396 --> 00:18:10,636
+creature, in that
+specific moment,
+
+
+330
+00:18:11,026 --> 00:18:14,826
+while our code is executing,
+what we got here is a puppy.
+
+
+331
+00:18:14,976 --> 00:18:17,096
+And a very happy
+puppy, for that matter.
+
+
+332
+00:18:21,776 --> 00:18:26,266
+For those of you that like the
+LLDB console, you may be tempted
+
+
+333
+00:18:26,266 --> 00:18:27,926
+to try to reproduce this result.
+
+
+334
+00:18:29,006 --> 00:18:29,726
+Be careful.
+
+
+335
+00:18:30,366 --> 00:18:33,016
+By default, if you
+just ask the debugger,
+
+
+336
+00:18:33,386 --> 00:18:35,966
+"Can you please show me this
+variable or protocol type?"
+
+
+337
+00:18:36,576 --> 00:18:39,566
+the result you get may be
+a little disappointing.
+
+
+338
+00:18:40,106 --> 00:18:44,526
+It will probably look like that.
+
+
+339
+00:18:44,746 --> 00:18:45,486
+What's going on?
+
+
+340
+00:18:45,706 --> 00:18:46,196
+What is that?
+
+
+341
+00:18:46,236 --> 00:18:48,686
+That doesn't look a
+happy puppy at all.
+
+
+342
+00:18:49,826 --> 00:18:52,536
+What is happening is you're
+seeing the static type.
+
+
+343
+00:18:53,666 --> 00:18:58,756
+We mentioned that the protocol
+is somehow limiting object
+
+
+344
+00:18:58,836 --> 00:18:59,516
+by design.
+
+
+345
+00:18:59,856 --> 00:19:02,696
+It wants at the same
+time to make sure
+
+
+346
+00:19:03,036 --> 00:19:05,846
+that you only do things that
+are declared in a protocol
+
+
+347
+00:19:06,226 --> 00:19:10,156
+but you also get the dynamic
+dispatching of this operations,
+
+
+348
+00:19:10,216 --> 00:19:12,046
+the real object that
+implements that.
+
+
+349
+00:19:12,616 --> 00:19:16,066
+The result of that is what
+is here on the screen.
+
+
+350
+00:19:17,286 --> 00:19:20,806
+What you want to do is
+you want to tell LLDB,
+
+
+351
+00:19:21,436 --> 00:19:24,026
+"Please resolve the
+dynamic type for me."
+
+
+352
+00:19:24,806 --> 00:19:28,856
+The way to do that is with
+the -d flag to the expression
+
+
+353
+00:19:28,856 --> 00:19:30,066
+or frame variable command.
+
+
+354
+00:19:32,416 --> 00:19:35,936
+That lets the debugger
+resolve dynamic types.
+
+
+355
+00:19:37,086 --> 00:19:40,136
+Now, there's two ways in
+which you can ask the debugger
+
+
+356
+00:19:40,136 --> 00:19:41,526
+to resolve dynamic types.
+
+
+357
+00:19:42,626 --> 00:19:45,436
+There's a less restrictive
+and a more restrictive way.
+
+
+358
+00:19:46,686 --> 00:19:49,596
+Sometimes in order to
+figure out the dynamic type
+
+
+359
+00:19:49,596 --> 00:19:53,766
+of your objects, the debugger
+might decide that it's best
+
+
+360
+00:19:54,036 --> 00:19:55,836
+to run some code
+under the covers
+
+
+361
+00:19:56,206 --> 00:20:00,016
+to go ask the language run time,
+"Can you help me out here?"
+
+
+362
+00:20:01,096 --> 00:20:03,376
+In that most liberal
+settings, the run,
+
+
+363
+00:20:03,416 --> 00:20:07,486
+the Allow Run Target R Here
+setting, you tell the debugger,
+
+
+364
+00:20:07,596 --> 00:20:09,916
+"OK, you can go run
+some code off for me.
+
+
+365
+00:20:09,916 --> 00:20:12,496
+I don't think there's going to
+be any problem if you do that.
+
+
+366
+00:20:12,496 --> 00:20:14,716
+Just let me know the dynamic
+type when you're done, please."
+
+
+367
+00:20:15,856 --> 00:20:18,726
+Another setting is
+Do Not Run Target.
+
+
+368
+00:20:19,356 --> 00:20:21,586
+In Do Not, in Do
+Not Run Target mode,
+
+
+369
+00:20:21,976 --> 00:20:24,926
+you're telling the debugger,
+"I'd really like to know
+
+
+370
+00:20:24,926 --> 00:20:29,616
+about the dynamic type of this
+thing but I prefer you not
+
+
+371
+00:20:29,616 --> 00:20:31,436
+to run any code that might
+interfere with my process.
+
+
+372
+00:20:32,006 --> 00:20:35,436
+If it turns out that you have to
+do that then just don't tell me
+
+
+373
+00:20:35,436 --> 00:20:36,916
+about the dynamic
+type, that's OK.
+
+
+374
+00:20:37,036 --> 00:20:37,786
+I'll understand."
+
+
+375
+00:20:39,146 --> 00:20:41,716
+Limitation is that, information
+
+
+376
+00:20:41,716 --> 00:20:44,566
+to resolve the type will
+be passed along your data.
+
+
+377
+00:20:45,086 --> 00:20:47,766
+You will call a generic
+function with an int and you'll,
+
+
+378
+00:20:47,766 --> 00:20:50,766
+your int data will be passed
+through the function as well
+
+
+379
+00:20:50,766 --> 00:20:53,786
+as metadata that will tell
+the language, "This is a,
+
+
+380
+00:20:53,786 --> 00:20:55,366
+this is an int you're
+dealing with."
+
+
+381
+00:20:56,016 --> 00:20:58,926
+LLDB can use that
+same information
+
+
+382
+00:20:58,926 --> 00:21:00,816
+to reconstruct the
+meaning of your code.
+
+
+383
+00:21:00,816 --> 00:21:04,566
+How does that look like?
+
+
+384
+00:21:05,846 --> 00:21:09,976
+Let's say we have a protocol
+for producing arbitrary things,
+
+
+385
+00:21:10,956 --> 00:21:12,846
+and then we have
+a concrete class
+
+
+386
+00:21:12,966 --> 00:21:15,076
+that implements the
+protocol, that conforms
+
+
+387
+00:21:15,106 --> 00:21:18,026
+to that protocol and
+it produces ints.
+
+
+388
+00:21:18,496 --> 00:21:23,066
+And then we have a function that
+says, "I can accept any producer
+
+
+389
+00:21:23,066 --> 00:21:26,956
+of things as long as what
+they produce is int."
+
+
+390
+00:21:27,216 --> 00:21:31,656
+If I hit a break point, I expect
+to see my generics resolved.
+
+
+391
+00:21:33,196 --> 00:21:34,436
+That is indeed what happens.
+
+
+392
+00:21:35,346 --> 00:21:36,346
+But how does it work?
+
+
+393
+00:21:37,796 --> 00:21:41,826
+Well, LLDB looks at your
+function and it realizes
+
+
+394
+00:21:41,866 --> 00:21:45,286
+that your function takes
+a generic argument, P.
+
+
+395
+00:21:45,946 --> 00:21:50,026
+So, LLDB has to look for type
+information to resolve P.
+
+
+396
+00:21:50,746 --> 00:21:51,606
+And it finds it.
+
+
+397
+00:21:52,296 --> 00:21:54,746
+When you debug generic code,
+you're going to see a lot
+
+
+398
+00:21:54,746 --> 00:21:58,646
+of this $ with .type
+.name special variables.
+
+
+399
+00:21:59,196 --> 00:22:02,826
+Those special variables carry
+the generic type information.
+
+
+400
+00:22:02,826 --> 00:22:05,756
+They're the Swift object
+metadata for your generic type.
+
+
+401
+00:22:06,776 --> 00:22:10,716
+Armed with that knowledge,
+when LLDB sees the argument
+
+
+402
+00:22:10,716 --> 00:22:15,026
+of type P, it knows to actually
+use the generic type information
+
+
+403
+00:22:15,376 --> 00:22:18,506
+to resolve it to its
+actual dynamic type.
+
+
+404
+00:22:22,836 --> 00:22:27,096
+We talked about a few
+rules about how protocols
+
+
+405
+00:22:27,136 --> 00:22:28,746
+and generics behave in Swift.
+
+
+406
+00:22:29,296 --> 00:22:32,606
+Those are general rules
+and for the most part,
+
+
+407
+00:22:33,016 --> 00:22:34,906
+they apply to debug builds.
+
+
+408
+00:22:35,456 --> 00:22:39,016
+A debug build of your
+code is a very, very,
+
+
+409
+00:22:39,016 --> 00:22:42,416
+very literal translation
+of the code you just wrote
+
+
+410
+00:22:42,766 --> 00:22:45,166
+into native executable code.
+
+
+411
+00:22:46,096 --> 00:22:49,886
+The fact that it's very literal
+a translation is actually good
+
+
+412
+00:22:49,956 --> 00:22:51,006
+thing for debuggability
+
+
+413
+00:22:51,076 --> 00:22:53,096
+and that's why they're
+called debug builds.
+
+
+414
+00:22:53,956 --> 00:22:57,016
+If my code is translated
+literally as I'm debugging
+
+
+415
+00:22:57,016 --> 00:23:00,356
+through it, it's really easy for
+me to see the correspondence.
+
+
+416
+00:23:00,786 --> 00:23:04,276
+Evolution, evolutioning
+machine code execution,
+
+
+417
+00:23:04,646 --> 00:23:06,676
+evolutioning source
+code execution.
+
+
+418
+00:23:06,966 --> 00:23:08,676
+It's really easy for
+the debugger to maintain
+
+
+419
+00:23:08,676 --> 00:23:10,456
+that correspondence
+between what you wrote
+
+
+420
+00:23:10,456 --> 00:23:12,486
+and what is actually
+going on on the bare,
+
+
+421
+00:23:12,826 --> 00:23:14,166
+on the bare metal,
+on the hardware.
+
+
+422
+00:23:15,256 --> 00:23:17,436
+In an optimized build
+of your code,
+
+
+423
+00:23:17,976 --> 00:23:19,956
+while maintaining
+the same semantics,
+
+
+424
+00:23:20,836 --> 00:23:22,566
+the compiler is actually free
+
+
+425
+00:23:22,896 --> 00:23:27,546
+to shuffle things a little bit
+behind your back and that means
+
+
+426
+00:23:27,586 --> 00:23:29,006
+that the literal evolution
+
+
+427
+00:23:29,006 --> 00:23:31,986
+of machine code will
+not correspond anymore
+
+
+428
+00:23:32,296 --> 00:23:35,126
+to the same sequenced
+evolution of your source code.
+
+
+429
+00:23:35,126 --> 00:23:38,916
+There will be steps, there will
+be jumps, data will not be there
+
+
+430
+00:23:38,916 --> 00:23:40,256
+that was supposed to be there.
+
+
+431
+00:23:40,676 --> 00:23:45,686
+As a result of that,
+the first rule
+
+
+432
+00:23:45,686 --> 00:23:48,436
+of debugging optimized
+code is that you don't.
+
+
+433
+00:23:49,636 --> 00:23:51,216
+I'm sure it's a lesson
+some of you
+
+
+434
+00:23:51,216 --> 00:23:52,546
+in the audience have
+had to learn.
+
+
+435
+00:23:53,856 --> 00:23:56,856
+You probably have apps
+and you probably get bugs
+
+
+436
+00:23:57,196 --> 00:23:59,936
+from those apps very,
+very rarely, I'm sure.
+
+
+437
+00:24:00,846 --> 00:24:05,096
+But sometimes it happens, and
+the first thing you should do
+
+
+438
+00:24:05,096 --> 00:24:09,766
+when you get one of those rare,
+incoming bugs is reproduce it
+
+
+439
+00:24:09,766 --> 00:24:12,876
+in a debug build of your app.
+
+
+440
+00:24:12,876 --> 00:24:17,496
+Only if that doesn't work,
+then, sorry, tough luck.
+
+
+441
+00:24:17,586 --> 00:24:19,576
+You're going to have to
+debug optimized code.
+
+
+442
+00:24:20,696 --> 00:24:23,006
+All the usual caveats
+apply to Swift
+
+
+443
+00:24:23,246 --> 00:24:26,836
+and there's a couple new
+ones that are specific
+
+
+444
+00:24:26,836 --> 00:24:28,766
+to things we covered
+in the previous slides.
+
+
+445
+00:24:30,546 --> 00:24:33,336
+While in general, type
+metadata is passed along,
+
+
+446
+00:24:34,516 --> 00:24:37,836
+the Swift compiler is
+free in optimized builds
+
+
+447
+00:24:37,946 --> 00:24:42,346
+to actually specialize
+away some types, some,
+
+
+448
+00:24:42,496 --> 00:24:47,216
+your generic functions
+for some specific types.
+
+
+449
+00:24:47,396 --> 00:24:50,886
+Also, if the compiler can
+understand what's going
+
+
+450
+00:24:50,886 --> 00:24:53,186
+on with protocols and
+the concrete types
+
+
+451
+00:24:53,186 --> 00:24:56,626
+and implement them, it's
+free to do devirtualization
+
+
+452
+00:24:57,046 --> 00:24:59,526
+to skip dynamic dispatch
+and directly call
+
+
+453
+00:24:59,526 --> 00:25:00,746
+into the implementing object.
+
+
+454
+00:25:05,856 --> 00:25:09,056
+Objective-C isn't
+really going anywhere.
+
+
+455
+00:25:10,546 --> 00:25:15,866
+Some of you, we said, already
+have apps and it's very likely
+
+
+456
+00:25:15,976 --> 00:25:17,506
+that those are written
+in Objective-C.
+
+
+457
+00:25:18,566 --> 00:25:21,476
+But, even if you start
+a brand new Swift app
+
+
+458
+00:25:21,606 --> 00:25:25,716
+for the first time today after
+this session, you're going
+
+
+459
+00:25:25,716 --> 00:25:28,406
+to use Cocoa or Cocoa Touch.
+
+
+460
+00:25:28,826 --> 00:25:32,526
+You're going to import
+Foundation, import UIKit.
+
+
+461
+00:25:33,236 --> 00:25:35,976
+Those frameworks are
+written in Objective-C.
+
+
+462
+00:25:36,736 --> 00:25:40,046
+That means wherever you
+look around, there's going
+
+
+463
+00:25:40,046 --> 00:25:43,976
+to be Objective-C in the
+picture, and you're going
+
+
+464
+00:25:43,976 --> 00:25:47,656
+to have to deal with
+debugging mixed Swift
+
+
+465
+00:25:47,656 --> 00:25:49,306
+and Objective-C situations.
+
+
+466
+00:25:49,946 --> 00:25:52,686
+What can you expect
+when that happens?
+
+
+467
+00:25:53,456 --> 00:25:55,556
+What can you expect
+to see in the LLDB,
+
+
+468
+00:25:55,556 --> 00:25:56,956
+in the Xcode variables view?
+
+
+469
+00:25:57,326 --> 00:25:58,696
+What can you expect as you try
+
+
+470
+00:25:58,696 --> 00:26:00,836
+to evaluate expressions
+in the LLDB console?
+
+
+471
+00:26:01,206 --> 00:26:04,396
+What can you expect when
+you try to PO your objects?
+
+
+472
+00:26:04,996 --> 00:26:09,166
+At the variables view, it goes
+
+
+473
+00:26:09,166 --> 00:26:11,596
+by what's called a
+most native experience.
+
+
+474
+00:26:12,236 --> 00:26:14,606
+We'll show you data
+in the language
+
+
+475
+00:26:14,606 --> 00:26:17,046
+in which the type
+was first written.
+
+
+476
+00:26:17,806 --> 00:26:21,176
+In this case, we
+see a Swift string
+
+
+477
+00:26:21,606 --> 00:26:26,436
+and an NSString side-by-side,
+and the Swift string is shown
+
+
+478
+00:26:26,436 --> 00:26:27,596
+as a Swift string literal,
+
+
+479
+00:26:27,596 --> 00:26:29,346
+as you would type in
+Swift source code.
+
+
+480
+00:26:30,196 --> 00:26:32,776
+The Objective-C string
+literal is shown
+
+
+481
+00:26:32,776 --> 00:26:34,536
+as an Objective-C
+string literal.
+
+
+482
+00:26:34,866 --> 00:26:37,486
+It's shown as if, as you
+would type that same thing
+
+
+483
+00:26:37,846 --> 00:26:39,316
+in Objective-C source code.
+
+
+484
+00:26:39,836 --> 00:26:44,756
+In all cases, data
+formatters will apply.
+
+
+485
+00:26:44,756 --> 00:26:49,916
+If I'm evaluating
+expressions, however,
+
+
+486
+00:26:50,606 --> 00:26:55,096
+things become a little
+more strongly separated.
+
+
+487
+00:26:55,826 --> 00:26:58,066
+Expressions see two
+separate worlds.
+
+
+488
+00:26:59,516 --> 00:27:02,836
+Objects that exist in Swift
+frames are all useable
+
+
+489
+00:27:02,836 --> 00:27:06,246
+by Swift expressions, and
+the same is true for objects
+
+
+490
+00:27:06,246 --> 00:27:07,696
+in Objective-C code frames.
+
+
+491
+00:27:08,216 --> 00:27:11,456
+Your results, your
+result variables,
+
+
+492
+00:27:11,876 --> 00:27:13,636
+they get two separate
+name spaces.
+
+
+493
+00:27:14,166 --> 00:27:15,726
+A little background on that.
+
+
+494
+00:27:16,176 --> 00:27:18,386
+When you type an LLDB
+expression command,
+
+
+495
+00:27:18,746 --> 00:27:21,236
+the result of that
+expression is stored away
+
+
+496
+00:27:21,236 --> 00:27:23,616
+in a debugger-generated
+persistent variable,
+
+
+497
+00:27:24,086 --> 00:27:26,926
+which you're very welcome to
+reuse in subsequent expressions.
+
+
+498
+00:27:27,806 --> 00:27:31,076
+The results of your Objective-C
+expressions will get stored
+
+
+499
+00:27:31,076 --> 00:27:34,486
+in variables named $0,
+$1, $2, you get the idea,
+
+
+500
+00:27:34,826 --> 00:27:38,396
+and the results of your Swift
+expressions will be stored
+
+
+501
+00:27:38,396 --> 00:27:44,796
+in variables names $R0,
+$R1, and you get the idea.
+
+
+502
+00:27:44,796 --> 00:27:47,186
+Let's see an example of how
+this whole system works.
+
+
+503
+00:27:48,596 --> 00:27:50,886
+We're stopped in a Cocoa frame.
+
+
+504
+00:27:51,316 --> 00:27:54,796
+The F command tells,
+tells us the frame
+
+
+505
+00:27:54,796 --> 00:27:56,046
+where we're currently stopped.
+
+
+506
+00:27:56,486 --> 00:27:59,276
+We type an Objective-C
+expression because we're
+
+
+507
+00:27:59,276 --> 00:28:01,866
+in Objective-C frame,
+just be self.
+
+
+508
+00:28:02,096 --> 00:28:06,846
+And we get a variable $0
+that stores away self.
+
+
+509
+00:28:07,926 --> 00:28:13,436
+Now, we step around a little bit
+and we land in a Swift frame.
+
+
+510
+00:28:13,736 --> 00:28:18,966
+Now, we like to try and use that
+$0 persistent variable and we
+
+
+511
+00:28:18,966 --> 00:28:21,626
+like to write an Objective-C
+expression that involves it.
+
+
+512
+00:28:22,806 --> 00:28:24,636
+That's not going to fly so well.
+
+
+513
+00:28:25,696 --> 00:28:29,306
+Since we're in a Swift frame,
+the Swift compiler is trying
+
+
+514
+00:28:29,306 --> 00:28:31,676
+to compile your Swift,
+your expression
+
+
+515
+00:28:32,426 --> 00:28:33,476
+with the Swift syntax.
+
+
+516
+00:28:34,206 --> 00:28:37,036
+But that's not Swift syntax,
+that's Objective-C syntax.
+
+
+517
+00:28:37,406 --> 00:28:39,886
+And so the compiler
+gets really unhappy
+
+
+518
+00:28:40,186 --> 00:28:42,116
+and he mentions things like,
+
+
+519
+00:28:42,536 --> 00:28:45,686
+"Anonymous closure argument
+not contained in a closure."
+
+
+520
+00:28:45,686 --> 00:28:48,386
+OK, I must be doing
+something wrong here.
+
+
+521
+00:28:49,136 --> 00:28:51,556
+Well, what's going
+on is you're trying
+
+
+522
+00:28:51,556 --> 00:28:53,056
+to use the other language.
+
+
+523
+00:28:53,636 --> 00:28:57,426
+And there's a way for you to do
+that but you have to tell LLDB
+
+
+524
+00:28:57,956 --> 00:29:00,486
+"Don't automatically infer
+the language of my expressions
+
+
+525
+00:29:00,526 --> 00:29:02,466
+from the language from
+the frame I stopped in.
+
+
+526
+00:29:03,846 --> 00:29:05,576
+Use the language I
+tell you to use."
+
+
+527
+00:29:06,296 --> 00:29:10,106
+In this example, we're
+using the -l, or the --
+
+
+528
+00:29:10,516 --> 00:29:13,096
+language flag, that
+expression command.
+
+
+529
+00:29:13,416 --> 00:29:16,866
+And we're telling LLDB,
+"Use the Objective C++
+
+
+530
+00:29:16,866 --> 00:29:17,876
+expression evaluator.
+
+
+531
+00:29:17,876 --> 00:29:20,976
+Use the Clang compiler
+that is inside of you
+
+
+532
+00:29:20,976 --> 00:29:22,596
+to actually parse
+that expression."
+
+
+533
+00:29:22,596 --> 00:29:24,306
+And then that works.
+
+
+534
+00:29:25,856 --> 00:29:26,686
+But there's a caveat.
+
+
+535
+00:29:27,066 --> 00:29:28,006
+There's always a caveat.
+
+
+536
+00:29:29,346 --> 00:29:31,576
+Your locals will
+not be available.
+
+
+537
+00:29:31,926 --> 00:29:35,026
+Since you changed your
+language, as we said before,
+
+
+538
+00:29:35,026 --> 00:29:36,566
+locals are not available.
+
+
+539
+00:29:37,286 --> 00:29:42,236
+PO is, in a way, similar
+to the expression command,
+
+
+540
+00:29:42,796 --> 00:29:46,486
+but it actually, once you get
+the result of your expression,
+
+
+541
+00:29:46,946 --> 00:29:49,206
+it goes back to that
+most native experience
+
+
+542
+00:29:49,206 --> 00:29:50,846
+that the variable view lives by.
+
+
+543
+00:29:51,546 --> 00:29:54,676
+Swift objects will display
+using data formatters.
+
+
+544
+00:29:55,486 --> 00:29:59,656
+Objective-C objects will display
+using their description method,
+
+
+545
+00:30:00,016 --> 00:30:03,286
+much like they did
+from before Xcode 6.
+
+
+546
+00:30:04,156 --> 00:30:06,646
+That can get funny real quick.
+
+
+547
+00:30:07,276 --> 00:30:10,736
+I can have a Swift class
+that inherits NSObject
+
+
+548
+00:30:10,736 --> 00:30:13,806
+and I can actually
+override description
+
+
+549
+00:30:14,186 --> 00:30:16,016
+for that class in Swift.
+
+
+550
+00:30:17,036 --> 00:30:18,986
+But if I try to PO it in LLDB,
+
+
+551
+00:30:18,986 --> 00:30:22,546
+LLDB will not even look
+at that description.
+
+
+552
+00:30:22,546 --> 00:30:25,546
+LLDB will use data formatters,
+and that's what I'll get,
+
+
+553
+00:30:26,016 --> 00:30:28,076
+because that's a Swift object.
+
+
+554
+00:30:28,926 --> 00:30:32,046
+What if I actually wanted
+to use my description?
+
+
+555
+00:30:33,116 --> 00:30:34,526
+What if I actually want to use,
+
+
+556
+00:30:34,526 --> 00:30:36,626
+see the Objective-C
+side of things.
+
+
+557
+00:30:37,606 --> 00:30:39,386
+It turns out there is a way.
+
+
+558
+00:30:40,336 --> 00:30:42,286
+When there's a will
+there's always a way.
+
+
+559
+00:30:42,656 --> 00:30:46,676
+I can start from there
+and I guess I have
+
+
+560
+00:30:46,676 --> 00:30:49,926
+to write an expression,
+and I guess I have
+
+
+561
+00:30:50,006 --> 00:30:52,976
+to write an Objective-C
+expression since I'm trying
+
+
+562
+00:30:52,976 --> 00:30:54,586
+to get an Objective-C behavior.
+
+
+563
+00:30:54,976 --> 00:31:02,516
+Skimming for the help for PO,
+an expression, I can discover
+
+
+564
+00:31:02,516 --> 00:31:06,176
+that the PO behavior is
+actually triggered by a flag
+
+
+565
+00:31:06,216 --> 00:31:10,936
+to the expression command, the
+-O flag for object description.
+
+
+566
+00:31:12,636 --> 00:31:15,106
+And so I can guess that I need
+
+
+567
+00:31:15,106 --> 00:31:16,826
+to write an Objective-C
+expression
+
+
+568
+00:31:17,146 --> 00:31:18,806
+that gets an object's
+description.
+
+
+569
+00:31:20,106 --> 00:31:21,446
+But now I changed language.
+
+
+570
+00:31:22,306 --> 00:31:24,906
+Now I can't use my
+object local anymore.
+
+
+571
+00:31:26,736 --> 00:31:28,816
+I can resort to using
+its address.
+
+
+572
+00:31:29,346 --> 00:31:32,906
+I know it lives somewhere
+in memory and PO told me
+
+
+573
+00:31:32,906 --> 00:31:34,046
+where it lives in memory.
+
+
+574
+00:31:34,086 --> 00:31:38,066
+I can use that information to
+go across the language barrier
+
+
+575
+00:31:38,116 --> 00:31:39,806
+and bring my object
+along with me.
+
+
+576
+00:31:40,366 --> 00:31:46,476
+But, but I'm not using my
+local type information anymore,
+
+
+577
+00:31:46,926 --> 00:31:47,856
+so that's a number.
+
+
+578
+00:31:48,266 --> 00:31:50,716
+For all Clang knows,
+I'm asking it,
+
+
+579
+00:31:50,966 --> 00:31:52,276
+"Can you please show
+me that number?"
+
+
+580
+00:31:53,356 --> 00:31:56,356
+I need to tell the compiler
+that what I actually want
+
+
+581
+00:31:56,356 --> 00:31:59,866
+to see is not the
+number OX000-something.
+
+
+582
+00:32:00,196 --> 00:32:03,066
+I want to see the object
+of that location in memory.
+
+
+583
+00:32:04,386 --> 00:32:05,656
+The simplest way to get there?
+
+
+584
+00:32:06,466 --> 00:32:11,306
+Just cast to it, and
+after all this magic,
+
+
+585
+00:32:12,816 --> 00:32:19,736
+your result shows
+up, just like that.
+
+
+586
+00:32:21,146 --> 00:32:21,736
+Thank you [applause].
+
+
+587
+00:32:22,836 --> 00:32:23,196
+Thank you.
+
+
+588
+00:32:25,786 --> 00:32:28,766
+Let's very quickly step through
+a couple stepping scenarios:
+
+
+589
+00:32:29,696 --> 00:32:31,026
+protocols and closures.
+
+
+590
+00:32:31,606 --> 00:32:36,826
+Let's say I set a break
+point right where I'm trying
+
+
+591
+00:32:36,826 --> 00:32:40,466
+to use one of my creature
+objects and I step in,
+
+
+592
+00:32:40,466 --> 00:32:43,616
+because I actually want to see
+the implementation of that code
+
+
+593
+00:32:43,616 --> 00:32:45,326
+and step through it and
+see what's going on.
+
+
+594
+00:32:46,306 --> 00:32:47,926
+It turns out that
+that just works.
+
+
+595
+00:32:48,086 --> 00:32:50,066
+LLDB lands right where
+you would expect.
+
+
+596
+00:32:51,106 --> 00:32:53,066
+But there's one extra
+frame on the stack.
+
+
+597
+00:32:54,056 --> 00:32:56,336
+There's a frame called
+protocol witness
+
+
+598
+00:32:56,836 --> 00:32:59,046
+for Creature.speak on the stack.
+
+
+599
+00:32:59,776 --> 00:33:02,676
+That frame is the protocol,
+
+
+600
+00:33:03,096 --> 00:33:05,056
+is the protocol dynamic
+dispatch frame.
+
+
+601
+00:33:05,666 --> 00:33:09,176
+It's the code that the Swift
+run time uses between where I,
+
+
+602
+00:33:09,286 --> 00:33:11,166
+my code stops and when my code,
+
+
+603
+00:33:11,316 --> 00:33:13,226
+and when the call
+code starts executing
+
+
+604
+00:33:13,226 --> 00:33:15,406
+to actually perform
+dynamic dispatch.
+
+
+605
+00:33:16,076 --> 00:33:19,176
+LLDB automatically steps
+through writing through my code.
+
+
+606
+00:33:19,486 --> 00:33:22,966
+And if I step out, the same
+magic happens in reverse.
+
+
+607
+00:33:23,486 --> 00:33:27,326
+The protocol in this frame just
+disappears and I get right back
+
+
+608
+00:33:27,326 --> 00:33:29,136
+into my code transparently.
+
+
+609
+00:33:29,646 --> 00:33:32,086
+And I have more good
+news for you.
+
+
+610
+00:33:32,956 --> 00:33:36,426
+You can set break
+points inside closures.
+
+
+611
+00:33:37,086 --> 00:33:40,126
+You can expect LLDB to leave
+your breakpoints inside our
+
+
+612
+00:33:40,156 --> 00:33:42,776
+closure even if it's an
+aligned anonymous closure.
+
+
+613
+00:33:42,776 --> 00:33:46,026
+And that's what you'll
+see in the stack.
+
+
+614
+00:33:46,096 --> 00:33:48,076
+You'll see that since
+your closure is aligned
+
+
+615
+00:33:48,076 --> 00:33:50,826
+and anonymous, it's called
+closure #1 in my call,
+
+
+616
+00:33:50,826 --> 00:33:52,266
+in my calling function.
+
+
+617
+00:33:52,886 --> 00:33:56,036
+You can also expect
+to see your locals.
+
+
+618
+00:33:56,746 --> 00:33:59,396
+Even those, yes, even
+those $ variables
+
+
+619
+00:33:59,396 --> 00:34:01,606
+that are automatically
+generated by the compiler
+
+
+620
+00:34:01,606 --> 00:34:02,716
+and you never declared.
+
+
+621
+00:34:03,456 --> 00:34:04,756
+Good news all over the board.
+
+
+622
+00:34:04,756 --> 00:34:06,166
+First topic.
+
+
+623
+00:34:07,836 --> 00:34:12,246
+Now, this topic is
+really dear to my heart
+
+
+624
+00:34:12,636 --> 00:34:15,616
+because that's what I usually
+work on, data formatters.
+
+
+625
+00:34:17,056 --> 00:34:19,396
+Data formatters are
+a way in LLDB
+
+
+626
+00:34:19,476 --> 00:34:21,726
+to improve the way
+your data is shown,
+
+
+627
+00:34:22,136 --> 00:34:24,886
+to hide implementation
+details and only focus
+
+
+628
+00:34:24,886 --> 00:34:27,386
+on the core things that matter
+to you when you're debugging.
+
+
+629
+00:34:28,565 --> 00:34:32,146
+Much like we do for
+C++ and Objective-C,
+
+
+630
+00:34:32,146 --> 00:34:34,976
+we automatically format
+types in the Swift library.
+
+
+631
+00:34:35,576 --> 00:34:36,696
+You don't have to
+worry about that.
+
+
+632
+00:34:37,056 --> 00:34:39,176
+That will happen
+automatically for you.
+
+
+633
+00:34:39,746 --> 00:34:42,525
+But the good news is that
+the mechanism is pluggable.
+
+
+634
+00:34:43,116 --> 00:34:46,735
+This is covered in great
+detail in last year's session,
+
+
+635
+00:34:47,206 --> 00:34:50,545
+which you're welcome to watch
+online or on the LLDB website.
+
+
+636
+00:34:51,456 --> 00:34:54,106
+We'll just quickly go
+through an example to show
+
+
+637
+00:34:54,106 --> 00:34:57,606
+that you can roll your own Swift
+formatters much like you could
+
+
+638
+00:34:57,606 --> 00:34:59,156
+in C++ and Objective-C.
+
+
+639
+00:35:00,446 --> 00:35:03,166
+Let's say we have a struct that
+represents a person's address
+
+
+640
+00:35:03,896 --> 00:35:09,286
+and we try to PO my address
+card represented in the struct.
+
+
+641
+00:35:10,636 --> 00:35:14,096
+That's not a horrible
+display but it looks nothing
+
+
+642
+00:35:14,096 --> 00:35:15,736
+like an address would
+look, right?
+
+
+643
+00:35:16,526 --> 00:35:19,666
+I want to make this
+more envelope-like.
+
+
+644
+00:35:19,996 --> 00:35:21,666
+I want this to look
+a little bit more
+
+
+645
+00:35:21,666 --> 00:35:24,476
+like I was writing my
+address on an envelope.
+
+
+646
+00:35:24,886 --> 00:35:28,396
+I can do that with the
+LLDB-type summary add command.
+
+
+647
+00:35:28,946 --> 00:35:32,376
+The "type summary add" command
+is that LLDB's command to say,
+
+
+648
+00:35:32,746 --> 00:35:34,706
+"When you're showing me
+a variable of this type,
+
+
+649
+00:35:35,116 --> 00:35:37,206
+here's the at-a-glance
+information I'd
+
+
+650
+00:35:37,206 --> 00:35:38,696
+like to see represented."
+
+
+651
+00:35:39,216 --> 00:35:44,166
+And so we can tell LLDB, "You
+should use the variable's name.
+
+
+652
+00:35:44,796 --> 00:35:46,806
+You should use the
+name of the person.
+
+
+653
+00:35:47,206 --> 00:35:50,106
+You should use the city
+and separate those two
+
+
+654
+00:35:50,106 --> 00:35:51,656
+by new lines since you're at it.
+
+
+655
+00:35:52,496 --> 00:35:55,036
+Now, put another new line
+in there for me, will you?
+
+
+656
+00:35:55,226 --> 00:35:56,516
+And write a zip code.
+
+
+657
+00:35:56,946 --> 00:35:59,526
+And then after a
+comma and a space,
+
+
+658
+00:35:59,926 --> 00:36:01,166
+could you please put the state."
+
+
+659
+00:36:01,796 --> 00:36:03,766
+This is the U.S. address
+format, basically.
+
+
+660
+00:36:04,106 --> 00:36:07,176
+And we're saying, "Use that
+for the address object."
+
+
+661
+00:36:08,166 --> 00:36:13,406
+Now, when you PO me
+again, we get something
+
+
+662
+00:36:13,406 --> 00:36:16,026
+that looks a lot more
+like an actual address.
+
+
+663
+00:36:17,376 --> 00:36:19,056
+Data formatter's
+mission accomplished.
+
+
+664
+00:36:19,336 --> 00:36:23,616
+I told you there's
+always caveats.
+
+
+665
+00:36:23,966 --> 00:36:24,626
+There's a few more.
+
+
+666
+00:36:26,216 --> 00:36:30,236
+When you actually tell LLDB bind
+this formatter to this type,
+
+
+667
+00:36:30,236 --> 00:36:33,276
+you have to use the
+fully qualified name.
+
+
+668
+00:36:33,746 --> 00:36:35,976
+That includes the
+name of the module.
+
+
+669
+00:36:36,136 --> 00:36:37,476
+We'll talk about
+that in a little bit.
+
+
+670
+00:36:37,716 --> 00:36:40,746
+If you're writing
+Python formatters,
+
+
+671
+00:36:41,426 --> 00:36:43,666
+you want to use
+SBValue.GetSummary().
+
+
+672
+00:36:43,666 --> 00:36:45,576
+You want to ask objects
+for a summary.
+
+
+673
+00:36:46,516 --> 00:36:49,796
+Even for things that in
+C or Objective-C look
+
+
+674
+00:36:49,796 --> 00:36:52,936
+like basic types that have a
+value, like an int or a float,
+
+
+675
+00:36:53,386 --> 00:36:56,036
+in Swift there's a little
+more intricacy going
+
+
+676
+00:36:56,036 --> 00:36:56,896
+on under the hood.
+
+
+677
+00:36:57,346 --> 00:36:59,026
+So, what you want to
+show, what you want
+
+
+678
+00:36:59,436 --> 00:37:00,736
+to ask is the object summary.
+
+
+679
+00:37:01,106 --> 00:37:04,976
+Caveat to the caveat:
+except for enums.
+
+
+680
+00:37:05,766 --> 00:37:07,956
+When you have a Swift enum
+and you want to figure
+
+
+681
+00:37:07,956 --> 00:37:10,976
+out which case is
+selected, you ask the value.
+
+
+682
+00:37:14,936 --> 00:37:18,236
+Let's talk about
+name uniqueness.
+
+
+683
+00:37:18,726 --> 00:37:22,916
+Let's say you, you guys are
+writing an awesome Objective-C
+
+
+684
+00:37:23,156 --> 00:37:24,956
+app and there's a
+really good framework
+
+
+685
+00:37:24,956 --> 00:37:27,526
+that would help make you
+so much more productive.
+
+
+686
+00:37:28,336 --> 00:37:30,226
+It's Foo.framework, of course.
+
+
+687
+00:37:31,016 --> 00:37:33,026
+Foo.framework has developers
+
+
+688
+00:37:33,026 --> 00:37:35,276
+who have really good
+taste in class naming.
+
+
+689
+00:37:35,806 --> 00:37:37,956
+Their taste in class naming
+is so good that they came
+
+
+690
+00:37:37,956 --> 00:37:40,526
+up with a really
+nice class name.
+
+
+691
+00:37:41,816 --> 00:37:44,156
+Unfortunately, these
+guys have too good
+
+
+692
+00:37:44,156 --> 00:37:45,486
+of a taste of their own good.
+
+
+693
+00:37:46,186 --> 00:37:48,106
+A little while later,
+the developers
+
+
+694
+00:37:48,106 --> 00:37:50,616
+of another great
+framework, Bar.framework,
+
+
+695
+00:37:51,106 --> 00:37:54,076
+came up with the same
+super-nice class name.
+
+
+696
+00:37:55,386 --> 00:37:59,556
+Now, the result of this
+is not nice at all.
+
+
+697
+00:37:59,846 --> 00:38:01,716
+The result of this is undefined.
+
+
+698
+00:38:02,006 --> 00:38:05,336
+There's two frameworks with the
+same class with the same name,
+
+
+699
+00:38:05,336 --> 00:38:07,966
+trying to coexist in the
+same app at the same time.
+
+
+700
+00:38:08,286 --> 00:38:08,876
+That's not nice.
+
+
+701
+00:38:09,036 --> 00:38:09,716
+That's undefined.
+
+
+702
+00:38:09,816 --> 00:38:12,836
+You don't get to choose which
+class gets actually loaded.
+
+
+703
+00:38:13,406 --> 00:38:15,646
+In Swift, that's
+gone [applause].
+
+
+704
+00:38:16,996 --> 00:38:21,946
+Thank you.
+
+
+705
+00:38:23,946 --> 00:38:27,126
+Swift provides uniqueness
+among function overloads
+
+
+706
+00:38:27,326 --> 00:38:29,216
+and among classes in
+different frameworks.
+
+
+707
+00:38:30,206 --> 00:38:34,926
+The way to access all this
+goodness is a feature called
+
+
+708
+00:38:35,076 --> 00:38:35,966
+mangled names.
+
+
+709
+00:38:36,596 --> 00:38:38,206
+Some of you may come from C++
+
+
+710
+00:38:38,476 --> 00:38:40,066
+and may be familiar
+with that already.
+
+
+711
+00:38:40,606 --> 00:38:41,546
+Let's talk about it.
+
+
+712
+00:38:43,066 --> 00:38:45,736
+There's two guys and they're
+both writing Swift code.
+
+
+713
+00:38:45,926 --> 00:38:48,536
+They don't know about each
+other but they both think
+
+
+714
+00:38:48,536 --> 00:38:51,196
+that MyClass is the best
+name ever for a class.
+
+
+715
+00:38:51,586 --> 00:38:55,076
+I don't agree with that
+but that's their choice.
+
+
+716
+00:38:56,146 --> 00:38:59,416
+They want to submit their
+code to the Swift Compiler.
+
+
+717
+00:38:59,606 --> 00:39:02,966
+The first guy goes
+on and does it.
+
+
+718
+00:39:02,966 --> 00:39:05,936
+As a result, he gets a
+compiled version of his code
+
+
+719
+00:39:06,486 --> 00:39:09,076
+where his class is
+actually called something my
+
+
+720
+00:39:09,076 --> 00:39:10,066
+module MyClass.
+
+
+721
+00:39:10,206 --> 00:39:11,556
+We'll get back to
+that in a second.
+
+
+722
+00:39:12,246 --> 00:39:13,556
+When the second guy does that,
+
+
+723
+00:39:14,536 --> 00:39:16,606
+it does that same thing,
+it tries to compile.
+
+
+724
+00:39:17,976 --> 00:39:21,246
+His class actually gets called
+something module 2 MyClass.
+
+
+725
+00:39:22,166 --> 00:39:25,986
+Now they don't clash anymore,
+Module1MyClass, Module2MyClass.
+
+
+726
+00:39:27,236 --> 00:39:28,466
+There's a little price to pay.
+
+
+727
+00:39:29,216 --> 00:39:33,246
+Now, if I actually look at the
+screen and see what the name
+
+
+728
+00:39:33,246 --> 00:39:37,236
+of the class became
+at linkage time,
+
+
+729
+00:39:37,236 --> 00:39:44,076
+it's called
+-TtC7Module17MyClass.
+
+
+730
+00:39:44,586 --> 00:39:48,506
+And that's just for
+declaring a class.
+
+
+731
+00:39:49,536 --> 00:39:53,406
+Now, the world is actually
+a scary place sometimes.
+
+
+732
+00:39:53,926 --> 00:39:56,506
+What if you were out
+there in the wild roaming
+
+
+733
+00:39:56,506 --> 00:39:58,156
+through dark streets and out
+
+
+734
+00:39:58,226 --> 00:40:01,966
+of a little alley a mangled
+name came right at you.
+
+
+735
+00:40:03,086 --> 00:40:04,546
+That could happen
+while you're, you know,
+
+
+736
+00:40:04,666 --> 00:40:06,966
+you're just sitting there in
+interface builder doing things
+
+
+737
+00:40:06,966 --> 00:40:08,796
+and oh, there's a
+mangled name there.
+
+
+738
+00:40:09,556 --> 00:40:12,756
+Or, worse even, your
+app just crashed.
+
+
+739
+00:40:13,176 --> 00:40:15,386
+Not all of you are going to
+get crash reporter window.
+
+
+740
+00:40:15,616 --> 00:40:17,486
+You're also getting
+mangled names in there.
+
+
+741
+00:40:17,866 --> 00:40:19,216
+It doesn't get much
+worse than that,
+
+
+742
+00:40:19,896 --> 00:40:23,716
+except swift-demangle
+comes to the rescue.
+
+
+743
+00:40:24,506 --> 00:40:27,736
+swift-demangle is a little
+tool that ships with Xcode
+
+
+744
+00:40:28,476 --> 00:40:31,836
+that lets you pass as input
+on the command line one
+
+
+745
+00:40:31,836 --> 00:40:33,306
+or more Swift mangled names,
+
+
+746
+00:40:34,026 --> 00:40:38,436
+and it magically provides
+you the demangled version.
+
+
+747
+00:40:39,026 --> 00:40:42,586
+So, fear no more encounters with
+mangled names in dark alleys.
+
+
+748
+00:40:43,366 --> 00:40:47,746
+This is the magic of modules.
+
+
+749
+00:40:48,746 --> 00:40:51,586
+This is the magic of
+modules in the context
+
+
+750
+00:40:51,586 --> 00:40:54,656
+of name uniqueness,
+of avoiding clashes.
+
+
+751
+00:40:55,906 --> 00:40:58,326
+Modules can do a
+lot more for us.
+
+
+752
+00:40:58,866 --> 00:41:02,376
+Modules actually make
+debugging a lot more awesome.
+
+
+753
+00:41:03,396 --> 00:41:05,976
+Why? How? Let's look at it.
+
+
+754
+00:41:06,686 --> 00:41:11,436
+I have source code for my app
+written in Swift and I gave it
+
+
+755
+00:41:11,436 --> 00:41:12,556
+to the Swift Compiler.
+
+
+756
+00:41:14,316 --> 00:41:19,646
+The output of that process is
+an app and module information.
+
+
+757
+00:41:20,686 --> 00:41:22,926
+Why is that so important,
+the module information?
+
+
+758
+00:41:24,916 --> 00:41:29,446
+Well, it turns out that
+much like it contains a copy
+
+
+759
+00:41:29,446 --> 00:41:33,596
+of Clang, LLDB contains a copy
+of the Swift Compiler inside,
+
+
+760
+00:41:34,076 --> 00:41:35,436
+and that's used, of course,
+
+
+761
+00:41:35,646 --> 00:41:38,116
+as part of expression
+evaluation for Swift.
+
+
+762
+00:41:38,856 --> 00:41:41,146
+But, there's a little
+more to the story.
+
+
+763
+00:41:41,936 --> 00:41:44,686
+Now, when I try to
+debug that app,
+
+
+764
+00:41:45,776 --> 00:41:49,356
+the copy of the compiler will
+actually be able to infer,
+
+
+765
+00:41:49,706 --> 00:41:52,356
+to ingest the module information
+for the compiled app.
+
+
+766
+00:41:52,356 --> 00:41:55,206
+Why is that so important?
+
+
+767
+00:41:55,696 --> 00:41:59,616
+Let me give you a little
+perspective on what happens
+
+
+768
+00:42:00,086 --> 00:42:01,996
+when you compile an
+app for debugging
+
+
+769
+00:42:01,996 --> 00:42:03,966
+and then you try to debug it.
+
+
+770
+00:42:04,556 --> 00:42:07,266
+When you tell the
+compiler, any compiler,
+
+
+771
+00:42:07,326 --> 00:42:09,096
+let's go with Clang
+in this example.
+
+
+772
+00:42:09,586 --> 00:42:12,686
+When you tell Clang, "Please
+compile my app for debugging",
+
+
+773
+00:42:13,386 --> 00:42:16,856
+what Clang does is it
+ingests your code as usual.
+
+
+774
+00:42:17,016 --> 00:42:18,346
+It understands your code
+
+
+775
+00:42:18,346 --> 00:42:21,256
+and gets a mental model
+of it in some sense.
+
+
+776
+00:42:22,536 --> 00:42:25,396
+Then you tell Clang,
+"Give me information
+
+
+777
+00:42:25,396 --> 00:42:27,576
+to help me debug my app."
+
+
+778
+00:42:27,576 --> 00:42:31,146
+What that process does
+is it generates DWARF.
+
+
+779
+00:42:31,566 --> 00:42:34,276
+DWARF is a format
+used specifically
+
+
+780
+00:42:34,446 --> 00:42:36,306
+for containing debug
+information.
+
+
+781
+00:42:36,786 --> 00:42:39,966
+So, Clang has an understanding
+of the type system of your app.
+
+
+782
+00:42:40,646 --> 00:42:43,466
+It takes that understanding,
+it translates it
+
+
+783
+00:42:43,756 --> 00:42:46,186
+into a different format, DWARF.
+
+
+784
+00:42:46,736 --> 00:42:52,116
+The debugger, LLDB, then
+ingests that DWARF information
+
+
+785
+00:42:52,396 --> 00:42:55,246
+and it has to recreate
+an understanding
+
+
+786
+00:42:55,406 --> 00:42:57,486
+of the type system of your app.
+
+
+787
+00:42:57,756 --> 00:43:01,596
+The way LLDB does that is
+it generates Clang types
+
+
+788
+00:43:01,876 --> 00:43:02,716
+out of DWARF.
+
+
+789
+00:43:04,006 --> 00:43:05,116
+Hold on a second.
+
+
+790
+00:43:05,656 --> 00:43:07,956
+So what you're telling
+me here is basically
+
+
+791
+00:43:08,306 --> 00:43:10,586
+that Clang generates Clang types
+
+
+792
+00:43:11,016 --> 00:43:15,066
+out of my source code then it
+translates that into DWARF.
+
+
+793
+00:43:15,646 --> 00:43:21,366
+Then, LLDB consumes the DWARF
+and generates Clang types back.
+
+
+794
+00:43:22,556 --> 00:43:25,456
+Why? Wouldn't it be really nice
+
+
+795
+00:43:25,856 --> 00:43:29,366
+if LLDB could directly
+understand the compiler's notion
+
+
+796
+00:43:29,366 --> 00:43:29,926
+of types?
+
+
+797
+00:43:30,506 --> 00:43:31,456
+Wouldn't it be great
+
+
+798
+00:43:31,456 --> 00:43:33,416
+if we didn't have the
+intermediate steps,
+
+
+799
+00:43:33,736 --> 00:43:37,036
+and the compiler parses your
+source code, understands it.
+
+
+800
+00:43:37,416 --> 00:43:39,906
+It creates a representation
+of the types,
+
+
+801
+00:43:40,006 --> 00:43:42,786
+it's own representation
+of the types in your app,
+
+
+802
+00:43:42,786 --> 00:43:45,366
+and the debugger gets to use
+that same representation?
+
+
+803
+00:43:46,496 --> 00:43:48,186
+That certainly seems nice.
+
+
+804
+00:43:48,806 --> 00:43:50,936
+It certainly seems
+nice for us that have
+
+
+805
+00:43:50,936 --> 00:43:52,286
+to actually write the debugger.
+
+
+806
+00:43:52,626 --> 00:43:53,576
+We skip one step.
+
+
+807
+00:43:53,636 --> 00:43:55,916
+We can directly use the
+compiler's notion of the truth.
+
+
+808
+00:43:56,756 --> 00:43:59,806
+It's also really nice for you,
+the users of the debugger.
+
+
+809
+00:44:00,286 --> 00:44:03,476
+The reason, well, there's
+a couple of reasons.
+
+
+810
+00:44:04,476 --> 00:44:07,706
+The obvious one is that
+if we could do that,
+
+
+811
+00:44:08,196 --> 00:44:11,176
+there would be no potential
+for loss of information
+
+
+812
+00:44:11,176 --> 00:44:12,526
+in the translation process.
+
+
+813
+00:44:13,086 --> 00:44:16,316
+We went, we would go
+from source, Clang types,
+
+
+814
+00:44:16,356 --> 00:44:23,266
+DWARF Clang types, to source
+types, types, one less step
+
+
+815
+00:44:23,306 --> 00:44:24,546
+where information can get lost.
+
+
+816
+00:44:26,476 --> 00:44:29,096
+That is what happens in Swift.
+
+
+817
+00:44:29,976 --> 00:44:32,176
+The Swift Compiler
+generates a model
+
+
+818
+00:44:32,436 --> 00:44:36,336
+which is the compiler's
+understanding of the truth
+
+
+819
+00:44:36,336 --> 00:44:39,586
+of your program at the
+time it was being compiled.
+
+
+820
+00:44:40,086 --> 00:44:43,926
+LLDB's copy of the
+Swift Compiler ingests
+
+
+821
+00:44:44,116 --> 00:44:47,136
+that model information
+and can use it
+
+
+822
+00:44:47,136 --> 00:44:50,296
+to reproduce the type system
+that the compiler was seeing
+
+
+823
+00:44:50,296 --> 00:44:52,356
+at the time your program
+was being compiled.
+
+
+824
+00:44:52,806 --> 00:44:55,596
+There's no loss of
+information and there's no need
+
+
+825
+00:44:55,666 --> 00:44:56,796
+for the intermediate step
+
+
+826
+00:44:57,196 --> 00:45:00,216
+of re-creating the types
+from, back from DWARF.
+
+
+827
+00:45:01,856 --> 00:45:03,366
+There's one more advantage.
+
+
+828
+00:45:03,916 --> 00:45:07,656
+Some of you have
+written C++ code
+
+
+829
+00:45:08,086 --> 00:45:09,926
+and you've probably
+used generics.
+
+
+830
+00:45:11,346 --> 00:45:14,526
+For that situation, I'm
+sure you will run into it.
+
+
+831
+00:45:14,706 --> 00:45:16,726
+You try to use some
+generic function
+
+
+832
+00:45:17,336 --> 00:45:21,036
+and you actually didn't use
+that in your source program
+
+
+833
+00:45:21,436 --> 00:45:24,266
+and now LLDB's complaining,
+"You're trying
+
+
+834
+00:45:24,266 --> 00:45:26,486
+to use this function with
+this really weird name
+
+
+835
+00:45:26,486 --> 00:45:28,316
+that is not present
+in the target."
+
+
+836
+00:45:29,196 --> 00:45:33,536
+It turns out that that
+won't happen in Swift.
+
+
+837
+00:45:34,036 --> 00:45:36,306
+Since generics are
+actually types
+
+
+838
+00:45:36,366 --> 00:45:38,256
+that the compiler
+understands natively
+
+
+839
+00:45:38,716 --> 00:45:42,076
+and since we have the compiler's
+very own understanding
+
+
+840
+00:45:42,076 --> 00:45:46,456
+of the truth, now we get
+every type and every function
+
+
+841
+00:45:46,456 --> 00:45:49,316
+through module information,
+even those you did not use
+
+
+842
+00:45:49,316 --> 00:45:52,296
+in your source code,
+and even generic ones.
+
+
+843
+00:45:53,086 --> 00:45:57,346
+That was a lot of
+ground covered today.
+
+
+844
+00:45:58,316 --> 00:46:02,736
+If you remember one thing
+from this session, well,
+
+
+845
+00:46:02,736 --> 00:46:03,556
+there's always caveats.
+
+
+846
+00:46:03,596 --> 00:46:05,976
+But no, that's not the thing
+I want you to remember.
+
+
+847
+00:46:07,836 --> 00:46:12,136
+You can choose your language and
+LLDB will be there every step
+
+
+848
+00:46:12,136 --> 00:46:15,236
+of the way with helpful
+investigation tools.
+
+
+849
+00:46:16,326 --> 00:46:19,866
+Whether you're, whether
+you're using Use With Features
+
+
+850
+00:46:19,866 --> 00:46:21,606
+or you're debugging
+your existing code base,
+
+
+851
+00:46:22,036 --> 00:46:24,106
+the helpful features in
+the debugger will be there
+
+
+852
+00:46:24,156 --> 00:46:26,326
+to help you make
+your app awesome.
+
+
+853
+00:46:27,616 --> 00:46:29,346
+We talked about a
+bunch of topics.
+
+
+854
+00:46:30,066 --> 00:46:33,336
+We talked about Swift types,
+stepping, data formatters
+
+
+855
+00:46:33,366 --> 00:46:36,466
+and modules, and probably
+even more than that.
+
+
+856
+00:46:36,796 --> 00:46:42,236
+The important thing is your
+feedback matters a lot to us.
+
+
+857
+00:46:42,786 --> 00:46:44,736
+I've been in the labs
+the last couple of days.
+
+
+858
+00:46:45,146 --> 00:46:47,556
+I've read the blogosphere
+the last couple of days
+
+
+859
+00:46:48,006 --> 00:46:50,096
+and I've gotten from, I've seen
+
+
+860
+00:46:50,096 --> 00:46:52,576
+from you guys some
+amazing feedback.
+
+
+861
+00:46:52,576 --> 00:46:55,696
+I've seen the great things
+you've started doing in Swift,
+
+
+862
+00:46:55,966 --> 00:46:59,586
+including the Flappy Birds
+app in Swift, I've seen that.
+
+
+863
+00:47:00,826 --> 00:47:04,696
+We've gotten emails where
+people tell us amazing things
+
+
+864
+00:47:04,696 --> 00:47:07,826
+about how they expect these new
+tools to change their lives,
+
+
+865
+00:47:07,866 --> 00:47:09,176
+to make their programming
+better.
+
+
+866
+00:47:09,956 --> 00:47:10,896
+Keep that coming.
+
+
+867
+00:47:10,996 --> 00:47:13,106
+Your feedback matters
+a lot to us.
+
+
+868
+00:47:13,426 --> 00:47:14,706
+Let us know what
+we're doing great,
+
+
+869
+00:47:14,746 --> 00:47:16,676
+let us know what
+we can do better,
+
+
+870
+00:47:16,676 --> 00:47:19,036
+and of course, thank
+you everyone.
+
+
+871
+00:47:19,406 --> 00:47:19,826
+Thank you.
+
+
+872
+00:47:23,516 --> 00:47:34,520
+[ Applause ]
+

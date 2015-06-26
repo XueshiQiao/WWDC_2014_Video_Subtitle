@@ -1,0 +1,5488 @@
+1
+00:00:00,506 --> 00:00:11,336
+[ Silence ]
+
+
+2
+00:00:11,836 --> 00:00:12,356
+>> All right.
+
+
+3
+00:00:12,396 --> 00:00:13,636
+Good afternoon everyone.
+
+
+4
+00:00:14,606 --> 00:00:16,175
+Thank you for coming here
+
+
+5
+00:00:16,175 --> 00:00:19,446
+to Adopting Handoff
+on iOS and OS X.
+
+
+6
+00:00:20,026 --> 00:00:23,146
+I'm Michael Jurewitz, I'm the
+Lead Engineering Project Manager
+
+
+7
+00:00:23,146 --> 00:00:26,746
+for Continuity and I'm super
+excited to be here today to talk
+
+
+8
+00:00:26,746 --> 00:00:29,806
+to you about Adopting
+Handoff in your applications.
+
+
+9
+00:00:30,026 --> 00:00:33,326
+A little bit later, I'm going
+to be joined by Vince Spader
+
+
+10
+00:00:33,326 --> 00:00:36,386
+and Keith Stattenfield to
+talk more in this session,
+
+
+11
+00:00:37,166 --> 00:00:40,516
+but as you saw on Monday,
+Handoff is a huge part
+
+
+12
+00:00:40,516 --> 00:00:44,156
+of the releases for
+both iOS and OS X.
+
+
+13
+00:00:44,346 --> 00:00:47,406
+And I'm really happy to be the
+second person at least this week
+
+
+14
+00:00:47,406 --> 00:00:49,076
+to be able to talk to
+you more about them.
+
+
+15
+00:00:49,836 --> 00:00:51,146
+So if you look at this feature,
+
+
+16
+00:00:51,856 --> 00:00:55,136
+you can really see the big goal
+is that we want it to be easy
+
+
+17
+00:00:55,136 --> 00:00:59,326
+for the user, for all of you to
+take what they're doing and move
+
+
+18
+00:00:59,326 --> 00:01:02,906
+that between whatever Apple
+device they happen to be using.
+
+
+19
+00:01:03,476 --> 00:01:07,826
+So all continuity, Handoff in
+particular, is all about having
+
+
+20
+00:01:07,826 --> 00:01:12,026
+that seamless experience between
+apps on different devices.
+
+
+21
+00:01:12,676 --> 00:01:15,986
+So now today, we'll take a look
+at what we're actually going
+
+
+22
+00:01:15,986 --> 00:01:17,006
+to learn in this session today.
+
+
+23
+00:01:17,006 --> 00:01:20,296
+So first of all, we'll take a
+quick look at what is Handoff.
+
+
+24
+00:01:20,296 --> 00:01:21,876
+How does this feature work?
+
+
+25
+00:01:21,876 --> 00:01:24,116
+You saw a little bit
+about that on Monday,
+
+
+26
+00:01:24,116 --> 00:01:25,746
+and so we'll dive
+into that a bit more.
+
+
+27
+00:01:26,416 --> 00:01:29,326
+Next, we'll take a look at
+actually adopting Handoff
+
+
+28
+00:01:29,326 --> 00:01:32,906
+in your applications, so
+that's a super-simple API.
+
+
+29
+00:01:32,986 --> 00:01:34,656
+I'm very happy to be
+able to tell you that.
+
+
+30
+00:01:34,656 --> 00:01:38,666
+There are different integration
+points in both AppKit and UIKit
+
+
+31
+00:01:38,666 --> 00:01:40,966
+for being able to take
+advantage of this in your app,
+
+
+32
+00:01:40,966 --> 00:01:42,166
+and so we'll take
+a look at those.
+
+
+33
+00:01:42,366 --> 00:01:45,066
+And then we'll round things
+out by actually taking an
+
+
+34
+00:01:45,066 --> 00:01:47,846
+in depth look at some pretty
+advanced things you can do
+
+
+35
+00:01:47,846 --> 00:01:49,396
+with Handoff that
+are super cool.
+
+
+36
+00:01:49,396 --> 00:01:53,246
+All right, so what is Handoff?
+
+
+37
+00:01:54,706 --> 00:01:57,586
+Well, I think we've all been
+stuck here before, right?
+
+
+38
+00:01:57,636 --> 00:01:59,296
+You're using one
+of your devices.
+
+
+39
+00:01:59,296 --> 00:02:01,166
+Maybe you're browsing
+on a website,
+
+
+40
+00:02:01,926 --> 00:02:04,436
+and what you really
+want to be able to do is
+
+
+41
+00:02:04,436 --> 00:02:06,416
+to take what you were
+doing on that device
+
+
+42
+00:02:06,816 --> 00:02:08,216
+and move over to another one.
+
+
+43
+00:02:08,216 --> 00:02:10,826
+And a lot of times, that
+can be kind of cumbersome.
+
+
+44
+00:02:10,826 --> 00:02:14,426
+Maybe you're having to go and
+fish out the app on your iPad.
+
+
+45
+00:02:14,426 --> 00:02:16,656
+You have to go back to
+where you were in that app,
+
+
+46
+00:02:16,956 --> 00:02:18,216
+reload a bunch of state.
+
+
+47
+00:02:18,826 --> 00:02:20,686
+Maybe you didn't even
+have your data sync
+
+
+48
+00:02:20,686 --> 00:02:23,236
+across in the first place,
+so it's even more of a pain.
+
+
+49
+00:02:24,336 --> 00:02:27,696
+And so Handoff is all about
+making it super simple to make
+
+
+50
+00:02:27,766 --> 00:02:29,476
+that jump between your devices.
+
+
+51
+00:02:30,236 --> 00:02:32,386
+So as you're on your Mac and
+you're browsing something
+
+
+52
+00:02:32,656 --> 00:02:37,136
+like Safari, on the lower left
+corner of your iPad or any
+
+
+53
+00:02:37,136 --> 00:02:40,386
+of the rest of your devices,
+you'll see an icon shows up.
+
+
+54
+00:02:40,926 --> 00:02:44,966
+You can swipe that icon up and
+we immediately bring you back
+
+
+55
+00:02:45,056 --> 00:02:47,806
+to exactly what you were
+doing in that application.
+
+
+56
+00:02:48,296 --> 00:02:50,026
+Wonderful seamless experience.
+
+
+57
+00:02:51,256 --> 00:02:53,966
+And so how do we
+actually do all this?
+
+
+58
+00:02:53,966 --> 00:02:54,946
+What's going on?
+
+
+59
+00:02:55,446 --> 00:02:58,226
+So the first thing to know
+is that this is entirely
+
+
+60
+00:02:58,226 --> 00:03:02,586
+about the proximity of your
+devices to your other devices.
+
+
+61
+00:03:03,366 --> 00:03:07,446
+So we use BTLE to
+actually let devices
+
+
+62
+00:03:07,446 --> 00:03:10,926
+around you know what they should
+show in that lower left corner.
+
+
+63
+00:03:12,166 --> 00:03:15,306
+And which devices actually
+show your apps is linked
+
+
+64
+00:03:15,376 --> 00:03:17,416
+to the devices that
+you are signed
+
+
+65
+00:03:17,416 --> 00:03:19,586
+into with the same
+iCloud account.
+
+
+66
+00:03:20,366 --> 00:03:23,166
+So what we do is we know that
+you're signed into this device
+
+
+67
+00:03:23,546 --> 00:03:25,186
+and we actually will
+use the Cloud
+
+
+68
+00:03:25,486 --> 00:03:29,026
+to BTLE pair your different
+devices to each other.
+
+
+69
+00:03:30,166 --> 00:03:33,926
+And when you actually go to
+actually continue an activity
+
+
+70
+00:03:33,926 --> 00:03:36,686
+on another device,
+we're actually moving
+
+
+71
+00:03:36,686 --> 00:03:39,796
+that data directly
+from where you were
+
+
+72
+00:03:39,856 --> 00:03:41,566
+to where you want to go.
+
+
+73
+00:03:41,636 --> 00:03:44,476
+So it's all about
+directly moving information
+
+
+74
+00:03:44,476 --> 00:03:45,836
+about that activity itself.
+
+
+75
+00:03:46,726 --> 00:03:48,276
+Now, where are you
+actually going
+
+
+76
+00:03:48,276 --> 00:03:50,966
+to find the UI for Handoff?
+
+
+77
+00:03:50,966 --> 00:03:52,966
+Well, there's two
+places on both platforms.
+
+
+78
+00:03:53,816 --> 00:03:57,916
+First, what you'll find is that
+on iOS in the lower left corner
+
+
+79
+00:03:57,916 --> 00:04:01,076
+of the Lock screen, if
+you're using your Mac
+
+
+80
+00:04:01,076 --> 00:04:04,126
+and other iOS device,
+you'll see this icon show up
+
+
+81
+00:04:04,426 --> 00:04:06,676
+and this is your clue
+that you can swipe this
+
+
+82
+00:04:06,676 --> 00:04:08,796
+up to get right back
+to that application.
+
+
+83
+00:04:09,946 --> 00:04:12,966
+You'll also find that if you
+double tap the Home button
+
+
+84
+00:04:13,146 --> 00:04:16,946
+and bring up the Multi-tasking
+Switcher, you can go all the way
+
+
+85
+00:04:16,946 --> 00:04:19,786
+to the other side of the home
+screen, and you'll see a pane
+
+
+86
+00:04:19,856 --> 00:04:22,166
+for an app that we see
+that we know is nearby,
+
+
+87
+00:04:22,166 --> 00:04:25,836
+so you can resume from there as
+well; so two different places,
+
+
+88
+00:04:25,836 --> 00:04:27,336
+super convenient
+to get to those.
+
+
+89
+00:04:28,186 --> 00:04:32,286
+Now on the Mac, you've actually
+got UI that's going to stick
+
+
+90
+00:04:32,286 --> 00:04:34,636
+around for you here in the
+Dock if you're using an app
+
+
+91
+00:04:34,636 --> 00:04:35,476
+on a different device.
+
+
+92
+00:04:36,076 --> 00:04:39,616
+So for example, if I'm
+on my iPad, or my iPhone,
+
+
+93
+00:04:39,616 --> 00:04:41,976
+or maybe even a different
+Mac that I'm using something
+
+
+94
+00:04:41,976 --> 00:04:44,566
+like Mail, you'll
+see it actually show
+
+
+95
+00:04:44,566 --> 00:04:47,486
+up in the Dock right at the end
+there, and you can click on it
+
+
+96
+00:04:48,046 --> 00:04:49,686
+to get back to what
+you were doing,
+
+
+97
+00:04:49,686 --> 00:04:51,146
+essentially to start
+the handoff.
+
+
+98
+00:04:51,986 --> 00:04:55,486
+You'll also find it in Command
+tab so that you can go ahead
+
+
+99
+00:04:55,486 --> 00:04:58,646
+and hit Command tab, cycle
+through your apps that are there
+
+
+100
+00:04:58,646 --> 00:05:00,046
+and choose to pull
+over the activity
+
+
+101
+00:05:00,046 --> 00:05:01,046
+that you want to
+be working with.
+
+
+102
+00:05:01,336 --> 00:05:06,606
+Here you see this is you know
+mail that came from my iPad.
+
+
+103
+00:05:07,116 --> 00:05:09,306
+Okay, so when it comes
+to adopting Handoff,
+
+
+104
+00:05:09,306 --> 00:05:13,036
+there's really three main things
+that you need to think about.
+
+
+105
+00:05:13,976 --> 00:05:16,556
+The first, and really this is
+kind of the most important,
+
+
+106
+00:05:16,556 --> 00:05:18,576
+is deciding what activities
+
+
+107
+00:05:18,576 --> 00:05:20,676
+in your app you really
+want to support.
+
+
+108
+00:05:21,126 --> 00:05:23,926
+Now this, it's kind of an
+interesting thing to talk about,
+
+
+109
+00:05:23,926 --> 00:05:25,546
+but the fundamental unit
+
+
+110
+00:05:25,686 --> 00:05:28,136
+in Handoff is this
+notion of an activity.
+
+
+111
+00:05:28,706 --> 00:05:30,316
+And what you really
+want to be thinking
+
+
+112
+00:05:30,316 --> 00:05:32,536
+about are what does
+the user think
+
+
+113
+00:05:32,536 --> 00:05:34,496
+about as they're using your app
+
+
+114
+00:05:35,066 --> 00:05:37,826
+about constituting say
+different types of things.
+
+
+115
+00:05:37,826 --> 00:05:41,276
+So for example, in Mail,
+you've got a very clear split
+
+
+116
+00:05:41,276 --> 00:05:44,516
+between I'm reading email
+versus I'm writing email.
+
+
+117
+00:05:45,146 --> 00:05:47,466
+Those are two different types of
+activities that you would want
+
+
+118
+00:05:47,466 --> 00:05:50,836
+to have and indeed that we do
+have, in the case of Handoff.
+
+
+119
+00:05:51,396 --> 00:05:55,436
+So what you're trying to do is
+not only provide a nice grouping
+
+
+120
+00:05:55,436 --> 00:05:58,926
+of these discrete tasks not
+only just to make things simpler
+
+
+121
+00:05:58,926 --> 00:06:01,746
+for you, but also because,
+as we'll talk about later,
+
+
+122
+00:06:02,126 --> 00:06:05,836
+when you go to resume these
+activities on another device,
+
+
+123
+00:06:06,106 --> 00:06:08,906
+having some clear
+separation between what type
+
+
+124
+00:06:08,936 --> 00:06:11,246
+of activity you're
+actually trying to resume,
+
+
+125
+00:06:11,616 --> 00:06:12,736
+can be really important.
+
+
+126
+00:06:12,736 --> 00:06:14,316
+It can help you do
+some much better things
+
+
+127
+00:06:14,316 --> 00:06:15,366
+in the user experience.
+
+
+128
+00:06:16,196 --> 00:06:17,906
+All right, so step two,
+
+
+129
+00:06:18,276 --> 00:06:21,196
+is actually creating the
+activities in the first place.
+
+
+130
+00:06:21,426 --> 00:06:23,086
+This is also really easy to do.
+
+
+131
+00:06:23,086 --> 00:06:24,676
+We'll have a lot
+to go into to talk
+
+
+132
+00:06:24,676 --> 00:06:25,956
+about how to actually do this.
+
+
+133
+00:06:26,766 --> 00:06:28,436
+And third and final,
+you need to be able
+
+
+134
+00:06:28,436 --> 00:06:31,776
+to handle incoming activities
+into your application.
+
+
+135
+00:06:31,776 --> 00:06:34,966
+So if your app gets
+launched or gets resumed
+
+
+136
+00:06:35,536 --> 00:06:38,156
+and the system hands you
+this activity to deal with,
+
+
+137
+00:06:38,156 --> 00:06:40,466
+you need to make sure that you
+are basically taking the user
+
+
+138
+00:06:40,466 --> 00:06:43,856
+back to where they want
+to be in your application.
+
+
+139
+00:06:44,756 --> 00:06:46,326
+So I mentioned this before,
+
+
+140
+00:06:46,326 --> 00:06:51,246
+but the fundamental unit here is
+the activity when you're dealing
+
+
+141
+00:06:51,246 --> 00:06:55,816
+with Handoff, and specifically,
+this is a single class.
+
+
+142
+00:06:56,206 --> 00:06:59,906
+It's NSUserActivity, and
+I'm very happy to tell you
+
+
+143
+00:06:59,956 --> 00:07:01,576
+that it is only one class.
+
+
+144
+00:07:01,576 --> 00:07:04,276
+It has only a few
+methods and it's the same
+
+
+145
+00:07:04,276 --> 00:07:05,586
+across both iOS and OS X.
+
+
+146
+00:07:05,586 --> 00:07:09,336
+So you get a chance to learn
+how to do this in one place
+
+
+147
+00:07:09,336 --> 00:07:11,716
+and it's going to map completely
+to the other platform.
+
+
+148
+00:07:11,716 --> 00:07:14,476
+You don't have to worry
+about huge differences in API
+
+
+149
+00:07:14,476 --> 00:07:17,286
+or anything, so super
+simple to use.
+
+
+150
+00:07:18,026 --> 00:07:20,566
+So as you're working
+with NSUserActivity,
+
+
+151
+00:07:21,166 --> 00:07:23,376
+so you've got something
+like Mail, for example.
+
+
+152
+00:07:23,766 --> 00:07:27,466
+As you are composing an
+email, this is a great example
+
+
+153
+00:07:27,466 --> 00:07:30,116
+of a discrete activity
+that's being done.
+
+
+154
+00:07:30,116 --> 00:07:32,166
+This is Mail saying
+I'm composing.
+
+
+155
+00:07:33,166 --> 00:07:37,256
+And when you actually tell
+this activity to become active
+
+
+156
+00:07:37,256 --> 00:07:40,946
+and become current, what
+Become Current does is tells us
+
+
+157
+00:07:41,046 --> 00:07:45,086
+that this device should
+start broadcasting to devices
+
+
+158
+00:07:45,086 --> 00:07:46,086
+around it that hey, this --
+
+
+159
+00:07:46,086 --> 00:07:51,446
+the user is doing something that
+can be handed off and the rest
+
+
+160
+00:07:51,446 --> 00:07:54,126
+of the devices then can know
+to be able to show things
+
+
+161
+00:07:54,126 --> 00:07:57,176
+like the icon that
+corresponds to that app.
+
+
+162
+00:07:57,826 --> 00:07:59,976
+Now again, when you make
+one of these activities,
+
+
+163
+00:08:00,516 --> 00:08:01,926
+this broadcasting goes out.
+
+
+164
+00:08:02,986 --> 00:08:05,246
+You end up with in the very
+lower left corner there,
+
+
+165
+00:08:05,246 --> 00:08:09,096
+you get this icon that shows
+up, and the user can go ahead
+
+
+166
+00:08:09,096 --> 00:08:10,146
+and resume from there.
+
+
+167
+00:08:11,076 --> 00:08:13,906
+Now the key thing here is that
+when the user actually slides
+
+
+168
+00:08:13,906 --> 00:08:16,876
+up on the Lock Screen, the
+device where they're going
+
+
+169
+00:08:16,946 --> 00:08:21,706
+to actually connects back
+to the original device,
+
+
+170
+00:08:22,346 --> 00:08:24,976
+and what it's basically saying
+is hey, the user is here.
+
+
+171
+00:08:25,346 --> 00:08:27,056
+They want this data quick.
+
+
+172
+00:08:27,056 --> 00:08:29,196
+Give me information
+about the activity
+
+
+173
+00:08:29,196 --> 00:08:30,356
+that they were actually doing.
+
+
+174
+00:08:31,046 --> 00:08:33,106
+We handle all that for you.
+
+
+175
+00:08:33,106 --> 00:08:35,326
+The activity gets packaged up.
+
+
+176
+00:08:35,326 --> 00:08:38,785
+We send it across to the device
+where it's being resumed.
+
+
+177
+00:08:39,586 --> 00:08:41,166
+The system gets it.
+
+
+178
+00:08:41,166 --> 00:08:43,645
+Your app gets launched,
+and that's it.
+
+
+179
+00:08:43,936 --> 00:08:45,266
+Super simple to work with.
+
+
+180
+00:08:46,136 --> 00:08:50,386
+Now Handoff also has
+two really cool features
+
+
+181
+00:08:50,386 --> 00:08:51,466
+that you can take advantage
+
+
+182
+00:08:51,466 --> 00:08:53,656
+of even beyond just
+basic activities.
+
+
+183
+00:08:54,426 --> 00:08:58,906
+The first is the ability to
+actually create live streams
+
+
+184
+00:08:59,116 --> 00:09:00,876
+between two different instances
+
+
+185
+00:09:00,876 --> 00:09:03,116
+of your app on different
+devices.
+
+
+186
+00:09:03,626 --> 00:09:06,366
+So it's part of doing
+that handoff
+
+
+187
+00:09:06,366 --> 00:09:07,936
+and resuming on another device.
+
+
+188
+00:09:08,676 --> 00:09:11,156
+You can actually have
+that app connect back
+
+
+189
+00:09:11,326 --> 00:09:14,476
+to the original machine and
+just get an open NS stream
+
+
+190
+00:09:14,476 --> 00:09:17,246
+on either side to be able to
+keep talking back and forth.
+
+
+191
+00:09:17,246 --> 00:09:19,726
+So as you can imagine,
+there's some pretty cool stuff
+
+
+192
+00:09:19,726 --> 00:09:21,576
+that you can do with that.
+
+
+193
+00:09:22,136 --> 00:09:24,366
+Now second, and I imagine
+for some people in this room,
+
+
+194
+00:09:24,366 --> 00:09:27,986
+this will be a really big
+deal, we support Handoff
+
+
+195
+00:09:27,986 --> 00:09:32,666
+between native apps that you
+own and websites that you own.
+
+
+196
+00:09:33,386 --> 00:09:41,006
+So if you've got [applause]
+-- so if you've got an iOS app
+
+
+197
+00:09:41,006 --> 00:09:42,966
+and a really great website,
+
+
+198
+00:09:43,356 --> 00:09:46,116
+you could actually handoff
+seamlessly between the two,
+
+
+199
+00:09:46,646 --> 00:09:47,936
+so that's really, really, cool.
+
+
+200
+00:09:48,596 --> 00:09:49,176
+All right.
+
+
+201
+00:09:49,176 --> 00:09:51,126
+So now for today's
+agenda, we're going to go
+
+
+202
+00:09:51,126 --> 00:09:52,086
+into a few things here.
+
+
+203
+00:09:52,086 --> 00:09:55,596
+We're going to take a look at
+specifically AppKit and UIKit
+
+
+204
+00:09:55,596 --> 00:09:57,196
+as support for Handoff and what
+
+
+205
+00:09:57,196 --> 00:09:57,976
+that looks like, how
+you adopt things.
+
+
+206
+00:10:00,066 --> 00:10:03,526
+We'll talk about working with
+NSUserActivity directly just
+
+
+207
+00:10:03,526 --> 00:10:04,936
+so you can understand
+the API there,
+
+
+208
+00:10:04,936 --> 00:10:06,556
+some more advanced
+things that you can do.
+
+
+209
+00:10:07,216 --> 00:10:10,936
+We'll get into Native App to
+website Handoff and also look
+
+
+210
+00:10:10,936 --> 00:10:14,836
+at using these continuation
+streams between different apps.
+
+
+211
+00:10:15,396 --> 00:10:18,406
+And with that, I'd like to hand
+it off to Vince Spader to talk
+
+
+212
+00:10:18,406 --> 00:10:20,526
+to you about adopting
+Handoff in your app.
+
+
+213
+00:10:20,526 --> 00:10:20,896
+Thank you [applause].
+
+
+214
+00:10:26,966 --> 00:10:27,836
+>> Thank you Jerry.
+
+
+215
+00:10:28,166 --> 00:10:35,046
+So adopting Handoff in your
+app, there are three key pieces
+
+
+216
+00:10:35,046 --> 00:10:38,316
+to the AppKit and UIKit
+support in Handoff.
+
+
+217
+00:10:38,816 --> 00:10:45,056
+The first is creating these user
+activities and advertising them
+
+
+218
+00:10:45,056 --> 00:10:46,356
+to your nearby devices.
+
+
+219
+00:10:47,046 --> 00:10:51,356
+The second is updating the
+user activity with your state
+
+
+220
+00:10:51,356 --> 00:10:53,706
+about what the user
+is doing in your app.
+
+
+221
+00:10:54,516 --> 00:10:57,076
+And the third is using that
+information that you put
+
+
+222
+00:10:57,076 --> 00:11:02,806
+in to resume what the user
+is doing on another device.
+
+
+223
+00:11:02,806 --> 00:11:05,646
+So starting at the beginning,
+creating user activities.
+
+
+224
+00:11:06,196 --> 00:11:07,746
+The first step is to kind
+
+
+225
+00:11:07,746 --> 00:11:10,296
+of take a step back
+before you write any code
+
+
+226
+00:11:10,576 --> 00:11:13,186
+and ask what do users
+do in my app.
+
+
+227
+00:11:14,026 --> 00:11:16,366
+Hopefully this is a pretty
+simple question to answer.
+
+
+228
+00:11:16,786 --> 00:11:19,586
+Here's an example from OS X.
+
+
+229
+00:11:19,586 --> 00:11:21,126
+What's the user doing here?
+
+
+230
+00:11:21,576 --> 00:11:23,746
+Well, they're composing
+an email message.
+
+
+231
+00:11:24,216 --> 00:11:26,926
+Here's another example from iOS.
+
+
+232
+00:11:27,296 --> 00:11:28,136
+What are they doing?
+
+
+233
+00:11:28,856 --> 00:11:30,126
+Composing an email message.
+
+
+234
+00:11:30,126 --> 00:11:32,406
+It's the same activity
+on a different device.
+
+
+235
+00:11:33,596 --> 00:11:35,926
+Some other examples of
+activities would be things
+
+
+236
+00:11:35,926 --> 00:11:39,386
+like reading messages,
+picking an item from a list
+
+
+237
+00:11:39,386 --> 00:11:40,566
+or editing a document.
+
+
+238
+00:11:40,776 --> 00:11:43,846
+These are fairly
+continuous things
+
+
+239
+00:11:43,846 --> 00:11:46,836
+that the users engaged
+in in your app.
+
+
+240
+00:11:48,046 --> 00:11:52,286
+Things like clicking a
+button or typing the subject
+
+
+241
+00:11:52,286 --> 00:11:55,146
+of an email are not
+really user activities.
+
+
+242
+00:11:55,146 --> 00:11:58,156
+Those are kind of parts
+or actions that are part
+
+
+243
+00:11:58,156 --> 00:12:01,046
+of the user activity,
+so they're fairly broad
+
+
+244
+00:12:01,046 --> 00:12:02,696
+and they're continuous.
+
+
+245
+00:12:03,206 --> 00:12:08,206
+So once you've identified
+what your app is --
+
+
+246
+00:12:09,026 --> 00:12:11,536
+what users are doing
+in your app,
+
+
+247
+00:12:11,536 --> 00:12:14,396
+you'll find that usually
+there are some UI elements
+
+
+248
+00:12:14,796 --> 00:12:18,986
+that are responsible for
+presenting that to the user.
+
+
+249
+00:12:19,576 --> 00:12:22,526
+Maybe it's a window
+or a View Controller.
+
+
+250
+00:12:23,466 --> 00:12:30,586
+And on iOS8 and OS X Yosemite,
+NSDocument, UI Document,
+
+
+251
+00:12:30,746 --> 00:12:35,256
+NSResponder and UIResponder
+have a user activity property.
+
+
+252
+00:12:35,886 --> 00:12:39,796
+And remember that
+Responder is a base class
+
+
+253
+00:12:39,796 --> 00:12:41,536
+for a lot of UI elements.
+
+
+254
+00:12:41,536 --> 00:12:46,036
+It includes views, windows, view
+controllers, window controllers,
+
+
+255
+00:12:46,036 --> 00:12:49,266
+so odds are good
+if it's in your UI,
+
+
+256
+00:12:49,266 --> 00:12:50,816
+it has the user activity
+property.
+
+
+257
+00:12:51,776 --> 00:12:54,176
+And you use it kind
+of like this.
+
+
+258
+00:12:54,426 --> 00:12:58,136
+So the first step is to create
+an NSuserActivity instance
+
+
+259
+00:12:58,646 --> 00:13:00,766
+and you do that with
+[Inaudible] ActivityType.
+
+
+260
+00:13:00,766 --> 00:13:05,556
+And you're passing it in
+ActivityType, which is a string
+
+
+261
+00:13:05,556 --> 00:13:10,536
+that identifies the kind
+of activity that this is.
+
+
+262
+00:13:11,256 --> 00:13:13,796
+It will also appear
+in your info key list,
+
+
+263
+00:13:13,796 --> 00:13:16,216
+and we'll talk a little
+bit more about that later.
+
+
+264
+00:13:16,886 --> 00:13:21,016
+So after you have the
+NSUserActivity instance,
+
+
+265
+00:13:21,016 --> 00:13:22,196
+you can configure it.
+
+
+266
+00:13:22,456 --> 00:13:24,506
+It has some properties
+like a title.
+
+
+267
+00:13:25,236 --> 00:13:28,396
+And then you set it on your
+document or responder just
+
+
+268
+00:13:28,396 --> 00:13:30,466
+like any other property.
+
+
+269
+00:13:32,696 --> 00:13:36,226
+So for document-based
+apps, it's even easier.
+
+
+270
+00:13:36,676 --> 00:13:39,466
+All you need to do
+is add NSUbiquitous
+
+
+271
+00:13:39,466 --> 00:13:44,086
+DocumentUserActivity
+Type to your info P list
+
+
+272
+00:13:44,086 --> 00:13:46,736
+under each CFBundleDocumentTypes
+entry.
+
+
+273
+00:13:47,226 --> 00:13:51,096
+The basic idea is you're giving
+us an activity type for each
+
+
+274
+00:13:51,096 --> 00:13:53,776
+of your document types
+and it's perfectly okay
+
+
+275
+00:13:53,776 --> 00:13:57,266
+to have the same activity type
+for multiple document types.
+
+
+276
+00:13:58,276 --> 00:14:03,096
+And when that is
+in your INFOP list,
+
+
+277
+00:14:03,096 --> 00:14:07,006
+we will automatically create
+the NSUserActivity and set it
+
+
+278
+00:14:07,006 --> 00:14:12,456
+on your document when the
+document is in iCloud.
+
+
+279
+00:14:12,816 --> 00:14:16,496
+On OS X, since NSDocument can
+move out of iCloud and back
+
+
+280
+00:14:16,496 --> 00:14:20,766
+into iCloud, we will be
+updating that user activity
+
+
+281
+00:14:20,766 --> 00:14:23,636
+when that happens, so we
+will set the property to nil
+
+
+282
+00:14:23,636 --> 00:14:25,626
+for example, when it
+moves out of iCloud
+
+
+283
+00:14:25,766 --> 00:14:29,386
+and then create a new one if
+it gets moved into iCloud.
+
+
+284
+00:14:29,386 --> 00:14:32,156
+And if you want to
+know that is happening,
+
+
+285
+00:14:32,156 --> 00:14:35,116
+if you're using the UserActivity
+and sharing it maybe,
+
+
+286
+00:14:35,936 --> 00:14:40,216
+you can use KVO and just
+observe the UserActivityKey
+
+
+287
+00:14:40,216 --> 00:14:43,226
+on the document.
+
+
+288
+00:14:43,226 --> 00:14:47,156
+So for other apps that are not
+document based, you still need
+
+
+289
+00:14:47,156 --> 00:14:49,486
+to put your activity
+types in the INFOP list,
+
+
+290
+00:14:49,586 --> 00:14:52,616
+but it goes under this
+NSUserActivity Types array
+
+
+291
+00:14:52,866 --> 00:14:54,106
+that's at the top level.
+
+
+292
+00:14:54,336 --> 00:14:56,986
+And again, we'll talk more
+about activity types later.
+
+
+293
+00:14:57,446 --> 00:14:58,866
+For documents and responders,
+
+
+294
+00:14:59,296 --> 00:15:04,646
+when they have a UserActivity
+property set on their document
+
+
+295
+00:15:04,646 --> 00:15:07,846
+or responder, AppKit and
+UIKit will manage it for you.
+
+
+296
+00:15:09,136 --> 00:15:11,786
+What this means is We
+call becomeCurrent,
+
+
+297
+00:15:12,436 --> 00:15:15,846
+and becomeCurrent is a
+method on NSUserActivity
+
+
+298
+00:15:16,266 --> 00:15:20,196
+that makes the NSUserActivity
+the one user activity,
+
+
+299
+00:15:20,196 --> 00:15:23,116
+the current user activity
+that the users engaged in
+
+
+300
+00:15:23,426 --> 00:15:26,566
+and it gets advertised to all
+of your nearby applications.
+
+
+301
+00:15:27,856 --> 00:15:30,486
+So here's what this
+kind of looks like.
+
+
+302
+00:15:31,076 --> 00:15:33,756
+So the iPhone has
+an NSUserActivity
+
+
+303
+00:15:34,276 --> 00:15:39,436
+and become Current gets called
+on it, and that gets advertised
+
+
+304
+00:15:39,436 --> 00:15:41,846
+to all of your nearby
+devices, and they show
+
+
+305
+00:15:41,846 --> 00:15:45,866
+up in the Lock screen, or
+the DOC, or what have you.
+
+
+306
+00:15:46,086 --> 00:15:52,266
+So becomeCurrent, you can
+call it yourself, but AppKit
+
+
+307
+00:15:52,266 --> 00:15:55,356
+and UIKit will also call
+it at some key points,
+
+
+308
+00:15:55,846 --> 00:15:59,016
+so you probably don't have to.
+
+
+309
+00:15:59,606 --> 00:16:02,366
+On iOS, this means that
+when your app is launched,
+
+
+310
+00:16:02,716 --> 00:16:05,166
+comes into the foreground
+or tabs are switched,
+
+
+311
+00:16:05,986 --> 00:16:10,266
+UIKit will walk the View
+Controller hierarchy including
+
+
+312
+00:16:10,266 --> 00:16:13,566
+presented view controllers,
+and we're only looking
+
+
+313
+00:16:13,566 --> 00:16:15,916
+at view controllers that
+have views which are
+
+
+314
+00:16:15,916 --> 00:16:17,526
+in the view hierarchy.
+
+
+315
+00:16:17,986 --> 00:16:20,276
+And if those -- if we
+find a View Controller
+
+
+316
+00:16:20,276 --> 00:16:24,216
+that has a user activity,
+that's the current user activity
+
+
+317
+00:16:24,216 --> 00:16:26,206
+and we call becomeCurrent on it.
+
+
+318
+00:16:26,956 --> 00:16:30,586
+Additionally, when
+userActivity is set initially
+
+
+319
+00:16:30,586 --> 00:16:33,606
+on UI View Controller,
+if the View Controller's
+
+
+320
+00:16:33,606 --> 00:16:35,986
+in a transition, will
+wait until it's finished,
+
+
+321
+00:16:37,046 --> 00:16:39,936
+but if the View Controller's
+views in the window hierarchy,
+
+
+322
+00:16:40,416 --> 00:16:43,936
+we will automatically
+becomeCurrent on it immediately.
+
+
+323
+00:16:44,526 --> 00:16:47,516
+So that's UI View Controller.
+
+
+324
+00:16:47,516 --> 00:16:50,916
+UI Document will not become
+current automatically,
+
+
+325
+00:16:51,836 --> 00:16:54,326
+but it's really easy
+to share it with a --
+
+
+326
+00:16:54,326 --> 00:16:56,916
+share your user activity with
+a View Controller that will.
+
+
+327
+00:16:57,406 --> 00:17:00,206
+All you need to do is set the
+View Controller's User Activity
+
+
+328
+00:17:00,206 --> 00:17:03,096
+to that document's User
+Activity and whenever
+
+
+329
+00:17:03,096 --> 00:17:06,576
+that View Controller is
+found according to the rules
+
+
+330
+00:17:06,576 --> 00:17:09,175
+in the previous slide,
+it will become current.
+
+
+331
+00:17:09,175 --> 00:17:13,726
+On OS X, it's a little
+bit different.
+
+
+332
+00:17:14,786 --> 00:17:19,306
+AppKit looks for a
+userActivity in two places.
+
+
+333
+00:17:19,935 --> 00:17:23,316
+The first is the main
+windows responder chain.
+
+
+334
+00:17:23,736 --> 00:17:26,425
+We go -- we start at the
+first responder and go
+
+
+335
+00:17:26,425 --> 00:17:28,686
+through the next
+responders looking for one
+
+
+336
+00:17:28,686 --> 00:17:31,766
+with a user activity
+set, and if we find it,
+
+
+337
+00:17:31,766 --> 00:17:32,936
+that's the current activity
+
+
+338
+00:17:32,936 --> 00:17:35,116
+and we call becomeCurrent
+on that userActivity.
+
+
+339
+00:17:35,746 --> 00:17:39,526
+And we'll also look at the main
+window controller's document,
+
+
+340
+00:17:40,966 --> 00:17:42,476
+and if it has a User Activity,
+
+
+341
+00:17:42,506 --> 00:17:44,686
+we'll call becomeCurrent
+on that.
+
+
+342
+00:17:45,016 --> 00:17:47,726
+And we will also reevaluate
+this when appropriate
+
+
+343
+00:17:47,726 --> 00:17:51,016
+as the main window changes or
+the user activity gets set.
+
+
+344
+00:17:51,446 --> 00:17:53,726
+We'll do this search
+and find the right thing
+
+
+345
+00:17:53,726 --> 00:17:57,466
+to become current on.
+
+
+346
+00:17:57,726 --> 00:17:59,456
+So we manage it for you.
+
+
+347
+00:17:59,566 --> 00:18:00,906
+We call becomeCurrent.
+
+
+348
+00:18:02,056 --> 00:18:07,236
+We will also call Invalidate
+and Invalidate is a method also
+
+
+349
+00:18:07,236 --> 00:18:11,496
+on NSUserActivity, which means
+that this activity is finished.
+
+
+350
+00:18:11,916 --> 00:18:13,226
+The user's done with it.
+
+
+351
+00:18:13,376 --> 00:18:14,496
+They put it away.
+
+
+352
+00:18:14,876 --> 00:18:18,466
+They're no longer doing
+what they were doing.
+
+
+353
+00:18:19,476 --> 00:18:21,996
+So that looks something
+kind of like this.
+
+
+354
+00:18:22,066 --> 00:18:23,636
+So the same set up as before.
+
+
+355
+00:18:23,636 --> 00:18:27,566
+The iPhone has the current
+activity that's being advertised
+
+
+356
+00:18:27,566 --> 00:18:31,456
+to your nearby devices,
+and Invalidate gets called
+
+
+357
+00:18:31,566 --> 00:18:34,176
+and it stops viewing
+the current activity
+
+
+358
+00:18:34,246 --> 00:18:36,446
+so the user can't
+continue it anymore.
+
+
+359
+00:18:36,846 --> 00:18:38,076
+They've closed the window.
+
+
+360
+00:18:38,076 --> 00:18:38,816
+It's finished.
+
+
+361
+00:18:39,166 --> 00:18:39,566
+It's done.
+
+
+362
+00:18:40,186 --> 00:18:43,396
+So that's creating
+user activities
+
+
+363
+00:18:43,396 --> 00:18:49,266
+and letting your nearby devices
+know what the user is doing.
+
+
+364
+00:18:50,536 --> 00:18:53,936
+The next step is
+putting your information
+
+
+365
+00:18:54,386 --> 00:18:58,626
+into the UserActivity to let --
+
+
+366
+00:18:58,626 --> 00:19:03,746
+so that you can restore the
+state when it gets continued.
+
+
+367
+00:19:04,966 --> 00:19:10,166
+So NSUserActivity has a userInfo
+dictionary for this purpose.
+
+
+368
+00:19:10,166 --> 00:19:11,606
+It is yours to use.
+
+
+369
+00:19:13,466 --> 00:19:16,766
+You fill it out when
+you get this call back,
+
+
+370
+00:19:16,766 --> 00:19:20,846
+so this is a method on
+NSDocument, UIDocument
+
+
+371
+00:19:20,846 --> 00:19:26,036
+and the responders, update
+UserActivityState, and you --
+
+
+372
+00:19:26,036 --> 00:19:30,946
+in this method, you fill out
+the user activities user info
+
+
+373
+00:19:31,046 --> 00:19:35,896
+with the state of your responder
+document and whatever you want
+
+
+374
+00:19:35,896 --> 00:19:38,126
+about what the user is doing.
+
+
+375
+00:19:38,726 --> 00:19:44,226
+Note that the userInfo is
+emptied each time we make these
+
+
+376
+00:19:44,226 --> 00:19:49,056
+callbacks, so before
+UpdateUserActivityState is
+
+
+377
+00:19:49,056 --> 00:19:50,616
+called on your documents
+or responders,
+
+
+378
+00:19:50,616 --> 00:19:53,076
+we'll empty that out
+on the userActivity.
+
+
+379
+00:19:55,096 --> 00:19:58,006
+So all you need to do
+is add to the User Info.
+
+
+380
+00:19:58,006 --> 00:19:59,426
+You don't need to worry
+about clearing out old data
+
+
+381
+00:19:59,426 --> 00:19:59,976
+or anything like that.
+
+
+382
+00:20:00,056 --> 00:20:04,546
+So it's looks something
+kind of like this.
+
+
+383
+00:20:05,726 --> 00:20:07,456
+UpdateUserActivityState.
+
+
+384
+00:20:07,816 --> 00:20:09,226
+Don't forget to call Super.
+
+
+385
+00:20:09,876 --> 00:20:11,296
+There's a convenience method
+
+
+386
+00:20:11,296 --> 00:20:14,406
+on NSUserActivity called
+UpdateUserInfoEntries
+
+
+387
+00:20:14,406 --> 00:20:16,966
+fromDictionary, and
+that's a really easy way
+
+
+388
+00:20:16,966 --> 00:20:19,536
+to get your information
+into the UserActivity.
+
+
+389
+00:20:20,146 --> 00:20:25,856
+And we will call this
+at an appropriate time;
+
+
+390
+00:20:25,906 --> 00:20:28,896
+not necessarily when
+the user continues,
+
+
+391
+00:20:29,106 --> 00:20:31,446
+but just at an appropriate
+opportune time,
+
+
+392
+00:20:31,696 --> 00:20:33,586
+we will call this to
+gather the information
+
+
+393
+00:20:33,586 --> 00:20:34,716
+about the user activity.
+
+
+394
+00:20:35,306 --> 00:20:38,106
+And when the info that you put
+
+
+395
+00:20:38,186 --> 00:20:40,526
+in the UserActivity
+becomes stale,
+
+
+396
+00:20:41,176 --> 00:20:45,526
+there's a needs Save property on
+NSUserActivity that's a Boolean
+
+
+397
+00:20:45,876 --> 00:20:48,136
+and all you need to
+do is set that to yes
+
+
+398
+00:20:48,386 --> 00:20:51,326
+and we will call the
+UpdateUserActivityState method
+
+
+399
+00:20:51,326 --> 00:20:52,596
+again later.
+
+
+400
+00:20:54,146 --> 00:20:55,926
+Set Need Save is very cheap.
+
+
+401
+00:20:55,926 --> 00:20:58,506
+You should call it
+as your data changes
+
+
+402
+00:20:58,626 --> 00:21:01,026
+and we'll call you back later
+
+
+403
+00:21:01,096 --> 00:21:02,486
+with the
+UpdateUserActivityState.
+
+
+404
+00:21:04,676 --> 00:21:07,716
+So what can you put
+in the user info?
+
+
+405
+00:21:08,516 --> 00:21:12,576
+It's a dictionary and it
+can store most POS types,
+
+
+406
+00:21:12,576 --> 00:21:16,396
+or all POS types and a few
+others, including URL's.
+
+
+407
+00:21:17,116 --> 00:21:23,116
+And for URL's, file URL's are
+obviously a little problematic.
+
+
+408
+00:21:23,116 --> 00:21:25,736
+The same path might point
+
+
+409
+00:21:25,736 --> 00:21:27,876
+to different places
+on different devices.
+
+
+410
+00:21:27,876 --> 00:21:29,696
+The actual file might
+not be there.
+
+
+411
+00:21:30,346 --> 00:21:34,606
+However, file URL's
+in iCloud are okay,
+
+
+412
+00:21:35,026 --> 00:21:39,486
+and if you're iOS only, from a
+document provider are okay too.
+
+
+413
+00:21:39,486 --> 00:21:42,636
+We will automatically
+do some translation
+
+
+414
+00:21:42,716 --> 00:21:47,276
+so the file URL is
+pointing to the right file.
+
+
+415
+00:21:49,296 --> 00:21:54,306
+Couple other things; keep the
+minimal amount of information
+
+
+416
+00:21:54,306 --> 00:21:57,066
+in the userInfo, so
+just put what you need
+
+
+417
+00:21:57,066 --> 00:21:59,416
+to get the user back
+to where they are.
+
+
+418
+00:22:00,316 --> 00:22:03,186
+The transfer times for these
+things can vary quite a lot,
+
+
+419
+00:22:03,186 --> 00:22:06,186
+so every byte really counts.
+
+
+420
+00:22:06,346 --> 00:22:07,606
+Just include the State.
+
+
+421
+00:22:08,066 --> 00:22:09,776
+So don't include your document.
+
+
+422
+00:22:10,436 --> 00:22:12,436
+If you're using iCloud,
+fantastic.
+
+
+423
+00:22:12,436 --> 00:22:14,406
+All you need to do
+is store the file URL
+
+
+424
+00:22:14,406 --> 00:22:17,596
+and then you can use that.
+
+
+425
+00:22:17,596 --> 00:22:21,766
+If your data is stored on the
+web somewhere, put a reference
+
+
+426
+00:22:21,766 --> 00:22:22,826
+to that in your userInfo.
+
+
+427
+00:22:23,376 --> 00:22:27,366
+Also try to avoid
+platform specifics.
+
+
+428
+00:22:27,506 --> 00:22:31,136
+Since this user activity
+might be continued on a Mac,
+
+
+429
+00:22:31,136 --> 00:22:34,146
+or an iPad, or an iPhone,
+there are a lot of things
+
+
+430
+00:22:34,146 --> 00:22:36,116
+like the visible rec
+of a scroll view,
+
+
+431
+00:22:36,116 --> 00:22:39,926
+which don't really make sense
+across all those contexts.
+
+
+432
+00:22:40,406 --> 00:22:44,336
+It's better to use a heuristic
+like the middle item that is
+
+
+433
+00:22:44,336 --> 00:22:47,906
+in my scroll view and
+storing or offset a reference
+
+
+434
+00:22:47,936 --> 00:22:52,276
+to that instead of
+storing a visible rec
+
+
+435
+00:22:52,276 --> 00:22:57,226
+for each potential thing
+you are continuing on.
+
+
+436
+00:22:57,496 --> 00:23:02,476
+Also, NS and UIDocument will
+add their file URL automatically
+
+
+437
+00:23:02,576 --> 00:23:05,596
+in their UpdateUserActivityState
+implementations
+
+
+438
+00:23:06,056 --> 00:23:08,726
+with the NSUserActivity
+Document URL Key.
+
+
+439
+00:23:09,116 --> 00:23:11,846
+So you don't need to --
+it'll already be there.
+
+
+440
+00:23:11,846 --> 00:23:13,506
+Don't repeat it.
+
+
+441
+00:23:15,076 --> 00:23:20,096
+A couple other things;
+think about versioning.
+
+
+442
+00:23:21,746 --> 00:23:23,436
+You're going to want to
+future proof your app
+
+
+443
+00:23:23,696 --> 00:23:25,226
+as you make new versions.
+
+
+444
+00:23:25,226 --> 00:23:28,606
+You're going to have changes
+to your user activities,
+
+
+445
+00:23:29,486 --> 00:23:30,846
+so you might want
+to do something
+
+
+446
+00:23:30,846 --> 00:23:33,916
+like include a version
+in your userInfo.
+
+
+447
+00:23:34,946 --> 00:23:36,556
+It could be something like this,
+
+
+448
+00:23:37,706 --> 00:23:40,336
+and here we're actually
+using the application
+
+
+449
+00:23:40,336 --> 00:23:45,296
+didUpdateUserActivity app
+delegate method, which is called
+
+
+450
+00:23:45,296 --> 00:23:47,796
+after any of your
+documents or responders get
+
+
+451
+00:23:47,796 --> 00:23:52,066
+that UpdateUserActivityState
+called on them.
+
+
+452
+00:23:52,066 --> 00:23:55,656
+So this is actually a
+really good debugging point.
+
+
+453
+00:23:55,656 --> 00:24:01,256
+If you want to know what's
+exactly is in your userInfo,
+
+
+454
+00:24:01,516 --> 00:24:03,276
+set a break point
+here and check it out
+
+
+455
+00:24:03,276 --> 00:24:07,916
+and it will tell
+you what's in there.
+
+
+456
+00:24:08,106 --> 00:24:12,676
+So now we have put
+our information
+
+
+457
+00:24:12,676 --> 00:24:16,376
+about what the user's doing
+in the NSUserActivity.
+
+
+458
+00:24:17,446 --> 00:24:21,446
+The next step is using that
+information on another device
+
+
+459
+00:24:21,746 --> 00:24:24,596
+to continue and get
+the user right back
+
+
+460
+00:24:24,676 --> 00:24:27,316
+to what they were doing.
+
+
+461
+00:24:27,476 --> 00:24:32,456
+So again, this is on another
+device, so your -- you --
+
+
+462
+00:24:32,456 --> 00:24:36,896
+the device has received an
+advertisement that this user,
+
+
+463
+00:24:36,896 --> 00:24:39,736
+other user activity is
+current on another device
+
+
+464
+00:24:39,976 --> 00:24:41,696
+and it's showing up
+in the Lock Screen,
+
+
+465
+00:24:41,696 --> 00:24:42,886
+or the doc, or what have you.
+
+
+466
+00:24:43,516 --> 00:24:46,276
+And the user indicates
+that they want
+
+
+467
+00:24:46,356 --> 00:24:48,876
+to continue your application,
+
+
+468
+00:24:49,486 --> 00:24:53,296
+and we will call this
+on your app delegate.
+
+
+469
+00:24:53,506 --> 00:24:56,096
+Application will
+ContinueUserActivityWithType
+
+
+470
+00:24:56,096 --> 00:25:01,436
+and note that there is
+no NSUserActivity here.
+
+
+471
+00:25:01,946 --> 00:25:03,956
+All you have is the
+activity type,
+
+
+472
+00:25:03,956 --> 00:25:06,426
+and that's because we
+haven't actually fetched the
+
+
+473
+00:25:06,536 --> 00:25:09,656
+UserActivity completely yet.
+
+
+474
+00:25:10,216 --> 00:25:13,266
+We will start fetching
+it immediately after --
+
+
+475
+00:25:13,396 --> 00:25:14,236
+when you get this call.
+
+
+476
+00:25:14,236 --> 00:25:20,486
+And you should use this to show
+the user what's being continued.
+
+
+477
+00:25:20,486 --> 00:25:24,036
+You have the activity type so
+you have an idea of what kind
+
+
+478
+00:25:24,036 --> 00:25:28,006
+of activity it is and maybe you
+can animate a View Controller in
+
+
+479
+00:25:28,006 --> 00:25:32,296
+or something so the
+weight is perceived less.
+
+
+480
+00:25:34,956 --> 00:25:38,856
+So you should return yes
+if you're handling this
+
+
+481
+00:25:38,856 --> 00:25:41,986
+and you're showing some kind
+of feedback to the user,
+
+
+482
+00:25:42,676 --> 00:25:45,506
+or return no, or if
+it's not implemented
+
+
+483
+00:25:45,506 --> 00:25:47,216
+and you'll get the
+systems behavior.
+
+
+484
+00:25:47,906 --> 00:25:50,466
+Now, on iOS, this
+means the default ping,
+
+
+485
+00:25:51,106 --> 00:25:52,876
+but on OS X, you get nothing.
+
+
+486
+00:25:53,036 --> 00:25:55,866
+So it's a really good idea
+to implement this if you can.
+
+
+487
+00:25:56,396 --> 00:26:00,786
+Here's an example of what
+that might look like.
+
+
+488
+00:26:01,836 --> 00:26:04,776
+So as you can see, we're
+checking the activity type
+
+
+489
+00:26:05,056 --> 00:26:07,806
+and if it's a viewing
+message activity,
+
+
+490
+00:26:08,366 --> 00:26:11,586
+we know that we're going to
+need a MessageViewController
+
+
+491
+00:26:12,016 --> 00:26:15,426
+and so we set that up and
+we show it to the user,
+
+
+492
+00:26:16,086 --> 00:26:19,446
+and then we return yes because
+we are handling showing feedback
+
+
+493
+00:26:19,446 --> 00:26:21,716
+to that user about
+that activity type.
+
+
+494
+00:26:22,616 --> 00:26:28,346
+So once the user
+activity has been fetched
+
+
+495
+00:26:28,346 --> 00:26:32,686
+from the other device, we will
+reconstruct the NSUserActivity
+
+
+496
+00:26:32,686 --> 00:26:35,666
+and give it to you in
+this app delegate method,
+
+
+497
+00:26:36,106 --> 00:26:39,356
+ApplicationContinue
+UserActivity RestorationHandler.
+
+
+498
+00:26:40,156 --> 00:26:44,016
+And this is the place where you
+reconstruct the user's activity.
+
+
+499
+00:26:44,016 --> 00:26:46,496
+You get them back to whatever
+it was they were doing.
+
+
+500
+00:26:48,156 --> 00:26:52,826
+Again, return yes if you've
+handled this user activity.
+
+
+501
+00:26:53,276 --> 00:26:55,686
+Return no or leave
+it unimplemented
+
+
+502
+00:26:55,686 --> 00:27:02,076
+and we can continue some
+user activities for you.
+
+
+503
+00:27:03,336 --> 00:27:10,326
+So this restorationHandler; it's
+a block that we pass into you
+
+
+504
+00:27:10,496 --> 00:27:14,926
+and you call it and you give
+it an array of documents
+
+
+505
+00:27:14,926 --> 00:27:17,906
+and responders that are
+presenting the user activity,
+
+
+506
+00:27:18,466 --> 00:27:21,716
+and we'll call a method that's
+RestoreUserActivityState
+
+
+507
+00:27:22,016 --> 00:27:24,416
+that is paired with that
+UpdateUserActivityState
+
+
+508
+00:27:24,416 --> 00:27:24,956
+from before.
+
+
+509
+00:27:25,426 --> 00:27:28,936
+Here's an example of what
+that might look like.
+
+
+510
+00:27:30,336 --> 00:27:31,906
+So we're checking
+the activity type,
+
+
+511
+00:27:31,906 --> 00:27:33,696
+and it's a viewing
+message activity,
+
+
+512
+00:27:34,166 --> 00:27:36,946
+so we get our
+MessageViewController
+
+
+513
+00:27:37,046 --> 00:27:42,856
+and we return yes, and note
+we are also calling the
+
+
+514
+00:27:42,896 --> 00:27:45,166
+restorationHandler with
+the ViewController.
+
+
+515
+00:27:46,436 --> 00:27:47,576
+And when you do that,
+
+
+516
+00:27:48,476 --> 00:27:51,156
+RestoreUserActivityState
+is getting called
+
+
+517
+00:27:51,156 --> 00:27:55,026
+on that ViewController and
+you can use the information
+
+
+518
+00:27:55,026 --> 00:27:57,046
+in the user info to kind
+
+
+519
+00:27:57,046 --> 00:28:00,336
+of reconstruct whatever
+it is the user was doing
+
+
+520
+00:28:00,536 --> 00:28:03,746
+but at a more local level, so
+just for your ViewController.
+
+
+521
+00:28:04,686 --> 00:28:08,006
+You can also call this manually
+as you can see at the bottom.
+
+
+522
+00:28:08,996 --> 00:28:12,066
+It's perfectly fine to call
+RestoreUserActivityState
+
+
+523
+00:28:12,066 --> 00:28:14,936
+yourself, and that's
+actually a useful pattern
+
+
+524
+00:28:15,046 --> 00:28:17,686
+to restore the UserState
+
+
+525
+00:28:17,686 --> 00:28:20,816
+and build your ViewController
+hierarchy at the same time.
+
+
+526
+00:28:21,526 --> 00:28:25,696
+So that's if everything
+goes well.
+
+
+527
+00:28:26,086 --> 00:28:28,906
+It's entirely possible
+since there are bits flying
+
+
+528
+00:28:28,906 --> 00:28:32,836
+through the air that some
+might collide and will fail
+
+
+529
+00:28:32,836 --> 00:28:34,856
+to retrieve the UserActivity
+information
+
+
+530
+00:28:34,856 --> 00:28:35,976
+from the other device.
+
+
+531
+00:28:36,766 --> 00:28:38,886
+And if there was an
+error, we will call this
+
+
+532
+00:28:38,886 --> 00:28:39,756
+on your app delegate;
+
+
+533
+00:28:40,096 --> 00:28:43,726
+applicationdid FailToContinue
+UserActivity with type error.
+
+
+534
+00:28:44,516 --> 00:28:47,596
+And you should present
+the error to the user
+
+
+535
+00:28:47,596 --> 00:28:50,996
+and do whatever clean
+up you need to do here.
+
+
+536
+00:28:51,976 --> 00:28:55,436
+We make a guarantee
+that for every time
+
+
+537
+00:28:55,436 --> 00:28:57,856
+that you get
+WillContinueActivity,
+
+
+538
+00:28:58,316 --> 00:29:02,356
+you will get exactly one of
+either ContinueUserActivity
+
+
+539
+00:29:02,356 --> 00:29:06,916
+or DidFailToContinueuserActivity
+so you can rely on that.
+
+
+540
+00:29:07,146 --> 00:29:08,076
+We'll pair those.
+
+
+541
+00:29:09,536 --> 00:29:14,486
+Also take note that the error
+can be NSUserCancelledError,
+
+
+542
+00:29:14,936 --> 00:29:19,156
+in which case you probably don't
+want to bug the user about it.
+
+
+543
+00:29:20,616 --> 00:29:23,366
+Usually that will
+happen if the user tries
+
+
+544
+00:29:23,366 --> 00:29:26,736
+to continue something while
+we're still fetching information
+
+
+545
+00:29:26,736 --> 00:29:28,256
+about a previous activity.
+
+
+546
+00:29:28,256 --> 00:29:30,536
+We'll automatically cancel
+that previous activity.
+
+
+547
+00:29:33,576 --> 00:29:40,486
+So that's all you need, but
+for document based apps on iOS,
+
+
+548
+00:29:40,856 --> 00:29:43,416
+you continue the
+UserActivity kind of like this.
+
+
+549
+00:29:44,236 --> 00:29:47,556
+So you want to get the URL
+out of the user info using
+
+
+550
+00:29:47,556 --> 00:29:50,096
+that NSUserActivity
+Document URL key
+
+
+551
+00:29:50,946 --> 00:29:54,306
+and create your Write
+UI document subclass.
+
+
+552
+00:29:55,366 --> 00:29:57,986
+And then you can pass it
+to the restorationHandler
+
+
+553
+00:29:57,986 --> 00:30:00,466
+and that UI document will get
+its RestoreUserActivityState
+
+
+554
+00:30:00,496 --> 00:30:00,976
+method called on it.
+
+
+555
+00:30:01,336 --> 00:30:03,746
+So it's pretty easy.
+
+
+556
+00:30:03,746 --> 00:30:08,956
+On OS X, AppKit can use
+NSDocumentController
+
+
+557
+00:30:08,956 --> 00:30:10,056
+to do this for you.
+
+
+558
+00:30:10,416 --> 00:30:13,786
+So it will automatically
+get out the file URL,
+
+
+559
+00:30:13,786 --> 00:30:18,196
+find the right document subclass
+to create and create it.
+
+
+560
+00:30:18,686 --> 00:30:22,726
+And then we will pass -- we will
+call RestoreUserActivityState
+
+
+561
+00:30:22,726 --> 00:30:24,926
+and give you the
+user activity object
+
+
+562
+00:30:25,266 --> 00:30:27,966
+so you can restore
+the UserState.
+
+
+563
+00:30:28,926 --> 00:30:34,436
+Here's the diagram to kind of go
+through this continuing process.
+
+
+564
+00:30:35,126 --> 00:30:36,576
+So it's similar to before.
+
+
+565
+00:30:36,576 --> 00:30:39,426
+The iPhone has advertised
+a User Activity
+
+
+566
+00:30:39,936 --> 00:30:43,206
+and the user is continuing
+on their Mac.
+
+
+567
+00:30:44,176 --> 00:30:46,706
+And when the user indicates
+they want to continue,
+
+
+568
+00:30:46,886 --> 00:30:49,866
+we will call ApplicationWill
+ContinueUser Activity
+
+
+569
+00:30:49,866 --> 00:30:51,366
+with type under App Delegate.
+
+
+570
+00:30:52,776 --> 00:30:56,426
+And you've implemented it to
+give the user some feedback
+
+
+571
+00:30:56,576 --> 00:30:58,466
+that it's being continued.
+
+
+572
+00:30:59,096 --> 00:31:02,256
+Maybe you've animated in a
+ViewController or something
+
+
+573
+00:31:02,256 --> 00:31:05,556
+so that by the time we
+actually get the activity,
+
+
+574
+00:31:05,606 --> 00:31:07,246
+maybe the animation
+is still happening
+
+
+575
+00:31:07,246 --> 00:31:13,386
+and the user doesn't
+even have to wait.
+
+
+576
+00:31:13,386 --> 00:31:18,016
+So we will then ask the
+device we're continuing
+
+
+577
+00:31:18,016 --> 00:31:20,936
+from for the information
+about the User Activity
+
+
+578
+00:31:21,416 --> 00:31:25,646
+and we'll get it back, and we'll
+recreate the NSUserActivity
+
+
+579
+00:31:25,646 --> 00:31:27,386
+instance and pass it to you
+
+
+580
+00:31:27,386 --> 00:31:31,096
+in applicationcontinue
+UserActivity restorationHandler.
+
+
+581
+00:31:33,916 --> 00:31:39,106
+In that method, you use the
+information in the User Activity
+
+
+582
+00:31:39,106 --> 00:31:42,456
+to get the user back to
+whatever it was they were doing.
+
+
+583
+00:31:43,366 --> 00:31:46,156
+This might include
+passing some things
+
+
+584
+00:31:46,156 --> 00:31:49,386
+into the restorationHandler
+and if you do that,
+
+
+585
+00:31:50,696 --> 00:31:53,336
+we will call
+RestoreUserActivityState
+
+
+586
+00:31:53,336 --> 00:31:55,146
+on them.
+
+
+587
+00:31:55,336 --> 00:31:58,186
+And then the user's right
+where they left off.
+
+
+588
+00:31:58,656 --> 00:32:03,086
+You've created UserActivity on
+one device, put your information
+
+
+589
+00:32:03,086 --> 00:32:06,376
+about what the user is doing
+into the NSUserActivity Object
+
+
+590
+00:32:07,246 --> 00:32:10,476
+and handed it off to another
+device that is able to continue
+
+
+591
+00:32:10,476 --> 00:32:15,276
+and get the user back to
+whatever it is they were doing.
+
+
+592
+00:32:15,426 --> 00:32:19,686
+So there's still a few more
+details about NSUserActivity,
+
+
+593
+00:32:19,776 --> 00:32:21,786
+and there's a couple
+other really cool things
+
+
+594
+00:32:21,786 --> 00:32:23,866
+that NSUserActivity can do,
+
+
+595
+00:32:24,046 --> 00:32:26,346
+and Keith Stattenfield will
+be explaining them [applause].
+
+
+596
+00:32:27,026 --> 00:32:31,786
+>> Thank you very much.
+
+
+597
+00:32:31,786 --> 00:32:32,636
+It's exciting to be here
+
+
+598
+00:32:32,636 --> 00:32:35,506
+and show you what we've
+been working on for a while.
+
+
+599
+00:32:35,506 --> 00:32:38,166
+And as Vince said, I'm going
+to explain a little more
+
+
+600
+00:32:38,166 --> 00:32:40,906
+about how you might use this.
+
+
+601
+00:32:42,206 --> 00:32:44,036
+You've already seen
+almost everything that's
+
+
+602
+00:32:44,126 --> 00:32:47,246
+in NSUserActivity by this point.
+
+
+603
+00:32:47,796 --> 00:32:51,296
+And AppKit and UIKit provide
+a lot of functionality
+
+
+604
+00:32:51,296 --> 00:32:52,926
+that makes it really
+easy to adopt this.
+
+
+605
+00:32:53,706 --> 00:32:55,216
+But if you have some need
+
+
+606
+00:32:55,216 --> 00:32:59,126
+to do something that's a
+little outside the norm,
+
+
+607
+00:32:59,496 --> 00:33:03,106
+it's useful to understand at
+the base of things what's there
+
+
+608
+00:33:03,436 --> 00:33:05,906
+and what you can do with things.
+
+
+609
+00:33:06,396 --> 00:33:10,216
+Jerry originally said, and
+Vince pointed out you know,
+
+
+610
+00:33:10,216 --> 00:33:12,676
+NSUserActivities are just
+objects that are alloc inited,
+
+
+611
+00:33:13,296 --> 00:33:15,486
+and we've talked about
+this activity type string a
+
+
+612
+00:33:15,486 --> 00:33:16,166
+couple times.
+
+
+613
+00:33:16,776 --> 00:33:18,086
+So let's go into
+that a little more.
+
+
+614
+00:33:18,976 --> 00:33:21,526
+You create one of these
+UserActivity type strings
+
+
+615
+00:33:21,526 --> 00:33:27,186
+on your application and you
+pass it to the Alloc init
+
+
+616
+00:33:27,186 --> 00:33:30,056
+or you've put it in
+your CF bundle types
+
+
+617
+00:33:30,056 --> 00:33:31,986
+in the NS ubiquitous
+document types key.
+
+
+618
+00:33:32,206 --> 00:33:34,196
+And where did you
+get this string from?
+
+
+619
+00:33:34,196 --> 00:33:37,026
+In a sense, you just made it up.
+
+
+620
+00:33:37,246 --> 00:33:40,366
+That string is a string
+that we as a system use
+
+
+621
+00:33:40,946 --> 00:33:43,436
+when an activity gets
+received in a device,
+
+
+622
+00:33:44,396 --> 00:33:48,756
+to pick the application that
+we want to show to the user.
+
+
+623
+00:33:49,456 --> 00:33:54,146
+And so in that sense, it's a
+lot like a file type extension.
+
+
+624
+00:33:54,456 --> 00:33:58,236
+You know files have extensions
+and those extensions bind them
+
+
+625
+00:33:58,236 --> 00:34:00,076
+to particular documents
+when they're double clicked
+
+
+626
+00:34:00,076 --> 00:34:02,186
+on or otherwise opened.
+
+
+627
+00:34:02,186 --> 00:34:04,096
+UserActivity type strings
+are the same thing.
+
+
+628
+00:34:04,666 --> 00:34:06,406
+You make them up.
+
+
+629
+00:34:06,406 --> 00:34:08,806
+We don't display them to
+users so they don't need
+
+
+630
+00:34:08,806 --> 00:34:14,656
+to be terribly comprehensible,
+and we recommend that you start
+
+
+631
+00:34:14,656 --> 00:34:16,606
+with the base of
+your developer ID
+
+
+632
+00:34:17,025 --> 00:34:21,815
+or your company's reversed DNS
+name, and then add some suffix
+
+
+633
+00:34:21,815 --> 00:34:23,626
+to the end of that
+to make it unique,
+
+
+634
+00:34:23,916 --> 00:34:25,956
+one for each extension
+type that you have.
+
+
+635
+00:34:25,956 --> 00:34:30,216
+And then once you pick those,
+you put them in your code
+
+
+636
+00:34:30,216 --> 00:34:32,166
+at the point you'll be
+creating each of those types
+
+
+637
+00:34:32,166 --> 00:34:35,255
+of activities, and you would
+put them in your Info P lists
+
+
+638
+00:34:35,366 --> 00:34:38,255
+so that we know that
+your application would
+
+
+639
+00:34:38,255 --> 00:34:39,966
+like to handle these
+types of activities.
+
+
+640
+00:34:39,966 --> 00:34:43,585
+In your Info P lists, they
+go in one of two places.
+
+
+641
+00:34:43,696 --> 00:34:47,496
+They either go in the
+CFBundleDocument Types array
+
+
+642
+00:34:47,496 --> 00:34:52,936
+as the NSUbiquitousDocument
+userActivity type,
+
+
+643
+00:34:53,255 --> 00:34:57,246
+or they go as a string in the
+NSUserActivityTypes at the top
+
+
+644
+00:34:57,246 --> 00:35:01,936
+of your applications'
+Info P list.
+
+
+645
+00:35:02,486 --> 00:35:05,746
+We've talked about
+how they're used
+
+
+646
+00:35:05,746 --> 00:35:07,786
+to pick the application
+that's shown in the corner.
+
+
+647
+00:35:08,466 --> 00:35:12,536
+We allow all of the applications
+from a single developer
+
+
+648
+00:35:12,536 --> 00:35:15,736
+to exchange activities
+amongst themselves.
+
+
+649
+00:35:16,486 --> 00:35:19,446
+So if you have an
+iOS application
+
+
+650
+00:35:19,446 --> 00:35:23,206
+and an OS X application,
+you can exchange activities
+
+
+651
+00:35:23,206 --> 00:35:23,706
+between them.
+
+
+652
+00:35:24,026 --> 00:35:27,536
+If you have several
+iOS applications,
+
+
+653
+00:35:28,246 --> 00:35:30,556
+each of your applications
+could create activities
+
+
+654
+00:35:30,556 --> 00:35:35,146
+that were continuable in your
+other iOS or OS X applications.
+
+
+655
+00:35:36,116 --> 00:35:39,946
+We do this based on the
+Team Identifier that's used
+
+
+656
+00:35:39,946 --> 00:35:41,716
+in the way you've
+built your application.
+
+
+657
+00:35:42,306 --> 00:35:46,956
+That means in order to use
+Continuity to continue an item;
+
+
+658
+00:35:46,956 --> 00:35:49,486
+you either need to be an
+application in the App Store
+
+
+659
+00:35:49,786 --> 00:35:52,316
+or you need to be assigned
+a developer certificate.
+
+
+660
+00:35:53,686 --> 00:35:57,716
+Now applications don't
+have to claim all
+
+
+661
+00:35:57,716 --> 00:36:01,476
+of the activity types they
+create, and the corollary,
+
+
+662
+00:36:01,616 --> 00:36:04,686
+applications can
+claim activity types
+
+
+663
+00:36:04,686 --> 00:36:06,906
+that they themselves
+don't create.
+
+
+664
+00:36:06,906 --> 00:36:12,346
+And as an example, if you have
+kind of a monolithic application
+
+
+665
+00:36:12,346 --> 00:36:15,106
+on OS X, say it's an application
+
+
+666
+00:36:15,106 --> 00:36:17,686
+that creates many different
+types of things for the user
+
+
+667
+00:36:17,686 --> 00:36:19,356
+from the user's perspective.
+
+
+668
+00:36:19,416 --> 00:36:21,856
+The user can edit
+pictures of cats.
+
+
+669
+00:36:22,506 --> 00:36:25,896
+The users can add queue
+to videos about cats.
+
+
+670
+00:36:26,496 --> 00:36:30,856
+Users can keep all of their cat
+books, or all of their pictures
+
+
+671
+00:36:30,856 --> 00:36:32,686
+of their cats in
+their one application.
+
+
+672
+00:36:33,606 --> 00:36:36,566
+You'd have that as
+an application.
+
+
+673
+00:36:36,566 --> 00:36:38,626
+It would have a bunch of
+different document types.
+
+
+674
+00:36:38,626 --> 00:36:41,316
+When you're creating
+activities, you know,
+
+
+675
+00:36:41,386 --> 00:36:43,476
+there are different activities
+a user might be doing.
+
+
+676
+00:36:44,266 --> 00:36:47,286
+But on iOS, you might have
+three separate applications.
+
+
+677
+00:36:47,726 --> 00:36:50,206
+You might have one
+application where the user looks
+
+
+678
+00:36:50,206 --> 00:36:53,406
+at their cat movies or
+plays their cat sounds.
+
+
+679
+00:36:53,406 --> 00:36:55,886
+You might have a different
+application for their cat books.
+
+
+680
+00:36:56,216 --> 00:36:57,836
+You might have a
+third application
+
+
+681
+00:36:57,836 --> 00:36:59,876
+where they can see
+their cute cat pictures
+
+
+682
+00:37:00,356 --> 00:37:02,376
+with the cute cat captions
+on the bottom of them.
+
+
+683
+00:37:02,856 --> 00:37:05,856
+And when you built your
+applications this way,
+
+
+684
+00:37:06,346 --> 00:37:09,946
+you would create four different
+activity types; one that kind
+
+
+685
+00:37:09,946 --> 00:37:11,596
+of mapped to each
+of your file types
+
+
+686
+00:37:11,596 --> 00:37:14,566
+and then your iOS
+application in this case,
+
+
+687
+00:37:14,566 --> 00:37:17,116
+one of your applications
+would claim two types
+
+
+688
+00:37:17,586 --> 00:37:19,796
+and your other applications
+would claim other types.
+
+
+689
+00:37:20,536 --> 00:37:24,306
+And if a user continued
+from OS X to iOS,
+
+
+690
+00:37:24,306 --> 00:37:26,666
+the appropriate icon would show
+in the corner when they went
+
+
+691
+00:37:26,666 --> 00:37:29,856
+to continue from iOS back to
+OS X, they would all come back
+
+
+692
+00:37:29,856 --> 00:37:34,416
+to your same monolithic
+application.
+
+
+693
+00:37:34,416 --> 00:37:37,356
+Likewise, we've talked about
+the NSUserActivity Object,
+
+
+694
+00:37:37,356 --> 00:37:41,116
+and it actually doesn't have a
+lot that you need to set in it.
+
+
+695
+00:37:41,326 --> 00:37:44,236
+Activities have a
+title, which you can set.
+
+
+696
+00:37:44,236 --> 00:37:47,706
+Keep it short just in case
+it gets shown to the user
+
+
+697
+00:37:47,706 --> 00:37:48,506
+to know what they're doing.
+
+
+698
+00:37:48,506 --> 00:37:53,866
+They also have this User Info
+Dictionary that anything you set
+
+
+699
+00:37:53,866 --> 00:37:57,156
+in there, the machine that
+creates an activity is going
+
+
+700
+00:37:57,156 --> 00:37:59,336
+to show up in there and the
+machine that receives it,
+
+
+701
+00:37:59,626 --> 00:38:05,316
+with minimal translation only of
+URL's to point objects that are
+
+
+702
+00:38:05,316 --> 00:38:09,946
+in Cloud containers to
+the same logical object,
+
+
+703
+00:38:10,596 --> 00:38:11,746
+the receiving device.
+
+
+704
+00:38:12,376 --> 00:38:16,626
+We do have the AddUser
+ActivityEntries FromDictionary
+
+
+705
+00:38:16,626 --> 00:38:19,786
+to efficiently merge some
+additional information
+
+
+706
+00:38:19,786 --> 00:38:20,486
+to the dictionary.
+
+
+707
+00:38:20,866 --> 00:38:22,596
+If you just set the user info,
+
+
+708
+00:38:22,596 --> 00:38:24,956
+then you're saying this is
+exactly the user info I want
+
+
+709
+00:38:24,956 --> 00:38:25,346
+to be there.
+
+
+710
+00:38:26,146 --> 00:38:29,996
+After you've created an
+activity, you or AppKit
+
+
+711
+00:38:29,996 --> 00:38:32,556
+or UIKit will call
+becomeCurrent on it.
+
+
+712
+00:38:32,556 --> 00:38:34,866
+System then knows
+this is the activity
+
+
+713
+00:38:34,866 --> 00:38:37,856
+that we should be sending out
+that a user could continue
+
+
+714
+00:38:37,856 --> 00:38:41,866
+on another device, if your
+application was the application
+
+
+715
+00:38:41,866 --> 00:38:45,796
+that the user was using
+at that point in time,
+
+
+716
+00:38:45,796 --> 00:38:48,296
+and in the far future, you
+would call ActivityInvalidate
+
+
+717
+00:38:48,296 --> 00:38:49,876
+to say we are done
+with this activity.
+
+
+718
+00:38:49,876 --> 00:38:53,856
+The user has closed the document
+or it's no longer appropriate.
+
+
+719
+00:38:54,146 --> 00:38:55,816
+It'll get removed
+from other devices
+
+
+720
+00:38:56,356 --> 00:38:58,386
+and that you would
+just de-allocate.
+
+
+721
+00:38:59,876 --> 00:39:02,256
+There are a few Delegate
+calls as well
+
+
+722
+00:39:02,256 --> 00:39:04,126
+that you can take advantage of.
+
+
+723
+00:39:04,126 --> 00:39:07,046
+So if you set a delegate on
+an NSUserActivity Object,
+
+
+724
+00:39:07,656 --> 00:39:11,496
+when we've decided that
+we need the information
+
+
+725
+00:39:11,636 --> 00:39:12,966
+from your ActivityObject,
+
+
+726
+00:39:13,616 --> 00:39:16,136
+if you have implemented
+UserActivity WillSave,
+
+
+727
+00:39:16,136 --> 00:39:21,006
+we will call that delegate
+on a default priority cue
+
+
+728
+00:39:21,006 --> 00:39:24,846
+to give you one last chance
+to fill in the user info
+
+
+729
+00:39:24,846 --> 00:39:28,476
+with whatever you think is
+the correct info right now.
+
+
+730
+00:39:29,236 --> 00:39:33,336
+And that means the model
+you should adopt is instead
+
+
+731
+00:39:33,336 --> 00:39:36,286
+of constantly trying to
+set user info you know,
+
+
+732
+00:39:36,286 --> 00:39:39,566
+after every keystroke, if
+the user is typing something
+
+
+733
+00:39:39,566 --> 00:39:43,016
+on one device, you should
+set the NeedSaveProperty
+
+
+734
+00:39:43,016 --> 00:39:46,516
+of the user activity whenever
+the user does anything
+
+
+735
+00:39:46,516 --> 00:39:48,666
+that would essentially
+dirty the object
+
+
+736
+00:39:48,856 --> 00:39:53,006
+from the last time you told
+us that here's an activity
+
+
+737
+00:39:53,486 --> 00:39:55,526
+and the last time we
+asked you to fill it in.
+
+
+738
+00:39:55,926 --> 00:39:57,336
+And at some time in the future,
+
+
+739
+00:39:57,336 --> 00:40:01,506
+we will call you via this
+userActivityWillSave,
+
+
+740
+00:40:01,506 --> 00:40:05,286
+or in the UIKit and
+AppKit delegates above us,
+
+
+741
+00:40:05,286 --> 00:40:06,646
+and we'll ask you okay,
+
+
+742
+00:40:06,746 --> 00:40:08,966
+now we actually need the
+information for this activity
+
+
+743
+00:40:09,686 --> 00:40:11,326
+Perhaps it's being
+sent to another device
+
+
+744
+00:40:11,326 --> 00:40:13,096
+because the user is
+actually continuing it.
+
+
+745
+00:40:13,096 --> 00:40:16,096
+There are other reasons
+that we sometimes ask you
+
+
+746
+00:40:16,096 --> 00:40:19,286
+to give us the info, and
+that's your opportunity.
+
+
+747
+00:40:19,696 --> 00:40:22,186
+Fill in the user info
+and when that returns,
+
+
+748
+00:40:22,186 --> 00:40:25,716
+we know that you've given us a
+consistent set of information.
+
+
+749
+00:40:26,356 --> 00:40:31,026
+We have another delegate
+which lets you know
+
+
+750
+00:40:31,026 --> 00:40:33,676
+that the activity was
+continued onto another device.
+
+
+751
+00:40:34,086 --> 00:40:37,616
+When the user does
+this, we will call
+
+
+752
+00:40:37,616 --> 00:40:40,616
+on the first device
+userActivityWasContinued,
+
+
+753
+00:40:41,066 --> 00:40:43,266
+give you back your
+UserActivityObject.
+
+
+754
+00:40:44,016 --> 00:40:46,716
+Many of you probably
+won't need this.
+
+
+755
+00:40:46,766 --> 00:40:50,616
+We're hoping that you structure
+your activities so that even
+
+
+756
+00:40:50,616 --> 00:40:52,796
+if they are continued
+onto a second device,
+
+
+757
+00:40:53,556 --> 00:40:56,556
+that they remain perfectly
+fine on the first device.
+
+
+758
+00:40:56,726 --> 00:40:58,866
+The user might pick it
+back up in a few seconds
+
+
+759
+00:40:58,866 --> 00:40:59,966
+and keep using it there.
+
+
+760
+00:41:00,786 --> 00:41:03,476
+But if you have an activity
+that's transactional in nature,
+
+
+761
+00:41:04,146 --> 00:41:07,906
+that you really only exist at
+one place, if the user's filling
+
+
+762
+00:41:07,906 --> 00:41:12,856
+in a form as an example,
+in our current lease.
+
+
+763
+00:41:13,246 --> 00:41:15,016
+If you're composing
+a draft message,
+
+
+764
+00:41:15,686 --> 00:41:18,166
+when you continue draft
+message to a second device,
+
+
+765
+00:41:18,826 --> 00:41:21,806
+back on the first device, Mail
+will close that draft message
+
+
+766
+00:41:22,256 --> 00:41:25,916
+because Mail doesn't want the
+user to have two draft messages
+
+
+767
+00:41:25,916 --> 00:41:30,126
+in two devices, and not know
+which one is more recent.
+
+
+768
+00:41:30,126 --> 00:41:32,056
+So if you do have one of
+these transactional kind
+
+
+769
+00:41:32,056 --> 00:41:34,446
+of activities, you
+can take advantage
+
+
+770
+00:41:34,446 --> 00:41:36,546
+of userActivityWasContinued
+
+
+771
+00:41:37,046 --> 00:41:41,366
+and to do whatever you
+need to do there for that.
+
+
+772
+00:41:41,836 --> 00:41:45,376
+Now Jerry talked about
+our Website Handoff.
+
+
+773
+00:41:46,566 --> 00:41:49,786
+Website Handoff is the
+ability for you as developers
+
+
+774
+00:41:50,506 --> 00:41:54,916
+to in your native applications,
+if you have the kind
+
+
+775
+00:41:54,916 --> 00:41:57,876
+of application where you're kind
+
+
+776
+00:41:57,876 --> 00:42:00,126
+of really backing data
+that's provided elsewhere.
+
+
+777
+00:42:00,126 --> 00:42:04,446
+It's not sitting in
+a file in iCloud.
+
+
+778
+00:42:04,446 --> 00:42:08,326
+You know, perhaps it's some kind
+of social browser application
+
+
+779
+00:42:08,366 --> 00:42:11,866
+where you have a
+lovely iOS application
+
+
+780
+00:42:11,866 --> 00:42:14,296
+that presents a great
+interface that takes advantage
+
+
+781
+00:42:14,296 --> 00:42:16,206
+of the features and the
+device like the camera
+
+
+782
+00:42:16,206 --> 00:42:20,646
+and the touch screen to provide
+a very high quality interface
+
+
+783
+00:42:20,686 --> 00:42:21,826
+to let people do things.
+
+
+784
+00:42:22,386 --> 00:42:25,056
+But you of course
+also have a website
+
+
+785
+00:42:25,056 --> 00:42:29,056
+that other users can go to,
+to kind of see the same thing,
+
+
+786
+00:42:29,246 --> 00:42:33,826
+or to interact with your Meta
+application in the same way.
+
+
+787
+00:42:35,506 --> 00:42:41,196
+Your native application
+can tell us that if a user
+
+
+788
+00:42:41,196 --> 00:42:43,936
+on another platform
+doesn't have an application
+
+
+789
+00:42:43,936 --> 00:42:46,466
+which claims the activity
+type that we're creating,
+
+
+790
+00:42:46,906 --> 00:42:50,006
+the user could also choose
+to continue this activity
+
+
+791
+00:42:50,006 --> 00:42:51,406
+in a browser on that platform.
+
+
+792
+00:42:52,016 --> 00:42:54,586
+You notice here, we've
+brought up our second device
+
+
+793
+00:42:54,586 --> 00:42:57,846
+and in the corner we see
+Safari, and if the user clicks
+
+
+794
+00:42:57,846 --> 00:43:01,876
+on Safari, they would
+get brought to a URL
+
+
+795
+00:43:01,876 --> 00:43:06,566
+that you provided back
+on the originating device
+
+
+796
+00:43:06,566 --> 00:43:09,156
+and from that, you know
+hopefully, the user is able
+
+
+797
+00:43:09,466 --> 00:43:12,436
+to continue what they were doing
+in your native application.
+
+
+798
+00:43:13,816 --> 00:43:17,026
+And if we take a quick look
+at what that looks like,
+
+
+799
+00:43:17,026 --> 00:43:19,196
+you know you would
+create an activity just
+
+
+800
+00:43:19,196 --> 00:43:20,166
+as we've seen elsewhere.
+
+
+801
+00:43:21,066 --> 00:43:24,536
+You would fill in the user
+info so that if it is continued
+
+
+802
+00:43:24,536 --> 00:43:28,196
+to another native application
+of yours on a second device,
+
+
+803
+00:43:28,196 --> 00:43:32,106
+you'd get a high
+fidelity, full pass through,
+
+
+804
+00:43:32,456 --> 00:43:35,196
+and you'd also set
+this additional field;
+
+
+805
+00:43:35,196 --> 00:43:40,146
+the webpage URL, and you would
+say here's an HTTP or HTTPS URL.
+
+
+806
+00:43:40,306 --> 00:43:43,286
+If a user goes there
+that's also okay,
+
+
+807
+00:43:43,486 --> 00:43:46,026
+and that will get them
+to what they need.
+
+
+808
+00:43:46,996 --> 00:43:54,016
+Similarly, we can do the same
+type of thing to allow a user
+
+
+809
+00:43:54,016 --> 00:44:00,136
+in a browser to continue into
+a native application on iOS.
+
+
+810
+00:44:01,336 --> 00:44:04,146
+And you know what that would
+look like is if the user was
+
+
+811
+00:44:04,146 --> 00:44:11,016
+at your website, say on desktop
+using the information there,
+
+
+812
+00:44:11,646 --> 00:44:13,936
+when they pulled
+out their iOS device
+
+
+813
+00:44:13,936 --> 00:44:15,396
+in the corner they
+would see the icon
+
+
+814
+00:44:15,396 --> 00:44:19,286
+for your native application,
+and if they clicked on that,
+
+
+815
+00:44:19,286 --> 00:44:21,916
+you know, they would get brought
+into your native application
+
+
+816
+00:44:22,386 --> 00:44:25,346
+and you could restore them
+in your native application
+
+
+817
+00:44:25,346 --> 00:44:29,286
+to the same thing they would've
+been seeing in the web browser
+
+
+818
+00:44:29,286 --> 00:44:30,216
+on the originating device.
+
+
+819
+00:44:31,166 --> 00:44:35,476
+Now to do this, and you'd take
+advantage of some new API's
+
+
+820
+00:44:35,476 --> 00:44:40,556
+that Apple's providing on iOS
+that allow you to securely kind
+
+
+821
+00:44:40,556 --> 00:44:43,466
+of claim a domain name
+for your application
+
+
+822
+00:44:44,046 --> 00:44:46,446
+so that you can say
+I'm this developer.
+
+
+823
+00:44:46,446 --> 00:44:49,196
+I truly own these domain
+names and I'm willing
+
+
+824
+00:44:49,196 --> 00:44:53,196
+to let these applications take
+advantage of that domain name.
+
+
+825
+00:44:53,666 --> 00:44:58,186
+And the way you do that is
+you add these domain names
+
+
+826
+00:44:58,346 --> 00:45:01,536
+to the com.apple
+.developer.associated
+
+
+827
+00:45:01,536 --> 00:45:04,486
+domainsentitlement
+on your application,
+
+
+828
+00:45:05,286 --> 00:45:10,336
+and once you've done
+that some code will reach
+
+
+829
+00:45:10,336 --> 00:45:15,196
+out to your website
+periodically from the device
+
+
+830
+00:45:16,386 --> 00:45:18,806
+and after it's verified that
+there's some information there,
+
+
+831
+00:45:18,806 --> 00:45:22,256
+we'll say this application
+is allowed to continue
+
+
+832
+00:45:22,256 --> 00:45:25,236
+from this domain if another
+device gave it to us.
+
+
+833
+00:45:25,946 --> 00:45:28,666
+And if that happens, you know
+we bring up your application.
+
+
+834
+00:45:29,296 --> 00:45:33,266
+In your native application,
+you know again,
+
+
+835
+00:45:33,266 --> 00:45:36,606
+your continueuser
+Activityrestoration Handler is
+
+
+836
+00:45:36,606 --> 00:45:37,536
+going to get called.
+
+
+837
+00:45:37,536 --> 00:45:40,446
+And there, what you would do
+is you would check the incoming
+
+
+838
+00:45:40,446 --> 00:45:45,046
+activity type to see if it was
+this special NSUserActivity type
+
+
+839
+00:45:45,106 --> 00:45:46,476
+continuing from web browser.
+
+
+840
+00:45:47,196 --> 00:45:50,636
+And if it was, you know
+there isn't a user info there
+
+
+841
+00:45:50,636 --> 00:45:51,636
+that you can take advantage
+
+
+842
+00:45:51,636 --> 00:45:55,126
+of because you don't have native
+code running on the other side.
+
+
+843
+00:45:55,366 --> 00:45:59,396
+It's running in a web browser,
+but you do have the webpage URL
+
+
+844
+00:45:59,396 --> 00:46:02,156
+that the user was at in
+that browser and from
+
+
+845
+00:46:02,156 --> 00:46:06,236
+that webpage URL you could
+bring your native app up kind
+
+
+846
+00:46:06,236 --> 00:46:08,396
+of looking at that same thing.
+
+
+847
+00:46:08,726 --> 00:46:10,936
+You also of course
+would continue
+
+
+848
+00:46:10,936 --> 00:46:12,986
+to get any other
+user activity types
+
+
+849
+00:46:12,986 --> 00:46:14,396
+that your application
+has claimed.
+
+
+850
+00:46:14,906 --> 00:46:16,126
+So if it's any of those,
+
+
+851
+00:46:16,126 --> 00:46:17,546
+you would do the same
+thing you saw earlier.
+
+
+852
+00:46:17,546 --> 00:46:22,066
+Lastly, let's talk about
+Continuation Streams.
+
+
+853
+00:46:22,766 --> 00:46:28,076
+Continuation streams are a
+way for you to get and set
+
+
+854
+00:46:28,076 --> 00:46:31,816
+up after user has chosen
+to resume an activity
+
+
+855
+00:46:31,816 --> 00:46:34,686
+in a second device,
+a bi-directional pair
+
+
+856
+00:46:34,686 --> 00:46:36,586
+of input streams
+between the two devices
+
+
+857
+00:46:36,926 --> 00:46:41,326
+that you can use primarily we
+think, for interactive purposes,
+
+
+858
+00:46:41,826 --> 00:46:44,246
+if the user's going to
+continue to use both devices,
+
+
+859
+00:46:44,586 --> 00:46:46,596
+and you want to be able
+to throw things back
+
+
+860
+00:46:46,596 --> 00:46:47,666
+and forth very quickly.
+
+
+861
+00:46:49,016 --> 00:46:53,056
+And what that looks like
+you know is the users
+
+
+862
+00:46:53,726 --> 00:46:55,956
+in your native application
+on your first device
+
+
+863
+00:46:55,956 --> 00:46:59,946
+and we see your icon in the
+corner, and the user swipes up
+
+
+864
+00:46:59,946 --> 00:47:01,766
+and we bring up your
+application.
+
+
+865
+00:47:02,896 --> 00:47:06,476
+And then we set up
+a set of NS streams
+
+
+866
+00:47:06,506 --> 00:47:07,566
+between the two processes.
+
+
+867
+00:47:08,286 --> 00:47:10,856
+And once those are up,
+you're free to read and write
+
+
+868
+00:47:10,856 --> 00:47:13,136
+from those streams
+and communicate
+
+
+869
+00:47:13,136 --> 00:47:18,526
+between the two devices in a
+fairly high performance manner
+
+
+870
+00:47:18,786 --> 00:47:20,496
+for whatever purposes
+you want to do.
+
+
+871
+00:47:21,186 --> 00:47:24,006
+What that looks like in the
+code again is you create
+
+
+872
+00:47:24,006 --> 00:47:25,036
+an NSUserActivity.
+
+
+873
+00:47:25,036 --> 00:47:28,986
+You set a delegate
+and then you set this
+
+
+874
+00:47:29,076 --> 00:47:31,776
+SupportsContinuationStreams
+property to yes
+
+
+875
+00:47:32,686 --> 00:47:33,836
+and you make it current.
+
+
+876
+00:47:34,946 --> 00:47:39,306
+And on the receiving device,
+when the activity comes
+
+
+877
+00:47:39,846 --> 00:47:42,676
+in in continueuserActivity
+restorationHandler,
+
+
+878
+00:47:43,536 --> 00:47:46,316
+you would check if that activity
+supports Continuation Streams,
+
+
+879
+00:47:47,286 --> 00:47:51,466
+and if it does, you know you
+can call this additional method,
+
+
+880
+00:47:51,946 --> 00:47:54,236
+get ContinuationStreams
+WithCompletionHandler
+
+
+881
+00:47:55,146 --> 00:47:59,896
+and that gets past a block
+and we, when you call that,
+
+
+882
+00:47:59,896 --> 00:48:03,436
+will reach back, try to set
+up these pair of streams
+
+
+883
+00:48:03,436 --> 00:48:06,406
+to the original device
+and after they're up,
+
+
+884
+00:48:06,406 --> 00:48:07,806
+we will call your
+CompletionHandler
+
+
+885
+00:48:07,806 --> 00:48:08,466
+with the streams.
+
+
+886
+00:48:08,606 --> 00:48:12,316
+If something goes wrong, we'll
+call you with an NS Error.
+
+
+887
+00:48:12,796 --> 00:48:15,226
+So if you don't get an
+error, you have streams.
+
+
+888
+00:48:15,226 --> 00:48:17,076
+You can start reading
+and writing back
+
+
+889
+00:48:17,076 --> 00:48:19,726
+and forth between the two apps.
+
+
+890
+00:48:19,726 --> 00:48:22,726
+Simultaneously, back
+on the first device,
+
+
+891
+00:48:22,816 --> 00:48:27,176
+the delegate method that
+you set the delegate method
+
+
+892
+00:48:27,176 --> 00:48:29,506
+of the delegate you
+set earlier is going
+
+
+893
+00:48:29,506 --> 00:48:33,076
+to get the didReceive
+InputStream outputSteam call,
+
+
+894
+00:48:33,556 --> 00:48:34,346
+over there.
+
+
+895
+00:48:34,346 --> 00:48:36,856
+That's going to get the input
+stream and the output stream
+
+
+896
+00:48:37,276 --> 00:48:40,896
+that are connected to the
+other client and you're free
+
+
+897
+00:48:40,896 --> 00:48:45,776
+to start reading and writing
+back and forth between the two.
+
+
+898
+00:48:46,516 --> 00:48:52,096
+[ Applause ]
+
+
+899
+00:48:52,596 --> 00:48:56,086
+So wrapping up, you learned
+about the AppKit and UIKit.
+
+
+900
+00:48:56,576 --> 00:48:57,846
+It's very extensive.
+
+
+901
+00:48:57,846 --> 00:49:00,276
+It does almost everything
+you need.
+
+
+902
+00:49:01,546 --> 00:49:03,216
+And particular, you
+learned about NS
+
+
+903
+00:49:03,736 --> 00:49:05,776
+and UI documents support,
+
+
+904
+00:49:05,776 --> 00:49:09,626
+which makes it almost completely
+free to implement this.
+
+
+905
+00:49:10,076 --> 00:49:12,316
+Many of you can add
+about four lines of code
+
+
+906
+00:49:12,316 --> 00:49:14,776
+to your application
+and you'll discover
+
+
+907
+00:49:14,776 --> 00:49:17,836
+that it starts continuing
+between iOS device
+
+
+908
+00:49:17,836 --> 00:49:22,186
+to iOS device, or if you have
+iOS and OS X applications,
+
+
+909
+00:49:22,186 --> 00:49:25,466
+from iOS to OS X merely
+by adding a couple keys
+
+
+910
+00:49:25,466 --> 00:49:28,016
+to your InfoP lists
+and making sure
+
+
+911
+00:49:28,016 --> 00:49:29,636
+that you're putting your
+documents in iCloud.
+
+
+912
+00:49:29,976 --> 00:49:32,196
+You learned about the
+ContinuationStreams
+
+
+913
+00:49:32,196 --> 00:49:32,736
+that we have.
+
+
+914
+00:49:32,736 --> 00:49:35,486
+If you want to set up
+interactive, you know,
+
+
+915
+00:49:35,556 --> 00:49:37,716
+real-timish performance
+between devices
+
+
+916
+00:49:37,716 --> 00:49:39,266
+after the user chooses
+to continue.
+
+
+917
+00:49:39,266 --> 00:49:42,676
+You've also learned about how
+you can continue to a website
+
+
+918
+00:49:42,676 --> 00:49:45,616
+or continue from a website
+into your native applications.
+
+
+919
+00:49:47,216 --> 00:49:50,116
+For more information,
+our Framework Evangelist,
+
+
+920
+00:49:50,326 --> 00:49:52,416
+I'm not sure if he's here,
+but it's Jake Behrens.
+
+
+921
+00:49:52,916 --> 00:49:54,266
+There's his email address.
+
+
+922
+00:49:54,886 --> 00:49:58,736
+We have a very good programming
+guide that's out and available
+
+
+923
+00:49:58,736 --> 00:50:01,476
+on developer.apple.com, The
+Handoff Programming Guide,
+
+
+924
+00:50:02,016 --> 00:50:04,606
+which we hope answers
+any questions
+
+
+925
+00:50:04,606 --> 00:50:07,216
+that you didn't get answered
+today and has some examples
+
+
+926
+00:50:07,216 --> 00:50:08,086
+of how you might do things.
+
+
+927
+00:50:08,086 --> 00:50:12,816
+We have the Apple Developer
+Forums where we're sure you
+
+
+928
+00:50:12,816 --> 00:50:14,716
+and other Apple employees
+are going
+
+
+929
+00:50:14,716 --> 00:50:19,696
+to start helping each other
+take advantage of this.
+
+
+930
+00:50:20,186 --> 00:50:21,566
+In terms of related sessions,
+
+
+931
+00:50:21,566 --> 00:50:24,036
+tomorrow morning there's a
+session on Cloud documents.
+
+
+932
+00:50:24,536 --> 00:50:27,696
+As we said, Cloud
+documents are a great way
+
+
+933
+00:50:28,006 --> 00:50:33,256
+to get the actual data
+behind user activities sync
+
+
+934
+00:50:33,596 --> 00:50:35,826
+through the Cloud so that
+when the activity goes
+
+
+935
+00:50:35,826 --> 00:50:37,086
+from one device to
+the other device,
+
+
+936
+00:50:37,176 --> 00:50:38,996
+the data is available for it.
+
+
+937
+00:50:38,996 --> 00:50:42,966
+There's also this session
+yesterday, which you can watch,
+
+
+938
+00:50:43,576 --> 00:50:45,226
+Your App, Your Website
+in Safari,
+
+
+939
+00:50:45,336 --> 00:50:47,186
+which talks about
+shared web credentials
+
+
+940
+00:50:47,676 --> 00:50:52,076
+and how you can let iOS devices
+know that you have the right
+
+
+941
+00:50:52,136 --> 00:50:53,236
+to do things with domains.
+
+
+942
+00:50:53,236 --> 00:50:54,086
+And thank you all for coming.
+
+
+943
+00:50:54,086 --> 00:50:54,976
+Hope you have a good afternoon.
+
+
+944
+00:50:55,516 --> 00:51:03,270
+[ Applause ]
+

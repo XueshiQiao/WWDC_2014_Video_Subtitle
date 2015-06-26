@@ -1,0 +1,4931 @@
+1
+00:00:14,476 --> 00:00:17,336
+>> Hello! Welcome
+to Session 711.
+
+
+2
+00:00:18,906 --> 00:00:21,846
+Now, who's here to learn
+how to incorporate Touch ID
+
+
+3
+00:00:21,846 --> 00:00:22,856
+into their application?
+
+
+4
+00:00:23,106 --> 00:00:24,766
+[Applause] All right!
+
+
+5
+00:00:30,256 --> 00:00:31,566
+Today, we're going to talk
+
+
+6
+00:00:31,566 --> 00:00:33,776
+about some exciting new
+features we've added based
+
+
+7
+00:00:33,776 --> 00:00:34,416
+on the Keychain.
+
+
+8
+00:00:34,796 --> 00:00:37,376
+Now, this session is
+mainly focused on iOS
+
+
+9
+00:00:37,376 --> 00:00:39,676
+and not so much on OS X.
+
+
+10
+00:00:40,086 --> 00:00:42,946
+Let's get started
+with what we expect
+
+
+11
+00:00:42,946 --> 00:00:46,816
+to go over in this session.
+
+
+12
+00:00:48,136 --> 00:00:49,286
+Now, for those of
+you who are new
+
+
+13
+00:00:49,286 --> 00:00:50,656
+and never used the
+Keychain before,
+
+
+14
+00:00:50,996 --> 00:00:53,466
+we're going to do a quick
+recap of the Keychain,
+
+
+15
+00:00:54,056 --> 00:00:56,896
+and how your application
+interacts with the Keychain.
+
+
+16
+00:00:57,396 --> 00:01:00,606
+Then we're going to talk about
+the additional new features
+
+
+17
+00:01:01,706 --> 00:01:03,226
+and show you how
+those features fit in,
+
+
+18
+00:01:03,396 --> 00:01:04,965
+like a new data protection
+class.
+
+
+19
+00:01:04,965 --> 00:01:10,786
+Then we're going to talk about
+Access Control Lists, and then,
+
+
+20
+00:01:10,786 --> 00:01:14,496
+last year, with the release
+of iPhone 5s and Touch ID,
+
+
+21
+00:01:14,496 --> 00:01:17,306
+many of you have asked, "Hey,
+how can I incorporate Touch ID
+
+
+22
+00:01:17,306 --> 00:01:18,336
+into my own application?"
+
+
+23
+00:01:18,956 --> 00:01:20,956
+We're going to go over
+that, but first we're going
+
+
+24
+00:01:20,956 --> 00:01:22,796
+to do a quick recap of
+what the Keychain is.
+
+
+25
+00:01:24,536 --> 00:01:28,616
+Now, the Keychain is a database,
+and that database has rows,
+
+
+26
+00:01:28,616 --> 00:01:30,556
+and those rows we
+call Keychain items.
+
+
+27
+00:01:30,556 --> 00:01:33,526
+Now, those Keychain
+items have values,
+
+
+28
+00:01:33,526 --> 00:01:35,196
+and those values are encrypted.
+
+
+29
+00:01:36,106 --> 00:01:39,736
+Now, we allow you to describe
+Keychain items with a set
+
+
+30
+00:01:39,736 --> 00:01:42,756
+of attributes, so that we can
+efficiently find them later.
+
+
+31
+00:01:43,276 --> 00:01:47,846
+Now, the Keychain is really
+good about storing user secrets
+
+
+32
+00:01:47,846 --> 00:01:51,746
+in the database, but it's not so
+good about storing large files.
+
+
+33
+00:01:52,976 --> 00:01:55,656
+And, for that, we provide
+another interface called
+
+
+34
+00:01:55,656 --> 00:01:56,446
+Common Crypto.
+
+
+35
+00:01:57,066 --> 00:02:00,216
+Now, with that interface
+we allow you
+
+
+36
+00:02:00,216 --> 00:02:01,636
+to create a bulk encryption key,
+
+
+37
+00:02:01,746 --> 00:02:04,736
+and then encrypt your large
+files and your bulk data,
+
+
+38
+00:02:04,736 --> 00:02:06,596
+and then store that
+bulk encryption key
+
+
+39
+00:02:06,596 --> 00:02:07,306
+into the Keychain.
+
+
+40
+00:02:07,526 --> 00:02:10,496
+Now, let's take a moment
+and talk about some
+
+
+41
+00:02:10,496 --> 00:02:12,626
+of the security guarantees
+that the Keychain provides.
+
+
+42
+00:02:13,896 --> 00:02:16,596
+Now, all of your Keychain
+items are protected
+
+
+43
+00:02:16,596 --> 00:02:17,796
+by the user's pass code.
+
+
+44
+00:02:18,936 --> 00:02:21,716
+In addition, they're
+protected by a device secret.
+
+
+45
+00:02:22,506 --> 00:02:25,506
+Now, every device in
+the factory comes baked
+
+
+46
+00:02:25,506 --> 00:02:27,886
+in with a unique secret,
+only known to that device.
+
+
+47
+00:02:28,466 --> 00:02:30,686
+Now, this is good because if
+the Keychain is ever removed
+
+
+48
+00:02:30,686 --> 00:02:38,206
+from the device, this prevents
+access to the user's secrets.
+
+
+49
+00:02:38,206 --> 00:02:41,266
+Now, the Keychain was also
+fundamentally designed
+
+
+50
+00:02:41,526 --> 00:02:46,606
+to keep your secrets
+protected on disk.
+
+
+51
+00:02:46,606 --> 00:02:50,396
+And also, by default, when the
+user's not using the device.
+
+
+52
+00:02:50,726 --> 00:02:53,076
+And so what this
+means is, by default,
+
+
+53
+00:02:53,076 --> 00:02:54,686
+Keychain items only
+are available
+
+
+54
+00:02:54,686 --> 00:02:56,546
+when the user authenticates
+to the device,
+
+
+55
+00:02:56,546 --> 00:03:00,716
+and are no longer available
+after the user locks the device.
+
+
+56
+00:03:02,296 --> 00:03:06,016
+Now, all Keychain items also
+go into encrypted backups.
+
+
+57
+00:03:06,516 --> 00:03:08,486
+So, if the user ever
+loses their device,
+
+
+58
+00:03:08,976 --> 00:03:11,206
+or upgrades to a new
+device, they can restore
+
+
+59
+00:03:11,206 --> 00:03:14,126
+that encrypted backup and get
+all of their user secrets back.
+
+
+60
+00:03:16,626 --> 00:03:19,916
+One of the fundamental
+designs of the Keychain is also
+
+
+61
+00:03:19,916 --> 00:03:21,346
+to enforce access control.
+
+
+62
+00:03:22,386 --> 00:03:27,476
+Now, what this does is it
+allows your application access
+
+
+63
+00:03:27,476 --> 00:03:29,036
+to its portion of the Keychain,
+
+
+64
+00:03:29,036 --> 00:03:31,536
+while preventing other
+applications access
+
+
+65
+00:03:31,536 --> 00:03:32,446
+to the same secrets.
+
+
+66
+00:03:32,936 --> 00:03:34,926
+Now, I'd like to take a moment
+
+
+67
+00:03:34,926 --> 00:03:37,856
+and show how your application
+interacts with the Keychain.
+
+
+68
+00:03:38,166 --> 00:03:41,866
+And, in order for your
+application to call
+
+
+69
+00:03:41,866 --> 00:03:44,066
+in to the Keychain,
+it first needs to link
+
+
+70
+00:03:44,066 --> 00:03:45,646
+against the security framework.
+
+
+71
+00:03:46,626 --> 00:03:48,976
+Now, the security
+framework provides a set
+
+
+72
+00:03:48,976 --> 00:03:54,206
+of APIs called secItem, which
+work on both iOS and OS X.
+
+
+73
+00:03:55,056 --> 00:03:59,996
+And now these are a set of
+CAPIs that work systemwide.
+
+
+74
+00:04:02,466 --> 00:04:05,466
+Now, when your application
+calls in to a secItem interface,
+
+
+75
+00:04:05,466 --> 00:04:06,906
+it actually sends that request
+
+
+76
+00:04:06,906 --> 00:04:08,746
+out to our process
+called securityd.
+
+
+77
+00:04:08,866 --> 00:04:11,076
+So, all Keychain
+interactions happen outside
+
+
+78
+00:04:11,076 --> 00:04:12,106
+of your process space.
+
+
+79
+00:04:13,446 --> 00:04:16,536
+But what you might not be
+aware is securityd doesn't have
+
+
+80
+00:04:16,536 --> 00:04:19,396
+everything required to actually
+decrypt that Keychain item.
+
+
+81
+00:04:19,396 --> 00:04:21,446
+And that's where the
+Secure enclave comes in.
+
+
+82
+00:04:21,836 --> 00:04:26,026
+Now, the Secure enclave is a
+security code processor built
+
+
+83
+00:04:26,026 --> 00:04:27,306
+on top of the Apple A7 chip,
+
+
+84
+00:04:27,306 --> 00:04:30,596
+and was first introduced
+with the iPhone 5s.
+
+
+85
+00:04:32,036 --> 00:04:34,136
+Now, some of its
+main operations are
+
+
+86
+00:04:34,136 --> 00:04:35,996
+to handle all Touch
+ID operations.
+
+
+87
+00:04:36,056 --> 00:04:38,796
+In addition, it handles all
+cryptographic operations
+
+
+88
+00:04:38,796 --> 00:04:39,716
+for data protection.
+
+
+89
+00:04:41,946 --> 00:04:47,996
+Now, it also guarantees the
+integrity of data protection
+
+
+90
+00:04:47,996 --> 00:04:49,856
+in the event that the
+kernel is compromised.
+
+
+91
+00:04:50,196 --> 00:04:53,916
+And, for this reason, we put
+all of the device secrets
+
+
+92
+00:04:53,916 --> 00:04:55,806
+and passcode secrets
+into the Secure enclave.
+
+
+93
+00:04:56,166 --> 00:04:59,566
+Now, let me show
+you what happens
+
+
+94
+00:04:59,566 --> 00:05:01,806
+when your application makes
+a request into the Keychain.
+
+
+95
+00:05:02,346 --> 00:05:07,236
+First, it sends its query
+to the secItem interface,
+
+
+96
+00:05:07,236 --> 00:05:09,146
+which sends the request
+over to securityd.
+
+
+97
+00:05:09,466 --> 00:05:11,576
+Securityd then will
+search the Keychain to see
+
+
+98
+00:05:11,576 --> 00:05:14,076
+if it finds an item, but
+the item that's returned
+
+
+99
+00:05:14,076 --> 00:05:14,796
+is encrypted.
+
+
+100
+00:05:15,686 --> 00:05:20,356
+So this encrypted item gets sent
+to the Secure enclave, which may
+
+
+101
+00:05:20,356 --> 00:05:22,156
+or may not be able
+to decrypt the item,
+
+
+102
+00:05:22,156 --> 00:05:25,536
+depending on the
+state of the device.
+
+
+103
+00:05:25,536 --> 00:05:27,986
+Once the item is decrypted,
+it then gets sent back
+
+
+104
+00:05:27,986 --> 00:05:32,186
+to securityd, and then the
+user secret gets sent back
+
+
+105
+00:05:32,216 --> 00:05:33,016
+to your application.
+
+
+106
+00:05:33,386 --> 00:05:37,436
+Now, I'd like to take
+a moment and look
+
+
+107
+00:05:37,436 --> 00:05:41,486
+at the secItem interface, and
+show you how easy it is to add
+
+
+108
+00:05:41,486 --> 00:05:43,086
+and retrieve items
+from the Keychain.
+
+
+109
+00:05:45,216 --> 00:05:47,546
+In order to add an item,
+and in these examples,
+
+
+110
+00:05:47,546 --> 00:05:49,106
+what I'll do is I'll
+show you how to call
+
+
+111
+00:05:49,106 --> 00:05:50,956
+into the C Interfaces,
+with Objective-C.
+
+
+112
+00:05:51,806 --> 00:05:54,886
+And in order to add an
+item, it's as simple
+
+
+113
+00:05:54,886 --> 00:05:57,616
+as creating an NSDictionary
+with a set of attributes
+
+
+114
+00:05:57,616 --> 00:05:59,076
+that describe your
+Keychain item.
+
+
+115
+00:05:59,956 --> 00:06:02,676
+In addition to the
+attributes, you also need
+
+
+116
+00:06:02,676 --> 00:06:05,336
+to pass your secret that
+you want to protect.
+
+
+117
+00:06:05,506 --> 00:06:06,426
+The encrypted payload.
+
+
+118
+00:06:07,066 --> 00:06:09,156
+And pass this dictionary
+to secItemAdd.
+
+
+119
+00:06:10,336 --> 00:06:11,896
+Now, it's really important
+
+
+120
+00:06:11,896 --> 00:06:13,706
+that when you use the
+secItemAdd interface,
+
+
+121
+00:06:13,826 --> 00:06:15,476
+that you also check
+the return codes
+
+
+122
+00:06:15,476 --> 00:06:17,146
+to make sure you don't
+get any errors back.
+
+
+123
+00:06:17,376 --> 00:06:18,966
+Because, just like any database,
+
+
+124
+00:06:19,346 --> 00:06:21,986
+attempting to add the
+same Keychain item
+
+
+125
+00:06:22,026 --> 00:06:24,246
+to the database will
+result in a duplicate error,
+
+
+126
+00:06:24,716 --> 00:06:27,226
+so these attributes make
+that Keychain item unique.
+
+
+127
+00:06:27,376 --> 00:06:30,266
+Now, let me show you how
+
+
+128
+00:06:30,266 --> 00:06:31,866
+to retrieve items
+from the database.
+
+
+129
+00:06:32,396 --> 00:06:35,356
+In order to retrieve
+items, you have to call
+
+
+130
+00:06:35,516 --> 00:06:38,976
+into the secItemCopy
+interface, and similar to add,
+
+
+131
+00:06:39,566 --> 00:06:44,066
+you need to specify the set
+of attributes that are used
+
+
+132
+00:06:44,066 --> 00:06:45,276
+to describe your Keychain item.
+
+
+133
+00:06:45,416 --> 00:06:49,876
+In addition, you need to
+specify kSecReturnData,
+
+
+134
+00:06:50,426 --> 00:06:53,916
+and what this does is it
+instructs a secItem copy
+
+
+135
+00:06:53,916 --> 00:06:56,626
+matching to actually
+return the user secret.
+
+
+136
+00:06:56,796 --> 00:06:58,426
+If you don't specify this,
+
+
+137
+00:06:58,426 --> 00:07:00,716
+secItemCopyMatching
+will only let you know
+
+
+138
+00:07:00,716 --> 00:07:02,386
+that the user secret existed.
+
+
+139
+00:07:02,836 --> 00:07:07,146
+Now, just like any
+database, we allow you
+
+
+140
+00:07:07,146 --> 00:07:09,076
+to update your existing
+Keychain items.
+
+
+141
+00:07:10,036 --> 00:07:13,376
+In order to update, first,
+it takes two dictionaries.
+
+
+142
+00:07:13,526 --> 00:07:14,566
+Two NSDictionaries.
+
+
+143
+00:07:14,906 --> 00:07:18,556
+One to specify the attributes
+of the item that you're trying
+
+
+144
+00:07:18,556 --> 00:07:20,096
+to find, and then
+a second dictionary
+
+
+145
+00:07:20,096 --> 00:07:21,986
+to specify the changes
+that you'd like to make
+
+
+146
+00:07:21,986 --> 00:07:24,986
+to that Keychain item.
+
+
+147
+00:07:24,986 --> 00:07:27,926
+And, of course, when the secrets
+are no longer necessary inside
+
+
+148
+00:07:27,926 --> 00:07:29,426
+of the database, we allow you
+
+
+149
+00:07:29,426 --> 00:07:31,476
+to delete those secrets
+from the database.
+
+
+150
+00:07:33,036 --> 00:07:36,806
+And we highly recommend, as
+best practice, to update,
+
+
+151
+00:07:37,146 --> 00:07:41,126
+use secItemUpdate to modify
+your items instead of deleting
+
+
+152
+00:07:41,156 --> 00:07:42,986
+and re-adding your
+items to the database.
+
+
+153
+00:07:43,376 --> 00:07:46,486
+And this allows you to keep
+any established access control
+
+
+154
+00:07:46,486 --> 00:07:48,686
+that you've previously
+added to an item.
+
+
+155
+00:07:48,966 --> 00:07:54,976
+Now that I've shown you
+how to simply add items
+
+
+156
+00:07:54,976 --> 00:07:57,816
+to the Keychain, I'd like to
+show you what a simple workflow
+
+
+157
+00:07:57,816 --> 00:07:59,456
+would look like in
+your own application.
+
+
+158
+00:07:59,776 --> 00:08:06,006
+What your application might do
+is first it's going to query
+
+
+159
+00:08:06,006 --> 00:08:08,276
+in to the Keychain to
+see if a password exists.
+
+
+160
+00:08:08,416 --> 00:08:10,206
+If a password exists, great.
+
+
+161
+00:08:10,206 --> 00:08:12,066
+And it works, great.
+
+
+162
+00:08:12,066 --> 00:08:12,476
+You're done.
+
+
+163
+00:08:12,576 --> 00:08:15,946
+Right? However, if you
+query into the Keychain
+
+
+164
+00:08:16,146 --> 00:08:19,156
+and no password exists in
+the Keychain, you may need
+
+
+165
+00:08:19,156 --> 00:08:21,916
+to prompt the user at
+this point for a password.
+
+
+166
+00:08:23,246 --> 00:08:25,906
+And once you've prompted for
+the password and verified it,
+
+
+167
+00:08:26,296 --> 00:08:28,286
+you'll then need to add
+that to the database,
+
+
+168
+00:08:28,966 --> 00:08:31,946
+so that the next time the user
+goes to use your application,
+
+
+169
+00:08:32,116 --> 00:08:34,446
+you don't need to nag the
+user for the password again.
+
+
+170
+00:08:34,775 --> 00:08:39,346
+Now, you might run into a
+situation where the password
+
+
+171
+00:08:39,446 --> 00:08:41,645
+in the database no longer
+works for the service
+
+
+172
+00:08:41,645 --> 00:08:42,395
+that you're protecting.
+
+
+173
+00:08:42,756 --> 00:08:48,476
+And in those situations, you may
+need to prompt the user again
+
+
+174
+00:08:48,476 --> 00:08:49,466
+for a better password.
+
+
+175
+00:08:49,646 --> 00:08:52,646
+And once you've verified that
+better password, go ahead
+
+
+176
+00:08:52,646 --> 00:08:55,206
+and update that in the
+database so that later,
+
+
+177
+00:08:55,206 --> 00:08:57,966
+when your application needs it
+again, it can use that password.
+
+
+178
+00:09:01,236 --> 00:09:03,966
+Now, as I mentioned before,
+the Keychain is really good
+
+
+179
+00:09:03,966 --> 00:09:05,836
+about protecting
+your secrets on disk.
+
+
+180
+00:09:06,706 --> 00:09:08,976
+And it is also your
+responsibility,
+
+
+181
+00:09:08,976 --> 00:09:11,536
+as application developers,
+to protect the secrets
+
+
+182
+00:09:11,536 --> 00:09:13,036
+that you retrieve
+from the database.
+
+
+183
+00:09:13,616 --> 00:09:18,816
+And it's best practice that you
+handle those secrets with care,
+
+
+184
+00:09:20,026 --> 00:09:22,086
+meaning, you know, only hold
+
+
+185
+00:09:22,086 --> 00:09:23,816
+on to the secret as
+long as necessary.
+
+
+186
+00:09:24,126 --> 00:09:26,796
+Don't save it often to a global
+variable because it's easy
+
+
+187
+00:09:26,796 --> 00:09:29,856
+to do, or don't retrieve it from
+the database and save it off
+
+
+188
+00:09:29,856 --> 00:09:31,236
+into a Plist or a file.
+
+
+189
+00:09:32,646 --> 00:09:37,856
+Now that I've done the
+quick recap of the Keychain,
+
+
+190
+00:09:37,976 --> 00:09:42,596
+I'd like to talk a little bit
+about our access control story.
+
+
+191
+00:09:44,386 --> 00:09:48,136
+Now, when the Keychain was
+first introduced on OS X,
+
+
+192
+00:09:49,246 --> 00:09:54,226
+it was-we first allowed,
+or we first introduced it
+
+
+193
+00:09:54,226 --> 00:09:58,206
+with kSecAttrAccess, which was
+a form of access control based
+
+
+194
+00:09:58,206 --> 00:09:59,536
+on the application itself.
+
+
+195
+00:09:59,536 --> 00:10:03,926
+Now, with the iOS, we
+introduced kSecAttrAccessGroup.
+
+
+196
+00:10:04,356 --> 00:10:08,206
+And what this was, was a form
+of access control based off
+
+
+197
+00:10:08,206 --> 00:10:09,666
+of code signing and
+entitlements.
+
+
+198
+00:10:09,746 --> 00:10:13,336
+And then we added
+kSecAttrAccessible.
+
+
+199
+00:10:14,746 --> 00:10:16,746
+Now, this isn't so
+much about who,
+
+
+200
+00:10:16,746 --> 00:10:19,146
+but more of when are
+your items available?
+
+
+201
+00:10:19,356 --> 00:10:22,336
+When can the Secure enclave
+be able to decrypt those items
+
+
+202
+00:10:22,336 --> 00:10:24,796
+and return that secret
+back to your application?
+
+
+203
+00:10:24,936 --> 00:10:29,116
+And today we'd like to
+introduce to you a new form
+
+
+204
+00:10:29,116 --> 00:10:32,426
+of access control called
+kSecAttrAccess Control.
+
+
+205
+00:10:33,496 --> 00:10:37,276
+And this is more about
+getting user consent to be able
+
+
+206
+00:10:37,276 --> 00:10:39,206
+to use those Keychain
+items as they're stored,
+
+
+207
+00:10:39,616 --> 00:10:41,556
+and Libor will be up
+on the stage to talk
+
+
+208
+00:10:41,556 --> 00:10:44,226
+about that in a moment.
+
+
+209
+00:10:44,226 --> 00:10:47,866
+Now, last year, with the
+release of iCloud Keychain,
+
+
+210
+00:10:48,926 --> 00:10:51,326
+we really needed a
+common interface.
+
+
+211
+00:10:51,716 --> 00:10:54,536
+So, what some of you may not
+know is we actually ported the
+
+
+212
+00:10:54,536 --> 00:10:56,576
+iOS Keychain to OS X last year.
+
+
+213
+00:10:57,766 --> 00:11:00,926
+And so, when you call in
+to the OS X interface,
+
+
+214
+00:11:00,926 --> 00:11:03,786
+secItem interface, and specify
+the synchronizable attribute,
+
+
+215
+00:11:04,286 --> 00:11:07,266
+you're actually taking
+advantage of all of the features
+
+
+216
+00:11:07,266 --> 00:11:12,976
+that we're introducing
+to the Keychain.
+
+
+217
+00:11:13,266 --> 00:11:15,626
+Now, I'd like to
+take a moment and dig
+
+
+218
+00:11:15,626 --> 00:11:17,156
+into the accessible attribute.
+
+
+219
+00:11:17,606 --> 00:11:23,176
+Now, like I said, by default,
+when you add Keychain items
+
+
+220
+00:11:23,176 --> 00:11:25,416
+to the database, they
+default to WhenUnlocked.
+
+
+221
+00:11:26,586 --> 00:11:30,836
+And again, when the user
+authenticates to the device,
+
+
+222
+00:11:31,026 --> 00:11:33,926
+these Keychain items
+become available,
+
+
+223
+00:11:34,896 --> 00:11:36,466
+and when the user
+locks the device,
+
+
+224
+00:11:36,466 --> 00:11:38,386
+the Keychain items are
+no longer available.
+
+
+225
+00:11:38,506 --> 00:11:41,646
+So, what we do is we actually
+securely erase those secrets
+
+
+226
+00:11:41,646 --> 00:11:44,216
+that are used to protect those
+items in the Secure enclave.
+
+
+227
+00:11:45,836 --> 00:11:48,886
+And now, this works great for
+the majority of applications,
+
+
+228
+00:11:49,556 --> 00:11:51,556
+however, if you have an
+application that runs
+
+
+229
+00:11:51,556 --> 00:11:53,746
+in the background, this can
+be a little inconvenient,
+
+
+230
+00:11:54,496 --> 00:11:57,006
+so we did introduce another
+data protection class
+
+
+231
+00:11:57,216 --> 00:11:59,766
+AfterFirstUnlock, and
+what this means is
+
+
+232
+00:12:00,396 --> 00:12:03,116
+that your Keychain items
+will become available
+
+
+233
+00:12:03,116 --> 00:12:05,446
+after the user has first
+authenticated to the device.
+
+
+234
+00:12:05,546 --> 00:12:08,686
+But this also has one drawback,
+is-the secrets that are used
+
+
+235
+00:12:08,686 --> 00:12:12,016
+in the Secure enclave to protect
+these Keychain items do not go
+
+
+236
+00:12:12,016 --> 00:12:13,576
+away after you lock the device.
+
+
+237
+00:12:15,946 --> 00:12:17,656
+Now, we also provide
+a stricter variant
+
+
+238
+00:12:17,656 --> 00:12:19,226
+of these two data
+protection classes
+
+
+239
+00:12:19,226 --> 00:12:22,696
+that are this device only, and
+so when these Keychain items go
+
+
+240
+00:12:22,696 --> 00:12:27,326
+into an encrypted backup, you
+will only be able to restore
+
+
+241
+00:12:27,326 --> 00:12:28,246
+that encrypted backup,
+
+
+242
+00:12:28,336 --> 00:12:30,606
+these Keychain items will only
+come back when you restore
+
+
+243
+00:12:30,606 --> 00:12:32,396
+that encrypted backup
+to the same device
+
+
+244
+00:12:32,486 --> 00:12:37,036
+and will not successfully
+restore to a new device.
+
+
+245
+00:12:37,036 --> 00:12:41,276
+Now, a feature we get asked
+for all the time is, "Hey,
+
+
+246
+00:12:41,276 --> 00:12:43,546
+it would be really
+nice if we knew
+
+
+247
+00:12:43,546 --> 00:12:45,226
+if a passcode was
+set on a device."
+
+
+248
+00:12:46,206 --> 00:12:49,466
+How many of you have been
+looking for a feature like that?
+
+
+249
+00:12:52,416 --> 00:12:54,826
+[Applause] Well, we're still
+not going to provide an API
+
+
+250
+00:12:54,926 --> 00:12:59,796
+like that [laughter], but
+we have something better.
+
+
+251
+00:13:01,046 --> 00:13:02,596
+See, we never really
+felt comfortable
+
+
+252
+00:13:02,596 --> 00:13:05,766
+about providing an API that
+said, "Hey, a passcode is set
+
+
+253
+00:13:05,766 --> 00:13:08,226
+on the device," because what
+happens if your application said
+
+
+254
+00:13:08,536 --> 00:13:09,876
+"Oh, a passcode is
+set, now I'm going
+
+
+255
+00:13:09,876 --> 00:13:11,376
+to store all my secrets
+on the device."
+
+
+256
+00:13:11,456 --> 00:13:14,866
+And then, later, the user
+goes and removes a passcode
+
+
+257
+00:13:14,866 --> 00:13:17,266
+from the device, and
+now you're sort of left
+
+
+258
+00:13:17,266 --> 00:13:18,446
+in a situation you never wanted.
+
+
+259
+00:13:18,996 --> 00:13:23,186
+And for that reason, we probably
+still won't provide such an API,
+
+
+260
+00:13:23,186 --> 00:13:24,846
+but we have something better.
+
+
+261
+00:13:25,026 --> 00:13:28,226
+Today, I'd like to introduce to
+you a new data protection class
+
+
+262
+00:13:28,696 --> 00:13:30,186
+that is WhenPasscodeSet.
+
+
+263
+00:13:31,276 --> 00:13:33,816
+Now, this has all of
+the same properties
+
+
+264
+00:13:33,896 --> 00:13:38,916
+as WhenUnlocked [applause].
+
+
+265
+00:13:40,596 --> 00:13:44,356
+Meaning, these Keychain items
+will not be available unless the
+
+
+266
+00:13:44,356 --> 00:13:48,226
+user authenticates the
+device, and will-I'm sorry,
+
+
+267
+00:13:48,226 --> 00:13:50,676
+will be available after the
+user authenticates the device,
+
+
+268
+00:13:50,676 --> 00:13:55,646
+and will no longer be available
+when the user locks the device.
+
+
+269
+00:13:55,646 --> 00:13:58,806
+Now, it has a few other security
+properties we'll talk about.
+
+
+270
+00:13:59,926 --> 00:14:03,016
+So, if the passcode is
+not set on a device,
+
+
+271
+00:14:03,016 --> 00:14:05,126
+and you try to use this
+new data protection class,
+
+
+272
+00:14:05,126 --> 00:14:11,296
+you'll actually get an error
+back, and so it only allows you
+
+
+273
+00:14:11,296 --> 00:14:14,676
+to store Keychain items if a
+passcode is set on the device.
+
+
+274
+00:14:16,916 --> 00:14:21,826
+Now what happens to
+items that get stored
+
+
+275
+00:14:21,826 --> 00:14:22,946
+when a passcode is set?
+
+
+276
+00:14:23,676 --> 00:14:27,286
+Now, all items that get stored,
+or if you remove the passcode
+
+
+277
+00:14:27,286 --> 00:14:31,496
+from the device, then what we
+do is we actually securely erase
+
+
+278
+00:14:31,496 --> 00:14:34,326
+the key that is protecting
+those Keychain items
+
+
+279
+00:14:34,326 --> 00:14:39,306
+in the Secure enclave,
+cryptographically preventing us
+
+
+280
+00:14:39,306 --> 00:14:42,106
+from ever decrypting those
+Keychain items again.
+
+
+281
+00:14:43,516 --> 00:14:46,866
+[ Applause ]
+
+
+282
+00:14:47,366 --> 00:14:53,216
+Now, this new data protection
+also has a few drawbacks.
+
+
+283
+00:14:54,606 --> 00:14:58,606
+So, this data protection
+class will not go into
+
+
+284
+00:14:58,606 --> 00:15:00,336
+or will not sync
+to other devices
+
+
+285
+00:15:00,476 --> 00:15:03,006
+when you have iCloud
+syncing turned on,
+
+
+286
+00:15:03,726 --> 00:15:04,866
+or iCloud Keychain enabled.
+
+
+287
+00:15:05,716 --> 00:15:10,106
+And also will not go
+into encrypted backups.
+
+
+288
+00:15:10,586 --> 00:15:12,006
+So, we highly recommend
+that you stick
+
+
+289
+00:15:12,006 --> 00:15:14,496
+with our default
+WhenUnlocked, and only switch
+
+
+290
+00:15:14,496 --> 00:15:15,566
+to WhenPasscodeSet
+
+
+291
+00:15:15,566 --> 00:15:18,606
+if the application
+truly requires this type
+
+
+292
+00:15:18,606 --> 00:15:19,606
+of security guarantee.
+
+
+293
+00:15:21,276 --> 00:15:24,806
+And now, I'd like to turn
+the time over to Libor,
+
+
+294
+00:15:24,806 --> 00:15:26,046
+so he can continue talking
+
+
+295
+00:15:26,046 --> 00:15:27,966
+about some additional
+features based on the Keychain.
+
+
+296
+00:15:28,306 --> 00:15:28,676
+Libor?
+
+
+297
+00:15:29,236 --> 00:15:29,766
+>> Thank you, Wade.
+
+
+298
+00:15:30,096 --> 00:15:33,736
+So, now you know how to use
+Keychain in your application.
+
+
+299
+00:15:33,816 --> 00:15:36,216
+So, let me talk about a
+new, exciting feature,
+
+
+300
+00:15:36,636 --> 00:15:39,016
+which allows you to use
+Touch ID with Keychain,
+
+
+301
+00:15:39,016 --> 00:15:40,406
+and not only with Keychain.
+
+
+302
+00:15:41,156 --> 00:15:43,416
+I really hope that you
+will like this feature,
+
+
+303
+00:15:43,416 --> 00:15:45,696
+and I hope that you will
+use it in many applications.
+
+
+304
+00:15:46,206 --> 00:15:48,016
+So, let's see how
+to use that feature.
+
+
+305
+00:15:49,586 --> 00:15:51,376
+Before I will start
+with Touch ID,
+
+
+306
+00:15:51,376 --> 00:15:54,196
+and I know that you are waiting
+for that, I will have to start
+
+
+307
+00:15:54,196 --> 00:15:56,736
+with Keychain Item
+Access Control Lists.
+
+
+308
+00:15:57,806 --> 00:16:00,726
+Keychain item Access
+Control List, or ACL,
+
+
+309
+00:16:01,346 --> 00:16:04,706
+is a new Keychain item
+attribute which you can use
+
+
+310
+00:16:04,776 --> 00:16:08,056
+to set accessibility
+and authentication
+
+
+311
+00:16:08,056 --> 00:16:09,686
+for each Keychain item.
+
+
+312
+00:16:10,546 --> 00:16:13,516
+And that means that you
+can control not only
+
+
+313
+00:16:13,626 --> 00:16:15,556
+when the Keychain
+item is available,
+
+
+314
+00:16:15,666 --> 00:16:19,336
+based on device state, but
+also what has to happen
+
+
+315
+00:16:19,446 --> 00:16:21,306
+when this Keychain
+item is accessed.
+
+
+316
+00:16:22,086 --> 00:16:25,606
+So, I will have to talk about
+authentication, how it's done,
+
+
+317
+00:16:26,046 --> 00:16:28,656
+and how you can use it
+with Touch ID and passcode.
+
+
+318
+00:16:29,356 --> 00:16:31,666
+But before we start
+with the details,
+
+
+319
+00:16:32,116 --> 00:16:33,646
+let's have a look at the result.
+
+
+320
+00:16:34,226 --> 00:16:36,716
+What the user will see when
+they use this new feature.
+
+
+321
+00:16:37,856 --> 00:16:42,006
+So, this is the new Touch
+ID authentication screen,
+
+
+322
+00:16:42,396 --> 00:16:45,656
+which will be presented to
+the user any time he will try
+
+
+323
+00:16:45,656 --> 00:16:48,716
+to access Keychain
+items protected by ACL
+
+
+324
+00:16:49,006 --> 00:16:50,546
+on a phone with Touch ID.
+
+
+325
+00:16:51,276 --> 00:16:54,666
+I will talk about
+the user interface
+
+
+326
+00:16:54,816 --> 00:16:56,086
+in much more detail later,
+
+
+327
+00:16:56,086 --> 00:16:58,026
+and you will also
+see it in the demo.
+
+
+328
+00:16:58,316 --> 00:17:01,126
+So, let's see, what are
+the changes you have to do
+
+
+329
+00:17:01,596 --> 00:17:02,786
+to adopt this new feature?
+
+
+330
+00:17:03,316 --> 00:17:07,415
+You already know that we have
+a new Keychain item attribute
+
+
+331
+00:17:07,886 --> 00:17:12,766
+called Access Control, and this
+Access Control attribute holds
+
+
+332
+00:17:12,856 --> 00:17:14,226
+the ACL.
+
+
+333
+00:17:14,376 --> 00:17:17,965
+ACL itself is represented
+by secAccessControl object,
+
+
+334
+00:17:18,776 --> 00:17:21,876
+and to be able to create this
+object, you have to define
+
+
+335
+00:17:22,276 --> 00:17:25,886
+which authentication and which
+accessibility you require
+
+
+336
+00:17:25,886 --> 00:17:26,856
+for that item.
+
+
+337
+00:17:27,136 --> 00:17:29,766
+So, let's see what
+options you have.
+
+
+338
+00:17:30,256 --> 00:17:32,366
+The accessibility
+is pretty easy.
+
+
+339
+00:17:33,146 --> 00:17:34,636
+You already know accessibility,
+
+
+340
+00:17:34,636 --> 00:17:38,706
+because to set accessibility you
+will use the same accessibility
+
+
+341
+00:17:38,706 --> 00:17:41,336
+classes and constants
+which you are now using
+
+
+342
+00:17:41,486 --> 00:17:43,176
+with accessible attribute.
+
+
+343
+00:17:43,596 --> 00:17:45,346
+And the behavior
+will be the same.
+
+
+344
+00:17:46,016 --> 00:17:49,476
+So, the item will be
+available based on the device,
+
+
+345
+00:17:49,476 --> 00:17:55,976
+if it's unlocked or locked, and
+the behavior keeps the same,
+
+
+346
+00:17:56,436 --> 00:17:58,506
+what's added is authentication.
+
+
+347
+00:17:59,316 --> 00:18:01,326
+Authentication is
+the new component,
+
+
+348
+00:18:01,326 --> 00:18:06,906
+and to specify authentication
+you have to provide policy.
+
+
+349
+00:18:07,586 --> 00:18:11,586
+And policy defines what
+authentication methods have
+
+
+350
+00:18:11,666 --> 00:18:16,646
+to be satisfied or done before
+the Keychain item is decrypted
+
+
+351
+00:18:16,926 --> 00:18:19,086
+and returned back
+to your application.
+
+
+352
+00:18:20,106 --> 00:18:23,116
+So, for now, we have
+user presence, policy.
+
+
+353
+00:18:23,796 --> 00:18:26,876
+So, let's see how this
+policy is implemented
+
+
+354
+00:18:26,996 --> 00:18:28,746
+and how it's used by Keychain.
+
+
+355
+00:18:29,356 --> 00:18:35,176
+The policy is enforced
+and controlled
+
+
+356
+00:18:35,176 --> 00:18:38,696
+by operating system security
+domain, and that means that,
+
+
+357
+00:18:38,696 --> 00:18:43,326
+for example, on an iPhone,
+iPhone 5s, it is Secure enclave
+
+
+358
+00:18:43,376 --> 00:18:48,126
+which controls what
+authentication has to be done,
+
+
+359
+00:18:48,346 --> 00:18:52,166
+and what is the best security
+
+
+360
+00:18:52,456 --> 00:18:54,046
+for that authentication
+operation.
+
+
+361
+00:18:54,616 --> 00:18:58,116
+And that allows us to have
+the highest possible security
+
+
+362
+00:18:58,516 --> 00:19:00,866
+for given device configuration.
+
+
+363
+00:19:01,886 --> 00:19:05,816
+So, let's see how the device
+configuration influences
+
+
+364
+00:19:05,816 --> 00:19:06,906
+policy evaluation.
+
+
+365
+00:19:07,896 --> 00:19:11,266
+So, the easiest case is
+device without any passcode.
+
+
+366
+00:19:12,296 --> 00:19:15,926
+And the result of
+policy evaluation
+
+
+367
+00:19:15,976 --> 00:19:17,796
+in this case is easy to predict.
+
+
+368
+00:19:17,796 --> 00:19:19,596
+We are talking about
+security here,
+
+
+369
+00:19:20,006 --> 00:19:22,466
+so the policy evaluation
+will always fail,
+
+
+370
+00:19:22,566 --> 00:19:24,756
+and you will have no
+access to your data.
+
+
+371
+00:19:26,006 --> 00:19:29,796
+A little bit more interesting
+example is device with passcode.
+
+
+372
+00:19:30,736 --> 00:19:33,026
+And because we have
+the passcode, again,
+
+
+373
+00:19:33,026 --> 00:19:35,086
+the result is pretty
+easy to predict
+
+
+374
+00:19:35,136 --> 00:19:37,076
+because the passcode
+will be necessary
+
+
+375
+00:19:37,426 --> 00:19:39,416
+to decrypt your Keychain
+item data.
+
+
+376
+00:19:39,416 --> 00:19:44,906
+And the user will have to enter
+device passcode each time you
+
+
+377
+00:19:44,906 --> 00:19:46,766
+are accessing the Keychain item.
+
+
+378
+00:19:47,166 --> 00:19:52,416
+This is secure, but the
+usability can be improved.
+
+
+379
+00:19:53,076 --> 00:19:56,186
+And we-here we are finally
+getting to Touch ID.
+
+
+380
+00:19:56,776 --> 00:19:59,216
+Because on devices
+with Touch ID,
+
+
+381
+00:19:59,216 --> 00:20:00,826
+and with registered
+fingerprints,
+
+
+382
+00:20:01,516 --> 00:20:04,906
+the user presence policy
+will prefer Touch ID
+
+
+383
+00:20:05,756 --> 00:20:08,056
+and will allow you
+to use Touch ID
+
+
+384
+00:20:08,056 --> 00:20:10,356
+to decrypt your Keychain items.
+
+
+385
+00:20:11,436 --> 00:20:14,096
+This is great, but there
+might be some cases
+
+
+386
+00:20:14,166 --> 00:20:15,946
+where you cannot use Touch ID.
+
+
+387
+00:20:15,946 --> 00:20:20,116
+For example, you lend the device
+to someone, to try the Touch ID,
+
+
+388
+00:20:20,116 --> 00:20:22,656
+and the Touch ID is
+now in a disabled state
+
+
+389
+00:20:22,656 --> 00:20:24,406
+because he tried
+it so many times.
+
+
+390
+00:20:24,906 --> 00:20:28,086
+So, for that, the user
+presence policy allows
+
+
+391
+00:20:28,086 --> 00:20:29,916
+to use a backup mechanism.
+
+
+392
+00:20:30,376 --> 00:20:33,056
+And this backup mechanism
+is device passcode.
+
+
+393
+00:20:33,056 --> 00:20:36,486
+Actually, the user
+can decide if he wants
+
+
+394
+00:20:36,486 --> 00:20:38,066
+to use passcode or Touch ID.
+
+
+395
+00:20:39,046 --> 00:20:42,026
+But a Touch ID will be always
+preferred in this case,
+
+
+396
+00:20:42,726 --> 00:20:45,806
+and because it's preferred, and
+it's the interesting option.
+
+
+397
+00:20:45,806 --> 00:20:47,996
+So, let's see how
+Touch ID works,
+
+
+398
+00:20:47,996 --> 00:20:50,306
+and what's the security
+of this solution?
+
+
+399
+00:20:53,276 --> 00:20:57,366
+You all know Touch ID from
+your iPhone 5s device unlock,
+
+
+400
+00:20:57,736 --> 00:21:01,366
+and you know that it's an
+easy-to-use authentication
+
+
+401
+00:21:01,366 --> 00:21:05,406
+mechanism, and it does not
+require much interaction
+
+
+402
+00:21:05,406 --> 00:21:06,086
+from the user.
+
+
+403
+00:21:06,506 --> 00:21:10,656
+So why not use it for
+Keychain protection?
+
+
+404
+00:21:11,496 --> 00:21:14,676
+The obvious question you will
+ask is what about the security?
+
+
+405
+00:21:15,466 --> 00:21:17,476
+Well, the answer is simple.
+
+
+406
+00:21:17,956 --> 00:21:18,906
+Secure enclave.
+
+
+407
+00:21:20,066 --> 00:21:25,666
+The Secure enclave contains
+all the Touch ID data,
+
+
+408
+00:21:26,366 --> 00:21:30,676
+and the Secure enclave also does
+all the Touch ID operations.
+
+
+409
+00:21:31,596 --> 00:21:34,116
+And because the Secure
+enclave was created
+
+
+410
+00:21:34,806 --> 00:21:37,336
+to protect all the
+data, even in case
+
+
+411
+00:21:37,726 --> 00:21:41,616
+that the kernel has been
+compromised, all the components,
+
+
+412
+00:21:41,616 --> 00:21:44,846
+which are running inside Secure
+enclave, can trust each other,
+
+
+413
+00:21:45,116 --> 00:21:48,196
+and can trust the data, which
+are protected by Secure enclave.
+
+
+414
+00:21:49,106 --> 00:21:53,246
+And, fortunately, the Keychain
+key operations are running also
+
+
+415
+00:21:53,246 --> 00:21:54,226
+in Secure enclave.
+
+
+416
+00:21:54,396 --> 00:21:59,856
+You have seen the example Wade
+was showing, and in the case
+
+
+417
+00:21:59,856 --> 00:22:03,636
+of Touch ID, the Keychain key
+operations can use the policy
+
+
+418
+00:22:04,096 --> 00:22:07,486
+evaluation result, or the
+Touch ID match result,
+
+
+419
+00:22:07,836 --> 00:22:11,536
+and use that for
+authorizing the Keychain item
+
+
+420
+00:22:11,536 --> 00:22:12,756
+decryption operation.
+
+
+421
+00:22:13,856 --> 00:22:17,486
+So, this way the Keychain
+can protect your items
+
+
+422
+00:22:17,486 --> 00:22:18,916
+and still use the Touch ID.
+
+
+423
+00:22:19,796 --> 00:22:24,016
+But the matching is not the
+only service the Secure enclave
+
+
+424
+00:22:24,106 --> 00:22:25,696
+provides to Touch ID.
+
+
+425
+00:22:26,566 --> 00:22:31,416
+Secure enclave also
+enforces Touch ID policies,
+
+
+426
+00:22:31,946 --> 00:22:35,556
+and one of these policies
+is really important for us
+
+
+427
+00:22:35,986 --> 00:22:38,226
+and is the counter
+for failed matches.
+
+
+428
+00:22:39,116 --> 00:22:44,316
+After several failed matches, it
+is Secure enclave that decides
+
+
+429
+00:22:44,316 --> 00:22:46,306
+that the Touch ID
+should be disabled,
+
+
+430
+00:22:46,666 --> 00:22:47,876
+and that it cannot be used
+
+
+431
+00:22:47,976 --> 00:22:50,016
+for any other authentication
+operation.
+
+
+432
+00:22:50,596 --> 00:22:53,326
+And you are used to that
+from the device unlock,
+
+
+433
+00:22:53,766 --> 00:22:56,106
+where you have to enter
+your device passcode
+
+
+434
+00:22:56,106 --> 00:22:58,296
+after several unsuccessful
+tries,
+
+
+435
+00:22:59,086 --> 00:23:01,476
+and the Keychain is
+exactly the same case.
+
+
+436
+00:23:02,006 --> 00:23:05,376
+So, once the Touch ID is
+disabled, the only way how
+
+
+437
+00:23:05,376 --> 00:23:08,516
+to get to your Keychain item
+is using the device passcode.
+
+
+438
+00:23:09,296 --> 00:23:12,866
+And the device passcode will
+also enable the Touch ID,
+
+
+439
+00:23:12,866 --> 00:23:15,636
+so the next Keychain
+operation will be able
+
+
+440
+00:23:15,636 --> 00:23:17,056
+to use Touch ID again.
+
+
+441
+00:23:18,316 --> 00:23:21,686
+This all is supported
+by a new framework
+
+
+442
+00:23:21,766 --> 00:23:23,276
+called LocalAuthentication.
+
+
+443
+00:23:23,626 --> 00:23:24,936
+And we will be talking
+
+
+444
+00:23:24,936 --> 00:23:28,086
+about LocalAuthentication a
+little bit later, but, for now,
+
+
+445
+00:23:28,726 --> 00:23:30,456
+let's see how
+LocalAuthentication
+
+
+446
+00:23:30,456 --> 00:23:34,066
+and Keychain work together
+with Secure enclave.
+
+
+447
+00:23:35,356 --> 00:23:40,756
+So, here we have an application
+which tries to use Keychain API.
+
+
+448
+00:23:41,466 --> 00:23:45,406
+The request is sent to the
+operating system service,
+
+
+449
+00:23:45,406 --> 00:23:46,746
+which takes care
+of the Keychain,
+
+
+450
+00:23:47,356 --> 00:23:49,756
+and this service
+communicates with Secure enclave
+
+
+451
+00:23:49,756 --> 00:23:51,566
+to decrypt the Keychain items.
+
+
+452
+00:23:52,006 --> 00:23:53,406
+This is what Wade was showing.
+
+
+453
+00:23:53,876 --> 00:23:55,136
+And this is the standard flow.
+
+
+454
+00:23:55,676 --> 00:23:58,886
+So, what happens when you
+use the item with ACL?
+
+
+455
+00:24:00,066 --> 00:24:03,686
+In such case, the
+Keychain service will start
+
+
+456
+00:24:03,686 --> 00:24:05,346
+LocalAuthentication service,
+
+
+457
+00:24:05,456 --> 00:24:08,546
+and the LocalAuthentication
+service is responsible
+
+
+458
+00:24:08,966 --> 00:24:11,786
+for displaying correct
+user interface,
+
+
+459
+00:24:12,346 --> 00:24:15,096
+based on information
+from Secure enclave.
+
+
+460
+00:24:15,186 --> 00:24:17,766
+Because Secure enclave
+is the component
+
+
+461
+00:24:17,766 --> 00:24:20,366
+which is actually
+controlling the policy
+
+
+462
+00:24:20,366 --> 00:24:25,506
+and telling LocalAuthentication
+what authentication should be
+
+
+463
+00:24:25,506 --> 00:24:26,256
+actually started.
+
+
+464
+00:24:27,536 --> 00:24:31,666
+And once the user provides
+his fingerprint, or passcode,
+
+
+465
+00:24:33,086 --> 00:24:37,306
+the Secure enclave can authorize
+the operation in Keychain
+
+
+466
+00:24:37,786 --> 00:24:39,506
+and the Keychain will
+decrypt your data
+
+
+467
+00:24:39,626 --> 00:24:40,766
+and send them back to you.
+
+
+468
+00:24:42,136 --> 00:24:45,816
+I was mentioning user interface
+here, and that it's the task
+
+
+469
+00:24:45,816 --> 00:24:48,876
+of LocalAuthentication,
+so let's have a look
+
+
+470
+00:24:49,066 --> 00:24:50,646
+at the user interface.
+
+
+471
+00:24:52,216 --> 00:24:57,046
+We have a new user, we have
+a new standard user interface
+
+
+472
+00:24:57,076 --> 00:24:58,966
+for Touch ID authentication,
+
+
+473
+00:24:59,236 --> 00:25:01,946
+and we have also a new
+standard user interface
+
+
+474
+00:25:01,946 --> 00:25:03,616
+for device passcode entering.
+
+
+475
+00:25:04,296 --> 00:25:08,016
+And the dialogue is
+relatively simple.
+
+
+476
+00:25:08,116 --> 00:25:10,526
+It contains just the
+name of your application,
+
+
+477
+00:25:10,526 --> 00:25:12,576
+which is provided by
+the operating system,
+
+
+478
+00:25:12,916 --> 00:25:15,346
+and two buttons,
+which are allowing
+
+
+479
+00:25:15,346 --> 00:25:16,906
+to cancel this operation
+
+
+480
+00:25:17,176 --> 00:25:21,596
+or to use the fallback
+mechanism using passcode.
+
+
+481
+00:25:22,316 --> 00:25:26,246
+Your application
+actually has a possibility
+
+
+482
+00:25:26,246 --> 00:25:27,886
+to extend this user interface.
+
+
+483
+00:25:28,266 --> 00:25:30,926
+You can add an additional string
+
+
+484
+00:25:31,176 --> 00:25:33,736
+which describes why you
+are doing this operation.
+
+
+485
+00:25:34,346 --> 00:25:38,466
+And we are actually recommending
+you to use this string,
+
+
+486
+00:25:38,466 --> 00:25:41,386
+because the user should know why
+you are calling this operation,
+
+
+487
+00:25:41,386 --> 00:25:44,366
+why he is prompted for
+Touch ID or passcode.
+
+
+488
+00:25:45,246 --> 00:25:50,316
+And, of course, on devices
+without Touch ID, or on devices
+
+
+489
+00:25:50,796 --> 00:25:53,486
+without any Touch
+ID enrolled fingers,
+
+
+490
+00:25:54,256 --> 00:26:00,376
+we have the standard passcode
+entry screen which is also shown
+
+
+491
+00:26:00,376 --> 00:26:05,996
+in case that the Touch ID is
+disabled, or when user decided
+
+
+492
+00:26:05,996 --> 00:26:08,756
+that he will use passcode
+instead of Touch ID
+
+
+493
+00:26:08,756 --> 00:26:09,996
+on the previous screen.
+
+
+494
+00:26:11,896 --> 00:26:14,426
+Because this authentication has
+
+
+495
+00:26:14,426 --> 00:26:18,366
+to happen during the
+Keychain item processing,
+
+
+496
+00:26:18,786 --> 00:26:21,016
+it means that the
+calls to Keychain,
+
+
+497
+00:26:21,466 --> 00:26:25,216
+which will return the
+ACL protected items,
+
+
+498
+00:26:25,216 --> 00:26:26,046
+will be blocking.
+
+
+499
+00:26:26,046 --> 00:26:28,186
+So, you have to deal with
+that, and we will talk
+
+
+500
+00:26:28,186 --> 00:26:30,676
+about that a little bit later.
+
+
+501
+00:26:31,316 --> 00:26:35,146
+So, this is all about the
+authentication and Touch ID
+
+
+502
+00:26:35,146 --> 00:26:36,256
+and the user interface.
+
+
+503
+00:26:36,616 --> 00:26:39,516
+So, let's return back
+to the accessibility,
+
+
+504
+00:26:40,796 --> 00:26:43,826
+and accessibility you
+already know, so I will not go
+
+
+505
+00:26:43,826 --> 00:26:46,146
+through the details, and I
+will not repeat what Wade
+
+
+506
+00:26:46,146 --> 00:26:46,826
+already said.
+
+
+507
+00:26:47,896 --> 00:26:51,176
+But I have a couple of
+recommendations, because ACL
+
+
+508
+00:26:51,176 --> 00:26:54,126
+and the accessibility
+are connected,
+
+
+509
+00:26:54,126 --> 00:26:56,456
+and there are some
+implications of using them.
+
+
+510
+00:26:56,566 --> 00:27:00,566
+And one of the implications is
+that we need the user interface.
+
+
+511
+00:27:00,566 --> 00:27:01,836
+The user has to authenticate.
+
+
+512
+00:27:02,056 --> 00:27:03,306
+So, the obvious choice
+
+
+513
+00:27:03,736 --> 00:27:08,936
+of the accessibility class is
+WhenUnlocked, or the new one,
+
+
+514
+00:27:08,936 --> 00:27:10,706
+WhenUnlocked and PasscodeSet.
+
+
+515
+00:27:11,106 --> 00:27:11,866
+Both are good.
+
+
+516
+00:27:11,866 --> 00:27:13,886
+The second one is a
+little bit more straight,
+
+
+517
+00:27:14,226 --> 00:27:16,196
+because it deletes
+your data in case
+
+
+518
+00:27:16,636 --> 00:27:17,966
+that the passcode was removed.
+
+
+519
+00:27:18,836 --> 00:27:20,516
+But you can use both,
+and actually,
+
+
+520
+00:27:20,846 --> 00:27:22,696
+even if you remove
+your passcode,
+
+
+521
+00:27:22,836 --> 00:27:26,136
+the WhenUnlocked class
+will not allow the user
+
+
+522
+00:27:26,136 --> 00:27:30,176
+to access the data, because
+the data are protected also
+
+
+523
+00:27:30,176 --> 00:27:32,056
+by the user presence policy.
+
+
+524
+00:27:32,256 --> 00:27:34,876
+So, the accessibility and
+the policy work together,
+
+
+525
+00:27:35,246 --> 00:27:39,046
+and both need to be
+satisfied to get the data.
+
+
+526
+00:27:39,106 --> 00:27:41,936
+So, you can choose,
+and now you know how
+
+
+527
+00:27:41,936 --> 00:27:44,406
+to set the accessibility
+and what you can use
+
+
+528
+00:27:44,406 --> 00:27:45,686
+for the authentication.
+
+
+529
+00:27:46,486 --> 00:27:51,726
+So, let's see how the changes in
+your source code will look like.
+
+
+530
+00:27:52,556 --> 00:27:57,766
+This is a simple example of
+secret-of storing a secret.
+
+
+531
+00:27:58,246 --> 00:27:59,686
+Wade was already
+talking about that,
+
+
+532
+00:27:59,686 --> 00:28:02,676
+and it's actually the same
+example Wade was showing,
+
+
+533
+00:28:02,676 --> 00:28:05,626
+so you know all the
+components of the dictionary.
+
+
+534
+00:28:06,616 --> 00:28:11,616
+And to use the ACL, the
+only thing you have to do is
+
+
+535
+00:28:11,686 --> 00:28:14,486
+to create the new
+access control object,
+
+
+536
+00:28:15,056 --> 00:28:20,046
+and set the accessibility
+and authentication,
+
+
+537
+00:28:21,146 --> 00:28:22,906
+and once you have this object,
+
+
+538
+00:28:23,596 --> 00:28:25,566
+you can use it inside
+the dictionary.
+
+
+539
+00:28:26,696 --> 00:28:28,356
+And by calling the secItemAdd,
+
+
+540
+00:28:28,706 --> 00:28:32,376
+you will create the
+new ACL protected item.
+
+
+541
+00:28:33,566 --> 00:28:34,616
+That's all you have to do.
+
+
+542
+00:28:34,766 --> 00:28:36,386
+This is really the only change.
+
+
+543
+00:28:37,146 --> 00:28:40,856
+And once you have the item
+stored, you can read the item.
+
+
+544
+00:28:41,716 --> 00:28:46,376
+And to read the secret,
+here we have the example
+
+
+545
+00:28:46,376 --> 00:28:47,916
+from Wade's slide as well.
+
+
+546
+00:28:48,536 --> 00:28:50,956
+And already this
+example will work.
+
+
+547
+00:28:50,956 --> 00:28:52,126
+It will do everything.
+
+
+548
+00:28:52,126 --> 00:28:55,176
+It will add the user for the
+authentication-you don't need
+
+
+549
+00:28:55,176 --> 00:28:56,056
+to do any changes.
+
+
+550
+00:28:56,556 --> 00:28:58,806
+But I would suggest to
+do at least one change,
+
+
+551
+00:28:58,806 --> 00:29:00,926
+and that is the addition
+of the operation prompt.
+
+
+552
+00:29:00,926 --> 00:29:04,256
+Because contrary to
+the previous cases,
+
+
+553
+00:29:04,256 --> 00:29:07,076
+where you were just reading
+the secret in your application,
+
+
+554
+00:29:07,316 --> 00:29:09,836
+here you are asking the
+user for some action,
+
+
+555
+00:29:10,256 --> 00:29:11,796
+so the user should be informed.
+
+
+556
+00:29:12,736 --> 00:29:17,596
+And all the magic happens in
+the secItemCopyMatching call.
+
+
+557
+00:29:18,496 --> 00:29:22,126
+This call will start the
+LocalAuthentication service,
+
+
+558
+00:29:22,636 --> 00:29:25,496
+and the LocalAuthentication
+service will start the
+
+
+559
+00:29:25,496 --> 00:29:26,306
+user interface.
+
+
+560
+00:29:27,246 --> 00:29:30,956
+And here, the user will have
+to touch or enter the passcode
+
+
+561
+00:29:31,656 --> 00:29:34,816
+to actually decrypt
+your Keychain item.
+
+
+562
+00:29:35,566 --> 00:29:36,976
+And once the item
+is returned back
+
+
+563
+00:29:36,976 --> 00:29:38,456
+to your application,
+you can use it.
+
+
+564
+00:29:38,696 --> 00:29:41,326
+But, as you saw, the
+call is blocking.
+
+
+565
+00:29:41,706 --> 00:29:46,216
+So I would suggest to use it
+inside a dispatch async block,
+
+
+566
+00:29:46,516 --> 00:29:49,226
+so you are not blocking
+your main queue for example.
+
+
+567
+00:29:49,986 --> 00:29:53,226
+And that's actually
+all you have to do.
+
+
+568
+00:29:53,626 --> 00:29:55,096
+No other changes are necessary.
+
+
+569
+00:29:55,326 --> 00:29:59,096
+So, now you know what
+is the authentication,
+
+
+570
+00:29:59,096 --> 00:30:02,266
+how to do the changes in
+your code, so let's talk
+
+
+571
+00:30:02,266 --> 00:30:06,186
+about some things to keep in
+mind when you are using ACLs,
+
+
+572
+00:30:06,186 --> 00:30:09,826
+because this is quite
+a new concept.
+
+
+573
+00:30:10,856 --> 00:30:15,046
+You already see that we need the
+application to be foreground.
+
+
+574
+00:30:15,456 --> 00:30:19,516
+Actually, if it happens, and
+you will call a Keychain item
+
+
+575
+00:30:19,516 --> 00:30:20,966
+operation, Keychain operation
+
+
+576
+00:30:21,376 --> 00:30:24,896
+when you are a background
+application, the call will fail
+
+
+577
+00:30:24,896 --> 00:30:28,666
+in case that there is
+some ACL protected item.
+
+
+578
+00:30:29,256 --> 00:30:32,636
+And an important
+thing to remember is
+
+
+579
+00:30:33,166 --> 00:30:37,726
+that any query may contain
+actually ACL protected items.
+
+
+580
+00:30:38,226 --> 00:30:41,486
+So, that means that also
+secItemAdd or, of course,
+
+
+581
+00:30:41,486 --> 00:30:45,916
+secItemUpdate may ask the
+user for authentication
+
+
+582
+00:30:46,136 --> 00:30:48,856
+because there might be some
+ACL protected item already.
+
+
+583
+00:30:49,716 --> 00:30:51,286
+What's not so obvious is
+
+
+584
+00:30:51,656 --> 00:30:54,576
+that the Keychain is,
+in fact, a database.
+
+
+585
+00:30:54,576 --> 00:30:57,756
+And as a database, it can
+return multiple results.
+
+
+586
+00:30:58,116 --> 00:31:01,446
+So, in case that you are used
+to using quite broad queries,
+
+
+587
+00:31:02,446 --> 00:31:04,456
+you may get the situation
+
+
+588
+00:31:04,456 --> 00:31:07,686
+that the query will contain
+the ACL protected item,
+
+
+589
+00:31:08,286 --> 00:31:10,426
+and in such case, the
+user will be asked
+
+
+590
+00:31:10,456 --> 00:31:11,596
+for authentication as well.
+
+
+591
+00:31:12,506 --> 00:31:15,846
+So, first of all, you should not
+use broad queries if possible,
+
+
+592
+00:31:16,256 --> 00:31:17,996
+but if you need help with that,
+
+
+593
+00:31:18,466 --> 00:31:20,656
+we have a special no
+authentication mode
+
+
+594
+00:31:20,956 --> 00:31:23,856
+which allows you
+to ask the Keychain
+
+
+595
+00:31:24,476 --> 00:31:26,456
+to suppress the user interface,
+
+
+596
+00:31:26,666 --> 00:31:28,676
+and Keychain will
+just let you know
+
+
+597
+00:31:28,936 --> 00:31:32,886
+that this particular query
+would require authentication.
+
+
+598
+00:31:36,776 --> 00:31:42,856
+Last, but not least, these
+ACL protected items are not
+
+
+599
+00:31:42,856 --> 00:31:44,956
+synchronizable and
+are not backup.
+
+
+600
+00:31:45,216 --> 00:31:47,486
+These are really
+device-only items.
+
+
+601
+00:31:48,356 --> 00:31:50,936
+So this is all about
+the Keychain.
+
+
+602
+00:31:51,526 --> 00:31:53,576
+You can see that it's
+pretty easy to use,
+
+
+603
+00:31:53,576 --> 00:31:55,176
+the Touch ID, with Keychain.
+
+
+604
+00:31:55,636 --> 00:31:58,996
+And also the security of
+the solution is quite high.
+
+
+605
+00:31:59,716 --> 00:32:02,406
+And we are talking about
+LocalAuthentication,
+
+
+606
+00:32:02,806 --> 00:32:06,666
+so let's see how you can
+use LocalAuthentication
+
+
+607
+00:32:06,666 --> 00:32:07,416
+in your code.
+
+
+608
+00:32:08,186 --> 00:32:10,256
+You have seen how
+it participates
+
+
+609
+00:32:10,256 --> 00:32:13,226
+on Keychain decryption
+for Keychain,
+
+
+610
+00:32:13,356 --> 00:32:16,216
+and how it works together
+with Secure enclave.
+
+
+611
+00:32:17,156 --> 00:32:23,476
+So, let's talk about the
+features you can use inside your
+
+
+612
+00:32:23,476 --> 00:32:24,236
+own application.
+
+
+613
+00:32:24,886 --> 00:32:27,596
+LocalAuthentication was
+created as a mechanism
+
+
+614
+00:32:27,596 --> 00:32:30,236
+to collection credentials
+like device passcode
+
+
+615
+00:32:30,236 --> 00:32:33,006
+or start authentication
+operations like Touch ID,
+
+
+616
+00:32:33,836 --> 00:32:36,046
+and to work together
+with Secure enclave
+
+
+617
+00:32:36,046 --> 00:32:37,536
+and other system components
+
+
+618
+00:32:37,786 --> 00:32:40,066
+to finish the authentication
+of user.
+
+
+619
+00:32:40,966 --> 00:32:45,116
+But it's a generic policy
+evaluation mechanism as well.
+
+
+620
+00:32:45,596 --> 00:32:49,586
+So any application can call
+policy evaluation inside
+
+
+621
+00:32:49,586 --> 00:32:51,906
+secure-inside
+LocalAuthentication,
+
+
+622
+00:32:52,286 --> 00:32:56,456
+and LocalAuthentication will
+start the operation inside
+
+
+623
+00:32:56,596 --> 00:32:58,826
+Secure enclave, and this way,
+
+
+624
+00:32:58,896 --> 00:33:02,526
+you can initiate the Touch ID
+operation and gather the result,
+
+
+625
+00:33:02,526 --> 00:33:05,356
+even without contact
+with Secure enclave.
+
+
+626
+00:33:06,496 --> 00:33:12,316
+So, to get a better idea, let's
+talk about some use cases,
+
+
+627
+00:33:12,316 --> 00:33:15,246
+where you would use
+LocalAuthentication instead
+
+
+628
+00:33:15,246 --> 00:33:17,306
+of the Keychain case.
+
+
+629
+00:33:18,886 --> 00:33:23,236
+For example, you may want to
+verify that a user is enrolled.
+
+
+630
+00:33:23,526 --> 00:33:26,016
+This is something
+LocalAuthentication allows you.
+
+
+631
+00:33:26,766 --> 00:33:29,326
+And you may want to
+verify it because you want
+
+
+632
+00:33:29,326 --> 00:33:31,186
+to enable some feature
+of your application,
+
+
+633
+00:33:31,186 --> 00:33:34,496
+or you want to do some
+kind of parental control,
+
+
+634
+00:33:34,496 --> 00:33:36,526
+because you want to
+be sure that the owner
+
+
+635
+00:33:36,526 --> 00:33:37,816
+of the device is present.
+
+
+636
+00:33:38,226 --> 00:33:40,846
+For these cases, you can
+use LocalAuthentication.
+
+
+637
+00:33:41,666 --> 00:33:44,586
+Or you may want to
+extend your application
+
+
+638
+00:33:44,666 --> 00:33:46,306
+authentication mechanisms.
+
+
+639
+00:33:47,036 --> 00:33:50,566
+Well, you can use Touch ID
+as a first factor instead
+
+
+640
+00:33:51,376 --> 00:33:53,356
+of your password or pin.
+
+
+641
+00:33:54,206 --> 00:33:58,116
+And this is more a
+task for the Keychain,
+
+
+642
+00:33:58,236 --> 00:34:02,636
+but in case that you do not
+want to use device passcode,
+
+
+643
+00:34:02,966 --> 00:34:05,376
+you can use LocalAuthentication
+and you will see how.
+
+
+644
+00:34:06,146 --> 00:34:09,676
+Or you may want to use Touch ID
+as a second factor in addition
+
+
+645
+00:34:09,676 --> 00:34:11,326
+to your authentication.
+
+
+646
+00:34:11,326 --> 00:34:16,196
+And then the LocalAuthentication
+is also the best choice for you.
+
+
+647
+00:34:17,246 --> 00:34:21,556
+I was talking about the
+difference between Keychain
+
+
+648
+00:34:21,556 --> 00:34:23,096
+and LocalAuthentication
+a little bit,
+
+
+649
+00:34:23,896 --> 00:34:26,335
+so let's see what
+the security is
+
+
+650
+00:34:26,896 --> 00:34:28,496
+to set the expectations right.
+
+
+651
+00:34:29,366 --> 00:34:31,966
+The security of
+LocalAuthentication
+
+
+652
+00:34:31,966 --> 00:34:34,716
+and the Keychain solution
+with Touch ID is different.
+
+
+653
+00:34:35,036 --> 00:34:39,025
+Because, in Keychain's case,
+it's the Secure enclave
+
+
+654
+00:34:39,025 --> 00:34:43,406
+which is the trusted component,
+and the trust is really
+
+
+655
+00:34:43,406 --> 00:34:46,326
+between the operating
+system and Secure enclave.
+
+
+656
+00:34:46,976 --> 00:34:49,666
+With LocalAuthentication,
+the trust is
+
+
+657
+00:34:49,666 --> 00:34:52,085
+between your application
+and operating system.
+
+
+658
+00:34:52,656 --> 00:34:55,275
+There are no secrets which
+will be stored in case
+
+
+659
+00:34:55,275 --> 00:34:56,876
+of the LocalAuthentication.
+
+
+660
+00:34:57,666 --> 00:35:00,466
+And that also means that
+you have no direct access
+
+
+661
+00:35:00,466 --> 00:35:03,816
+to Secure enclave, you have
+just the access to the results.
+
+
+662
+00:35:03,816 --> 00:35:07,396
+And, of course, and I
+want to emphasize this,
+
+
+663
+00:35:08,066 --> 00:35:10,626
+you have no access to the
+registered fingerprints.
+
+
+664
+00:35:11,676 --> 00:35:12,996
+The registered fingerprints
+
+
+665
+00:35:13,656 --> 00:35:18,216
+and the fingerprint images are
+all owned by Secure enclave.
+
+
+666
+00:35:18,326 --> 00:35:20,696
+The Secure enclave
+is the only owner
+
+
+667
+00:35:21,466 --> 00:35:25,696
+and no other system component
+can access this information,
+
+
+668
+00:35:25,936 --> 00:35:29,246
+not even kernel has any
+access to fingerprint image
+
+
+669
+00:35:29,246 --> 00:35:30,616
+or registered fingerprints.
+
+
+670
+00:35:31,126 --> 00:35:33,946
+So, it means that you
+will also never get access
+
+
+671
+00:35:34,026 --> 00:35:37,556
+to the registered fingers, or to
+the management of these fingers.
+
+
+672
+00:35:39,736 --> 00:35:43,316
+Let's see how this looks
+from the API perspective.
+
+
+673
+00:35:43,916 --> 00:35:46,806
+So, you already know that you
+can use LocalAuthentication
+
+
+674
+00:35:46,886 --> 00:35:48,606
+to invoke Touch ID operation.
+
+
+675
+00:35:49,026 --> 00:35:51,946
+So, how to do that?
+
+
+676
+00:35:52,056 --> 00:35:54,846
+We have two new functions.
+
+
+677
+00:35:55,336 --> 00:35:58,206
+One is canEvaluatePolicy
+and one is evaluatePolicy.
+
+
+678
+00:35:58,206 --> 00:36:00,766
+And the first one just checks
+
+
+679
+00:36:00,766 --> 00:36:04,166
+if the policy can be ever
+evaluated on this device.
+
+
+680
+00:36:04,606 --> 00:36:07,416
+So, in the case of the Touch
+ID, it will just tell you
+
+
+681
+00:36:07,746 --> 00:36:09,756
+if the device is
+Touch ID enabled,
+
+
+682
+00:36:09,756 --> 00:36:11,896
+and if there are any
+fingerprints enrolled.
+
+
+683
+00:36:12,736 --> 00:36:16,636
+The Evaluate call then starts
+the authentication operation
+
+
+684
+00:36:17,386 --> 00:36:19,356
+and shows the necessary
+user interface.
+
+
+685
+00:36:20,596 --> 00:36:23,836
+And the result, which you will
+get, is just plain "yes" or "no"
+
+
+686
+00:36:23,836 --> 00:36:25,636
+from this Evaluate
+Policy function.
+
+
+687
+00:36:26,896 --> 00:36:28,096
+Let's see what policy we have.
+
+
+688
+00:36:28,426 --> 00:36:32,806
+So, this is the policy you
+can use to show the Touch ID.
+
+
+689
+00:36:33,716 --> 00:36:36,206
+And contrary to the
+Keychain case,
+
+
+690
+00:36:36,206 --> 00:36:37,566
+and I was already mentioning,
+
+
+691
+00:36:37,566 --> 00:36:40,756
+that there's no passcode
+for back mechanism.
+
+
+692
+00:36:41,216 --> 00:36:42,966
+But, your application has
+
+
+693
+00:36:43,006 --> 00:36:45,456
+to provide its own
+password entry UI,
+
+
+694
+00:36:45,456 --> 00:36:48,566
+and your own fallback
+mechanism, to allow the user
+
+
+695
+00:36:48,566 --> 00:36:49,976
+to skip this operation.
+
+
+696
+00:36:50,606 --> 00:36:52,736
+You should already have
+some mechanism like that,
+
+
+697
+00:36:53,016 --> 00:36:55,266
+because you are just
+extending your application.
+
+
+698
+00:36:55,556 --> 00:36:58,256
+So, this is the way how
+to reuse this mechanism.
+
+
+699
+00:36:59,056 --> 00:37:03,176
+And as with Keychain, there are
+some things you should remember
+
+
+700
+00:37:03,176 --> 00:37:05,936
+when using LocalAuthentication.
+
+
+701
+00:37:07,276 --> 00:37:09,616
+Again, because of the
+need to authenticate,
+
+
+702
+00:37:09,666 --> 00:37:12,466
+you have to be a foreground
+application to use this API.
+
+
+703
+00:37:12,466 --> 00:37:16,816
+And you have to also
+account with the possibility
+
+
+704
+00:37:16,816 --> 00:37:19,006
+that the policy evaluation
+will always fail,
+
+
+705
+00:37:19,006 --> 00:37:21,456
+even if it would be
+theoretically possible
+
+
+706
+00:37:21,696 --> 00:37:25,446
+on that device to evaluate the
+policy, because, for example,
+
+
+707
+00:37:25,446 --> 00:37:29,626
+if Touch ID is present,
+but it's in the local state
+
+
+708
+00:37:29,626 --> 00:37:32,566
+or there might be some
+other configuration setting
+
+
+709
+00:37:32,646 --> 00:37:35,216
+which will prevent the user
+to use the authentication.
+
+
+710
+00:37:35,216 --> 00:37:38,536
+So, you should use your
+own fallback mechanism,
+
+
+711
+00:37:38,686 --> 00:37:40,646
+and your application
+is really required
+
+
+712
+00:37:40,646 --> 00:37:42,316
+to do that, and we will see how.
+
+
+713
+00:37:42,926 --> 00:37:49,836
+Let's see the real examples,
+how this is done in your code.
+
+
+714
+00:37:50,086 --> 00:37:52,666
+So, the canEvaluatePolicy
+call to check
+
+
+715
+00:37:52,666 --> 00:37:54,336
+if the Touch ID is enabled
+
+
+716
+00:37:54,336 --> 00:37:57,246
+or any fingerprints are
+registered is really simple.
+
+
+717
+00:37:57,446 --> 00:37:59,776
+It's just single call
+which is not blocking,
+
+
+718
+00:38:00,146 --> 00:38:01,896
+it does not need
+any user interface,
+
+
+719
+00:38:01,946 --> 00:38:03,336
+so you can call it any time.
+
+
+720
+00:38:04,236 --> 00:38:08,506
+And the actual call which
+shows the user interface
+
+
+721
+00:38:08,886 --> 00:38:12,586
+and starts the operation
+inside Secure enclave is
+
+
+722
+00:38:12,586 --> 00:38:13,956
+the evaluatePolicy.
+
+
+723
+00:38:14,646 --> 00:38:17,296
+And to call evaluatePolicy
+you need two things.
+
+
+724
+00:38:17,646 --> 00:38:20,326
+First of all, you need to
+specify the policy that's clear.
+
+
+725
+00:38:21,096 --> 00:38:23,936
+But you have to also specify
+your localized reason,
+
+
+726
+00:38:23,936 --> 00:38:26,226
+and in this case, this
+is really mandatory.
+
+
+727
+00:38:26,496 --> 00:38:30,356
+We do not accept any nil
+or empty string here,
+
+
+728
+00:38:30,676 --> 00:38:34,346
+because we want the user to know
+not only what application is
+
+
+729
+00:38:34,626 --> 00:38:37,026
+calling this operation,
+but also why.
+
+
+730
+00:38:37,906 --> 00:38:40,796
+And the result is then returned
+in a simple reply block.
+
+
+731
+00:38:41,576 --> 00:38:44,406
+So, let's see what happens
+when you call this function.
+
+
+732
+00:38:45,036 --> 00:38:47,966
+The user will see
+a user interface
+
+
+733
+00:38:47,966 --> 00:38:49,956
+which is similar to
+the Keychain case.
+
+
+734
+00:38:50,646 --> 00:38:53,396
+We can see that there is again
+the name of your application,
+
+
+735
+00:38:53,616 --> 00:38:56,686
+and also the reason
+string, and two buttons.
+
+
+736
+00:38:57,186 --> 00:39:00,576
+And the main difference is
+in the enter password button,
+
+
+737
+00:39:00,916 --> 00:39:04,686
+and also in the behavior
+of this dialogue.
+
+
+738
+00:39:05,286 --> 00:39:08,526
+In case of Keychain, you could
+use a passcode or the Touch ID
+
+
+739
+00:39:08,526 --> 00:39:11,056
+to satisfy the authentication.
+
+
+740
+00:39:11,416 --> 00:39:13,176
+In the case of
+LocalAuthentication,
+
+
+741
+00:39:13,176 --> 00:39:16,846
+the only way how to
+successfully authenticate is
+
+
+742
+00:39:16,846 --> 00:39:18,386
+to use your fingerprint.
+
+
+743
+00:39:19,276 --> 00:39:21,536
+And both enter password
+
+
+744
+00:39:21,536 --> 00:39:24,776
+and cancel buttons will
+actually dismiss this dialogue
+
+
+745
+00:39:24,776 --> 00:39:27,216
+and return control
+to your application.
+
+
+746
+00:39:27,796 --> 00:39:32,006
+So, your application has to
+process these return values.
+
+
+747
+00:39:32,666 --> 00:39:34,276
+And when this happens,
+
+
+748
+00:39:34,586 --> 00:39:37,616
+so in case that the
+user used the finger
+
+
+749
+00:39:37,616 --> 00:39:39,716
+and he was successfully
+authenticated,
+
+
+750
+00:39:39,716 --> 00:39:42,366
+you will get success,
+and that means
+
+
+751
+00:39:42,366 --> 00:39:44,166
+that the Touch ID
+was really used,
+
+
+752
+00:39:44,426 --> 00:39:48,046
+and you can use this information
+
+
+753
+00:39:48,436 --> 00:39:50,976
+to change the behavior
+of your application.
+
+
+754
+00:39:52,186 --> 00:39:53,986
+In case that this fails,
+
+
+755
+00:39:54,116 --> 00:39:55,956
+you have to check
+for the error codes.
+
+
+756
+00:39:56,596 --> 00:40:01,656
+And you have to check if user
+used the enter password button,
+
+
+757
+00:40:02,066 --> 00:40:04,856
+and react by showing your own UI
+
+
+758
+00:40:05,266 --> 00:40:08,006
+with your own password
+for back mechanism.
+
+
+759
+00:40:08,406 --> 00:40:13,786
+And, of course, the cancel has
+to be processed the same way.
+
+
+760
+00:40:14,016 --> 00:40:17,546
+So, this is how it looks
+from the source code.
+
+
+761
+00:40:17,836 --> 00:40:24,506
+So, let's see a short demo,
+which will show the Keychain
+
+
+762
+00:40:25,056 --> 00:40:28,736
+and Touch ID on a real phone.
+
+
+763
+00:40:29,606 --> 00:40:32,866
+So, here we have a
+Keychain demo application.
+
+
+764
+00:40:33,636 --> 00:40:36,326
+This demo application
+will be-the sources
+
+
+765
+00:40:36,326 --> 00:40:40,076
+for the demo application will
+be available after this session,
+
+
+766
+00:40:40,076 --> 00:40:43,376
+so you can try it and you
+can experiment with that.
+
+
+767
+00:40:44,216 --> 00:40:45,916
+And let me show the features.
+
+
+768
+00:40:46,996 --> 00:40:49,136
+It's really very simple.
+
+
+769
+00:40:49,426 --> 00:40:53,316
+For the Keychain, I have
+just four functions here
+
+
+770
+00:40:53,316 --> 00:40:54,106
+which I can try.
+
+
+771
+00:40:54,696 --> 00:40:57,536
+So, let me start
+with adding the item,
+
+
+772
+00:40:57,916 --> 00:41:02,306
+and by adding the item using
+secItemAdd, I created an item
+
+
+773
+00:41:02,516 --> 00:41:04,266
+which is protected by ACL.
+
+
+774
+00:41:05,126 --> 00:41:08,896
+And I used exactly the same code
+as I was showing in the slide.
+
+
+775
+00:41:09,806 --> 00:41:14,996
+And to read that item, I can
+ask for the secCopyItemMatching
+
+
+776
+00:41:14,996 --> 00:41:17,046
+for the items, and
+I am presented
+
+
+777
+00:41:17,046 --> 00:41:19,216
+by the Touch ID user interface.
+
+
+778
+00:41:19,376 --> 00:41:22,766
+So, let me try, for
+example, a wrong finger,
+
+
+779
+00:41:22,846 --> 00:41:25,306
+to see how the operation
+looks like when it fails.
+
+
+780
+00:41:26,006 --> 00:41:27,426
+So, this is not an
+enrolled finger,
+
+
+781
+00:41:27,426 --> 00:41:29,446
+so it asks me to try again.
+
+
+782
+00:41:29,886 --> 00:41:33,806
+And I will use an enrolled
+finger to get the secret back.
+
+
+783
+00:41:34,616 --> 00:41:37,616
+And I got the secret which
+I stored using secItemAdd,
+
+
+784
+00:41:38,506 --> 00:41:40,266
+so I want to update the secret.
+
+
+785
+00:41:40,826 --> 00:41:44,426
+And because the item is there,
+I will be calling the update,
+
+
+786
+00:41:44,766 --> 00:41:48,076
+I am again asked for
+Touch ID or passcode.
+
+
+787
+00:41:48,546 --> 00:41:51,016
+And the message is changed here,
+
+
+788
+00:41:51,016 --> 00:41:54,776
+so I am informing the user
+what's actually going on.
+
+
+789
+00:41:55,396 --> 00:41:58,686
+So, I will use again a correct
+finger to update the item,
+
+
+790
+00:41:59,256 --> 00:42:02,426
+and to check that, I will
+do this operation again,
+
+
+791
+00:42:02,426 --> 00:42:06,416
+but this time I decided
+that I want to use passcode.
+
+
+792
+00:42:06,716 --> 00:42:08,426
+So, I will enter the passcode.
+
+
+793
+00:42:08,996 --> 00:42:12,526
+And as you can see, the
+passcode is also able
+
+
+794
+00:42:12,526 --> 00:42:16,146
+to decrypt your item and
+return it back to you.
+
+
+795
+00:42:16,616 --> 00:42:19,266
+So, it's very simple from
+the developer's perspective,
+
+
+796
+00:42:19,626 --> 00:42:22,776
+and it's very simple and
+natural from user perspective,
+
+
+797
+00:42:22,776 --> 00:42:26,146
+because users are used to
+similar screens already
+
+
+798
+00:42:26,516 --> 00:42:30,086
+from the payments for app store.
+
+
+799
+00:42:32,356 --> 00:42:36,356
+For LocalAuthentication,
+we are just two functions.
+
+
+800
+00:42:36,356 --> 00:42:39,606
+One is canEvaluatePolicy, and
+the result will be, of course,
+
+
+801
+00:42:40,106 --> 00:42:42,316
+success because you
+saw that I am enrolled
+
+
+802
+00:42:42,456 --> 00:42:43,526
+and everything is working.
+
+
+803
+00:42:44,206 --> 00:42:50,176
+And policy evaluation actually
+shows the user interface,
+
+
+804
+00:42:50,896 --> 00:42:52,766
+which contains enter
+password and cancel.
+
+
+805
+00:42:53,116 --> 00:42:57,526
+So first of all, I want to
+see how it works successfully.
+
+
+806
+00:42:58,006 --> 00:43:02,496
+And I can try also to
+press the enter password.
+
+
+807
+00:43:02,956 --> 00:43:05,146
+And here, I don't see
+any user interface,
+
+
+808
+00:43:05,146 --> 00:43:06,346
+because the user interface has
+
+
+809
+00:43:06,346 --> 00:43:08,056
+to be provided by
+our application.
+
+
+810
+00:43:08,376 --> 00:43:12,566
+What I see is an error
+which tells the application
+
+
+811
+00:43:12,606 --> 00:43:16,106
+to show its own fallback
+mechanism and to take care
+
+
+812
+00:43:16,106 --> 00:43:17,416
+of the backup mechanism.
+
+
+813
+00:43:18,256 --> 00:43:21,326
+So, this is all about the APIs.
+
+
+814
+00:43:21,326 --> 00:43:26,136
+I have just a couple,
+few things, as a summary.
+
+
+815
+00:43:26,676 --> 00:43:29,616
+Any time you need to
+store a user secret,
+
+
+816
+00:43:30,506 --> 00:43:31,926
+you should use Keychain.
+
+
+817
+00:43:31,926 --> 00:43:34,756
+The Keychain is here for
+user secrets and keys,
+
+
+818
+00:43:35,186 --> 00:43:38,986
+and it's really operating
+system protected database,
+
+
+819
+00:43:39,276 --> 00:43:41,706
+which you should
+use for any secrets,
+
+
+820
+00:43:42,496 --> 00:43:44,826
+and it has Secure
+enclave protection.
+
+
+821
+00:43:44,826 --> 00:43:47,456
+So, it's the highest
+security you can achieve.
+
+
+822
+00:43:48,556 --> 00:43:51,466
+We have also a couple
+of new features,
+
+
+823
+00:43:51,796 --> 00:43:53,706
+which we added in this release.
+
+
+824
+00:43:54,536 --> 00:43:58,096
+And you can use the
+new accessibility class
+
+
+825
+00:43:59,136 --> 00:44:03,156
+to protect your items, and
+to delete your items in case
+
+
+826
+00:44:03,276 --> 00:44:05,596
+that the passcode is
+removed on the device.
+
+
+827
+00:44:06,476 --> 00:44:11,426
+We have also the new
+Keychain item ACL mechanism,
+
+
+828
+00:44:12,176 --> 00:44:15,556
+which allows you to define what
+authentication has to happen
+
+
+829
+00:44:15,556 --> 00:44:17,826
+when you are accessing
+your Keychain items.
+
+
+830
+00:44:18,196 --> 00:44:21,276
+And you can use it currently
+with Touch ID and passcode
+
+
+831
+00:44:21,426 --> 00:44:23,196
+to protect your Keychain items.
+
+
+832
+00:44:24,246 --> 00:44:27,186
+And we also have a new
+LocalAuthentication framework,
+
+
+833
+00:44:27,906 --> 00:44:32,036
+which allows you to start the
+Touch ID operation directly
+
+
+834
+00:44:32,036 --> 00:44:33,116
+from your application.
+
+
+835
+00:44:34,166 --> 00:44:36,856
+And to get more information
+about this,
+
+
+836
+00:44:38,076 --> 00:44:40,736
+you can send your
+e-mails to Paul Danbold,
+
+
+837
+00:44:41,186 --> 00:44:43,206
+or you should check
+the documentation.
+
+
+838
+00:44:43,206 --> 00:44:46,166
+There will be documentation
+describing LocalAuthentication
+
+
+839
+00:44:46,166 --> 00:44:47,116
+and the new changes.
+
+
+840
+00:44:47,856 --> 00:44:50,726
+And I suggest you to read
+the Security White Paper,
+
+
+841
+00:44:50,726 --> 00:44:53,576
+because this is really a
+great source of information
+
+
+842
+00:44:53,576 --> 00:44:56,086
+about Secure enclave
+and security in general.
+
+
+843
+00:44:56,086 --> 00:44:59,216
+And it will tell you also
+how Touch ID is done.
+
+
+844
+00:45:00,066 --> 00:45:00,876
+And, of course,
+
+
+845
+00:45:00,876 --> 00:45:05,366
+Apple Development Forums are
+the great source of information,
+
+
+846
+00:45:05,456 --> 00:45:09,366
+so ask your questions there.
+
+
+847
+00:45:09,566 --> 00:45:14,086
+We have also one related session
+tomorrow, it's the User Privacy
+
+
+848
+00:45:14,086 --> 00:45:17,306
+in iOS and OS X, so you
+might find this interesting.
+
+
+849
+00:45:17,946 --> 00:45:19,736
+So, tomorrow, here in Nob Hill.
+
+
+850
+00:45:20,016 --> 00:45:21,026
+Thank you very much.
+
+
+851
+00:45:21,286 --> 00:45:22,376
+I'll be looking forward
+
+
+852
+00:45:22,376 --> 00:45:23,736
+to meeting you in
+the security labs.
+
+
+853
+00:45:24,286 --> 00:45:25,606
+And yeah, see you there.
+
+
+854
+00:45:26,516 --> 00:45:29,470
+[ Applause ]
+

@@ -1,0 +1,6355 @@
+1
+00:00:12,416 --> 00:00:13,016
+>> All right.
+
+
+2
+00:00:13,016 --> 00:00:14,596
+Good morning everyone.
+
+
+3
+00:00:14,596 --> 00:00:15,746
+Welcome to this morning's
+session.
+
+
+4
+00:00:16,116 --> 00:00:17,036
+My name is Mark Miller.
+
+
+5
+00:00:17,126 --> 00:00:19,926
+I'm an iTunes Engineering
+Manager on the store,
+
+
+6
+00:00:20,696 --> 00:00:21,826
+and we're going to
+be talking about
+
+
+7
+00:00:21,826 --> 00:00:25,776
+"Affiliate Tools
+for App Developers."
+
+
+8
+00:00:26,826 --> 00:00:30,686
+Now, just in case anybody is new
+to the program, or unfamiliar
+
+
+9
+00:00:30,686 --> 00:00:33,476
+with what it's for, we're going
+to go over a quick overview
+
+
+10
+00:00:33,506 --> 00:00:36,036
+of how it works,
+what its purpose is
+
+
+11
+00:00:36,236 --> 00:00:37,156
+and how you can use it.
+
+
+12
+00:00:37,246 --> 00:00:41,236
+It's also been a couple years
+since we've last presented here,
+
+
+13
+00:00:41,516 --> 00:00:44,066
+so we'll talk about
+what's new in the program
+
+
+14
+00:00:44,066 --> 00:00:46,406
+and what new things
+you can do with it.
+
+
+15
+00:00:46,756 --> 00:00:50,256
+And finally, there's going
+to be a deep dive on tools
+
+
+16
+00:00:50,256 --> 00:00:57,676
+and services that you can use
+to interact with the program.
+
+
+17
+00:00:58,236 --> 00:01:00,096
+So first off, we kind of
+need a cast of characters.
+
+
+18
+00:01:00,196 --> 00:01:02,646
+Who's involved with
+the affiliate program
+
+
+19
+00:01:02,646 --> 00:01:04,306
+and how do they interact
+with each other?
+
+
+20
+00:01:05,296 --> 00:01:07,906
+As you might guess, they
+are the customer, yours,
+
+
+21
+00:01:08,036 --> 00:01:12,726
+and the iTunes Stores, and they
+are talking to you and talking
+
+
+22
+00:01:12,896 --> 00:01:15,216
+to the iTunes Store,
+but what might not be
+
+
+23
+00:01:15,216 --> 00:01:19,956
+so obvious is behind the scenes,
+there's an affiliate network.
+
+
+24
+00:01:20,516 --> 00:01:23,186
+And the affiliate network
+mediates the interaction
+
+
+25
+00:01:23,496 --> 00:01:26,026
+between you and the store.
+
+
+26
+00:01:26,126 --> 00:01:29,006
+And the affiliate network
+is where you go to sign up,
+
+
+27
+00:01:29,476 --> 00:01:35,036
+set up payments, manage and
+track your campaign performance
+
+
+28
+00:01:35,476 --> 00:01:39,266
+and go to check on any
+support issues you have.
+
+
+29
+00:01:41,816 --> 00:01:44,126
+So what's it for?
+
+
+30
+00:01:44,426 --> 00:01:45,976
+The key thing that
+you're trying to do
+
+
+31
+00:01:45,976 --> 00:01:51,006
+with the affiliate program
+is to drive customers
+
+
+32
+00:01:51,386 --> 00:01:53,386
+to your apps and other content.
+
+
+33
+00:01:53,716 --> 00:01:55,196
+So you might have a game,
+
+
+34
+00:01:55,196 --> 00:01:57,866
+and perhaps you've
+released a sequel to it.
+
+
+35
+00:01:58,246 --> 00:02:00,726
+You want to promote
+that app, and you can do
+
+
+36
+00:02:00,726 --> 00:02:02,116
+that using the affiliate
+program.
+
+
+37
+00:02:02,416 --> 00:02:05,376
+Similarly, you might
+already have a website used
+
+
+38
+00:02:05,376 --> 00:02:08,636
+to promote your apps, and
+you can affiliate those links
+
+
+39
+00:02:08,886 --> 00:02:10,306
+and start getting the benefits
+
+
+40
+00:02:10,306 --> 00:02:11,296
+of the affiliate
+program that way.
+
+
+41
+00:02:12,166 --> 00:02:16,026
+But it doesn't have to be your
+own apps that you're promoting.
+
+
+42
+00:02:16,276 --> 00:02:19,416
+You can promote other
+app developers' apps
+
+
+43
+00:02:19,566 --> 00:02:22,296
+and other content, and this is
+pretty much all of the content
+
+
+44
+00:02:22,296 --> 00:02:24,386
+on the Music Store -
+excuse me, on the store.
+
+
+45
+00:02:24,756 --> 00:02:30,026
+So that's music, movies,
+TV shows, books, podcasts,
+
+
+46
+00:02:30,806 --> 00:02:34,326
+anything you can think of
+is supported by the program.
+
+
+47
+00:02:35,986 --> 00:02:41,406
+And the Use Case here is
+- there's pretty much -
+
+
+48
+00:02:41,406 --> 00:02:46,666
+there's a wide Use Case for
+what you can do with it.
+
+
+49
+00:02:46,926 --> 00:02:50,626
+You might have a soundtrack
+that's related to your game,
+
+
+50
+00:02:51,246 --> 00:02:52,696
+and you can promote that.
+
+
+51
+00:02:52,866 --> 00:02:55,926
+Or if you're a productivity
+app, and there's a similar app
+
+
+52
+00:02:56,226 --> 00:03:00,396
+that works well with it,
+you can promote that from
+
+
+53
+00:03:00,396 --> 00:03:01,956
+within the app or
+on your website.
+
+
+54
+00:03:02,416 --> 00:03:07,496
+Most of all, you are trying to
+connect your users with content
+
+
+55
+00:03:07,496 --> 00:03:10,026
+that they're going
+to want to download.
+
+
+56
+00:03:10,276 --> 00:03:12,326
+They're - you're interrupting
+their workflow a little bit
+
+
+57
+00:03:12,416 --> 00:03:14,806
+to send them to the store,
+so make sure it counts.
+
+
+58
+00:03:15,006 --> 00:03:18,486
+Make sure that link is relevant
+to what they're interested in
+
+
+59
+00:03:18,866 --> 00:03:23,986
+and something that they're
+going to want to buy.
+
+
+60
+00:03:24,206 --> 00:03:28,206
+Now, the key to the
+program is that all
+
+
+61
+00:03:29,156 --> 00:03:31,796
+of your links need a
+little bit of data on them
+
+
+62
+00:03:32,116 --> 00:03:33,416
+to function correctly.
+
+
+63
+00:03:33,656 --> 00:03:35,266
+So you add a bit
+of affiliate data
+
+
+64
+00:03:35,266 --> 00:03:38,446
+to an existing iTunes
+Store link, and that's it.
+
+
+65
+00:03:38,446 --> 00:03:39,996
+You're ready to go with
+the affiliate program.
+
+
+66
+00:03:41,196 --> 00:03:45,066
+In return for marketing
+and promoting the iTunes
+
+
+67
+00:03:45,066 --> 00:03:46,806
+and App Stores, you
+earn a commission
+
+
+68
+00:03:46,806 --> 00:03:49,656
+on sales generated
+from that referral.
+
+
+69
+00:03:51,716 --> 00:03:55,806
+For you, you get the benefit
+of tracking the effectiveness
+
+
+70
+00:03:55,806 --> 00:03:57,596
+of your marketing
+with our tools.
+
+
+71
+00:03:58,296 --> 00:04:03,886
+And best of all, this works
+on both web and in your app,
+
+
+72
+00:04:04,296 --> 00:04:07,076
+so there's no reason
+to limit the usage
+
+
+73
+00:04:07,296 --> 00:04:09,886
+of the affiliate
+program to the web.
+
+
+74
+00:04:09,886 --> 00:04:10,976
+You can also do it
+within your app.
+
+
+75
+00:04:17,326 --> 00:04:23,376
+Now, under the covers, those
+links are going to be clicked on
+
+
+76
+00:04:23,376 --> 00:04:26,506
+or tapped on in iOS, and the
+data from the URL is going
+
+
+77
+00:04:26,506 --> 00:04:29,606
+to be copied into a cookie,
+and that cookie lives
+
+
+78
+00:04:29,606 --> 00:04:31,876
+for 24 hours on the
+user's device.
+
+
+79
+00:04:32,656 --> 00:04:34,236
+And it's important
+that you realize
+
+
+80
+00:04:34,236 --> 00:04:35,866
+that the data is
+tracking the cookie
+
+
+81
+00:04:35,866 --> 00:04:37,366
+and not somewhere on the server.
+
+
+82
+00:04:37,666 --> 00:04:41,276
+This means that if the user
+clicks on one of your links
+
+
+83
+00:04:41,636 --> 00:04:44,536
+and then moves to
+her iPhone or iPad
+
+
+84
+00:04:44,586 --> 00:04:50,296
+to continue browsing the
+store, that any purchase made
+
+
+85
+00:04:50,296 --> 00:04:52,476
+on the device will
+not credit to you.
+
+
+86
+00:04:52,866 --> 00:04:59,356
+So it's the same device that the
+tap happens on and the purchase.
+
+
+87
+00:04:59,666 --> 00:05:03,576
+Now, once the purchase
+happens, the data is copied
+
+
+88
+00:05:03,576 --> 00:05:07,716
+into the database and
+the database is synced
+
+
+89
+00:05:07,716 --> 00:05:13,486
+to the affiliate network,
+and that's how you get paid.
+
+
+90
+00:05:13,676 --> 00:05:15,356
+Now the terms are really great.
+
+
+91
+00:05:15,926 --> 00:05:19,086
+You earn 7 percent
+commission on all sales.
+
+
+92
+00:05:19,756 --> 00:05:22,666
+That means that if you link
+to, for example, an app,
+
+
+93
+00:05:22,666 --> 00:05:25,786
+and the user winds up buying
+another app, you get credited.
+
+
+94
+00:05:26,346 --> 00:05:30,306
+If the user actually leaves
+the App Store and goes
+
+
+95
+00:05:30,306 --> 00:05:33,196
+to buy something on the Music
+Store, you also get credited.
+
+
+96
+00:05:33,196 --> 00:05:36,776
+And it's 7 percent for
+all sales within 24 hours.
+
+
+97
+00:05:37,346 --> 00:05:40,606
+Now this is kind of important.
+
+
+98
+00:05:40,946 --> 00:05:44,136
+It's a case of last one wins.
+
+
+99
+00:05:44,256 --> 00:05:47,876
+You are operating in
+an ecosystem of a lot
+
+
+100
+00:05:47,876 --> 00:05:51,966
+of other developers, and it's
+whoever is the most recent
+
+
+101
+00:05:52,226 --> 00:05:54,786
+referral gets the
+credit for the sale.
+
+
+102
+00:05:55,326 --> 00:05:57,596
+So if some - if a
+user taps on your link
+
+
+103
+00:05:57,596 --> 00:06:00,486
+and then three hours
+later taps on another link
+
+
+104
+00:06:00,736 --> 00:06:04,336
+from another affiliate,
+that affiliate gets credited
+
+
+105
+00:06:04,496 --> 00:06:06,826
+for the next 24 hours'
+worth of sales.
+
+
+106
+00:06:07,466 --> 00:06:11,916
+Now best of all, this
+is a seamless experience
+
+
+107
+00:06:12,046 --> 00:06:13,586
+from the point of
+view of your users.
+
+
+108
+00:06:13,906 --> 00:06:16,906
+An affiliate link
+looks and acts just
+
+
+109
+00:06:16,906 --> 00:06:18,336
+like a regular iTunes
+Store link.
+
+
+110
+00:06:19,336 --> 00:06:21,986
+So here, we've got an
+example of "Cut the Rope,"
+
+
+111
+00:06:22,366 --> 00:06:25,376
+and they're promoting the sequel
+to their app, "Cut the Rope 2."
+
+
+112
+00:06:25,376 --> 00:06:29,406
+So when the user taps on Get
+it Now, an affiliate link,
+
+
+113
+00:06:30,386 --> 00:06:32,986
+everything acts just
+as you expect.
+
+
+114
+00:06:32,986 --> 00:06:37,476
+The store carousels in,
+and they can preview, buy,
+
+
+115
+00:06:37,696 --> 00:06:38,846
+look at reviews, look
+
+
+116
+00:06:38,846 --> 00:06:40,496
+at screenshots and
+browse the store.
+
+
+117
+00:06:41,166 --> 00:06:44,966
+And again, after they've
+clicked this, it's not just apps
+
+
+118
+00:06:44,966 --> 00:06:46,936
+that are credited
+to that affiliate.
+
+
+119
+00:06:47,246 --> 00:06:49,976
+It's music, movies,
+TV shows, all of it.
+
+
+120
+00:06:49,976 --> 00:06:56,156
+So that's the affiliate
+program in a nutshell.
+
+
+121
+00:06:56,516 --> 00:07:00,746
+Let's talk about what's happened
+in the past couple years.
+
+
+122
+00:07:00,746 --> 00:07:05,006
+Most importantly, we have had
+a massive territory expansion.
+
+
+123
+00:07:05,496 --> 00:07:06,626
+This was the state of the world,
+
+
+124
+00:07:06,906 --> 00:07:09,566
+or at least the affiliate
+world in 2012.
+
+
+125
+00:07:10,066 --> 00:07:11,396
+We were on three continents,
+
+
+126
+00:07:11,866 --> 00:07:15,186
+and we had program
+support in 45 countries.
+
+
+127
+00:07:16,386 --> 00:07:23,276
+Since then, we have
+introduced the affiliate program
+
+
+128
+00:07:23,276 --> 00:07:25,586
+to 147 countries.
+
+
+129
+00:07:26,076 --> 00:07:28,246
+That's a 3X expansion, and 50
+
+
+130
+00:07:28,246 --> 00:07:30,686
+of those countries
+happened in 2014 alone.
+
+
+131
+00:07:34,896 --> 00:07:37,296
+Now, that's pretty great.
+
+
+132
+00:07:37,296 --> 00:07:42,346
+You're promoting your apps
+and other content worldwide
+
+
+133
+00:07:43,016 --> 00:07:46,506
+with the affiliate
+program, but best of all,
+
+
+134
+00:07:48,216 --> 00:07:51,736
+you only need one network
+to work in the entire world.
+
+
+135
+00:07:52,186 --> 00:07:54,336
+If you're familiar with the
+program from a couple years ago,
+
+
+136
+00:07:54,636 --> 00:07:58,666
+you had to sign up with one
+program to work in the Americas,
+
+
+137
+00:07:58,986 --> 00:08:01,756
+a second program to work in
+Europe, and a third program
+
+
+138
+00:08:01,756 --> 00:08:04,196
+to work in Australia
+and New Zealand.
+
+
+139
+00:08:04,346 --> 00:08:08,036
+Nowadays, one network
+gets you worldwide access
+
+
+140
+00:08:08,096 --> 00:08:09,886
+to 147 countries.
+
+
+141
+00:08:10,106 --> 00:08:11,026
+This is really huge.
+
+
+142
+00:08:15,776 --> 00:08:20,176
+Now that means one sign
+up, one payment set up,
+
+
+143
+00:08:20,656 --> 00:08:22,766
+all your tax information,
+all that sort
+
+
+144
+00:08:22,766 --> 00:08:25,866
+of financial transaction stuff
+that you need to get started
+
+
+145
+00:08:25,866 --> 00:08:27,706
+with the program,
+you do that once
+
+
+146
+00:08:28,086 --> 00:08:30,126
+and you're working
+across the globe.
+
+
+147
+00:08:30,686 --> 00:08:35,686
+Even better, we have a
+common link structure
+
+
+148
+00:08:35,785 --> 00:08:36,796
+for the entire world.
+
+
+149
+00:08:37,566 --> 00:08:41,515
+Now this is what a normal,
+
+
+150
+00:08:41,515 --> 00:08:43,546
+unaffiliated iTunes
+Store link looks like.
+
+
+151
+00:08:43,916 --> 00:08:46,656
+You can see that it's
+in the U.S. storefront.
+
+
+152
+00:08:46,656 --> 00:08:48,216
+It's an app called "iMovie"
+
+
+153
+00:08:48,586 --> 00:08:51,176
+and there's the iTunes
+Store content ID at the end.
+
+
+154
+00:08:51,286 --> 00:08:55,016
+It used to be that if you
+wanted to add affiliate data
+
+
+155
+00:08:55,066 --> 00:08:56,966
+to this URL, you would
+end up with something
+
+
+156
+00:08:56,966 --> 00:08:59,936
+like these two options,
+and you would have to do it
+
+
+157
+00:08:59,936 --> 00:09:01,526
+in a region specific manner.
+
+
+158
+00:09:01,886 --> 00:09:04,436
+So the URL on top
+was for the Americas.
+
+
+159
+00:09:04,436 --> 00:09:06,466
+The URL on the bottom
+was for Europe.
+
+
+160
+00:09:07,156 --> 00:09:09,266
+These URL's are messy.
+
+
+161
+00:09:09,566 --> 00:09:10,616
+They're confusing.
+
+
+162
+00:09:10,936 --> 00:09:12,116
+They're even suspicious.
+
+
+163
+00:09:12,566 --> 00:09:16,486
+If a user were to
+look at the link
+
+
+164
+00:09:16,486 --> 00:09:17,796
+that you're calling
+an iTunes link
+
+
+165
+00:09:18,076 --> 00:09:21,106
+and examine it a little more
+closely, they would say, "Oh,
+
+
+166
+00:09:21,106 --> 00:09:23,446
+I'm, this is, I'm not sure
+what I'm clicking on anymore."
+
+
+167
+00:09:23,446 --> 00:09:24,896
+They might be turned
+away by that.
+
+
+168
+00:09:26,236 --> 00:09:28,306
+So no more of that.
+
+
+169
+00:09:28,516 --> 00:09:32,916
+Nowadays, we take an
+existing store link
+
+
+170
+00:09:33,276 --> 00:09:34,936
+and we add just a
+small bit of data
+
+
+171
+00:09:35,106 --> 00:09:37,666
+and the host is still the
+same: iTunes.apple.com.
+
+
+172
+00:09:38,246 --> 00:09:40,686
+So what we're adding here
+
+
+173
+00:09:40,686 --> 00:09:45,906
+to the base URL is a small
+bit of affiliate data.
+
+
+174
+00:09:46,536 --> 00:09:49,716
+The first part of that is
+the AT Query parameter.
+
+
+175
+00:09:49,856 --> 00:09:51,416
+This stands for affiliate token,
+
+
+176
+00:09:51,696 --> 00:09:54,876
+and the value is
+essentially your user ID
+
+
+177
+00:09:54,976 --> 00:09:56,156
+within the affiliate program.
+
+
+178
+00:09:56,336 --> 00:10:00,796
+This is how we identify you,
+and this is how you get credited
+
+
+179
+00:10:00,856 --> 00:10:03,366
+for purchases made after
+a user taps on your link.
+
+
+180
+00:10:03,366 --> 00:10:04,966
+So it's very important
+to get this one right.
+
+
+181
+00:10:05,046 --> 00:10:10,046
+Also, in the affiliate data,
+is the CT Query parameter,
+
+
+182
+00:10:10,316 --> 00:10:12,266
+and CT stands for
+campaign token.
+
+
+183
+00:10:12,876 --> 00:10:15,326
+And this is an optional query
+parameter so you don't have
+
+
+184
+00:10:15,326 --> 00:10:17,646
+to put it on, but
+you can do a lot
+
+
+185
+00:10:17,646 --> 00:10:19,356
+of really important
+things with it.
+
+
+186
+00:10:19,766 --> 00:10:23,066
+If you have a campaign that
+you want to track separately
+
+
+187
+00:10:23,066 --> 00:10:24,526
+from the rest of your
+marketing efforts,
+
+
+188
+00:10:24,766 --> 00:10:26,806
+you can use this
+campaign, and it will show
+
+
+189
+00:10:26,806 --> 00:10:29,016
+up differently in our UIs.
+
+
+190
+00:10:30,096 --> 00:10:33,516
+So for example, you might have
+a campaign for your website.
+
+
+191
+00:10:33,666 --> 00:10:35,896
+You might have a campaign,
+a separate campaign
+
+
+192
+00:10:35,896 --> 00:10:39,026
+for the interior
+pages of your website.
+
+
+193
+00:10:39,026 --> 00:10:40,016
+You could have campaigns
+
+
+194
+00:10:40,016 --> 00:10:42,056
+for each email blast
+that you send out.
+
+
+195
+00:10:42,456 --> 00:10:44,276
+If you're doing online
+advertising
+
+
+196
+00:10:44,276 --> 00:10:45,296
+and you're buying keywords,
+
+
+197
+00:10:45,536 --> 00:10:47,436
+you can have a campaign
+for each of those.
+
+
+198
+00:10:47,826 --> 00:10:51,486
+You could have campaigns
+for links within your apps.
+
+
+199
+00:10:51,666 --> 00:10:55,546
+You can do a lot of analysis
+to find out what works
+
+
+200
+00:10:55,546 --> 00:10:57,746
+and what doesn't with
+your marketing efforts.
+
+
+201
+00:10:59,126 --> 00:11:02,916
+Now it's important to note
+one thing about these URLs.
+
+
+202
+00:11:03,376 --> 00:11:06,096
+I said that there's one
+link structure worldwide,
+
+
+203
+00:11:06,636 --> 00:11:11,046
+but content is not necessarily
+available around the world.
+
+
+204
+00:11:11,606 --> 00:11:13,866
+The situation for
+apps is pretty easy.
+
+
+205
+00:11:14,116 --> 00:11:16,096
+Most apps are available
+in every country.
+
+
+206
+00:11:16,416 --> 00:11:19,356
+But if you're linking to
+music or movies or books,
+
+
+207
+00:11:19,676 --> 00:11:23,326
+the rights may not carry over
+from one storefront to another,
+
+
+208
+00:11:23,476 --> 00:11:25,416
+so you need to, if you're
+trying to send your user
+
+
+209
+00:11:25,416 --> 00:11:28,786
+to a particular piece of
+content, it's best to check
+
+
+210
+00:11:28,786 --> 00:11:31,566
+if it's available in their
+storefront before you present
+
+
+211
+00:11:31,566 --> 00:11:34,976
+them with that link.
+
+
+212
+00:11:35,886 --> 00:11:39,256
+Another common mistake that
+you make when first interacting
+
+
+213
+00:11:39,256 --> 00:11:42,146
+with the program is getting
+your query strings wrong.
+
+
+214
+00:11:42,306 --> 00:11:47,766
+The URLs are fairly simple,
+but there's a few gotcha's
+
+
+215
+00:11:47,766 --> 00:11:48,766
+that you need to avoid.
+
+
+216
+00:11:49,566 --> 00:11:52,936
+The first thing to make
+sure of is to identify
+
+
+217
+00:11:52,936 --> 00:11:55,056
+if there's already
+query string on the URL.
+
+
+218
+00:11:55,056 --> 00:11:57,046
+Now the query string, the start
+
+
+219
+00:11:57,046 --> 00:12:00,076
+of the query string is
+identified by the question mark,
+
+
+220
+00:12:00,286 --> 00:12:01,556
+and if there's no question mark,
+
+
+221
+00:12:01,996 --> 00:12:05,266
+and you blindly append your
+affiliate data using ampersand,
+
+
+222
+00:12:05,696 --> 00:12:08,206
+that URL probably won't
+even load for your user.
+
+
+223
+00:12:08,206 --> 00:12:11,056
+They're just going to have
+an error, so don't do that.
+
+
+224
+00:12:11,056 --> 00:12:13,696
+What you want to do is
+check for the question mark,
+
+
+225
+00:12:13,976 --> 00:12:17,566
+and if it's not present on the
+string, add the question mark
+
+
+226
+00:12:17,566 --> 00:12:19,136
+and then your affiliate data.
+
+
+227
+00:12:20,026 --> 00:12:22,436
+Now the reverse is
+also a gotcha,
+
+
+228
+00:12:22,576 --> 00:12:23,886
+and this is just as important.
+
+
+229
+00:12:24,696 --> 00:12:27,726
+If there's already a
+question mark in the URL,
+
+
+230
+00:12:28,246 --> 00:12:29,976
+that means that there's
+an existing query string.
+
+
+231
+00:12:30,366 --> 00:12:33,296
+You need to use the ampersand
+as a delimiter instead
+
+
+232
+00:12:33,296 --> 00:12:34,556
+of using another question mark.
+
+
+233
+00:12:34,806 --> 00:12:37,776
+If you click on - if
+a user clicks on a URL
+
+
+234
+00:12:37,776 --> 00:12:39,516
+with two question marks
+in it, it's not going
+
+
+235
+00:12:39,516 --> 00:12:41,066
+to parse correctly
+and you're not going
+
+
+236
+00:12:41,066 --> 00:12:44,066
+to be credited with
+the referral.
+
+
+237
+00:12:44,686 --> 00:12:48,186
+So the key thing is look
+for the question mark,
+
+
+238
+00:12:48,186 --> 00:12:50,236
+and if it's already
+there, use ampersand
+
+
+239
+00:12:50,236 --> 00:12:51,976
+to attach your affiliate data.
+
+
+240
+00:13:00,126 --> 00:13:02,166
+Now I mentioned one network.
+
+
+241
+00:13:02,556 --> 00:13:06,036
+One of the key benefits of
+having one network worldwide is
+
+
+242
+00:13:06,036 --> 00:13:09,236
+that you can have a
+global unified view
+
+
+243
+00:13:09,676 --> 00:13:12,016
+of how your marketing is going.
+
+
+244
+00:13:12,796 --> 00:13:15,006
+Now this is a dashboard
+that shows you
+
+
+245
+00:13:15,276 --> 00:13:18,286
+in real time who's
+clicking and what,
+
+
+246
+00:13:18,676 --> 00:13:21,086
+what links they're clicking on
+- excuse me, not who's clicking
+
+
+247
+00:13:21,086 --> 00:13:23,216
+but the type of links
+that they're clicking on.
+
+
+248
+00:13:24,426 --> 00:13:27,416
+So the first thing you'll
+notice about this UI is
+
+
+249
+00:13:27,416 --> 00:13:31,536
+that you can track clicks
+over time and you can zoom
+
+
+250
+00:13:31,536 --> 00:13:35,846
+in from a year's worth of data
+all the way down to a day.
+
+
+251
+00:13:35,846 --> 00:13:40,256
+And again, these graphs are
+updating in near real time.
+
+
+252
+00:13:40,506 --> 00:13:44,346
+So in this case, we're looking
+at the month-over-month view,
+
+
+253
+00:13:44,806 --> 00:13:47,156
+and our current month
+is plotted in orange
+
+
+254
+00:13:47,466 --> 00:13:49,776
+against the previous
+months' performance.
+
+
+255
+00:13:50,346 --> 00:13:52,626
+So you can see if your
+graph is trending down
+
+
+256
+00:13:53,086 --> 00:13:57,226
+or if it's different
+compared month over month,
+
+
+257
+00:13:57,486 --> 00:13:59,926
+and adjust your marketing
+campaign accordingly.
+
+
+258
+00:14:01,466 --> 00:14:04,846
+Also of note is that the
+conversion rate is mentioned
+
+
+259
+00:14:04,846 --> 00:14:09,426
+here, and you should pay
+close attention to this value.
+
+
+260
+00:14:09,856 --> 00:14:12,266
+If the conversion
+rate starts diving,
+
+
+261
+00:14:12,496 --> 00:14:16,256
+that might represent a problem
+with your marketing efforts.
+
+
+262
+00:14:17,036 --> 00:14:22,196
+Maybe your URLs are not really
+exciting users into buying,
+
+
+263
+00:14:22,526 --> 00:14:24,276
+or maybe there's a
+problem with your links
+
+
+264
+00:14:24,536 --> 00:14:26,226
+and something needs
+investigating.
+
+
+265
+00:14:26,526 --> 00:14:27,766
+So keep an eye on that one.
+
+
+266
+00:14:28,066 --> 00:14:32,966
+Also on the global
+dashboard, you can zoom in
+
+
+267
+00:14:32,966 --> 00:14:34,826
+and get a per country
+view of things.
+
+
+268
+00:14:35,406 --> 00:14:41,176
+The - if you're operating
+in more than one country,
+
+
+269
+00:14:41,456 --> 00:14:44,776
+you can see how well you're
+doing in the U.S. as opposed
+
+
+270
+00:14:44,776 --> 00:14:48,006
+to the UK, or in South
+America or wherever.
+
+
+271
+00:14:48,836 --> 00:14:53,416
+Also, if you are promoting
+more than one type of content -
+
+
+272
+00:14:53,876 --> 00:14:57,016
+so for example, apps and
+books or movies and music -
+
+
+273
+00:14:57,376 --> 00:15:00,996
+you can slice and dice and
+get reports on how each one
+
+
+274
+00:15:00,996 --> 00:15:01,856
+of those is performing.
+
+
+275
+00:15:02,886 --> 00:15:04,806
+So there's a lot
+of rich data here.
+
+
+276
+00:15:05,916 --> 00:15:09,606
+And furthermore, there's
+more utility up at the top.
+
+
+277
+00:15:10,066 --> 00:15:14,006
+You can see additional tools for
+interacting with the program.
+
+
+278
+00:15:14,406 --> 00:15:17,446
+You can get more in-depth
+reports of what's going on.
+
+
+279
+00:15:17,816 --> 00:15:21,356
+You can manage your
+payments and other settings.
+
+
+280
+00:15:21,616 --> 00:15:24,086
+So make sure to check out all
+the options that this provides
+
+
+281
+00:15:24,086 --> 00:15:27,226
+because it's a great way to
+actually see how you're doing
+
+
+282
+00:15:27,226 --> 00:15:28,186
+with your marketing efforts.
+
+
+283
+00:15:28,186 --> 00:15:32,876
+So that's the Global Dashboard.
+
+
+284
+00:15:32,996 --> 00:15:35,556
+It's a single, unified view
+
+
+285
+00:15:36,216 --> 00:15:40,106
+of a single network that's
+operating in 147 countries.
+
+
+286
+00:15:40,276 --> 00:15:42,206
+I can't tell you how
+excited I am about the fact
+
+
+287
+00:15:42,206 --> 00:15:44,796
+that we have one network that
+lets you operate worldwide.
+
+
+288
+00:15:45,036 --> 00:15:48,556
+It's a huge simplification
+of what we used to have
+
+
+289
+00:15:48,556 --> 00:15:50,216
+to do, so very exciting.
+
+
+290
+00:15:50,636 --> 00:15:55,076
+Hopefully, at this point
+you are similarly excited.
+
+
+291
+00:15:55,076 --> 00:15:56,506
+You want to - you're
+ready to go.
+
+
+292
+00:15:56,696 --> 00:16:00,016
+Go sign up with your program,
+and you want to know how next
+
+
+293
+00:16:00,016 --> 00:16:03,976
+to - what the next steps
+are in terms of integrating.
+
+
+294
+00:16:04,776 --> 00:16:08,516
+So for that, we've got a
+Tools and Services section.
+
+
+295
+00:16:08,576 --> 00:16:12,656
+We're going to start
+talking about simple tools
+
+
+296
+00:16:12,656 --> 00:16:13,766
+to get you started quickly.
+
+
+297
+00:16:13,766 --> 00:16:17,056
+These are things that you don't
+need a computer science degree
+
+
+298
+00:16:17,376 --> 00:16:18,196
+to work with.
+
+
+299
+00:16:18,916 --> 00:16:21,846
+It's maybe just a matter
+of creating a couple links
+
+
+300
+00:16:21,846 --> 00:16:23,936
+and adding them to an
+email or to your website
+
+
+301
+00:16:24,076 --> 00:16:25,666
+or somewhere in your app.
+
+
+302
+00:16:25,666 --> 00:16:28,406
+These tools are really
+great for the one-offs,
+
+
+303
+00:16:28,616 --> 00:16:29,806
+the manual sort of set up.
+
+
+304
+00:16:29,806 --> 00:16:32,566
+There's also more
+advanced tools.
+
+
+305
+00:16:32,566 --> 00:16:38,236
+So if you want to find what's
+going on really in the now
+
+
+306
+00:16:38,876 --> 00:16:41,406
+on the store, and promote
+that sort of content,
+
+
+307
+00:16:41,616 --> 00:16:42,706
+these tools will
+let you do that.
+
+
+308
+00:16:43,996 --> 00:16:45,816
+We also provide Smart
+App Banners.
+
+
+309
+00:16:45,976 --> 00:16:49,416
+Smart App Banners allow
+you to promote your app
+
+
+310
+00:16:49,546 --> 00:16:52,936
+from your websites in
+a very seamless way.
+
+
+311
+00:16:53,056 --> 00:16:56,006
+There's a lot of power there,
+and in the right situation,
+
+
+312
+00:16:56,156 --> 00:16:57,506
+can be very, very useful.
+
+
+313
+00:16:58,596 --> 00:17:00,366
+The StoreKit Product Sheet
+
+
+314
+00:17:00,816 --> 00:17:03,666
+and iTunes Radio have been
+recently added to the program,
+
+
+315
+00:17:03,666 --> 00:17:06,276
+and we'll talk about how
+to work with those and how
+
+
+316
+00:17:06,276 --> 00:17:07,955
+to get the most out of that.
+
+
+317
+00:17:08,165 --> 00:17:11,866
+And finally, we'll finish
+with the Collection feature
+
+
+318
+00:17:12,286 --> 00:17:16,715
+that allows you to define
+dynamic playlists for the store.
+
+
+319
+00:17:17,376 --> 00:17:18,556
+This can be really useful
+
+
+320
+00:17:18,965 --> 00:17:22,086
+for customizing content
+for your users.
+
+
+321
+00:17:22,526 --> 00:17:26,586
+Let's get started
+with the simple stuff.
+
+
+322
+00:17:27,175 --> 00:17:29,496
+The simplest of all
+is Link Maker.
+
+
+323
+00:17:30,206 --> 00:17:35,346
+This is a simple search
+box where you can come in
+
+
+324
+00:17:35,346 --> 00:17:40,176
+and type a search term,
+get results and get links.
+
+
+325
+00:17:40,866 --> 00:17:43,196
+Especially if you
+click into Link Maker
+
+
+326
+00:17:43,196 --> 00:17:47,506
+from within the affiliate
+network, your URL that you come
+
+
+327
+00:17:47,506 --> 00:17:49,296
+in with is going to have
+all your affiliate data
+
+
+328
+00:17:49,296 --> 00:17:51,336
+pre-populated so you
+don't need to worry
+
+
+329
+00:17:51,336 --> 00:17:54,266
+about adding the affiliate
+data to the URL itself.
+
+
+330
+00:17:54,596 --> 00:17:57,136
+You don't need to worry
+about question marks
+
+
+331
+00:17:57,136 --> 00:17:58,686
+and ampersands and
+URL encodings.
+
+
+332
+00:17:58,826 --> 00:18:00,716
+It's all dramatically easier.
+
+
+333
+00:18:01,596 --> 00:18:04,986
+So in this case, we're going
+to do a search for Ed Sheeran.
+
+
+334
+00:18:05,226 --> 00:18:09,456
+He's a UK singer/songwriter with
+a lot of awesome great songs,
+
+
+335
+00:18:09,606 --> 00:18:13,746
+and we can see that his
+albums are available
+
+
+336
+00:18:14,216 --> 00:18:18,086
+in the research results,
+and by tapping on one
+
+
+337
+00:18:18,086 --> 00:18:23,416
+of these search results, we
+get a nice pop up of HTML
+
+
+338
+00:18:23,416 --> 00:18:25,976
+that we can drop
+right into a web page.
+
+
+339
+00:18:26,616 --> 00:18:29,956
+Not only that, this
+HTML has a number
+
+
+340
+00:18:29,956 --> 00:18:31,436
+of different options
+for the formatting.
+
+
+341
+00:18:31,686 --> 00:18:34,296
+So this is the small
+format for the Badge.
+
+
+342
+00:18:34,796 --> 00:18:38,626
+If you prefer a large Badge,
+we've got HTML to do that.
+
+
+343
+00:18:39,496 --> 00:18:42,256
+Similarly, if you just want
+to have a raw text link,
+
+
+344
+00:18:42,626 --> 00:18:46,036
+maybe this is for an HTML email
+blast or something like that,
+
+
+345
+00:18:46,326 --> 00:18:50,426
+you've got the raw text
+available, as well.
+
+
+346
+00:18:50,426 --> 00:18:52,766
+So that's Link Maker
+in a nutshell.
+
+
+347
+00:18:52,766 --> 00:18:54,296
+It's simple.
+
+
+348
+00:18:54,296 --> 00:18:55,726
+It's all UI oriented.
+
+
+349
+00:18:55,726 --> 00:18:58,676
+It's a bit of HTML
+that you can drop in.
+
+
+350
+00:18:58,676 --> 00:19:00,946
+It's a great way if you haven't
+started and you only want -
+
+
+351
+00:19:00,946 --> 00:19:04,076
+interested in linking to a few
+pieces of content, to find that.
+
+
+352
+00:19:05,456 --> 00:19:09,286
+But maybe you've already got
+a website up and running,
+
+
+353
+00:19:09,676 --> 00:19:12,276
+and you've got a
+couple hundred links
+
+
+354
+00:19:12,336 --> 00:19:13,996
+to various pieces
+of iTunes content.
+
+
+355
+00:19:14,636 --> 00:19:18,746
+In that case, you might be
+interested in Auto Link Maker.
+
+
+356
+00:19:19,816 --> 00:19:25,926
+Auto Link Maker is a way to on
+the fly, attach affiliate data
+
+
+357
+00:19:25,926 --> 00:19:28,506
+to existing iTunes
+links within a webpage.
+
+
+358
+00:19:28,726 --> 00:19:31,796
+It's a small bit of JavaScripts
+that you paste into your page,
+
+
+359
+00:19:32,256 --> 00:19:36,196
+and on load, it actually
+finds all of the links
+
+
+360
+00:19:36,196 --> 00:19:38,916
+to the iTunes Store, and
+when they're clicked,
+
+
+361
+00:19:39,666 --> 00:19:43,526
+the Event Handler attaches
+affiliate data to the URL,
+
+
+362
+00:19:43,846 --> 00:19:45,426
+and you get credit for the links
+
+
+363
+00:19:45,426 --> 00:19:47,546
+that you're already
+sending to the page.
+
+
+364
+00:19:47,856 --> 00:19:51,106
+So if you don't want to go in
+and edit hundreds or thousands
+
+
+365
+00:19:51,106 --> 00:19:55,146
+of pages in your content
+website to, you know,
+
+
+366
+00:19:55,146 --> 00:19:56,656
+annotate all these links
+with affiliate data,
+
+
+367
+00:19:56,936 --> 00:19:57,976
+Auto Link Maker can
+really help you out there.
+
+
+368
+00:19:58,096 --> 00:20:06,306
+So that's the simple
+stuff that you can do.
+
+
+369
+00:20:06,596 --> 00:20:09,006
+You might be more interested
+in the advanced stuff
+
+
+370
+00:20:09,266 --> 00:20:12,056
+for finding content,
+and for that,
+
+
+371
+00:20:12,216 --> 00:20:15,626
+one of the best tools are
+the Search and Lookup APIs.
+
+
+372
+00:20:15,626 --> 00:20:22,556
+And this provides metadata
+access on the web, up to date,
+
+
+373
+00:20:22,976 --> 00:20:28,136
+and very, very easy to do so.
+
+
+374
+00:20:30,196 --> 00:20:31,746
+There are two main actions.
+
+
+375
+00:20:32,376 --> 00:20:33,866
+The first is Search.
+
+
+376
+00:20:33,866 --> 00:20:35,566
+This is probably
+like you expect.
+
+
+377
+00:20:35,566 --> 00:20:37,376
+You can find content by name.
+
+
+378
+00:20:37,716 --> 00:20:39,566
+If you know the artist
+name or the song name,
+
+
+379
+00:20:39,566 --> 00:20:41,186
+or your user wants
+to type something in
+
+
+380
+00:20:41,186 --> 00:20:42,876
+and find specific
+pieces of content,
+
+
+381
+00:20:43,246 --> 00:20:44,456
+you can do that with
+the Search API.
+
+
+382
+00:20:45,226 --> 00:20:50,636
+The Lookup API allows you
+to cross-reference your IDs
+
+
+383
+00:20:50,636 --> 00:20:52,156
+with the iTunes Store.
+
+
+384
+00:20:52,496 --> 00:20:54,086
+So you might have
+a set of content
+
+
+385
+00:20:54,086 --> 00:20:55,016
+that you're interested in,
+
+
+386
+00:20:55,016 --> 00:20:56,866
+and you know the iTunes
+Store content IDs,
+
+
+387
+00:20:56,866 --> 00:20:58,746
+you can get the latest data
+
+
+388
+00:20:58,746 --> 00:21:01,916
+about that content
+using the Lookup API.
+
+
+389
+00:21:02,206 --> 00:21:05,006
+And all these responses
+are in the JSON format.
+
+
+390
+00:21:05,106 --> 00:21:06,876
+That's JavaScript
+object notation.
+
+
+391
+00:21:07,136 --> 00:21:09,396
+It's pretty much
+the lingua franca
+
+
+392
+00:21:09,396 --> 00:21:11,776
+for data transfer on the web.
+
+
+393
+00:21:11,846 --> 00:21:15,386
+So let's take a look
+at the search API.
+
+
+394
+00:21:16,456 --> 00:21:18,866
+The only thing that's
+required to get started
+
+
+395
+00:21:18,866 --> 00:21:21,376
+with the search API is
+the term Query Parameter,
+
+
+396
+00:21:21,576 --> 00:21:23,046
+and this of course,
+is the search term
+
+
+397
+00:21:23,046 --> 00:21:23,946
+that you're interested in.
+
+
+398
+00:21:24,476 --> 00:21:27,726
+But there's a lot of
+modifiers available,
+
+
+399
+00:21:27,726 --> 00:21:29,206
+and you could do some
+really interesting stuff
+
+
+400
+00:21:29,456 --> 00:21:32,876
+to find specific
+pieces of content.
+
+
+401
+00:21:33,096 --> 00:21:35,776
+You can also change the nature
+of the content that comes back.
+
+
+402
+00:21:35,996 --> 00:21:39,056
+So the Language Query
+Parameter allows you
+
+
+403
+00:21:39,256 --> 00:21:43,396
+to specify the localization
+of the response.
+
+
+404
+00:21:43,766 --> 00:21:46,726
+So let's say you're searching in
+Canada for a piece of content,
+
+
+405
+00:21:47,006 --> 00:21:48,996
+but you know you want to
+localize it to French.
+
+
+406
+00:21:49,216 --> 00:21:51,016
+You can pass in Language
+equals FR
+
+
+407
+00:21:51,016 --> 00:21:54,596
+and get a result back in French.
+
+
+408
+00:21:54,716 --> 00:21:57,716
+Media is a constraint
+for the search itself.
+
+
+409
+00:21:58,116 --> 00:22:01,026
+If you only are interested
+in movies or only interested
+
+
+410
+00:22:01,026 --> 00:22:03,946
+in books, you can specify
+Media equals Movies
+
+
+411
+00:22:03,946 --> 00:22:06,466
+or Media equals Books and
+get content back that way.
+
+
+412
+00:22:06,466 --> 00:22:11,586
+But what if you're actually
+just interested not just in say,
+
+
+413
+00:22:11,896 --> 00:22:14,506
+music, but you're
+interested in songs,
+
+
+414
+00:22:14,506 --> 00:22:16,556
+or you're interested
+specifically in albums.
+
+
+415
+00:22:16,896 --> 00:22:18,776
+You can use the Entity
+Query Parameter
+
+
+416
+00:22:18,776 --> 00:22:22,626
+to specify a very
+specific piece of content
+
+
+417
+00:22:22,626 --> 00:22:27,676
+or collection of
+content that way.
+
+
+418
+00:22:28,406 --> 00:22:31,046
+Attribute is another
+query parameter
+
+
+419
+00:22:31,046 --> 00:22:34,436
+that focuses the search
+term on a specific case.
+
+
+420
+00:22:35,096 --> 00:22:38,866
+So the search will only be
+applied to a specific portion
+
+
+421
+00:22:38,936 --> 00:22:42,246
+of the content, and this would
+allow you to, for example,
+
+
+422
+00:22:42,516 --> 00:22:46,176
+if your query is for
+Madonna, you might be looking
+
+
+423
+00:22:46,176 --> 00:22:48,126
+for the musician Madonna,
+
+
+424
+00:22:48,486 --> 00:22:50,976
+and you could use Attribute
+equals Artist's name
+
+
+425
+00:22:51,356 --> 00:22:52,596
+and the searches would only be
+
+
+426
+00:22:52,596 --> 00:22:54,826
+for artists whose
+name contains Madonna.
+
+
+427
+00:22:55,526 --> 00:22:56,666
+On the other hand,
+maybe you're looking
+
+
+428
+00:22:56,666 --> 00:22:58,976
+for the Beatles' popular
+song "Lady Madonna."
+
+
+429
+00:22:59,456 --> 00:23:01,906
+You can specify Attribute
+equals Song term
+
+
+430
+00:23:02,446 --> 00:23:05,026
+and get song results back.
+
+
+431
+00:23:06,616 --> 00:23:10,656
+The Limit Query Parameter is
+another one where it can come
+
+
+432
+00:23:10,856 --> 00:23:13,216
+in handy in many situations.
+
+
+433
+00:23:13,496 --> 00:23:15,906
+By default, you're going
+to get 50 results back
+
+
+434
+00:23:16,586 --> 00:23:21,046
+for a given query, but
+if you only want five,
+
+
+435
+00:23:21,306 --> 00:23:23,866
+there's no reason to spend time
+parsing the results and waiting
+
+
+436
+00:23:23,866 --> 00:23:25,956
+for the response for
+a larger data set.
+
+
+437
+00:23:25,956 --> 00:23:29,076
+So you can either decrease
+or increase the size
+
+
+438
+00:23:29,076 --> 00:23:30,266
+of the response set you get.
+
+
+439
+00:23:31,016 --> 00:23:32,726
+And finally, there's Callback.
+
+
+440
+00:23:33,226 --> 00:23:38,376
+Callback is very useful for web
+developers if you are trying
+
+
+441
+00:23:38,376 --> 00:23:42,306
+to do something that operates
+within the Java excuse me,
+
+
+442
+00:23:42,306 --> 00:23:43,746
+the browser security model.
+
+
+443
+00:23:44,066 --> 00:23:46,136
+So if you're running
+JavaScript in a browser,
+
+
+444
+00:23:46,366 --> 00:23:50,206
+you may not have access to make
+a call to iTunes.apple.com.
+
+
+445
+00:23:50,666 --> 00:23:52,636
+But you can use the
+Callback Query parameter
+
+
+446
+00:23:52,886 --> 00:23:59,256
+to essentially call a function
+with the result of the query.
+
+
+447
+00:23:59,326 --> 00:24:01,736
+This can be very useful,
+
+
+448
+00:24:01,736 --> 00:24:04,786
+and just about every
+JavaScript library like J Query,
+
+
+449
+00:24:04,786 --> 00:24:06,966
+what have you, supports
+Callback.
+
+
+450
+00:24:08,236 --> 00:24:11,296
+And all these responses,
+once when you do a query,
+
+
+451
+00:24:11,796 --> 00:24:16,626
+all the results are in the JSON
+format, and they're dictionaries
+
+
+452
+00:24:16,626 --> 00:24:18,926
+of content sorted by relevancy.
+
+
+453
+00:24:19,606 --> 00:24:21,226
+And relevancy is an
+important concept.
+
+
+454
+00:24:21,226 --> 00:24:24,866
+It's not - it's our best guess
+
+
+455
+00:24:24,866 --> 00:24:27,246
+at what you're actually
+searching for.
+
+
+456
+00:24:27,526 --> 00:24:30,126
+So it depends on how
+appropriate is the content
+
+
+457
+00:24:30,176 --> 00:24:31,166
+to the search term.
+
+
+458
+00:24:31,296 --> 00:24:33,546
+And it also depends on other
+factors like popularity.
+
+
+459
+00:24:33,946 --> 00:24:37,766
+So that can be - so your
+search queries are not
+
+
+460
+00:24:37,766 --> 00:24:38,906
+necessarily static.
+
+
+461
+00:24:38,906 --> 00:24:40,216
+They're not going
+to be set in time.
+
+
+462
+00:24:40,526 --> 00:24:42,556
+If another piece of content
+becomes more popular,
+
+
+463
+00:24:42,886 --> 00:24:45,586
+it might move from rank number
+three to rank number one,
+
+
+464
+00:24:45,586 --> 00:24:47,686
+and your search results will
+change even though the query
+
+
+465
+00:24:47,686 --> 00:24:48,476
+parameter is the same.
+
+
+466
+00:24:52,536 --> 00:24:57,006
+Now the Lookup API uses a lot
+of similar query parameters
+
+
+467
+00:24:57,006 --> 00:25:00,246
+to the Search API, but the
+only thing required is an ID,
+
+
+468
+00:25:00,656 --> 00:25:04,506
+and the ID can be an
+iTunes Store content ID,
+
+
+469
+00:25:04,726 --> 00:25:08,296
+or it can be a list, comma
+separated, of those same IDs.
+
+
+470
+00:25:08,936 --> 00:25:13,106
+The Lookup API also supports
+other identifier standards.
+
+
+471
+00:25:13,456 --> 00:25:19,676
+So if you have UPCs for albums,
+or ISBNs for books, or ISRCs,
+
+
+472
+00:25:19,676 --> 00:25:24,786
+or any number of other
+standard ID schemes,
+
+
+473
+00:25:25,006 --> 00:25:26,376
+you can pass those in as well.
+
+
+474
+00:25:32,796 --> 00:25:35,746
+So we support similar
+modifiers to the search API.
+
+
+475
+00:25:35,816 --> 00:25:37,636
+Language is a - as
+you would expect,
+
+
+476
+00:25:38,016 --> 00:25:39,736
+Callback is as you would expect.
+
+
+477
+00:25:39,736 --> 00:25:42,226
+The results are the exact
+same content dictionaries,
+
+
+478
+00:25:42,226 --> 00:25:45,026
+and you can pass them into
+some function you define
+
+
+479
+00:25:45,026 --> 00:25:45,646
+in JavaScript.
+
+
+480
+00:25:47,496 --> 00:25:51,386
+Entity is slightly
+different in the Lookup API.
+
+
+481
+00:25:51,386 --> 00:25:54,386
+So you're passing in
+one or more content IDs,
+
+
+482
+00:25:54,386 --> 00:25:58,046
+and you can use the Entity
+ID to actually navigate up
+
+
+483
+00:25:58,046 --> 00:26:00,116
+or down the content tree.
+
+
+484
+00:26:00,636 --> 00:26:04,516
+We'll go into how you
+can use this in a bit.
+
+
+485
+00:26:04,516 --> 00:26:06,756
+And again, the results
+are JSON dictionaries,
+
+
+486
+00:26:07,056 --> 00:26:09,846
+so it's the exact same content
+whether you're using Search API
+
+
+487
+00:26:09,846 --> 00:26:11,056
+or Lookup API.
+
+
+488
+00:26:11,906 --> 00:26:16,996
+And the responses you get back
+are very, very rich in data.
+
+
+489
+00:26:17,716 --> 00:26:20,656
+Now I know this is a wall
+of text, but there's a lot
+
+
+490
+00:26:20,656 --> 00:26:24,846
+of information here that you
+can use to populate your UIs
+
+
+491
+00:26:25,306 --> 00:26:28,746
+or to populate your
+recommendations.
+
+
+492
+00:26:29,096 --> 00:26:30,406
+There's the expected.
+
+
+493
+00:26:30,406 --> 00:26:34,076
+You can get the artist ID, the
+artist name, the album name,
+
+
+494
+00:26:34,076 --> 00:26:35,966
+the song name, app
+name, what have you.
+
+
+495
+00:26:36,496 --> 00:26:38,476
+But there's also
+you can get the -
+
+
+496
+00:26:38,476 --> 00:26:40,146
+what's the most recent
+version on the store?
+
+
+497
+00:26:40,146 --> 00:26:42,016
+What are the release
+notes for that version?
+
+
+498
+00:26:42,016 --> 00:26:44,146
+When was it released?
+
+
+499
+00:26:44,346 --> 00:26:45,136
+How much is it?
+
+
+500
+00:26:45,396 --> 00:26:46,776
+What's the file size?
+
+
+501
+00:26:46,776 --> 00:26:49,766
+Maybe you only want to recommend
+small files to your users
+
+
+502
+00:26:49,766 --> 00:26:52,266
+on some sort of constrained
+device.
+
+
+503
+00:26:53,076 --> 00:26:56,726
+You can see screenshots,
+album artwork.
+
+
+504
+00:26:56,996 --> 00:27:00,006
+What is the user rating for
+this particular content?
+
+
+505
+00:27:00,256 --> 00:27:02,136
+What is the age rating
+for the content?
+
+
+506
+00:27:02,396 --> 00:27:07,996
+All this can really be useful if
+you're trying to populate a UI.
+
+
+507
+00:27:08,236 --> 00:27:10,326
+So that said, let's go
+through a couple examples.
+
+
+508
+00:27:10,826 --> 00:27:15,976
+Let's say we are developing
+a music app and we want
+
+
+509
+00:27:16,036 --> 00:27:18,436
+to show the user a search API
+
+
+510
+00:27:18,616 --> 00:27:20,646
+so that they can find
+content on the store.
+
+
+511
+00:27:21,246 --> 00:27:26,046
+So we might have a search box
+that they can type something in,
+
+
+512
+00:27:26,376 --> 00:27:30,046
+and we would put that
+content into this sort of URL.
+
+
+513
+00:27:30,316 --> 00:27:31,216
+And I want to highlight
+
+
+514
+00:27:31,216 --> 00:27:36,676
+that we're specifying the U.S.
+Storefront, and we're passing
+
+
+515
+00:27:36,676 --> 00:27:37,936
+in the term that
+we're trying to search
+
+
+516
+00:27:37,936 --> 00:27:40,716
+for in the query parameter term.
+
+
+517
+00:27:40,876 --> 00:27:44,466
+In this case, the user
+has typed in "The A Team."
+
+
+518
+00:27:44,736 --> 00:27:46,616
+Excuse me.
+
+
+519
+00:27:47,206 --> 00:27:54,616
+Now this query alone is going
+to be - what you're going
+
+
+520
+00:27:54,616 --> 00:27:59,826
+to get is basically one of
+Ed Sheeran's popular songs
+
+
+521
+00:27:59,996 --> 00:28:02,416
+from the past couple years,
+which is called "The A Team,"
+
+
+522
+00:28:02,416 --> 00:28:05,116
+and that's going to be very
+popular, so that's going to be
+
+
+523
+00:28:05,116 --> 00:28:05,976
+at the top of the list.
+
+
+524
+00:28:06,296 --> 00:28:08,636
+Following that, you're going
+to see something like the
+
+
+525
+00:28:08,636 --> 00:28:12,006
+"The A-Team's" movie, which
+came out a couple years ago,
+
+
+526
+00:28:12,536 --> 00:28:16,456
+and is second behind
+the song content.
+
+
+527
+00:28:16,456 --> 00:28:21,206
+And following that, you're going
+to get about 45 results for the
+
+
+528
+00:28:21,206 --> 00:28:23,496
+"The A-Team" TV show
+from the '80's.
+
+
+529
+00:28:23,766 --> 00:28:25,236
+Now, "The A-Team"
+show is awesome.
+
+
+530
+00:28:25,236 --> 00:28:26,146
+Who doesn't like
+the "The A-Team."
+
+
+531
+00:28:26,146 --> 00:28:26,626
+That's great.
+
+
+532
+00:28:27,026 --> 00:28:30,196
+But we're a music app so
+we might not be interested
+
+
+533
+00:28:30,386 --> 00:28:32,036
+in getting TV show results.
+
+
+534
+00:28:32,636 --> 00:28:35,526
+Now the simple thing to do
+
+
+535
+00:28:35,526 --> 00:28:37,756
+in this case would
+just be attach a limit.
+
+
+536
+00:28:37,756 --> 00:28:40,516
+We can say, "Oh, well I'm only
+interested in the music stuff.
+
+
+537
+00:28:40,516 --> 00:28:42,016
+The music stuff is
+ranking highly,
+
+
+538
+00:28:42,326 --> 00:28:44,826
+so I'll put Limit equals 1 and
+I only get one result back."
+
+
+539
+00:28:45,986 --> 00:28:48,796
+That's great, but what
+if another sequel to the
+
+
+540
+00:28:48,796 --> 00:28:52,246
+"The A-Team's" movie comes out
+and suddenly that's highest.
+
+
+541
+00:28:52,626 --> 00:28:56,956
+Our music app is suddenly
+showing content for movies,
+
+
+542
+00:28:57,146 --> 00:29:00,356
+and that wouldn't be good.
+
+
+543
+00:29:00,356 --> 00:29:01,546
+So that's one option.
+
+
+544
+00:29:02,296 --> 00:29:04,936
+There's a couple other
+things we could do.
+
+
+545
+00:29:04,936 --> 00:29:07,606
+We could say well, we're
+only interested in searching
+
+
+546
+00:29:08,036 --> 00:29:11,146
+for the song term "The A
+Team," or we're only interested
+
+
+547
+00:29:11,146 --> 00:29:16,906
+in songs that are related to
+the search term "The A Team."
+
+
+548
+00:29:17,446 --> 00:29:19,976
+But that's not really - that's
+going to limit us a little bit,
+
+
+549
+00:29:19,976 --> 00:29:23,236
+because what if we want to
+show albums, or what if we want
+
+
+550
+00:29:23,236 --> 00:29:27,616
+to search on albums that
+are called "The A Team."
+
+
+551
+00:29:27,616 --> 00:29:29,246
+There's probably
+several of those.
+
+
+552
+00:29:30,286 --> 00:29:33,816
+So for our use case, this is
+probably not such a great idea.
+
+
+553
+00:29:34,596 --> 00:29:40,106
+Instead, we need to find the
+right thing to specify the type
+
+
+554
+00:29:40,106 --> 00:29:43,666
+of content we're interested
+in, and here, it's media=music.
+
+
+555
+00:29:43,726 --> 00:29:44,536
+We're a music app.
+
+
+556
+00:29:44,786 --> 00:29:47,946
+We want people to be able
+to search for artists
+
+
+557
+00:29:47,946 --> 00:29:49,726
+or albums or songs, whatever.
+
+
+558
+00:29:50,286 --> 00:29:52,286
+So we can specify media=music
+
+
+559
+00:29:52,286 --> 00:29:54,166
+and we get just the
+results we're looking for.
+
+
+560
+00:29:54,576 --> 00:29:58,606
+So we run this query and we
+get the results we want back,
+
+
+561
+00:29:58,606 --> 00:29:58,976
+which is great.
+
+
+562
+00:30:07,046 --> 00:30:12,736
+Now, this is just one piece of
+results, or one result back.
+
+
+563
+00:30:13,146 --> 00:30:16,346
+Let's say our UI, we
+might have an album focus,
+
+
+564
+00:30:16,766 --> 00:30:19,586
+rather than on a specific song.
+
+
+565
+00:30:19,586 --> 00:30:21,376
+And let's say that
+our UI we want
+
+
+566
+00:30:21,376 --> 00:30:25,936
+to know how much does the
+content cost in the storefront.
+
+
+567
+00:30:26,186 --> 00:30:29,346
+And furthermore, we want
+to show them all the songs
+
+
+568
+00:30:29,736 --> 00:30:31,446
+on that album in
+that storefront.
+
+
+569
+00:30:33,676 --> 00:30:36,456
+Now, I like to say that
+if you have a problem,
+
+
+570
+00:30:36,906 --> 00:30:40,556
+if no one else can help,
+and if your problem relates
+
+
+571
+00:30:40,556 --> 00:30:42,516
+to content metadata
+on the iTunes Store,
+
+
+572
+00:30:43,096 --> 00:30:46,346
+maybe you can hire
+the Lookup API.
+
+
+573
+00:30:47,076 --> 00:30:51,126
+In this case, we have
+figured out that our user is
+
+
+574
+00:30:51,126 --> 00:30:55,466
+in Great Britain, and so we
+would just change the country
+
+
+575
+00:30:55,726 --> 00:31:00,356
+code in the URL to be GB, Great
+Britain, and we're passing
+
+
+576
+00:31:00,356 --> 00:31:03,656
+in the ID of the
+collection itself.
+
+
+577
+00:31:03,796 --> 00:31:06,666
+Now the Lookup API has
+a very simple model
+
+
+578
+00:31:06,916 --> 00:31:08,196
+for content on the store.
+
+
+579
+00:31:08,516 --> 00:31:10,896
+There are tracks,
+which are individual,
+
+
+580
+00:31:11,116 --> 00:31:13,046
+indivisible pieces of content.
+
+
+581
+00:31:13,276 --> 00:31:17,786
+So this would be songs, books,
+movies, TV episodes, apps.
+
+
+582
+00:31:19,186 --> 00:31:22,296
+There are collections,
+which are albums,
+
+
+583
+00:31:22,486 --> 00:31:24,056
+TV seasons, that sort of thing.
+
+
+584
+00:31:24,056 --> 00:31:25,386
+And there are artists.
+
+
+585
+00:31:25,946 --> 00:31:30,056
+These are musicians, actors, app
+developers, that sort of thing.
+
+
+586
+00:31:30,646 --> 00:31:33,496
+Three levels, and you
+can use the Lookup API
+
+
+587
+00:31:33,606 --> 00:31:35,116
+to navigate that hierarchy.
+
+
+588
+00:31:36,136 --> 00:31:41,426
+So we're passing in the
+collection ID or the album ID
+
+
+589
+00:31:41,836 --> 00:31:45,596
+to the Lookup API, and we're
+going to get results back to see
+
+
+590
+00:31:45,596 --> 00:31:47,826
+if it's available for
+sale in Great Britain.
+
+
+591
+00:31:48,846 --> 00:31:52,486
+What we're not going to see
+is what tracks are available
+
+
+592
+00:31:52,666 --> 00:31:53,646
+on that URL.
+
+
+593
+00:31:53,646 --> 00:31:58,716
+What we need to do in that
+case is attach the entity
+
+
+594
+00:31:58,716 --> 00:32:04,296
+that we're looking for, and the
+entity=song will tell the Lookup
+
+
+595
+00:32:04,296 --> 00:32:07,036
+API, okay, give me back the
+results that I asked for,
+
+
+596
+00:32:07,286 --> 00:32:11,806
+but also give me back the
+songs that are on that album.
+
+
+597
+00:32:11,806 --> 00:32:15,716
+And here, we get the awesome
+results back that you expect.
+
+
+598
+00:32:16,046 --> 00:32:19,676
+So we get the album name, which
+is "Plus," and the first track
+
+
+599
+00:32:19,676 --> 00:32:23,146
+on that album is the "The
+A Team" and so on the rest
+
+
+600
+00:32:23,376 --> 00:32:25,306
+of the songs on that album.
+
+
+601
+00:32:25,306 --> 00:32:29,576
+You can also go - navigate
+up the content hierarchy,
+
+
+602
+00:32:29,576 --> 00:32:31,326
+so if you've got a song and
+you want to know the artist,
+
+
+603
+00:32:31,326 --> 00:32:36,746
+you can pass in entity=artist
+and track that that way.
+
+
+604
+00:32:36,936 --> 00:32:40,666
+So there's a lot you can
+do with the Lookup API.
+
+
+605
+00:32:40,666 --> 00:32:42,406
+It's all up to date.
+
+
+606
+00:32:42,406 --> 00:32:44,276
+You might want to know
+about price changes
+
+
+607
+00:32:44,276 --> 00:32:45,226
+for particular things.
+
+
+608
+00:32:45,566 --> 00:32:49,336
+The Lookup API allows
+you to do that.
+
+
+609
+00:32:49,526 --> 00:32:54,386
+Now, that said, you might
+have slightly bigger needs
+
+
+610
+00:32:54,556 --> 00:32:55,336
+in terms of data.
+
+
+611
+00:32:56,266 --> 00:32:59,916
+And for that, we have the
+Enterprise Partner Feeds,
+
+
+612
+00:33:00,146 --> 00:33:01,846
+or EPF as we commonly call them.
+
+
+613
+00:33:02,496 --> 00:33:05,986
+These are bulk metadata,
+
+
+614
+00:33:06,076 --> 00:33:09,676
+and it covers virtually
+all iTunes Store content,
+
+
+615
+00:33:10,006 --> 00:33:15,056
+and this is very much for -
+intended for big data needs.
+
+
+616
+00:33:15,486 --> 00:33:17,926
+And when I say big
+data, it's a lot.
+
+
+617
+00:33:17,926 --> 00:33:21,636
+It's something like if you
+download the full data set
+
+
+618
+00:33:21,636 --> 00:33:24,016
+for this week, it's
+going to be 10 gigabytes
+
+
+619
+00:33:24,016 --> 00:33:25,606
+of textual data compressed.
+
+
+620
+00:33:25,696 --> 00:33:28,916
+So it's not for the faint of
+heart, but it can be very useful
+
+
+621
+00:33:28,916 --> 00:33:33,226
+if you're trying to
+establish an understanding
+
+
+622
+00:33:33,226 --> 00:33:34,636
+of the entire iTunes universe.
+
+
+623
+00:33:35,086 --> 00:33:39,506
+Within the feeds
+are multiple files,
+
+
+624
+00:33:39,506 --> 00:33:42,156
+and the files represent
+database tables
+
+
+625
+00:33:42,156 --> 00:33:43,606
+in a relational database sense.
+
+
+626
+00:33:43,956 --> 00:33:45,056
+So there is for example,
+
+
+627
+00:33:45,296 --> 00:33:48,536
+an artist table representing
+artists- you know musicians,
+
+
+628
+00:33:48,536 --> 00:33:49,466
+app developers and the like.
+
+
+629
+00:33:49,916 --> 00:33:53,796
+There's an application
+table for iPhone apps
+
+
+630
+00:33:53,796 --> 00:33:55,476
+and Mac apps, that
+sort of thing.
+
+
+631
+00:33:55,926 --> 00:33:57,486
+And as you might expect
+if you are familiar
+
+
+632
+00:33:57,486 --> 00:33:58,956
+with relational databases,
+
+
+633
+00:33:59,266 --> 00:34:01,786
+there's a relational
+artist application table
+
+
+634
+00:34:02,186 --> 00:34:05,666
+that represents which
+artists produced which apps.
+
+
+635
+00:34:05,886 --> 00:34:10,076
+So you can ingest this data
+into a relational database
+
+
+636
+00:34:10,076 --> 00:34:14,716
+or other data store for analysis
+and run your queries that way.
+
+
+637
+00:34:15,866 --> 00:34:18,576
+And again, it's aimed
+at organizations
+
+
+638
+00:34:18,886 --> 00:34:21,295
+that have really
+deep data needs.
+
+
+639
+00:34:22,346 --> 00:34:23,666
+There's a lot of data.
+
+
+640
+00:34:23,666 --> 00:34:26,565
+There's pricing for
+all countries
+
+
+641
+00:34:26,565 --> 00:34:31,045
+that the iTunes Store supports,
+and analyzing that and dealing
+
+
+642
+00:34:31,045 --> 00:34:33,286
+with the data, especially
+on an ongoing basis,
+
+
+643
+00:34:33,286 --> 00:34:36,096
+can be really a huge effort.
+
+
+644
+00:34:36,835 --> 00:34:39,136
+Fortunately, we do have
+an Importer script.
+
+
+645
+00:34:39,815 --> 00:34:45,795
+The script is available as a
+Python app, and it's intended
+
+
+646
+00:34:46,126 --> 00:34:51,496
+to ingest a feed into a
+MySQL database, but it's -
+
+
+647
+00:34:51,496 --> 00:34:54,466
+the sample code is
+open, so if you'd like,
+
+
+648
+00:34:54,466 --> 00:34:57,276
+you can provide a different
+back end and maybe write
+
+
+649
+00:34:57,276 --> 00:35:02,716
+to Hadoop HDFS or something like
+that if your needs go that way.
+
+
+650
+00:35:03,906 --> 00:35:06,856
+So the Enterprise Partner
+feeds - it's a great way
+
+
+651
+00:35:06,856 --> 00:35:11,086
+to get the whole content
+database for iTunes.
+
+
+652
+00:35:11,086 --> 00:35:16,946
+You can do a lot with it,
+but it takes some doing.
+
+
+653
+00:35:17,066 --> 00:35:19,496
+Slightly simpler
+is the RSS feeds.
+
+
+654
+00:35:19,916 --> 00:35:25,346
+These are dynamic feeds for
+kind of what's hot in a store.
+
+
+655
+00:35:25,416 --> 00:35:28,366
+And by that I mean, you've
+got a couple options.
+
+
+656
+00:35:28,366 --> 00:35:30,886
+You can see what's most
+popular for each piece
+
+
+657
+00:35:30,886 --> 00:35:32,656
+of content and in each genre.
+
+
+658
+00:35:33,076 --> 00:35:34,746
+What's selling really
+well right now?
+
+
+659
+00:35:35,776 --> 00:35:36,306
+What's new?
+
+
+660
+00:35:36,306 --> 00:35:38,236
+What's recently added?
+
+
+661
+00:35:38,236 --> 00:35:40,596
+Whether this is, you
+know, the hot new single
+
+
+662
+00:35:40,596 --> 00:35:46,416
+from today's artists or maybe a
+piece of an album that has been
+
+
+663
+00:35:46,416 --> 00:35:50,066
+out of the store for decades
+and is just arriving now.
+
+
+664
+00:35:50,396 --> 00:35:52,526
+That's shows up in the New
+and Recently added feeds.
+
+
+665
+00:35:52,596 --> 00:35:56,256
+You can see featured content
+- what's actually showing
+
+
+666
+00:35:56,256 --> 00:35:59,526
+up on the store right
+now, what's a user see
+
+
+667
+00:35:59,526 --> 00:36:03,216
+when they open iTunes to the
+main page and check that out.
+
+
+668
+00:36:03,216 --> 00:36:06,176
+And finally, you can
+see customer reviews
+
+
+669
+00:36:06,176 --> 00:36:07,476
+for a particular
+piece of content.
+
+
+670
+00:36:07,476 --> 00:36:08,616
+What are people saying about it?
+
+
+671
+00:36:08,616 --> 00:36:12,706
+There's - if you want to track
+your own apps' performance,
+
+
+672
+00:36:12,706 --> 00:36:16,256
+you can see recent customer
+reviews using that RSS feed.
+
+
+673
+00:36:16,746 --> 00:36:20,506
+RSS is available in Atom format.
+
+
+674
+00:36:20,746 --> 00:36:23,396
+That's pretty much the
+standard for RSS these days.
+
+
+675
+00:36:23,396 --> 00:36:25,376
+It's also available in JSON.
+
+
+676
+00:36:25,376 --> 00:36:26,816
+If you don't want to
+parse a bunch of XML,
+
+
+677
+00:36:26,816 --> 00:36:30,026
+you can get a JSON
+format returned to you
+
+
+678
+00:36:30,346 --> 00:36:31,836
+and ingest it that way.
+
+
+679
+00:36:33,296 --> 00:36:36,536
+So that's the advanced stuff.
+
+
+680
+00:36:37,066 --> 00:36:39,716
+There's all this and more
+is very well documented
+
+
+681
+00:36:39,716 --> 00:36:42,076
+on the website, and
+we'll have a URL for you
+
+
+682
+00:36:42,076 --> 00:36:46,086
+at the end of the session.
+
+
+683
+00:36:46,216 --> 00:36:53,716
+Smart App Banners are a way for
+you to cross-reference your app
+
+
+684
+00:36:53,836 --> 00:36:56,546
+from a website, and you've
+probably seen this browsing the
+
+
+685
+00:36:56,546 --> 00:36:57,706
+web with the mobile Safari.
+
+
+686
+00:36:58,026 --> 00:37:01,216
+You link to a website, and
+this little banner slides down
+
+
+687
+00:37:01,476 --> 00:37:04,756
+and allows you to download the
+app if you haven't already,
+
+
+688
+00:37:05,186 --> 00:37:08,986
+or open it if you've got
+it installed, or dismiss it
+
+
+689
+00:37:08,986 --> 00:37:10,526
+if you're actually not
+interested in the app.
+
+
+690
+00:37:10,876 --> 00:37:13,936
+So from the user's perspective,
+it's really powerful.
+
+
+691
+00:37:13,936 --> 00:37:17,506
+It's - if you want it, it's
+there, and if you don't,
+
+
+692
+00:37:18,156 --> 00:37:21,216
+it gets out of the way.
+
+
+693
+00:37:21,436 --> 00:37:25,046
+What it does allow you,
+the developer, to do,
+
+
+694
+00:37:25,246 --> 00:37:29,236
+is to show your content from
+your website in a native,
+
+
+695
+00:37:29,436 --> 00:37:31,876
+custom experience that
+your app can provide
+
+
+696
+00:37:31,876 --> 00:37:33,266
+that mobile Safari maybe can't.
+
+
+697
+00:37:34,226 --> 00:37:39,056
+So this is really powerful
+if you want to show or -
+
+
+698
+00:37:40,616 --> 00:37:42,286
+have people look at the content
+
+
+699
+00:37:42,286 --> 00:37:44,826
+on your website in
+your custom app.
+
+
+700
+00:37:46,186 --> 00:37:49,436
+And again, if a user is not
+interested, a simple tap
+
+
+701
+00:37:49,436 --> 00:37:51,746
+and it goes away, and
+they're not bothered by it.
+
+
+702
+00:37:52,176 --> 00:37:53,176
+So how do we integrate
+with that?
+
+
+703
+00:37:53,616 --> 00:37:55,316
+It's actually fairly simple.
+
+
+704
+00:37:55,316 --> 00:37:58,696
+You drop a simple metatag into
+the head of your web page,
+
+
+705
+00:37:59,156 --> 00:38:02,426
+and the metatag has your
+app ID defined in it.
+
+
+706
+00:38:02,566 --> 00:38:03,446
+That's pretty obvious.
+
+
+707
+00:38:03,446 --> 00:38:04,816
+We've got to know
+how to find it.
+
+
+708
+00:38:05,176 --> 00:38:07,516
+And when Mobile Safari
+sees that,
+
+
+709
+00:38:07,516 --> 00:38:10,186
+it's going to fetch the
+content, get the latest price
+
+
+710
+00:38:10,716 --> 00:38:13,896
+and show it to the user.
+
+
+711
+00:38:13,896 --> 00:38:15,966
+You can also pass in
+your affiliate data.
+
+
+712
+00:38:16,456 --> 00:38:19,036
+So here we've got our affiliate
+token, which defines us
+
+
+713
+00:38:19,036 --> 00:38:22,526
+to the affiliate program, and
+we're setting the campaign token
+
+
+714
+00:38:22,526 --> 00:38:25,596
+as Smart Banner so that we can
+see how many people are actually
+
+
+715
+00:38:25,596 --> 00:38:27,456
+clicking on the Smart
+Banner from our website.
+
+
+716
+00:38:27,806 --> 00:38:33,186
+Now the app argument is actually
+a really important piece
+
+
+717
+00:38:33,186 --> 00:38:33,796
+of data here.
+
+
+718
+00:38:34,646 --> 00:38:36,936
+If we are running a news website
+
+
+719
+00:38:36,936 --> 00:38:38,496
+or a music recommendation
+website,
+
+
+720
+00:38:38,496 --> 00:38:41,106
+and we're asking the user
+to leave Mobile Safari,
+
+
+721
+00:38:41,106 --> 00:38:45,626
+leave all that context and
+launch into this custom app,
+
+
+722
+00:38:45,896 --> 00:38:49,186
+we don't want to lose - we
+don't want them to, you know,
+
+
+723
+00:38:49,186 --> 00:38:51,026
+start at the home page
+of our site again.
+
+
+724
+00:38:51,376 --> 00:38:53,896
+The app argument is
+actually provided to the app
+
+
+725
+00:38:54,036 --> 00:38:58,636
+on a command line and you
+can see the same content
+
+
+726
+00:38:58,986 --> 00:39:01,126
+that the user was
+looking at on the store.
+
+
+727
+00:39:01,806 --> 00:39:05,446
+So it's a way, you know,
+it's easy, easy integration
+
+
+728
+00:39:05,726 --> 00:39:07,666
+without really interrupting
+the flow of things.
+
+
+729
+00:39:09,056 --> 00:39:10,146
+So that's Smart App Banner.
+
+
+730
+00:39:10,146 --> 00:39:14,686
+If you've got a large website,
+it's a very useful tool
+
+
+731
+00:39:16,066 --> 00:39:20,866
+for cross-referencing
+your website and your app.
+
+
+732
+00:39:21,436 --> 00:39:26,366
+The StoreKit Product Sheet is a
+brand new feature that we've got
+
+
+733
+00:39:26,366 --> 00:39:29,126
+and for the affiliate program.
+
+
+734
+00:39:29,126 --> 00:39:33,976
+It actually exists since
+iTunes 6 and allows you
+
+
+735
+00:39:34,346 --> 00:39:38,756
+to show iTunes Store content
+without actually leaving your -
+
+
+736
+00:39:38,756 --> 00:39:40,506
+the workflow that
+your user was in.
+
+
+737
+00:39:41,146 --> 00:39:43,156
+So for an example, we've
+got here on Twitter,
+
+
+738
+00:39:43,856 --> 00:39:47,206
+the user sees a link to
+the iTunes Store and taps
+
+
+739
+00:39:47,206 --> 00:39:52,916
+on this icon, and the
+store sheet slides up
+
+
+740
+00:39:53,496 --> 00:39:56,486
+and allows the user to do
+all the expected things
+
+
+741
+00:39:56,486 --> 00:39:57,696
+that you would do in the store.
+
+
+742
+00:39:57,696 --> 00:39:58,956
+So you can read reviews.
+
+
+743
+00:39:58,956 --> 00:39:59,976
+You can look at screenshots.
+
+
+744
+00:40:01,636 --> 00:40:04,006
+You can buy it right
+then and there.
+
+
+745
+00:40:04,566 --> 00:40:06,796
+Most importantly,
+when they're done,
+
+
+746
+00:40:07,516 --> 00:40:10,356
+they can dismiss the store
+- or the Store Sheet,
+
+
+747
+00:40:11,726 --> 00:40:16,546
+and they're right back in the
+app on the page that they were
+
+
+748
+00:40:16,546 --> 00:40:19,326
+in before, so there's no
+double tap to the home screen
+
+
+749
+00:40:19,326 --> 00:40:20,206
+and going back to your app.
+
+
+750
+00:40:20,526 --> 00:40:23,396
+It's all right in the same flow.
+
+
+751
+00:40:23,996 --> 00:40:27,236
+Now the Store Sheet, as I
+said, has existed in iTunes 6,
+
+
+752
+00:40:27,536 --> 00:40:31,026
+but only recently have we added
+it to the commission structure.
+
+
+753
+00:40:31,436 --> 00:40:35,266
+So that means if you
+add affiliate data
+
+
+754
+00:40:35,456 --> 00:40:38,666
+to the Store Sheet, you're going
+to get paid that same 7 percent
+
+
+755
+00:40:38,666 --> 00:40:40,896
+over 24 hours that
+you did before.
+
+
+756
+00:40:44,936 --> 00:40:47,736
+And to go over a demo of how
+we can use the StoreKit Product
+
+
+757
+00:40:47,736 --> 00:40:50,536
+Sheet in our apps, I'm inviting
+my friend Rick Rubenstein
+
+
+758
+00:40:50,536 --> 00:40:53,206
+up to show us how to use
+Xcode and drop it in.
+
+
+759
+00:40:53,466 --> 00:40:54,096
+>> Thank you Mark.
+
+
+760
+00:40:54,796 --> 00:40:56,686
+So I'm Rick Rubenstein.
+
+
+761
+00:40:56,686 --> 00:41:00,296
+I write tools and automation for
+the iTunes store and App Store
+
+
+762
+00:41:00,296 --> 00:41:01,726
+and other related products.
+
+
+763
+00:41:02,376 --> 00:41:04,556
+And Mark asked me to
+put together a quick app
+
+
+764
+00:41:04,606 --> 00:41:06,746
+to show how the StoreKit
+product works,
+
+
+765
+00:41:07,106 --> 00:41:08,526
+out in the lobby
+before the session.
+
+
+766
+00:41:10,786 --> 00:41:12,996
+Kidding, I wrote it a
+little while before that.
+
+
+767
+00:41:12,996 --> 00:41:15,446
+So let me switch
+over to iOS here.
+
+
+768
+00:41:17,356 --> 00:41:22,106
+So I'm going to fire up the
+app that I wrote right now,
+
+
+769
+00:41:22,106 --> 00:41:24,636
+and then I'll explain how
+it was built afterwards.
+
+
+770
+00:41:27,636 --> 00:41:31,016
+So here we have your typical
+stick figure doing a juggling
+
+
+771
+00:41:31,016 --> 00:41:31,436
+trick app.
+
+
+772
+00:41:31,506 --> 00:41:33,046
+I'm sure you all have
+several of these loaded
+
+
+773
+00:41:33,046 --> 00:41:34,186
+on your own iOS devices.
+
+
+774
+00:41:34,576 --> 00:41:39,126
+And if I'm a user, and I'm
+mesmerized by this juggler,
+
+
+775
+00:41:39,126 --> 00:41:42,306
+I might say to myself, you
+know, I would like some sort
+
+
+776
+00:41:42,306 --> 00:41:43,946
+of a juggling-related game.
+
+
+777
+00:41:44,576 --> 00:41:47,926
+Oh look, there's a button
+right here in this very app
+
+
+778
+00:41:47,926 --> 00:41:50,936
+that will let me get
+that content from,
+
+
+779
+00:41:50,936 --> 00:41:52,236
+in this case, the App Store.
+
+
+780
+00:41:53,216 --> 00:41:57,346
+So if I tap on that
+link, it will bring
+
+
+781
+00:41:57,346 --> 00:42:00,676
+up the StoreKit Product
+Sheet, just as Mark showed,
+
+
+782
+00:42:00,676 --> 00:42:06,526
+and in the case, the StoreKit
+Product Sheet is displaying a
+
+
+783
+00:42:07,046 --> 00:42:09,286
+juggling-themed ball app.
+
+
+784
+00:42:09,886 --> 00:42:13,236
+Now the key thing here is that
+while it may look as if I'm
+
+
+785
+00:42:13,236 --> 00:42:16,406
+in the App Store right now,
+
+
+786
+00:42:16,876 --> 00:42:20,756
+the Juggling dude app is still
+running there in the background.
+
+
+787
+00:42:20,756 --> 00:42:24,296
+So if I had wanted to
+when I brought that up,
+
+
+788
+00:42:24,556 --> 00:42:27,006
+I could've actually
+decided to buy this app.
+
+
+789
+00:42:27,286 --> 00:42:29,046
+I'm not going to do that
+right now because I'm cheap,
+
+
+790
+00:42:29,346 --> 00:42:33,096
+but if I were an actual
+customer, I might do that.
+
+
+791
+00:42:33,566 --> 00:42:35,106
+And then you, the affiliate,
+
+
+792
+00:42:35,406 --> 00:42:37,196
+would receive credit
+for that purchase.
+
+
+793
+00:42:37,966 --> 00:42:39,726
+I'm going to bring
+this up one more time.
+
+
+794
+00:42:40,156 --> 00:42:44,016
+Now if I had decided to click
+on - to tap on the store link
+
+
+795
+00:42:44,016 --> 00:42:46,926
+in the upper right, then
+the user would be taken
+
+
+796
+00:42:46,926 --> 00:42:49,206
+to the App Store.
+
+
+797
+00:42:49,616 --> 00:42:54,246
+That same content would
+be displayed, and anything
+
+
+798
+00:42:54,246 --> 00:42:57,926
+that that user bought within
+the 24-hour bounty window, you,
+
+
+799
+00:42:57,926 --> 00:42:59,456
+the affiliate, would
+receive a commission
+
+
+800
+00:42:59,866 --> 00:43:00,836
+on all those purchases.
+
+
+801
+00:43:01,496 --> 00:43:02,996
+So I'm going to switch over now
+
+
+802
+00:43:03,406 --> 00:43:09,206
+and show you what
+actually happened there.
+
+
+803
+00:43:09,436 --> 00:43:12,046
+So here we have the
+new affiliate dashboard
+
+
+804
+00:43:12,116 --> 00:43:16,536
+that Mark showed before,
+and this is live in Safari,
+
+
+805
+00:43:17,816 --> 00:43:20,376
+and you can see that
+there are the clicks
+
+
+806
+00:43:20,416 --> 00:43:21,516
+that I made during the demo.
+
+
+807
+00:43:22,036 --> 00:43:23,746
+They've already showed
+up, the taps that I made.
+
+
+808
+00:43:24,006 --> 00:43:26,646
+This bump here earlier is when
+I was rehearsing beforehand.
+
+
+809
+00:43:27,516 --> 00:43:32,106
+And so this shows the near
+real-time tracking of all
+
+
+810
+00:43:32,166 --> 00:43:34,426
+of the affiliate data.
+
+
+811
+00:43:34,966 --> 00:43:40,586
+So I'm going to put this
+away and bring up Xcode
+
+
+812
+00:43:42,926 --> 00:43:44,396
+and show you exactly
+how you can go
+
+
+813
+00:43:44,396 --> 00:43:46,816
+about putting the StoreKit
+Product Sheet in your own apps.
+
+
+814
+00:43:47,136 --> 00:43:47,856
+It's very simple.
+
+
+815
+00:43:48,776 --> 00:43:55,966
+So the first thing you need
+to make sure you do is link
+
+
+816
+00:43:55,966 --> 00:43:59,156
+against the StoreKit framework.
+
+
+817
+00:43:59,536 --> 00:44:01,706
+This is a public
+framework that is available
+
+
+818
+00:44:01,706 --> 00:44:04,566
+to any iOS developer,
+and it lets you interact
+
+
+819
+00:44:04,716 --> 00:44:07,486
+with the iTunes Store, the
+App Store in various ways.
+
+
+820
+00:44:07,566 --> 00:44:10,156
+In this case, the way is by
+the StoreKit Product Sheet.
+
+
+821
+00:44:10,816 --> 00:44:15,596
+So here we have the header
+for our main ViewController,
+
+
+822
+00:44:16,556 --> 00:44:19,586
+and again, just showing here
+
+
+823
+00:44:19,966 --> 00:44:23,026
+that we are importing
+the StoreKit framework
+
+
+824
+00:44:23,586 --> 00:44:25,746
+that lets us access the
+StoreKit Product Sheet.
+
+
+825
+00:44:26,806 --> 00:44:29,116
+Sorry, this is all objective
+so you haven't had a chance
+
+
+826
+00:44:29,116 --> 00:44:31,706
+to write it in Swift just yet.
+
+
+827
+00:44:32,256 --> 00:44:34,876
+So here we have the
+implementation
+
+
+828
+00:44:35,876 --> 00:44:40,086
+for the ViewController, and this
+is the key method right here.
+
+
+829
+00:44:40,086 --> 00:44:41,746
+This is the method
+that I have defined
+
+
+830
+00:44:41,746 --> 00:44:43,116
+on the ViewController class,
+
+
+831
+00:44:43,466 --> 00:44:48,936
+which I've called simply
+Store Sheet for Product -
+
+
+832
+00:44:49,286 --> 00:44:54,066
+takes three parameters, the
+itunesId, the affiliateToken
+
+
+833
+00:44:54,126 --> 00:44:55,226
+and the campaignToken.
+
+
+834
+00:44:56,026 --> 00:44:58,516
+Now this is the new
+difference in iOS 8.
+
+
+835
+00:44:58,956 --> 00:45:03,616
+As Mark mentioned, the StoreKit
+Product Sheet itself has been
+
+
+836
+00:45:03,616 --> 00:45:05,756
+available since iOS
+6, but previously,
+
+
+837
+00:45:05,756 --> 00:45:07,876
+you could not include
+the affiliate data.
+
+
+838
+00:45:08,116 --> 00:45:10,506
+Only one parameter was accepted,
+which was the itunesId.
+
+
+839
+00:45:11,546 --> 00:45:13,076
+So now you can add
+the affiliateToken.
+
+
+840
+00:45:13,076 --> 00:45:15,366
+That's your usual affiliate
+token that identifies you.
+
+
+841
+00:45:15,966 --> 00:45:18,386
+And the campaignToken,
+which as Mark mentioned,
+
+
+842
+00:45:18,386 --> 00:45:20,656
+can be any string up to
+40 characters in length
+
+
+843
+00:45:21,046 --> 00:45:23,326
+that you can use to identify
+your different campaigns,
+
+
+844
+00:45:23,366 --> 00:45:27,686
+group your data however
+you want to analyze it.
+
+
+845
+00:45:29,576 --> 00:45:33,366
+So I take these three
+parameters, and I put them
+
+
+846
+00:45:33,366 --> 00:45:35,436
+into a standard NSDictionary.
+
+
+847
+00:45:35,886 --> 00:45:41,386
+Move this so you
+can see this better.
+
+
+848
+00:45:41,386 --> 00:45:42,306
+Simple dictionary.
+
+
+849
+00:45:42,736 --> 00:45:44,906
+These are symbolic
+constants that are defined
+
+
+850
+00:45:44,906 --> 00:45:46,106
+in the StoreKit framework.
+
+
+851
+00:45:46,106 --> 00:45:52,986
+The SKStoreProductParameter
+ITunesItemIdentifier is
+
+
+852
+00:45:53,196 --> 00:45:54,176
+the itunesId.
+
+
+853
+00:45:54,176 --> 00:45:56,746
+That's this one that you
+passed in and the two new ones,
+
+
+854
+00:45:56,786 --> 00:45:58,576
+the
+ProductParameterAffiliateToken
+
+
+855
+00:45:58,916 --> 00:46:00,866
+and the
+ProductParameterCampaignToken.
+
+
+856
+00:46:01,186 --> 00:46:02,206
+Those are optional.
+
+
+857
+00:46:02,206 --> 00:46:04,786
+You don't need to include them,
+but since you are an affiliate,
+
+
+858
+00:46:04,786 --> 00:46:06,166
+you probably do want
+to include them
+
+
+859
+00:46:06,326 --> 00:46:07,536
+so that you earn
+your commissions.
+
+
+860
+00:46:08,206 --> 00:46:13,386
+So the next thing you need
+to do is actually create
+
+
+861
+00:46:13,386 --> 00:46:14,156
+to the ViewController.
+
+
+862
+00:46:14,326 --> 00:46:18,586
+You do that using a standard
+Objective-C, alloc init model,
+
+
+863
+00:46:18,966 --> 00:46:21,726
+which you're probably
+familiar with, and you need
+
+
+864
+00:46:21,726 --> 00:46:23,976
+to set a delegate for it,
+which will be called back
+
+
+865
+00:46:24,016 --> 00:46:25,986
+when it's time to
+dismiss the sheet.
+
+
+866
+00:46:26,626 --> 00:46:28,776
+And in this case, we're
+simply setting the delegate
+
+
+867
+00:46:28,896 --> 00:46:31,786
+to ourselves, the same
+ViewController object
+
+
+868
+00:46:31,916 --> 00:46:32,416
+that we're using.
+
+
+869
+00:46:33,606 --> 00:46:36,846
+So here's the key
+call right here.
+
+
+870
+00:46:37,426 --> 00:46:40,516
+We need to load the
+product into the controller.
+
+
+871
+00:46:41,536 --> 00:46:43,486
+So this is the method
+
+
+872
+00:46:43,576 --> 00:46:47,566
+on the StoreKit View
+Product Controller.
+
+
+873
+00:46:47,566 --> 00:46:49,386
+Load product with parameters.
+
+
+874
+00:46:49,926 --> 00:46:51,726
+Parameters is the
+dictionary we just created
+
+
+875
+00:46:51,966 --> 00:46:54,506
+that contains again, the
+iTunes ID, the affiliate token
+
+
+876
+00:46:54,506 --> 00:46:56,896
+and the campaign token.
+
+
+877
+00:46:57,306 --> 00:46:59,076
+It also takes a completion
+block,
+
+
+878
+00:46:59,446 --> 00:47:02,146
+which is the standard
+Objective-C block,
+
+
+879
+00:47:03,616 --> 00:47:08,056
+which will return a
+result, simply yes or no
+
+
+880
+00:47:08,056 --> 00:47:09,826
+as to whether it
+successfully loaded.
+
+
+881
+00:47:10,206 --> 00:47:12,316
+And in the case that it
+didn't successfully load
+
+
+882
+00:47:12,316 --> 00:47:16,106
+for some reason, say that you
+somehow had an incorrect piece
+
+
+883
+00:47:16,106 --> 00:47:19,336
+of content that didn't
+actually exist on the store,
+
+
+884
+00:47:19,806 --> 00:47:20,846
+there's an error parameter.
+
+
+885
+00:47:21,816 --> 00:47:24,986
+And in the block, we define
+what we do in these two cases.
+
+
+886
+00:47:25,166 --> 00:47:26,466
+In this case, if
+there's an error,
+
+
+887
+00:47:26,466 --> 00:47:27,786
+we're just logging it normally.
+
+
+888
+00:47:27,786 --> 00:47:29,116
+In an actual app, you
+would probably want
+
+
+889
+00:47:29,116 --> 00:47:32,426
+to display some sort of dialogue
+or UI to the user saying
+
+
+890
+00:47:32,426 --> 00:47:34,406
+that this content for
+whatever reason failed
+
+
+891
+00:47:34,406 --> 00:47:37,066
+to load in the sheet.
+
+
+892
+00:47:37,066 --> 00:47:38,506
+And if it successfully loaded,
+
+
+893
+00:47:38,886 --> 00:47:40,596
+here we're simply
+logging that it loaded.
+
+
+894
+00:47:40,596 --> 00:47:42,246
+Normally you wouldn't
+need to do anything
+
+
+895
+00:47:42,246 --> 00:47:43,976
+in that case, just go on.
+
+
+896
+00:47:44,246 --> 00:47:47,496
+So at this point, you
+have loaded the product
+
+
+897
+00:47:47,496 --> 00:47:49,536
+into the sheet but you
+haven't actually displayed it.
+
+
+898
+00:47:49,536 --> 00:47:51,436
+So that's what this
+call is here.
+
+
+899
+00:47:52,506 --> 00:47:57,476
+So we call on ourself,
+which is our ViewController,
+
+
+900
+00:47:58,656 --> 00:48:00,296
+present the sheetController.
+
+
+901
+00:48:00,916 --> 00:48:03,716
+Animated, you normally
+want a yes,
+
+
+902
+00:48:03,716 --> 00:48:06,266
+and that also takes
+a completion block.
+
+
+903
+00:48:06,986 --> 00:48:08,776
+And in this case again,
+we aren't doing anything
+
+
+904
+00:48:08,776 --> 00:48:10,126
+in particular in the
+completion block.
+
+
+905
+00:48:10,626 --> 00:48:12,666
+Just for reference, we're
+logging that we've completed.
+
+
+906
+00:48:13,836 --> 00:48:20,266
+One more important
+method here is productView
+
+
+907
+00:48:20,266 --> 00:48:21,456
+ControllerDidFinish.
+
+
+908
+00:48:21,456 --> 00:48:22,816
+This is the callback method
+
+
+909
+00:48:23,516 --> 00:48:28,306
+that gets called whenever the
+sheet action is complete either
+
+
+910
+00:48:28,306 --> 00:48:30,716
+by the user clicking cancel,
+clicking outside of the sheet
+
+
+911
+00:48:30,996 --> 00:48:32,386
+or going elsewhere
+from the sheet.
+
+
+912
+00:48:34,086 --> 00:48:36,866
+And this is where you
+actually dismiss the sheet
+
+
+913
+00:48:37,316 --> 00:48:38,116
+to get it to go away.
+
+
+914
+00:48:38,116 --> 00:48:39,236
+Otherwise, it will remain up.
+
+
+915
+00:48:39,456 --> 00:48:43,226
+The cancel action won't
+appear to have done anything.
+
+
+916
+00:48:43,606 --> 00:48:48,936
+And this is simply the IBAction,
+the Interface Builder action
+
+
+917
+00:48:49,426 --> 00:48:53,676
+that we tied to the button
+that was in the top of the app
+
+
+918
+00:48:54,506 --> 00:48:58,196
+and simply in this case,
+preloads it with the iTunesId
+
+
+919
+00:48:58,196 --> 00:49:01,196
+of that juggling pinball
+app that I showed,
+
+
+920
+00:49:01,766 --> 00:49:03,746
+and the affiliateToken
+and the campaignToken.
+
+
+921
+00:49:04,306 --> 00:49:07,176
+The code for getting the guy to
+do the juggling trick is left
+
+
+922
+00:49:07,176 --> 00:49:08,396
+as an exercise for the viewer.
+
+
+923
+00:49:09,366 --> 00:49:12,286
+So that's the StoreKit
+Product Sheet.
+
+
+924
+00:49:12,796 --> 00:49:13,976
+It's very simple to implement.
+
+
+925
+00:49:13,976 --> 00:49:16,286
+It's just a couple of calls
+and it's pretty powerful
+
+
+926
+00:49:16,286 --> 00:49:17,636
+in conjunction with
+the affiliate program.
+
+
+927
+00:49:18,066 --> 00:49:18,626
+Thank you.
+
+
+928
+00:49:19,516 --> 00:49:23,566
+[ Applause ]
+
+
+929
+00:49:24,066 --> 00:49:25,246
+>> Back to you, Mark.
+
+
+930
+00:49:26,046 --> 00:49:26,676
+>> All right.
+
+
+931
+00:49:27,006 --> 00:49:27,606
+Thanks very much, Rick.
+
+
+932
+00:49:27,636 --> 00:49:28,026
+That was awesome.
+
+
+933
+00:49:28,356 --> 00:49:30,736
+So like he said, StoreKit
+Product Sheet, you can do a lot
+
+
+934
+00:49:30,736 --> 00:49:33,426
+with it, and best of
+all, for your users,
+
+
+935
+00:49:33,426 --> 00:49:37,476
+it's very unintrusive,
+so take a look.
+
+
+936
+00:49:38,926 --> 00:49:43,526
+Next up on our list of things
+to talk about is iTunes Radio.
+
+
+937
+00:49:43,976 --> 00:49:45,516
+Now iTunes Radio
+launched recently,
+
+
+938
+00:49:46,016 --> 00:49:50,356
+and even more recently,
+we have added it
+
+
+939
+00:49:50,486 --> 00:49:54,446
+to the affiliate program,
+which means that if you link
+
+
+940
+00:49:54,646 --> 00:50:00,626
+to an iTunes Radio station, you
+get credited for that referral.
+
+
+941
+00:50:02,056 --> 00:50:04,126
+And again, it's very easy to do.
+
+
+942
+00:50:04,126 --> 00:50:07,566
+Here's another example
+using our friend Ed Sheeran,
+
+
+943
+00:50:07,956 --> 00:50:11,236
+and we're in the Sound Hound
+app, and they've got a link
+
+
+944
+00:50:11,436 --> 00:50:15,466
+down near the bottom of -
+that links to iTunes Radio.
+
+
+945
+00:50:15,966 --> 00:50:19,306
+And when the user taps on that,
+the radio station is going
+
+
+946
+00:50:19,306 --> 00:50:22,836
+to be created and added to
+their stations, and the song
+
+
+947
+00:50:23,176 --> 00:50:25,436
+that the radio station
+starts with begins to play.
+
+
+948
+00:50:25,876 --> 00:50:29,306
+So this is a great
+way to tell your users
+
+
+949
+00:50:29,306 --> 00:50:33,546
+or to recommend a certain
+set of content to your users.
+
+
+950
+00:50:33,816 --> 00:50:35,606
+Maybe they don't want to buy
+it, but they want to listen
+
+
+951
+00:50:35,606 --> 00:50:39,436
+to music that's inspired by
+a particular artist or song.
+
+
+952
+00:50:39,886 --> 00:50:44,116
+You can get them into the
+iTunes Radio experience
+
+
+953
+00:50:44,546 --> 00:50:46,746
+and listening to
+music immediately.
+
+
+954
+00:50:47,836 --> 00:50:52,356
+Best of all, this is supported
+with the affiliate program
+
+
+955
+00:50:52,526 --> 00:50:54,656
+with the same terms
+as everything else.
+
+
+956
+00:50:54,706 --> 00:50:58,236
+So 7 percent over 24 hours,
+and that applies not just
+
+
+957
+00:50:58,236 --> 00:51:00,806
+to purchases made within
+the iTunes Radio app,
+
+
+958
+00:51:01,246 --> 00:51:04,646
+but any other store on that same
+device where the cookie exists.
+
+
+959
+00:51:04,866 --> 00:51:08,396
+So that means music, of
+course, apps, books, movies,
+
+
+960
+00:51:08,666 --> 00:51:12,336
+all the rest, are all supported
+under the affiliate program.
+
+
+961
+00:51:13,696 --> 00:51:17,346
+Now to construct a
+link to iTunes Radio,
+
+
+962
+00:51:17,766 --> 00:51:22,206
+we've added some functionality
+to the Search and Lookup APIs
+
+
+963
+00:51:22,206 --> 00:51:25,096
+so that the content result
+that you see will have links
+
+
+964
+00:51:25,096 --> 00:51:26,446
+to the radio stations
+themselves.
+
+
+965
+00:51:27,396 --> 00:51:31,496
+So here, we're looking for Ed
+Sheeran, and in the result set
+
+
+966
+00:51:31,496 --> 00:51:33,796
+that we get back, we're
+looking for an artist.
+
+
+967
+00:51:34,676 --> 00:51:39,706
+The JSON has a radio
+station URL, and you can use
+
+
+968
+00:51:39,706 --> 00:51:44,726
+that special URL to launch into
+the iTunes Radio application.
+
+
+969
+00:51:45,646 --> 00:51:48,186
+You would of course have to add
+your affiliate data to this URL
+
+
+970
+00:51:48,186 --> 00:51:48,976
+as we've been discussing.
+
+
+971
+00:51:49,616 --> 00:51:51,566
+So that's iTunes Radio.
+
+
+972
+00:51:52,146 --> 00:51:56,266
+It's a great set of music
+for users to listen to,
+
+
+973
+00:51:56,566 --> 00:51:59,576
+and you get a bonus
+for any purchases made
+
+
+974
+00:51:59,576 --> 00:52:00,596
+after clicking that link.
+
+
+975
+00:52:01,866 --> 00:52:05,336
+We're going to end up talking
+today about collections,
+
+
+976
+00:52:06,036 --> 00:52:09,756
+and collections are something
+you might be familiar
+
+
+977
+00:52:09,756 --> 00:52:11,126
+with from previous talks.
+
+
+978
+00:52:11,126 --> 00:52:16,496
+It used to be called Web iMix,
+but this is a dynamic playlist
+
+
+979
+00:52:16,906 --> 00:52:18,876
+that is defined entirely
+by a URL,
+
+
+980
+00:52:18,876 --> 00:52:21,106
+and here's what it looks like.
+
+
+981
+00:52:21,716 --> 00:52:23,286
+This is a collection
+we've defined
+
+
+982
+00:52:23,286 --> 00:52:26,776
+by creating a special URL,
+and we've set the title.
+
+
+983
+00:52:27,916 --> 00:52:30,236
+We've set the description.
+
+
+984
+00:52:30,676 --> 00:52:32,836
+Now there's a limit on what
+kind of text you can put
+
+
+985
+00:52:32,836 --> 00:52:35,996
+in the description,
+but it's fairly broad.
+
+
+986
+00:52:36,906 --> 00:52:39,476
+And finally, we can
+actually define the content
+
+
+987
+00:52:39,896 --> 00:52:41,716
+of the playlist itself.
+
+
+988
+00:52:42,086 --> 00:52:45,606
+So here we've got four
+songs by Ed Sheeran,
+
+
+989
+00:52:46,226 --> 00:52:49,386
+and the user can buy each
+of these individually
+
+
+990
+00:52:49,636 --> 00:52:53,686
+or tap a single click and
+buy the whole thing at once.
+
+
+991
+00:52:55,556 --> 00:52:58,556
+So how do we do this?
+
+
+992
+00:52:58,606 --> 00:53:01,276
+The - to create a Collection
+Link you need set something
+
+
+993
+00:53:01,276 --> 00:53:02,066
+up beforehand.
+
+
+994
+00:53:02,506 --> 00:53:06,326
+What you need in addition to
+the normal affiliate signup is
+
+
+995
+00:53:06,326 --> 00:53:10,446
+to get a special
+collection account with us.
+
+
+996
+00:53:10,566 --> 00:53:14,426
+We will tell you a
+special web developer ID
+
+
+997
+00:53:14,806 --> 00:53:18,436
+and a shared secret, and
+the shared secret is used
+
+
+998
+00:53:18,436 --> 00:53:21,056
+to cryptographically
+sign these URLs,
+
+
+999
+00:53:21,476 --> 00:53:24,366
+so we know who the
+author is of that title,
+
+
+1000
+00:53:24,366 --> 00:53:25,756
+and description and the content.
+
+
+1001
+00:53:28,866 --> 00:53:33,086
+Collections support songs,
+albums, movies, TV shows
+
+
+1002
+00:53:33,086 --> 00:53:36,456
+and music videos, so you can
+have kind of a wide-ranging set
+
+
+1003
+00:53:36,456 --> 00:53:37,586
+of content that you link to,
+
+
+1004
+00:53:38,026 --> 00:53:40,656
+and this could actually
+be pretty high value.
+
+
+1005
+00:53:40,926 --> 00:53:42,826
+If you know your
+user is interested
+
+
+1006
+00:53:42,826 --> 00:53:46,886
+in six different movies,
+and they're ready to buy,
+
+
+1007
+00:53:46,936 --> 00:53:49,726
+they're ready to go, you can put
+a single link in front of them
+
+
+1008
+00:53:49,856 --> 00:53:52,186
+and they can buy six
+movies with one tap.
+
+
+1009
+00:53:52,666 --> 00:53:57,216
+That can mean a lot of money
+in terms of commissions.
+
+
+1010
+00:53:57,676 --> 00:54:02,476
+To get started with the
+Collection system, you -
+
+
+1011
+00:54:02,476 --> 00:54:04,316
+there's a bunch of
+documentation available online,
+
+
+1012
+00:54:04,976 --> 00:54:08,236
+but let's take a look at what
+these links actually look like.
+
+
+1013
+00:54:08,346 --> 00:54:09,836
+They're rather intimidating
+at first,
+
+
+1014
+00:54:09,866 --> 00:54:11,026
+but we can break
+them down for you.
+
+
+1015
+00:54:12,036 --> 00:54:15,906
+We start with the Prefix,
+which - has a little bit
+
+
+1016
+00:54:15,906 --> 00:54:17,236
+of history, viewWebIMix.
+
+
+1017
+00:54:19,076 --> 00:54:21,586
+There's the title that we
+defined, of course URL encoded.
+
+
+1018
+00:54:22,196 --> 00:54:24,016
+The description is
+also in there,
+
+
+1019
+00:54:24,816 --> 00:54:28,466
+and the IDs that we
+wanted, URL-encoded again
+
+
+1020
+00:54:28,886 --> 00:54:31,436
+so that the link actually
+works, are in there.
+
+
+1021
+00:54:32,746 --> 00:54:34,726
+Additionally, we've
+passed in a wdID.
+
+
+1022
+00:54:34,726 --> 00:54:36,316
+That's the Web Developer ID.
+
+
+1023
+00:54:36,806 --> 00:54:39,616
+And we've signed - we've done
+a little bit of cryptography
+
+
+1024
+00:54:39,616 --> 00:54:41,336
+and we've added a
+key to the URL,
+
+
+1025
+00:54:41,396 --> 00:54:43,096
+and we put that into
+the key parameter.
+
+
+1026
+00:54:43,806 --> 00:54:47,326
+And finally, we've got our
+affiliates hooking up at the top
+
+
+1027
+00:54:47,786 --> 00:54:50,236
+because we want to
+get a commission
+
+
+1028
+00:54:50,236 --> 00:54:51,026
+on this link of course.
+
+
+1029
+00:54:52,306 --> 00:54:55,176
+So this is a great way to
+make things happen on the fly
+
+
+1030
+00:54:55,176 --> 00:54:59,846
+if your user has a special set
+of desires that you know about.
+
+
+1031
+00:55:00,066 --> 00:55:03,376
+You can put together a single
+collection with this on the fly.
+
+
+1032
+00:55:03,736 --> 00:55:05,106
+You don't need to
+do - you don't need
+
+
+1033
+00:55:05,106 --> 00:55:08,256
+to register a particular
+collection beforehand.
+
+
+1034
+00:55:08,526 --> 00:55:10,536
+Once you're signed up, you
+can do this any time you want.
+
+
+1035
+00:55:10,816 --> 00:55:13,626
+Now on the other hand,
+maybe you don't want
+
+
+1036
+00:55:13,626 --> 00:55:14,776
+to have the difficulty
+
+
+1037
+00:55:14,776 --> 00:55:17,016
+of defining these
+URLs programmatically.
+
+
+1038
+00:55:17,376 --> 00:55:18,726
+For that, we have
+Collection Builder,
+
+
+1039
+00:55:19,386 --> 00:55:25,566
+and this is a really simple
+UI to define the title
+
+
+1040
+00:55:25,566 --> 00:55:27,186
+and description and the content.
+
+
+1041
+00:55:27,606 --> 00:55:30,476
+And the Collection Builder,
+if you pass in a wdID
+
+
+1042
+00:55:30,476 --> 00:55:33,576
+and your shared secret,
+will create the URL for you.
+
+
+1043
+00:55:33,766 --> 00:55:37,206
+So if you've got maybe
+a game and you want
+
+
+1044
+00:55:37,206 --> 00:55:40,146
+to promote the soundtrack
+to the game,
+
+
+1045
+00:55:40,146 --> 00:55:42,666
+and maybe you've got a
+comic iBook that kind
+
+
+1046
+00:55:42,666 --> 00:55:45,036
+of expands the game's universe
+- something like that -
+
+
+1047
+00:55:45,286 --> 00:55:48,576
+you can define that very
+easily via Collection Builder.
+
+
+1048
+00:55:50,016 --> 00:55:51,866
+Once you've got your
+title and description,
+
+
+1049
+00:55:52,236 --> 00:55:55,076
+you can start searching
+for additional content,
+
+
+1050
+00:55:55,476 --> 00:56:01,246
+add that to your dynamic
+playlist, and you hit go,
+
+
+1051
+00:56:01,276 --> 00:56:05,446
+and you get a collection
+URL that you can paste
+
+
+1052
+00:56:05,446 --> 00:56:08,736
+into your web page or into
+your app, whatever you need.
+
+
+1053
+00:56:09,226 --> 00:56:10,626
+So that's Collection Builder.
+
+
+1054
+00:56:12,066 --> 00:56:16,486
+There's a lot of interesting
+things you can do with that
+
+
+1055
+00:56:16,486 --> 00:56:17,716
+with the right situation.
+
+
+1056
+00:56:18,496 --> 00:56:23,556
+So to summarize, most
+important thing to take away
+
+
+1057
+00:56:23,556 --> 00:56:25,266
+with you right today is
+
+
+1058
+00:56:25,266 --> 00:56:28,156
+that we've got one program
+that works worldwide.
+
+
+1059
+00:56:28,436 --> 00:56:31,876
+Sign up is trivially easy, and
+once you do that, you're going
+
+
+1060
+00:56:31,876 --> 00:56:35,596
+to be able to market your
+content in 147 countries,
+
+
+1061
+00:56:35,906 --> 00:56:37,266
+and that list is
+growing as well.
+
+
+1062
+00:56:38,556 --> 00:56:41,576
+We've got a simplified link
+structure, so you don't have
+
+
+1063
+00:56:41,756 --> 00:56:45,576
+to figure out what one
+URL looks like to one user
+
+
+1064
+00:56:45,956 --> 00:56:48,566
+and then present a
+different URL to another user
+
+
+1065
+00:56:48,566 --> 00:56:49,296
+in a different region.
+
+
+1066
+00:56:50,196 --> 00:56:51,906
+That is a huge headache removed.
+
+
+1067
+00:56:52,726 --> 00:56:55,696
+We've got a unified dashboard,
+so we can see what's going
+
+
+1068
+00:56:55,696 --> 00:56:59,046
+on at a glance across the
+world, or we can drill
+
+
+1069
+00:56:59,046 --> 00:57:02,236
+down into a particular country,
+a particular content type.
+
+
+1070
+00:57:02,716 --> 00:57:05,946
+Really powerful, real
+time, really great.
+
+
+1071
+00:57:07,406 --> 00:57:09,106
+We've got a great new
+commission structure:
+
+
+1072
+00:57:09,296 --> 00:57:11,596
+7 percent over 24 hours.
+
+
+1073
+00:57:11,626 --> 00:57:14,326
+That can mean a lot
+to your bottom line.
+
+
+1074
+00:57:14,716 --> 00:57:17,936
+We've added iTunes Radio and
+the StoreKit Product Sheet
+
+
+1075
+00:57:17,936 --> 00:57:20,626
+to the affiliate program so you
+get credit - the same structure
+
+
+1076
+00:57:20,626 --> 00:57:22,596
+as everything else
+by using that.
+
+
+1077
+00:57:23,516 --> 00:57:26,396
+And of course, we've got
+a lot of tools and a lot
+
+
+1078
+00:57:26,396 --> 00:57:28,166
+of documentation
+available online.
+
+
+1079
+00:57:28,496 --> 00:57:29,426
+So check it out.
+
+
+1080
+00:57:30,856 --> 00:57:33,526
+The documentation - we
+have a whole resource site
+
+
+1081
+00:57:33,526 --> 00:57:35,266
+at affiliate.iTunes.apple.com.
+
+
+1082
+00:57:35,616 --> 00:57:36,926
+Highly recommend
+checking that out.
+
+
+1083
+00:57:37,266 --> 00:57:39,206
+There's a support link
+available too, and of course,
+
+
+1084
+00:57:39,206 --> 00:57:41,316
+there's devforums if you
+any questions that you want
+
+
+1085
+00:57:41,316 --> 00:57:43,136
+to ask your fellow developers.
+
+
+1086
+00:57:43,376 --> 00:57:47,816
+There's a related
+session happening tomorrow
+
+
+1087
+00:57:48,016 --> 00:57:49,526
+about using StoreKit.
+
+
+1088
+00:57:49,736 --> 00:57:51,536
+It's called "Optimizing
+In-App Purchases,"
+
+
+1089
+00:57:51,956 --> 00:57:54,466
+and they'll be covering a bit
+
+
+1090
+00:57:54,466 --> 00:57:55,876
+about the StoreKit
+Product Sheet there.
+
+
+1091
+00:57:55,876 --> 00:57:58,316
+And if you have any questions
+about the affiliate program
+
+
+1092
+00:57:58,316 --> 00:58:00,406
+or the StoreKit Product
+Sheet, we've got a couple labs
+
+
+1093
+00:58:00,406 --> 00:58:01,246
+in the next couple days.
+
+
+1094
+00:58:01,646 --> 00:58:06,806
+We're going to be downstairs at
+2 p.m. so feel free to come by,
+
+
+1095
+00:58:06,806 --> 00:58:07,896
+say hello, ask some questions.
+
+
+1096
+00:58:07,896 --> 00:58:08,746
+We'll be glad to help.
+
+
+1097
+00:58:08,816 --> 00:58:11,086
+That's it for the
+presentation today.
+
+
+1098
+00:58:11,446 --> 00:58:12,976
+Thanks all for coming and have
+a great rest of the conference.
+
+
+1099
+00:58:13,516 --> 00:58:20,560
+[ Applause ]
+

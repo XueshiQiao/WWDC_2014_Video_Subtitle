@@ -1,0 +1,6243 @@
+1
+00:00:12,856 --> 00:00:13,586
+>> Good morning.
+
+
+2
+00:00:14,046 --> 00:00:17,406
+Welcome to WWDC and this
+is "What's New in Xcode."
+
+
+3
+00:00:20,176 --> 00:00:22,326
+You guys saw a lot of
+new stuff yesterday.
+
+
+4
+00:00:23,906 --> 00:00:26,366
+Today, we thought we
+would take a deep dive
+
+
+5
+00:00:26,426 --> 00:00:29,336
+into a few specific
+areas of Xcode 6.
+
+
+6
+00:00:31,836 --> 00:00:34,456
+Before we do, though, let's
+take a look at what's happened
+
+
+7
+00:00:34,456 --> 00:00:36,236
+since last time that
+we were here together.
+
+
+8
+00:00:37,206 --> 00:00:44,236
+I hope you guys are all
+using and enjoying Xcode 5.1.
+
+
+9
+00:00:44,446 --> 00:00:47,506
+Since last year, one of
+the biggest new things
+
+
+10
+00:00:47,506 --> 00:00:51,076
+that we added was
+support for iOS 64-bit.
+
+
+11
+00:00:52,446 --> 00:00:55,346
+And you guys have done an
+amazing job of adopting 64-bit
+
+
+12
+00:00:55,346 --> 00:00:59,186
+in your apps to take full
+advantage of our latest devices.
+
+
+13
+00:01:01,356 --> 00:01:05,036
+We've also made significant
+improvements to auto layout
+
+
+14
+00:01:05,036 --> 00:01:08,826
+in Interface Builder
+and added new APIs
+
+
+15
+00:01:09,116 --> 00:01:12,266
+to make your own classes work
+with Debugger Quick Look.
+
+
+16
+00:01:14,716 --> 00:01:18,846
+This fall we'll be
+releasing Xcode 6
+
+
+17
+00:01:20,156 --> 00:01:23,076
+with an even more beautiful
+and functional interface
+
+
+18
+00:01:23,226 --> 00:01:25,036
+to go along with OS X Yosemite.
+
+
+19
+00:01:25,676 --> 00:01:32,736
+Let's take a quick look at some
+of the new features in Xcode 6.
+
+
+20
+00:01:35,496 --> 00:01:37,906
+First of all, we have a brand
+new programming language
+
+
+21
+00:01:37,906 --> 00:01:39,666
+for Cocoa development
+called Swift.
+
+
+22
+00:01:40,486 --> 00:01:43,536
+And Swift is exciting
+enough on its own,
+
+
+23
+00:01:44,326 --> 00:01:45,436
+but we didn't stop there.
+
+
+24
+00:01:46,876 --> 00:01:49,746
+Playgrounds provide a live
+and responsive environment
+
+
+25
+00:01:49,786 --> 00:01:50,926
+for you to develop code.
+
+
+26
+00:01:52,496 --> 00:01:54,616
+Whether you're exploring
+new technologies,
+
+
+27
+00:01:54,616 --> 00:01:57,346
+like Sprite Kit physics
+courses, or just playing
+
+
+28
+00:01:57,346 --> 00:01:59,386
+around with Swift
+itself, you're going
+
+
+29
+00:01:59,386 --> 00:02:01,146
+to love the experience
+of playgrounds.
+
+
+30
+00:02:05,056 --> 00:02:08,126
+Playgrounds also offer a
+great learning environment.
+
+
+31
+00:02:09,466 --> 00:02:12,496
+The Swift language guided
+tour is actually a playground
+
+
+32
+00:02:12,986 --> 00:02:15,426
+where you can try things
+out right as you're reading
+
+
+33
+00:02:15,426 --> 00:02:17,266
+and learning about Swift.
+
+
+34
+00:02:19,006 --> 00:02:22,486
+And of course Swift is
+fully integrated into Xcode.
+
+
+35
+00:02:24,626 --> 00:02:27,296
+Everything from code completion
+to connect from source
+
+
+36
+00:02:27,296 --> 00:02:30,306
+in Interface Builder works
+beautifully with Swift.
+
+
+37
+00:02:32,056 --> 00:02:35,206
+When you're working
+in Swift, Xcode knows.
+
+
+38
+00:02:35,766 --> 00:02:38,236
+If you ask to see the
+interface for a framework class,
+
+
+39
+00:02:38,576 --> 00:02:40,926
+Xcode will show it
+to you in Swift.
+
+
+40
+00:02:42,166 --> 00:02:47,386
+And when you ask for Quick
+Help, you get help in Swift.
+
+
+41
+00:02:48,176 --> 00:02:51,226
+Now, Quick Help actually
+has another new trick.
+
+
+42
+00:02:52,416 --> 00:02:55,176
+Oh, that's not that build.
+
+
+43
+00:02:57,176 --> 00:02:59,266
+So we have another new
+trick that works well
+
+
+44
+00:02:59,266 --> 00:03:00,966
+with Swift's inferred types.
+
+
+45
+00:03:01,526 --> 00:03:04,226
+If you're ever curious about
+what type is being inferred
+
+
+46
+00:03:04,326 --> 00:03:06,456
+by Swift, Quick Help
+can tell you.
+
+
+47
+00:03:10,936 --> 00:03:13,336
+And you can freely mix Swift
+
+
+48
+00:03:13,336 --> 00:03:16,006
+into your existing
+Objective-C applications.
+
+
+49
+00:03:17,296 --> 00:03:23,136
+We'll be showing you how easy
+that is in a few minutes.
+
+
+50
+00:03:25,836 --> 00:03:30,756
+Now, let's talk about some
+of Xcode's design tools
+
+
+51
+00:03:30,756 --> 00:03:31,716
+and the new features there.
+
+
+52
+00:03:32,496 --> 00:03:36,706
+You're probably all familiar
+with using storyboards
+
+
+53
+00:03:36,706 --> 00:03:38,516
+to develop your iOS
+applications.
+
+
+54
+00:03:39,106 --> 00:03:41,166
+And in Xcode 6, you
+can use storyboards
+
+
+55
+00:03:41,166 --> 00:03:43,366
+to develop your OS X
+applications as well.
+
+
+56
+00:03:46,176 --> 00:03:52,656
+In iOS, the new adaptive UI lets
+you have a single storyboard
+
+
+57
+00:03:52,656 --> 00:03:54,256
+for your universal applications,
+
+
+58
+00:03:54,926 --> 00:03:58,066
+while still retaining
+full control
+
+
+59
+00:03:58,066 --> 00:03:59,566
+over customizing your interface
+
+
+60
+00:03:59,566 --> 00:04:04,536
+for both the iPhone
+and the iPad.
+
+
+61
+00:04:04,536 --> 00:04:06,896
+And if you use custom
+fonts in your application,
+
+
+62
+00:04:08,226 --> 00:04:11,136
+you can now see them right on
+the canvas in Interface Builder.
+
+
+63
+00:04:13,516 --> 00:04:17,716
+[ Applause ]
+
+
+64
+00:04:18,216 --> 00:04:23,876
+We have some brand new
+editors in Xcode 6 too,
+
+
+65
+00:04:23,876 --> 00:04:25,516
+like the Sprite Kit Level Editor
+
+
+66
+00:04:25,936 --> 00:04:27,916
+that lets you visually
+assemble scenes.
+
+
+67
+00:04:28,476 --> 00:04:35,316
+Xcode 6 has a brand new way
+to localize your applications.
+
+
+68
+00:04:37,006 --> 00:04:40,636
+You can export all of your
+localizable content into XLIFF,
+
+
+69
+00:04:40,636 --> 00:04:43,026
+which is the industry-standard
+format that's understood
+
+
+70
+00:04:43,026 --> 00:04:44,776
+by a lot of translation
+services.
+
+
+71
+00:04:45,226 --> 00:04:49,206
+And when you get those
+translations back, just import
+
+
+72
+00:04:49,616 --> 00:04:50,926
+and Xcode will help you to merge
+
+
+73
+00:04:50,926 --> 00:04:56,676
+that new content right
+into your project.
+
+
+74
+00:04:56,676 --> 00:05:00,316
+And with iOS 8's
+support for frameworks,
+
+
+75
+00:05:00,926 --> 00:05:02,766
+you can now build IB components.
+
+
+76
+00:05:03,916 --> 00:05:06,616
+Just by adding a few
+attributes to your classes,
+
+
+77
+00:05:07,686 --> 00:05:10,256
+you can get them to show
+up right in IB's canvas
+
+
+78
+00:05:10,676 --> 00:05:12,316
+and configure them
+in the inspector.
+
+
+79
+00:05:13,956 --> 00:05:16,186
+We'll be showing
+you how easy it is
+
+
+80
+00:05:16,836 --> 00:05:20,486
+to make your views
+into IB components.
+
+
+81
+00:05:22,286 --> 00:05:29,516
+Now, Xcode 6 makes
+debugging better than ever.
+
+
+82
+00:05:29,666 --> 00:05:32,616
+Often, when you're
+debugging using queues,
+
+
+83
+00:05:34,056 --> 00:05:35,456
+it's not quite enough just
+
+
+84
+00:05:35,456 --> 00:05:37,686
+to see the code that's
+running on the queue.
+
+
+85
+00:05:39,046 --> 00:05:42,556
+So in Xcode 6, we
+now show you how
+
+
+86
+00:05:42,556 --> 00:05:44,506
+that block got onto
+the queue also.
+
+
+87
+00:05:47,756 --> 00:05:50,506
+When you're developing
+the new app extensions,
+
+
+88
+00:05:50,866 --> 00:05:53,216
+debugging support is
+easy and automatic.
+
+
+89
+00:05:54,336 --> 00:05:56,646
+For example, if you're
+developing a Today View
+
+
+90
+00:05:56,646 --> 00:05:58,886
+extension, just hit
+Run in Xcode,
+
+
+91
+00:05:59,376 --> 00:06:01,236
+bring up Notification
+Center on the device
+
+
+92
+00:06:01,796 --> 00:06:03,446
+and Xcode will automatically
+attach
+
+
+93
+00:06:03,446 --> 00:06:04,856
+to your extension for debugging.
+
+
+94
+00:06:08,056 --> 00:06:11,626
+Xcode 6 has some
+brand new debug gauges
+
+
+95
+00:06:11,626 --> 00:06:14,146
+to help you identify
+problems with disc
+
+
+96
+00:06:14,146 --> 00:06:20,546
+and file I/O, disc
+and network I/O.
+
+
+97
+00:06:20,786 --> 00:06:23,526
+And View debugging
+gives you deep insight
+
+
+98
+00:06:23,526 --> 00:06:24,816
+into visual problems.
+
+
+99
+00:06:26,336 --> 00:06:30,186
+We'll be showing you how easy it
+is to identify and fix problems
+
+
+100
+00:06:30,186 --> 00:06:31,206
+with your view hierarchy
+
+
+101
+00:06:31,206 --> 00:06:32,956
+and constraints using
+View debugging.
+
+
+102
+00:06:36,396 --> 00:06:42,076
+Xcode 6 has some all-new
+performance features as well
+
+
+103
+00:06:43,556 --> 00:06:47,176
+that will help you to make
+your apps faster and leaner.
+
+
+104
+00:06:47,896 --> 00:06:52,616
+Our premier performance
+tool, Instruments,
+
+
+105
+00:06:52,676 --> 00:06:56,076
+has a brand new interface
+with new workflows
+
+
+106
+00:06:56,586 --> 00:06:59,586
+that make it easier than ever to
+analyze your app's performance.
+
+
+107
+00:07:00,266 --> 00:07:06,496
+Last year we introduced
+Xcode Server,
+
+
+108
+00:07:06,496 --> 00:07:09,496
+and one of the biggest requests
+that we got was for the ability
+
+
+109
+00:07:09,496 --> 00:07:11,056
+to customize what happens
+
+
+110
+00:07:11,146 --> 00:07:12,776
+when you're running
+continuous integrations.
+
+
+111
+00:07:13,736 --> 00:07:16,506
+So in Xcode 6, we've
+added support for triggers
+
+
+112
+00:07:16,506 --> 00:07:22,786
+that allow you to add custom
+behavior to your bots.
+
+
+113
+00:07:22,976 --> 00:07:27,626
+And we've added support in
+the XE Test Framework in Xcode
+
+
+114
+00:07:27,626 --> 00:07:31,386
+and in Xcode Server
+for performance tests.
+
+
+115
+00:07:32,186 --> 00:07:34,416
+It's easy to make
+a performance test.
+
+
+116
+00:07:35,096 --> 00:07:37,886
+You just wrap your
+code in a measureBlock.
+
+
+117
+00:07:39,556 --> 00:07:44,726
+Performance tests let Xcode
+measure the speed of your code
+
+
+118
+00:07:45,236 --> 00:07:47,756
+and tell you whenever it
+has improved or regressed.
+
+
+119
+00:07:48,396 --> 00:07:52,756
+And in order to help you to
+make your apps even faster,
+
+
+120
+00:07:53,696 --> 00:07:58,316
+you can now profile your
+performance tests directly
+
+
+121
+00:07:58,316 --> 00:08:02,106
+in Instruments with just a
+choice from this context menu.
+
+
+122
+00:08:05,256 --> 00:08:05,396
+>> Yes!
+
+
+123
+00:08:07,016 --> 00:08:09,016
+[ Laughter ]
+
+
+124
+00:08:09,016 --> 00:08:09,083
+[ Applause ]
+
+
+125
+00:08:09,606 --> 00:08:10,776
+>> It's the little
+things, right?
+
+
+126
+00:08:14,056 --> 00:08:16,616
+Xcode also includes
+all-new reports
+
+
+127
+00:08:16,616 --> 00:08:19,366
+that show you exactly how your
+performance tests are doing.
+
+
+128
+00:08:21,026 --> 00:08:23,466
+And we'll be showing
+you how easy it is
+
+
+129
+00:08:23,596 --> 00:08:26,526
+to start writing performance
+tests for your projects
+
+
+130
+00:08:26,766 --> 00:08:28,776
+and using them to
+make your apps better.
+
+
+131
+00:08:29,466 --> 00:08:33,765
+So that's just a
+quick tour of some
+
+
+132
+00:08:33,765 --> 00:08:35,576
+of the feature areas in Xcode 6.
+
+
+133
+00:08:35,576 --> 00:08:37,765
+And now we'd like
+to dive in deeper
+
+
+134
+00:08:38,096 --> 00:08:41,216
+and give you a detailed look
+at a few of these areas.
+
+
+135
+00:08:42,596 --> 00:08:45,676
+To get us started with that,
+let me introduce Daniel Dunbar.
+
+
+136
+00:08:47,311 --> 00:08:49,311
+[ Applause ]
+
+
+137
+00:08:49,606 --> 00:08:50,216
+>> Thanks, Mike.
+
+
+138
+00:08:50,926 --> 00:08:53,186
+This talk is called
+"What's New in Xcode,"
+
+
+139
+00:08:53,456 --> 00:08:56,516
+and obviously the big new
+thing this year is Swift.
+
+
+140
+00:08:57,276 --> 00:08:59,026
+I'm sure you're all
+really excited
+
+
+141
+00:08:59,026 --> 00:09:01,256
+about this new language
+we unveiled yesterday.
+
+
+142
+00:09:01,756 --> 00:09:03,726
+And I imagine many of
+you are wondering, "Well,
+
+
+143
+00:09:03,726 --> 00:09:06,846
+how quickly can I start using
+this in my own applications?"
+
+
+144
+00:09:08,016 --> 00:09:10,716
+So we'd like to kick off
+our demos this morning
+
+
+145
+00:09:10,946 --> 00:09:13,546
+by showing you just how easy
+it is to integrate Swift
+
+
+146
+00:09:13,696 --> 00:09:15,256
+into an existing application.
+
+
+147
+00:09:16,576 --> 00:09:19,116
+We've created this new
+photo scavenger game.
+
+
+148
+00:09:19,426 --> 00:09:20,336
+Let me show it to you now.
+
+
+149
+00:09:21,226 --> 00:09:25,116
+Our game is called Shutterbugs,
+and when I open it up,
+
+
+150
+00:09:26,146 --> 00:09:28,006
+you'll see our game starts
+
+
+151
+00:09:28,276 --> 00:09:29,986
+with this great looking
+sign-on screen,
+
+
+152
+00:09:29,986 --> 00:09:32,116
+and it takes the user
+right into the game.
+
+
+153
+00:09:32,876 --> 00:09:34,166
+That's been working great,
+
+
+154
+00:09:34,476 --> 00:09:36,746
+but our app has really
+been taking off recently,
+
+
+155
+00:09:36,746 --> 00:09:38,736
+and users tell us
+they want to be able
+
+
+156
+00:09:38,736 --> 00:09:40,426
+to play multiple
+games at one time.
+
+
+157
+00:09:41,376 --> 00:09:45,236
+So for Version 2, we'd like to
+introduce a new games landing
+
+
+158
+00:09:45,236 --> 00:09:48,516
+screen that shows users their
+in progress and completed games.
+
+
+159
+00:09:49,036 --> 00:09:51,326
+And of course we'd
+like to do it in Swift.
+
+
+160
+00:09:52,416 --> 00:09:54,936
+Now, my designer has already
+updated the storyboard
+
+
+161
+00:09:55,466 --> 00:09:58,176
+to include this table view
+controller shown here.
+
+
+162
+00:09:59,146 --> 00:10:02,056
+All we need to do to finish off
+this new feature is implement
+
+
+163
+00:10:02,056 --> 00:10:03,326
+the code for it.
+
+
+164
+00:10:04,416 --> 00:10:05,726
+So I know I'm going
+
+
+165
+00:10:05,726 --> 00:10:08,526
+to eventually want a custom
+cell class for my table,
+
+
+166
+00:10:08,766 --> 00:10:10,386
+so I'll start with that.
+
+
+167
+00:10:10,976 --> 00:10:14,576
+Going to go to Views and select
+New File from the popup menu.
+
+
+168
+00:10:15,446 --> 00:10:18,096
+Of course, I want an
+iOS Cocoa Touch class.
+
+
+169
+00:10:18,756 --> 00:10:21,896
+And the first thing you'll
+notice on this screen is
+
+
+170
+00:10:21,896 --> 00:10:23,776
+that there's a new language
+chooser at the bottom
+
+
+171
+00:10:24,046 --> 00:10:26,426
+that lets you decide
+whether you want a Swift
+
+
+172
+00:10:26,556 --> 00:10:27,646
+or an Objective-C class.
+
+
+173
+00:10:28,386 --> 00:10:32,026
+Of course I want Swift, and
+in this case I want a subclass
+
+
+174
+00:10:32,086 --> 00:10:33,366
+of a UI table view cell.
+
+
+175
+00:10:34,046 --> 00:10:36,016
+I'll call it GamesTableView
+Cell.
+
+
+176
+00:10:36,516 --> 00:10:38,976
+Drop that in my project...
+
+
+177
+00:10:39,066 --> 00:10:41,126
+and Xcode takes me
+to the source.
+
+
+178
+00:10:41,726 --> 00:10:44,666
+These subclass templates are
+a great way to get started
+
+
+179
+00:10:44,666 --> 00:10:45,626
+with the new language.
+
+
+180
+00:10:47,256 --> 00:10:51,746
+So for us, the main thing we'll
+need is a couple of properties
+
+
+181
+00:10:51,746 --> 00:10:54,286
+that we can use to
+connect our UI to.
+
+
+182
+00:10:54,796 --> 00:10:56,166
+So let me add that
+to start with.
+
+
+183
+00:10:56,556 --> 00:11:00,136
+As you can see, property
+declarations
+
+
+184
+00:11:00,136 --> 00:11:02,496
+in Swift are very
+clean and simple.
+
+
+185
+00:11:02,766 --> 00:11:06,126
+And we just needed to add
+this IBOutlet attribute
+
+
+186
+00:11:06,326 --> 00:11:08,566
+so that we could connect to
+it from Interface Builder.
+
+
+187
+00:11:09,656 --> 00:11:12,656
+Now that that's in place, let
+me go back to my storyboard.
+
+
+188
+00:11:17,136 --> 00:11:20,206
+So I'll select my
+prototype cell,
+
+
+189
+00:11:20,586 --> 00:11:22,476
+and I need to associate
+the class with it.
+
+
+190
+00:11:23,546 --> 00:11:24,606
+If I pull down this menu,
+
+
+191
+00:11:24,976 --> 00:11:27,786
+you see that Interface Builder
+has already recognized our new
+
+
+192
+00:11:27,786 --> 00:11:30,086
+class using our Swift
+indexing support.
+
+
+193
+00:11:30,696 --> 00:11:32,326
+So I'll select GamesTableView
+Cell.
+
+
+194
+00:11:33,036 --> 00:11:36,176
+Now, you may notice there's
+a new module field here.
+
+
+195
+00:11:37,026 --> 00:11:40,206
+Another great way that Swift
+improves the coding experience
+
+
+196
+00:11:40,236 --> 00:11:42,906
+is by associating
+classes with the modules
+
+
+197
+00:11:42,906 --> 00:11:43,826
+that they are declared in.
+
+
+198
+00:11:44,526 --> 00:11:46,046
+That allows you to use short,
+
+
+199
+00:11:46,156 --> 00:11:48,656
+comfortable class names
+while still ensuring
+
+
+200
+00:11:48,656 --> 00:11:52,206
+that your classes won't collide
+across targets and projects.
+
+
+201
+00:11:52,616 --> 00:11:57,326
+With that in place we can
+set up our connections.
+
+
+202
+00:11:57,816 --> 00:12:02,046
+I'll close the Utilities
+panel and open our source code
+
+
+203
+00:12:02,046 --> 00:12:03,126
+in the Assistant Editor.
+
+
+204
+00:12:03,676 --> 00:12:08,366
+And now I can wire up
+my connections just
+
+
+205
+00:12:08,366 --> 00:12:09,036
+like you would expect.
+
+
+206
+00:12:09,636 --> 00:12:12,456
+I'll set the name,
+the state label,
+
+
+207
+00:12:12,546 --> 00:12:14,266
+and we have a custom
+progress view here.
+
+
+208
+00:12:15,506 --> 00:12:17,006
+OK, that should be enough
+
+
+209
+00:12:17,046 --> 00:12:18,986
+to let us get started
+with our custom cell.
+
+
+210
+00:12:19,286 --> 00:12:23,866
+So now let's fill in the
+details of the controller.
+
+
+211
+00:12:23,866 --> 00:12:26,286
+I've already added the
+basic subclass template
+
+
+212
+00:12:26,606 --> 00:12:29,606
+with a couple tweaks, but we
+need to fill in the details.
+
+
+213
+00:12:30,626 --> 00:12:34,496
+So the first thing that every
+controller class needs is access
+
+
+214
+00:12:34,546 --> 00:12:36,516
+to the model data that
+it's going to present.
+
+
+215
+00:12:37,676 --> 00:12:40,776
+For our application, most
+of our model data is stored
+
+
+216
+00:12:40,776 --> 00:12:41,986
+in a user session class.
+
+
+217
+00:12:42,536 --> 00:12:44,986
+So let me add a property
+to hold that now.
+
+
+218
+00:12:48,936 --> 00:12:52,416
+So I'll call it userSession
+and declare its type.
+
+
+219
+00:12:53,646 --> 00:12:56,496
+Naturally, we have live
+issue support in Swift,
+
+
+220
+00:12:56,816 --> 00:13:00,436
+and if I pop this open I can
+see it's telling me there's an
+
+
+221
+00:13:00,436 --> 00:13:02,436
+undeclared type here:
+userSession.
+
+
+222
+00:13:02,436 --> 00:13:04,976
+I haven't imported
+that class yet.
+
+
+223
+00:13:05,966 --> 00:13:08,836
+Now, in Swift, all
+of the classes
+
+
+224
+00:13:08,966 --> 00:13:13,256
+in one target are automatically
+visible to each of the source --
+
+
+225
+00:13:13,486 --> 00:13:15,276
+the Swift implementation files.
+
+
+226
+00:13:15,746 --> 00:13:17,036
+You no longer need to worry
+
+
+227
+00:13:17,036 --> 00:13:19,516
+about manually importing
+the headers for each
+
+
+228
+00:13:19,516 --> 00:13:20,876
+of the classes that you use.
+
+
+229
+00:13:21,516 --> 00:13:25,846
+[ Applause ]
+
+
+230
+00:13:26,346 --> 00:13:30,176
+Yep. However, you do still
+need to import the modules
+
+
+231
+00:13:30,376 --> 00:13:32,156
+for the frameworks
+that you depend upon.
+
+
+232
+00:13:33,156 --> 00:13:36,206
+To go along with iOS 8's
+new framework support,
+
+
+233
+00:13:36,616 --> 00:13:39,836
+Xcode now has support
+for you to define modules
+
+
+234
+00:13:39,896 --> 00:13:41,326
+out of your own frameworks.
+
+
+235
+00:13:42,256 --> 00:13:45,736
+And those modules can be used
+in both Swift and Objective-C.
+
+
+236
+00:13:45,736 --> 00:13:49,236
+But we've already started
+taking advantage of that
+
+
+237
+00:13:49,236 --> 00:13:52,246
+in our application by
+moving all of our model code
+
+
+238
+00:13:52,596 --> 00:13:58,506
+into this new CoreShutterbugs
+framework that you can see.
+
+
+239
+00:13:58,736 --> 00:14:02,576
+That means, to use this
+-- fix this problem,
+
+
+240
+00:14:02,576 --> 00:14:07,206
+all I need to do is type
+Import CoreShutterbugs just
+
+
+241
+00:14:07,206 --> 00:14:09,626
+like I would for any other
+framework on the system.
+
+
+242
+00:14:09,876 --> 00:14:11,716
+And of course the
+error goes away.
+
+
+243
+00:14:13,556 --> 00:14:17,116
+Now, our table view is going
+to have two different sections.
+
+
+244
+00:14:17,366 --> 00:14:19,786
+We'll have one for the
+in-progress games and then one
+
+
+245
+00:14:19,786 --> 00:14:21,006
+for the completed games.
+
+
+246
+00:14:21,666 --> 00:14:23,896
+So I want to start by
+creating a utility method
+
+
+247
+00:14:23,896 --> 00:14:26,276
+that lets me easily get
+the appropriate list
+
+
+248
+00:14:26,276 --> 00:14:27,106
+for each section.
+
+
+249
+00:14:27,636 --> 00:14:32,636
+I'm going to call it
+gameListForSection.
+
+
+250
+00:14:32,966 --> 00:14:36,006
+And what I want to
+return here is the result
+
+
+251
+00:14:36,006 --> 00:14:41,026
+of the user sessions
+"getFilteredGameList" method.
+
+
+252
+00:14:41,506 --> 00:14:44,116
+You can see that even
+though this is a method
+
+
+253
+00:14:44,116 --> 00:14:46,566
+that we declared in our
+Objective-C source code
+
+
+254
+00:14:46,566 --> 00:14:49,206
+in another framework, I
+still get code completion
+
+
+255
+00:14:49,206 --> 00:14:51,426
+and even the documentation
+for that method
+
+
+256
+00:14:51,626 --> 00:14:52,666
+in my Swift source code.
+
+
+257
+00:14:53,816 --> 00:14:55,186
+So I'll complete that out.
+
+
+258
+00:14:55,506 --> 00:14:58,196
+And what I want to get
+is the in-progress list
+
+
+259
+00:14:58,436 --> 00:14:59,836
+when the section number is 0.
+
+
+260
+00:15:00,346 --> 00:15:05,126
+I'm also going to add a
+cast here to a game array.
+
+
+261
+00:15:05,686 --> 00:15:09,046
+What I'm doing here
+is taking advantage
+
+
+262
+00:15:09,046 --> 00:15:12,436
+of Swift's typed collection
+support to tell the compiler
+
+
+263
+00:15:12,616 --> 00:15:17,196
+that each object in this array
+is an instance of my game class.
+
+
+264
+00:15:17,956 --> 00:15:20,626
+That way, whenever I use
+this array later in the code,
+
+
+265
+00:15:20,876 --> 00:15:23,686
+the Swift compiler will know
+the exact type of each object.
+
+
+266
+00:15:25,076 --> 00:15:26,846
+There's one more
+utility I'd like.
+
+
+267
+00:15:26,986 --> 00:15:30,366
+In a table view you frequently
+want to get the data associated
+
+
+268
+00:15:30,366 --> 00:15:33,126
+with a particular cell, and
+that cell is represented
+
+
+269
+00:15:33,126 --> 00:15:33,856
+by an index path.
+
+
+270
+00:15:34,586 --> 00:15:37,906
+So I'll create a method that
+lets me easily get the game
+
+
+271
+00:15:38,096 --> 00:15:39,386
+for a particular index path.
+
+
+272
+00:15:40,206 --> 00:15:42,336
+Going to call that
+one gameForIndexPath,
+
+
+273
+00:15:42,876 --> 00:15:44,576
+and it returns an optional game.
+
+
+274
+00:15:45,026 --> 00:15:48,086
+With those methods in
+place, should be easy
+
+
+275
+00:15:48,086 --> 00:15:49,816
+to write our table
+view data source.
+
+
+276
+00:15:50,956 --> 00:15:54,496
+Let me drop that in.
+
+
+277
+00:15:54,706 --> 00:15:57,866
+What I'm doing here: setting the
+number of sections to be 2...
+
+
+278
+00:15:58,926 --> 00:16:01,626
+I'm going to return an
+appropriate number of rows
+
+
+279
+00:16:01,706 --> 00:16:04,666
+for each section using that
+first utility method we added,
+
+
+280
+00:16:05,636 --> 00:16:09,656
+and I'll use gameForIndexPath to
+easily get the particular game
+
+
+281
+00:16:09,886 --> 00:16:14,076
+and then propagate its data into
+our custom cell whenever we need
+
+
+282
+00:16:14,076 --> 00:16:17,136
+to dequeue a new cell.
+
+
+283
+00:16:17,346 --> 00:16:20,066
+I've also added a
+prepareForSegue method to set
+
+
+284
+00:16:20,066 --> 00:16:21,756
+up our destination
+view controller
+
+
+285
+00:16:22,026 --> 00:16:24,366
+when the transition happens.
+
+
+286
+00:16:24,446 --> 00:16:27,536
+OK, we're almost done, but I'd
+
+
+287
+00:16:27,536 --> 00:16:29,986
+like to do one more thing before
+we call our controller a wrap.
+
+
+288
+00:16:31,346 --> 00:16:34,426
+You can see that I'm already
+modifying the separatorInset
+
+
+289
+00:16:34,426 --> 00:16:38,156
+on this table to give our table
+a little bit of a custom look.
+
+
+290
+00:16:38,956 --> 00:16:40,686
+That's all right,
+but I just heard
+
+
+291
+00:16:40,686 --> 00:16:44,016
+about iOS 8's new
+Separator Effect property,
+
+
+292
+00:16:44,226 --> 00:16:45,566
+so I'd like to try it out here.
+
+
+293
+00:16:45,566 --> 00:16:51,106
+I know that it's called
+"tableview.separatorEffect,"
+
+
+294
+00:16:51,846 --> 00:16:54,936
+but I can't remember the
+exact object that I'm supposed
+
+
+295
+00:16:54,936 --> 00:16:56,136
+to assign to that property.
+
+
+296
+00:16:57,096 --> 00:17:01,326
+In Xcode 6, if we jump to
+Definition, it'll take us right
+
+
+297
+00:17:01,326 --> 00:17:04,156
+to UITableView, but
+it's rendered in Swift.
+
+
+298
+00:17:05,086 --> 00:17:07,656
+Even though this is actually
+an Objective-C header
+
+
+299
+00:17:07,705 --> 00:17:11,326
+in the system framework, Xcode
+has dynamically translated it
+
+
+300
+00:17:11,506 --> 00:17:14,215
+to the Swift interface just
+like the compiler would see.
+
+
+301
+00:17:15,036 --> 00:17:16,726
+And even though this is
+happening on the fly,
+
+
+302
+00:17:16,726 --> 00:17:20,486
+we take great care to preserve
+all of the API comments
+
+
+303
+00:17:20,675 --> 00:17:23,086
+that you need to use these
+libraries effectively.
+
+
+304
+00:17:24,266 --> 00:17:25,976
+Now that I'm here, I can see
+
+
+305
+00:17:25,976 --> 00:17:28,996
+that separatorEffect
+is a UIVisualEffect.
+
+
+306
+00:17:29,566 --> 00:17:31,846
+And if I navigate
+onwards to that?
+
+
+307
+00:17:33,166 --> 00:17:34,546
+Ah, now I remember.
+
+
+308
+00:17:35,096 --> 00:17:37,896
+What I want is a
+UIVibrancyEffect, and I'm going
+
+
+309
+00:17:37,896 --> 00:17:39,906
+to use a Dark blur
+style to go with that.
+
+
+310
+00:17:41,256 --> 00:17:46,836
+So let me add that to my code.
+
+
+311
+00:17:47,016 --> 00:17:49,306
+Now, when I go to
+specify the style here,
+
+
+312
+00:17:49,576 --> 00:17:52,596
+I'm going to take advantage of
+Swift's advanced type inference,
+
+
+313
+00:17:52,916 --> 00:17:55,916
+and that lets me
+just type ".dark".
+
+
+314
+00:17:56,796 --> 00:17:57,916
+The compiler is going
+
+
+315
+00:17:57,916 --> 00:18:02,036
+to automatically infer the right
+enumeration type to use here
+
+
+316
+00:18:02,296 --> 00:18:04,056
+because it's obvious
+from the context.
+
+
+317
+00:18:04,416 --> 00:18:07,256
+That saves me having to type
+the full enumeration name
+
+
+318
+00:18:07,396 --> 00:18:08,766
+and can really save
+a lot of typing.
+
+
+319
+00:18:10,076 --> 00:18:12,606
+OK, that should do it
+for our controller,
+
+
+320
+00:18:12,986 --> 00:18:14,926
+but there's one last
+thing we need to set up.
+
+
+321
+00:18:15,796 --> 00:18:17,806
+Remember that UserSession
+property
+
+
+322
+00:18:17,936 --> 00:18:19,476
+that I started off by creating?
+
+
+323
+00:18:19,966 --> 00:18:21,546
+We've never initialized
+it anywhere.
+
+
+324
+00:18:22,486 --> 00:18:24,776
+So to fix that, let's
+take a very quick look
+
+
+325
+00:18:24,776 --> 00:18:26,716
+at the other side of
+Swift development:
+
+
+326
+00:18:26,996 --> 00:18:29,636
+using your Swift classes
+inside Objective-C.
+
+
+327
+00:18:30,956 --> 00:18:34,006
+The place that we want to
+initialize this object is
+
+
+328
+00:18:34,006 --> 00:18:36,846
+in the sign-in controller's
+prepareForSegue method.
+
+
+329
+00:18:37,736 --> 00:18:39,396
+And if I go to Sign-in
+Controller,
+
+
+330
+00:18:39,486 --> 00:18:41,756
+you'll notice this is
+an Objective-C file.
+
+
+331
+00:18:42,756 --> 00:18:46,226
+And of course in Objective-C
+before you use your classes,
+
+
+332
+00:18:46,376 --> 00:18:47,456
+you need to import them.
+
+
+333
+00:18:48,166 --> 00:18:51,516
+But our class is defined in
+Swift, so how can we do that?
+
+
+334
+00:18:52,146 --> 00:18:54,166
+Well, when you're using
+Swift in a target,
+
+
+335
+00:18:54,616 --> 00:18:57,856
+Xcode will automatically
+generate a new header for you
+
+
+336
+00:18:57,856 --> 00:19:01,046
+that contains the declarations
+of each of your Swift classes.
+
+
+337
+00:19:01,836 --> 00:19:02,626
+All that you need to do
+
+
+338
+00:19:02,626 --> 00:19:05,296
+to use those classes
+is import that header.
+
+
+339
+00:19:05,806 --> 00:19:10,916
+For this target it'll be
+called Shutterbugs-Swift,
+
+
+340
+00:19:10,916 --> 00:19:12,206
+and I've added the Import Now.
+
+
+341
+00:19:13,046 --> 00:19:14,786
+You'll also notice
+I'm taking advantage
+
+
+342
+00:19:15,016 --> 00:19:18,406
+of the at-import
+syntax in Objective-C
+
+
+343
+00:19:18,636 --> 00:19:20,986
+to import my own
+CoreShutterbugs framework.
+
+
+344
+00:19:22,406 --> 00:19:24,546
+So with those in place
+I can fill in the rest
+
+
+345
+00:19:24,546 --> 00:19:25,436
+and prepare for segue.
+
+
+346
+00:19:25,436 --> 00:19:29,296
+I get the Games View Controller
+
+
+347
+00:19:29,616 --> 00:19:31,756
+and I'll set its
+userSession property.
+
+
+348
+00:19:32,816 --> 00:19:36,776
+What you'll notice is that even
+though GamesTableViewController
+
+
+349
+00:19:37,086 --> 00:19:37,566
+is a...
+
+
+350
+00:19:37,566 --> 00:19:43,766
+Swift class that we just
+defined, we can use it
+
+
+351
+00:19:43,766 --> 00:19:45,946
+in Objective-C just
+like any other class
+
+
+352
+00:19:46,166 --> 00:19:47,926
+and we can assign this property.
+
+
+353
+00:19:48,496 --> 00:19:50,826
+And if I came back
+to this code later
+
+
+354
+00:19:50,826 --> 00:19:54,566
+and I'd forgotten what the type
+was, I can even use Quick Help
+
+
+355
+00:19:55,056 --> 00:19:57,646
+to get the view as
+Objective-C would see it,
+
+
+356
+00:19:57,646 --> 00:20:00,246
+and it even includes the
+description of my property,
+
+
+357
+00:20:01,226 --> 00:20:04,126
+even though I only ever
+wrote that one place
+
+
+358
+00:20:04,126 --> 00:20:05,296
+in my Swift source file.
+
+
+359
+00:20:06,556 --> 00:20:10,346
+So with those in place,
+let's see how it looks.
+
+
+360
+00:20:11,166 --> 00:20:14,306
+I'm going to build and run,
+and Xcode will launch our app
+
+
+361
+00:20:14,606 --> 00:20:16,226
+in the iPhone 5s simulator.
+
+
+362
+00:20:19,376 --> 00:20:21,376
+There's our great
+looking sign-on screen.
+
+
+363
+00:20:21,986 --> 00:20:23,646
+And if I click through
+to play Shutterbugs...
+
+
+364
+00:20:24,086 --> 00:20:25,256
+There you have it.
+
+
+365
+00:20:25,256 --> 00:20:30,086
+A new landing screen
+completed entirely in Swift,
+
+
+366
+00:20:30,516 --> 00:20:32,766
+and with this great-looking
+vibrancy effect to boot.
+
+
+367
+00:20:34,516 --> 00:20:39,396
+[ Applause ]
+
+
+368
+00:20:39,896 --> 00:20:42,916
+We've integrated Swift
+support throughout Xcode 6
+
+
+369
+00:20:42,916 --> 00:20:46,356
+so that you can use the same
+great development features
+
+
+370
+00:20:46,356 --> 00:20:47,516
+that you're already familiar
+
+
+371
+00:20:47,516 --> 00:20:50,436
+with to immediately start
+working with our new language.
+
+
+372
+00:20:51,426 --> 00:20:54,946
+And with that, I'd like to turn
+things over to Jon Hess to talk
+
+
+373
+00:20:54,946 --> 00:20:56,746
+to you about our brand new tools
+
+
+374
+00:20:56,926 --> 00:20:58,466
+for visual interface
+development.
+
+
+375
+00:20:58,916 --> 00:20:59,276
+Thanks.
+
+
+376
+00:21:00,516 --> 00:21:05,076
+[ Applause ]
+
+
+377
+00:21:05,576 --> 00:21:06,186
+>> Thanks, Daniel.
+
+
+378
+00:21:06,316 --> 00:21:08,676
+I'd like to show all of you
+how you can take advantage
+
+
+379
+00:21:08,676 --> 00:21:10,256
+of the new features of Xcode 6
+
+
+380
+00:21:10,256 --> 00:21:12,816
+to design the visual
+aspects of your application.
+
+
+381
+00:21:13,186 --> 00:21:14,456
+Let's head over to
+the demo machine.
+
+
+382
+00:21:14,456 --> 00:21:17,006
+I have a spec from my designer
+
+
+383
+00:21:17,006 --> 00:21:18,746
+to implement a circular
+image view.
+
+
+384
+00:21:19,226 --> 00:21:21,006
+It's going to take a
+square images input,
+
+
+385
+00:21:21,096 --> 00:21:23,986
+crop it to a circle, and
+optionally desaturate the color.
+
+
+386
+00:21:25,296 --> 00:21:27,776
+Now, I'm finding Xcode's
+new playgrounds feature
+
+
+387
+00:21:27,776 --> 00:21:30,096
+to be indispensable when
+working on features like this.
+
+
+388
+00:21:30,896 --> 00:21:34,366
+I love being able to see
+the results of my code side
+
+
+389
+00:21:34,366 --> 00:21:35,926
+by side as I write my code.
+
+
+390
+00:21:36,016 --> 00:21:38,626
+I have a playground
+set up just for this.
+
+
+391
+00:21:39,776 --> 00:21:43,186
+It starts with a sample image,
+and you'll have a basic function
+
+
+392
+00:21:43,186 --> 00:21:45,756
+to manipulate a graphics
+context and return a new image.
+
+
+393
+00:21:45,886 --> 00:21:49,016
+I'm going to paste
+in a bit of new code.
+
+
+394
+00:21:49,436 --> 00:21:54,236
+It will take an input image,
+optionally desaturate it,
+
+
+395
+00:21:55,126 --> 00:21:57,426
+and two sample calls
+to render my image.
+
+
+396
+00:21:58,576 --> 00:22:01,396
+Here in the Timeline I can see
+all of the results of my code.
+
+
+397
+00:22:01,396 --> 00:22:03,506
+And by pressing this button,
+
+
+398
+00:22:03,666 --> 00:22:07,216
+I can bring in a persistent
+preview of any of the values.
+
+
+399
+00:22:07,896 --> 00:22:08,956
+That's our starting image...
+
+
+400
+00:22:10,936 --> 00:22:12,006
+and here's the two outputs.
+
+
+401
+00:22:12,816 --> 00:22:14,796
+Right now all three
+look the same
+
+
+402
+00:22:14,796 --> 00:22:17,316
+because I haven't done
+anything to process the image.
+
+
+403
+00:22:17,516 --> 00:22:19,076
+I'm just taking my source image
+
+
+404
+00:22:19,556 --> 00:22:21,186
+and drawing it raw
+to the destination.
+
+
+405
+00:22:22,436 --> 00:22:25,096
+OK, the first step is
+to crop to a circle.
+
+
+406
+00:22:25,096 --> 00:22:28,456
+I'm going to create a Bézier
+path with an oval inscribed
+
+
+407
+00:22:28,456 --> 00:22:30,496
+in our square, add that
+to the clipping path
+
+
+408
+00:22:31,136 --> 00:22:32,426
+and now we have circular images.
+
+
+409
+00:22:32,696 --> 00:22:33,636
+Things look good.
+
+
+410
+00:22:35,406 --> 00:22:37,306
+I'd also like to
+desaturate my image.
+
+
+411
+00:22:37,656 --> 00:22:39,996
+I'm going to simply wash
+over it with a white color
+
+
+412
+00:22:39,996 --> 00:22:43,756
+and use a special core graphics
+blend mode that subtracts
+
+
+413
+00:22:43,756 --> 00:22:46,046
+out the color instead
+of adding white on top.
+
+
+414
+00:22:46,696 --> 00:22:49,296
+And now you can see that
+our third call produces a
+
+
+415
+00:22:49,296 --> 00:22:50,296
+desaturated image.
+
+
+416
+00:22:51,066 --> 00:22:51,866
+Things look great.
+
+
+417
+00:22:52,106 --> 00:22:54,646
+I'm ready to start using
+this in my application.
+
+
+418
+00:22:54,646 --> 00:23:04,606
+Going to grab a copy of this
+code and head over to my class
+
+
+419
+00:23:04,606 --> 00:23:05,386
+that I've been working on.
+
+
+420
+00:23:05,976 --> 00:23:07,286
+Here's my prepareImage function.
+
+
+421
+00:23:07,766 --> 00:23:08,876
+It's not implemented yet.
+
+
+422
+00:23:09,076 --> 00:23:11,106
+I'm simply going to paste in
+my code from the playground
+
+
+423
+00:23:11,626 --> 00:23:13,716
+and I'm ready to start
+using this in my storyboard.
+
+
+424
+00:23:13,716 --> 00:23:17,256
+I'll option-click here to
+open it in the Assistant.
+
+
+425
+00:23:18,866 --> 00:23:20,866
+And down in the lower
+left corner you'll see the
+
+
+426
+00:23:20,866 --> 00:23:21,546
+square view.
+
+
+427
+00:23:21,546 --> 00:23:24,466
+This is where I'd like my
+circular image view to be.
+
+
+428
+00:23:25,926 --> 00:23:29,526
+In Interface Builder's Inspector
+I can see this is still an
+
+
+429
+00:23:29,526 --> 00:23:31,166
+incidence in just regular UIBO.
+
+
+430
+00:23:33,196 --> 00:23:35,976
+I'll type, Interface
+Builder will autocomplete,
+
+
+431
+00:23:36,106 --> 00:23:38,406
+and you'll see it filled
+in the module name as well.
+
+
+432
+00:23:39,516 --> 00:23:42,086
+My circular image view class
+is defined in a framework,
+
+
+433
+00:23:42,686 --> 00:23:44,686
+while my storyboard is
+in the main application.
+
+
+434
+00:23:45,046 --> 00:23:47,826
+So the module name and the
+class name together complete the
+
+
+435
+00:23:47,826 --> 00:23:48,806
+reference to my class.
+
+
+436
+00:23:51,706 --> 00:23:53,956
+Now, I've still got
+a white square here.
+
+
+437
+00:23:54,276 --> 00:23:57,106
+At this point Interface Builder
+is doing what it's always been
+
+
+438
+00:23:57,106 --> 00:23:58,016
+capable of doing.
+
+
+439
+00:23:58,456 --> 00:24:01,096
+It's saying this UIView
+will be an incidence
+
+
+440
+00:24:01,096 --> 00:24:03,006
+of the circular image
+view at runtime.
+
+
+441
+00:24:03,756 --> 00:24:05,676
+In Xcode 6, we can
+make it an incidence
+
+
+442
+00:24:05,676 --> 00:24:08,306
+of the circular imageView
+at design time as well.
+
+
+443
+00:24:08,306 --> 00:24:09,916
+Let me show you how to do that.
+
+
+444
+00:24:10,966 --> 00:24:12,956
+We've added a couple of
+new source attributes
+
+
+445
+00:24:12,956 --> 00:24:14,506
+that you can add
+to your classes.
+
+
+446
+00:24:15,036 --> 00:24:16,886
+The first is IBDesignable.
+
+
+447
+00:24:17,416 --> 00:24:19,236
+It goes right here at
+the top of your class,
+
+
+448
+00:24:20,006 --> 00:24:21,616
+goes in the same
+place for Objective-C,
+
+
+449
+00:24:21,616 --> 00:24:23,146
+spelled a little
+bit differently,
+
+
+450
+00:24:23,146 --> 00:24:24,756
+but it has the exact
+same result.
+
+
+451
+00:24:25,586 --> 00:24:27,386
+Interface Builder is
+able to take our class,
+
+
+452
+00:24:27,966 --> 00:24:30,536
+build our framework,
+instantiate it,
+
+
+453
+00:24:30,536 --> 00:24:32,166
+and render it live
+into the canvas.
+
+
+454
+00:24:32,776 --> 00:24:33,706
+You can see it here.
+
+
+455
+00:24:34,496 --> 00:24:36,006
+Now, you may be wondering,
+
+
+456
+00:24:37,146 --> 00:24:38,626
+"where is that silhouette
+coming from?"
+
+
+457
+00:24:40,826 --> 00:24:43,386
+Down here in my source file
+I've overridden a new method,
+
+
+458
+00:24:43,386 --> 00:24:45,036
+prepareForInterfaceBuilder.
+
+
+459
+00:24:45,696 --> 00:24:48,696
+This is going to be invoked on
+our view right before it renders
+
+
+460
+00:24:48,696 --> 00:24:51,066
+into the canvas, and it's
+a last minute chance for us
+
+
+461
+00:24:51,066 --> 00:24:52,416
+to do any additional setup.
+
+
+462
+00:24:53,066 --> 00:24:54,566
+Here, I'm simply making sure
+
+
+463
+00:24:54,566 --> 00:24:56,166
+that we always have
+an image prepared.
+
+
+464
+00:24:58,386 --> 00:25:01,736
+Now, I'd like to just
+configure my image directly
+
+
+465
+00:25:01,736 --> 00:25:04,696
+in Interface Builder, and
+option in my saturation as well.
+
+
+466
+00:25:05,996 --> 00:25:06,756
+No problem.
+
+
+467
+00:25:07,036 --> 00:25:10,466
+We have another new source
+attribute: IBInspectable.
+
+
+468
+00:25:10,466 --> 00:25:14,036
+I can put it here in front of
+my property, and when I return
+
+
+469
+00:25:14,036 --> 00:25:18,326
+to Interface Builder
+I can see in Inspector
+
+
+470
+00:25:18,326 --> 00:25:20,396
+that they have two new fields
+that've directly derived
+
+
+471
+00:25:20,396 --> 00:25:21,136
+these values.
+
+
+472
+00:25:22,566 --> 00:25:23,466
+Let's pick another image.
+
+
+473
+00:25:25,036 --> 00:25:28,816
+All right, that looks great,
+but when the user comes here,
+
+
+474
+00:25:28,816 --> 00:25:32,836
+I'd like them to be focused on
+this photograph, not distracted
+
+
+475
+00:25:32,836 --> 00:25:34,756
+by the bright colors
+in this player image.
+
+
+476
+00:25:35,446 --> 00:25:36,986
+That's where our
+saturation comes into play.
+
+
+477
+00:25:37,956 --> 00:25:39,246
+Let's tone this down a bit.
+
+
+478
+00:25:39,246 --> 00:25:41,126
+You can see the canvas
+is updating right away.
+
+
+479
+00:25:41,966 --> 00:25:43,246
+And things look good.
+
+
+480
+00:25:43,246 --> 00:25:45,956
+Let's make sure it looks
+good with another image.
+
+
+481
+00:25:47,156 --> 00:25:49,186
+Oh, yikes, she got squished.
+
+
+482
+00:25:49,846 --> 00:25:53,036
+I'm not sure what's
+going on here,
+
+
+483
+00:25:53,036 --> 00:25:54,796
+but I suspect it probably
+has something to do
+
+
+484
+00:25:54,796 --> 00:25:56,706
+with my prepareImage
+function that I just wrote.
+
+
+485
+00:25:56,706 --> 00:25:59,686
+I'm going to go ahead and
+put a breakpoint here.
+
+
+486
+00:26:02,176 --> 00:26:07,556
+And with my view selected, I
+can choose Debug Selected Views.
+
+
+487
+00:26:08,156 --> 00:26:09,846
+Interface Builder is going
+to kick off a request
+
+
+488
+00:26:09,846 --> 00:26:11,346
+to render this view
+live in the canvas
+
+
+489
+00:26:11,626 --> 00:26:13,296
+so that I can see
+just what's going on.
+
+
+490
+00:26:14,516 --> 00:26:20,096
+[ Applause ]
+
+
+491
+00:26:20,596 --> 00:26:23,266
+Now, I'm not sure what
+the problem is here,
+
+
+492
+00:26:23,266 --> 00:26:24,046
+but stepping into the code...
+
+
+493
+00:26:24,046 --> 00:26:26,746
+Oh, actually I can
+see it right away.
+
+
+494
+00:26:27,396 --> 00:26:29,376
+Bringing up the Quick
+Help -- the Quick Look --
+
+
+495
+00:26:29,376 --> 00:26:31,836
+on this rectangle, I can see
+it really is a rectangle.
+
+
+496
+00:26:31,836 --> 00:26:33,346
+It's much wider than it is tall.
+
+
+497
+00:26:33,346 --> 00:26:35,716
+And interface Builder is
+taking that rectangular image,
+
+
+498
+00:26:35,716 --> 00:26:38,846
+or my view is, and squishing
+it down into that square
+
+
+499
+00:26:38,846 --> 00:26:40,266
+and we're getting
+this crushed image.
+
+
+500
+00:26:40,946 --> 00:26:44,716
+I think what I want instead
+is to produce a square image
+
+
+501
+00:26:45,126 --> 00:26:47,616
+and draw the source image
+centered in the destination.
+
+
+502
+00:26:50,286 --> 00:26:51,886
+Interface Builder is going
+to automatically pick
+
+
+503
+00:26:51,886 --> 00:26:53,776
+up my changes, re-render
+the canvas...
+
+
+504
+00:26:53,906 --> 00:26:55,516
+and I can see we're in business.
+
+
+505
+00:26:55,896 --> 00:26:59,476
+Things look great.
+
+
+506
+00:26:59,476 --> 00:26:59,766
+All right.
+
+
+507
+00:27:00,196 --> 00:27:01,266
+I'm done with this scene.
+
+
+508
+00:27:02,916 --> 00:27:05,536
+My next set of steps after
+this is typically to head
+
+
+509
+00:27:05,536 --> 00:27:09,366
+over to my iPad storyboard and
+make much the same set of edits.
+
+
+510
+00:27:09,366 --> 00:27:11,086
+Let me close this out...
+
+
+511
+00:27:11,086 --> 00:27:15,636
+head over to my iPad
+storyboard...
+
+
+512
+00:27:16,076 --> 00:27:18,206
+and [sighs] I can see that
+I have a lot of work to do.
+
+
+513
+00:27:18,496 --> 00:27:20,156
+I haven't even started
+on this scene yet.
+
+
+514
+00:27:20,916 --> 00:27:21,736
+No problem.
+
+
+515
+00:27:21,996 --> 00:27:23,936
+Xcode 6 solves this
+for us as well.
+
+
+516
+00:27:24,296 --> 00:27:27,606
+We have a new feature, Universal
+Storyboards, that allow us
+
+
+517
+00:27:27,606 --> 00:27:28,946
+to build a single storyboard
+
+
+518
+00:27:28,946 --> 00:27:30,686
+to target both the
+iPad and the iPhone.
+
+
+519
+00:27:30,686 --> 00:27:34,436
+I'm going to head back over
+to my iPhone storyboard.
+
+
+520
+00:27:36,171 --> 00:27:38,171
+[ Applause ]
+
+
+521
+00:27:38,326 --> 00:27:38,666
+Thank you.
+
+
+522
+00:27:38,666 --> 00:27:40,616
+And I want to show you just
+how easy it is to get started
+
+
+523
+00:27:40,616 --> 00:27:41,866
+with Universal Storyboards.
+
+
+524
+00:27:45,086 --> 00:27:48,566
+In the File Inspector there's a
+new checkbox, Use Size Classes.
+
+
+525
+00:27:48,566 --> 00:27:50,066
+I'm going to go ahead
+and enable them.
+
+
+526
+00:27:51,036 --> 00:27:53,586
+Size classes are a
+foundational new technology
+
+
+527
+00:27:53,586 --> 00:27:54,906
+that form the underpinnings
+
+
+528
+00:27:54,906 --> 00:27:57,496
+of the new adaptive user
+interfaces in iOS 8.
+
+
+529
+00:27:58,956 --> 00:28:01,656
+With size classes, I can
+customize which views
+
+
+530
+00:28:01,656 --> 00:28:03,906
+and constraints participate
+in each of my layouts.
+
+
+531
+00:28:05,906 --> 00:28:09,556
+Adopting size classes also
+upgrades all of the segues
+
+
+532
+00:28:09,556 --> 00:28:12,046
+in my storyboard to their
+new adaptive counterparts
+
+
+533
+00:28:12,046 --> 00:28:14,456
+from iOS 8 -- segues
+that, for example,
+
+
+534
+00:28:14,556 --> 00:28:16,536
+know to present a
+popover on the iPad
+
+
+535
+00:28:16,536 --> 00:28:18,306
+and a modal transition
+on the iPhone.
+
+
+536
+00:28:19,566 --> 00:28:23,366
+Now, you can see Interface
+Builder is rendering my canvas
+
+
+537
+00:28:23,366 --> 00:28:24,676
+here as this square.
+
+
+538
+00:28:25,586 --> 00:28:27,746
+This is an abstract
+representation that's meant
+
+
+539
+00:28:27,746 --> 00:28:30,396
+to remind you that you're not
+editing for a specific device,
+
+
+540
+00:28:30,676 --> 00:28:32,406
+you're editing for all devices.
+
+
+541
+00:28:33,286 --> 00:28:35,736
+If I want to see how things
+look on a specific device,
+
+
+542
+00:28:36,306 --> 00:28:39,866
+I can open the Enhanced
+Preview Editor in Xcode 6.
+
+
+543
+00:28:40,806 --> 00:28:43,146
+Here you can see that auto
+layout does a great job
+
+
+544
+00:28:43,686 --> 00:28:46,806
+of translating my interface to
+the screen of a 4-inch iPhone.
+
+
+545
+00:28:48,096 --> 00:28:53,146
+I can zoom out and I can
+add more screens as well.
+
+
+546
+00:28:53,896 --> 00:28:55,476
+Here's how my interface
+will be presented
+
+
+547
+00:28:55,576 --> 00:28:56,856
+on an iPad in portrait.
+
+
+548
+00:28:58,886 --> 00:29:00,106
+And you can see as well
+
+
+549
+00:29:00,106 --> 00:29:03,246
+that auto layout has translated
+my screen all the way up.
+
+
+550
+00:29:03,336 --> 00:29:06,226
+But I had a custom
+layout just for iPad.
+
+
+551
+00:29:07,326 --> 00:29:08,826
+How do I achieve that
+with this new feature?
+
+
+552
+00:29:09,666 --> 00:29:11,096
+Well, let's get started.
+
+
+553
+00:29:11,536 --> 00:29:12,766
+The first order of business is
+
+
+554
+00:29:12,766 --> 00:29:14,416
+that this top bar
+should be short.
+
+
+555
+00:29:14,416 --> 00:29:16,436
+I'm going to go ahead
+and shorten it up
+
+
+556
+00:29:17,396 --> 00:29:19,376
+and tell Interface Builder
+to update the constants
+
+
+557
+00:29:19,376 --> 00:29:21,716
+of all my constraints from
+the frames in the canvas.
+
+
+558
+00:29:22,106 --> 00:29:25,406
+And, well, you can see
+they both got short.
+
+
+559
+00:29:25,786 --> 00:29:28,066
+Well, I'm editing both
+interfaces at once;
+
+
+560
+00:29:28,066 --> 00:29:29,226
+it's a universal storyboard.
+
+
+561
+00:29:29,346 --> 00:29:30,716
+How do I edit just one of them?
+
+
+562
+00:29:30,716 --> 00:29:33,126
+Let me undo this change.
+
+
+563
+00:29:35,426 --> 00:29:38,576
+Down here in the bottom center
+of the canvas is a new control
+
+
+564
+00:29:38,576 --> 00:29:41,016
+for picking which size
+class you're editing within.
+
+
+565
+00:29:41,526 --> 00:29:43,246
+Right now we're editing
+the size class
+
+
+566
+00:29:43,246 --> 00:29:45,066
+for Any width at Any height.
+
+
+567
+00:29:45,066 --> 00:29:48,446
+It's the basis for all of them;
+all layouts inherit from this.
+
+
+568
+00:29:49,566 --> 00:29:51,646
+It's represented as this
+choice here in the center.
+
+
+569
+00:29:52,486 --> 00:29:55,936
+As I move away from the center
+things get more specific.
+
+
+570
+00:29:57,056 --> 00:30:00,656
+Down here in the bottom right
+corner is the Regular width,
+
+
+571
+00:30:00,656 --> 00:30:01,556
+Regular height layout.
+
+
+572
+00:30:01,866 --> 00:30:04,706
+It's the largest, and it's
+the basis of my iPad layouts.
+
+
+573
+00:30:05,856 --> 00:30:06,706
+I'm going to choose it,
+
+
+574
+00:30:06,706 --> 00:30:09,516
+and Interface Builder enlarges
+the canvas to remind me
+
+
+575
+00:30:09,516 --> 00:30:11,706
+that I'm working in a
+specific size class now.
+
+
+576
+00:30:14,226 --> 00:30:15,896
+Let's go ahead and make
+that bar shorter again
+
+
+577
+00:30:18,016 --> 00:30:19,136
+and update the constants.
+
+
+578
+00:30:21,866 --> 00:30:25,006
+And now you can see that the
+iPad has changed while the
+
+
+579
+00:30:25,006 --> 00:30:26,756
+iPhone has remained just
+the way that I designed it.
+
+
+580
+00:30:28,196 --> 00:30:29,346
+Down here in the bottom left
+
+
+581
+00:30:29,346 --> 00:30:31,846
+of the scene I have a
+completely new layout in mind.
+
+
+582
+00:30:32,296 --> 00:30:34,196
+Rather than just editing
+the constraint constants,
+
+
+583
+00:30:34,506 --> 00:30:35,676
+I want new constraints.
+
+
+584
+00:30:36,936 --> 00:30:37,696
+No problem.
+
+
+585
+00:30:37,956 --> 00:30:39,786
+I'll select all three
+of these views
+
+
+586
+00:30:40,176 --> 00:30:42,636
+and have Interface Builder
+clear the constraints
+
+
+587
+00:30:43,056 --> 00:30:46,306
+in only this size
+class and reposition.
+
+
+588
+00:30:47,296 --> 00:30:49,116
+I'm going to have the
+image front and center.
+
+
+589
+00:30:56,026 --> 00:30:57,126
+Hmm, right about there?
+
+
+590
+00:30:57,126 --> 00:30:58,706
+Maybe a little lower.
+
+
+591
+00:30:59,626 --> 00:31:02,786
+And I've sized this
+image view arbitrarily.
+
+
+592
+00:31:02,906 --> 00:31:04,156
+I need to pin its size.
+
+
+593
+00:31:04,606 --> 00:31:06,616
+I'll start with an
+explicit width constraint.
+
+
+594
+00:31:09,356 --> 00:31:11,516
+And now I've said that the
+width should be, you'know,
+
+
+595
+00:31:11,616 --> 00:31:14,126
+some constant -- whatever this
+happens to be (120 points).
+
+
+596
+00:31:14,126 --> 00:31:16,716
+I want the height to be the
+same, but rather than duplicate
+
+
+597
+00:31:16,716 --> 00:31:19,166
+in the constant,
+new since last year,
+
+
+598
+00:31:19,166 --> 00:31:21,916
+I can add an aspect ratio
+constraint saying the width
+
+
+599
+00:31:21,916 --> 00:31:22,946
+and the height should be equal.
+
+
+600
+00:31:26,516 --> 00:31:30,516
+[ Applause ]
+
+
+601
+00:31:31,016 --> 00:31:36,000
+[ Background Sounds ]
+
+
+602
+00:31:36,516 --> 00:31:43,056
+[ Laughter and applause ]
+
+
+603
+00:31:43,556 --> 00:31:43,646
+Ahh...!
+
+
+604
+00:31:45,481 --> 00:31:47,481
+[ Laughter ]
+
+
+605
+00:31:47,946 --> 00:31:50,776
+I could continue those edits,
+position the views underneath,
+
+
+606
+00:31:50,776 --> 00:31:52,796
+and have Interface Builder
+add the remaining constraints
+
+
+607
+00:31:53,026 --> 00:31:55,266
+to produce an iPad
+layout that was unique
+
+
+608
+00:31:55,266 --> 00:31:56,596
+to the iPad interface,
+
+
+609
+00:31:56,596 --> 00:31:59,536
+while maintaining my iPhone
+layout just the way that it was.
+
+
+610
+00:32:00,096 --> 00:32:03,266
+Now, I'd like to turn it over to
+Ken Orr to tell you what's new
+
+
+611
+00:32:03,266 --> 00:32:04,676
+with debugging in Xcode 6.
+
+
+612
+00:32:05,516 --> 00:32:11,886
+[ Applause ]
+
+
+613
+00:32:12,386 --> 00:32:14,086
+>> All right.
+
+
+614
+00:32:14,136 --> 00:32:14,876
+Thanks, Jon.
+
+
+615
+00:32:15,706 --> 00:32:16,186
+Good morning.
+
+
+616
+00:32:17,346 --> 00:32:19,726
+So I've just taken over
+the photo details screen
+
+
+617
+00:32:19,726 --> 00:32:22,806
+from another engineer on our
+Shutterbugs team, and I'd love
+
+
+618
+00:32:22,806 --> 00:32:24,466
+to give you a sneak
+peek of that UI now.
+
+
+619
+00:32:25,316 --> 00:32:27,836
+OK, so the first thing I'm going
+to do is I'm going to run...
+
+
+620
+00:32:32,646 --> 00:32:35,386
+and then we will sign
+in to the game...
+
+
+621
+00:32:36,466 --> 00:32:39,686
+I'll navigate to this
+in-progress game, and I'm going
+
+
+622
+00:32:39,686 --> 00:32:41,316
+to click on this
+particular picture.
+
+
+623
+00:32:41,906 --> 00:32:44,666
+And then here we are at
+the Photo Details UI.
+
+
+624
+00:32:45,056 --> 00:32:48,116
+So what we're seeing in
+this case is a picture
+
+
+625
+00:32:48,116 --> 00:32:49,336
+that Paula took.
+
+
+626
+00:32:49,956 --> 00:32:53,466
+We see a list of all the other
+players in the game along
+
+
+627
+00:32:53,466 --> 00:32:55,656
+with comments they've made
+on this particular photo
+
+
+628
+00:32:55,926 --> 00:32:57,206
+and whether they like it or not.
+
+
+629
+00:32:59,406 --> 00:33:02,566
+And, you know, as I
+look at this UI here,
+
+
+630
+00:33:03,546 --> 00:33:05,806
+I'm a little bit
+skeptical that all
+
+
+631
+00:33:05,806 --> 00:33:08,496
+of these players are
+missing their picture.
+
+
+632
+00:33:09,056 --> 00:33:10,856
+So they're all showing this
+kind of placeholder image,
+
+
+633
+00:33:10,856 --> 00:33:12,956
+and that's not something
+I'm expecting to see here.
+
+
+634
+00:33:13,676 --> 00:33:15,086
+So let's go ahead and
+let's dig into that.
+
+
+635
+00:33:16,656 --> 00:33:21,576
+Now, I'm relatively new to
+this code base, but I do know
+
+
+636
+00:33:21,576 --> 00:33:22,786
+that our problem here,
+
+
+637
+00:33:22,786 --> 00:33:24,406
+it's going to be in
+one of two places.
+
+
+638
+00:33:24,836 --> 00:33:27,316
+So it's either going to be
+on the model side of things,
+
+
+639
+00:33:27,536 --> 00:33:31,026
+that maybe the image data just
+isn't there, or it's going to be
+
+
+640
+00:33:31,026 --> 00:33:33,746
+over on the UI side of
+things: We have the image data,
+
+
+641
+00:33:33,746 --> 00:33:35,196
+but we're not pushing
+it to the screen.
+
+
+642
+00:33:35,836 --> 00:33:39,276
+So we want to figure out
+exactly where that problem is.
+
+
+643
+00:33:40,536 --> 00:33:42,666
+So the first thing I
+need to do here is figure
+
+
+644
+00:33:42,666 --> 00:33:46,476
+out what view controller is
+responsible for this view here.
+
+
+645
+00:33:47,146 --> 00:33:51,646
+And I think it is this guy,
+photoDetailViewController.
+
+
+646
+00:33:51,946 --> 00:33:54,056
+So what I want to do is I
+want to set a breakpoint
+
+
+647
+00:33:54,576 --> 00:33:56,456
+in this view to appear.
+
+
+648
+00:33:57,676 --> 00:33:59,876
+And then let's try to
+trigger that and see
+
+
+649
+00:33:59,876 --> 00:34:01,316
+if we are in the right place.
+
+
+650
+00:34:02,096 --> 00:34:06,746
+We'll navigate away, we'll
+come back, and there we go.
+
+
+651
+00:34:06,746 --> 00:34:08,346
+OK, we hit the breakpoint, good.
+
+
+652
+00:34:08,576 --> 00:34:10,056
+So we're probably
+in the right place.
+
+
+653
+00:34:10,976 --> 00:34:14,025
+But I'd like to be really sure
+that we're in the right place.
+
+
+654
+00:34:14,696 --> 00:34:18,576
+And I'm going to do that by
+using the brand-new Quick Look
+
+
+655
+00:34:18,576 --> 00:34:20,235
+for UIView in Xcode.
+
+
+656
+00:34:20,746 --> 00:34:22,896
+So now I can just mouse
+over this view here
+
+
+657
+00:34:22,896 --> 00:34:24,746
+to get the data tip,
+which is the view owned
+
+
+658
+00:34:24,746 --> 00:34:26,866
+by this view controller,
+and I can click
+
+
+659
+00:34:26,866 --> 00:34:28,106
+on our little Quick Look button.
+
+
+660
+00:34:28,496 --> 00:34:30,606
+And just like that I
+can see a rendering.
+
+
+661
+00:34:31,516 --> 00:34:36,056
+[ Applause ]
+
+
+662
+00:34:36,556 --> 00:34:39,536
+Yeah. I can see a rendering
+of this view or any subclass
+
+
+663
+00:34:39,536 --> 00:34:42,096
+of UIView right here in
+Xcode while I'm stepping
+
+
+664
+00:34:42,096 --> 00:34:42,646
+through my code.
+
+
+665
+00:34:43,036 --> 00:34:44,946
+And of course if you're
+developing a Mac app,
+
+
+666
+00:34:45,186 --> 00:34:46,576
+this works great for NSView too.
+
+
+667
+00:34:46,576 --> 00:34:48,235
+All right.
+
+
+668
+00:34:48,516 --> 00:34:51,835
+So now, step one complete; we
+know we're in the right place.
+
+
+669
+00:34:52,056 --> 00:34:57,476
+Good. But what we care
+about is the model objects.
+
+
+670
+00:34:58,246 --> 00:35:02,706
+And I think our model objects
+are these GameComments.
+
+
+671
+00:35:03,076 --> 00:35:06,496
+Looks like we have a GameComment
+for every row of data here.
+
+
+672
+00:35:06,906 --> 00:35:09,006
+So these rows are
+backed by a GameComment.
+
+
+673
+00:35:10,406 --> 00:35:15,946
+Now, when I'm debugging, I
+really love to use Quick Look.
+
+
+674
+00:35:16,336 --> 00:35:17,446
+I'm a really visual guy.
+
+
+675
+00:35:17,576 --> 00:35:21,496
+Quick Look is a really great
+way to visualize my objects
+
+
+676
+00:35:21,496 --> 00:35:22,676
+when I'm stepping
+through my code.
+
+
+677
+00:35:23,916 --> 00:35:27,166
+Wouldn't it be great if we
+could have custom Quick Look
+
+
+678
+00:35:27,166 --> 00:35:29,846
+representations for
+our own classes?
+
+
+679
+00:35:30,876 --> 00:35:33,436
+Well, in fact, now inside of
+Xcode you can do just that.
+
+
+680
+00:35:33,796 --> 00:35:35,026
+And we've gone through
+our project
+
+
+681
+00:35:35,026 --> 00:35:37,086
+and done it all throughout
+our classes.
+
+
+682
+00:35:37,486 --> 00:35:39,266
+Let's see if we have
+one for this GameComment
+
+
+683
+00:35:39,266 --> 00:35:40,596
+that we're investigating.
+
+
+684
+00:35:41,866 --> 00:35:43,186
+And sure enough we do.
+
+
+685
+00:35:43,186 --> 00:35:46,166
+And what we'll see is
+
+
+686
+00:35:46,166 --> 00:35:50,086
+that somebody's implemented this
+new debugQuickLookObject method.
+
+
+687
+00:35:50,666 --> 00:35:53,496
+So this is a method that you can
+implement in your own classes.
+
+
+688
+00:35:54,486 --> 00:35:56,426
+And it's a method
+that Xcode will call
+
+
+689
+00:35:56,426 --> 00:35:59,056
+when you initiate a Quick
+Look from the debugger.
+
+
+690
+00:36:00,796 --> 00:36:03,266
+Now, from this method
+you can return anything
+
+
+691
+00:36:03,266 --> 00:36:05,176
+that has a built-in
+Quick Look inside Xcode.
+
+
+692
+00:36:05,176 --> 00:36:11,086
+So maybe an image, or a
+Bézier path, or a string,
+
+
+693
+00:36:12,036 --> 00:36:15,156
+or in this case an attributed
+string, which is going
+
+
+694
+00:36:15,156 --> 00:36:17,576
+to let us have a little bit
+more complex visualization.
+
+
+695
+00:36:17,576 --> 00:36:20,496
+So we're going to be able
+to take text and an image
+
+
+696
+00:36:20,636 --> 00:36:24,076
+and put those together
+in a nice visualization
+
+
+697
+00:36:24,266 --> 00:36:25,176
+of our model object.
+
+
+698
+00:36:26,006 --> 00:36:26,646
+Now, I'm really curious.
+
+
+699
+00:36:26,646 --> 00:36:28,096
+I want to see what this
+actually looks like.
+
+
+700
+00:36:28,776 --> 00:36:32,446
+So let's go back to where we're
+paused and I'm going to mouse
+
+
+701
+00:36:32,446 --> 00:36:34,286
+over our GameComments array.
+
+
+702
+00:36:34,286 --> 00:36:36,726
+I can see that there's three of
+them, which matches what I see
+
+
+703
+00:36:36,726 --> 00:36:37,986
+on the screen; that's good.
+
+
+704
+00:36:38,706 --> 00:36:41,626
+And then I'm just going to press
+the Quick Look button, and,
+
+
+705
+00:36:41,626 --> 00:36:46,326
+boom, just like that, I'm seeing
+my model object exactly the way
+
+
+706
+00:36:46,516 --> 00:36:46,966
+I wanted to see it.
+
+
+707
+00:36:47,516 --> 00:36:50,596
+[ Applause ]
+
+
+708
+00:36:51,096 --> 00:36:52,956
+And of course we can
+arrow down through these.
+
+
+709
+00:36:53,836 --> 00:36:54,576
+Annnd... great.
+
+
+710
+00:36:54,696 --> 00:36:56,856
+So now we know we've
+eliminated the model
+
+
+711
+00:36:57,426 --> 00:36:59,516
+as being our source
+of our problem here.
+
+
+712
+00:36:59,516 --> 00:37:01,266
+We can see the player
+image is right here,
+
+
+713
+00:37:01,866 --> 00:37:03,636
+so we know it's not
+a model side issue.
+
+
+714
+00:37:04,926 --> 00:37:06,156
+So let's get rid
+of this breakpoint
+
+
+715
+00:37:06,156 --> 00:37:07,736
+and let's continue onward.
+
+
+716
+00:37:10,226 --> 00:37:15,466
+OK, so the issue must be up
+here in the UI, and, you know,
+
+
+717
+00:37:15,466 --> 00:37:19,306
+whatever view is responsible
+for drawing this bit
+
+
+718
+00:37:19,306 --> 00:37:21,286
+of UI isn't doing its job.
+
+
+719
+00:37:22,986 --> 00:37:25,326
+Now, like I said, I'm
+new to this code base.
+
+
+720
+00:37:25,896 --> 00:37:29,216
+I'm not really sure what
+views are responsible
+
+
+721
+00:37:29,476 --> 00:37:32,076
+for pushing these particular
+pixels to the screen.
+
+
+722
+00:37:33,336 --> 00:37:34,546
+So how are we going
+to deal with that?
+
+
+723
+00:37:35,296 --> 00:37:37,786
+How are we going to
+debug this issue?
+
+
+724
+00:37:39,486 --> 00:37:44,766
+Well, Xcode 6 introduces a brand
+new way to visualize your app
+
+
+725
+00:37:45,176 --> 00:37:45,796
+when you're debugging.
+
+
+726
+00:37:46,486 --> 00:37:48,856
+So you can press this new
+Debug View Hierarchy button
+
+
+727
+00:37:48,856 --> 00:37:49,236
+right here.
+
+
+728
+00:37:50,246 --> 00:37:52,546
+And Xcode will pull
+in a representation
+
+
+729
+00:37:52,616 --> 00:37:55,856
+of your entire view hierarchy
+right inside of Xcode
+
+
+730
+00:37:56,516 --> 00:37:59,676
+where you can see things like
+snapshots of all your views,
+
+
+731
+00:38:00,176 --> 00:38:02,116
+their frames, and all sorts
+
+
+732
+00:38:02,116 --> 00:38:03,846
+of other interesting
+properties that...
+
+
+733
+00:38:03,846 --> 00:38:05,066
+when you combine them together,
+
+
+734
+00:38:05,436 --> 00:38:07,676
+they help to give you a
+really great understanding
+
+
+735
+00:38:07,676 --> 00:38:11,016
+of why your app looks
+the way it does.
+
+
+736
+00:38:11,446 --> 00:38:12,336
+Or maybe more importantly,
+
+
+737
+00:38:12,336 --> 00:38:14,756
+why it doesn't quite
+match your expectations.
+
+
+738
+00:38:15,796 --> 00:38:19,046
+So I can, for example, let's
+click on this label here
+
+
+739
+00:38:19,536 --> 00:38:20,836
+and open the Inspector.
+
+
+740
+00:38:22,176 --> 00:38:25,116
+And I can see that
+this is a UI label.
+
+
+741
+00:38:25,696 --> 00:38:26,926
+I can see its text.
+
+
+742
+00:38:27,256 --> 00:38:28,456
+I can see its font.
+
+
+743
+00:38:28,696 --> 00:38:30,526
+I can see its font color.
+
+
+744
+00:38:31,106 --> 00:38:34,296
+All the things that I'm used to
+seeing when I'm designing my UI
+
+
+745
+00:38:34,476 --> 00:38:37,136
+in IB, well, I can
+see those right now
+
+
+746
+00:38:37,136 --> 00:38:38,666
+when I'm debugging it as well.
+
+
+747
+00:38:39,376 --> 00:38:40,296
+Really, really powerful.
+
+
+748
+00:38:41,656 --> 00:38:43,286
+So what we care about, though,
+
+
+749
+00:38:43,286 --> 00:38:45,526
+is this little picture
+right here.
+
+
+750
+00:38:45,766 --> 00:38:46,886
+So let's select that guy.
+
+
+751
+00:38:48,676 --> 00:38:52,756
+And what I'm interested in
+seeing is what cell owns
+
+
+752
+00:38:52,756 --> 00:38:55,296
+that picture, so what cell
+is probably doing the wiring
+
+
+753
+00:38:55,296 --> 00:38:57,756
+up of the model data
+to the UI controls.
+
+
+754
+00:38:58,736 --> 00:39:03,736
+Now, I can use Xcode's jump bar
+to see the entire view hierarchy
+
+
+755
+00:39:03,736 --> 00:39:07,526
+of the selected object, and
+so I'm going to go up here
+
+
+756
+00:39:07,526 --> 00:39:09,286
+and I'm going to see that...
+
+
+757
+00:39:11,266 --> 00:39:14,716
+that view is in this
+gameCommentTableView cell.
+
+
+758
+00:39:15,396 --> 00:39:17,696
+So let's find that over
+here in the navigator,
+
+
+759
+00:39:17,816 --> 00:39:21,426
+and it's this guy, OK.
+
+
+760
+00:39:21,986 --> 00:39:26,486
+Looks like a very simple class.
+
+
+761
+00:39:27,536 --> 00:39:30,776
+It has this useGameComment
+method
+
+
+762
+00:39:30,776 --> 00:39:34,376
+which takes the model data, and
+then it looks like it wires it
+
+
+763
+00:39:35,416 --> 00:39:37,126
+up to the UI controls.
+
+
+764
+00:39:37,326 --> 00:39:41,276
+So what I see here is I see
+that the player's name is pushed
+
+
+765
+00:39:41,276 --> 00:39:43,386
+into this player label.
+
+
+766
+00:39:43,776 --> 00:39:46,806
+I see that the comment is
+pushed into the comment label.
+
+
+767
+00:39:47,916 --> 00:39:50,796
+What I don't see is I don't
+see us taking that player image
+
+
+768
+00:39:50,796 --> 00:39:52,856
+and pushing that into anything.
+
+
+769
+00:39:53,546 --> 00:39:54,916
+So that's probably
+our problem here.
+
+
+770
+00:39:55,776 --> 00:39:57,756
+And it was really easy to find
+
+
+771
+00:39:57,756 --> 00:39:59,636
+that using Xcode's
+new View Debugger.
+
+
+772
+00:40:00,396 --> 00:40:01,836
+So I'll go ahead
+and fix that later.
+
+
+773
+00:40:02,186 --> 00:40:03,756
+And that is probably
+going to take care
+
+
+774
+00:40:03,756 --> 00:40:05,726
+of this missing image
+that we're seeing.
+
+
+775
+00:40:06,996 --> 00:40:10,666
+But, you know, as I
+look at the UI here,
+
+
+776
+00:40:12,056 --> 00:40:15,986
+it doesn't quite match the
+design that I was looking
+
+
+777
+00:40:15,986 --> 00:40:17,236
+at earlier with my designer.
+
+
+778
+00:40:17,506 --> 00:40:20,136
+So there's supposed to actually
+be a little button right
+
+
+779
+00:40:20,136 --> 00:40:21,986
+around here in the
+bottom left of the picture
+
+
+780
+00:40:23,196 --> 00:40:25,126
+that lets me like this image.
+
+
+781
+00:40:25,126 --> 00:40:26,916
+So I'm supposed to come
+to this UI and say,
+
+
+782
+00:40:26,916 --> 00:40:27,986
+"I like Paula's picture."
+
+
+783
+00:40:28,826 --> 00:40:30,436
+But right now I can't do that.
+
+
+784
+00:40:31,196 --> 00:40:35,056
+Now the question then
+is where is that button?
+
+
+785
+00:40:36,386 --> 00:40:39,796
+Well, maybe the button was never
+added to the view hierarchy.
+
+
+786
+00:40:40,956 --> 00:40:42,646
+Maybe it's hanging out
+off-screen somewhere.
+
+
+787
+00:40:43,606 --> 00:40:45,206
+Maybe it's the wrong size.
+
+
+788
+00:40:45,706 --> 00:40:47,956
+Maybe its alpha component
+is wrong.
+
+
+789
+00:40:47,956 --> 00:40:49,406
+Maybe it's hiding
+behind another view.
+
+
+790
+00:40:49,706 --> 00:40:52,776
+There's all sorts of really
+visual kinds of problems
+
+
+791
+00:40:52,936 --> 00:40:54,246
+that we could have
+with this control.
+
+
+792
+00:40:54,246 --> 00:40:56,816
+And they're all made
+really easy to track
+
+
+793
+00:40:56,816 --> 00:40:58,346
+down with the new View Debugger.
+
+
+794
+00:40:58,616 --> 00:41:03,076
+So let's go back over here
+to Xcode and let's look
+
+
+795
+00:41:03,076 --> 00:41:04,076
+at our view hierarchy again.
+
+
+796
+00:41:04,076 --> 00:41:05,616
+So what I want to do
+now is I just want
+
+
+797
+00:41:05,616 --> 00:41:06,796
+to explore this view hierarchy.
+
+
+798
+00:41:06,796 --> 00:41:10,526
+I want to look through and see
+if that button is in fact here.
+
+
+799
+00:41:11,416 --> 00:41:13,416
+So the first thing I'll
+do is I'll just sort
+
+
+800
+00:41:13,416 --> 00:41:15,316
+of twist this guy sideways.
+
+
+801
+00:41:15,316 --> 00:41:17,576
+I want to peek behind
+some of these other views.
+
+
+802
+00:41:20,516 --> 00:41:23,356
+[ Applause ]
+
+
+803
+00:41:23,856 --> 00:41:27,906
+Sure. And then I want to
+pull these views apart.
+
+
+804
+00:41:28,056 --> 00:41:32,086
+So let's do that and, hey,
+
+
+805
+00:41:32,086 --> 00:41:34,666
+I see a little something
+peeking out right back here.
+
+
+806
+00:41:36,126 --> 00:41:37,266
+That could be our button,
+
+
+807
+00:41:37,596 --> 00:41:38,836
+but there's still
+some stuff in the way.
+
+
+808
+00:41:39,116 --> 00:41:41,326
+So I want to peel back some
+of the views in the front
+
+
+809
+00:41:41,326 --> 00:41:44,296
+so I can just hide things
+from the front backwards.
+
+
+810
+00:41:45,266 --> 00:41:46,596
+Yeah, very nice.
+
+
+811
+00:41:47,516 --> 00:41:51,576
+[ Applause ]
+
+
+812
+00:41:52,076 --> 00:41:54,816
+And sure enough our button
+is hanging out right here.
+
+
+813
+00:41:55,546 --> 00:41:57,676
+So let's select that.
+
+
+814
+00:41:57,676 --> 00:41:59,876
+And the next question
+I'm asking myself is,
+
+
+815
+00:41:59,876 --> 00:42:01,946
+"Why is our button down here?"
+
+
+816
+00:42:02,496 --> 00:42:05,206
+And I know we're using auto
+layout in this project,
+
+
+817
+00:42:05,786 --> 00:42:08,456
+so I'd like to look
+at the constraints
+
+
+818
+00:42:08,456 --> 00:42:10,556
+that we're using here so
+I can show the constraints
+
+
+819
+00:42:10,726 --> 00:42:11,776
+for this particular view.
+
+
+820
+00:42:12,946 --> 00:42:16,316
+And just like that, Xcode
+hides all the other views
+
+
+821
+00:42:16,316 --> 00:42:19,246
+that aren't relevant and
+shows me just the constraints
+
+
+822
+00:42:19,246 --> 00:42:21,096
+for this particular control.
+
+
+823
+00:42:22,516 --> 00:42:27,516
+[ Applause ]
+
+
+824
+00:42:28,016 --> 00:42:31,206
+And we can really easily see
+that the button is pinned
+
+
+825
+00:42:31,206 --> 00:42:34,366
+to the bottom left, which
+is not where we want it.
+
+
+826
+00:42:34,626 --> 00:42:37,466
+We want it pinned to the
+bottom of the picture above.
+
+
+827
+00:42:38,156 --> 00:42:40,906
+So that's something that
+might be really hard to track
+
+
+828
+00:42:40,906 --> 00:42:44,046
+down before but is really
+easy to track down now.
+
+
+829
+00:42:46,686 --> 00:42:53,256
+OK, so with Xcode 6, as we've
+seen, you have the ability
+
+
+830
+00:42:53,256 --> 00:42:54,406
+to visualize your app
+
+
+831
+00:42:54,446 --> 00:42:56,996
+when you're debugging
+like never before.
+
+
+832
+00:42:58,146 --> 00:43:00,276
+You can create custom
+Quick Look representations
+
+
+833
+00:43:00,326 --> 00:43:04,456
+of your own classes that show
+your data exactly the way
+
+
+834
+00:43:04,456 --> 00:43:05,306
+that you want to see it.
+
+
+835
+00:43:06,486 --> 00:43:09,846
+And view debugging, well, that
+adds an entire new dimension
+
+
+836
+00:43:09,846 --> 00:43:12,166
+to the way you can
+explore and interact
+
+
+837
+00:43:12,216 --> 00:43:13,446
+with your app at runtime.
+
+
+838
+00:43:14,176 --> 00:43:15,196
+Really, really powerful.
+
+
+839
+00:43:15,196 --> 00:43:17,256
+And I think you're going to find
+it really insightful as well.
+
+
+840
+00:43:18,526 --> 00:43:20,966
+And with that, I'd like to
+turn it over to Kate Stone
+
+
+841
+00:43:21,186 --> 00:43:21,946
+to talk a little bit more
+
+
+842
+00:43:21,946 --> 00:43:24,786
+about how we can enhance
+the performance of our app.
+
+
+843
+00:43:24,786 --> 00:43:25,046
+Thank you.
+
+
+844
+00:43:26,516 --> 00:43:30,196
+[ Applause ]
+
+
+845
+00:43:30,696 --> 00:43:31,496
+>> Thank you, Ken.
+
+
+846
+00:43:31,496 --> 00:43:33,236
+It looks like we have
+a spectacular game
+
+
+847
+00:43:33,236 --> 00:43:33,866
+coming together.
+
+
+848
+00:43:33,916 --> 00:43:36,456
+We think our users are going
+to be really happy with a lot
+
+
+849
+00:43:36,456 --> 00:43:37,436
+of these new features...
+
+
+850
+00:43:38,246 --> 00:43:40,896
+if we can just make sure that
+we ship a quality product.
+
+
+851
+00:43:40,896 --> 00:43:42,236
+And of course that's
+the last piece
+
+
+852
+00:43:42,236 --> 00:43:44,646
+of the development process, is
+to make sure that what we're
+
+
+853
+00:43:44,646 --> 00:43:46,526
+about to send out into
+the world is going
+
+
+854
+00:43:46,526 --> 00:43:47,816
+to live up to expectations.
+
+
+855
+00:43:48,576 --> 00:43:51,016
+My team has done the right
+thing every step of the way.
+
+
+856
+00:43:51,376 --> 00:43:54,116
+We've tried to make sure that
+what we have is a product
+
+
+857
+00:43:54,356 --> 00:43:57,196
+that is high-quality because,
+of course, we've got a set
+
+
+858
+00:43:57,196 --> 00:44:00,146
+of unit tests that
+are running on this.
+
+
+859
+00:44:00,556 --> 00:44:02,096
+So I've got the product
+up and running.
+
+
+860
+00:44:02,266 --> 00:44:03,996
+I can go to my Test navigator.
+
+
+861
+00:44:05,396 --> 00:44:06,776
+And the Test navigator shows
+
+
+862
+00:44:06,776 --> 00:44:08,916
+that I have several
+suites of unit tests here.
+
+
+863
+00:44:09,446 --> 00:44:11,536
+So I can go ahead and
+run those one last time,
+
+
+864
+00:44:11,866 --> 00:44:14,136
+make sure that when the
+game comes up we put it
+
+
+865
+00:44:14,136 --> 00:44:16,196
+through its paces, we're
+green across the board.
+
+
+866
+00:44:16,196 --> 00:44:16,436
+Looks good.
+
+
+867
+00:44:16,436 --> 00:44:18,436
+From a functional perspective,
+
+
+868
+00:44:18,836 --> 00:44:20,506
+the game is doing
+exactly what we expect.
+
+
+869
+00:44:21,426 --> 00:44:23,786
+And that's great because I've
+got one last change I wanted
+
+
+870
+00:44:23,786 --> 00:44:24,476
+to make to the game.
+
+
+871
+00:44:25,136 --> 00:44:27,716
+I was thinking about
+tinkering with some new filters
+
+
+872
+00:44:27,756 --> 00:44:29,866
+to give a little bit
+more life to our images.
+
+
+873
+00:44:30,216 --> 00:44:32,036
+And specifically here,
+I've taken advantage
+
+
+874
+00:44:32,086 --> 00:44:34,866
+of a Swift feature to
+let me build an extension
+
+
+875
+00:44:34,866 --> 00:44:36,086
+to the UIImage class.
+
+
+876
+00:44:36,946 --> 00:44:39,636
+So I can take an existing
+class and add the ability
+
+
+877
+00:44:39,636 --> 00:44:40,836
+to apply filters to it.
+
+
+878
+00:44:40,836 --> 00:44:42,496
+And so I have a variety
+of filters here.
+
+
+879
+00:44:43,616 --> 00:44:45,896
+The "vignette" filter is one I
+was thinking about toying with.
+
+
+880
+00:44:46,336 --> 00:44:48,306
+So maybe I should go ahead
+and build one more test,
+
+
+881
+00:44:48,956 --> 00:44:52,006
+but this time a performance test
+to make sure it's going to live
+
+
+882
+00:44:52,006 --> 00:44:53,306
+up to my expectations.
+
+
+883
+00:44:54,136 --> 00:44:54,866
+It's straightforward.
+
+
+884
+00:44:55,306 --> 00:44:57,316
+All I do is go and
+ask for one new file,
+
+
+885
+00:44:59,136 --> 00:45:01,646
+pick the test case class you're
+probably already familiar with.
+
+
+886
+00:45:03,746 --> 00:45:05,656
+I'm going to go ahead
+and use Swift for that.
+
+
+887
+00:45:05,656 --> 00:45:07,726
+And you'll note that of
+course like all templates,
+
+
+888
+00:45:07,946 --> 00:45:11,186
+I have that choice of Swift or
+Objective-C, but Xcode knows
+
+
+889
+00:45:11,186 --> 00:45:12,956
+that I've been using Swift
+throughout the conference,
+
+
+890
+00:45:13,266 --> 00:45:14,426
+so it's the default for me.
+
+
+891
+00:45:15,786 --> 00:45:17,406
+I'm going to call
+this "PerfTests,"
+
+
+892
+00:45:18,786 --> 00:45:20,906
+put it in my existing
+group with my tests
+
+
+893
+00:45:22,626 --> 00:45:24,626
+and let Xcode create
+that file for me.
+
+
+894
+00:45:24,926 --> 00:45:26,876
+So now I have what
+should be fairly familiar.
+
+
+895
+00:45:26,976 --> 00:45:28,306
+It's got the usual setup
+
+
+896
+00:45:28,306 --> 00:45:30,476
+and teardown methods,
+but written in Swift.
+
+
+897
+00:45:31,376 --> 00:45:32,416
+It's got a functional test.
+
+
+898
+00:45:33,196 --> 00:45:34,726
+We're not focused on
+any of those today,
+
+
+899
+00:45:34,786 --> 00:45:36,746
+so I'll just set
+those aside and focus
+
+
+900
+00:45:36,746 --> 00:45:39,196
+on the one new method
+that's been put in place:
+
+
+901
+00:45:39,946 --> 00:45:41,966
+the ability to test
+for performance.
+
+
+902
+00:45:42,796 --> 00:45:45,666
+So I'm going to
+testFilterPerformance here.
+
+
+903
+00:45:46,516 --> 00:45:50,226
+And all I need to do is fill
+in this measureBlock call.
+
+
+904
+00:45:50,516 --> 00:45:53,476
+Now, you saw the Objective-C
+syntax on a slide earlier.
+
+
+905
+00:45:53,856 --> 00:45:56,536
+The Swift syntax
+is really clean.
+
+
+906
+00:45:56,906 --> 00:46:00,716
+It's just a call to measureBlock
+that passes one trailing closure
+
+
+907
+00:46:01,036 --> 00:46:02,186
+that does the actual work.
+
+
+908
+00:46:02,966 --> 00:46:06,826
+And so in this case for my work,
+I'm going to go ahead and fill
+
+
+909
+00:46:06,826 --> 00:46:09,376
+in a test image (I'll pick
+up one of the player images)
+
+
+910
+00:46:09,726 --> 00:46:11,996
+and then go ahead and apply
+a vignette filter to that.
+
+
+911
+00:46:12,656 --> 00:46:16,336
+But the vignette filter's
+not part of my test project.
+
+
+912
+00:46:16,646 --> 00:46:18,886
+So, again, we're getting a
+live issue here, reminding me
+
+
+913
+00:46:19,136 --> 00:46:21,256
+that I don't have access
+to that class directly.
+
+
+914
+00:46:21,876 --> 00:46:26,886
+So all I need to do is
+import the Shutterbugs module
+
+
+915
+00:46:26,886 --> 00:46:29,926
+and I have everything I
+need to exercise the test;
+
+
+916
+00:46:30,366 --> 00:46:33,146
+indexing has found the
+test; I'm one click away
+
+
+917
+00:46:33,146 --> 00:46:35,476
+from building my project
+and running that test
+
+
+918
+00:46:35,576 --> 00:46:37,066
+and seeing just how
+long this takes.
+
+
+919
+00:46:38,256 --> 00:46:40,396
+It's going to run it a
+number of times to figure
+
+
+920
+00:46:40,396 --> 00:46:42,816
+out how long it takes and
+whether there's any variation.
+
+
+921
+00:46:43,066 --> 00:46:45,256
+And when it's done, it will
+tell me exactly how long it took
+
+
+922
+00:46:45,256 --> 00:46:48,046
+to run and what kind of
+standard deviation I'm seeing;
+
+
+923
+00:46:48,046 --> 00:46:49,316
+4 percent in this case.
+
+
+924
+00:46:49,626 --> 00:46:52,676
+So I'm getting pretty consistent
+run-to-run timings on this.
+
+
+925
+00:46:53,726 --> 00:46:56,566
+Sounds good, but it's
+taking a little longer
+
+
+926
+00:46:56,566 --> 00:46:58,176
+than I wanted it to.
+
+
+927
+00:46:58,396 --> 00:47:01,026
+So what I'd really like to
+do is twist this open and see
+
+
+928
+00:47:01,026 --> 00:47:02,516
+that I haven't set a baseline.
+
+
+929
+00:47:02,516 --> 00:47:04,976
+I haven't set a target
+for my timing,
+
+
+930
+00:47:05,186 --> 00:47:06,426
+and I really wanted the target.
+
+
+931
+00:47:06,426 --> 00:47:08,456
+I wanted something
+that was snappy to live
+
+
+932
+00:47:08,456 --> 00:47:09,956
+up to our users' expectations.
+
+
+933
+00:47:10,326 --> 00:47:12,856
+So I can go and establish
+a baseline either based
+
+
+934
+00:47:12,856 --> 00:47:16,326
+on what I have now, or I can
+go in and edit that and say,
+
+
+935
+00:47:16,326 --> 00:47:19,956
+you know, 0.25 seconds is
+more what I had in mind here.
+
+
+936
+00:47:20,396 --> 00:47:23,276
+And now I'll get a reminder
+every time I run this test
+
+
+937
+00:47:24,256 --> 00:47:26,566
+that I'm not living
+up to expectations.
+
+
+938
+00:47:26,876 --> 00:47:30,436
+This test is going to fail red
+because it wasn't fast enough.
+
+
+939
+00:47:30,986 --> 00:47:33,396
+Well, we could take time
+to tinker with that,
+
+
+940
+00:47:33,396 --> 00:47:37,236
+but I did apply a number of
+different filters as extensions
+
+
+941
+00:47:37,316 --> 00:47:39,006
+to UIImage here, so
+let me just go back
+
+
+942
+00:47:39,006 --> 00:47:40,346
+and choose another one of these.
+
+
+943
+00:47:40,946 --> 00:47:42,656
+I'm going to use
+the noir filter.
+
+
+944
+00:47:44,966 --> 00:47:47,176
+Rebuild, retest and make sure
+
+
+945
+00:47:47,176 --> 00:47:48,836
+that that's meeting
+expectations.
+
+
+946
+00:47:49,836 --> 00:47:51,106
+Looks good; we're all green.
+
+
+947
+00:47:51,106 --> 00:47:52,556
+So across the board we're
+
+
+948
+00:47:52,556 --> 00:47:54,236
+in great shape to
+ship this product.
+
+
+949
+00:47:54,726 --> 00:47:55,856
+But what if I'd had a problem
+
+
+950
+00:47:55,856 --> 00:47:57,746
+that I wasn't able
+to take care of here?
+
+
+951
+00:47:58,146 --> 00:48:00,756
+What if I had a performance
+issue I needed to investigate?
+
+
+952
+00:48:00,756 --> 00:48:03,276
+Well, of course Instruments
+is the answer
+
+
+953
+00:48:03,276 --> 00:48:04,456
+to all such questions.
+
+
+954
+00:48:04,886 --> 00:48:06,746
+Instruments is a great
+way to get more detail
+
+
+955
+00:48:06,796 --> 00:48:08,376
+about what's going
+on in your project.
+
+
+956
+00:48:08,736 --> 00:48:11,326
+So I'm just going to bring up
+a context menu for this test
+
+
+957
+00:48:12,026 --> 00:48:15,906
+and choose to profile that
+particular filter exercise.
+
+
+958
+00:48:17,776 --> 00:48:19,116
+Behind the scenes,
+we're going to go ahead
+
+
+959
+00:48:19,116 --> 00:48:20,986
+and build specifically
+for profiling
+
+
+960
+00:48:21,216 --> 00:48:22,206
+and launch Instruments.
+
+
+961
+00:48:22,466 --> 00:48:25,436
+And now we get our first glimpse
+of the new Instruments UI.
+
+
+962
+00:48:26,596 --> 00:48:28,966
+Instruments has been overhauled
+dramatically this release,
+
+
+963
+00:48:29,306 --> 00:48:32,476
+both to be consistent with
+the new OS X Yosemite,
+
+
+964
+00:48:32,886 --> 00:48:35,006
+but also so that it's
+more familiar for people
+
+
+965
+00:48:35,006 --> 00:48:36,846
+who are comfortable
+with Xcode already.
+
+
+966
+00:48:37,656 --> 00:48:39,436
+We start off with
+the Template Chooser.
+
+
+967
+00:48:39,896 --> 00:48:43,246
+Here, I can see at a glance
+what device I'm targeting,
+
+
+968
+00:48:44,136 --> 00:48:47,156
+what I'm planning on running,
+and find the right template
+
+
+969
+00:48:47,326 --> 00:48:48,866
+to exercise what
+I'm looking for.
+
+
+970
+00:48:48,866 --> 00:48:50,616
+And I'm just going to look
+at memory in this case.
+
+
+971
+00:48:51,406 --> 00:48:54,636
+I can look at what I've
+been using recently or pick
+
+
+972
+00:48:54,666 --> 00:48:55,426
+from the complete list.
+
+
+973
+00:48:56,616 --> 00:48:59,446
+When I choose that template, I
+then go into Instruments proper,
+
+
+974
+00:48:59,686 --> 00:49:02,806
+and the Instruments main window
+is also dramatically overhauled.
+
+
+975
+00:49:02,806 --> 00:49:04,206
+You'll see a few
+things at a glance.
+
+
+976
+00:49:04,206 --> 00:49:06,406
+One is if it's not
+immediately recording.
+
+
+977
+00:49:06,976 --> 00:49:08,796
+How many times have
+you chosen a template,
+
+
+978
+00:49:09,266 --> 00:49:12,276
+found that it starts recording
+immediately, stop it, go back
+
+
+979
+00:49:12,276 --> 00:49:13,376
+and tinker with the settings?
+
+
+980
+00:49:13,616 --> 00:49:14,966
+Now we give you an
+option to go in
+
+
+981
+00:49:14,966 --> 00:49:17,266
+and change those
+settings before you record
+
+
+982
+00:49:17,636 --> 00:49:18,876
+or to go straight to recording.
+
+
+983
+00:49:20,686 --> 00:49:22,946
+So what I'd like to do is
+be able to browse through
+
+
+984
+00:49:22,946 --> 00:49:24,556
+and make sure that I've
+got the settings I want.
+
+
+985
+00:49:24,876 --> 00:49:27,076
+And you see that the settings
+are now all centralized
+
+
+986
+00:49:27,076 --> 00:49:30,386
+in the Inspector, again, for
+familiarity for Xcode users.
+
+
+987
+00:49:30,826 --> 00:49:32,846
+So I can make sure that my
+allocations instrument is set
+
+
+988
+00:49:32,846 --> 00:49:35,706
+up the way I want, my VM Tracker
+is set up the way I want.
+
+
+989
+00:49:35,706 --> 00:49:38,986
+And when it's all good, I go to
+the new, overhauled toolbar --
+
+
+990
+00:49:40,046 --> 00:49:42,906
+sleeker, cleaner, taking
+up less screen real estate
+
+
+991
+00:49:42,906 --> 00:49:44,406
+than ever -- to start recording.
+
+
+992
+00:49:44,406 --> 00:49:46,696
+And we start recording.
+
+
+993
+00:49:46,986 --> 00:49:49,766
+And as always, Allocations
+is tracking everything that's
+
+
+994
+00:49:49,766 --> 00:49:50,336
+going on.
+
+
+995
+00:49:50,756 --> 00:49:53,176
+We're getting a recording
+of all the malloc regions,
+
+
+996
+00:49:53,396 --> 00:49:55,076
+all the Objective-C objects,
+
+
+997
+00:49:55,796 --> 00:49:57,096
+everything we could
+possibly want.
+
+
+998
+00:49:58,036 --> 00:49:59,876
+We could go in and look at that
+in a little bit more detail.
+
+
+999
+00:50:00,506 --> 00:50:02,846
+Perhaps we'd like to filter
+down to a subset of this.
+
+
+1000
+00:50:02,846 --> 00:50:05,526
+Well, filtering is now just
+a simple click and drag;
+
+
+1001
+00:50:05,626 --> 00:50:06,966
+no modifier keys needed.
+
+
+1002
+00:50:08,516 --> 00:50:12,346
+[ Applause ]
+
+
+1003
+00:50:12,846 --> 00:50:15,696
+So I can see all kinds of detail
+about all kinds of objects,
+
+
+1004
+00:50:16,146 --> 00:50:19,826
+but I can narrow in on something
+like my PerfTests class.
+
+
+1005
+00:50:20,006 --> 00:50:21,096
+I know that was allocated.
+
+
+1006
+00:50:21,366 --> 00:50:24,746
+And of course Swift objects are
+represented alongside everything
+
+
+1007
+00:50:24,746 --> 00:50:25,216
+else here.
+
+
+1008
+00:50:25,566 --> 00:50:27,206
+We can see the module
+name as well
+
+
+1009
+00:50:27,206 --> 00:50:28,736
+as the class name
+and get details.
+
+
+1010
+00:50:28,736 --> 00:50:32,816
+So that I can see for this
+particular class what instances
+
+
+1011
+00:50:32,816 --> 00:50:36,026
+were allocated and when
+that instance was allocated,
+
+
+1012
+00:50:36,346 --> 00:50:38,506
+what stack trace that
+instance came from.
+
+
+1013
+00:50:38,806 --> 00:50:40,746
+So a ton of detail
+right at our fingertips.
+
+
+1014
+00:50:40,996 --> 00:50:43,756
+And of course that carries
+over as well, but if I want
+
+
+1015
+00:50:43,756 --> 00:50:45,746
+to look not just at
+individual objects
+
+
+1016
+00:50:46,076 --> 00:50:48,826
+but overall statistics -- where
+are objects coming from --
+
+
+1017
+00:50:49,316 --> 00:50:50,586
+I can see that I'm allocating
+
+
+1018
+00:50:50,766 --> 00:50:54,196
+about 15 megs total during the
+process of bringing the app up
+
+
+1019
+00:50:54,196 --> 00:50:55,736
+and running the tests.
+
+
+1020
+00:50:55,736 --> 00:50:59,566
+So what part of that is
+actually in my applyNoirFilter?
+
+
+1021
+00:51:00,456 --> 00:51:02,296
+Well, I'll go ahead and
+filter down and we can see
+
+
+1022
+00:51:02,296 --> 00:51:05,266
+that it's just about
+430 K that we're taking.
+
+
+1023
+00:51:05,636 --> 00:51:06,586
+That sounds reasonable,
+
+
+1024
+00:51:06,896 --> 00:51:09,256
+and indeed my stack
+trace here is showing me,
+
+
+1025
+00:51:09,256 --> 00:51:12,046
+highlighted in black, my
+code so that I can see
+
+
+1026
+00:51:12,046 --> 00:51:13,116
+at a glance where it is.
+
+
+1027
+00:51:13,116 --> 00:51:16,496
+And rather than drilling down a
+step at a time, I can just click
+
+
+1028
+00:51:16,496 --> 00:51:20,856
+on my code and see where in the
+stack trace that's occurring
+
+
+1029
+00:51:21,106 --> 00:51:23,166
+and look in detail
+at what's going on.
+
+
+1030
+00:51:23,806 --> 00:51:26,496
+So Instruments, again,
+the perfect way to dig in
+
+
+1031
+00:51:26,496 --> 00:51:28,576
+and understand more
+deeply what's going on.
+
+
+1032
+00:51:28,996 --> 00:51:30,836
+We hope you will come to a
+session later this afternoon
+
+
+1033
+00:51:30,836 --> 00:51:31,646
+to learn more about it.
+
+
+1034
+00:51:32,286 --> 00:51:34,466
+And that brings us
+back to Xcode.
+
+
+1035
+00:51:34,826 --> 00:51:36,186
+Everything's working
+the way we want.
+
+
+1036
+00:51:36,186 --> 00:51:37,906
+Of course my next
+step is to check in.
+
+
+1037
+00:51:37,906 --> 00:51:41,266
+And when I check in,
+Xcode Server is going
+
+
+1038
+00:51:41,266 --> 00:51:42,256
+to start doing its work.
+
+
+1039
+00:51:43,126 --> 00:51:44,526
+And we can see that
+we have a server set
+
+
+1040
+00:51:44,526 --> 00:51:45,736
+up that my team has been using.
+
+
+1041
+00:51:45,786 --> 00:51:47,436
+It's the perfect way
+for a small group
+
+
+1042
+00:51:47,436 --> 00:51:48,616
+of engineers to work together.
+
+
+1043
+00:51:48,616 --> 00:51:52,916
+And we've got overviews here of
+what's going on in my project.
+
+
+1044
+00:51:52,966 --> 00:51:55,916
+So I can see recent
+activity, my success tree,
+
+
+1045
+00:51:55,916 --> 00:51:57,666
+(which is looking good,
+we're being successful)
+
+
+1046
+00:51:57,666 --> 00:51:59,086
+and my complete history --
+
+
+1047
+00:51:59,666 --> 00:52:01,736
+off to a little bit of
+a rocky start initially,
+
+
+1048
+00:52:01,736 --> 00:52:04,516
+with one failed build, but
+all in all looking good.
+
+
+1049
+00:52:04,516 --> 00:52:07,746
+And our unit test
+count is creeping up.
+
+
+1050
+00:52:07,856 --> 00:52:10,106
+I can see historically
+what failures occurred
+
+
+1051
+00:52:10,106 --> 00:52:12,376
+so I might be interested in
+digging into some of that,
+
+
+1052
+00:52:12,706 --> 00:52:16,076
+but I'm really most interested
+in my most recent integration.
+
+
+1053
+00:52:16,636 --> 00:52:19,026
+And so if I drill down to
+that integration and look
+
+
+1054
+00:52:19,026 --> 00:52:20,266
+at all the tests
+that are running,
+
+
+1055
+00:52:20,696 --> 00:52:23,006
+I could see that I'm not the
+only one who's been doing
+
+
+1056
+00:52:23,006 --> 00:52:25,026
+performance tests.
+
+
+1057
+00:52:25,106 --> 00:52:26,916
+Because beside my
+green checkmarks here,
+
+
+1058
+00:52:27,216 --> 00:52:29,836
+I'm also seeing variance
+from baseline.
+
+
+1059
+00:52:30,396 --> 00:52:32,526
+So at a glance, I can
+see for this last run
+
+
+1060
+00:52:32,526 --> 00:52:34,966
+that we're doing well against
+the baseline in a couple
+
+
+1061
+00:52:34,966 --> 00:52:37,186
+of tests that my
+coworkers have been adding.
+
+
+1062
+00:52:38,916 --> 00:52:39,306
+Looks great.
+
+
+1063
+00:52:39,306 --> 00:52:41,556
+Let's twist one of those
+open and see, in fact,
+
+
+1064
+00:52:41,556 --> 00:52:44,766
+that we're tracking baseline
+against individual devices.
+
+
+1065
+00:52:45,116 --> 00:52:45,986
+So as we exercise it
+
+
+1066
+00:52:45,986 --> 00:52:48,396
+in all devices we have
+individual targets,
+
+
+1067
+00:52:48,396 --> 00:52:50,356
+perhaps for different
+generations of hardware.
+
+
+1068
+00:52:51,046 --> 00:52:52,336
+And I think these
+numbers are great,
+
+
+1069
+00:52:52,336 --> 00:52:55,236
+but I want to make sure we
+don't slide from here either.
+
+
+1070
+00:52:55,586 --> 00:52:58,436
+So I can go in and edit
+that baseline right there
+
+
+1071
+00:52:58,436 --> 00:53:00,976
+and accept the last run
+
+
+1072
+00:53:01,306 --> 00:53:03,806
+as the baseline target
+for all future runs.
+
+
+1073
+00:53:04,436 --> 00:53:07,366
+This is spectacular because it
+means that -- for my machine --
+
+
+1074
+00:53:07,686 --> 00:53:10,326
+I can change the baseline,
+push that back to the server,
+
+
+1075
+00:53:10,586 --> 00:53:12,026
+and that baseline
+will be updated
+
+
+1076
+00:53:12,166 --> 00:53:14,396
+on all my coworkers'
+machines so they're measuring
+
+
+1077
+00:53:14,396 --> 00:53:17,016
+against the same
+targets that I am.
+
+
+1078
+00:53:17,266 --> 00:53:20,036
+So I think we've got a
+spectacular round-trip process
+
+
+1079
+00:53:20,036 --> 00:53:20,666
+here for you.
+
+
+1080
+00:53:20,666 --> 00:53:21,846
+You're going to love it.
+
+
+1081
+00:53:21,846 --> 00:53:24,576
+And to wrap things up, I'd like
+to turn it back over to Mike.
+
+
+1082
+00:53:24,996 --> 00:53:25,746
+>> Thank you, Kate.
+
+
+1083
+00:53:27,246 --> 00:53:29,606
+OK, that's Xcode 6.
+
+
+1084
+00:53:30,636 --> 00:53:34,486
+The seed is out there available
+to all of you, so try it out
+
+
+1085
+00:53:34,486 --> 00:53:35,976
+and please let us
+know what you think.
+
+
+1086
+00:53:35,976 --> 00:53:38,446
+This is going to
+be a great week.
+
+
+1087
+00:53:38,916 --> 00:53:42,836
+We have a ton of sessions that
+will go into even more detail
+
+
+1088
+00:53:42,836 --> 00:53:44,396
+about all of this stuff.
+
+
+1089
+00:53:44,396 --> 00:53:45,246
+Have a great show.
+

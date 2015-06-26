@@ -1,0 +1,4251 @@
+1
+00:00:11,216 --> 00:00:11,726
+>> Good morning.
+
+
+2
+00:00:12,806 --> 00:00:17,546
+Welcome to Session 709, "Cross
+Platform Nearby Networking".
+
+
+3
+00:00:19,226 --> 00:00:21,766
+My name is Demijan, and
+I'm a Software Engineer
+
+
+4
+00:00:21,826 --> 00:00:23,896
+in the Real-time
+Networking Team at Apple.
+
+
+5
+00:00:24,566 --> 00:00:28,196
+Last year we introduced a new
+framework called Multipeer
+
+
+6
+00:00:28,196 --> 00:00:31,406
+Connectivity in iOS,
+which makes it really,
+
+
+7
+00:00:31,406 --> 00:00:36,186
+really easy to discover and
+communicate with nearby devices.
+
+
+8
+00:00:37,306 --> 00:00:42,186
+Building a network with nearby
+devices can be accomplished
+
+
+9
+00:00:42,496 --> 00:00:44,266
+with only a few lines of code.
+
+
+10
+00:00:45,036 --> 00:00:48,956
+Many, many apps have decided
+to adopt Multipeer Connectivity
+
+
+11
+00:00:49,216 --> 00:00:51,106
+for their nearby
+networking needs.
+
+
+12
+00:00:51,966 --> 00:00:55,376
+And some of the use cases we've
+seen have really made us smile,
+
+
+13
+00:00:55,906 --> 00:00:58,266
+so I'd like to mention
+some of them to you today.
+
+
+14
+00:00:59,846 --> 00:01:05,686
+First, iTranslate Voice:
+iTranslate Voice is an app
+
+
+15
+00:01:06,426 --> 00:01:09,676
+that brings real-time
+translation to iOS users.
+
+
+16
+00:01:11,556 --> 00:01:13,526
+They use Multipeer Connectivity
+
+
+17
+00:01:13,766 --> 00:01:17,486
+to connect multiple devices
+together and enable people
+
+
+18
+00:01:17,486 --> 00:01:19,546
+who don't share a
+common language
+
+
+19
+00:01:19,806 --> 00:01:22,216
+to communicate with each other.
+
+
+20
+00:01:22,216 --> 00:01:25,986
+One person speaks a
+sentence into their device
+
+
+21
+00:01:25,986 --> 00:01:31,176
+in their language, and the other
+person hears the translation
+
+
+22
+00:01:31,176 --> 00:01:33,426
+of that sentence on
+the other device.
+
+
+23
+00:01:34,206 --> 00:01:36,936
+It's really, really cool.
+
+
+24
+00:01:37,276 --> 00:01:40,466
+Second example is an app
+called Metronome Touch.
+
+
+25
+00:01:41,316 --> 00:01:45,036
+Metronome Touch synchronizes
+multiple metronomes,
+
+
+26
+00:01:45,606 --> 00:01:50,406
+and a metronome is a tool
+that musicians use to play
+
+
+27
+00:01:50,406 --> 00:01:53,316
+to the same beat or
+follow the same tempo.
+
+
+28
+00:01:54,686 --> 00:01:58,256
+Now Metronome Touch uses
+Multipeer Connectivity
+
+
+29
+00:01:58,526 --> 00:02:01,746
+to accurately synchronize
+multiple iOS devices
+
+
+30
+00:02:02,196 --> 00:02:06,266
+so that the metronome on each
+device ticks in perfect sync.
+
+
+31
+00:02:06,876 --> 00:02:13,946
+And, third, FireChat,
+FireChat brings nearby chatting
+
+
+32
+00:02:14,186 --> 00:02:15,176
+to our customers.
+
+
+33
+00:02:15,886 --> 00:02:20,146
+People who are nearby can now
+communicate with each other even
+
+
+34
+00:02:20,146 --> 00:02:22,186
+when there is no internet
+connection available.
+
+
+35
+00:02:23,036 --> 00:02:25,806
+This type of application
+can be particularly useful
+
+
+36
+00:02:26,046 --> 00:02:29,346
+in environments, like subway
+stations or airplanes,
+
+
+37
+00:02:29,346 --> 00:02:31,726
+for example, but
+also in countries
+
+
+38
+00:02:32,036 --> 00:02:33,686
+with limited internet access.
+
+
+39
+00:02:34,556 --> 00:02:38,156
+We've seen many other use cases
+for Multipeer Connectivity
+
+
+40
+00:02:38,376 --> 00:02:41,246
+and some of the prevalent ones
+have been to exchange data,
+
+
+41
+00:02:41,706 --> 00:02:44,656
+such as files, and to
+to-do lists for example,
+
+
+42
+00:02:45,116 --> 00:02:47,136
+and remote control
+functionality.
+
+
+43
+00:02:48,426 --> 00:02:52,256
+Now throughout the year we've
+heard a lot of good feedback
+
+
+44
+00:02:52,256 --> 00:02:54,706
+from you guys and we've
+heard a lot of good ideas,
+
+
+45
+00:02:55,396 --> 00:02:59,526
+but one request that has come
+up over and over again has been
+
+
+46
+00:02:59,526 --> 00:03:02,356
+to bring Multipeer
+Connectivity to the Mac.
+
+
+47
+00:03:03,706 --> 00:03:06,396
+So this year I'm
+really happy to announce
+
+
+48
+00:03:06,716 --> 00:03:08,976
+that we're bringing
+Multipeer Connectivity
+
+
+49
+00:03:09,276 --> 00:03:11,946
+to OS X starting with Yosemite.
+
+
+50
+00:03:12,416 --> 00:03:14,826
+From now on you will be able
+
+
+51
+00:03:14,826 --> 00:03:19,826
+to do cross-platform nearby
+networking between iOS
+
+
+52
+00:03:19,826 --> 00:03:24,166
+and OS X devices just as easily
+as you have been so far on iOS.
+
+
+53
+00:03:25,956 --> 00:03:28,476
+And the API is exactly the same,
+
+
+54
+00:03:28,786 --> 00:03:32,486
+so you should be
+ready in no time.
+
+
+55
+00:03:32,526 --> 00:03:35,496
+All right, so let's talk
+about the agenda for today.
+
+
+56
+00:03:36,516 --> 00:03:40,416
+First, I want to talk about
+some basics so we set the stage
+
+
+57
+00:03:40,416 --> 00:03:41,446
+for the rest of the talk.
+
+
+58
+00:03:42,366 --> 00:03:45,786
+Then I will talk about
+Multipeer Connectivity on OS X,
+
+
+59
+00:03:46,406 --> 00:03:50,656
+where I'll focus on some of
+the specifics that are true
+
+
+60
+00:03:50,656 --> 00:03:54,636
+for development on OS X and
+for the OS X experience.
+
+
+61
+00:03:55,786 --> 00:03:58,486
+Next, I will talk about
+a few best practices.
+
+
+62
+00:03:59,326 --> 00:04:03,106
+And, finally, I'd like to cover
+a few more advanced topics,
+
+
+63
+00:04:03,426 --> 00:04:06,566
+namely custom discovery
+and authentication.
+
+
+64
+00:04:08,516 --> 00:04:10,646
+So let's start with the basics.
+
+
+65
+00:04:11,396 --> 00:04:15,446
+Multipeer Connectivity supports
+three wireless technologies
+
+
+66
+00:04:15,446 --> 00:04:21,696
+on iOS-Bluetooth, Infrastructure
+Wi-Fi, and Peer-to-Peer Wi-Fi.
+
+
+67
+00:04:22,736 --> 00:04:28,466
+On OS X we will support
+Ethernet, Infrastructure Wi-Fi,
+
+
+68
+00:04:29,016 --> 00:04:30,896
+and Peer-to-Peer Wi-Fi, as well.
+
+
+69
+00:04:32,136 --> 00:04:35,426
+So I'd like to talk about
+Peer-to-Peer Wi-Fi for a moment.
+
+
+70
+00:04:35,936 --> 00:04:39,506
+Peer-to-Peer Wi-Fi
+enables you to communicate
+
+
+71
+00:04:39,506 --> 00:04:42,786
+with other nearby devices
+even if they're not connected
+
+
+72
+00:04:42,786 --> 00:04:46,216
+to the same access point,
+or if they're not connected
+
+
+73
+00:04:46,216 --> 00:04:47,386
+to an access point at all.
+
+
+74
+00:04:48,616 --> 00:04:50,186
+So, many of you have wondered
+
+
+75
+00:04:50,186 --> 00:04:52,666
+which devices support
+Peer-to-Peer networking.
+
+
+76
+00:04:53,006 --> 00:04:55,556
+So I'd like to talk
+about that a bit.
+
+
+77
+00:04:55,936 --> 00:04:57,916
+Well, on iOS it's pretty simple.
+
+
+78
+00:04:58,446 --> 00:05:02,776
+If your iOS device has the new
+Lightning Connector then it
+
+
+79
+00:05:02,776 --> 00:05:04,486
+supports Peer-to-Peer Wi-Fi.
+
+
+80
+00:05:04,946 --> 00:05:08,376
+If it doesn't, it won't
+support Peer-to-Peer Wi-Fi,
+
+
+81
+00:05:08,866 --> 00:05:11,376
+but on those devices you
+can still use Bluetooth
+
+
+82
+00:05:11,726 --> 00:05:13,046
+and Infrastructure Wi-Fi.
+
+
+83
+00:05:14,276 --> 00:05:17,256
+For Macs, the story
+is also pretty simple.
+
+
+84
+00:05:17,536 --> 00:05:21,106
+If you have a Mac that
+was released in 2012
+
+
+85
+00:05:21,476 --> 00:05:25,826
+or later then it will have
+support for Peer-to-Peer Wi-Fi.
+
+
+86
+00:05:27,016 --> 00:05:30,446
+Okay, so let's establish
+some terminology
+
+
+87
+00:05:30,446 --> 00:05:32,246
+that we will use throughout
+the rest of the talk.
+
+
+88
+00:05:32,596 --> 00:05:37,326
+First, nearby, by nearby I
+will mean anything that is
+
+
+89
+00:05:37,326 --> 00:05:40,146
+within the range of supported
+wireless technologies.
+
+
+90
+00:05:40,996 --> 00:05:44,776
+A peer, a peer will be a device,
+
+
+91
+00:05:44,826 --> 00:05:47,236
+either our own or
+a nearby device.
+
+
+92
+00:05:48,696 --> 00:05:52,586
+An advertiser will be a device
+that makes itself discoverable
+
+
+93
+00:05:52,586 --> 00:05:54,096
+to other devices nearby.
+
+
+94
+00:05:55,226 --> 00:05:58,546
+And the browser will be a
+device that is searching
+
+
+95
+00:05:58,616 --> 00:06:01,266
+or discovering other
+nearby devices.
+
+
+96
+00:06:02,566 --> 00:06:05,476
+Multipeer Connectivity
+happens in two phases.
+
+
+97
+00:06:06,206 --> 00:06:08,036
+First, the discovery phase,
+
+
+98
+00:06:08,976 --> 00:06:10,946
+where the devices
+discover each other
+
+
+99
+00:06:11,226 --> 00:06:13,216
+and establish a communication
+session
+
+
+100
+00:06:13,216 --> 00:06:15,126
+by sending invitations
+to each other.
+
+
+101
+00:06:16,096 --> 00:06:19,916
+Then when they're connected into
+a session, the second phase,
+
+
+102
+00:06:19,916 --> 00:06:21,636
+called the session
+phase, begins,
+
+
+103
+00:06:21,926 --> 00:06:23,696
+where they can exchange
+data with each other.
+
+
+104
+00:06:24,726 --> 00:06:27,446
+So let's start with
+the discovery phase.
+
+
+105
+00:06:28,436 --> 00:06:30,766
+The first approach
+to discovery phase
+
+
+106
+00:06:30,766 --> 00:06:34,536
+that we support is UI-based
+and it's the most simple one.
+
+
+107
+00:06:36,056 --> 00:06:39,916
+We have a browser
+and an advertiser.
+
+
+108
+00:06:40,976 --> 00:06:44,776
+An advertiser has to
+instantiate a peer ID object,
+
+
+109
+00:06:45,226 --> 00:06:48,696
+a session object, and an
+advertiser assistant object.
+
+
+110
+00:06:49,326 --> 00:06:51,736
+It then starts by
+calling the start method.
+
+
+111
+00:06:53,326 --> 00:06:56,426
+The browser similarly
+instantiates a peer ID,
+
+
+112
+00:06:56,946 --> 00:06:59,376
+a session, and the
+browser view controller.
+
+
+113
+00:07:00,076 --> 00:07:02,426
+It then presents the
+browser view controller
+
+
+114
+00:07:02,426 --> 00:07:04,586
+to the user to start browsing.
+
+
+115
+00:07:05,786 --> 00:07:09,066
+The rest of the process will
+be entirely user-driven,
+
+
+116
+00:07:09,366 --> 00:07:12,816
+and you will be notified when
+the peers connect into a session
+
+
+117
+00:07:13,206 --> 00:07:16,796
+with the session delegate
+method, peer:didChangeState,
+
+
+118
+00:07:17,486 --> 00:07:20,446
+where the state will be
+specified as connected.
+
+
+119
+00:07:20,676 --> 00:07:24,586
+So that was the UI-based
+approach.
+
+
+120
+00:07:25,296 --> 00:07:27,116
+The programmatic
+approach requires you
+
+
+121
+00:07:27,116 --> 00:07:28,386
+to do a little bit more work,
+
+
+122
+00:07:28,386 --> 00:07:30,646
+but it gives you much
+more flexibility.
+
+
+123
+00:07:31,206 --> 00:07:35,296
+So, again, we have a
+browser and an advertiser.
+
+
+124
+00:07:36,606 --> 00:07:40,646
+The advertiser instantiates a
+nearby service object instead
+
+
+125
+00:07:40,646 --> 00:07:42,306
+of an advertiser
+assistant object.
+
+
+126
+00:07:43,406 --> 00:07:47,526
+And the browser instantiates a
+nearby service browser object
+
+
+127
+00:07:47,526 --> 00:07:49,176
+instead of the browser
+view controller.
+
+
+128
+00:07:50,936 --> 00:07:55,926
+The browser starts by calling
+startBrowsingForPeers method,
+
+
+129
+00:07:56,016 --> 00:08:00,826
+and the advertiser starts by
+calling startAdvertisingPeer.
+
+
+130
+00:08:01,306 --> 00:08:03,956
+So now both of them
+are-the browser is browsing,
+
+
+131
+00:08:04,176 --> 00:08:05,846
+and the advertiser
+is advertising.
+
+
+132
+00:08:07,236 --> 00:08:11,346
+When the browser discovers the
+advertiser you will be notified
+
+
+133
+00:08:11,346 --> 00:08:13,656
+with a delegate method,
+foundPeer.
+
+
+134
+00:08:14,446 --> 00:08:18,006
+At that time the browser
+can send an invitation
+
+
+135
+00:08:18,276 --> 00:08:23,426
+to the advertiser by calling
+the invitePeer method.
+
+
+136
+00:08:23,816 --> 00:08:29,526
+When the browser calls the
+invitePeer method an invitation
+
+
+137
+00:08:29,526 --> 00:08:31,386
+will be sent out
+to the advertiser,
+
+
+138
+00:08:31,906 --> 00:08:34,785
+and when the advertiser receives
+the invitation you will be
+
+
+139
+00:08:34,785 --> 00:08:38,226
+notified with the did receive
+invitation from peer method.
+
+
+140
+00:08:38,716 --> 00:08:42,456
+At that time, the advertiser
+has to decide whether it wants
+
+
+141
+00:08:42,456 --> 00:08:46,786
+to accept or reject
+the invitation.
+
+
+142
+00:08:47,216 --> 00:08:49,386
+And let's say it
+accepts the invitation,
+
+
+143
+00:08:50,516 --> 00:08:52,966
+then a message will be
+sent back to the browser,
+
+
+144
+00:08:52,966 --> 00:08:55,296
+and they will start
+connecting into a session.
+
+
+145
+00:08:56,036 --> 00:08:58,576
+When they connect with
+each other, again,
+
+
+146
+00:08:58,926 --> 00:09:00,966
+you will be notified
+with the delegate method,
+
+
+147
+00:09:01,116 --> 00:09:05,726
+peer:DidChangeState, where
+the state will be specified
+
+
+148
+00:09:06,066 --> 00:09:06,836
+as connected.
+
+
+149
+00:09:07,406 --> 00:09:11,506
+So this was the discovery phase.
+
+
+150
+00:09:11,956 --> 00:09:14,156
+Let's now cover the
+session phase.
+
+
+151
+00:09:15,366 --> 00:09:17,136
+So in the session
+phase we assume
+
+
+152
+00:09:17,136 --> 00:09:19,176
+that the nearby peers
+are already connected
+
+
+153
+00:09:19,176 --> 00:09:22,206
+with each other, and now what
+they want to do is they want
+
+
+154
+00:09:22,296 --> 00:09:23,946
+to exchange data
+with each other.
+
+
+155
+00:09:24,086 --> 00:09:29,386
+Well, Multipeer Connectivity
+supports three sets of APIs
+
+
+156
+00:09:29,606 --> 00:09:32,856
+for exchanging that
+data-messages,
+
+
+157
+00:09:33,816 --> 00:09:36,656
+streaming, and resources.
+
+
+158
+00:09:37,876 --> 00:09:39,356
+Let's start with messages.
+
+
+159
+00:09:39,966 --> 00:09:45,656
+A message is a chunk of data
+with well-defined boundaries.
+
+
+160
+00:09:45,726 --> 00:09:50,766
+If you want to send a message
+you can use the sendData method,
+
+
+161
+00:09:51,146 --> 00:09:54,746
+where you will pass the
+message as the first parameter,
+
+
+162
+00:09:54,926 --> 00:09:57,326
+encapsulated in an
+NSData object.
+
+
+163
+00:09:58,106 --> 00:10:02,086
+You will also have to specify
+an array of peers that you want
+
+
+164
+00:10:02,466 --> 00:10:03,906
+to receive the message.
+
+
+165
+00:10:04,866 --> 00:10:07,316
+When you receive a message
+you will be notified
+
+
+166
+00:10:07,346 --> 00:10:11,016
+with a delegate method,
+didReceiveData, which will pass
+
+
+167
+00:10:11,086 --> 00:10:13,726
+to you the message
+and the sender.
+
+
+168
+00:10:14,116 --> 00:10:18,586
+Now if you want to send really
+large amounts of data or data
+
+
+169
+00:10:18,586 --> 00:10:22,696
+without well-defined boundaries,
+such as a live audio stream,
+
+
+170
+00:10:22,696 --> 00:10:26,276
+for example, then you might
+be better served using our
+
+
+171
+00:10:26,276 --> 00:10:27,366
+streaming APIs.
+
+
+172
+00:10:28,536 --> 00:10:31,486
+And to start a stream
+you can call the method,
+
+
+173
+00:10:31,486 --> 00:10:35,836
+startStreamWithName, which
+will give you an NSOutputStream
+
+
+174
+00:10:35,836 --> 00:10:39,516
+object that you can use to
+stream data to the recipient.
+
+
+175
+00:10:40,036 --> 00:10:42,866
+The recipient will be notified
+
+
+176
+00:10:42,866 --> 00:10:44,886
+where the delegate
+method didReceiveStream,
+
+
+177
+00:10:45,256 --> 00:10:48,816
+and that method will give
+it an NSInputStream object
+
+
+178
+00:10:48,886 --> 00:10:54,036
+that the recipient can use
+to receive streaming data.
+
+
+179
+00:10:54,206 --> 00:11:01,136
+And, third, resources, we
+support files and web URLs
+
+
+180
+00:11:01,136 --> 00:11:04,376
+to send as resources, and
+you can send a resource
+
+
+181
+00:11:04,376 --> 00:11:09,096
+by using sendResourceAtURL
+method, where you specify
+
+
+182
+00:11:09,096 --> 00:11:12,376
+that the URL method of the
+resource you want to send
+
+
+183
+00:11:12,716 --> 00:11:14,906
+and you specify which peer
+you want to send it to.
+
+
+184
+00:11:16,276 --> 00:11:18,176
+You will also have to pass
+
+
+185
+00:11:18,176 --> 00:11:20,036
+to the framework a
+completion handler,
+
+
+186
+00:11:20,446 --> 00:11:22,716
+and that completion
+handler will be called
+
+
+187
+00:11:22,986 --> 00:11:25,186
+when the resource has
+finished transmitting
+
+
+188
+00:11:25,566 --> 00:11:28,336
+or if something went wrong
+during the transmission.
+
+
+189
+00:11:28,906 --> 00:11:33,316
+Now the receiver, when it
+starts receiving a resource,
+
+
+190
+00:11:33,556 --> 00:11:35,496
+will be notified with
+a delegate method,
+
+
+191
+00:11:35,796 --> 00:11:38,106
+didStartReceiving
+ResourceWithName,
+
+
+192
+00:11:38,956 --> 00:11:42,386
+and when the resource finishes
+being received it will be
+
+
+193
+00:11:42,386 --> 00:11:46,186
+notified with a delegate method,
+didFinishResourceWithName.
+
+
+194
+00:11:47,356 --> 00:11:50,566
+Okay, so in summary, we've
+covered the discovery phase
+
+
+195
+00:11:50,936 --> 00:11:51,946
+and the session phase.
+
+
+196
+00:11:52,496 --> 00:11:56,166
+You can do UI-based discovery
+or programmatic discovery,
+
+
+197
+00:11:56,166 --> 00:11:57,996
+which gives you a
+bit more flexibility,
+
+
+198
+00:11:58,586 --> 00:12:01,916
+and in the session phase you
+can use APIs to send data
+
+
+199
+00:12:02,316 --> 00:12:07,586
+where we support messages,
+streaming and resources.
+
+
+200
+00:12:09,066 --> 00:12:13,476
+Much more in-depth information
+about these topics can be seen
+
+
+201
+00:12:13,736 --> 00:12:17,326
+at our last year's
+WWDC presentation,
+
+
+202
+00:12:17,486 --> 00:12:18,596
+which you can see online.
+
+
+203
+00:12:21,776 --> 00:12:27,226
+All right, let's proceed with
+Multipeer Connectivity on OS X.
+
+
+204
+00:12:28,116 --> 00:12:34,886
+The good news is that the APIs
+on OS X are exactly the same
+
+
+205
+00:12:35,126 --> 00:12:40,726
+as APIs on iOS, nevertheless,
+there are some differences
+
+
+206
+00:12:41,016 --> 00:12:43,846
+that are different to the
+OS X experience and I would
+
+
+207
+00:12:43,846 --> 00:12:47,156
+like to talk about those now.
+
+
+208
+00:12:47,466 --> 00:12:50,566
+Let's start with
+UI-based discovery.
+
+
+209
+00:12:51,586 --> 00:12:53,596
+Imagine I have an app.
+
+
+210
+00:12:54,056 --> 00:12:56,186
+I have a Mac, which
+is running an app
+
+
+211
+00:12:56,546 --> 00:12:58,346
+that uses Multipeer
+Connectivity.
+
+
+212
+00:12:58,916 --> 00:13:01,286
+I want to see if
+somebody is around,
+
+
+213
+00:13:01,516 --> 00:13:03,696
+so I bring up the
+browser view controller.
+
+
+214
+00:13:05,116 --> 00:13:08,636
+The browser's view controller
+is presented as a modal sheet,
+
+
+215
+00:13:08,946 --> 00:13:13,276
+and in the lower left corner you
+can see an activity indicator,
+
+
+216
+00:13:13,586 --> 00:13:15,626
+which indicates to us
+that we're browsing.
+
+
+217
+00:13:16,516 --> 00:13:18,056
+Currently there is
+no one nearby.
+
+
+218
+00:13:19,966 --> 00:13:22,746
+Let's then assume
+that Gabe comes nearby
+
+
+219
+00:13:22,846 --> 00:13:24,586
+and Gabe is also running an app
+
+
+220
+00:13:24,956 --> 00:13:26,666
+that uses Multipeer
+Connectivity.
+
+
+221
+00:13:27,676 --> 00:13:31,306
+Moments later, we'll see in
+our UI that Gabe is nearby,
+
+
+222
+00:13:32,806 --> 00:13:37,606
+and if I want to invite
+Gabe into a session I have
+
+
+223
+00:13:37,656 --> 00:13:40,126
+to press the Invite
+button in the table view.
+
+
+224
+00:13:40,786 --> 00:13:42,926
+So I go ahead and do that.
+
+
+225
+00:13:43,746 --> 00:13:46,336
+When I do that, an invitation
+will be sent out to Gabe.
+
+
+226
+00:13:46,726 --> 00:13:50,286
+And when Gabe receives the
+invitation, we will present,
+
+
+227
+00:13:50,286 --> 00:13:53,786
+the framework will present an
+alert that will notify Gabe
+
+
+228
+00:13:53,786 --> 00:13:55,856
+that I want to connect to him.
+
+
+229
+00:13:56,496 --> 00:14:00,476
+At this time Gabe needs
+to decide whether he wants
+
+
+230
+00:14:00,516 --> 00:14:02,456
+to accept or decline
+the invitation.
+
+
+231
+00:14:02,716 --> 00:14:06,016
+So let's assume Gabe is
+game and wants to accept,
+
+
+232
+00:14:06,016 --> 00:14:08,696
+and accepts the invitation,
+so he clicks on Accept.
+
+
+233
+00:14:08,696 --> 00:14:11,286
+And an accept message
+is sent back to me.
+
+
+234
+00:14:11,896 --> 00:14:14,816
+At that moment we
+will start connecting,
+
+
+235
+00:14:14,816 --> 00:14:17,446
+and when we're finished
+connecting it will say
+
+
+236
+00:14:17,446 --> 00:14:21,406
+so in the UI next to Gabe,
+and I will be able to click
+
+
+237
+00:14:21,406 --> 00:14:24,816
+on the Done button, which
+will dismiss the browser view
+
+
+238
+00:14:24,816 --> 00:14:27,706
+controller, and I
+am connected to Gabe
+
+
+239
+00:14:28,026 --> 00:14:31,626
+and start exchanging
+data with him.
+
+
+240
+00:14:32,256 --> 00:14:38,106
+So this was the flow for
+UI discovery on Mac OS X.
+
+
+241
+00:14:38,946 --> 00:14:41,666
+Let's now see how you can
+implement this in code.
+
+
+242
+00:14:42,906 --> 00:14:45,276
+Now, first, you have to
+instantiate an advertiser,
+
+
+243
+00:14:45,516 --> 00:14:47,966
+and this is done much
+the same, like on iOS.
+
+
+244
+00:14:48,456 --> 00:14:51,346
+First, you instantiate the
+advertiser assistant object
+
+
+245
+00:14:51,836 --> 00:14:54,226
+and you start it.
+
+
+246
+00:14:55,826 --> 00:14:59,546
+Now for the
+MCBrowserViewController on OS X,
+
+
+247
+00:15:00,166 --> 00:15:05,596
+subclass is NSViewController,
+unlike UIViewController in iOS.
+
+
+248
+00:15:06,646 --> 00:15:10,096
+Note that NSViewController
+has seen substantial changes
+
+
+249
+00:15:10,096 --> 00:15:13,446
+in Yosemite, and you can see
+or you can hear much more
+
+
+250
+00:15:13,446 --> 00:15:16,176
+about those changes in
+the session, "Storyboards
+
+
+251
+00:15:16,176 --> 00:15:17,146
+and View Controllers".
+
+
+252
+00:15:18,246 --> 00:15:21,636
+So to set up the browser
+view controller on OS X,
+
+
+253
+00:15:21,636 --> 00:15:24,856
+I have to instantiate it, and
+I have to set the delegate.
+
+
+254
+00:15:26,346 --> 00:15:29,596
+Then I have to-then I present
+the browser view controller
+
+
+255
+00:15:29,936 --> 00:15:32,666
+by using one of the new
+NSViewController APIs,
+
+
+256
+00:15:33,456 --> 00:15:35,526
+presentViewControllerAsSheet,
+
+
+257
+00:15:36,266 --> 00:15:39,096
+and I pass the browser
+view controller object.
+
+
+258
+00:15:41,056 --> 00:15:45,416
+Note that "self" here is a
+subclass of an NSViewController.
+
+
+259
+00:15:46,066 --> 00:15:47,926
+We realize that you might be,
+
+
+260
+00:15:47,926 --> 00:15:52,236
+that your architecture might not
+be based on NSViewControllers,
+
+
+261
+00:15:52,596 --> 00:15:54,126
+and in that case you might want
+
+
+262
+00:15:54,126 --> 00:15:56,516
+to present the view
+controller using the
+
+
+263
+00:15:56,576 --> 00:15:58,386
+NSAppBeginSheet method.
+
+
+264
+00:15:59,236 --> 00:16:02,056
+Well, if you want to do
+that you can do that,
+
+
+265
+00:16:02,056 --> 00:16:04,876
+but first you will have
+to get an NSWindow object
+
+
+266
+00:16:05,236 --> 00:16:06,546
+for the browser view controller.
+
+
+267
+00:16:07,196 --> 00:16:10,496
+And you can do so by using
+one of the new methods
+
+
+268
+00:16:10,496 --> 00:16:14,286
+on NS window called
+windowWithContentViewController.
+
+
+269
+00:16:15,146 --> 00:16:17,816
+That method will give
+you back an NS window
+
+
+270
+00:16:17,966 --> 00:16:21,346
+for the browser view
+controller, and once you have
+
+
+271
+00:16:21,486 --> 00:16:25,706
+that NSWindow object you
+can use the beginSheet API
+
+
+272
+00:16:26,366 --> 00:16:28,776
+to present the browser view
+controller to the user.
+
+
+273
+00:16:29,696 --> 00:16:32,816
+When the user is done using
+the browser, it will click
+
+
+274
+00:16:32,816 --> 00:16:35,186
+on either Done or Cancel button,
+
+
+275
+00:16:35,386 --> 00:16:39,006
+and when that happens you will
+be notified via the delegate
+
+
+276
+00:16:39,006 --> 00:16:41,926
+methods,
+browserViewControllerDidFinish
+
+
+277
+00:16:42,236 --> 00:16:44,396
+and browserView
+ControllerWasCancelled,
+
+
+278
+00:16:44,396 --> 00:16:45,096
+respectively.
+
+
+279
+00:16:46,146 --> 00:16:48,806
+In those methods you'll have
+the opportunity to react
+
+
+280
+00:16:48,966 --> 00:16:53,076
+to whatever action the user
+has taken and you will have
+
+
+281
+00:16:53,076 --> 00:16:55,326
+to dismiss the browser
+view controller
+
+
+282
+00:16:55,656 --> 00:16:58,176
+by using the
+dismissViewController method.
+
+
+283
+00:16:58,736 --> 00:17:01,486
+Next, I want to talk
+about entitlements.
+
+
+284
+00:17:02,796 --> 00:17:07,136
+If you are sandboxed, either
+voluntarily or because you ship
+
+
+285
+00:17:07,136 --> 00:17:08,955
+on the app store you will have
+
+
+286
+00:17:09,026 --> 00:17:11,346
+to set entitlements
+appropriately.
+
+
+287
+00:17:11,925 --> 00:17:15,965
+Multipeer Connectivity you
+need support for both incoming
+
+
+288
+00:17:16,316 --> 00:17:18,915
+and outgoing connections,
+so you'll have
+
+
+289
+00:17:18,976 --> 00:17:21,566
+to enable entitlements
+for these operations.
+
+
+290
+00:17:22,156 --> 00:17:25,226
+If you don't do that, then
+Multipeer Connectivity
+
+
+291
+00:17:25,226 --> 00:17:28,656
+on OS X just won't work,
+so make sure you do that.
+
+
+292
+00:17:29,876 --> 00:17:32,086
+And that's really
+everything that is different.
+
+
+293
+00:17:32,786 --> 00:17:35,196
+Everything else, like
+programmatic discovery
+
+
+294
+00:17:35,466 --> 00:17:41,026
+and sending data, for instance,
+is exactly the same as on iOS,
+
+
+295
+00:17:41,376 --> 00:17:44,406
+so you should be
+ready in no time.
+
+
+296
+00:17:44,826 --> 00:17:47,446
+Okay, at this point I would
+like to invite Eric on stage,
+
+
+297
+00:17:47,446 --> 00:17:48,706
+who will show you a demo.
+
+
+298
+00:17:49,406 --> 00:17:50,706
+>> Thanks, good morning,
+everyone.
+
+
+299
+00:17:51,016 --> 00:17:53,946
+My name is Eric, and today I'd
+like to show you a quick demo
+
+
+300
+00:17:53,946 --> 00:17:57,976
+of Multipeer Connectivity,
+so let's switch over.
+
+
+301
+00:17:59,456 --> 00:18:02,156
+Great, so let's say
+we're at a party
+
+
+302
+00:18:02,366 --> 00:18:03,856
+and everyone is taking photos.
+
+
+303
+00:18:04,196 --> 00:18:06,516
+It would be really cool if we
+could collect all those photos
+
+
+304
+00:18:06,616 --> 00:18:08,816
+onto a map and display them
+
+
+305
+00:18:08,816 --> 00:18:12,376
+on a really large screen
+for everyone to see.
+
+
+306
+00:18:12,376 --> 00:18:14,296
+To simulate this
+sort of application,
+
+
+307
+00:18:14,626 --> 00:18:17,326
+today we have two iOS devices.
+
+
+308
+00:18:17,446 --> 00:18:20,286
+Here I have a white
+iPhone and a pink iPhone,
+
+
+309
+00:18:20,816 --> 00:18:22,656
+and we also have a Mac,
+
+
+310
+00:18:23,216 --> 00:18:25,566
+and we'll be using
+Multipeer Connectivity
+
+
+311
+00:18:25,686 --> 00:18:26,816
+to connect them together.
+
+
+312
+00:18:27,206 --> 00:18:31,086
+And whenever the iOS devices
+take photos they'll transmit
+
+
+313
+00:18:31,086 --> 00:18:32,296
+them over to the Mac.
+
+
+314
+00:18:32,736 --> 00:18:34,736
+So let's take a look
+at this in more detail.
+
+
+315
+00:18:35,286 --> 00:18:37,436
+Over here we have the Mac app,
+
+
+316
+00:18:38,036 --> 00:18:40,896
+on the left-hand side
+we'll have a photo roll,
+
+
+317
+00:18:40,986 --> 00:18:44,406
+where the new photos will
+pop in, and over here
+
+
+318
+00:18:44,406 --> 00:18:46,436
+on the right-hand side
+we'll have a larger view
+
+
+319
+00:18:46,506 --> 00:18:49,056
+of the latest photo that we got.
+
+
+320
+00:18:49,056 --> 00:18:51,126
+Down here in the corner we
+have a little Browse button.
+
+
+321
+00:18:51,606 --> 00:18:53,166
+So let's get started.
+
+
+322
+00:18:53,286 --> 00:18:56,166
+I'll go ahead and click
+on the Browse button.
+
+
+323
+00:18:56,346 --> 00:18:58,226
+So here's the browser
+that we saw earlier.
+
+
+324
+00:18:58,796 --> 00:19:00,456
+Right now it's currently empty.
+
+
+325
+00:19:00,816 --> 00:19:04,916
+When I launch the iPhone app
+it will start advertising,
+
+
+326
+00:19:05,216 --> 00:19:07,516
+and the browser will
+be able to discover it,
+
+
+327
+00:19:07,516 --> 00:19:08,606
+and it'll pop up in the list.
+
+
+328
+00:19:09,026 --> 00:19:13,606
+So I'll go ahead and do
+that here, so there it is.
+
+
+329
+00:19:14,026 --> 00:19:19,346
+And I can go ahead and do
+the same on the other iPhone.
+
+
+330
+00:19:19,496 --> 00:19:23,126
+Great, so now we have
+both of the devices.
+
+
+331
+00:19:23,126 --> 00:19:25,616
+We can go ahead and
+invite the white iPhone.
+
+
+332
+00:19:25,806 --> 00:19:28,956
+Over here I received the
+invitation, so I'll go ahead
+
+
+333
+00:19:28,956 --> 00:19:32,276
+and tap Accept, and we
+can see that it connected.
+
+
+334
+00:19:33,086 --> 00:19:36,166
+I'll do the same for the
+pink iPhone, so invite it,
+
+
+335
+00:19:36,476 --> 00:19:37,666
+and over here I'll accept.
+
+
+336
+00:19:38,816 --> 00:19:42,276
+Great, so now both of the
+devices are connected,
+
+
+337
+00:19:42,336 --> 00:19:44,206
+we can go ahead and
+click on the Done button
+
+
+338
+00:19:44,406 --> 00:19:48,136
+to dismiss the browser, and we
+can start taking some photos.
+
+
+339
+00:19:48,796 --> 00:19:51,746
+So I'll grab the white
+iPhone, and let's see
+
+
+340
+00:19:51,866 --> 00:19:53,976
+if we can get a shot of
+this camera right here.
+
+
+341
+00:19:54,136 --> 00:20:00,676
+Great, so it's sort of an
+antique camera, I guess.
+
+
+342
+00:20:00,676 --> 00:20:04,636
+Let's see that with the
+phone, we can compare them.
+
+
+343
+00:20:05,306 --> 00:20:09,976
+So you can see how far
+we've come with the cameras.
+
+
+344
+00:20:09,976 --> 00:20:12,426
+Here's let me switch over
+to the pink iPhone phone,
+
+
+345
+00:20:12,426 --> 00:20:15,856
+and let me take a picture
+of this little rabbit thing.
+
+
+346
+00:20:17,786 --> 00:20:25,116
+Great, let's see, maybe I can
+take one of myself, and then,
+
+
+347
+00:20:26,256 --> 00:20:28,486
+let's see, we'll switch over.
+
+
+348
+00:20:29,006 --> 00:20:31,796
+Here's a little thing
+of bismuth.
+
+
+349
+00:20:32,696 --> 00:20:38,026
+Great, okay, so let's see
+if we can take a quick look
+
+
+350
+00:20:38,026 --> 00:20:40,286
+at what the iOS side looks like.
+
+
+351
+00:20:41,996 --> 00:20:46,616
+Okay, great, now that
+was a quick demonstration
+
+
+352
+00:20:46,806 --> 00:20:50,716
+of cross-platform nearby
+networking with Multipeer.
+
+
+353
+00:20:50,716 --> 00:20:53,216
+So let's talk a little bit
+about how I built the demo.
+
+
+354
+00:20:53,216 --> 00:20:57,176
+On the iOS side, I took a piece
+of sample code called AB Cam
+
+
+355
+00:20:57,426 --> 00:20:59,796
+that teaches you how
+to use the camera.
+
+
+356
+00:21:00,296 --> 00:21:02,576
+Whenever we save
+a new still image,
+
+
+357
+00:21:03,036 --> 00:21:05,736
+all we do is we take
+the URL for the new file
+
+
+358
+00:21:05,736 --> 00:21:08,526
+and we use the sendResource
+API we just saw,
+
+
+359
+00:21:08,886 --> 00:21:11,116
+and that sends it
+over to the Mac side.
+
+
+360
+00:21:11,976 --> 00:21:14,866
+Over here on the Mac
+side I took a piece
+
+
+361
+00:21:14,866 --> 00:21:16,486
+of sample code called
+Image Browser
+
+
+362
+00:21:17,116 --> 00:21:18,516
+and it just teaches you how
+
+
+363
+00:21:18,516 --> 00:21:24,366
+to display a grid of
+images, like this.
+
+
+364
+00:21:24,546 --> 00:21:27,286
+I added in Multipeer
+Connectivity to bring
+
+
+365
+00:21:27,286 --> 00:21:30,806
+up the browser, and whenever we
+receive a new resource we just
+
+
+366
+00:21:30,806 --> 00:21:34,576
+add that into the image
+list's data source array.
+
+
+367
+00:21:35,546 --> 00:21:38,276
+So if you'd like to
+learn more about how
+
+
+368
+00:21:38,276 --> 00:21:39,926
+to use Multipeer Connectivity
+
+
+369
+00:21:39,926 --> 00:21:41,996
+in your own apps we
+hope you will check
+
+
+370
+00:21:41,996 --> 00:21:43,916
+out last year's iOS sample code,
+
+
+371
+00:21:44,236 --> 00:21:46,186
+it's called Multipeer
+Group Chat.
+
+
+372
+00:21:46,186 --> 00:21:49,046
+And we're really looking
+forward to seeing what sort
+
+
+373
+00:21:49,046 --> 00:21:51,256
+of new apps you guys
+can come up with.
+
+
+374
+00:21:51,586 --> 00:21:53,376
+With that, I'd like to
+hand it back to Demijan.
+
+
+375
+00:21:53,876 --> 00:21:54,866
+Thanks, everyone.
+
+
+376
+00:21:55,146 --> 00:21:55,826
+>> Thank you, Eric.
+
+
+377
+00:21:59,156 --> 00:22:02,726
+So Multipeer Connectivity
+on OS X is much
+
+
+378
+00:22:02,726 --> 00:22:04,936
+like Multipeer Connectivity
+on iOS.
+
+
+379
+00:22:05,786 --> 00:22:10,846
+In this section we've shown you
+the UI-based discovery on OS X,
+
+
+380
+00:22:10,846 --> 00:22:14,176
+and we've told you which
+entitlements you need to enable
+
+
+381
+00:22:14,446 --> 00:22:19,186
+to make Multipeer
+Connectivity work in OS X apps.
+
+
+382
+00:22:19,566 --> 00:22:23,126
+Next I'd like to talk
+about a few best practices
+
+
+383
+00:22:23,506 --> 00:22:26,706
+that we thought you
+guys should be aware of.
+
+
+384
+00:22:27,516 --> 00:22:32,996
+So let's assume we have two
+devices, a Mac and a phone,
+
+
+385
+00:22:33,636 --> 00:22:36,166
+and let's say the
+Mac is advertising
+
+
+386
+00:22:36,926 --> 00:22:38,706
+and the iPhone is browsing.
+
+
+387
+00:22:40,586 --> 00:22:43,806
+Moments later the iPhone
+will discover the Mac
+
+
+388
+00:22:44,206 --> 00:22:47,716
+and it will have a reference or
+it will have its peerID object.
+
+
+389
+00:22:49,026 --> 00:22:53,656
+Then let's assume that for
+some reason the Mac goes away.
+
+
+390
+00:22:54,656 --> 00:22:57,396
+For instance, the user
+could have closed the lid
+
+
+391
+00:22:57,526 --> 00:23:02,056
+for some reason or the user
+could have reset the system
+
+
+392
+00:23:02,056 --> 00:23:03,376
+because of a software update.
+
+
+393
+00:23:05,476 --> 00:23:11,336
+When the Mac comes back it will
+instantiate a new peerID object
+
+
+394
+00:23:11,336 --> 00:23:15,506
+and a new advertiser, and
+the iPhone will discover it,
+
+
+395
+00:23:15,926 --> 00:23:18,756
+but it will see a new
+object for the peer,
+
+
+396
+00:23:18,896 --> 00:23:22,216
+which actually corresponds
+to the same Mac.
+
+
+397
+00:23:22,636 --> 00:23:27,016
+So this can lead to many issues
+because iPhone doesn't know
+
+
+398
+00:23:27,016 --> 00:23:30,896
+that these two objects actually
+correspond to the same device.
+
+
+399
+00:23:32,246 --> 00:23:35,976
+So in order to circumvent
+that problem, we recommend
+
+
+400
+00:23:36,266 --> 00:23:38,456
+that you reuse peerID objects.
+
+
+401
+00:23:39,246 --> 00:23:41,736
+After you've created
+a peerID object
+
+
+402
+00:23:41,736 --> 00:23:45,456
+for the first time you can
+store it in the user defaults,
+
+
+403
+00:23:45,896 --> 00:23:48,946
+so the next time you need it you
+don't have to create a new one.
+
+
+404
+00:23:49,496 --> 00:23:53,936
+So if the Mac, when
+it comes back,
+
+
+405
+00:23:53,936 --> 00:23:57,926
+reuses the first peerID object,
+the iPhone won't be confused
+
+
+406
+00:23:57,926 --> 00:24:00,966
+and it will only have one
+object that represents the Mac.
+
+
+407
+00:24:03,126 --> 00:24:05,396
+Now let's see how you
+guys can do this in code.
+
+
+408
+00:24:06,766 --> 00:24:09,906
+Once you've instantiated
+the peerID object,
+
+
+409
+00:24:09,906 --> 00:24:11,996
+you'll need to store it
+in the user defaults.
+
+
+410
+00:24:12,506 --> 00:24:14,216
+And to do so, you'll first have
+
+
+411
+00:24:14,266 --> 00:24:16,946
+to serialize the
+peerID object using the
+
+
+412
+00:24:16,946 --> 00:24:19,726
+archivedDataWithRootObject
+method.
+
+
+413
+00:24:20,696 --> 00:24:23,116
+Once the peer is serialized
+
+
+414
+00:24:23,336 --> 00:24:27,046
+into an NSData object you can
+save it in the user defaults.
+
+
+415
+00:24:27,736 --> 00:24:30,396
+Later when you need to
+de-serialize it and retrieve it
+
+
+416
+00:24:30,396 --> 00:24:32,406
+from the defaults
+you'll first have
+
+
+417
+00:24:32,446 --> 00:24:36,426
+to de-serialize it using
+unarchiveObjectWithData method,
+
+
+418
+00:24:37,026 --> 00:24:40,256
+and then when you have the
+original peerID object you can
+
+
+419
+00:24:40,256 --> 00:24:41,696
+use it in your application.
+
+
+420
+00:24:42,076 --> 00:24:47,216
+Next auto inviting, many of
+you have made applications
+
+
+421
+00:24:47,496 --> 00:24:51,236
+that both advertise and
+browse at the same time,
+
+
+422
+00:24:51,736 --> 00:24:55,776
+and when a browser sees an
+advertiser it immediately sends
+
+
+423
+00:24:55,776 --> 00:24:56,456
+an invitation.
+
+
+424
+00:24:56,676 --> 00:24:58,656
+Basically, what you want
+to achieve with this is,
+
+
+425
+00:24:58,656 --> 00:25:01,636
+if you want to abstract
+away the connection process
+
+
+426
+00:25:01,636 --> 00:25:02,266
+from the user.
+
+
+427
+00:25:02,526 --> 00:25:05,836
+As soon as another user is
+seen you want the devices
+
+
+428
+00:25:05,906 --> 00:25:06,866
+to connect to each other.
+
+
+429
+00:25:07,586 --> 00:25:10,126
+So let's assume we
+have a Mac and a phone,
+
+
+430
+00:25:10,666 --> 00:25:12,796
+and both are browsing
+and advertising.
+
+
+431
+00:25:13,706 --> 00:25:15,926
+So soon they will
+discover each other,
+
+
+432
+00:25:15,926 --> 00:25:20,216
+and they will have a peerID
+object of the other peer.
+
+
+433
+00:25:20,476 --> 00:25:23,296
+But now the question
+is who will be the one
+
+
+434
+00:25:23,516 --> 00:25:24,676
+to send an invitation?
+
+
+435
+00:25:25,226 --> 00:25:27,366
+And here's where many
+of you get confused.
+
+
+436
+00:25:28,796 --> 00:25:33,226
+So in order to solve this
+problem you can use a
+
+
+437
+00:25:33,226 --> 00:25:37,236
+deterministic algorithm
+that will on both sides come
+
+
+438
+00:25:37,236 --> 00:25:40,816
+to the same result so that
+only one peer will be the one
+
+
+439
+00:25:40,816 --> 00:25:41,986
+to send an invitation.
+
+
+440
+00:25:42,926 --> 00:25:46,736
+Now there are many ways you
+can do that, and one of them is
+
+
+441
+00:25:46,736 --> 00:25:51,076
+to use peer ID hash
+values or hash value
+
+
+442
+00:25:51,076 --> 00:25:52,286
+of the peer ID object.
+
+
+443
+00:25:52,986 --> 00:25:57,136
+Since both sides have access to
+the same two peer ID objects,
+
+
+444
+00:25:57,576 --> 00:25:59,826
+they will come to the
+same determination as to
+
+
+445
+00:25:59,826 --> 00:26:01,546
+who has the higher hash value,
+
+
+446
+00:26:02,086 --> 00:26:04,396
+and only one invitation
+will be sent out.
+
+
+447
+00:26:05,876 --> 00:26:09,866
+Next I want to talk about
+discovery info a little bit.
+
+
+448
+00:26:10,636 --> 00:26:14,206
+Multipeer Connectivity
+uses Bonjour underneath
+
+
+449
+00:26:14,366 --> 00:26:19,166
+for discovery, and you have the
+option to set additional data
+
+
+450
+00:26:19,606 --> 00:26:23,496
+for advertisers when
+you instantiate them.
+
+
+451
+00:26:23,886 --> 00:26:27,106
+Now this additional data
+is passed to the framework
+
+
+452
+00:26:27,106 --> 00:26:30,976
+in the form of an NSDictionary
+that we call discoveryInfo,
+
+
+453
+00:26:32,076 --> 00:26:36,096
+and discoveryInfo is very useful
+because it is made available
+
+
+454
+00:26:36,096 --> 00:26:39,396
+to the browsers when they
+discover an advertiser.
+
+
+455
+00:26:40,106 --> 00:26:44,506
+So first thing I want to advise
+is to keep discoveryInfo small,
+
+
+456
+00:26:45,266 --> 00:26:47,936
+this will make the discovery
+experience much better
+
+
+457
+00:26:47,936 --> 00:26:48,816
+for your users.
+
+
+458
+00:26:50,976 --> 00:26:54,396
+Next both keys and values
+
+
+459
+00:26:54,486 --> 00:26:57,726
+in discoveryInfo must
+be of type NSString.
+
+
+460
+00:26:58,656 --> 00:27:04,036
+If any key or any value in the
+discoveryInfo dictionary is not
+
+
+461
+00:27:04,036 --> 00:27:07,816
+of type NSString, the
+framework will complain
+
+
+462
+00:27:07,896 --> 00:27:08,946
+and throw an exception.
+
+
+463
+00:27:11,406 --> 00:27:14,516
+Also, you should know
+that each key value pair
+
+
+464
+00:27:14,516 --> 00:27:18,856
+in the discoveryInfo dictionary
+underneath gets formatted
+
+
+465
+00:27:19,146 --> 00:27:21,316
+in a Bonjour text record entry,
+
+
+466
+00:27:22,696 --> 00:27:26,506
+and each Bonjour text record
+entry has a specific format,
+
+
+467
+00:27:26,576 --> 00:27:27,916
+which is shown in this slide.
+
+
+468
+00:27:28,416 --> 00:27:33,486
+First the key, followed by an
+equal sign, and then the value.
+
+
+469
+00:27:34,846 --> 00:27:40,046
+Note that each text record
+entry is limited to 256 bytes,
+
+
+470
+00:27:40,986 --> 00:27:43,846
+and if any key-value
+pair when formatted
+
+
+471
+00:27:43,846 --> 00:27:47,946
+as a text record
+exceeds 256 bytes,
+
+
+472
+00:27:48,516 --> 00:27:51,216
+the framework will complain
+again and throw an exception.
+
+
+473
+00:27:52,646 --> 00:27:55,276
+For more details
+on Discovery Info
+
+
+474
+00:27:55,276 --> 00:27:58,136
+and Bonjour text records
+I'd like to refer you
+
+
+475
+00:27:58,136 --> 00:28:02,386
+to the Bonjour RFC, which can
+be obtained at the link quoted
+
+
+476
+00:28:02,386 --> 00:28:03,626
+at the bottom of this slide.
+
+
+477
+00:28:06,266 --> 00:28:09,776
+Okay, so now we're ready to
+tackle on some advanced topics,
+
+
+478
+00:28:10,006 --> 00:28:12,206
+and I'd like to start
+with custom discovery.
+
+
+479
+00:28:12,636 --> 00:28:15,336
+We've covered two approaches
+to discovery so far.
+
+
+480
+00:28:16,096 --> 00:28:19,226
+The first one was UI-based,
+and it's really simple.
+
+
+481
+00:28:19,736 --> 00:28:22,996
+All you have to do is
+instantiate an advertiser,
+
+
+482
+00:28:23,466 --> 00:28:24,856
+instantiate a browser,
+
+
+483
+00:28:25,206 --> 00:28:28,626
+and everything else is
+entirely user-driven.
+
+
+484
+00:28:29,566 --> 00:28:32,226
+Now this approach is
+very simple to implement,
+
+
+485
+00:28:32,616 --> 00:28:35,356
+but the framework
+gives you the UI,
+
+
+486
+00:28:35,356 --> 00:28:37,546
+so you don't have much
+flexibility there.
+
+
+487
+00:28:38,306 --> 00:28:40,806
+If you want to design
+your own framework,
+
+
+488
+00:28:41,216 --> 00:28:42,976
+you can use the programmatic
+approach.
+
+
+489
+00:28:43,756 --> 00:28:45,956
+Now the programmatic
+approach requires you
+
+
+490
+00:28:45,956 --> 00:28:47,346
+to do a little bit more work,
+
+
+491
+00:28:47,846 --> 00:28:50,336
+but you have much more
+flexibility in terms
+
+
+492
+00:28:50,336 --> 00:28:52,606
+of how you define
+the user experience.
+
+
+493
+00:28:54,956 --> 00:28:57,386
+So even given that we
+have these two approaches,
+
+
+494
+00:28:57,536 --> 00:29:00,746
+we realize that there may be
+some of you who have the need
+
+
+495
+00:29:00,906 --> 00:29:05,746
+to have or to define the
+discovery experience even more
+
+
+496
+00:29:05,746 --> 00:29:08,366
+or to customize it even more.
+
+
+497
+00:29:09,586 --> 00:29:12,316
+And for those, we
+offer a third way,
+
+
+498
+00:29:12,686 --> 00:29:14,636
+which we call the
+custom approach.
+
+
+499
+00:29:15,466 --> 00:29:19,306
+Now the custom approach might
+be useful for those users
+
+
+500
+00:29:19,306 --> 00:29:22,266
+that operate in environments
+that is not Bonjour friendly,
+
+
+501
+00:29:22,266 --> 00:29:25,556
+for instance, or you
+may have the need
+
+
+502
+00:29:25,636 --> 00:29:29,196
+to exchange large amounts of
+data during the discovery phase
+
+
+503
+00:29:29,666 --> 00:29:33,306
+and that data cannot fit in
+the discoveryInfo dictionary.
+
+
+504
+00:29:34,696 --> 00:29:39,216
+So if you fit into one of those
+categories you might find custom
+
+
+505
+00:29:39,296 --> 00:29:39,996
+discovery useful.
+
+
+506
+00:29:39,996 --> 00:29:42,976
+So let's go over custom
+discovery in this section.
+
+
+507
+00:29:43,226 --> 00:29:48,926
+First, let me say that for
+custom discovery you are
+
+
+508
+00:29:48,926 --> 00:29:52,836
+in full control of the discovery
+process, so we will assume
+
+
+509
+00:29:53,076 --> 00:29:55,806
+that you will implement
+a mechanism to discover
+
+
+510
+00:29:55,806 --> 00:30:00,556
+who is nearby and you will also
+establish a one-to-one data link
+
+
+511
+00:30:00,616 --> 00:30:01,956
+between nearby peers.
+
+
+512
+00:30:02,346 --> 00:30:03,626
+So this will be your job.
+
+
+513
+00:30:05,156 --> 00:30:08,726
+Now the goal for nearby
+peers will be to connect
+
+
+514
+00:30:08,726 --> 00:30:11,836
+into a Multipeer session
+where they can exchange data
+
+
+515
+00:30:11,836 --> 00:30:14,606
+with other peers on
+a many-to-many basis.
+
+
+516
+00:30:15,776 --> 00:30:19,246
+So let's see how
+they can do that.
+
+
+517
+00:30:19,696 --> 00:30:23,006
+Assuming that we've
+discovered nearby peers
+
+
+518
+00:30:23,006 --> 00:30:25,066
+and we've established
+a one-to-one data link
+
+
+519
+00:30:25,066 --> 00:30:28,846
+between them, let's see
+what you have to do in order
+
+
+520
+00:30:28,846 --> 00:30:30,466
+to connect them into a session.
+
+
+521
+00:30:31,106 --> 00:30:35,416
+First, each peer will need to
+instantiate a peerID object
+
+
+522
+00:30:35,996 --> 00:30:40,196
+and a session object, and then
+it will have to-they will both
+
+
+523
+00:30:40,196 --> 00:30:42,476
+have to complete a
+two-step process.
+
+
+524
+00:30:43,046 --> 00:30:47,376
+First, they will have to
+exchange their peerID objects
+
+
+525
+00:30:47,376 --> 00:30:48,846
+over the one-to-one data link.
+
+
+526
+00:30:49,306 --> 00:30:51,706
+So, in order to do that,
+they will first have
+
+
+527
+00:30:51,746 --> 00:30:55,056
+to serialize their peerID
+object and pass them
+
+
+528
+00:30:55,056 --> 00:30:57,026
+over to the other peer.
+
+
+529
+00:30:57,736 --> 00:31:01,236
+Once the serialized ID object
+is available they'll have
+
+
+530
+00:31:01,276 --> 00:31:02,916
+to de-serialize it, and at
+
+
+531
+00:31:02,916 --> 00:31:08,086
+that moment they'll have the
+peerID object of the other peer.
+
+
+532
+00:31:08,696 --> 00:31:11,836
+Once the peerID object
+is available they'll have
+
+
+533
+00:31:11,886 --> 00:31:14,156
+to generate nearby
+connection data
+
+
+534
+00:31:15,056 --> 00:31:17,646
+by calling
+nearbyConnectionDataForPeer
+
+
+535
+00:31:17,646 --> 00:31:18,036
+method.
+
+
+536
+00:31:19,236 --> 00:31:23,106
+When nearby connection data
+becomes available they will have
+
+
+537
+00:31:23,106 --> 00:31:26,846
+to exchange that object much
+like before with the other peer,
+
+
+538
+00:31:27,706 --> 00:31:31,646
+so this is the second step
+of the process, and when both
+
+
+539
+00:31:31,646 --> 00:31:33,156
+of these objects are available
+
+
+540
+00:31:33,156 --> 00:31:35,486
+on the other side
+you can connect them
+
+
+541
+00:31:35,486 --> 00:31:40,526
+into a session using
+connectPeer:withConnectionData
+
+
+542
+00:31:40,526 --> 00:31:40,936
+method.
+
+
+543
+00:31:41,396 --> 00:31:43,736
+When they are done
+connecting, much like before,
+
+
+544
+00:31:44,076 --> 00:31:46,746
+you will be notified
+with a delegate method,
+
+
+545
+00:31:46,906 --> 00:31:50,836
+peer:didChangeState, and
+the state will be specified
+
+
+546
+00:31:51,176 --> 00:31:51,876
+as connected.
+
+
+547
+00:31:52,436 --> 00:31:56,866
+Okay, so let's see how
+we can do this in code.
+
+
+548
+00:31:57,596 --> 00:31:58,736
+Now serializing
+
+
+549
+00:31:58,736 --> 00:32:01,156
+and de-serializing can
+be accomplished much
+
+
+550
+00:32:01,156 --> 00:32:04,606
+like we've described before
+in the best practices section.
+
+
+551
+00:32:04,936 --> 00:32:09,746
+You can use, for serializing you
+can use NSKeyedArchiver APIs,
+
+
+552
+00:32:10,436 --> 00:32:17,326
+and for de-serializing you can
+use NSKeyedUnarchiver APIs.
+
+
+553
+00:32:18,256 --> 00:32:21,986
+So now that we've exchanged
+the peerID objects we have
+
+
+554
+00:32:21,986 --> 00:32:23,376
+to generate connection data,
+
+
+555
+00:32:24,216 --> 00:32:27,426
+and to generate nearby
+connection data you can use
+
+
+556
+00:32:27,426 --> 00:32:30,256
+nearbyConnectionData
+withCompletionHandler method.
+
+
+557
+00:32:30,956 --> 00:32:32,456
+The framework, when it's done,
+
+
+558
+00:32:32,896 --> 00:32:36,356
+will call the completion
+handler, where it will pass
+
+
+559
+00:32:36,486 --> 00:32:39,896
+to you the object that
+contains nearby connection data.
+
+
+560
+00:32:40,966 --> 00:32:44,126
+Then you will have to send that
+object over to the other side
+
+
+561
+00:32:47,196 --> 00:32:53,786
+and when all peers have both
+objects for the peer they want
+
+
+562
+00:32:53,786 --> 00:32:55,546
+to connect with they can do
+
+
+563
+00:32:55,546 --> 00:32:59,956
+so by calling connectPeer
+withNearbyConnectionData.
+
+
+564
+00:33:01,036 --> 00:33:04,916
+In this method you also have the
+opportunity to specify a timeout
+
+
+565
+00:33:04,916 --> 00:33:08,856
+in seconds, and this timeout
+will let the framework know how
+
+
+566
+00:33:08,856 --> 00:33:10,076
+long you're willing to wait
+
+
+567
+00:33:10,376 --> 00:33:14,906
+until the peers successfully
+connect in a session.
+
+
+568
+00:33:15,216 --> 00:33:18,206
+If for some reason you change
+your mind during the connection
+
+
+569
+00:33:18,206 --> 00:33:19,986
+process you can cancel it
+
+
+570
+00:33:20,296 --> 00:33:22,636
+by calling cancelConnectPeer
+method.
+
+
+571
+00:33:23,336 --> 00:33:28,146
+So in summary we've described
+a fully customized discovery,
+
+
+572
+00:33:28,486 --> 00:33:32,126
+which you can use if you
+can't use the UI-based
+
+
+573
+00:33:32,126 --> 00:33:34,086
+or the programmatic
+approach for your needs.
+
+
+574
+00:33:34,836 --> 00:33:36,926
+It consists of a
+two-step process.
+
+
+575
+00:33:37,506 --> 00:33:42,166
+First, you need to exchange the
+peerID object, then you need
+
+
+576
+00:33:42,166 --> 00:33:45,716
+to exchange nearby connection
+object, and when both
+
+
+577
+00:33:45,716 --> 00:33:47,266
+of these objects are available
+
+
+578
+00:33:47,266 --> 00:33:54,216
+for the other peer you can
+connect it into a session.
+
+
+579
+00:33:54,906 --> 00:33:56,986
+Next up is authentication.
+
+
+580
+00:33:57,876 --> 00:34:02,106
+So some apps, for
+instance, those that deal
+
+
+581
+00:34:02,106 --> 00:34:06,776
+with money transactions think
+an app that enables people
+
+
+582
+00:34:06,776 --> 00:34:11,856
+to split a taxi cab
+bill will have to rely
+
+
+583
+00:34:11,856 --> 00:34:15,735
+on properly implemented
+security to provide safe
+
+
+584
+00:34:16,036 --> 00:34:18,806
+and trustworthy experience
+to their users.
+
+
+585
+00:34:21,835 --> 00:34:25,206
+Multipeer Connectivity
+gives you the option
+
+
+586
+00:34:25,206 --> 00:34:28,025
+of enabling encryption
+and authentication
+
+
+587
+00:34:28,025 --> 00:34:30,166
+for providing security
+to your users.
+
+
+588
+00:34:30,896 --> 00:34:33,646
+Now enabling encryption is
+pretty easy, all you have
+
+
+589
+00:34:33,646 --> 00:34:36,176
+to do is set the flag when
+you instantiate the session,
+
+
+590
+00:34:36,996 --> 00:34:39,755
+but in authentication it is
+a little bit more involved.
+
+
+591
+00:34:40,146 --> 00:34:42,306
+So let's take a look
+at how you can deal
+
+
+592
+00:34:42,306 --> 00:34:44,386
+with authentication
+in this section.
+
+
+593
+00:34:45,976 --> 00:34:48,485
+If you want to provide
+authentication
+
+
+594
+00:34:48,485 --> 00:34:52,775
+to your users you will have
+to make sure that each one
+
+
+595
+00:34:52,775 --> 00:34:55,606
+of your users has
+a digital identity,
+
+
+596
+00:34:56,235 --> 00:34:58,716
+and a digital identity consists
+
+
+597
+00:34:58,716 --> 00:35:01,456
+of a private key
+and a certificate.
+
+
+598
+00:35:02,126 --> 00:35:07,056
+The users will use the private
+key to sign their messages
+
+
+599
+00:35:08,246 --> 00:35:11,096
+and they will make their
+certificate available
+
+
+600
+00:35:11,096 --> 00:35:15,216
+to other users so they can
+verify if the signature is valid
+
+
+601
+00:35:15,756 --> 00:35:18,896
+and if they can trust
+the sender.
+
+
+602
+00:35:20,566 --> 00:35:24,106
+In code, a digital
+identity is represented
+
+
+603
+00:35:24,106 --> 00:35:26,276
+by a SecIdentityRef object.
+
+
+604
+00:35:27,136 --> 00:35:31,666
+The private key is represented
+by a SecKeyRef object.
+
+
+605
+00:35:32,656 --> 00:35:34,666
+And the certificate
+is represented
+
+
+606
+00:35:34,666 --> 00:35:36,756
+by a SecCertificateRef object.
+
+
+607
+00:35:39,166 --> 00:35:42,546
+There are multiple ways how
+you can distribute digital
+
+
+608
+00:35:42,546 --> 00:35:44,086
+identities to your users.
+
+
+609
+00:35:44,706 --> 00:35:49,046
+Perhaps the best way is to
+make identities available
+
+
+610
+00:35:49,046 --> 00:35:53,326
+on a trusted web server so that
+the users can download them
+
+
+611
+00:35:53,326 --> 00:35:57,466
+from that trusted web
+server from within the app.
+
+
+612
+00:35:57,466 --> 00:35:59,756
+Other ways include
+e-mail attachments
+
+
+613
+00:36:00,216 --> 00:36:02,786
+or via a mobile device
+management server.
+
+
+614
+00:36:04,026 --> 00:36:06,766
+For more detailed
+information on this topic,
+
+
+615
+00:36:06,766 --> 00:36:11,176
+I'd like to refer you to the
+Tech QA 1745, and the link
+
+
+616
+00:36:11,176 --> 00:36:14,216
+for this is also provided
+at the bottom of this slide.
+
+
+617
+00:36:16,466 --> 00:36:19,996
+Now let's see how you can import
+a digital identity in your code.
+
+
+618
+00:36:21,776 --> 00:36:27,256
+Usually the digital identity is
+stored in a PKCS#12 data file,
+
+
+619
+00:36:27,636 --> 00:36:29,826
+and these files are
+password-protected.
+
+
+620
+00:36:30,826 --> 00:36:33,716
+So the first thing you'll
+need to do is get the password
+
+
+621
+00:36:33,716 --> 00:36:38,436
+for the file and store
+it in a dictionary.
+
+
+622
+00:36:38,436 --> 00:36:41,616
+Next you will have to get
+access to bytes in that file
+
+
+623
+00:36:41,786 --> 00:36:44,456
+by using dataWithContentsOfURL
+method,
+
+
+624
+00:36:45,036 --> 00:36:50,246
+and once bytes are available you
+can import the digital identity
+
+
+625
+00:36:50,246 --> 00:36:54,576
+by using SecPKCS12Import method.
+
+
+626
+00:36:55,446 --> 00:37:00,556
+This method will import the
+digital identity from the bytes
+
+
+627
+00:37:00,556 --> 00:37:04,076
+that we have from the file
+and store it in an array.
+
+
+628
+00:37:05,126 --> 00:37:07,416
+So now you know what
+a digital identity is,
+
+
+629
+00:37:07,966 --> 00:37:10,096
+how to distribute
+it to your users,
+
+
+630
+00:37:10,776 --> 00:37:14,646
+and how to import
+it in your apps.
+
+
+631
+00:37:15,146 --> 00:37:17,406
+Note that only certificate part
+
+
+632
+00:37:17,406 --> 00:37:21,616
+of your digital identity is
+made available to other users,
+
+
+633
+00:37:22,496 --> 00:37:26,066
+and the other users can use
+that certificate to verify
+
+
+634
+00:37:26,316 --> 00:37:28,026
+if you are really who
+you claim you are,
+
+
+635
+00:37:28,416 --> 00:37:31,356
+and they can make a decision
+if they want to trust you.
+
+
+636
+00:37:31,926 --> 00:37:34,516
+So let's look at how
+they can verify this.
+
+
+637
+00:37:34,816 --> 00:37:40,646
+An end-user certificate
+can be issued
+
+
+638
+00:37:40,646 --> 00:37:46,376
+by a trusted root certificate
+authority or it can be issued
+
+
+639
+00:37:46,376 --> 00:37:50,486
+by an untrusted intermediate
+certificate authority whose
+
+
+640
+00:37:50,486 --> 00:37:54,476
+certificate was issued by a
+trusted certificate authority.
+
+
+641
+00:37:55,936 --> 00:37:59,886
+This hierarchy of
+certificates that starts
+
+
+642
+00:37:59,886 --> 00:38:03,426
+with the end-user certificate
+on the left and ends
+
+
+643
+00:38:03,426 --> 00:38:05,386
+with the trusted
+root certificate
+
+
+644
+00:38:05,386 --> 00:38:11,786
+on the right is often referred
+to as the chain of trust.
+
+
+645
+00:38:12,356 --> 00:38:16,486
+Roughly speaking, when we
+evaluate the chain of trust,
+
+
+646
+00:38:17,086 --> 00:38:22,396
+the following step-wise
+procedure happens.
+
+
+647
+00:38:22,776 --> 00:38:25,546
+First, we inspect the
+end user's certificate
+
+
+648
+00:38:25,796 --> 00:38:27,066
+and check if it's valid.
+
+
+649
+00:38:28,536 --> 00:38:32,086
+Let's assume it is, next,
+
+
+650
+00:38:32,426 --> 00:38:34,626
+we inspect the intermediate
+certificate
+
+
+651
+00:38:34,626 --> 00:38:35,646
+and check if it's valid.
+
+
+652
+00:38:36,576 --> 00:38:40,886
+We also check if the end
+user certificate was, indeed,
+
+
+653
+00:38:40,886 --> 00:38:43,946
+issued by the intermediate
+certificate authority.
+
+
+654
+00:38:45,326 --> 00:38:48,836
+Say that checks out,
+as well, finally,
+
+
+655
+00:38:49,546 --> 00:38:51,646
+we have to inspect
+the root certificate,
+
+
+656
+00:38:52,996 --> 00:38:54,686
+and we check if it's valid.
+
+
+657
+00:38:55,576 --> 00:39:01,506
+We also check if the
+intermediate certificate was,
+
+
+658
+00:39:01,506 --> 00:39:05,376
+indeed, issued by the
+trusted certificate authority,
+
+
+659
+00:39:05,956 --> 00:39:09,176
+and if that checks out, as well,
+
+
+660
+00:39:09,596 --> 00:39:12,516
+then the chain of
+trust is valid.
+
+
+661
+00:39:13,026 --> 00:39:16,706
+So in code when you
+evaluate the chain of trust,
+
+
+662
+00:39:17,036 --> 00:39:20,826
+the first thing you'll have to
+do is create a policy object.
+
+
+663
+00:39:21,866 --> 00:39:25,136
+This policy object will
+govern how the chain
+
+
+664
+00:39:25,136 --> 00:39:26,966
+of trust is evaluated.
+
+
+665
+00:39:28,886 --> 00:39:31,596
+Then you will have to
+create the chain of trust,
+
+
+666
+00:39:32,606 --> 00:39:33,586
+and once you have the chain
+
+
+667
+00:39:33,586 --> 00:39:36,336
+of trust you will
+have to evaluate it.
+
+
+668
+00:39:37,086 --> 00:39:39,296
+So let's see how you
+can do this in code.
+
+
+669
+00:39:40,496 --> 00:39:42,386
+First, we need to
+create the policy,
+
+
+670
+00:39:43,026 --> 00:39:48,706
+and for our purposes we can use
+SecPolicyCreateBasicX509 API,
+
+
+671
+00:39:49,446 --> 00:39:53,716
+which will create a
+policy, an X509 policy
+
+
+672
+00:39:53,716 --> 00:39:58,926
+because we're dealing with
+X509-type certificates.
+
+
+673
+00:39:59,236 --> 00:40:01,236
+Next, we have to
+create the trust object
+
+
+674
+00:40:01,656 --> 00:40:05,586
+by using
+SecTrustCreateWithCertificates
+
+
+675
+00:40:05,586 --> 00:40:11,036
+API, and we also have to
+set anchor certificates.
+
+
+676
+00:40:11,696 --> 00:40:14,646
+By anchor certificates we
+mean the root certificates
+
+
+677
+00:40:14,846 --> 00:40:16,516
+that can be trusted
+by the system,
+
+
+678
+00:40:17,006 --> 00:40:20,346
+so we have to let the system
+know which certificates can be
+
+
+679
+00:40:20,346 --> 00:40:23,716
+at the end of the
+chain of trust.
+
+
+680
+00:40:23,946 --> 00:40:27,586
+Once that is established, we
+can evaluate the chain of trust
+
+
+681
+00:40:27,996 --> 00:40:30,636
+by calling the SecTrustEvaluate
+method,
+
+
+682
+00:40:31,736 --> 00:40:34,476
+and the result will be stored
+in the second parameter.
+
+
+683
+00:40:35,706 --> 00:40:40,066
+Now if the result equals
+kSecTrustUnspecified,
+
+
+684
+00:40:40,786 --> 00:40:44,086
+that means that the
+chain of trust is valid.
+
+
+685
+00:40:44,926 --> 00:40:49,436
+So, with that, let's see how
+you can set up authentication
+
+
+686
+00:40:49,736 --> 00:40:51,676
+in a Multipeer Connectivity
+session.
+
+
+687
+00:40:52,186 --> 00:40:57,846
+You'll have to use the session
+initializer initWithPeer
+
+
+688
+00:40:58,186 --> 00:41:01,346
+securityIdentity
+encryption preference method.
+
+
+689
+00:41:02,476 --> 00:41:05,876
+And for the second parameter
+securityIdentity you'll have
+
+
+690
+00:41:05,906 --> 00:41:10,846
+to pass an array, which
+contains your digital identity
+
+
+691
+00:41:10,846 --> 00:41:14,736
+as the first parameter and
+a chain of certificates
+
+
+692
+00:41:15,036 --> 00:41:19,836
+that validate your
+identity as next elements.
+
+
+693
+00:41:20,386 --> 00:41:25,506
+When somebody tries to connect
+to you, you will be notified
+
+
+694
+00:41:25,536 --> 00:41:28,266
+with the delegate method,
+didReceiveCertificate,
+
+
+695
+00:41:28,636 --> 00:41:31,376
+where you will be passed
+the chain of certificates
+
+
+696
+00:41:31,626 --> 00:41:33,106
+that represent the other peer.
+
+
+697
+00:41:34,016 --> 00:41:38,006
+At that time you will have to
+decide whether you want to trust
+
+
+698
+00:41:38,006 --> 00:41:41,176
+that peer or whether you trust
+that peer and whether you want
+
+
+699
+00:41:41,176 --> 00:41:44,336
+to proceed connecting to it.
+
+
+700
+00:41:44,976 --> 00:41:48,056
+At this moment you can use the
+method for evaluating the chain
+
+
+701
+00:41:48,056 --> 00:41:50,866
+of trust that we discussed
+a couple of slides ago.
+
+
+702
+00:41:51,546 --> 00:41:55,406
+And if you decide that the
+chain of trust can be trusted,
+
+
+703
+00:41:55,406 --> 00:41:59,066
+is valid and can be trusted,
+you can let the framework know
+
+
+704
+00:41:59,316 --> 00:42:01,276
+by calling the certificate
+handler
+
+
+705
+00:42:01,566 --> 00:42:04,926
+and passing it a Boolean,
+so in this case a yes.
+
+
+706
+00:42:05,876 --> 00:42:08,466
+If you don't trust it
+you can just pass it a no
+
+
+707
+00:42:08,676 --> 00:42:10,496
+and the framework will
+reject the connection.
+
+
+708
+00:42:10,836 --> 00:42:13,546
+In summary, we've looked
+at a bit more detail
+
+
+709
+00:42:13,826 --> 00:42:16,696
+about how you can
+set up authentication
+
+
+710
+00:42:16,746 --> 00:42:18,866
+in your Multipeer
+Connectivity apps.
+
+
+711
+00:42:19,496 --> 00:42:21,466
+We've looked at digital
+identities
+
+
+712
+00:42:22,006 --> 00:42:24,736
+and we've described how
+you can make them available
+
+
+713
+00:42:24,736 --> 00:42:28,986
+to your users and how you
+can import them in your apps.
+
+
+714
+00:42:29,166 --> 00:42:32,546
+We've also looked at chains
+of trust and how you can go
+
+
+715
+00:42:32,546 --> 00:42:34,046
+about evaluating them.
+
+
+716
+00:42:34,586 --> 00:42:37,506
+For more information, I
+would like to refer you
+
+
+717
+00:42:37,506 --> 00:42:41,746
+to our Evangelist, Paul
+Danbold, and you can check
+
+
+718
+00:42:41,746 --> 00:42:43,256
+out our documentation,
+
+
+719
+00:42:43,326 --> 00:42:45,906
+"Multipeer Connectivity
+Framework Reference" guide.
+
+
+720
+00:42:46,686 --> 00:42:49,096
+And, as Eric mentioned,
+we have some sample code
+
+
+721
+00:42:49,096 --> 00:42:51,946
+that you guys should check
+out called MultipeerGroupChat.
+
+
+722
+00:42:52,826 --> 00:42:55,066
+We'll be available to
+answer questions and hear
+
+
+723
+00:42:55,066 --> 00:42:58,676
+about your comments at
+devforums.apple.com, as well.
+
+
+724
+00:42:59,176 --> 00:43:03,366
+There are a few related sessions
+that I would like to call out.
+
+
+725
+00:43:03,716 --> 00:43:05,946
+One is "What's New in
+Foundation Networking",
+
+
+726
+00:43:06,386 --> 00:43:08,816
+and the other one is
+"Storyboards and Controllers"
+
+
+727
+00:43:08,816 --> 00:43:11,966
+on OS X, where you can
+hear more about what's new
+
+
+728
+00:43:12,196 --> 00:43:14,166
+with NSViewControllers
+in Yosemite.
+
+
+729
+00:43:14,976 --> 00:43:15,976
+Thank you very much, everyone.
+
+
+730
+00:43:16,516 --> 00:43:19,500
+[ Applause ]
+

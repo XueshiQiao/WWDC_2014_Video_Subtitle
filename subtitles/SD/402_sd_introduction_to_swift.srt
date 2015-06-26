@@ -1,0 +1,7308 @@
+1
+00:00:12,046 --> 00:00:12,676
+>> Hello, welcome.
+
+
+2
+00:00:12,676 --> 00:00:15,866
+Thanks for joining us for
+an introduction to Swift.
+
+
+3
+00:00:16,276 --> 00:00:18,286
+Before we get started, I want
+
+
+4
+00:00:18,286 --> 00:00:19,636
+to share you a little,
+a little fact.
+
+
+5
+00:00:21,626 --> 00:00:25,056
+So we announced Swift
+yesterday at the keynote and,
+
+
+6
+00:00:25,666 --> 00:00:26,616
+as part of the announcement,
+
+
+7
+00:00:27,276 --> 00:00:29,296
+we made available to
+you this document.
+
+
+8
+00:00:30,306 --> 00:00:31,966
+It's the Swift Programming
+Language.
+
+
+9
+00:00:31,966 --> 00:00:34,886
+It's the guide and reference to
+the language and it's available
+
+
+10
+00:00:34,886 --> 00:00:37,236
+in the Doc Viewer online but
+also in the iBooks Store.
+
+
+11
+00:00:38,836 --> 00:00:40,296
+And something really
+remarkable happened.
+
+
+12
+00:00:42,176 --> 00:00:46,346
+From the time that we made it
+available yesterday we've had
+
+
+13
+00:00:47,426 --> 00:00:49,626
+370,000 downloads.
+
+
+14
+00:00:50,436 --> 00:00:51,896
+So, yes, thank you.
+
+
+15
+00:00:53,536 --> 00:00:55,036
+Anyway, this is "Introduction
+to Swift".
+
+
+16
+00:00:55,196 --> 00:00:57,766
+I am Tim Isted and I'm
+joined by Dave Addey.
+
+
+17
+00:00:59,466 --> 00:01:02,376
+This is the first of three talks
+on the Swift language this,
+
+
+18
+00:01:02,376 --> 00:01:04,196
+at the conference, and
+we're focusing today
+
+
+19
+00:01:04,196 --> 00:01:07,216
+on a broad overview of the
+language, giving you as much
+
+
+20
+00:01:07,216 --> 00:01:08,976
+as we can, a few
+little teasers of some
+
+
+21
+00:01:08,976 --> 00:01:10,096
+of the more advanced features.
+
+
+22
+00:01:11,356 --> 00:01:13,676
+Before we get started let's
+go back in time a little way,
+
+
+23
+00:01:15,366 --> 00:01:17,126
+so many, many decades ago.
+
+
+24
+00:01:18,366 --> 00:01:20,176
+This program appeared
+and it printed "hello,
+
+
+25
+00:01:20,176 --> 00:01:21,286
+world" for the first time.
+
+
+26
+00:01:22,096 --> 00:01:24,426
+It is, of course, the
+introduction to K&R,
+
+
+27
+00:01:24,476 --> 00:01:25,616
+Kernighan and Ritchie's C book.
+
+
+28
+00:01:26,856 --> 00:01:30,216
+But many decades, that's quite
+a long time in computer terms.
+
+
+29
+00:01:31,276 --> 00:01:34,866
+So what's changed in that time?
+
+
+30
+00:01:35,236 --> 00:01:40,496
+Ahh. This becomes much shorter
+in Swift, yes, thank you.
+
+
+31
+00:01:41,706 --> 00:01:43,206
+So, what's happened
+in this time?
+
+
+32
+00:01:43,206 --> 00:01:45,556
+Well, we've got rid of
+the include statement.
+
+
+33
+00:01:45,556 --> 00:01:46,906
+There's no need to bring
+in the standard library.
+
+
+34
+00:01:46,906 --> 00:01:47,826
+It should just be there.
+
+
+35
+00:01:47,826 --> 00:01:49,376
+We should just be able to
+print and it should just work.
+
+
+36
+00:01:49,376 --> 00:01:52,046
+What about MAME?
+
+
+37
+00:01:52,436 --> 00:01:55,346
+Well, this entire slide,
+this single line of code,
+
+
+38
+00:01:55,346 --> 00:01:57,436
+that is a complete program
+right there and for something
+
+
+39
+00:01:57,436 --> 00:02:00,266
+like this we shouldn't need
+to have to specify, you know,
+
+
+40
+00:02:00,266 --> 00:02:01,666
+"This is the entry
+point for the app."
+
+
+41
+00:02:02,296 --> 00:02:02,976
+So we don't have to.
+
+
+42
+00:02:04,706 --> 00:02:05,666
+Because then it's
+not a function.
+
+
+43
+00:02:05,666 --> 00:02:09,425
+We're not returning any random
+values anymore and last,
+
+
+44
+00:02:09,425 --> 00:02:11,546
+but not least, no semicolons.
+
+
+45
+00:02:12,396 --> 00:02:13,316
+So that's Hello World.
+
+
+46
+00:02:13,316 --> 00:02:14,136
+It's a very simple app.
+
+
+47
+00:02:14,496 --> 00:02:15,206
+It's a little bit simpler
+
+
+48
+00:02:15,206 --> 00:02:17,156
+than what we all
+write day in, day out.
+
+
+49
+00:02:17,156 --> 00:02:19,816
+So, what are we going
+to cover today?
+
+
+50
+00:02:20,446 --> 00:02:23,366
+We're going to focus on
+syntax in some key areas:
+
+
+51
+00:02:23,416 --> 00:02:27,486
+how Swift makes your code safe,
+makes it much easier to read,
+
+
+52
+00:02:27,486 --> 00:02:29,816
+write, more concise,
+look at some
+
+
+53
+00:02:29,816 --> 00:02:32,646
+of the modern features we've
+introduced and the consistency
+
+
+54
+00:02:32,646 --> 00:02:36,116
+between declarations and all
+of the syntax that we have and,
+
+
+55
+00:02:36,116 --> 00:02:39,906
+of course, how Swift gives
+you extra power to do things.
+
+
+56
+00:02:41,176 --> 00:02:43,156
+To kick us off I'm going
+to hand over to Dave Addey
+
+
+57
+00:02:43,376 --> 00:02:44,646
+to take us through the basics.
+
+
+58
+00:02:44,906 --> 00:02:47,256
+>> So I'd like to start with
+some of the, the fundamentals
+
+
+59
+00:02:47,256 --> 00:02:48,146
+of the Swift language.
+
+
+60
+00:02:48,486 --> 00:02:49,686
+Let's start with
+something really simple.
+
+
+61
+00:02:49,686 --> 00:02:50,586
+Let's define a variable.
+
+
+62
+00:02:51,416 --> 00:02:53,966
+So we do this with the var
+keyword and then the name,
+
+
+63
+00:02:54,076 --> 00:02:56,926
+languageName in this case,
+and a colon and the type.
+
+
+64
+00:02:57,556 --> 00:02:59,756
+And this colon appears
+quite often in Swift.
+
+
+65
+00:02:59,756 --> 00:03:00,816
+This means, "is of type."
+
+
+66
+00:03:01,436 --> 00:03:02,806
+So languageName is
+a type string.
+
+
+67
+00:03:03,556 --> 00:03:05,986
+So we'll give it an initial
+string value to start us off.
+
+
+68
+00:03:07,126 --> 00:03:08,746
+Now I say initial value
+
+
+69
+00:03:09,256 --> 00:03:11,336
+but there's one thing you might
+notice about this variable:
+
+
+70
+00:03:12,396 --> 00:03:14,676
+it doesn't vary so
+there's no real need
+
+
+71
+00:03:14,676 --> 00:03:15,766
+for this to be a variable.
+
+
+72
+00:03:16,516 --> 00:03:18,446
+Instead, we can define
+it as a constant
+
+
+73
+00:03:18,646 --> 00:03:19,736
+with a let keyword instead.
+
+
+74
+00:03:20,676 --> 00:03:22,806
+And if we introduce a
+few more of these things,
+
+
+75
+00:03:23,266 --> 00:03:26,346
+let's have the version of the
+language: that's a Double, 1.0.
+
+
+76
+00:03:27,206 --> 00:03:28,806
+We'll have the year
+it was introduced:
+
+
+77
+00:03:28,806 --> 00:03:30,356
+that's an integer, 2014.
+
+
+78
+00:03:30,916 --> 00:03:32,886
+And the fact that the
+language isAwesome?
+
+
+79
+00:03:33,186 --> 00:03:35,146
+that's a boolean
+and clearly true.
+
+
+80
+00:03:36,596 --> 00:03:39,166
+Well, the year the language
+was introduced and the fact
+
+
+81
+00:03:39,166 --> 00:03:42,256
+that it's awesome, these
+also aren't going to change.
+
+
+82
+00:03:43,826 --> 00:03:45,206
+So they may as well
+also be constant.
+
+
+83
+00:03:46,136 --> 00:03:48,066
+And this is a general
+principle in Swift,
+
+
+84
+00:03:48,576 --> 00:03:51,656
+that we prefer immutability
+or constants by default
+
+
+85
+00:03:51,656 --> 00:03:54,916
+and only really opt into
+mutability or variables
+
+
+86
+00:03:55,156 --> 00:03:56,556
+where things actually
+need to change.
+
+
+87
+00:03:57,896 --> 00:03:59,376
+Now this makes your code safer
+
+
+88
+00:03:59,376 --> 00:04:00,966
+in a multi-threaded
+environments.
+
+
+89
+00:04:01,476 --> 00:04:03,746
+It also means that Swift
+can optimize your code more
+
+
+90
+00:04:03,746 --> 00:04:05,956
+effectively because it knows
+what isn't going to change
+
+
+91
+00:04:06,476 --> 00:04:08,756
+and it just generally makes
+your code more readable,
+
+
+92
+00:04:08,756 --> 00:04:10,936
+makes your intent clearer
+that you're saying what is
+
+
+93
+00:04:10,936 --> 00:04:13,286
+and isn't going to vary.
+
+
+94
+00:04:13,516 --> 00:04:15,766
+So here I created
+a string, a double,
+
+
+95
+00:04:15,896 --> 00:04:17,086
+an integer and a Boolean.
+
+
+96
+00:04:17,396 --> 00:04:19,086
+And it's pretty obvious
+from these values
+
+
+97
+00:04:19,086 --> 00:04:21,185
+on the right-hand side what
+it is that I want to create.
+
+
+98
+00:04:21,836 --> 00:04:24,976
+In fact, it's so
+obvious from the values
+
+
+99
+00:04:24,976 --> 00:04:26,876
+on the right hand side that
+there's really no point
+
+
+100
+00:04:26,876 --> 00:04:27,766
+in me writing the types.
+
+
+101
+00:04:27,766 --> 00:04:31,076
+And in Swift, in many
+cases, you don't need to.
+
+
+102
+00:04:31,416 --> 00:04:33,956
+Swift uses type inference
+to look at the values
+
+
+103
+00:04:33,956 --> 00:04:36,146
+on the right-hand side that
+we've assigned and work
+
+
+104
+00:04:36,146 --> 00:04:37,716
+out what type these
+things should be.
+
+
+105
+00:04:38,266 --> 00:04:40,206
+Now this is, this makes code
+safe without the effort.
+
+
+106
+00:04:40,286 --> 00:04:41,726
+This means all these constants
+
+
+107
+00:04:41,726 --> 00:04:45,086
+and variables are explicitly
+typed but you don't have
+
+
+108
+00:04:45,086 --> 00:04:48,966
+to write a ton of code to
+get those types in place.
+
+
+109
+00:04:49,166 --> 00:04:52,016
+One more thing on constants
+and variables before we move on
+
+
+110
+00:04:52,016 --> 00:04:55,466
+and that's that you can
+use pretty much any Unicode
+
+
+111
+00:04:55,506 --> 00:04:57,056
+character you like
+for your constant
+
+
+112
+00:04:57,056 --> 00:04:58,646
+and variable names,
+such as pi here.
+
+
+113
+00:04:59,796 --> 00:05:03,236
+And, yes, [applause]
+that does include emojis.
+
+
+114
+00:05:04,096 --> 00:05:05,566
+This is the stuff that
+matters, seriously [laughter].
+
+
+115
+00:05:08,046 --> 00:05:09,266
+So that's some of the basics.
+
+
+116
+00:05:09,816 --> 00:05:12,396
+Talking of Unicode we
+also have a modern,
+
+
+117
+00:05:12,396 --> 00:05:14,756
+fast Unicode string
+implementation called,
+
+
+118
+00:05:14,936 --> 00:05:17,556
+suitably enough, String
+and as we just saw
+
+
+119
+00:05:17,746 --> 00:05:20,326
+if you're initializing a
+string from string literal,
+
+
+120
+00:05:20,326 --> 00:05:22,916
+as we are here, Swift
+infers the times for you.
+
+
+121
+00:05:22,916 --> 00:05:24,386
+It's clear you want
+this to be a string.
+
+
+122
+00:05:25,866 --> 00:05:29,136
+Now, Swift's string
+syntax is very lightweight.
+
+
+123
+00:05:29,136 --> 00:05:31,746
+It looks a lot like a C
+string but it's as powerful
+
+
+124
+00:05:31,886 --> 00:05:34,266
+as NSString and,
+indeed, if you're working
+
+
+125
+00:05:34,266 --> 00:05:37,716
+with foundation you can use a
+Swift string anywhere you would
+
+
+126
+00:05:37,716 --> 00:05:38,706
+use an NSString.
+
+
+127
+00:05:38,936 --> 00:05:42,016
+So here we're setting
+the HTTP method property
+
+
+128
+00:05:42,016 --> 00:05:44,246
+of an NSURL request
+using a Swift string.
+
+
+129
+00:05:45,496 --> 00:05:46,726
+Moreover, if you're working
+
+
+130
+00:05:46,726 --> 00:05:50,466
+with Foundation you have the
+entire NSString API available
+
+
+131
+00:05:50,466 --> 00:05:52,406
+to you on any Swift
+string you create.
+
+
+132
+00:05:52,876 --> 00:05:55,026
+So we can call the
+pathComponents property
+
+
+133
+00:05:55,026 --> 00:05:57,846
+on this string and get back an
+Array of the components therein.
+
+
+134
+00:05:59,506 --> 00:06:02,166
+Now every Swift string is
+a collection of characters
+
+
+135
+00:06:02,166 --> 00:06:06,146
+and you can use a for-in loop
+to iterate over those characters
+
+
+136
+00:06:06,406 --> 00:06:09,046
+such as here, we're printing
+the five characters in the word
+
+
+137
+00:06:09,046 --> 00:06:10,326
+"mouse" on five lines.
+
+
+138
+00:06:11,806 --> 00:06:15,876
+This works just as well in
+English as it does in Icelandic
+
+
+139
+00:06:16,796 --> 00:06:21,916
+or Russian or Chinese
+and even with emoji.
+
+
+140
+00:06:22,906 --> 00:06:26,216
+So if you want to create a
+character, you can do so just
+
+
+141
+00:06:26,216 --> 00:06:29,496
+by assigning a character
+annotation to the string,
+
+
+142
+00:06:29,496 --> 00:06:31,196
+the string literal
+that you've assigned.
+
+
+143
+00:06:31,546 --> 00:06:33,806
+This says we want this string,
+that we want this string literal
+
+
+144
+00:06:33,806 --> 00:06:35,016
+to be a character not a string.
+
+
+145
+00:06:36,096 --> 00:06:39,366
+If you want to add together two
+characters you could do so just
+
+
+146
+00:06:39,366 --> 00:06:42,726
+with addition and this goes for
+two characters making a string,
+
+
+147
+00:06:43,056 --> 00:06:44,086
+it goes for strings
+
+
+148
+00:06:44,086 --> 00:06:46,176
+and characters making longer
+strings, likewise 2 strings.
+
+
+149
+00:06:47,736 --> 00:06:50,256
+But sometimes we want to
+make more complex strings
+
+
+150
+00:06:50,556 --> 00:06:53,116
+than just addition,
+so let's say we want
+
+
+151
+00:06:53,116 --> 00:06:56,616
+to take these 2 constants,
+a and b, which are inferred
+
+
+152
+00:06:56,616 --> 00:06:58,986
+to be integers from these
+default values of 3 and 5,
+
+
+153
+00:07:00,366 --> 00:07:04,226
+and we'd like to make this
+string, "3 times 5 is 15"
+
+
+154
+00:07:05,056 --> 00:07:07,136
+but in a way that would
+work for any values of a
+
+
+155
+00:07:07,136 --> 00:07:09,806
+and b that we pass in.
+
+
+156
+00:07:09,956 --> 00:07:11,976
+Now Swift has a really
+elegant way to do this,
+
+
+157
+00:07:11,976 --> 00:07:13,976
+a really powerful way
+of writing these kind
+
+
+158
+00:07:13,976 --> 00:07:16,826
+of more complex strings,
+known as string interpolation
+
+
+159
+00:07:17,006 --> 00:07:17,796
+and this is how it looks.
+
+
+160
+00:07:17,866 --> 00:07:22,426
+And we can insert constants and
+variables and even expressions
+
+
+161
+00:07:22,756 --> 00:07:25,046
+such as "3 times
+5" here directly
+
+
+162
+00:07:25,046 --> 00:07:27,656
+within a string literal just by
+wrapping them in parentheses,
+
+
+163
+00:07:28,016 --> 00:07:31,106
+escape with a backslash and it's
+really clear what this string
+
+
+164
+00:07:31,106 --> 00:07:33,336
+interpolation will make
+when it's evaluated.
+
+
+165
+00:07:33,866 --> 00:07:35,296
+It makes exactly the
+string we'd expect.
+
+
+166
+00:07:36,106 --> 00:07:38,266
+And this works with
+any value of a and b.
+
+
+167
+00:07:40,626 --> 00:07:43,596
+Now you might be wondering
+does Swift have a mutable
+
+
+168
+00:07:43,596 --> 00:07:44,376
+string type?
+
+
+169
+00:07:45,636 --> 00:07:47,426
+And the answer is actually
+it doesn't need one.
+
+
+170
+00:07:48,346 --> 00:07:51,696
+Instead, string mutability is a
+case of working with a variable,
+
+
+171
+00:07:52,216 --> 00:07:53,846
+in which case the
+string can change,
+
+
+172
+00:07:53,976 --> 00:07:57,496
+such as adding another string
+on the end or, alternatively,
+
+
+173
+00:07:57,606 --> 00:07:58,566
+working with the constant
+
+
+174
+00:07:59,086 --> 00:08:00,756
+in which case the
+string can't change.
+
+
+175
+00:08:01,806 --> 00:08:04,086
+It's actually a compile
+time error to try
+
+
+176
+00:08:04,086 --> 00:08:05,946
+and add another string
+onto this constantString.
+
+
+177
+00:08:07,956 --> 00:08:08,486
+So that's string.
+
+
+178
+00:08:08,626 --> 00:08:09,236
+What else do we have?
+
+
+179
+00:08:10,576 --> 00:08:13,836
+Well, we have collection times,
+Array and Dictionary and,
+
+
+180
+00:08:13,836 --> 00:08:16,356
+in the same way we saw,
+you can use a Swift string
+
+
+181
+00:08:16,356 --> 00:08:18,716
+and an NSString interchangeably
+with APIs.
+
+
+182
+00:08:19,276 --> 00:08:21,936
+You can use an Array anywhere
+that takes an NSArray,
+
+
+183
+00:08:22,386 --> 00:08:24,566
+and a Dictionary anywhere
+that takes an NSDictionary.
+
+
+184
+00:08:25,366 --> 00:08:27,596
+In fact, earlier on when we
+called the pathComponents
+
+
+185
+00:08:27,596 --> 00:08:31,036
+property on our Swift string
+what we got back was actually an
+
+
+186
+00:08:31,036 --> 00:08:34,666
+Array not an NSArray even
+though the API here is defined
+
+
+187
+00:08:34,666 --> 00:08:35,476
+to return an NSArray.
+
+
+188
+00:08:36,126 --> 00:08:40,366
+Now the easiest way to create a
+new collection is with a literal
+
+
+189
+00:08:40,785 --> 00:08:42,056
+and Array and Dictionary
+literals
+
+
+190
+00:08:42,056 --> 00:08:44,246
+in Swift are very
+familiar from Objective-C.
+
+
+191
+00:08:45,056 --> 00:08:47,406
+Arrays are just square
+brackets around the edge,
+
+
+192
+00:08:47,626 --> 00:08:48,506
+commas between the items.
+
+
+193
+00:08:48,956 --> 00:08:51,656
+Here we have an Array of four
+string values, four names.
+
+
+194
+00:08:53,446 --> 00:08:55,246
+Dictionary literals,
+also very familiar,
+
+
+195
+00:08:55,576 --> 00:08:57,096
+colons between the
+keys and values,
+
+
+196
+00:08:57,246 --> 00:08:58,526
+commas between the
+key value pairs,
+
+
+197
+00:08:58,766 --> 00:08:59,646
+square brackets around the edge.
+
+
+198
+00:09:00,596 --> 00:09:02,976
+Here we have keys,
+which are strings,
+
+
+199
+00:09:03,146 --> 00:09:05,826
+the names of some animals,
+and integer values,
+
+
+200
+00:09:05,926 --> 00:09:09,206
+the numbers of legs
+that those animals have.
+
+
+201
+00:09:09,346 --> 00:09:11,876
+So these literals are
+very familiar but Array
+
+
+202
+00:09:11,876 --> 00:09:15,076
+and Dictionary actually have 2
+things that are quite different
+
+
+203
+00:09:15,336 --> 00:09:17,146
+from NSArray and NSDictionary.
+
+
+204
+00:09:18,446 --> 00:09:20,266
+The first is they can
+work with any type.
+
+
+205
+00:09:20,946 --> 00:09:23,826
+Here we have strings and
+integers in our collections.
+
+
+206
+00:09:24,216 --> 00:09:25,356
+They don't have to be objects.
+
+
+207
+00:09:25,516 --> 00:09:27,286
+They don't have to
+be a Class type.
+
+
+208
+00:09:27,996 --> 00:09:30,476
+The second difference
+is that in Swift,
+
+
+209
+00:09:30,846 --> 00:09:32,706
+collections are types
+collections.
+
+
+210
+00:09:33,026 --> 00:09:33,806
+Let's see what that means.
+
+
+211
+00:09:35,036 --> 00:09:38,026
+So here's our Array of names and
+it's an Array of four strings.
+
+
+212
+00:09:38,026 --> 00:09:42,306
+Now, it's pretty clear from
+looking at this Array of names
+
+
+213
+00:09:42,786 --> 00:09:45,676
+that it would be odd to add
+an integer into this Array or,
+
+
+214
+00:09:45,746 --> 00:09:48,566
+or a Boolean value,
+or a bicycle.
+
+
+215
+00:09:49,056 --> 00:09:49,836
+That would be just odd.
+
+
+216
+00:09:51,176 --> 00:09:53,086
+An Array of names
+should always be strings.
+
+
+217
+00:09:54,076 --> 00:09:55,686
+So it would be nice
+to have a way to say
+
+
+218
+00:09:55,946 --> 00:09:59,976
+that it can only always be
+strings and in Swift we can.
+
+
+219
+00:10:00,046 --> 00:10:01,026
+We can provide a
+type annotation.
+
+
+220
+00:10:01,276 --> 00:10:03,266
+This is how we write
+an Array of strings.
+
+
+221
+00:10:03,396 --> 00:10:04,676
+String followed by
+two square brackets,
+
+
+222
+00:10:05,596 --> 00:10:07,236
+and then we can only put
+strings in this Array.
+
+
+223
+00:10:08,936 --> 00:10:09,546
+But from the thing
+
+
+224
+00:10:09,546 --> 00:10:12,396
+on the right-hand side
+here it's pretty clear
+
+
+225
+00:10:12,536 --> 00:10:14,526
+that we want an Array of
+strings just from looking
+
+
+226
+00:10:14,526 --> 00:10:17,886
+at this literal, and so
+if we initialize an Array
+
+
+227
+00:10:17,886 --> 00:10:20,356
+in this way we actually
+don't need to write the type.
+
+
+228
+00:10:20,916 --> 00:10:24,226
+Swift can infer it for us and we
+still end up with a typed Array.
+
+
+229
+00:10:25,626 --> 00:10:26,796
+The same goes for dictionaries.
+
+
+230
+00:10:27,286 --> 00:10:30,276
+Here it's clear we want
+string keys, integer values,
+
+
+231
+00:10:30,276 --> 00:10:33,876
+and Swift can infer this
+type for us as well.
+
+
+232
+00:10:34,546 --> 00:10:39,696
+This, the fact that we have
+typed collections makes code
+
+
+233
+00:10:39,846 --> 00:10:41,096
+safe for two reasons.
+
+
+234
+00:10:41,856 --> 00:10:44,086
+Firstly, it means you know
+what you're going to get back.
+
+
+235
+00:10:44,476 --> 00:10:46,346
+You now what you'll get
+out of these collections.
+
+
+236
+00:10:47,296 --> 00:10:49,896
+It also means that you
+can't insert the wrong kinds
+
+
+237
+00:10:49,896 --> 00:10:50,696
+of things by mistake.
+
+
+238
+00:10:51,116 --> 00:10:53,296
+It's actually an error to, to
+insert the wrong kinds of things
+
+
+239
+00:10:53,296 --> 00:10:57,076
+into these Arrays and
+these Dictionaries.
+
+
+240
+00:10:57,076 --> 00:10:58,386
+So, having defined
+our collections,
+
+
+241
+00:10:58,866 --> 00:11:00,906
+it would now be useful
+to loop over them,
+
+
+242
+00:11:00,906 --> 00:11:02,076
+to iterate over their values.
+
+
+243
+00:11:02,496 --> 00:11:05,326
+And we have all the loops
+you'll be familiar with from C.
+
+
+244
+00:11:05,996 --> 00:11:08,076
+We have while loops, do
+while loops, and for loops.
+
+
+245
+00:11:09,196 --> 00:11:11,906
+And as we saw earlier, we
+also have the for-in loop,
+
+
+246
+00:11:11,996 --> 00:11:13,766
+which we use with
+strings and characters
+
+
+247
+00:11:14,666 --> 00:11:16,546
+but it's a bit more
+powerful than just strings.
+
+
+248
+00:11:16,546 --> 00:11:17,956
+We can use it for a few
+more things than that.
+
+
+249
+00:11:19,166 --> 00:11:20,446
+We can use it with ranges.
+
+
+250
+00:11:20,996 --> 00:11:22,476
+This is a way to write a range
+
+
+251
+00:11:22,666 --> 00:11:24,196
+that includes the
+numbers at both ends.
+
+
+252
+00:11:24,196 --> 00:11:24,996
+Here it's 1...5.
+
+
+253
+00:11:25,166 --> 00:11:29,846
+That's known as a closed range
+because it includes both one
+
+
+254
+00:11:29,846 --> 00:11:30,766
+and five in that range.
+
+
+255
+00:11:31,396 --> 00:11:33,056
+Here, we're just printing
+the first five items
+
+
+256
+00:11:33,296 --> 00:11:35,776
+in the four times table.
+
+
+257
+00:11:35,996 --> 00:11:39,156
+Sometimes, however, we want
+to arrange the start at zero
+
+
+258
+00:11:39,406 --> 00:11:41,706
+and count up to but not
+including the final value.
+
+
+259
+00:11:42,126 --> 00:11:43,466
+We have a way to
+write that as well,
+
+
+260
+00:11:43,806 --> 00:11:45,256
+just using two dots
+rather than three.
+
+
+261
+00:11:45,826 --> 00:11:48,876
+So this counts from zero to
+five but not including five.
+
+
+262
+00:11:48,876 --> 00:11:50,286
+It's known as a half
+closed range.
+
+
+263
+00:11:50,286 --> 00:11:52,146
+It includes the value
+at the beginning
+
+
+264
+00:11:52,146 --> 00:11:53,066
+but not the one at the end.
+
+
+265
+00:11:54,936 --> 00:11:58,906
+We can use for-in with an Array
+so to print a nice welcome
+
+
+266
+00:11:58,906 --> 00:12:00,536
+to the four people
+in our names Array,
+
+
+267
+00:12:01,386 --> 00:12:02,946
+and we can even use
+it with Dictionary.
+
+
+268
+00:12:03,506 --> 00:12:06,906
+Now note here that we're
+extracting the key and the value
+
+
+269
+00:12:06,906 --> 00:12:09,706
+at the same time in
+a single for-in loop.
+
+
+270
+00:12:10,266 --> 00:12:12,246
+This makes for much
+more expressive code
+
+
+271
+00:12:12,246 --> 00:12:13,536
+when working with dictionaries.
+
+
+272
+00:12:15,266 --> 00:12:18,516
+Now this combination of key
+and value wrapped together
+
+
+273
+00:12:18,516 --> 00:12:20,366
+in parentheses is an example
+
+
+274
+00:12:20,366 --> 00:12:21,926
+of a Swift feature
+known as a tuple.
+
+
+275
+00:12:21,926 --> 00:12:25,026
+And these are groupings
+of values grouped together
+
+
+276
+00:12:25,026 --> 00:12:26,756
+as a single, compound value
+
+
+277
+00:12:26,756 --> 00:12:28,236
+that you can pass
+around in your code.
+
+
+278
+00:12:28,236 --> 00:12:31,426
+And we'll come back to tuples
+later in the session to see
+
+
+279
+00:12:31,426 --> 00:12:32,316
+where else they can be useful.
+
+
+280
+00:12:33,686 --> 00:12:35,906
+So that's how we
+create collections
+
+
+281
+00:12:35,906 --> 00:12:36,746
+and how we iterate them.
+
+
+282
+00:12:37,066 --> 00:12:39,046
+How do we modify them?
+
+
+283
+00:12:39,046 --> 00:12:39,976
+Well, let's start with an Array.
+
+
+284
+00:12:40,256 --> 00:12:43,486
+Here's a shopping list,
+contains 2 items, eggs and milk.
+
+
+285
+00:12:44,946 --> 00:12:47,266
+As in Objective-C we can
+access the first item
+
+
+286
+00:12:47,266 --> 00:12:48,926
+in the Array just
+using subscripting.
+
+
+287
+00:12:49,246 --> 00:12:50,456
+Here we're extracting eggs.
+
+
+288
+00:12:52,026 --> 00:12:55,126
+If we want to add an item to the
+Array, we literally just add it
+
+
+289
+00:12:55,126 --> 00:12:56,376
+to the Array, we
+add it to the end.
+
+
+290
+00:12:56,696 --> 00:12:58,056
+Here we're adding a
+third item, flour.
+
+
+291
+00:12:59,326 --> 00:13:02,426
+We can also add multiple
+items in one go just
+
+
+292
+00:13:02,426 --> 00:13:03,646
+by adding a compatible Array.
+
+
+293
+00:13:03,916 --> 00:13:04,996
+Here we're adding cheese,
+
+
+294
+00:13:05,176 --> 00:13:06,766
+butter and chocolate
+spread to our list.
+
+
+295
+00:13:08,196 --> 00:13:10,296
+If we want to change a
+value subscripting again;
+
+
+296
+00:13:10,456 --> 00:13:12,526
+we just assign a new value
+for an existing Array.
+
+
+297
+00:13:12,886 --> 00:13:14,616
+Here we're changing
+eggs to be six eggs.
+
+
+298
+00:13:16,356 --> 00:13:18,796
+And if we, if we want to make
+our shopping list a little bit
+
+
+299
+00:13:18,796 --> 00:13:19,416
+healthier perhaps,
+
+
+300
+00:13:20,326 --> 00:13:22,656
+we can actually replace
+an entire range in one go.
+
+
+301
+00:13:23,216 --> 00:13:26,066
+So we can replace items three
+through five, that's the cheese,
+
+
+302
+00:13:26,266 --> 00:13:27,346
+the butter and the
+chocolate spread
+
+
+303
+00:13:27,346 --> 00:13:29,176
+with some bananas
+and apples instead.
+
+
+304
+00:13:30,576 --> 00:13:31,836
+So that's, that's Arrays.
+
+
+305
+00:13:31,836 --> 00:13:32,736
+What about Dictionaries?
+
+
+306
+00:13:33,106 --> 00:13:34,576
+Well, we can modify.
+
+
+307
+00:13:34,576 --> 00:13:35,726
+Here's our Dictionary
+from earlier.
+
+
+308
+00:13:35,726 --> 00:13:38,046
+We have three key value
+pairs for animals and legs.
+
+
+309
+00:13:38,986 --> 00:13:40,806
+And so we start off
+with three but we want
+
+
+310
+00:13:40,806 --> 00:13:42,406
+to add a new animal
+to this Array.
+
+
+311
+00:13:43,326 --> 00:13:45,536
+This is as easy as just
+assigning a new value
+
+
+312
+00:13:45,646 --> 00:13:47,566
+for a key that's not
+already in the Dictionary.
+
+
+313
+00:13:48,056 --> 00:13:51,536
+Here we're adding the fact
+that spiders have 273 legs.
+
+
+314
+00:13:52,556 --> 00:13:53,236
+But there's a problem.
+
+
+315
+00:13:54,426 --> 00:13:57,116
+Spiders do not have 273 legs.
+
+
+316
+00:13:57,916 --> 00:13:58,946
+If you find one that does,
+
+
+317
+00:13:59,156 --> 00:14:02,546
+run away [laughter] although
+be warned it will probably
+
+
+318
+00:14:02,546 --> 00:14:02,856
+catch you.
+
+
+319
+00:14:04,066 --> 00:14:04,996
+But this is not a problem.
+
+
+320
+00:14:04,996 --> 00:14:05,626
+We can fix it.
+
+
+321
+00:14:06,166 --> 00:14:08,686
+We can just assign a new
+value for an existing key
+
+
+322
+00:14:08,846 --> 00:14:10,306
+and change the value
+in the Dictionary.
+
+
+323
+00:14:10,306 --> 00:14:11,226
+Spiders now have eight legs.
+
+
+324
+00:14:13,216 --> 00:14:14,866
+So that's how to
+modify a Dictionary.
+
+
+325
+00:14:15,106 --> 00:14:16,116
+But what, what if we want
+
+
+326
+00:14:16,116 --> 00:14:18,086
+to retrieve a value
+from this Dictionary?
+
+
+327
+00:14:19,246 --> 00:14:21,936
+What if we want to see if our
+Dictionary contains the number
+
+
+328
+00:14:21,936 --> 00:14:25,536
+of legs for an aardvark, or
+perhaps the number of legs
+
+
+329
+00:14:25,786 --> 00:14:28,606
+for a dugong, or maybe
+the number of legs
+
+
+330
+00:14:28,606 --> 00:14:30,166
+for a Venezuelan poodle moth?
+
+
+331
+00:14:31,876 --> 00:14:34,056
+Well, our Dictionary might
+contain the number of legs
+
+
+332
+00:14:34,056 --> 00:14:35,786
+for these animals
+but it might not.
+
+
+333
+00:14:36,226 --> 00:14:37,336
+There might be no value at all
+
+
+334
+00:14:37,336 --> 00:14:39,686
+and we need a way
+to model this fact.
+
+
+335
+00:14:40,726 --> 00:14:42,126
+And this is a really
+good use case
+
+
+336
+00:14:42,126 --> 00:14:45,216
+for a really powerful feature
+in Swift known as optionals.
+
+
+337
+00:14:45,696 --> 00:14:48,256
+I'd like to invite Tim back up
+to tell you more about optionals
+
+
+338
+00:14:48,256 --> 00:14:49,366
+and some other power features
+
+
+339
+00:14:49,606 --> 00:14:50,676
+that take us beyond
+the basics [applause].
+
+
+340
+00:14:51,256 --> 00:14:51,746
+>> Thank you, Dave.
+
+
+341
+00:14:52,056 --> 00:14:54,856
+So, I'd love to use Venezuelan
+poodle moths as my examples
+
+
+342
+00:14:54,856 --> 00:14:56,516
+but I actually find that
+quite hard to say so I'm going
+
+
+343
+00:14:56,516 --> 00:14:57,576
+to stick with aardvark.
+
+
+344
+00:14:59,336 --> 00:15:00,676
+How do we get the
+number of legs out?
+
+
+345
+00:15:00,676 --> 00:15:02,426
+Well, we can subscript
+and we can query this
+
+
+346
+00:15:02,546 --> 00:15:03,666
+but what should we get back?
+
+
+347
+00:15:05,156 --> 00:15:07,856
+Well, we kind of want to be able
+to get two types of thing back.
+
+
+348
+00:15:07,976 --> 00:15:10,126
+We either want the number
+of legs as an integer
+
+
+349
+00:15:10,126 --> 00:15:12,856
+or we want something that
+says this value wasn't found.
+
+
+350
+00:15:12,996 --> 00:15:13,956
+So, that's something else.
+
+
+351
+00:15:15,216 --> 00:15:17,156
+We could use some magic
+integer value like,
+
+
+352
+00:15:17,156 --> 00:15:18,156
+I don't know, zero perhaps.
+
+
+353
+00:15:18,446 --> 00:15:20,186
+But the zero is a
+possible value here;
+
+
+354
+00:15:20,306 --> 00:15:21,316
+snakes don't have any legs.
+
+
+355
+00:15:21,886 --> 00:15:22,686
+So we can't use zero.
+
+
+356
+00:15:23,756 --> 00:15:26,526
+In Objective-C you might be used
+to using things like NSNotFound
+
+
+357
+00:15:26,526 --> 00:15:29,166
+or minus one and, you know,
+we could use minus one here.
+
+
+358
+00:15:29,166 --> 00:15:31,446
+As far as I know it's not
+possible to have minus one legs
+
+
+359
+00:15:32,206 --> 00:15:35,366
+but we could be using an example
+where minus one was some kind
+
+
+360
+00:15:35,366 --> 00:15:36,166
+of value we wanted back.
+
+
+361
+00:15:36,976 --> 00:15:40,086
+So wouldn't it be great if we
+could use some kind of value
+
+
+362
+00:15:40,086 --> 00:15:42,056
+that didn't take up one
+of the possible integers?
+
+
+363
+00:15:43,236 --> 00:15:43,766
+Well, yes.
+
+
+364
+00:15:43,766 --> 00:15:45,276
+In Swift we did this
+with an optional.
+
+
+365
+00:15:46,326 --> 00:15:49,596
+It's an optional integer,
+indicated here by "Int?"
+
+
+366
+00:15:49,596 --> 00:15:52,826
+It means that we either
+get an integer back
+
+
+367
+00:15:52,996 --> 00:15:55,276
+or we get nothing at all.
+
+
+368
+00:15:56,446 --> 00:15:57,566
+So what does nothing
+at all mean?
+
+
+369
+00:15:58,696 --> 00:16:00,766
+Well, nothing in Swift
+is represented by nil.
+
+
+370
+00:16:00,766 --> 00:16:02,096
+It's very different
+
+
+371
+00:16:02,096 --> 00:16:03,946
+to Objective-C nil,
+it means nothing.
+
+
+372
+00:16:03,946 --> 00:16:06,246
+It means no value at all
+in some optional value.
+
+
+373
+00:16:06,246 --> 00:16:11,246
+So we can test to see if this
+possible leg count is nil,
+
+
+374
+00:16:11,246 --> 00:16:12,656
+to see whether the
+animal was found
+
+
+375
+00:16:12,656 --> 00:16:15,576
+and if it is nil then
+the animal was not found.
+
+
+376
+00:16:15,926 --> 00:16:17,166
+What if it had been found?
+
+
+377
+00:16:17,806 --> 00:16:18,796
+How would we get this value out?
+
+
+378
+00:16:18,796 --> 00:16:20,236
+How do we get that
+integer out of the,
+
+
+379
+00:16:20,276 --> 00:16:21,176
+out of the optional integer?
+
+
+380
+00:16:22,566 --> 00:16:25,516
+We would, we use that by, we do
+that by forcing the value out,
+
+
+381
+00:16:25,516 --> 00:16:26,756
+using the unwrap operator.
+
+
+382
+00:16:26,756 --> 00:16:28,096
+That's the exclamation
+mark here.
+
+
+383
+00:16:29,166 --> 00:16:31,536
+So what I'm saying is I'm saying
+set the constant leg count
+
+
+384
+00:16:32,246 --> 00:16:34,626
+to the underlying value
+inside possible leg count.
+
+
+385
+00:16:34,976 --> 00:16:36,836
+That's what that
+unwrap operator does.
+
+
+386
+00:16:37,296 --> 00:16:41,026
+Notice I'm not specifying
+a type of leg count here.
+
+
+387
+00:16:41,136 --> 00:16:43,516
+I don't need to because
+this is an optional Int.
+
+
+388
+00:16:43,646 --> 00:16:45,156
+The compiler knows that
+it's an optional Int
+
+
+389
+00:16:45,156 --> 00:16:47,996
+and when I'm forcing that value
+out I get the underlying Int
+
+
+390
+00:16:48,076 --> 00:16:49,876
+so leg count here is an integer.
+
+
+391
+00:16:52,496 --> 00:16:54,926
+Now I said forcing,
+forcing the value
+
+
+392
+00:16:54,926 --> 00:16:55,866
+out when we're unwrapping it.
+
+
+393
+00:16:56,066 --> 00:16:56,886
+Why am I using that word?
+
+
+394
+00:16:56,916 --> 00:16:59,156
+Well, I am forcing
+the value out.
+
+
+395
+00:16:59,966 --> 00:17:02,666
+If I try and unwrap an
+optional and there's,
+
+
+396
+00:17:02,666 --> 00:17:04,296
+in fact that there's no
+value there, it's nil,
+
+
+397
+00:17:04,945 --> 00:17:05,876
+I'll trigger an assertion.
+
+
+398
+00:17:06,215 --> 00:17:08,046
+So I should only do this
+when I know for sure
+
+
+399
+00:17:08,046 --> 00:17:09,915
+that the value is there.
+
+
+400
+00:17:09,915 --> 00:17:12,266
+Because of this, there's a
+very common pattern in Swift,
+
+
+401
+00:17:12,266 --> 00:17:15,195
+which is to say, is there a
+value in this optional thing?
+
+
+402
+00:17:15,796 --> 00:17:17,246
+If there is, then unwrap it,
+
+
+403
+00:17:17,246 --> 00:17:18,675
+give me the value
+back so I can use it.
+
+
+404
+00:17:19,455 --> 00:17:21,965
+So common, in fact, that
+we have a special syntax
+
+
+405
+00:17:21,965 --> 00:17:22,896
+for this that's much safer.
+
+
+406
+00:17:22,896 --> 00:17:26,126
+It bundles those two steps
+into, into a single step.
+
+
+407
+00:17:26,986 --> 00:17:30,216
+And what this does is it says if
+possible leg count has a value,
+
+
+408
+00:17:30,886 --> 00:17:33,036
+unwrap it, give it back
+to the leg count constant
+
+
+409
+00:17:33,036 --> 00:17:34,346
+and then I can use it
+in the block of code.
+
+
+410
+00:17:34,866 --> 00:17:37,346
+If there is no value,
+block of code is skipped.
+
+
+411
+00:17:38,456 --> 00:17:42,066
+So we've seen a number of
+examples of if statements so far
+
+
+412
+00:17:42,066 --> 00:17:43,466
+and if statements
+in Swift look much
+
+
+413
+00:17:43,466 --> 00:17:44,556
+like they do in other languages.
+
+
+414
+00:17:45,566 --> 00:17:46,996
+There's one exception
+though and that is
+
+
+415
+00:17:46,996 --> 00:17:48,276
+that there are no
+parentheses here.
+
+
+416
+00:17:49,116 --> 00:17:50,606
+We can use parentheses
+if we like,
+
+
+417
+00:17:50,606 --> 00:17:52,116
+but they're actually optional.
+
+
+418
+00:17:52,366 --> 00:17:56,796
+So in this case they just add
+unnecessary punctuation noise
+
+
+419
+00:17:57,086 --> 00:17:57,876
+so I'm going to leave them out.
+
+
+420
+00:17:59,206 --> 00:18:01,696
+The braces though, braces
+are required [applause].
+
+
+421
+00:18:02,236 --> 00:18:04,096
+And, as I can hear from
+that, you're acknowledging
+
+
+422
+00:18:04,096 --> 00:18:06,166
+that this gets rid of a whole
+chain of bugs that happens
+
+
+423
+00:18:06,166 --> 00:18:08,006
+with nested ifs,
+sorry trailing ifs.
+
+
+424
+00:18:08,096 --> 00:18:11,106
+That, you know, "if you
+have that" if statement
+
+
+425
+00:18:11,106 --> 00:18:12,506
+and then two lines of code
+
+
+426
+00:18:12,506 --> 00:18:14,276
+and you've indented
+them correctly but, uh,
+
+
+427
+00:18:14,676 --> 00:18:16,246
+the second one is
+still going to happen.
+
+
+428
+00:18:16,246 --> 00:18:16,696
+That's bad.
+
+
+429
+00:18:16,696 --> 00:18:18,776
+It cannot happen in Swift,
+we have braces for that.
+
+
+430
+00:18:18,776 --> 00:18:19,386
+They're required.
+
+
+431
+00:18:20,886 --> 00:18:23,026
+So we can do more complex things
+with if statements of course.
+
+
+432
+00:18:23,026 --> 00:18:24,176
+We can have an else if in there.
+
+
+433
+00:18:24,176 --> 00:18:28,096
+But in this case I'm matching,
+I'm matching multiple values.
+
+
+434
+00:18:28,096 --> 00:18:30,786
+I'm saying if leg count
+is zero then I'm printing
+
+
+435
+00:18:30,786 --> 00:18:32,586
+on my animal slithers
+and slides around.
+
+
+436
+00:18:33,366 --> 00:18:35,176
+Otherwise, if it's one
+maybe it hops around.
+
+
+437
+00:18:35,446 --> 00:18:36,286
+Otherwise, it walks.
+
+
+438
+00:18:36,286 --> 00:18:38,706
+So I'm matching this,
+this leg count
+
+
+439
+00:18:38,706 --> 00:18:40,306
+against multiple
+possible values.
+
+
+440
+00:18:41,196 --> 00:18:43,216
+Really I should be using switch.
+
+
+441
+00:18:44,606 --> 00:18:46,786
+Now switch in Swift-try
+saying that,
+
+
+442
+00:18:46,886 --> 00:18:49,446
+saying that three times-is
+the most powerful of all
+
+
+443
+00:18:49,446 --> 00:18:50,486
+of our control flow statements.
+
+
+444
+00:18:51,266 --> 00:18:52,356
+But let's start with the basics.
+
+
+445
+00:18:52,766 --> 00:18:54,246
+Starting with leg
+count, switching on that
+
+
+446
+00:18:54,386 --> 00:18:56,616
+and I'm using case to
+indicate the possible values.
+
+
+447
+00:18:57,046 --> 00:18:58,966
+Value 0 slithers
+and slides; case 1,
+
+
+448
+00:18:58,966 --> 00:19:00,256
+it hops; otherwise, it walks.
+
+
+449
+00:19:00,256 --> 00:19:03,486
+So use case like you do
+in C and Objective-C.
+
+
+450
+00:19:04,296 --> 00:19:06,476
+Notice I'm not specifying
+break here.
+
+
+451
+00:19:07,306 --> 00:19:10,706
+Cases in Swift do not
+automatically fall through.
+
+
+452
+00:19:11,496 --> 00:19:14,906
+I'm also not limited to just
+matching against integer values.
+
+
+453
+00:19:15,716 --> 00:19:17,616
+In Swift I can match
+against objects
+
+
+454
+00:19:17,616 --> 00:19:18,646
+or read any values I like.
+
+
+455
+00:19:19,136 --> 00:19:22,416
+Imagine this is an ID action
+method and I'm tracking which,
+
+
+456
+00:19:22,416 --> 00:19:24,286
+which object the user
+has interacted with.
+
+
+457
+00:19:24,286 --> 00:19:25,976
+So I can switch on the
+sender and match it
+
+
+458
+00:19:25,976 --> 00:19:28,176
+against different outlets and
+print the suitable message.
+
+
+459
+00:19:28,316 --> 00:19:29,246
+So I can match an object.
+
+
+460
+00:19:30,276 --> 00:19:31,616
+Let's go back to
+integers for a moment.
+
+
+461
+00:19:32,126 --> 00:19:33,896
+And in Swift I can be
+much more expressive.
+
+
+462
+00:19:34,516 --> 00:19:36,686
+So here I'm matching multiple
+values in a single case
+
+
+463
+00:19:36,686 --> 00:19:39,506
+at a time, of numbers between
+1 and 13, animal limps,
+
+
+464
+00:19:41,086 --> 00:19:43,006
+even numbers between
+2 and 14, it walks.
+
+
+465
+00:19:43,766 --> 00:19:45,396
+That's nice, very expressive,
+
+
+466
+00:19:45,396 --> 00:19:46,936
+but there's a problem
+with this example.
+
+
+467
+00:19:47,616 --> 00:19:51,536
+If I try and compile this, I'll
+get an error and the error says,
+
+
+468
+00:19:51,716 --> 00:19:54,226
+"Switch must be exhaustive."
+
+
+469
+00:19:55,236 --> 00:19:58,586
+In Swift you must include
+a case or a default
+
+
+470
+00:19:58,656 --> 00:20:01,186
+for every possible value that,
+that could be matched against.
+
+
+471
+00:20:01,346 --> 00:20:05,176
+So the easiest way to do that
+is to supply default case.
+
+
+472
+00:20:05,996 --> 00:20:08,626
+And the reason for this is it,
+again, makes your code safer.
+
+
+473
+00:20:09,426 --> 00:20:11,886
+Imagine you're writing something
+that uses a state machine
+
+
+474
+00:20:11,996 --> 00:20:13,816
+and you have a big switch
+statement in the middle
+
+
+475
+00:20:14,066 --> 00:20:15,246
+and you forget one of the cases.
+
+
+476
+00:20:15,906 --> 00:20:18,436
+Well, then your state machine
+grinds to a halt and that's bad.
+
+
+477
+00:20:18,466 --> 00:20:19,406
+That cannot happen in Swift.
+
+
+478
+00:20:19,556 --> 00:20:21,236
+You must have an
+exhaustive switch,
+
+
+479
+00:20:21,236 --> 00:20:23,426
+which means either a case
+for every value or a default.
+
+
+480
+00:20:24,716 --> 00:20:26,936
+So we've matched against
+individual values here.
+
+
+481
+00:20:28,076 --> 00:20:30,776
+But, what if I might want
+to match against a lot of,
+
+
+482
+00:20:30,776 --> 00:20:32,416
+a lot of values, a
+big range of values?
+
+
+483
+00:20:32,726 --> 00:20:34,266
+Well, I can do just that.
+
+
+484
+00:20:34,266 --> 00:20:35,896
+I can match against a range.
+
+
+485
+00:20:36,326 --> 00:20:38,306
+So this is bringing in pattern
+matching now a little bit.
+
+
+486
+00:20:38,696 --> 00:20:40,186
+So here we have zero
+still, no legs.
+
+
+487
+00:20:40,356 --> 00:20:42,036
+One to eight has a few legs
+
+
+488
+00:20:42,166 --> 00:20:44,096
+and this is this
+closed range operator
+
+
+489
+00:20:44,096 --> 00:20:46,106
+that Dave showed you
+earlier, includes both the one
+
+
+490
+00:20:46,106 --> 00:20:47,356
+and the eight, three dots.
+
+
+491
+00:20:48,466 --> 00:20:51,006
+So that matches, has a few
+legs, otherwise lots of legs.
+
+
+492
+00:20:51,676 --> 00:20:53,716
+So that's an introduction
+to our pattern matching.
+
+
+493
+00:20:54,496 --> 00:20:56,856
+There's a whole load more
+awesomeness that you can find
+
+
+494
+00:20:56,856 --> 00:20:59,866
+out about by watching the
+"Intermediate Swift" talk.
+
+
+495
+00:21:00,896 --> 00:21:03,056
+So, for the examples we've used
+
+
+496
+00:21:03,056 --> 00:21:04,536
+so far we've seen
+a lot of println.
+
+
+497
+00:21:05,186 --> 00:21:05,826
+What is this thing?
+
+
+498
+00:21:06,686 --> 00:21:08,626
+This is a function, it's
+defined in the Standard Library,
+
+
+499
+00:21:08,626 --> 00:21:10,276
+and it prints some
+value to the console.
+
+
+500
+00:21:10,836 --> 00:21:12,656
+How do we define
+our own functions?
+
+
+501
+00:21:13,216 --> 00:21:17,126
+When Swift functions are
+defined with the func keyword,
+
+
+502
+00:21:17,126 --> 00:21:20,386
+so you can read this as declare
+a function called sayHello.
+
+
+503
+00:21:20,766 --> 00:21:21,876
+Doesn't take any parameters.
+
+
+504
+00:21:21,876 --> 00:21:24,606
+It doesn't return any values
+and in this case it prints
+
+
+505
+00:21:24,606 --> 00:21:25,366
+"Hello" to the console.
+
+
+506
+00:21:25,816 --> 00:21:27,676
+Call it, as you might
+imagine, sayHello().
+
+
+507
+00:21:28,826 --> 00:21:30,326
+Of course, I can
+add a parameter.
+
+
+508
+00:21:30,326 --> 00:21:32,016
+Maybe I want to say hello
+to someone specific.
+
+
+509
+00:21:32,686 --> 00:21:34,356
+So I can add in a
+name parameter.
+
+
+510
+00:21:35,046 --> 00:21:38,056
+Notice the consistency
+here, name: String.
+
+
+511
+00:21:38,416 --> 00:21:40,386
+The name is of type string.
+
+
+512
+00:21:41,166 --> 00:21:42,986
+Matches with the variable
+declaration syntax
+
+
+513
+00:21:42,986 --> 00:21:43,806
+and constants as well.
+
+
+514
+00:21:44,686 --> 00:21:47,536
+So this means I can
+now say, "Hello WWDC!"
+
+
+515
+00:21:47,826 --> 00:21:51,176
+Hello WWDC, and using string
+interpolation, I get my name
+
+
+516
+00:21:51,176 --> 00:21:51,906
+in the, in the hello there.
+
+
+517
+00:21:53,026 --> 00:21:56,546
+In Swift, my parameter could
+have a default value as well.
+
+
+518
+00:21:56,956 --> 00:21:59,096
+So let's say I usually
+want to say, "Hello World."
+
+
+519
+00:21:59,796 --> 00:22:03,596
+I can add that with
+"=" so "name: string"
+
+
+520
+00:22:03,826 --> 00:22:05,466
+and has a default
+value of "world".
+
+
+521
+00:22:06,136 --> 00:22:07,286
+This means I can
+call the function
+
+
+522
+00:22:07,286 --> 00:22:09,986
+without specifying any name at
+all, it'll say, "Hello, World,"
+
+
+523
+00:22:10,396 --> 00:22:12,806
+but I still want to say hi
+to you guys, so, Hello WWDC,
+
+
+524
+00:22:12,806 --> 00:22:13,796
+I can still do that anyway.
+
+
+525
+00:22:14,736 --> 00:22:16,916
+So that's parameters passing
+values into a function.
+
+
+526
+00:22:16,916 --> 00:22:17,886
+What about getting values out?
+
+
+527
+00:22:17,886 --> 00:22:21,046
+Well we return values
+in Swift with the arrow.
+
+
+528
+00:22:21,046 --> 00:22:23,786
+So here I've got a new function,
+it's called buildGreeting.
+
+
+529
+00:22:24,506 --> 00:22:27,466
+This time, it takes a name
+and it returns a string
+
+
+530
+00:22:27,926 --> 00:22:32,776
+with a concatenation operator,
+that's that "+" there.
+
+
+531
+00:22:32,776 --> 00:22:34,766
+So function returns
+value with the arrow.
+
+
+532
+00:22:34,856 --> 00:22:35,746
+How do we get at that value?
+
+
+533
+00:22:36,356 --> 00:22:38,936
+I'm going to create a
+constant, it's called greeting,
+
+
+534
+00:22:38,936 --> 00:22:41,586
+and I'm going to set it to the
+return value from this function.
+
+
+535
+00:22:42,616 --> 00:22:43,606
+Notice what I'm not doing.
+
+
+536
+00:22:43,696 --> 00:22:45,586
+I'm not specifying the
+type of greeting here.
+
+
+537
+00:22:45,806 --> 00:22:47,226
+It's very clear this
+returns a string
+
+
+538
+00:22:47,226 --> 00:22:48,726
+because that's what
+the function returns.
+
+
+539
+00:22:49,066 --> 00:22:49,986
+The compiler knows that.
+
+
+540
+00:22:49,986 --> 00:22:51,436
+It will infer this
+correctly for us.
+
+
+541
+00:22:51,576 --> 00:22:53,326
+So we don't have
+to specify it again
+
+
+542
+00:22:53,326 --> 00:22:55,226
+but we can supply
+the value right there
+
+
+543
+00:22:55,226 --> 00:22:56,496
+to println and it just works.
+
+
+544
+00:22:56,996 --> 00:22:59,576
+We talked about returning
+a single value.
+
+
+545
+00:22:59,676 --> 00:23:00,916
+What about multiple values?
+
+
+546
+00:23:01,586 --> 00:23:03,626
+Well in Swift we can
+return multiple values
+
+
+547
+00:23:03,626 --> 00:23:06,096
+with this tuple thing that
+Dave introduced earlier.
+
+
+548
+00:23:06,916 --> 00:23:07,586
+What is a tuple?
+
+
+549
+00:23:09,226 --> 00:23:12,236
+Well, tuple is just a grouping
+of, a grouping of values
+
+
+550
+00:23:12,796 --> 00:23:15,096
+and they can be of any type
+and any number of values
+
+
+551
+00:23:15,096 --> 00:23:16,256
+that you want, in this case,
+
+
+552
+00:23:16,256 --> 00:23:18,536
+first tuple: three
+double values.
+
+
+553
+00:23:19,146 --> 00:23:21,186
+Otherwise, we could have an
+Int and a string, if I like,
+
+
+554
+00:23:21,426 --> 00:23:23,136
+or Int and a string and
+a double-any combination
+
+
+555
+00:23:23,136 --> 00:23:23,786
+of things that you like.
+
+
+556
+00:23:24,366 --> 00:23:26,876
+Why do I want one of these?
+
+
+557
+00:23:27,116 --> 00:23:29,866
+Well, it's not a replacement
+for a full-blown data Structure.
+
+
+558
+00:23:30,266 --> 00:23:31,866
+Sometimes you really want
+a Class or a Structure
+
+
+559
+00:23:32,056 --> 00:23:35,066
+to be most explicit but
+tuples are really useful
+
+
+560
+00:23:35,136 --> 00:23:36,706
+when you just want to
+pass multiple values
+
+
+561
+00:23:36,706 --> 00:23:38,346
+around very simply, such as
+
+
+562
+00:23:38,476 --> 00:23:40,266
+when returning multiple
+values from a function.
+
+
+563
+00:23:41,226 --> 00:23:43,876
+So in this example I have
+a refresh webpage function.
+
+
+564
+00:23:43,876 --> 00:23:45,266
+It goes out, refreshes a webpage
+
+
+565
+00:23:45,266 --> 00:23:46,966
+and it gives me back
+the status code.
+
+
+566
+00:23:47,316 --> 00:23:50,296
+That means an integer
+code and a string message
+
+
+567
+00:23:50,386 --> 00:23:51,676
+and they get bundled together.
+
+
+568
+00:23:52,686 --> 00:23:55,456
+So I return that with
+a tuple, (Int, String).
+
+
+569
+00:23:55,516 --> 00:23:57,326
+How do I get at those things?
+
+
+570
+00:23:57,326 --> 00:23:58,036
+How do I use them?
+
+
+571
+00:23:59,386 --> 00:24:00,276
+Let's create a constant.
+
+
+572
+00:24:01,556 --> 00:24:04,316
+This time I've got two names,
+also in parentheses with a comma
+
+
+573
+00:24:04,316 --> 00:24:06,976
+in between and those
+get bound to the values
+
+
+574
+00:24:06,976 --> 00:24:08,196
+that come back from a function.
+
+
+575
+00:24:09,256 --> 00:24:11,556
+This means that I can
+then use them individually
+
+
+576
+00:24:11,556 --> 00:24:12,716
+and print them out separately.
+
+
+577
+00:24:12,966 --> 00:24:15,706
+So we've decomposed the
+tuple with these names.
+
+
+578
+00:24:17,246 --> 00:24:18,666
+Again notice, thank you,
+
+
+579
+00:24:18,786 --> 00:24:20,946
+notice that I haven't
+specified types here.
+
+
+580
+00:24:22,226 --> 00:24:23,556
+Return of the function
+is obvious.
+
+
+581
+00:24:23,556 --> 00:24:24,996
+We've got two values
+coming back from there,
+
+
+582
+00:24:24,996 --> 00:24:25,766
+they're an Int and a string.
+
+
+583
+00:24:26,206 --> 00:24:28,976
+So these map to the names and
+the compiler knows it's an Int
+
+
+584
+00:24:28,976 --> 00:24:31,086
+and a message right there, I'm
+sorry, an Int and a string.
+
+
+585
+00:24:32,136 --> 00:24:34,066
+You've seen an example of
+this decomposition already.
+
+
+586
+00:24:34,916 --> 00:24:37,746
+That was when Dave was showing
+you enumeration of a Dictionary.
+
+
+587
+00:24:38,526 --> 00:24:42,096
+And the way that we give you the
+key and the value in one go is
+
+
+588
+00:24:42,096 --> 00:24:44,766
+for each iteration through the
+Dictionary you get back a tuple
+
+
+589
+00:24:44,766 --> 00:24:46,786
+pair containing the
+key and the value.
+
+
+590
+00:24:46,836 --> 00:24:49,016
+So these names here, these
+bind in to those returns
+
+
+591
+00:24:49,016 --> 00:24:51,866
+and then you can use
+them individually in, in,
+
+
+592
+00:24:51,906 --> 00:24:52,886
+in the full statement.
+
+
+593
+00:24:53,366 --> 00:24:57,076
+So tuple decomposition is one
+way to get these values out.
+
+
+594
+00:24:57,076 --> 00:25:00,396
+There's another one and that is
+we can actually name the values
+
+
+595
+00:25:00,396 --> 00:25:00,906
+in the tuple.
+
+
+596
+00:25:01,076 --> 00:25:02,236
+So I've got this
+Int and a String
+
+
+597
+00:25:02,236 --> 00:25:04,076
+but it's not entirely
+clear what they are.
+
+
+598
+00:25:05,026 --> 00:25:06,176
+What about if I could name them?
+
+
+599
+00:25:06,466 --> 00:25:09,326
+I'm going to say I have a
+code, which is a type Int,
+
+
+600
+00:25:09,596 --> 00:25:11,526
+and a message, which
+is of type String.
+
+
+601
+00:25:12,156 --> 00:25:14,936
+Same syntaxes, parameters,
+and variable declarations.
+
+
+602
+00:25:15,606 --> 00:25:17,346
+Thing is of type, type.
+
+
+603
+00:25:18,426 --> 00:25:20,166
+This means, when I
+call this function,
+
+
+604
+00:25:20,636 --> 00:25:23,446
+I can now just declare a
+single constant called status
+
+
+605
+00:25:23,916 --> 00:25:26,176
+and I can then grab the
+individual bits out by name,
+
+
+606
+00:25:26,176 --> 00:25:28,406
+status.code and status.message
+ready for use.
+
+
+607
+00:25:28,766 --> 00:25:29,916
+So that's functions.
+
+
+608
+00:25:29,916 --> 00:25:32,556
+I want to move to a related
+thing now which is Closures.
+
+
+609
+00:25:33,526 --> 00:25:36,276
+Closures in Swift, much
+like blocks in Objective-C.
+
+
+610
+00:25:36,466 --> 00:25:37,376
+They're just blocks of code.
+
+
+611
+00:25:37,376 --> 00:25:39,126
+You can pass them around,
+they can capture values
+
+
+612
+00:25:39,126 --> 00:25:40,006
+from the surrounding scope.
+
+
+613
+00:25:40,526 --> 00:25:43,226
+So here I have a very simple
+one, it's called greetingPrinter
+
+
+614
+00:25:43,226 --> 00:25:46,276
+and it's a constant, and it
+has this, this, this Closure
+
+
+615
+00:25:46,276 --> 00:25:48,166
+that just prints, "Hello World!"
+
+
+616
+00:25:48,666 --> 00:25:51,216
+Again, I'm not specifying
+any type for greeting printer
+
+
+617
+00:25:51,216 --> 00:25:53,956
+because it's very clear this
+Closure doesn't take any values.
+
+
+618
+00:25:53,956 --> 00:25:55,136
+It doesn't return
+anything either.
+
+
+619
+00:25:55,786 --> 00:25:58,026
+So the compiler will infer that
+this is this thing, () -> ().
+
+
+620
+00:25:58,756 --> 00:26:00,566
+Empty parens are empty parens.
+
+
+621
+00:26:00,626 --> 00:26:01,716
+That's the type of this Closure.
+
+
+622
+00:26:01,716 --> 00:26:02,846
+It doesn't take any parameters.
+
+
+623
+00:26:02,846 --> 00:26:03,996
+It doesn't return any values.
+
+
+624
+00:26:05,566 --> 00:26:07,046
+You may think well that
+looks kind of familiar,
+
+
+625
+00:26:07,046 --> 00:26:10,206
+I recommend this, this parens,
+arrow, parens syntax and that's
+
+
+626
+00:26:10,356 --> 00:26:12,846
+because it looks very much
+like a function syntax
+
+
+627
+00:26:13,206 --> 00:26:15,166
+and there's a reason for that.
+
+
+628
+00:26:15,716 --> 00:26:18,566
+In Swift functions are
+just named Closures.
+
+
+629
+00:26:19,586 --> 00:26:21,966
+So I can call my
+greetingPrinter thing just
+
+
+630
+00:26:21,966 --> 00:26:24,176
+by saying greetingPrinter ()
+and it prints, "Hello World."
+
+
+631
+00:26:25,376 --> 00:26:27,716
+That's a simple Closure as
+a local variable perhaps.
+
+
+632
+00:26:27,716 --> 00:26:30,066
+What about Closures
+as parameters?
+
+
+633
+00:26:31,426 --> 00:26:33,726
+Well to do this,
+same syntax again.
+
+
+634
+00:26:33,726 --> 00:26:35,766
+I'm going to create a
+repeat function this time
+
+
+635
+00:26:36,466 --> 00:26:39,006
+and this will repeat a task
+a given number of times
+
+
+636
+00:26:39,006 --> 00:26:40,026
+and the task is a Closure.
+
+
+637
+00:26:40,706 --> 00:26:41,246
+So, again, () -> ().
+
+
+638
+00:26:41,246 --> 00:26:44,496
+Doesn't take any values,
+doesn't return anything,
+
+
+639
+00:26:44,556 --> 00:26:47,076
+and it will be repeated for
+the number that I supplied.
+
+
+640
+00:26:47,706 --> 00:26:49,166
+How do I call it?
+
+
+641
+00:26:50,216 --> 00:26:51,526
+Let's call it twice.
+
+
+642
+00:26:51,766 --> 00:26:53,686
+I want this Closure to
+repeat, be repeated twice.
+
+
+643
+00:26:53,686 --> 00:26:56,176
+So I can supply my
+Closure inline right there
+
+
+644
+00:26:56,176 --> 00:26:56,916
+in the function call.
+
+
+645
+00:26:57,366 --> 00:27:00,456
+Don't know about you, not
+so keen on that syntax.
+
+
+646
+00:27:00,456 --> 00:27:03,696
+And we can do something really
+special in Swift and that is
+
+
+647
+00:27:03,696 --> 00:27:06,586
+if the Closure is the last
+argument to this function,
+
+
+648
+00:27:07,316 --> 00:27:10,666
+we can shift it outside of
+the, outside of the parentheses
+
+
+649
+00:27:10,666 --> 00:27:13,216
+of the function call and turn
+it into a Trailing Closure.
+
+
+650
+00:27:14,236 --> 00:27:15,786
+This makes the code
+much more readable.
+
+
+651
+00:27:15,786 --> 00:27:17,266
+It looks like a control
+close statement now,
+
+
+652
+00:27:17,266 --> 00:27:18,376
+which it is in this case.
+
+
+653
+00:27:18,946 --> 00:27:20,486
+And, much more readable,
+
+
+654
+00:27:20,766 --> 00:27:22,856
+much more modern bringing
+Trailer Closures in.
+
+
+655
+00:27:23,486 --> 00:27:25,396
+So that's Closures.
+
+
+656
+00:27:25,396 --> 00:27:26,336
+We've talked through functions.
+
+
+657
+00:27:26,336 --> 00:27:27,376
+We've talked through tuples.
+
+
+658
+00:27:27,376 --> 00:27:30,236
+To take us forward I'm going
+to hand back Dave to go
+
+
+659
+00:27:30,236 --> 00:27:32,446
+through data types and
+specifically Classes [applause].
+
+
+660
+00:27:33,316 --> 00:27:36,026
+>> So let's take a look at how
+to define a Class in Swift.
+
+
+661
+00:27:36,796 --> 00:27:39,226
+We do this with the class
+keyword followed by the name
+
+
+662
+00:27:39,226 --> 00:27:40,396
+of the class you want to create.
+
+
+663
+00:27:40,726 --> 00:27:42,236
+Here I'm going to
+create a vehicle.
+
+
+664
+00:27:42,886 --> 00:27:44,606
+And all of the class's
+definition,
+
+
+665
+00:27:44,606 --> 00:27:45,606
+all of its implementation,
+
+
+666
+00:27:45,606 --> 00:27:49,166
+appears between these curly
+braces, all of its properties,
+
+
+667
+00:27:49,306 --> 00:27:52,626
+all of its methods, all of its
+initializers and we'll see how
+
+
+668
+00:27:52,626 --> 00:27:54,516
+to write all of those
+in just a moment.
+
+
+669
+00:27:55,376 --> 00:27:57,376
+But first, there are two
+things you don't have
+
+
+670
+00:27:57,416 --> 00:27:58,416
+to write in Swift.
+
+
+671
+00:27:59,816 --> 00:28:03,396
+You don't have to import
+vehicle.h and the reason is
+
+
+672
+00:28:03,396 --> 00:28:05,206
+because Vehicle.h
+does not exist.
+
+
+673
+00:28:05,876 --> 00:28:07,356
+Swift doesn't have header files.
+
+
+674
+00:28:07,896 --> 00:28:08,456
+There's no need.
+
+
+675
+00:28:09,106 --> 00:28:11,646
+Instead, you just write your
+implementation for your class
+
+
+676
+00:28:12,016 --> 00:28:13,656
+and that becomes its
+interface as well.
+
+
+677
+00:28:13,656 --> 00:28:14,566
+There's no need to duplicate it.
+
+
+678
+00:28:16,366 --> 00:28:19,546
+The second thing you don't
+have to write is we don't have
+
+
+679
+00:28:19,636 --> 00:28:21,396
+to have a base class for Vehicle
+
+
+680
+00:28:21,926 --> 00:28:24,116
+because Swift doesn't have
+a universal base class
+
+
+681
+00:28:24,176 --> 00:28:26,276
+that every class must,
+must, must come from.
+
+
+682
+00:28:26,376 --> 00:28:30,976
+And you can still use
+NSObjects or any of the Cocoa
+
+
+683
+00:28:30,976 --> 00:28:32,976
+or Cocoa Touch Classes
+if you wish, that's fine.
+
+
+684
+00:28:33,556 --> 00:28:34,586
+But you don't have to.
+
+
+685
+00:28:35,716 --> 00:28:38,266
+If it makes sense for
+vehicle to be a base class
+
+
+686
+00:28:38,266 --> 00:28:40,856
+for some hierarchy of classes
+in your app then it can be.
+
+
+687
+00:28:40,856 --> 00:28:42,746
+It can be its own base class.
+
+
+688
+00:28:43,776 --> 00:28:46,716
+When we want to create a
+subclass ourselves we do this
+
+
+689
+00:28:46,716 --> 00:28:49,766
+by providing the subclass
+name, followed again by a colon
+
+
+690
+00:28:49,766 --> 00:28:51,546
+and then the thing we
+want to subclass from.
+
+
+691
+00:28:51,546 --> 00:28:54,056
+And we'll come back to this
+bicycle subclass shortly
+
+
+692
+00:28:54,826 --> 00:28:56,406
+but first let's add
+a bit more detail
+
+
+693
+00:28:56,566 --> 00:28:57,916
+to our base class,
+to our vehicle.
+
+
+694
+00:28:59,326 --> 00:29:00,626
+So we'll start by
+adding a property,
+
+
+695
+00:29:00,796 --> 00:29:02,306
+a property called
+numberOfWheels.
+
+
+696
+00:29:02,306 --> 00:29:04,586
+It's a variable property,
+default value 0.
+
+
+697
+00:29:05,826 --> 00:29:08,626
+Know that this is exactly
+the same syntax we would use
+
+
+698
+00:29:08,856 --> 00:29:10,206
+if we were declaring
+this as a variable,
+
+
+699
+00:29:10,436 --> 00:29:11,706
+just move into class context.
+
+
+700
+00:29:12,556 --> 00:29:14,566
+Here we've made it be
+a variable property,
+
+
+701
+00:29:14,636 --> 00:29:16,696
+what we'd call a read/write
+property in Objective-C
+
+
+702
+00:29:16,816 --> 00:29:17,876
+but it could be a constant.
+
+
+703
+00:29:18,756 --> 00:29:20,696
+In this case, and we just
+use let, same as we would do
+
+
+704
+00:29:20,696 --> 00:29:21,476
+for a normal constant.
+
+
+705
+00:29:22,096 --> 00:29:23,886
+But we'll keep it as a
+variable for now because we want
+
+
+706
+00:29:23,886 --> 00:29:27,896
+to change its, change its
+value for some subclasses.
+
+
+707
+00:29:28,356 --> 00:29:31,016
+Now big, big difference
+that we have in Swift
+
+
+708
+00:29:31,016 --> 00:29:34,816
+from Objective-C is that we
+don't have any distinction
+
+
+709
+00:29:34,816 --> 00:29:37,756
+between instance variables
+and properties in Swift,
+
+
+710
+00:29:37,756 --> 00:29:38,896
+they're one and the same thing.
+
+
+711
+00:29:39,726 --> 00:29:43,476
+And, in fact, this var
+numberOfWheels = 0 is all you
+
+
+712
+00:29:43,476 --> 00:29:46,436
+have to write to
+define a property.
+
+
+713
+00:29:46,436 --> 00:29:48,316
+Swift provides the
+backing store for you.
+
+
+714
+00:29:48,416 --> 00:29:49,606
+You don't have to
+define it yourself
+
+
+715
+00:29:49,956 --> 00:29:51,156
+and it handles all access
+
+
+716
+00:29:51,276 --> 00:29:52,696
+to that backing store
+for you as well.
+
+
+717
+00:29:54,326 --> 00:29:57,436
+Now, in this case, were we just
+storing a value, these are known
+
+
+718
+00:29:57,436 --> 00:30:00,396
+as stored properties but we do
+have a second kind of property
+
+
+719
+00:30:00,396 --> 00:30:02,976
+as well-known as
+computed properties.
+
+
+720
+00:30:03,046 --> 00:30:05,076
+Let's add one of those to our
+Vehicle, our Vehicle class.
+
+
+721
+00:30:06,346 --> 00:30:08,966
+So this is a computed property
+that provides a description
+
+
+722
+00:30:08,966 --> 00:30:10,556
+of our class, just
+a string description
+
+
+723
+00:30:10,616 --> 00:30:13,116
+of the number of wheels it has.
+
+
+724
+00:30:13,116 --> 00:30:15,556
+Note that computed properties
+don't have a backing store.
+
+
+725
+00:30:16,136 --> 00:30:18,816
+Instead, they, they
+generate or calculate a value
+
+
+726
+00:30:18,816 --> 00:30:22,036
+when they're called and to
+write one we provide the type
+
+
+727
+00:30:22,136 --> 00:30:23,016
+that we want this
+property to have
+
+
+728
+00:30:23,076 --> 00:30:26,056
+and then just return a value
+of the appropriate type.
+
+
+729
+00:30:26,406 --> 00:30:28,106
+Here we're using
+string interpolation
+
+
+730
+00:30:28,226 --> 00:30:29,266
+to return the number of wheels.
+
+
+731
+00:30:30,706 --> 00:30:34,376
+Now, in this case I've provided
+a read-only computed property,
+
+
+732
+00:30:34,376 --> 00:30:36,086
+which is why it only
+has a getter here,
+
+
+733
+00:30:36,596 --> 00:30:38,136
+but I could also
+provide a setter as well
+
+
+734
+00:30:38,246 --> 00:30:39,366
+if I wanted it to be read/write.
+
+
+735
+00:30:40,556 --> 00:30:42,566
+It doesn't really make
+sense for this description
+
+
+736
+00:30:42,626 --> 00:30:43,696
+to be read/write though.
+
+
+737
+00:30:43,736 --> 00:30:45,906
+It's generated based on
+other properties so I'm going
+
+
+738
+00:30:45,906 --> 00:30:47,296
+to keep it as a read-only
+property.
+
+
+739
+00:30:48,946 --> 00:30:50,956
+Where a computer
+property is read-only,
+
+
+740
+00:30:51,366 --> 00:30:53,816
+you can actually lose
+the get and the braces
+
+
+741
+00:30:53,816 --> 00:30:57,096
+and just return a value directly
+from the outer description
+
+
+742
+00:30:57,096 --> 00:30:58,366
+of the computed property.
+
+
+743
+00:30:59,216 --> 00:31:01,226
+The end result is the same,
+you just don't have to write
+
+
+744
+00:31:01,226 --> 00:31:02,166
+that extra level of nesting.
+
+
+745
+00:31:03,506 --> 00:31:06,696
+Note, however, that computed
+properties, even read-only ones,
+
+
+746
+00:31:06,976 --> 00:31:08,726
+do need to be defined
+as variables.
+
+
+747
+00:31:09,456 --> 00:31:12,136
+Even though you can't set
+them, their value can change,
+
+
+748
+00:31:12,136 --> 00:31:16,636
+it can vary, so they
+need to be variables.
+
+
+749
+00:31:16,636 --> 00:31:17,876
+Now that we've created
+our vehicle
+
+
+750
+00:31:17,876 --> 00:31:19,096
+and we've given it
+a few properties,
+
+
+751
+00:31:19,216 --> 00:31:21,046
+let's create a new
+instance of that vehicle,
+
+
+752
+00:31:21,236 --> 00:31:22,996
+which we do with
+initializer syntax.
+
+
+753
+00:31:23,756 --> 00:31:25,746
+This is the name of the
+class followed by a pair
+
+
+754
+00:31:25,746 --> 00:31:30,076
+of parentheses, creating a
+new instance of this class.
+
+
+755
+00:31:30,256 --> 00:31:33,396
+Because we provided a default
+value for our stored property,
+
+
+756
+00:31:33,396 --> 00:31:35,126
+it's clear what to do
+when initializing this.
+
+
+757
+00:31:35,156 --> 00:31:36,816
+Just set numberOfWheels to 0.
+
+
+758
+00:31:37,806 --> 00:31:40,786
+Note that we didn't need
+to write alloc at the point
+
+
+759
+00:31:40,786 --> 00:31:41,626
+that we created this instance.
+
+
+760
+00:31:42,106 --> 00:31:43,916
+Swift handles all of the
+memory allocation for you.
+
+
+761
+00:31:43,916 --> 00:31:44,906
+There's no need to write alloc.
+
+
+762
+00:31:46,046 --> 00:31:47,456
+We also didn't need
+to write the type.
+
+
+763
+00:31:47,656 --> 00:31:50,466
+Once again, Swift can infer
+the type we want to create.
+
+
+764
+00:31:50,466 --> 00:31:52,196
+It's clear from the thing
+on the right-hand side
+
+
+765
+00:31:52,196 --> 00:31:56,006
+that we want this
+to be a vehicle.
+
+
+766
+00:31:56,006 --> 00:31:58,546
+As I mentioned earlier we,
+we have these default values.
+
+
+767
+00:31:58,546 --> 00:32:00,066
+Now, this means we
+actually haven't had
+
+
+768
+00:32:00,066 --> 00:32:01,746
+to write an initializer at all
+
+
+769
+00:32:02,256 --> 00:32:03,706
+because it's just
+clear what to do here.
+
+
+770
+00:32:03,736 --> 00:32:05,096
+It's clear to create
+a new instance,
+
+
+771
+00:32:05,466 --> 00:32:07,016
+give it the default value of 0.
+
+
+772
+00:32:07,626 --> 00:32:12,256
+Now that we've created our
+vehicle instance we can use dot
+
+
+773
+00:32:12,256 --> 00:32:14,176
+syntax to, to access
+its properties,
+
+
+774
+00:32:14,216 --> 00:32:15,506
+so to print its description
+perhaps.
+
+
+775
+00:32:15,506 --> 00:32:18,206
+And we can see that it has
+a description of 0 wheels.
+
+
+776
+00:32:18,206 --> 00:32:20,576
+If we had changed
+them, the wheels to 2,
+
+
+777
+00:32:20,616 --> 00:32:21,746
+we can see the description
+change.
+
+
+778
+00:32:21,746 --> 00:32:22,646
+It now has two wheels.
+
+
+779
+00:32:24,346 --> 00:32:27,676
+But it would be nice to create a
+class that always has two wheels
+
+
+780
+00:32:27,726 --> 00:32:29,776
+by default, our bicycle
+subclass from earlier.
+
+
+781
+00:32:30,056 --> 00:32:31,386
+So let's see how
+we'd, how we do that,
+
+
+782
+00:32:31,386 --> 00:32:32,816
+how we'd make it
+have two by default.
+
+
+783
+00:32:34,486 --> 00:32:37,306
+Now, because we want
+bicycle to change the value
+
+
+784
+00:32:37,306 --> 00:32:40,246
+of an inherited property, we
+do need to write an initializer
+
+
+785
+00:32:40,246 --> 00:32:41,336
+and this is how we do it.
+
+
+786
+00:32:41,776 --> 00:32:44,316
+The init keyword followed
+by a pair of parentheses
+
+
+787
+00:32:45,046 --> 00:32:47,866
+and these can contain parameters
+so you can use parameters
+
+
+788
+00:32:47,866 --> 00:32:49,236
+to customize your
+initialization,
+
+
+789
+00:32:49,326 --> 00:32:51,486
+and they look just like the
+function parameters Tim showed
+
+
+790
+00:32:51,486 --> 00:32:53,856
+earlier, but we're not going
+to use them in this case.
+
+
+791
+00:32:53,856 --> 00:32:56,996
+We're just going to
+use a new value of 2.
+
+
+792
+00:32:57,256 --> 00:33:00,966
+Now because we're changing an
+inherited property we do need
+
+
+793
+00:33:00,966 --> 00:33:03,506
+to give our super class a chance
+to set that property first,
+
+
+794
+00:33:03,846 --> 00:33:05,446
+which we do by calling
+super.init,
+
+
+795
+00:33:06,116 --> 00:33:08,346
+after all it introduced
+the property so we need
+
+
+796
+00:33:08,346 --> 00:33:10,436
+to give it a chance to
+set an initial value,
+
+
+797
+00:33:10,546 --> 00:33:12,676
+which we may then use to
+modify the value we use.
+
+
+798
+00:33:14,156 --> 00:33:15,816
+After we've done so we
+can change the value,
+
+
+799
+00:33:15,866 --> 00:33:17,806
+we can set it to 2.
+
+
+800
+00:33:17,966 --> 00:33:20,656
+Now we'll go into a lot more
+detail on initialization
+
+
+801
+00:33:20,656 --> 00:33:23,876
+in the Intermediate Swift Talk
+but, for now, one final thing
+
+
+802
+00:33:23,876 --> 00:33:27,046
+to note: Swift initializers
+don't return a value.
+
+
+803
+00:33:27,496 --> 00:33:29,446
+Rather, their main
+role is to make sure
+
+
+804
+00:33:29,446 --> 00:33:31,266
+that every stored
+property has a value
+
+
+805
+00:33:31,416 --> 00:33:33,186
+by the time its initialization
+completes.
+
+
+806
+00:33:34,896 --> 00:33:35,996
+So now we have that set up.
+
+
+807
+00:33:35,996 --> 00:33:37,126
+We can create a new bicycle.
+
+
+808
+00:33:37,776 --> 00:33:40,466
+We can print its description,
+which we inherited from vehicle,
+
+
+809
+00:33:40,636 --> 00:33:42,766
+and see it has two wheels
+by default, all the,
+
+
+810
+00:33:42,766 --> 00:33:43,986
+all bicycles have two wheels.
+
+
+811
+00:33:45,106 --> 00:33:49,376
+So that changes the default
+value of an inherited property
+
+
+812
+00:33:49,376 --> 00:33:51,076
+but if we want to
+change its behavior?
+
+
+813
+00:33:51,186 --> 00:33:51,716
+What if we want it
+
+
+814
+00:33:51,756 --> 00:33:53,566
+to do something different
+every time it's called?
+
+
+815
+00:33:53,636 --> 00:33:55,216
+For this we override
+the property.
+
+
+816
+00:33:55,956 --> 00:33:58,936
+We'll create a new subclass
+of vehicle called Car,
+
+
+817
+00:33:59,436 --> 00:34:02,316
+give it a new stored property
+called speed, initial value
+
+
+818
+00:34:02,316 --> 00:34:04,086
+of 0.0 (so inferred
+to be a double),
+
+
+819
+00:34:04,886 --> 00:34:07,586
+and we'll add an initializer
+that sets the car's number
+
+
+820
+00:34:07,586 --> 00:34:08,876
+of wheels to be four by default.
+
+
+821
+00:34:08,985 --> 00:34:11,246
+Same approach we just
+saw for, for the bicycle.
+
+
+822
+00:34:11,766 --> 00:34:14,876
+So its overrider
+description: in this case I'd
+
+
+823
+00:34:14,876 --> 00:34:17,065
+like to add the speed on to
+the end of the description.
+
+
+824
+00:34:17,545 --> 00:34:19,106
+We just write the,
+we write the property
+
+
+825
+00:34:19,106 --> 00:34:20,436
+in the same ways we did before.
+
+
+826
+00:34:20,556 --> 00:34:22,136
+So we have that same
+name and the same type.
+
+
+827
+00:34:22,936 --> 00:34:25,426
+But to do the override we
+have the override keywords
+
+
+828
+00:34:25,456 --> 00:34:26,246
+on the beginning.
+
+
+829
+00:34:27,036 --> 00:34:29,025
+This makes the override
+safe for two reasons.
+
+
+830
+00:34:30,005 --> 00:34:32,846
+Firstly, it makes it clear we
+want to provide an override.
+
+
+831
+00:34:33,116 --> 00:34:35,716
+We haven't just accidentally
+written a property
+
+
+832
+00:34:35,716 --> 00:34:38,025
+that has the same name and
+the same type of something
+
+
+833
+00:34:38,025 --> 00:34:40,356
+in our super class that maybe
+we didn't even know about.
+
+
+834
+00:34:41,686 --> 00:34:44,016
+Moreover, it actually
+prompts Swift to go and check
+
+
+835
+00:34:44,466 --> 00:34:46,426
+that this property
+exists somewhere
+
+
+836
+00:34:46,426 --> 00:34:48,606
+in our super class chain so
+there definitely is something
+
+
+837
+00:34:48,606 --> 00:34:49,866
+with the same name
+and the same type.
+
+
+838
+00:34:50,266 --> 00:34:52,406
+So our override will
+do what we expect.
+
+
+839
+00:34:53,036 --> 00:34:55,826
+In this case we'll just
+call the super description
+
+
+840
+00:34:55,976 --> 00:34:58,536
+to get the number of wheels and
+we'll add an extra bit of text
+
+
+841
+00:34:58,536 --> 00:34:59,856
+on the end that shows the speed.
+
+
+842
+00:35:00,386 --> 00:35:02,946
+So, if we create
+a car we can see
+
+
+843
+00:35:02,946 --> 00:35:04,816
+that the description
+defaults to four wheels,
+
+
+844
+00:35:04,816 --> 00:35:07,916
+zero miles per hour and, if we
+change the speed, it updates.
+
+
+845
+00:35:07,916 --> 00:35:09,126
+It now includes the
+new speed as well.
+
+
+846
+00:35:09,746 --> 00:35:14,426
+So that's the way to change the
+behavior of inherited property
+
+
+847
+00:35:14,426 --> 00:35:16,476
+but maybe sometimes
+that's a bit overkill.
+
+
+848
+00:35:17,036 --> 00:35:19,076
+We don't want to see, we don't
+want to change how it works.
+
+
+849
+00:35:19,076 --> 00:35:21,616
+We just want to know when it
+changes and what it changes to
+
+
+850
+00:35:22,396 --> 00:35:24,056
+and for this we have
+property observers.
+
+
+851
+00:35:25,176 --> 00:35:27,196
+So to show these,
+I'll create a subclass
+
+
+852
+00:35:27,196 --> 00:35:28,596
+of car called ParentsCar.
+
+
+853
+00:35:28,596 --> 00:35:32,386
+Now, ParentsCar doesn't stop
+you going at a certain speed,
+
+
+854
+00:35:32,926 --> 00:35:35,286
+it just watches how
+fast you're going and,
+
+
+855
+00:35:35,286 --> 00:35:37,236
+if you go too fast,
+it issues a warning.
+
+
+856
+00:35:37,236 --> 00:35:39,776
+It says, "Careful now,
+that's a bit too fast."
+
+
+857
+00:35:41,146 --> 00:35:44,136
+[Laughter] So to do this we
+still override a property.
+
+
+858
+00:35:44,136 --> 00:35:47,116
+In this case we're overriding
+the speed property we inherited
+
+
+859
+00:35:47,116 --> 00:35:47,636
+from Car.
+
+
+860
+00:35:48,256 --> 00:35:50,286
+Note that this override
+is for stored property,
+
+
+861
+00:35:50,416 --> 00:35:51,466
+not a computer property,
+
+
+862
+00:35:51,676 --> 00:35:52,826
+but it's still written
+in the same way.
+
+
+863
+00:35:54,276 --> 00:35:56,656
+This time, however, we won't
+provide a custom getter
+
+
+864
+00:35:56,656 --> 00:36:00,846
+and setter, we'll provide either
+willSet or a didSet observer
+
+
+865
+00:36:01,426 --> 00:36:03,666
+and willSet is called
+just before didSet just
+
+
+866
+00:36:03,666 --> 00:36:04,676
+after the value changes.
+
+
+867
+00:36:06,266 --> 00:36:09,286
+WillSet gets a newValue
+constant that you can use
+
+
+868
+00:36:09,286 --> 00:36:10,486
+within the body of
+the subserver.
+
+
+869
+00:36:10,816 --> 00:36:12,446
+didSet gets an oldValue constant
+
+
+870
+00:36:12,446 --> 00:36:15,006
+so that you can see what the
+value was or has just changed
+
+
+871
+00:36:15,006 --> 00:36:16,376
+to be within these observers.
+
+
+872
+00:36:17,926 --> 00:36:20,526
+In this case we'll just
+use willSet and we'll use
+
+
+873
+00:36:20,526 --> 00:36:23,516
+that newValue constant to keep
+an eye on the speed of this car
+
+
+874
+00:36:23,906 --> 00:36:26,696
+and if it goes over 65 miles
+an hour we'll issue a warning,
+
+
+875
+00:36:27,066 --> 00:36:27,476
+careful now.
+
+
+876
+00:36:29,356 --> 00:36:30,606
+So that's how we add properties.
+
+
+877
+00:36:30,796 --> 00:36:31,606
+What about methods?
+
+
+878
+00:36:31,786 --> 00:36:33,206
+How do we add methods
+to our Classes?
+
+
+879
+00:36:34,026 --> 00:36:36,226
+Well, here's a simple
+class called Counter.
+
+
+880
+00:36:36,476 --> 00:36:39,456
+Just keeps track how many
+times something has happened.
+
+
+881
+00:36:39,456 --> 00:36:43,106
+Does with a stored property
+called count and in the same way
+
+
+882
+00:36:43,106 --> 00:36:45,486
+that this stored property
+looks just like a variable,
+
+
+883
+00:36:46,246 --> 00:36:48,286
+methods in Swift look
+just like functions,
+
+
+884
+00:36:48,566 --> 00:36:49,826
+the ones that Tim
+introduced earlier.
+
+
+885
+00:36:49,976 --> 00:36:51,726
+Here, this increment
+method looks just
+
+
+886
+00:36:51,726 --> 00:36:53,186
+like we'd write a
+function of the same type.
+
+
+887
+00:36:53,186 --> 00:36:55,926
+In this case it just adds 1 to
+count each times it's called.
+
+
+888
+00:36:55,926 --> 00:36:58,726
+If we make it a bit more
+complex, if we add a parameter,
+
+
+889
+00:36:58,966 --> 00:37:00,086
+again, it's just the same
+
+
+890
+00:37:00,086 --> 00:37:01,666
+as the function parameters
+we saw earlier.
+
+
+891
+00:37:03,166 --> 00:37:05,726
+Know that when we refer to
+count here, we don't have
+
+
+892
+00:37:05,726 --> 00:37:07,616
+to use self.count
+inside the method
+
+
+893
+00:37:07,716 --> 00:37:09,286
+because it's clear what
+we're referring to.
+
+
+894
+00:37:09,286 --> 00:37:10,366
+There's no ambiguity here.
+
+
+895
+00:37:10,586 --> 00:37:13,566
+The one time we do
+need to use self is
+
+
+896
+00:37:13,566 --> 00:37:16,226
+if we have methods whose
+parameter name is the same
+
+
+897
+00:37:16,226 --> 00:37:16,936
+as a property name.
+
+
+898
+00:37:17,216 --> 00:37:18,936
+Here we have a method with
+a parameter called count.
+
+
+899
+00:37:19,646 --> 00:37:21,736
+So in this case we use
+self.count to refer
+
+
+900
+00:37:21,806 --> 00:37:26,136
+to the property and count
+refers to the parameter.
+
+
+901
+00:37:26,136 --> 00:37:28,376
+So that's how we create classes,
+how we give them properties,
+
+
+902
+00:37:28,426 --> 00:37:30,506
+how we give them initializers
+and how we give them methods.
+
+
+903
+00:37:31,236 --> 00:37:33,986
+I'd now like to invite Tim back
+up to take us beyond classes
+
+
+904
+00:37:33,986 --> 00:37:36,766
+and to show some of the other
+data structures you can create
+
+
+905
+00:37:36,766 --> 00:37:38,646
+in Swift to make the
+building blocks of your apps.
+
+
+906
+00:37:39,036 --> 00:37:39,316
+Thank you [applause].
+
+
+907
+00:37:39,696 --> 00:37:40,106
+>> Thank you.
+
+
+908
+00:37:40,686 --> 00:37:42,686
+So beyond classes,
+where should we go next?
+
+
+909
+00:37:43,216 --> 00:37:44,946
+Let's go to structures.
+
+
+910
+00:37:45,126 --> 00:37:47,796
+Structures in Swift are defined
+using these struct keywords.
+
+
+911
+00:37:47,796 --> 00:37:50,326
+So here I'm going to define
+a couple, maybe three.
+
+
+912
+00:37:50,586 --> 00:37:53,006
+I've got a point, it has
+an x and a y coordinate,
+
+
+913
+00:37:53,226 --> 00:37:54,306
+size with a width and a height,
+
+
+914
+00:37:54,566 --> 00:37:56,136
+rectangle with an
+origin and a size.
+
+
+915
+00:37:57,486 --> 00:38:01,086
+With structures I get a very
+handy memberwise initializer
+
+
+916
+00:38:01,086 --> 00:38:01,736
+by default.
+
+
+917
+00:38:02,346 --> 00:38:04,186
+This means it's really
+easy to create instances
+
+
+918
+00:38:04,186 --> 00:38:06,506
+of these Structures
+just by supplying values
+
+
+919
+00:38:06,556 --> 00:38:07,706
+for the properties in line.
+
+
+920
+00:38:07,796 --> 00:38:09,836
+So, supplying an x and
+a y, width and a height,
+
+
+921
+00:38:10,366 --> 00:38:11,616
+point and a size
+for the rectangle.
+
+
+922
+00:38:12,856 --> 00:38:15,326
+If I really wanted to, I
+could actually provide custom
+
+
+923
+00:38:15,326 --> 00:38:16,496
+initializers in my Structures.
+
+
+924
+00:38:16,496 --> 00:38:19,106
+To find out more about
+that check out the
+
+
+925
+00:38:19,106 --> 00:38:21,486
+"Intermediate Swift" talk.
+
+
+926
+00:38:21,706 --> 00:38:23,786
+OK. So this is a
+simple structure.
+
+
+927
+00:38:23,786 --> 00:38:25,376
+It has an origin
+and it has a size.
+
+
+928
+00:38:25,426 --> 00:38:26,416
+Those are two, two properties.
+
+
+929
+00:38:26,416 --> 00:38:28,736
+It would be rather nice
+
+
+930
+00:38:28,866 --> 00:38:31,036
+if I could add an
+area to my rectangle.
+
+
+931
+00:38:31,086 --> 00:38:33,176
+That sounds like a
+computed property
+
+
+932
+00:38:33,176 --> 00:38:34,166
+so can we add one of those?
+
+
+933
+00:38:34,746 --> 00:38:35,596
+Yes, yes we can.
+
+
+934
+00:38:36,176 --> 00:38:38,226
+So here is an area
+property on my rectangle,
+
+
+935
+00:38:38,256 --> 00:38:40,346
+just returns the width
+times the height.
+
+
+936
+00:38:40,546 --> 00:38:43,106
+OK, properties are great
+but what about methods?
+
+
+937
+00:38:43,486 --> 00:38:45,106
+Sometimes I want more
+than just a property.
+
+
+938
+00:38:46,006 --> 00:38:48,226
+Well, in Swift a structure
+can have a method as well.
+
+
+939
+00:38:48,706 --> 00:38:50,526
+So here I have an
+isBiggerThanRect(other:
+
+
+940
+00:38:50,526 --> 00:38:53,246
+Rect) method and I can
+pass in a rectangle
+
+
+941
+00:38:53,246 --> 00:38:54,326
+and return a value back
+
+
+942
+00:38:54,326 --> 00:38:55,956
+that indicates whether it's
+bigger than the other one.
+
+
+943
+00:38:56,936 --> 00:38:59,026
+So structures in Swift,
+incredibly powerful,
+
+
+944
+00:38:59,296 --> 00:39:01,326
+a lot more functionality
+than you're used to in C.
+
+
+945
+00:39:02,066 --> 00:39:04,726
+So that raises the question,
+what is the difference
+
+
+946
+00:39:04,806 --> 00:39:06,106
+between a Structure and a Class?
+
+
+947
+00:39:07,116 --> 00:39:08,056
+Here's a couple of examples.
+
+
+948
+00:39:08,056 --> 00:39:10,266
+We've got a rectangle, that's
+at the moment a structure,
+
+
+949
+00:39:10,266 --> 00:39:11,016
+and we've got a window.
+
+
+950
+00:39:11,016 --> 00:39:13,646
+It's a hypothetical
+Window class that refers
+
+
+951
+00:39:13,736 --> 00:39:15,166
+to some user interface object.
+
+
+952
+00:39:16,376 --> 00:39:18,816
+How do you determine
+whether you want a class
+
+
+953
+00:39:18,816 --> 00:39:20,116
+or a structure given
+that you've got a lot
+
+
+954
+00:39:20,116 --> 00:39:21,076
+of the same functionality?
+
+
+955
+00:39:22,216 --> 00:39:23,546
+Where there are two
+primary differences
+
+
+956
+00:39:23,546 --> 00:39:24,696
+between classes and structures.
+
+
+957
+00:39:24,916 --> 00:39:27,706
+The first difference is that
+structures cannot inherit
+
+
+958
+00:39:27,706 --> 00:39:28,716
+from other structures.
+
+
+959
+00:39:29,716 --> 00:39:32,596
+The second difference is how
+values are passed around.
+
+
+960
+00:39:32,596 --> 00:39:34,706
+So let's look at our window.
+
+
+961
+00:39:34,706 --> 00:39:37,476
+I'm going to create a window;
+
+
+962
+00:39:37,876 --> 00:39:39,386
+that means I get
+the window object.
+
+
+963
+00:39:39,386 --> 00:39:42,556
+All right, now this is a
+reference to that object.
+
+
+964
+00:39:43,526 --> 00:39:46,746
+But what if I declared
+my window as a structure?
+
+
+965
+00:39:47,366 --> 00:39:49,656
+Well, structures
+are passed by value.
+
+
+966
+00:39:49,916 --> 00:39:52,076
+That means the values are copied
+when they're passed around.
+
+
+967
+00:39:52,076 --> 00:39:54,716
+So my setup function here
+would get a copy of my window.
+
+
+968
+00:39:55,736 --> 00:39:56,386
+That seems weird.
+
+
+969
+00:39:56,386 --> 00:39:56,996
+What would happen?
+
+
+970
+00:39:56,996 --> 00:39:59,096
+Well, I'd probably get a
+second window on screen
+
+
+971
+00:39:59,096 --> 00:40:00,456
+and that doesn't
+feel right at all.
+
+
+972
+00:40:01,376 --> 00:40:04,606
+So window, it should be a class
+because classes are passed
+
+
+973
+00:40:04,666 --> 00:40:08,716
+by reference in Swift and that
+means my setup function gets a
+
+
+974
+00:40:08,716 --> 00:40:10,116
+reference to the
+window that I gave it,
+
+
+975
+00:40:10,116 --> 00:40:11,406
+it's a reference to this object.
+
+
+976
+00:40:11,406 --> 00:40:14,226
+OK, so that's classes.
+
+
+977
+00:40:14,226 --> 00:40:15,456
+What about structures?
+
+
+978
+00:40:16,276 --> 00:40:17,856
+Well, let's look at the
+frame of the window.
+
+
+979
+00:40:18,376 --> 00:40:19,106
+It's a rectangle.
+
+
+980
+00:40:19,106 --> 00:40:22,056
+And I want to get this frame,
+I want to do something to it,
+
+
+981
+00:40:22,056 --> 00:40:23,256
+and I want to use
+it somewhere else.
+
+
+982
+00:40:23,596 --> 00:40:25,576
+So I'm going to extract it
+into a variable, newFrame.
+
+
+983
+00:40:26,166 --> 00:40:30,726
+What happens if rectangle
+was actually a class?
+
+
+984
+00:40:31,966 --> 00:40:33,346
+Well if I set the origin here,
+
+
+985
+00:40:33,346 --> 00:40:35,646
+that's actually going
+to affect my window.
+
+
+986
+00:40:35,646 --> 00:40:37,106
+Clearly, that's not
+want I want to do.
+
+
+987
+00:40:37,106 --> 00:40:38,666
+I just want to change this
+and use it somewhere else
+
+
+988
+00:40:38,666 --> 00:40:41,676
+and it's covering up my
+slide so, clearly bad.
+
+
+989
+00:40:41,676 --> 00:40:45,676
+So the window's frame is a
+rectangle and the rectangle,
+
+
+990
+00:40:45,756 --> 00:40:47,616
+that should be a value
+type, a structure.
+
+
+991
+00:40:48,026 --> 00:40:49,636
+Structures are passed
+by value, they're copied
+
+
+992
+00:40:49,636 --> 00:40:51,386
+around when they're
+passed around.
+
+
+993
+00:40:52,036 --> 00:40:53,206
+So we talked about
+the difference
+
+
+994
+00:40:53,206 --> 00:40:55,326
+between reference
+and value types.
+
+
+995
+00:40:55,326 --> 00:40:56,776
+Let's look at constants
+and variables
+
+
+996
+00:40:56,776 --> 00:40:57,686
+with these things in mind.
+
+
+997
+00:40:58,906 --> 00:41:02,406
+Let's say I create a window
+and this time I declare it
+
+
+998
+00:41:02,406 --> 00:41:04,496
+with a let keyword, that
+means I have a constant
+
+
+999
+00:41:04,496 --> 00:41:05,456
+window reference.
+
+
+1000
+00:41:05,946 --> 00:41:07,096
+What does that really mean?
+
+
+1001
+00:41:07,096 --> 00:41:10,436
+Well it means that I have a
+reference to a window object
+
+
+1002
+00:41:11,826 --> 00:41:13,946
+but the window object isn't
+affected by this constant.
+
+
+1003
+00:41:13,946 --> 00:41:15,186
+It's only the reference that is.
+
+
+1004
+00:41:15,526 --> 00:41:18,116
+So I can still change my
+window's title quite happily.
+
+
+1005
+00:41:18,156 --> 00:41:19,196
+I can still set that to "Hello!"
+
+
+1006
+00:41:19,196 --> 00:41:19,876
+and it just works.
+
+
+1007
+00:41:20,846 --> 00:41:23,166
+But, it's a constant reference.
+
+
+1008
+00:41:23,236 --> 00:41:25,716
+That means if I try and
+connect this reference
+
+
+1009
+00:41:25,746 --> 00:41:28,316
+to a different window I'll
+get a compile time error
+
+
+1010
+00:41:28,376 --> 00:41:30,246
+because I cannot mutate
+a constant and I'm trying
+
+
+1011
+00:41:30,246 --> 00:41:31,526
+to mutate the constant
+reference here.
+
+
+1012
+00:41:32,386 --> 00:41:34,226
+What about value types?
+
+
+1013
+00:41:36,046 --> 00:41:36,896
+Let's start with a variable.
+
+
+1014
+00:41:36,896 --> 00:41:39,766
+I'm going to create a variable
+point1 and, for a value type,
+
+
+1015
+00:41:39,816 --> 00:41:42,496
+try to think of it as a
+big value in and of itself.
+
+
+1016
+00:41:42,566 --> 00:41:43,556
+The whole thing is a value.
+
+
+1017
+00:41:44,336 --> 00:41:46,106
+A point is an x and
+a y coordinate,
+
+
+1018
+00:41:46,326 --> 00:41:48,116
+so this point1 has an
+x and a y in there.
+
+
+1019
+00:41:48,936 --> 00:41:51,746
+If I change my point1.x it's
+going to update that value
+
+
+1020
+00:41:51,746 --> 00:41:54,306
+and set it to 5 and that's fine,
+it's a variable, it can do that.
+
+
+1021
+00:41:55,186 --> 00:41:58,876
+But if I use let
+to declare point2,
+
+
+1022
+00:41:59,706 --> 00:42:01,466
+the entire value
+is now immutable.
+
+
+1023
+00:42:01,466 --> 00:42:02,356
+That's now constant.
+
+
+1024
+00:42:02,406 --> 00:42:06,486
+That means I cannot set
+point2.x, the x coordinate there
+
+
+1025
+00:42:06,536 --> 00:42:08,416
+because I cannot
+mutate a constant.
+
+
+1026
+00:42:08,636 --> 00:42:10,116
+The entirety of that
+value is constant.
+
+
+1027
+00:42:11,436 --> 00:42:16,356
+Hmm. So, whether or not I can
+mutate my value type depends
+
+
+1028
+00:42:16,426 --> 00:42:17,986
+on the declaration used.
+
+
+1029
+00:42:18,126 --> 00:42:20,716
+So what does that mean if I want
+to add some kind of a method
+
+
+1030
+00:42:20,716 --> 00:42:22,516
+to my Structure that,
+that changes it?
+
+
+1031
+00:42:23,556 --> 00:42:25,366
+Let's say I want
+something that moves a point
+
+
+1032
+00:42:25,606 --> 00:42:27,276
+to the right by a given number.
+
+
+1033
+00:42:28,396 --> 00:42:29,806
+Well, that's changing the value.
+
+
+1034
+00:42:29,806 --> 00:42:31,696
+So I shouldn't be able
+to do this on a constant.
+
+
+1035
+00:42:32,156 --> 00:42:35,896
+If you do want to do this then
+you must declare the method is
+
+
+1036
+00:42:35,896 --> 00:42:37,466
+mutating and it tells
+the compiler
+
+
+1037
+00:42:37,466 --> 00:42:38,966
+that you're changing
+the underlying value.
+
+
+1038
+00:42:39,616 --> 00:42:42,386
+That means, if you declare
+a point with a constant
+
+
+1039
+00:42:42,386 --> 00:42:44,106
+in this case and
+you try and move it
+
+
+1040
+00:42:44,106 --> 00:42:45,046
+to the right you'll get an error
+
+
+1041
+00:42:45,046 --> 00:42:46,526
+because you cannot
+mutate a constant.
+
+
+1042
+00:42:48,476 --> 00:42:50,926
+Structures, that's one example
+of a value type in Swift.
+
+
+1043
+00:42:51,636 --> 00:42:53,126
+Another one is enumerations.
+
+
+1044
+00:42:53,126 --> 00:42:56,466
+So enumerations in Swift can
+have raw values much like C.
+
+
+1045
+00:42:56,756 --> 00:42:58,156
+So here I have a
+planet enumeration
+
+
+1046
+00:42:58,156 --> 00:42:59,606
+and it has a raw value of Int.
+
+
+1047
+00:43:00,296 --> 00:43:02,046
+So I'm using a 1-based index.
+
+
+1048
+00:43:02,046 --> 00:43:03,086
+Mercury is the first planet.
+
+
+1049
+00:43:03,086 --> 00:43:03,846
+Venus is the second.
+
+
+1050
+00:43:03,846 --> 00:43:06,146
+I could use 0 if I
+wanted but I want 1.
+
+
+1051
+00:43:07,206 --> 00:43:09,276
+So Earth must have
+some, some value.
+
+
+1052
+00:43:09,596 --> 00:43:11,276
+How do I determine
+what that value is?
+
+
+1053
+00:43:12,716 --> 00:43:14,616
+Let's create a constant,
+EarthNumber, and I'm going
+
+
+1054
+00:43:14,616 --> 00:43:17,856
+to set it to raw
+value of Planet.Earth
+
+
+1055
+00:43:17,856 --> 00:43:19,226
+and that will give
+me back three.
+
+
+1056
+00:43:19,316 --> 00:43:20,776
+That's how I get the
+raw value back out.
+
+
+1057
+00:43:21,856 --> 00:43:24,166
+So I can use integers
+as an underlying value
+
+
+1058
+00:43:24,606 --> 00:43:26,296
+but in Swift I can use
+other types as well
+
+
+1059
+00:43:26,426 --> 00:43:28,456
+such as a string or
+maybe a character.
+
+
+1060
+00:43:28,826 --> 00:43:30,626
+Here I can now name
+the tab, linefeed,
+
+
+1061
+00:43:30,626 --> 00:43:33,436
+and carriage return
+characters with using an enum.
+
+
+1062
+00:43:34,716 --> 00:43:36,306
+But sometimes it
+doesn't make sense
+
+
+1063
+00:43:36,346 --> 00:43:38,226
+to have an underlying
+value at all.
+
+
+1064
+00:43:39,216 --> 00:43:42,836
+Sometimes the cases are just
+values in their own right.
+
+
+1065
+00:43:43,146 --> 00:43:44,296
+So here I have a compass point.
+
+
+1066
+00:43:44,786 --> 00:43:46,456
+It has north, south,
+east and west.
+
+
+1067
+00:43:47,156 --> 00:43:49,666
+There's no real number or string
+that really makes sense to tie
+
+
+1068
+00:43:49,716 --> 00:43:51,316
+to these so they're just values.
+
+
+1069
+00:43:52,026 --> 00:43:53,106
+They're just values
+in themselves.
+
+
+1070
+00:43:53,106 --> 00:43:54,246
+So how do I work with them?
+
+
+1071
+00:43:54,936 --> 00:43:56,056
+Let's create a directionToHead.
+
+
+1072
+00:43:56,056 --> 00:43:56,656
+It's a variable.
+
+
+1073
+00:43:56,656 --> 00:43:58,156
+I'm going to maybe
+change that in the future.
+
+
+1074
+00:43:58,156 --> 00:44:00,846
+And I'm going to set it
+to CompassPoint.West.
+
+
+1075
+00:44:01,916 --> 00:44:04,136
+Compiler will then say
+oh, it's a compass point.
+
+
+1076
+00:44:04,136 --> 00:44:06,166
+So it knows that directionToHead
+is a compass point.
+
+
+1077
+00:44:07,166 --> 00:44:08,346
+Let's say I'm following
+some directions
+
+
+1078
+00:44:08,346 --> 00:44:10,036
+and I change direction,
+I want to head east.
+
+
+1079
+00:44:10,136 --> 00:44:10,866
+How do I saw that?
+
+
+1080
+00:44:11,536 --> 00:44:14,106
+Well, because the compiler
+knows that it's a compass point,
+
+
+1081
+00:44:14,106 --> 00:44:16,906
+all I have to say is enough
+to change that to east,
+
+
+1082
+00:44:17,006 --> 00:44:18,486
+which is .east in this example.
+
+
+1083
+00:44:19,186 --> 00:44:22,406
+This works extremely
+well when you're working
+
+
+1084
+00:44:22,406 --> 00:44:23,686
+with Cocoa Touch and Cocoa.
+
+
+1085
+00:44:24,036 --> 00:44:26,426
+We've done some incredible
+magic when we've imported things
+
+
+1086
+00:44:26,426 --> 00:44:29,236
+over into Swift, so that if
+you're dealing with a UILabel
+
+
+1087
+00:44:29,276 --> 00:44:31,856
+for example and you want to set
+the text alignment property,
+
+
+1088
+00:44:33,346 --> 00:44:35,826
+in Objective-C you do that
+with NSTextAlignment right.
+
+
+1089
+00:44:35,976 --> 00:44:40,796
+But the compiler knows text
+alignment is NSTextAlignment,
+
+
+1090
+00:44:40,796 --> 00:44:43,306
+that is the type, so all we
+need to do is supply enough
+
+
+1091
+00:44:43,426 --> 00:44:44,626
+to specify that it is right.
+
+
+1092
+00:44:45,216 --> 00:44:47,766
+So the text alignment is now
+right, much more readable,
+
+
+1093
+00:44:47,766 --> 00:44:49,946
+much more concise,
+super awesome.
+
+
+1094
+00:44:50,386 --> 00:44:53,156
+Enums can have raw
+values, underlying values,
+
+
+1095
+00:44:54,186 --> 00:44:56,886
+no values at all but there's a
+different type I want to talk
+
+
+1096
+00:44:56,886 --> 00:44:59,726
+about and that's enumerations
+with associated values,
+
+
+1097
+00:45:00,016 --> 00:45:01,726
+neither are discriminated
+unions.
+
+
+1098
+00:45:01,906 --> 00:45:04,126
+So to give you an example,
+let's consider a train.
+
+
+1099
+00:45:04,736 --> 00:45:07,546
+Trains are usually one of two
+things, they're either on time,
+
+
+1100
+00:45:07,786 --> 00:45:10,196
+sometimes, or they're delayed.
+
+
+1101
+00:45:11,146 --> 00:45:14,596
+If they're on time, they're just
+on time but, if they're delayed,
+
+
+1102
+00:45:15,156 --> 00:45:16,436
+they're delayed by
+a number of minutes.
+
+
+1103
+00:45:17,046 --> 00:45:20,436
+So in this case we have
+(Int) after the delayed case.
+
+
+1104
+00:45:20,436 --> 00:45:23,876
+And this says that I want to
+be able to, to catch both,
+
+
+1105
+00:45:23,876 --> 00:45:26,486
+either on time or the
+delay and the number
+
+
+1106
+00:45:26,486 --> 00:45:27,446
+of minutes that it's delayed.
+
+
+1107
+00:45:28,046 --> 00:45:29,876
+Let's see how we work with that.
+
+
+1108
+00:45:29,876 --> 00:45:32,756
+I'm going to create a status
+variable and I'm going
+
+
+1109
+00:45:32,756 --> 00:45:35,456
+to set it's initial value
+to TrainStatus.OnTime.
+
+
+1110
+00:45:35,516 --> 00:45:39,056
+The train's very optimistic,
+he always starts on time but,
+
+
+1111
+00:45:39,056 --> 00:45:42,856
+as we all know, sometimes stuff
+happens and they get delayed
+
+
+1112
+00:45:43,256 --> 00:45:46,666
+and so we can change that just
+by saying, hey, it's now delayed
+
+
+1113
+00:45:46,666 --> 00:45:50,646
+and we can supply the value,
+42 minutes, right there.
+
+
+1114
+00:45:50,826 --> 00:45:52,196
+So that's an associated value.
+
+
+1115
+00:45:52,936 --> 00:45:55,876
+Very powerful but we can,
+we can do more than this.
+
+
+1116
+00:45:55,876 --> 00:45:58,406
+I'm going to add a little
+bit more functionality
+
+
+1117
+00:45:58,406 --> 00:46:01,746
+to my train status and I'm gonna
+start by adding an initializer.
+
+
+1118
+00:46:02,746 --> 00:46:05,366
+This means that when
+I declare something
+
+
+1119
+00:46:05,366 --> 00:46:08,036
+that uses this train status
+it will automatically get the
+
+
+1120
+00:46:08,036 --> 00:46:09,656
+onTime status by default.
+
+
+1121
+00:46:09,656 --> 00:46:12,036
+I'm not going to
+stop there though.
+
+
+1122
+00:46:13,156 --> 00:46:15,446
+Let's add a computed
+property called description.
+
+
+1123
+00:46:16,806 --> 00:46:19,516
+This time I'm going to
+determine what the value is
+
+
+1124
+00:46:19,516 --> 00:46:22,096
+and then give back a string
+that means something sensible.
+
+
+1125
+00:46:22,096 --> 00:46:24,086
+So if it's on time it
+will say, "On time."
+
+
+1126
+00:46:24,876 --> 00:46:27,736
+If it's delayed, I'm going
+to grab the number of minutes
+
+
+1127
+00:46:27,736 --> 00:46:30,276
+that it's delayed by by binding
+minutes in here to the number
+
+
+1128
+00:46:30,276 --> 00:46:31,876
+and then I can build
+a string using
+
+
+1129
+00:46:31,876 --> 00:46:32,986
+that with string interpolation.
+
+
+1130
+00:46:34,336 --> 00:46:36,406
+So enumerations are
+hugely powerful here.
+
+
+1131
+00:46:36,716 --> 00:46:38,246
+How do I work with this
+thing once I've done this?
+
+
+1132
+00:46:38,746 --> 00:46:40,696
+Well, now I can delay,
+I can declare it
+
+
+1133
+00:46:40,696 --> 00:46:42,276
+with status = TrainStatus().
+
+
+1134
+00:46:42,386 --> 00:46:45,106
+That'll give me an
+on-time status by default.
+
+
+1135
+00:46:45,106 --> 00:46:47,466
+So if I print the description
+it will say it's on time
+
+
+1136
+00:46:47,706 --> 00:46:49,356
+but then it gets delayed, hmm.
+
+
+1137
+00:46:49,776 --> 00:46:51,786
+And so I can set
+the delay and now
+
+
+1138
+00:46:51,786 --> 00:46:54,096
+when I call description it will
+give me "delayed by 42 minutes".
+
+
+1139
+00:46:54,726 --> 00:46:58,636
+But this status is very
+much tied to a train.
+
+
+1140
+00:46:59,336 --> 00:47:01,236
+It's very likely that the
+only place we really use this
+
+
+1141
+00:47:01,236 --> 00:47:03,476
+in our app is inside
+some kind of train class.
+
+
+1142
+00:47:03,536 --> 00:47:05,316
+It seems a bit of shame
+to have it just floating
+
+
+1143
+00:47:05,316 --> 00:47:06,306
+around for anyone to use,
+
+
+1144
+00:47:06,556 --> 00:47:08,766
+or at least making it super
+easy for anyone to use.
+
+
+1145
+00:47:09,316 --> 00:47:11,336
+Wouldn't it be nice if
+we could tie our status
+
+
+1146
+00:47:11,386 --> 00:47:12,856
+into the train class itself?
+
+
+1147
+00:47:13,686 --> 00:47:15,686
+Well in Swift we can do
+that by nesting the type.
+
+
+1148
+00:47:16,356 --> 00:47:20,736
+So we can grab, we can put our
+status inside the train class,
+
+
+1149
+00:47:20,836 --> 00:47:21,716
+nest it right there.
+
+
+1150
+00:47:21,716 --> 00:47:23,716
+So now it's just called Status
+because it's inside the train.
+
+
+1151
+00:47:24,216 --> 00:47:25,076
+Set up as before.
+
+
+1152
+00:47:25,076 --> 00:47:27,366
+I can still have a property
+on my train that is of this,
+
+
+1153
+00:47:27,366 --> 00:47:29,626
+of this status and it will
+be set to OnTime by default
+
+
+1154
+00:47:29,936 --> 00:47:30,716
+and we can just use it.
+
+
+1155
+00:47:31,426 --> 00:47:32,826
+So we can nest types in Swift.
+
+
+1156
+00:47:33,466 --> 00:47:34,646
+Let's move on to more power.
+
+
+1157
+00:47:35,056 --> 00:47:35,586
+I like power.
+
+
+1158
+00:47:35,956 --> 00:47:36,586
+Extensions.
+
+
+1159
+00:47:37,656 --> 00:47:38,676
+So an extension in Swift,
+
+
+1160
+00:47:38,946 --> 00:47:40,586
+very much like a
+category in Objective-C.
+
+
+1161
+00:47:41,786 --> 00:47:43,076
+We can extend any Class we like.
+
+
+1162
+00:47:43,746 --> 00:47:46,106
+But in Swift we can go
+a little bit further.
+
+
+1163
+00:47:46,236 --> 00:47:48,906
+We can actually extend
+any named type we like,
+
+
+1164
+00:47:49,926 --> 00:47:51,006
+including value types.
+
+
+1165
+00:47:51,566 --> 00:47:53,496
+So here I have my Size
+structure you saw earlier,
+
+
+1166
+00:47:53,906 --> 00:47:54,486
+that's a structure.
+
+
+1167
+00:47:54,486 --> 00:47:56,446
+And I'm going to add
+this mutating function.
+
+
+1168
+00:47:56,446 --> 00:47:58,526
+It increases the size
+by a given factor
+
+
+1169
+00:47:58,676 --> 00:48:00,736
+because it changes the
+underlying values I've marked
+
+
+1170
+00:48:00,736 --> 00:48:01,396
+as mutating.
+
+
+1171
+00:48:02,776 --> 00:48:04,026
+But I'm not just limited
+
+
+1172
+00:48:04,576 --> 00:48:06,176
+to named types that
+I have in Swift.
+
+
+1173
+00:48:06,636 --> 00:48:09,896
+I can actually also extend
+any name type I have available
+
+
+1174
+00:48:09,896 --> 00:48:10,236
+to me.
+
+
+1175
+00:48:10,556 --> 00:48:13,136
+So here I'm extending CGSize,
+that's from Core Graphics.
+
+
+1176
+00:48:13,136 --> 00:48:16,666
+It's a structure defined in C to
+add the same increaseByFactor.
+
+
+1177
+00:48:17,396 --> 00:48:19,256
+When I've done that,
+it's available anywhere
+
+
+1178
+00:48:19,366 --> 00:48:21,296
+in my Swift code
+from this extension.
+
+
+1179
+00:48:21,906 --> 00:48:24,316
+So that's extending
+a named type.
+
+
+1180
+00:48:24,316 --> 00:48:26,326
+I want to see what else
+I can do with this.
+
+
+1181
+00:48:27,256 --> 00:48:31,176
+Wouldn't it be fantastic if
+I could extend, hmm, an Int?
+
+
+1182
+00:48:32,056 --> 00:48:34,486
+Well, yes it would
+and let's do that.
+
+
+1183
+00:48:35,596 --> 00:48:37,636
+Int is just a structure
+defined in the standard library
+
+
+1184
+00:48:37,636 --> 00:48:41,626
+so I can extend it and I'm going
+to add a repetitions function
+
+
+1185
+00:48:41,626 --> 00:48:44,536
+to my integer and this is going
+to take a task, a closure,
+
+
+1186
+00:48:44,536 --> 00:48:45,966
+and it's going to
+repeat it to how,
+
+
+1187
+00:48:45,966 --> 00:48:49,066
+whatever value the
+integer is, 0..self,
+
+
+1188
+00:48:49,206 --> 00:48:51,226
+that will give me the number
+of repetitions I need.
+
+
+1189
+00:48:52,346 --> 00:48:54,606
+So now I can supply
+closure on the call
+
+
+1190
+00:48:54,606 --> 00:48:57,006
+to repetitions on
+any integer value.
+
+
+1191
+00:48:57,596 --> 00:49:00,366
+So I can say, for
+example, 500.repetitions
+
+
+1192
+00:49:00,366 --> 00:49:02,296
+and then supply closure
+and I'll get "Hello!"
+
+
+1193
+00:49:02,296 --> 00:49:03,306
+printed 500 times [applause].
+
+
+1194
+00:49:03,946 --> 00:49:04,466
+But there's more.
+
+
+1195
+00:49:06,006 --> 00:49:09,126
+Because, because the
+closure is the last argument
+
+
+1196
+00:49:09,606 --> 00:49:13,426
+in this function call, I can
+hoist it out, put it outside
+
+
+1197
+00:49:13,426 --> 00:49:15,216
+of the parentheses
+and, you know what?
+
+
+1198
+00:49:15,286 --> 00:49:18,676
+For training closures, if there
+are no other arguments I don't
+
+
+1199
+00:49:18,676 --> 00:49:20,006
+even need the parentheses.
+
+
+1200
+00:49:20,106 --> 00:49:20,666
+So this turns
+
+
+1201
+00:49:20,666 --> 00:49:24,366
+into 500.repetitions do this
+thing like Control Flow.
+
+
+1202
+00:49:25,036 --> 00:49:27,606
+So I just extended an
+Int, a value type Int
+
+
+1203
+00:49:27,606 --> 00:49:28,346
+from the Standard Library.
+
+
+1204
+00:49:28,346 --> 00:49:29,146
+How amazing is that?
+
+
+1205
+00:49:29,626 --> 00:49:32,086
+And as we head more into kind
+of blow your mind territory,
+
+
+1206
+00:49:32,086 --> 00:49:35,466
+I'm going to leave you with one
+more thing and that's generics.
+
+
+1207
+00:49:36,466 --> 00:49:38,306
+So let's start with a
+non-generic example.
+
+
+1208
+00:49:39,816 --> 00:49:42,236
+Here I have a stack of
+integers, it's an IntStack.
+
+
+1209
+00:49:43,426 --> 00:49:45,196
+And I can push values
+onto the stack
+
+
+1210
+00:49:45,196 --> 00:49:48,246
+and I can pop them off again and
+that's, that's great but what
+
+
+1211
+00:49:48,246 --> 00:49:50,546
+if I wanted a double
+stack or a string stack?
+
+
+1212
+00:49:50,726 --> 00:49:51,986
+Or, hell, even a
+stack of stacks?
+
+
+1213
+00:49:52,326 --> 00:49:53,736
+How would I, how would
+I, how would I do that?
+
+
+1214
+00:49:54,246 --> 00:49:57,426
+Well, I'd have to duplicate
+this definition multiple times
+
+
+1215
+00:49:57,426 --> 00:49:58,806
+and the only thing I would
+change would be these
+
+
+1216
+00:49:58,886 --> 00:50:00,986
+highlighted bits, the
+Ints across there.
+
+
+1217
+00:50:00,986 --> 00:50:04,136
+That's the types used for the
+Array and the two functions
+
+
+1218
+00:50:04,136 --> 00:50:05,026
+that I have, the two methods.
+
+
+1219
+00:50:06,386 --> 00:50:08,196
+Wouldn't it be lovely if I
+could just say, you know this,
+
+
+1220
+00:50:08,336 --> 00:50:09,766
+this should work
+with any type at all?
+
+
+1221
+00:50:10,396 --> 00:50:13,256
+We can do that with a generic.
+
+
+1222
+00:50:13,816 --> 00:50:15,706
+So generics in Swift,
+you indicate the type
+
+
+1223
+00:50:15,826 --> 00:50:18,296
+with these angle
+brackets and so <T>
+
+
+1224
+00:50:18,456 --> 00:50:20,896
+that says there is a
+generic-type parameter here
+
+
+1225
+00:50:21,056 --> 00:50:24,006
+and anything that uses this
+T, that must be the same type.
+
+
+1226
+00:50:24,746 --> 00:50:26,906
+So elements is just
+an array of Ts.
+
+
+1227
+00:50:27,676 --> 00:50:30,036
+Push now takes a T,
+pop now returns a T.
+
+
+1228
+00:50:30,576 --> 00:50:31,096
+What does that mean?
+
+
+1229
+00:50:31,736 --> 00:50:34,816
+It means that we can now build
+our stack of Ints like this.
+
+
+1230
+00:50:34,816 --> 00:50:37,856
+We can just say create
+stack of Ints, push on 50,
+
+
+1231
+00:50:37,856 --> 00:50:39,126
+notice I'm not specifying
+anything
+
+
+1232
+00:50:39,126 --> 00:50:41,776
+and here the compiler knows
+that push must take an integer
+
+
+1233
+00:50:41,876 --> 00:50:42,786
+if it's a stack of Ints.
+
+
+1234
+00:50:42,956 --> 00:50:43,886
+So I'm pushing 50 on.
+
+
+1235
+00:50:44,236 --> 00:50:47,376
+I can pop that off and it knows
+that lastIn will be of type Int
+
+
+1236
+00:50:47,416 --> 00:50:48,726
+because that's what
+I'm dealing with.
+
+
+1237
+00:50:49,186 --> 00:50:49,816
+What about strings?
+
+
+1238
+00:50:49,816 --> 00:50:51,876
+Well, I can use this
+with a string as well,
+
+
+1239
+00:50:51,876 --> 00:50:55,556
+so now I can create a string of,
+uh, a stack of strings and push
+
+
+1240
+00:50:55,556 --> 00:50:57,816
+on a string, again, compiler
+knows it can only work
+
+
+1241
+00:50:57,816 --> 00:50:59,496
+with a string and when
+I pop it off it knows
+
+
+1242
+00:50:59,496 --> 00:51:01,346
+that I'm returning a string,
+therefore I can print it.
+
+
+1243
+00:51:02,656 --> 00:51:03,406
+So that's generics.
+
+
+1244
+00:51:03,406 --> 00:51:05,766
+It's a very, very brief
+introduction to generics.
+
+
+1245
+00:51:06,166 --> 00:51:08,186
+To get further details on all
+
+
+1246
+00:51:08,186 --> 00:51:10,206
+of the awesome stuff you can
+do you should check out the
+
+
+1247
+00:51:10,206 --> 00:51:10,986
+"Advanced Swift" talk.
+
+
+1248
+00:51:12,346 --> 00:51:13,816
+That brings me on
+to a question then.
+
+
+1249
+00:51:14,546 --> 00:51:16,086
+How do you learn Swift?
+
+
+1250
+00:51:16,086 --> 00:51:19,316
+How do you go and figure out
+all the cool stuff you can do
+
+
+1251
+00:51:19,316 --> 00:51:19,966
+with this language?
+
+
+1252
+00:51:20,566 --> 00:51:23,996
+Well, as we saw up front,
+this book is available.
+
+
+1253
+00:51:23,996 --> 00:51:25,486
+It's in the Doc Viewer,
+it's online.
+
+
+1254
+00:51:25,856 --> 00:51:27,106
+It's available in
+the iBooks Store.
+
+
+1255
+00:51:27,106 --> 00:51:29,096
+The Swift Programming Languages:
+it's the canonical guide
+
+
+1256
+00:51:29,096 --> 00:51:30,236
+and reference to the language.
+
+
+1257
+00:51:31,566 --> 00:51:34,686
+We also have Using Swift
+with Cocoa and Objective-C.
+
+
+1258
+00:51:34,686 --> 00:51:36,746
+This is a document that tells
+you how to work with Cocoa
+
+
+1259
+00:51:36,746 --> 00:51:38,296
+and Objective-C from
+existing code,
+
+
+1260
+00:51:39,026 --> 00:51:40,316
+how Swift interoperates
+with Cocoa.
+
+
+1261
+00:51:40,316 --> 00:51:42,956
+For more information
+on the language itself,
+
+
+1262
+00:51:43,616 --> 00:51:45,686
+check out the intermediate
+and advanced Swift talks.
+
+
+1263
+00:51:45,826 --> 00:51:47,536
+And for more information
+on Objective-C
+
+
+1264
+00:51:47,536 --> 00:51:50,276
+and interoperability, check
+out the two "Interoperability
+
+
+1265
+00:51:50,616 --> 00:51:52,916
+in Depth" and "Integrating
+Swift with Objective-C" talks.
+
+
+1266
+00:51:53,806 --> 00:51:54,946
+We are in labs all week.
+
+
+1267
+00:51:55,166 --> 00:51:56,346
+Come down, tell us
+what you think.
+
+
+1268
+00:51:56,346 --> 00:51:57,466
+We want to hear your questions.
+
+
+1269
+00:51:57,976 --> 00:52:00,586
+If you're playing along at home,
+talk to this guy, Dave DeLong.
+
+
+1270
+00:52:00,586 --> 00:52:01,396
+He's our evangelist.
+
+
+1271
+00:52:01,966 --> 00:52:03,056
+Check out Developer Forums.
+
+
+1272
+00:52:03,056 --> 00:52:03,706
+Thank you very much.
+
+
+1273
+00:52:03,866 --> 00:52:04,846
+That is Swift.
+
+
+1274
+00:52:05,516 --> 00:52:12,310
+[ Applause ]
+

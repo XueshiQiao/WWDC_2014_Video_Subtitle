@@ -1,0 +1,7474 @@
+1
+00:00:11,376 --> 00:00:12,126
+>> All right.
+
+
+2
+00:00:12,266 --> 00:00:14,306
+Good morning, still, right?
+
+
+3
+00:00:14,646 --> 00:00:17,306
+Sorry, I've been up
+here a little while.
+
+
+4
+00:00:17,306 --> 00:00:19,056
+I forgot what time it is.
+
+
+5
+00:00:19,426 --> 00:00:21,276
+Welcome to "Building
+Interruptible
+
+
+6
+00:00:21,276 --> 00:00:22,596
+and Responsive Interactions".
+
+
+7
+00:00:23,416 --> 00:00:27,526
+So Andy and I want to
+spend some time talking
+
+
+8
+00:00:27,526 --> 00:00:30,346
+about how you can build
+interactions into your apps
+
+
+9
+00:00:30,686 --> 00:00:33,506
+that are really fluid and
+make the user interaction
+
+
+10
+00:00:33,506 --> 00:00:36,546
+with the content in your app
+really smooth and natural
+
+
+11
+00:00:37,076 --> 00:00:39,736
+and avoid any sort
+of jarring changes
+
+
+12
+00:00:40,116 --> 00:00:42,376
+as you transition
+between things.
+
+
+13
+00:00:42,746 --> 00:00:44,926
+And if you were just here
+for the Scroll View session,
+
+
+14
+00:00:44,926 --> 00:00:46,026
+I'm going to start
+out with something
+
+
+15
+00:00:46,026 --> 00:00:47,816
+that probably won't
+be too surprising
+
+
+16
+00:00:47,816 --> 00:00:50,916
+and show you a scroll view, just
+to give you an idea of the kind
+
+
+17
+00:00:50,916 --> 00:00:52,356
+of things that we're
+talking about here.
+
+
+18
+00:00:53,226 --> 00:00:56,556
+So here I've got a nice bird
+that's in a UIScrollView,
+
+
+19
+00:00:56,776 --> 00:00:58,666
+and I'm zooming and
+scrolling and stuff.
+
+
+20
+00:00:58,666 --> 00:01:03,526
+The thing I want to draw your
+attention to is the transitions
+
+
+21
+00:01:03,526 --> 00:01:06,886
+between the user dragging around
+in a scroll view and letting go
+
+
+22
+00:01:06,886 --> 00:01:09,706
+and how animations start
+and then grabbing again
+
+
+23
+00:01:09,706 --> 00:01:11,156
+as the animations
+are in progress.
+
+
+24
+00:01:11,156 --> 00:01:14,256
+So I can zoom in on this
+bird and I can drag it down
+
+
+25
+00:01:14,256 --> 00:01:15,956
+and it'll bounce
+against the edge.
+
+
+26
+00:01:16,146 --> 00:01:18,156
+But if I keep grabbing
+it, there's never a time
+
+
+27
+00:01:18,156 --> 00:01:19,596
+where I can't start scrolling.
+
+
+28
+00:01:19,896 --> 00:01:20,676
+It always works.
+
+
+29
+00:01:20,896 --> 00:01:24,816
+And I can scroll around and it's
+all a very smooth transition.
+
+
+30
+00:01:24,816 --> 00:01:26,406
+And that's what we want to talk
+
+
+31
+00:01:26,406 --> 00:01:29,006
+about this morning
+is transitions.
+
+
+32
+00:01:29,816 --> 00:01:31,276
+So what kinds of transitions?
+
+
+33
+00:01:31,786 --> 00:01:33,436
+Well, three transitions
+in particular.
+
+
+34
+00:01:34,216 --> 00:01:38,016
+Number one: transitioning from
+gestures into animations and how
+
+
+35
+00:01:38,016 --> 00:01:39,496
+to do that really,
+really smoothly.
+
+
+36
+00:01:40,276 --> 00:01:43,856
+Number two: transitioning from
+animations to other animations.
+
+
+37
+00:01:44,656 --> 00:01:46,436
+And I'm sure you've already
+guessed what number three is:
+
+
+38
+00:01:46,836 --> 00:01:50,066
+transitioning from animations
+back into gesture control.
+
+
+39
+00:01:50,666 --> 00:01:53,336
+So the key to making all
+
+
+40
+00:01:53,336 --> 00:01:56,106
+of these interactions really
+smooth is just making sure
+
+
+41
+00:01:56,106 --> 00:01:58,756
+that the transitions
+between these states are
+
+
+42
+00:01:58,756 --> 00:01:59,966
+as seamless as possible.
+
+
+43
+00:02:01,066 --> 00:02:03,236
+And so let's start out by
+talking about transitioning
+
+
+44
+00:02:03,236 --> 00:02:05,416
+from your gestures
+into your animations.
+
+
+45
+00:02:06,466 --> 00:02:08,026
+So it's often the case
+that you're doing something
+
+
+46
+00:02:08,026 --> 00:02:11,026
+like dragging content around
+using a PanGestureRecognizer.
+
+
+47
+00:02:11,396 --> 00:02:13,496
+And you're maybe having it
+track your finger directly
+
+
+48
+00:02:13,496 --> 00:02:16,706
+because that's a really great
+way on a multi-touch device
+
+
+49
+00:02:16,966 --> 00:02:19,326
+to optimize gesture
+interactions.
+
+
+50
+00:02:19,656 --> 00:02:21,666
+But then when you
+lift, you might want
+
+
+51
+00:02:21,666 --> 00:02:22,716
+to start some animations,
+
+
+52
+00:02:22,716 --> 00:02:25,096
+something like what a scroll
+view does, to do a deceleration
+
+
+53
+00:02:25,096 --> 00:02:26,516
+or something of that nature.
+
+
+54
+00:02:26,876 --> 00:02:28,056
+And you want that
+transition point
+
+
+55
+00:02:28,056 --> 00:02:29,126
+to be as smooth as you can.
+
+
+56
+00:02:29,746 --> 00:02:32,306
+So let's take a look at two
+possible ways to do this.
+
+
+57
+00:02:33,566 --> 00:02:35,736
+I've got this on loop, so I'm
+just going to leave it up here
+
+
+58
+00:02:35,736 --> 00:02:37,746
+for like 15 minutes and
+we can just stare at it
+
+
+59
+00:02:37,796 --> 00:02:39,876
+for the rest of the day.
+
+
+60
+00:02:41,086 --> 00:02:43,736
+The bottom one is looking a
+lot smoother than that top one.
+
+
+61
+00:02:44,106 --> 00:02:46,676
+We've got two fingers that
+are dragging these boxes.
+
+
+62
+00:02:47,286 --> 00:02:49,636
+This one comes off
+when the finger lifts
+
+
+63
+00:02:49,636 --> 00:02:52,596
+with the same velocity and it
+comes to rest nice and smoothly.
+
+
+64
+00:02:53,066 --> 00:02:57,156
+The top one, as soon as I lift
+my finger, it snaps to a stop
+
+
+65
+00:02:57,156 --> 00:03:00,256
+and then slowly starts up
+and then comes to rest.
+
+
+66
+00:03:00,806 --> 00:03:02,966
+So we want to figure out
+a way that we can make all
+
+
+67
+00:03:02,966 --> 00:03:04,346
+of our transitions from gestures
+
+
+68
+00:03:04,346 --> 00:03:06,606
+to animations behave
+like that bottom box.
+
+
+69
+00:03:07,106 --> 00:03:10,896
+And the first part to making
+this happen is to figure
+
+
+70
+00:03:10,896 --> 00:03:13,166
+out what velocity we want
+to start our animation at.
+
+
+71
+00:03:14,076 --> 00:03:16,646
+So number one concern:
+compute velocity.
+
+
+72
+00:03:17,756 --> 00:03:20,576
+Now, if you're using some of the
+standard UI gesture recognizers,
+
+
+73
+00:03:20,576 --> 00:03:21,826
+this is really easy to do
+
+
+74
+00:03:21,826 --> 00:03:23,226
+because it's actually
+already done for you.
+
+
+75
+00:03:23,226 --> 00:03:25,836
+So if you're using a
+UIPanGestureRecognizer,
+
+
+76
+00:03:26,166 --> 00:03:27,846
+you've got this velocity
+and view method
+
+
+77
+00:03:27,846 --> 00:03:29,486
+and you can just pass in a view
+
+
+78
+00:03:29,486 --> 00:03:31,886
+and you'll get back the velocity
+the panning was happening at
+
+
+79
+00:03:32,336 --> 00:03:33,986
+and whatever coordinate
+space you need
+
+
+80
+00:03:34,386 --> 00:03:35,556
+to start your animation.
+
+
+81
+00:03:36,446 --> 00:03:37,186
+So that's really easy.
+
+
+82
+00:03:37,646 --> 00:03:40,716
+If you're using a pinch or a
+rotation gesture recognizer,
+
+
+83
+00:03:40,996 --> 00:03:44,296
+you get the exact same kind of
+thing, just for whatever it is
+
+
+84
+00:03:44,296 --> 00:03:45,076
+that you're computing.
+
+
+85
+00:03:45,076 --> 00:03:46,626
+In the case of
+UIPinchGestureRecognizer,
+
+
+86
+00:03:46,626 --> 00:03:48,276
+you're getting the
+velocity of the scale.
+
+
+87
+00:03:48,746 --> 00:03:51,196
+And for the rotation you're
+getting angular velocity
+
+
+88
+00:03:51,516 --> 00:03:52,266
+for that rotation.
+
+
+89
+00:03:53,186 --> 00:03:54,856
+So computing is really
+easy if you're using one
+
+
+90
+00:03:54,856 --> 00:03:56,296
+of these standard
+gesture recognizers.
+
+
+91
+00:03:56,696 --> 00:03:58,886
+If you're not, computing
+velocity is still a pretty
+
+
+92
+00:03:58,886 --> 00:03:59,866
+straightforward thing to do.
+
+
+93
+00:03:59,866 --> 00:04:01,646
+Velocity is just
+distance over time,
+
+
+94
+00:04:01,976 --> 00:04:04,236
+so if you just keep accumulating
+your distance and your times
+
+
+95
+00:04:04,236 --> 00:04:06,096
+and keeping track of that,
+you can compute the velocity
+
+
+96
+00:04:06,096 --> 00:04:07,246
+that you should start yourself
+
+
+97
+00:04:07,246 --> 00:04:08,946
+for whatever interaction
+you're interested in.
+
+
+98
+00:04:09,496 --> 00:04:10,676
+So that part's pretty
+straightforward.
+
+
+99
+00:04:10,676 --> 00:04:12,206
+The interesting part is,
+
+
+100
+00:04:12,206 --> 00:04:14,466
+how do we start our
+animation at that velocity?
+
+
+101
+00:04:14,466 --> 00:04:18,696
+So let's take a look at the
+standard UIKitAnimation method.
+
+
+102
+00:04:18,755 --> 00:04:22,186
+We've got animateWithDuration,
+delay, options,
+
+
+103
+00:04:22,446 --> 00:04:24,656
+animations, completion.
+
+
+104
+00:04:25,456 --> 00:04:26,566
+So there's no velocity in there.
+
+
+105
+00:04:26,806 --> 00:04:30,086
+So that's not going to
+be obviously an easy way
+
+
+106
+00:04:30,086 --> 00:04:30,856
+to go about doing this.
+
+
+107
+00:04:31,256 --> 00:04:34,186
+But happily last year with
+iOS 7 we introduced a new,
+
+
+108
+00:04:34,186 --> 00:04:35,846
+more expressive version
+of this method
+
+
+109
+00:04:36,186 --> 00:04:38,156
+that had two new
+parameters in it.
+
+
+110
+00:04:38,806 --> 00:04:41,866
+We've got usingSpringWithDamping
+and initialSpringVelocity.
+
+
+111
+00:04:42,016 --> 00:04:43,636
+So that is looking a
+little more promising.
+
+
+112
+00:04:45,106 --> 00:04:47,126
+So let's focus on that
+initialSpringVelocity.
+
+
+113
+00:04:47,786 --> 00:04:50,056
+This is the thing that is going
+to let us pass the velocity
+
+
+114
+00:04:50,056 --> 00:04:52,316
+out of our gesture recognizer
+or wherever we computed it
+
+
+115
+00:04:52,516 --> 00:04:53,746
+and start an animation
+that feels
+
+
+116
+00:04:53,746 --> 00:04:55,756
+like it's coming off the
+finger really, really smoothly.
+
+
+117
+00:04:56,576 --> 00:04:58,646
+So how do we compute this
+initialSpringVelocity?
+
+
+118
+00:04:58,706 --> 00:05:00,916
+Do we just take that velocity
+that we had and pass it in?
+
+
+119
+00:05:01,586 --> 00:05:03,126
+Obviously if the answer was yes,
+
+
+120
+00:05:03,126 --> 00:05:04,326
+I wouldn't really be
+talking about this.
+
+
+121
+00:05:04,326 --> 00:05:06,036
+So we're probably going to
+have to do something else.
+
+
+122
+00:05:06,646 --> 00:05:08,146
+So let's take a look
+at an example,
+
+
+123
+00:05:08,146 --> 00:05:10,436
+assuming that we were panning
+some object and we want
+
+
+124
+00:05:10,436 --> 00:05:13,166
+to start having it decelerate
+just along the x-axis
+
+
+125
+00:05:13,166 --> 00:05:15,356
+for simplicity's sake,
+and see what we do.
+
+
+126
+00:05:15,996 --> 00:05:16,846
+So we've got a box.
+
+
+127
+00:05:16,846 --> 00:05:17,726
+We were panning that around.
+
+
+128
+00:05:17,726 --> 00:05:20,586
+It's at point 50 right now,
+x-coordinate 50, and we're going
+
+
+129
+00:05:20,586 --> 00:05:22,356
+to have it animate over
+to the right side there
+
+
+130
+00:05:22,356 --> 00:05:23,966
+to x-coordinate 150.
+
+
+131
+00:05:24,496 --> 00:05:27,866
+Now, let's assume
+that we calculated
+
+
+132
+00:05:27,866 --> 00:05:30,486
+that our horizontal velocity
+was about 50 points per second,
+
+
+133
+00:05:30,566 --> 00:05:33,596
+so that's where we
+start this animation at.
+
+
+134
+00:05:33,676 --> 00:05:35,686
+To figure out what
+velocity we want to pass
+
+
+135
+00:05:35,686 --> 00:05:36,916
+in for the
+initialSpringVelocity,
+
+
+136
+00:05:36,916 --> 00:05:39,776
+we actually have to compute
+a normalized velocity.
+
+
+137
+00:05:40,296 --> 00:05:42,176
+The coordinate space that
+this method is expecting
+
+
+138
+00:05:42,176 --> 00:05:45,826
+to get the velocity in is a
+normalized coordinate space.
+
+
+139
+00:05:46,106 --> 00:05:48,956
+And we want to normalize it
+based on the total distance
+
+
+140
+00:05:48,956 --> 00:05:51,526
+that this object is going to
+travel during the animation.
+
+
+141
+00:05:52,266 --> 00:05:54,236
+So first we have to
+calculate that distance.
+
+
+142
+00:05:54,236 --> 00:05:56,906
+So we've got our
+destination value, that's 150.
+
+
+143
+00:05:57,316 --> 00:06:00,646
+We want to subtract from
+that the starting point.
+
+
+144
+00:06:00,646 --> 00:06:01,906
+So we subtract off 50.
+
+
+145
+00:06:02,156 --> 00:06:04,336
+And we get a total distance
+traveled of 100 points.
+
+
+146
+00:06:05,206 --> 00:06:07,466
+So then to figure out
+the velocity to pass in,
+
+
+147
+00:06:07,466 --> 00:06:09,946
+we just normalize the
+velocity we want by dividing
+
+
+148
+00:06:09,946 --> 00:06:11,086
+by that total distance.
+
+
+149
+00:06:11,406 --> 00:06:12,936
+So we take our 50
+points per second,
+
+
+150
+00:06:13,326 --> 00:06:15,456
+divide by the total
+distance traveled of 100,
+
+
+151
+00:06:15,656 --> 00:06:17,486
+and we get an initial
+velocity of .5.
+
+
+152
+00:06:18,846 --> 00:06:21,016
+That .5 we just passed
+in, then, to the method
+
+
+153
+00:06:21,016 --> 00:06:23,636
+that we just took a look at
+as our initialSpringVelocity.
+
+
+154
+00:06:24,066 --> 00:06:27,286
+So UIViewAnimateWithDuration,
+we can give it a time,
+
+
+155
+00:06:27,556 --> 00:06:30,316
+how long it's going to take,
+delays, all those other things
+
+
+156
+00:06:30,316 --> 00:06:31,946
+that you normally
+do, and just pass
+
+
+157
+00:06:31,946 --> 00:06:33,336
+in that additional
+velocity parameter
+
+
+158
+00:06:33,336 --> 00:06:34,386
+and we'll get a really
+nice effect.
+
+
+159
+00:06:35,136 --> 00:06:36,616
+So then if we take a look
+at what that's going to end
+
+
+160
+00:06:36,616 --> 00:06:39,146
+up doing, we can see that
+if we drag this box around,
+
+
+161
+00:06:39,506 --> 00:06:41,896
+we get it coming off our
+finger really smoothly.
+
+
+162
+00:06:42,326 --> 00:06:44,556
+And, additionally, we
+get a nice bounce there
+
+
+163
+00:06:44,556 --> 00:06:45,716
+at the end as it comes to rest.
+
+
+164
+00:06:46,206 --> 00:06:48,026
+That bounce was the
+other parameter we saw
+
+
+165
+00:06:48,306 --> 00:06:51,026
+and you can tweak that to
+get a different kind of feel,
+
+
+166
+00:06:51,026 --> 00:06:52,716
+whatever feels good
+in your apps.
+
+
+167
+00:06:53,076 --> 00:06:56,226
+You can get nice springy
+animations as they come to rest
+
+
+168
+00:06:56,596 --> 00:06:58,376
+with a smooth velocity
+coming off your finger.
+
+
+169
+00:06:59,336 --> 00:07:03,056
+So that's what you can do with
+standard UIView animations.
+
+
+170
+00:07:03,346 --> 00:07:04,516
+But there's other
+options, as well.
+
+
+171
+00:07:04,916 --> 00:07:05,796
+So let's say maybe you wanted
+
+
+172
+00:07:05,796 --> 00:07:09,566
+to do something a little more
+advanced and have more types
+
+
+173
+00:07:09,566 --> 00:07:11,596
+of interactions with
+other views on screen
+
+
+174
+00:07:11,876 --> 00:07:13,586
+or more complicated
+decelerations
+
+
+175
+00:07:13,586 --> 00:07:14,526
+than just a spring.
+
+
+176
+00:07:15,636 --> 00:07:17,536
+So also in iOS 7, we
+introduced a class
+
+
+177
+00:07:17,536 --> 00:07:18,786
+called UIDynamicAnimator.
+
+
+178
+00:07:19,516 --> 00:07:22,196
+And this is another great way
+to go about getting animations
+
+
+179
+00:07:22,196 --> 00:07:23,386
+that feel like they
+come off your finger
+
+
+180
+00:07:23,386 --> 00:07:25,456
+at the exact velocity that
+you were interacting with.
+
+
+181
+00:07:26,176 --> 00:07:29,266
+So let's look at how we'd set
+that up in a UIViewController
+
+
+182
+00:07:29,376 --> 00:07:31,866
+in order to get some animations
+going with the DynamicAnimator.
+
+
+183
+00:07:32,466 --> 00:07:34,666
+So first off we would
+create a UIDynamicAnimator.
+
+
+184
+00:07:34,946 --> 00:07:36,436
+Now I'm doing this in
+Swift, so there's a couple
+
+
+185
+00:07:36,436 --> 00:07:37,366
+of interesting things
+we can talk
+
+
+186
+00:07:37,366 --> 00:07:38,426
+about while we go through this.
+
+
+187
+00:07:38,846 --> 00:07:41,366
+Here, I'm assuming this is a
+property on our view controller
+
+
+188
+00:07:41,366 --> 00:07:45,956
+and I've typed it as
+a "UIDynamicAnimator?"
+
+
+189
+00:07:45,956 --> 00:07:48,616
+And I actually just
+made that an equal sign.
+
+
+190
+00:07:48,616 --> 00:07:49,626
+It should be a colon.
+
+
+191
+00:07:49,976 --> 00:07:52,266
+I literally changed this on
+the stage before I got up here
+
+
+192
+00:07:52,266 --> 00:07:53,036
+because I thought it was wrong
+
+
+193
+00:07:53,036 --> 00:07:54,006
+and now I just realized
+while I'm
+
+
+194
+00:07:54,006 --> 00:07:56,526
+up here I changed it
+to the wrong thing.
+
+
+195
+00:07:56,806 --> 00:07:58,406
+So don't write code in Keynote.
+
+
+196
+00:07:58,406 --> 00:07:58,996
+It's a bad idea.
+
+
+197
+00:07:59,476 --> 00:08:02,936
+I'm trying to declare
+a DynamicAnimator
+
+
+198
+00:08:03,246 --> 00:08:06,056
+of type UIDynamicAnimator
+optional,
+
+
+199
+00:08:06,136 --> 00:08:08,156
+an optional UIDynamicAnimator,
+because we're going to go
+
+
+200
+00:08:08,156 --> 00:08:09,116
+and initialize this later.
+
+
+201
+00:08:09,396 --> 00:08:11,256
+The reason that this one
+needs to be optional here is
+
+
+202
+00:08:12,026 --> 00:08:14,776
+because UIDynamicAnimator,
+when you create one,
+
+
+203
+00:08:15,016 --> 00:08:18,206
+takes a UIView at creation time.
+
+
+204
+00:08:18,286 --> 00:08:21,286
+And you don't have a
+UIView at creation time
+
+
+205
+00:08:21,286 --> 00:08:23,346
+of UIViewController because
+you want view controllers
+
+
+206
+00:08:23,346 --> 00:08:24,396
+to load their views lazily.
+
+
+207
+00:08:24,826 --> 00:08:26,286
+So we want to start
+out with this being nil
+
+
+208
+00:08:26,286 --> 00:08:27,296
+and then initialize it later.
+
+
+209
+00:08:28,066 --> 00:08:30,226
+So, anyway, we've declared
+our property for it.
+
+
+210
+00:08:30,226 --> 00:08:31,896
+We'll go and set it
+up a little bit later.
+
+
+211
+00:08:32,456 --> 00:08:35,666
+Now we've got our
+dynamicItemBehavior,
+
+
+212
+00:08:35,765 --> 00:08:37,876
+which is a class
+that participates
+
+
+213
+00:08:37,876 --> 00:08:39,956
+in this UIDynamic system and
+this is where we're going
+
+
+214
+00:08:39,956 --> 00:08:43,556
+to attach views that we want to
+have dynamics associated with.
+
+
+215
+00:08:43,905 --> 00:08:45,496
+So we create a
+UIDynamicItemBehavior
+
+
+216
+00:08:45,566 --> 00:08:48,006
+and we can initialize
+this here as a constant
+
+
+217
+00:08:48,336 --> 00:08:50,306
+because we don't need
+to provide any views
+
+
+218
+00:08:50,306 --> 00:08:51,186
+at the time we create it.
+
+
+219
+00:08:51,186 --> 00:08:53,006
+It lets us add or
+remove views over time,
+
+
+220
+00:08:53,336 --> 00:08:54,306
+so we'll create it
+ahead of time,
+
+
+221
+00:08:54,856 --> 00:08:56,176
+create our
+UIDynamicItemBehavior.
+
+
+222
+00:08:56,976 --> 00:08:58,996
+And now we'll override the
+viewDidLoad method because,
+
+
+223
+00:08:59,296 --> 00:09:01,606
+when a view controller goes to
+load a view, it's going to load
+
+
+224
+00:09:01,606 --> 00:09:04,496
+up all the view bits and then
+there's a good place to go
+
+
+225
+00:09:04,556 --> 00:09:06,056
+and add additional
+initialization
+
+
+226
+00:09:06,056 --> 00:09:08,946
+after the view's
+loaded in viewDidLoad.
+
+
+227
+00:09:08,946 --> 00:09:11,176
+So we'll call super just to
+make sure that it gets a chance
+
+
+228
+00:09:11,176 --> 00:09:12,466
+to do any work it
+was going to do.
+
+
+229
+00:09:12,466 --> 00:09:15,306
+And then we can go and set up
+the rest of our dynamic system.
+
+
+230
+00:09:15,726 --> 00:09:17,906
+So we have that optional
+UIDynamicAnimator.
+
+
+231
+00:09:17,906 --> 00:09:19,376
+This is a great place
+to initialize it
+
+
+232
+00:09:19,376 --> 00:09:20,656
+because now we know
+we have a view.
+
+
+233
+00:09:20,956 --> 00:09:22,866
+So we can create our
+UIDynamicAnimator.
+
+
+234
+00:09:23,416 --> 00:09:26,376
+We have our view now,
+so we can pass it in.
+
+
+235
+00:09:26,606 --> 00:09:28,016
+We also want to set a
+couple of properties
+
+
+236
+00:09:28,486 --> 00:09:31,176
+on the dynamic animator, just
+so that as we set velocities
+
+
+237
+00:09:31,176 --> 00:09:32,726
+and get some deceleration
+animations,
+
+
+238
+00:09:32,796 --> 00:09:34,236
+things will come
+to rest smoothly.
+
+
+239
+00:09:34,476 --> 00:09:36,506
+So we're going to
+set our resistance
+
+
+240
+00:09:36,506 --> 00:09:37,616
+and angular resistance
+
+
+241
+00:09:37,936 --> 00:09:39,886
+to a value I just
+picked randomly of 3.
+
+
+242
+00:09:40,206 --> 00:09:42,146
+You can pick different values
+and get different feels.
+
+
+243
+00:09:43,056 --> 00:09:45,616
+And then, finally, we're
+going to add that behavior.
+
+
+244
+00:09:45,646 --> 00:09:48,216
+We created the
+dynamicItemBehavior earlier.
+
+
+245
+00:09:48,406 --> 00:09:49,526
+We're going to associate it now
+
+
+246
+00:09:49,526 --> 00:09:51,036
+with the DynamicAnimator
+now that we have it.
+
+
+247
+00:09:51,596 --> 00:09:53,686
+And so that's pretty
+much all there is
+
+
+248
+00:09:53,686 --> 00:09:54,806
+for setting up the system.
+
+
+249
+00:09:55,136 --> 00:09:57,366
+So then we have to figure
+out how to transfer velocity
+
+
+250
+00:09:57,366 --> 00:09:59,656
+into this dynamic
+system from our gestures
+
+
+251
+00:09:59,656 --> 00:10:00,916
+because that's really
+what this is all about.
+
+
+252
+00:10:01,346 --> 00:10:03,876
+So let's take a look
+at how we do that.
+
+
+253
+00:10:03,876 --> 00:10:06,876
+The first thing we want to do is
+find out what view we're going
+
+
+254
+00:10:06,876 --> 00:10:10,476
+to be associating
+this velocity in.
+
+
+255
+00:10:10,636 --> 00:10:12,626
+So we've got the
+panGestureRecognizer.
+
+
+256
+00:10:12,626 --> 00:10:14,006
+Let's assume that it's
+attached to some view
+
+
+257
+00:10:14,006 --> 00:10:14,996
+that we're dragging around.
+
+
+258
+00:10:15,536 --> 00:10:16,626
+We'll get the target view.
+
+
+259
+00:10:17,636 --> 00:10:20,226
+Now this is what
+you would often do
+
+
+260
+00:10:20,226 --> 00:10:23,396
+in a UIGestureRecognizer target
+action method, so I'm assuming
+
+
+261
+00:10:23,396 --> 00:10:24,176
+that we're doing that here.
+
+
+262
+00:10:24,566 --> 00:10:26,496
+So let's do the normal switch
+statement that you would see
+
+
+263
+00:10:26,496 --> 00:10:28,906
+within a target action method
+for a gesture recognizer.
+
+
+264
+00:10:28,906 --> 00:10:30,886
+So we'll get the
+panGestureRecognizer state
+
+
+265
+00:10:30,886 --> 00:10:31,466
+and switch on that.
+
+
+266
+00:10:31,866 --> 00:10:33,796
+Now, right now we're just
+talking about transitioning
+
+
+267
+00:10:33,866 --> 00:10:36,136
+from the gesture to an
+animation, so we won't worry
+
+
+268
+00:10:36,136 --> 00:10:38,026
+about any state other than
+".Ended" because that's
+
+
+269
+00:10:38,026 --> 00:10:39,416
+when you perform
+this transition.
+
+
+270
+00:10:39,416 --> 00:10:41,856
+So let's go and deal
+with the .Ended case.
+
+
+271
+00:10:43,056 --> 00:10:45,456
+So now we have to get the
+velocity that we want to move
+
+
+272
+00:10:45,716 --> 00:10:46,856
+into the dynamic system,
+
+
+273
+00:10:46,856 --> 00:10:48,506
+so we'll ask the
+panGestureRecognizer
+
+
+274
+00:10:48,506 --> 00:10:49,286
+for the velocity.
+
+
+275
+00:10:49,816 --> 00:10:52,346
+And the view usually that you'll
+be doing here, if we're dragging
+
+
+276
+00:10:52,346 --> 00:10:55,206
+around the view it was attached
+to, we want to get the velocity
+
+
+277
+00:10:55,206 --> 00:10:56,546
+in that view's super view
+
+
+278
+00:10:56,746 --> 00:10:58,026
+because that's the
+coordinate space
+
+
+279
+00:10:58,026 --> 00:11:00,436
+that the view's geometry
+is going to be in.
+
+
+280
+00:11:01,106 --> 00:11:02,116
+So we'll get the velocity
+
+
+281
+00:11:02,116 --> 00:11:04,836
+in that targetView's
+superview's coordinate space.
+
+
+282
+00:11:05,426 --> 00:11:07,596
+And then we'll just ask
+the dynamicItemBehavior
+
+
+283
+00:11:07,596 --> 00:11:09,216
+to add some linear velocity.
+
+
+284
+00:11:09,726 --> 00:11:12,316
+Adding linear velocity will
+just increase the velocity
+
+
+285
+00:11:12,316 --> 00:11:13,846
+in the dynamic system
+of the object
+
+
+286
+00:11:13,876 --> 00:11:16,176
+by whatever the current
+velocity was
+
+
+287
+00:11:16,176 --> 00:11:17,616
+that we were dragging
+it around by.
+
+
+288
+00:11:18,046 --> 00:11:19,636
+So we can add that
+into the system
+
+
+289
+00:11:20,056 --> 00:11:22,226
+and then it'll smoothly
+decelerate
+
+
+290
+00:11:22,226 --> 00:11:23,636
+from whatever the
+gesture was doing.
+
+
+291
+00:11:24,076 --> 00:11:26,066
+So, again, now if we do look
+at some boxes and view this,
+
+
+292
+00:11:26,376 --> 00:11:27,616
+we can see that as
+we drag these things
+
+
+293
+00:11:27,616 --> 00:11:29,186
+around they decelerate smoothly.
+
+
+294
+00:11:29,546 --> 00:11:30,716
+But because this is dynamics,
+
+
+295
+00:11:30,716 --> 00:11:32,156
+they can also interact
+with one another.
+
+
+296
+00:11:32,566 --> 00:11:33,656
+So as they collide,
+they're going
+
+
+297
+00:11:33,656 --> 00:11:34,946
+to start doing other
+interesting things.
+
+
+298
+00:11:35,336 --> 00:11:36,156
+So this is a great way
+
+
+299
+00:11:36,156 --> 00:11:39,926
+to get more advanced behaviors
+while still preserving these
+
+
+300
+00:11:39,926 --> 00:11:40,936
+really smooth transitions.
+
+
+301
+00:11:42,096 --> 00:11:44,416
+So we've talked about two
+ways to go about doing this.
+
+
+302
+00:11:44,746 --> 00:11:46,436
+We've got animateWithDuration.
+
+
+303
+00:11:46,946 --> 00:11:49,246
+Now, there's different reasons
+why you might choose one
+
+
+304
+00:11:49,246 --> 00:11:52,316
+or the other, and there's no one
+right answer for all situations.
+
+
+305
+00:11:52,696 --> 00:11:56,226
+animateWithDuration, one of the
+nice properties of doing this is
+
+
+306
+00:11:56,226 --> 00:11:58,536
+that it creates server-side
+animations.
+
+
+307
+00:11:58,856 --> 00:12:00,426
+Now, what that means
+is that the animations
+
+
+308
+00:12:00,426 --> 00:12:02,876
+that are created using those
+spring velocities that we talked
+
+
+309
+00:12:02,876 --> 00:12:05,536
+about at the beginning, those
+are actually going to execute
+
+
+310
+00:12:05,536 --> 00:12:08,586
+in another process out of the
+context of your application.
+
+
+311
+00:12:09,126 --> 00:12:11,556
+So even if you end up doing
+some work in your application
+
+
+312
+00:12:11,556 --> 00:12:13,506
+that maybe blocks your main
+thread for a little while,
+
+
+313
+00:12:13,856 --> 00:12:16,226
+the other render server is
+running at a higher priority.
+
+
+314
+00:12:16,226 --> 00:12:18,786
+So it's going to be optimized
+to make sure that we try not
+
+
+315
+00:12:18,786 --> 00:12:20,496
+to drop frames on
+that animation,
+
+
+316
+00:12:20,816 --> 00:12:22,566
+even if your app has a
+lot of heavy work going
+
+
+317
+00:12:22,566 --> 00:12:23,366
+on in the main thread.
+
+
+318
+00:12:23,856 --> 00:12:26,546
+So it becomes easier to
+maintain smooth animations
+
+
+319
+00:12:26,546 --> 00:12:29,296
+if you just offload it onto
+the render server by using
+
+
+320
+00:12:29,296 --> 00:12:30,516
+that animateWithDuration method.
+
+
+321
+00:12:31,356 --> 00:12:32,876
+Now, of course, the
+other option we talked
+
+
+322
+00:12:32,876 --> 00:12:35,226
+about is UIKitDynamics,
+so UIDynamicAnimator.
+
+
+323
+00:12:35,986 --> 00:12:37,716
+Now, one of the big
+benefits of this is
+
+
+324
+00:12:37,716 --> 00:12:40,166
+that you get even more
+advanced interactions.
+
+
+325
+00:12:40,436 --> 00:12:42,306
+And as we'll see a little
+bit later when we talk
+
+
+326
+00:12:42,306 --> 00:12:45,256
+about more transitions, some of
+the transitions can be easier
+
+
+327
+00:12:45,256 --> 00:12:47,006
+when you're using
+a UIDynamicAnimator
+
+
+328
+00:12:47,256 --> 00:12:49,356
+than when you're using the
+server-side animations,
+
+
+329
+00:12:49,736 --> 00:12:51,896
+because with UIDynamicAnimator
+everything is happening
+
+
+330
+00:12:51,896 --> 00:12:53,966
+in your process, in
+your address space.
+
+
+331
+00:12:54,616 --> 00:12:57,286
+Now, the downside of that is
+it means it is going to rely
+
+
+332
+00:12:57,286 --> 00:12:58,876
+on your main thread
+turning often enough
+
+
+333
+00:12:58,876 --> 00:13:01,366
+that the DynamicAnimator can
+update the dynamic system
+
+
+334
+00:13:01,636 --> 00:13:03,576
+and get everything
+committed for the next frame.
+
+
+335
+00:13:04,076 --> 00:13:06,846
+So if your app happens to do
+a bunch of work or, you know,
+
+
+336
+00:13:06,846 --> 00:13:08,316
+is taking more time
+to get something done,
+
+
+337
+00:13:08,316 --> 00:13:10,526
+it's easier to drop frames
+if you're not being careful.
+
+
+338
+00:13:11,076 --> 00:13:13,346
+So UIDynamicAnimator is a
+very powerful way to do it.
+
+
+339
+00:13:13,346 --> 00:13:15,336
+You just have to be a little
+bit more careful to make sure
+
+
+340
+00:13:15,336 --> 00:13:18,066
+that you're optimizing your app
+to avoid dropping any frames.
+
+
+341
+00:13:19,396 --> 00:13:21,206
+Now, there are other options
+
+
+342
+00:13:21,206 --> 00:13:22,526
+that are a little
+bit more advanced.
+
+
+343
+00:13:22,976 --> 00:13:24,556
+And, in fact, the thing
+
+
+344
+00:13:24,556 --> 00:13:27,456
+that UIDynamicAnimator is
+built on is CADisplayLink.
+
+
+345
+00:13:27,846 --> 00:13:29,216
+Now CADisplayLink is a class
+
+
+346
+00:13:29,216 --> 00:13:31,276
+that calls you back
+once every frame.
+
+
+347
+00:13:31,796 --> 00:13:33,746
+So a frame is going to get
+rendered, you get called back
+
+
+348
+00:13:33,746 --> 00:13:36,126
+to go update your app in
+whatever way you want.
+
+
+349
+00:13:36,786 --> 00:13:40,156
+Now, that will give you 60 Hertz
+callbacks and so you can try
+
+
+350
+00:13:40,156 --> 00:13:42,146
+and update your animations
+at 60 Hertz.
+
+
+351
+00:13:42,146 --> 00:13:43,826
+That's exactly how
+DynamicAnimator does it.
+
+
+352
+00:13:44,186 --> 00:13:45,556
+So if you have some
+really custom thing
+
+
+353
+00:13:45,556 --> 00:13:48,186
+that you can't accomplish with
+one of these other technologies,
+
+
+354
+00:13:48,186 --> 00:13:49,906
+you could build your
+own animations
+
+
+355
+00:13:50,266 --> 00:13:51,596
+to do things yourself.
+
+
+356
+00:13:51,866 --> 00:13:53,666
+Now, of course, this is an
+even more advanced thing.
+
+
+357
+00:13:53,666 --> 00:13:55,276
+We're not going to go into
+exactly how you would go
+
+
+358
+00:13:55,276 --> 00:13:57,446
+about writing arbitrary
+animations.
+
+
+359
+00:13:57,446 --> 00:13:59,316
+If you have an idea of
+something you might want to do,
+
+
+360
+00:13:59,706 --> 00:14:01,596
+you probably can go
+build it yourself.
+
+
+361
+00:14:02,346 --> 00:14:03,116
+But some of you that are
+
+
+362
+00:14:03,116 --> 00:14:04,996
+out there may be thinking,
+"Well, wait, hang on.
+
+
+363
+00:14:04,996 --> 00:14:05,896
+There's another option.
+
+
+364
+00:14:05,896 --> 00:14:07,896
+Why aren't we talking
+about NSTimer?"
+
+
+365
+00:14:09,086 --> 00:14:12,316
+This was a common thing
+before CADisplayLink existed.
+
+
+366
+00:14:12,316 --> 00:14:15,226
+You just set NSTimer, set
+it to call back at 60 Hertz,
+
+
+367
+00:14:15,606 --> 00:14:16,776
+and drive animations off that.
+
+
+368
+00:14:17,746 --> 00:14:19,606
+Well, to understand why we're
+not going to talk about that
+
+
+369
+00:14:19,606 --> 00:14:21,406
+as a really viable
+option, let's take a look
+
+
+370
+00:14:21,406 --> 00:14:24,906
+at a timeline showing what
+happens over time for NSTimer,
+
+
+371
+00:14:25,046 --> 00:14:27,576
+CADisplayLink, and all
+of the display frames
+
+
+372
+00:14:27,576 --> 00:14:28,426
+that are coming on screen.
+
+
+373
+00:14:28,926 --> 00:14:30,156
+So here I've got
+some vertical bars.
+
+
+374
+00:14:30,156 --> 00:14:32,296
+Each one of those
+represents a display frame.
+
+
+375
+00:14:33,266 --> 00:14:37,376
+Now let's take a look at
+what CADisplayLink does
+
+
+376
+00:14:37,486 --> 00:14:38,786
+within each of those gaps.
+
+
+377
+00:14:39,136 --> 00:14:41,216
+So because we're rendering
+at 60 Hertz on iOS,
+
+
+378
+00:14:41,736 --> 00:14:43,956
+each gap there represents
+about 16 milliseconds.
+
+
+379
+00:14:43,956 --> 00:14:45,806
+It's a little bit more than
+that, but that's roughly right.
+
+
+380
+00:14:46,756 --> 00:14:49,146
+So that's how much time you
+have in between any two frames.
+
+
+381
+00:14:49,946 --> 00:14:51,356
+Now CADisplayLink, as I said,
+
+
+382
+00:14:51,356 --> 00:14:52,696
+is going to call you
+back once per frame.
+
+
+383
+00:14:53,226 --> 00:14:55,246
+And the place where it calls
+you back is going to try and be
+
+
+384
+00:14:55,426 --> 00:14:57,886
+as tight as possible to where
+the frames are happening.
+
+
+385
+00:14:58,256 --> 00:14:59,756
+So you're going to
+get these green dots;
+
+
+386
+00:14:59,756 --> 00:15:02,276
+that's callback times that
+are associated roughly
+
+
+387
+00:15:02,276 --> 00:15:03,616
+with where the frames happen.
+
+
+388
+00:15:05,036 --> 00:15:06,266
+So what happens with NSTimer?
+
+
+389
+00:15:06,996 --> 00:15:08,946
+Well, it depends.
+
+
+390
+00:15:08,946 --> 00:15:11,186
+NSTimer, you might
+get them there.
+
+
+391
+00:15:11,186 --> 00:15:12,826
+Maybe you'll get them
+at the beginning.
+
+
+392
+00:15:13,236 --> 00:15:15,026
+Maybe you'll get them
+closer to the end.
+
+
+393
+00:15:15,426 --> 00:15:16,696
+But let's say you get
+them in the middle.
+
+
+394
+00:15:17,766 --> 00:15:19,966
+You actually aren't really sure
+where you're going to get them
+
+
+395
+00:15:19,966 --> 00:15:21,846
+because when you get them
+depends on when you happen
+
+
+396
+00:15:21,846 --> 00:15:22,996
+to set up the NSTimer.
+
+
+397
+00:15:23,376 --> 00:15:25,686
+NSTimer isn't synchronized
+with the display in any way,
+
+
+398
+00:15:25,686 --> 00:15:27,916
+so when you get the
+callbacks will depend exactly
+
+
+399
+00:15:27,916 --> 00:15:29,136
+on when you set up the timer.
+
+
+400
+00:15:29,316 --> 00:15:31,636
+If you set it up for
+a 60 Hertz interval,
+
+
+401
+00:15:31,636 --> 00:15:34,966
+it'll be 16 milliseconds
+from whenever you set it up,
+
+
+402
+00:15:35,476 --> 00:15:36,976
+depending on where in
+the frame that was.
+
+
+403
+00:15:36,976 --> 00:15:37,766
+So it could be anywhere.
+
+
+404
+00:15:37,766 --> 00:15:38,386
+It's hard to know.
+
+
+405
+00:15:39,116 --> 00:15:40,056
+Now, why is that a problem?
+
+
+406
+00:15:40,906 --> 00:15:42,666
+Well, looking at how
+much time we have now,
+
+
+407
+00:15:42,666 --> 00:15:45,426
+we had 16 milliseconds
+for this whole frame.
+
+
+408
+00:15:46,086 --> 00:15:47,996
+With NSTimer there, we've
+got about 8 milliseconds
+
+
+409
+00:15:47,996 --> 00:15:50,556
+from the time that it got
+called until the next frame,
+
+
+410
+00:15:50,716 --> 00:15:52,436
+assuming that it happened to
+be set up right in the middle.
+
+
+411
+00:15:53,406 --> 00:15:55,676
+Now, even then, you might
+not see why exactly that's
+
+
+412
+00:15:55,676 --> 00:15:56,246
+a problem.
+
+
+413
+00:15:56,246 --> 00:15:58,486
+I mean, so it's eight
+milliseconds.
+
+
+414
+00:15:58,486 --> 00:15:59,886
+You can probably get
+done in less than eight,
+
+
+415
+00:15:59,886 --> 00:16:01,926
+or if you can't, then all right,
+you're always in the next frame.
+
+
+416
+00:16:02,496 --> 00:16:03,746
+Well, the trouble
+comes in the places
+
+
+417
+00:16:03,746 --> 00:16:05,586
+where maybe you aren't
+always either
+
+
+418
+00:16:05,586 --> 00:16:06,926
+in the current frame
+or the next frame.
+
+
+419
+00:16:07,786 --> 00:16:10,356
+So let's say that it actually
+takes you about 8 milliseconds
+
+
+420
+00:16:10,356 --> 00:16:12,666
+to set up your frame and get it
+committed to the render server.
+
+
+421
+00:16:13,276 --> 00:16:15,486
+So if we look at our second
+frame here out of these
+
+
+422
+00:16:15,486 --> 00:16:16,776
+that I have listed, let's say
+
+
+423
+00:16:16,776 --> 00:16:19,346
+that the first time we get it
+done in eight milliseconds,
+
+
+424
+00:16:19,346 --> 00:16:21,836
+but that happens to
+miss being rendered
+
+
+425
+00:16:21,836 --> 00:16:22,946
+to the screen for this frame.
+
+
+426
+00:16:22,946 --> 00:16:25,886
+So it goes over and
+it'll come in, you know,
+
+
+427
+00:16:25,886 --> 00:16:27,356
+another 16 milliseconds later.
+
+
+428
+00:16:27,356 --> 00:16:28,506
+So we missed that frame.
+
+
+429
+00:16:28,506 --> 00:16:31,576
+Now the trouble is that
+maybe the next time we happen
+
+
+430
+00:16:31,576 --> 00:16:33,936
+to get things done a little bit
+faster and do make that frame.
+
+
+431
+00:16:34,836 --> 00:16:37,286
+What that's effectively going to
+end up meaning is that the frame
+
+
+432
+00:16:37,286 --> 00:16:40,126
+where we missed will really
+just never display to the user.
+
+
+433
+00:16:40,616 --> 00:16:42,016
+It'll be as if it
+just disappeared.
+
+
+434
+00:16:42,016 --> 00:16:44,196
+And that's going to end up
+looking like a dropped frame.
+
+
+435
+00:16:44,706 --> 00:16:46,896
+So we're rendering
+within eight milliseconds.
+
+
+436
+00:16:46,896 --> 00:16:49,736
+It's only taking us eight, and
+we have 16 to get things done,
+
+
+437
+00:16:49,736 --> 00:16:52,416
+so it seems like we should never
+drop a frame because we're well
+
+
+438
+00:16:52,416 --> 00:16:53,536
+under the total frame time.
+
+
+439
+00:16:53,886 --> 00:16:54,986
+But yet we just dropped a frame
+
+
+440
+00:16:54,986 --> 00:16:56,106
+because we were right
+on that border.
+
+
+441
+00:16:57,216 --> 00:17:00,016
+With CADisplayLink, if it was
+taking us eight milliseconds
+
+
+442
+00:17:00,016 --> 00:17:02,246
+because we started close to
+the beginning, we still have
+
+
+443
+00:17:02,246 --> 00:17:04,556
+that extra eight-millisecond
+buffer time every time,
+
+
+444
+00:17:04,556 --> 00:17:06,165
+so there's no way we're
+going to miss that frame.
+
+
+445
+00:17:07,526 --> 00:17:10,945
+Now, if you do take 16
+milliseconds, you might get back
+
+
+446
+00:17:10,945 --> 00:17:13,675
+into that same situation, but if
+it's taking you 16 milliseconds
+
+
+447
+00:17:13,675 --> 00:17:15,576
+to prepare a frame, you're
+basically never going
+
+
+448
+00:17:15,576 --> 00:17:16,636
+to hit 60 Hertz anyway.
+
+
+449
+00:17:17,006 --> 00:17:19,096
+So at that point you're back to,
+you have to optimize your app.
+
+
+450
+00:17:19,656 --> 00:17:21,445
+But if you're finding that
+you're optimizing things
+
+
+451
+00:17:21,445 --> 00:17:23,705
+and you're using an NSTimer and
+you've got it as fast as you can
+
+
+452
+00:17:23,705 --> 00:17:25,886
+and you're still dropping
+frames, it's probably
+
+
+453
+00:17:25,886 --> 00:17:27,326
+because you're using an NSTimer
+
+
+454
+00:17:27,326 --> 00:17:29,236
+and just hitting
+this variability,
+
+
+455
+00:17:29,406 --> 00:17:31,196
+and you should switch to
+using a CADisplayLink.
+
+
+456
+00:17:31,566 --> 00:17:33,386
+So NSTimer's never
+really the right solution
+
+
+457
+00:17:33,386 --> 00:17:34,956
+for doing client-side
+animations.
+
+
+458
+00:17:35,826 --> 00:17:38,386
+So that's the story
+for transitioning
+
+
+459
+00:17:38,386 --> 00:17:39,516
+from a gesture to an animation.
+
+
+460
+00:17:39,726 --> 00:17:42,286
+To give you an idea of now how
+to transition from animations
+
+
+461
+00:17:42,286 --> 00:17:44,846
+to other animations, Andy's
+going to come up on stage
+
+
+462
+00:17:44,846 --> 00:17:45,976
+and talk a little
+bit about that.
+
+
+463
+00:17:46,516 --> 00:17:51,196
+[ Applause ]
+
+
+464
+00:17:51,696 --> 00:17:52,336
+>> Thanks, Josh.
+
+
+465
+00:17:52,686 --> 00:17:54,666
+So you've got an animation going
+
+
+466
+00:17:55,316 --> 00:17:56,366
+and you want to change
+directions.
+
+
+467
+00:17:56,366 --> 00:18:00,516
+Many of you have probably
+seen this issue before.
+
+
+468
+00:18:00,796 --> 00:18:01,966
+You've got this purple circle.
+
+
+469
+00:18:01,966 --> 00:18:03,046
+You say, "Go to the other side."
+
+
+470
+00:18:04,196 --> 00:18:07,606
+And in the middle of its
+animation, you say, "Wait, no,
+
+
+471
+00:18:07,606 --> 00:18:09,986
+go back the other way," because
+maybe the user pressed a button.
+
+
+472
+00:18:11,446 --> 00:18:15,276
+And then what happens is
+the circle jumps all the way
+
+
+473
+00:18:15,276 --> 00:18:17,646
+to the right side and animates
+from there to the left.
+
+
+474
+00:18:18,896 --> 00:18:21,856
+This is a pretty common bug
+that we see in applications,
+
+
+475
+00:18:21,856 --> 00:18:24,186
+and it's one of the reasons
+why people will, for instance,
+
+
+476
+00:18:24,226 --> 00:18:27,046
+disable user interaction
+on their animations,
+
+
+477
+00:18:27,046 --> 00:18:28,286
+to get around issues like this.
+
+
+478
+00:18:29,536 --> 00:18:33,436
+Now, there's always been
+a UIViewAnimation option
+
+
+479
+00:18:33,816 --> 00:18:35,406
+that can help deal
+with these scenarios.
+
+
+480
+00:18:35,406 --> 00:18:37,936
+It's called
+UIViewAnimationOption
+
+
+481
+00:18:37,936 --> 00:18:39,246
+BeginFromCurrentState.
+
+
+482
+00:18:39,246 --> 00:18:42,226
+And this is what it
+looks like by contrast.
+
+
+483
+00:18:42,626 --> 00:18:44,896
+So there's no jump in position.
+
+
+484
+00:18:46,036 --> 00:18:46,606
+And that's great.
+
+
+485
+00:18:48,676 --> 00:18:52,036
+But there is a jump in velocity.
+
+
+486
+00:18:53,616 --> 00:18:55,166
+If you look at this animation,
+
+
+487
+00:18:55,166 --> 00:18:58,086
+it's kind of like
+it hits a brick wall
+
+
+488
+00:18:58,086 --> 00:19:01,016
+and then it starts going
+back the other direction.
+
+
+489
+00:19:01,886 --> 00:19:05,086
+There's a more fluid option
+that I'm going to talk about now
+
+
+490
+00:19:05,086 --> 00:19:06,906
+and I'm going to
+introduce you to it.
+
+
+491
+00:19:06,906 --> 00:19:08,446
+It's called additive animations.
+
+
+492
+00:19:08,896 --> 00:19:10,376
+Take a look at how this looks.
+
+
+493
+00:19:10,656 --> 00:19:14,576
+The circle on the bottom moves
+and it preserves both position
+
+
+494
+00:19:14,576 --> 00:19:17,226
+and velocity when it
+changes direction.
+
+
+495
+00:19:17,226 --> 00:19:19,116
+Both of those are smooth.
+
+
+496
+00:19:19,116 --> 00:19:20,376
+Let's see that one more time.
+
+
+497
+00:19:20,956 --> 00:19:23,406
+You can see
+BeginFromCurrentState,
+
+
+498
+00:19:23,406 --> 00:19:24,766
+it's kind of like
+it hits a wall.
+
+
+499
+00:19:25,386 --> 00:19:28,486
+Additive animations, the
+velocity component is smooth.
+
+
+500
+00:19:29,996 --> 00:19:35,616
+So absolute animations have
+been the default on iOS, so far,
+
+
+501
+00:19:35,616 --> 00:19:37,686
+but starting now with iOS 8,
+
+
+502
+00:19:37,926 --> 00:19:41,276
+additive animations are actually
+going to be the default behavior
+
+
+503
+00:19:41,506 --> 00:19:43,056
+for all UIKit-created
+animations,
+
+
+504
+00:19:44,756 --> 00:19:46,696
+[applause] most UIKit-created
+animations.
+
+
+505
+00:19:47,576 --> 00:19:50,166
+We'll talk a little bit
+more later about exactly
+
+
+506
+00:19:50,166 --> 00:19:51,696
+when this is going to
+work and when it's not.
+
+
+507
+00:19:52,456 --> 00:19:56,746
+But the long and short of that
+is that, if you have this code,
+
+
+508
+00:19:56,746 --> 00:20:00,096
+a typical animation
+thing, you are going to get
+
+
+509
+00:20:00,646 --> 00:20:01,556
+that desired behavior.
+
+
+510
+00:20:03,026 --> 00:20:05,556
+So, I do want you to actually
+understand what's going
+
+
+511
+00:20:05,556 --> 00:20:06,446
+on behind the scenes here.
+
+
+512
+00:20:06,956 --> 00:20:07,926
+I think that's really important
+
+
+513
+00:20:07,926 --> 00:20:09,286
+to taking advantage
+of this new feature.
+
+
+514
+00:20:09,286 --> 00:20:12,126
+So let's walk through how
+Cocoa Touch actually manages
+
+
+515
+00:20:12,126 --> 00:20:13,236
+animations in the system.
+
+
+516
+00:20:13,386 --> 00:20:15,276
+What's happening behind the
+scenes to make this happen?
+
+
+517
+00:20:15,716 --> 00:20:17,736
+So you've got this
+circle and you tell it,
+
+
+518
+00:20:17,736 --> 00:20:18,476
+"Go to the other side."
+
+
+519
+00:20:18,846 --> 00:20:22,126
+You say, "Animate that
+x position to 500."
+
+
+520
+00:20:23,496 --> 00:20:26,006
+So if you were to ask the circle
+
+
+521
+00:20:26,816 --> 00:20:29,076
+for its center's x value
+immediately after making
+
+
+522
+00:20:29,076 --> 00:20:30,576
+that call, it would return 500.
+
+
+523
+00:20:31,916 --> 00:20:32,796
+So you think, "Okay, well,
+
+
+524
+00:20:32,796 --> 00:20:34,666
+that means the circle
+should draw all the way
+
+
+525
+00:20:34,666 --> 00:20:37,146
+on the right side,"
+but it doesn't.
+
+
+526
+00:20:37,146 --> 00:20:40,426
+The first frame that the circle
+is rendered is still going to be
+
+
+527
+00:20:40,426 --> 00:20:43,226
+at 0 because it's going
+to animate from 0 to 500.
+
+
+528
+00:20:44,086 --> 00:20:47,506
+And the reason that that
+happens is the distinction
+
+
+529
+00:20:47,506 --> 00:20:52,076
+between presentation layers and
+- presentation layer's values
+
+
+530
+00:20:52,286 --> 00:20:53,806
+and model layer's values.
+
+
+531
+00:20:54,166 --> 00:20:56,146
+So if you're unfamiliar
+with that distinction,
+
+
+532
+00:20:56,146 --> 00:20:59,096
+I suggest watching the talk that
+Josh and I gave in 2011 called
+
+
+533
+00:20:59,226 --> 00:21:00,546
+"Understand UIKit Rendering".
+
+
+534
+00:21:00,726 --> 00:21:02,256
+I'm mostly going to
+assume that you understand
+
+
+535
+00:21:02,256 --> 00:21:03,106
+that distinction already.
+
+
+536
+00:21:03,656 --> 00:21:07,696
+The point is that where the
+layer's value is ,- I'm sorry.
+
+
+537
+00:21:07,696 --> 00:21:09,776
+The layer's current
+value is not necessarily
+
+
+538
+00:21:09,776 --> 00:21:10,616
+where it's going to draw.
+
+
+539
+00:21:10,616 --> 00:21:12,886
+There's a presentation value
+that's used for rendering.
+
+
+540
+00:21:13,146 --> 00:21:15,076
+So right now the presentation
+value of this layer is 0.
+
+
+541
+00:21:15,076 --> 00:21:17,176
+And the reason that it's 0 is
+
+
+542
+00:21:17,176 --> 00:21:20,906
+that there is this CAAnimation
+object which UIKit has created
+
+
+543
+00:21:21,106 --> 00:21:22,306
+and attached to the layer.
+
+
+544
+00:21:23,166 --> 00:21:24,906
+It encapsulates a few
+pieces of information.
+
+
+545
+00:21:25,446 --> 00:21:27,306
+You'll note that it
+has a fromValue set.
+
+
+546
+00:21:28,416 --> 00:21:32,096
+Now, fromValue was read out of
+the model value of the layer.
+
+
+547
+00:21:32,096 --> 00:21:34,876
+The model value of the layer
+was (0,0), so the fromValue
+
+
+548
+00:21:34,876 --> 00:21:36,086
+of this animation is (0,0).
+
+
+549
+00:21:37,066 --> 00:21:39,316
+You'll note that there
+is no toValue and that's
+
+
+550
+00:21:39,356 --> 00:21:42,176
+because the way this works
+is that at every frame,
+
+
+551
+00:21:42,686 --> 00:21:47,026
+the toValue is going to
+be the current model value
+
+
+552
+00:21:47,026 --> 00:21:47,486
+of the layer.
+
+
+553
+00:21:48,166 --> 00:21:50,086
+So if we were to
+read this animation
+
+
+554
+00:21:50,356 --> 00:21:52,376
+in natural text we
+would say, "Okay,
+
+
+555
+00:21:52,536 --> 00:21:56,236
+this is an animation that's
+going to animate from (0,0)
+
+
+556
+00:21:56,686 --> 00:21:58,666
+to the current model
+value of the layer,
+
+
+557
+00:21:58,666 --> 00:22:00,356
+which happens currently
+to be 500
+
+
+558
+00:22:00,776 --> 00:22:03,146
+over one second starting
+from 1000.1."
+
+
+559
+00:22:04,346 --> 00:22:08,236
+So this animation emits a
+value of (0,0) for time 1000.1
+
+
+560
+00:22:09,486 --> 00:22:11,896
+and that's why the
+presentation value is (0,0).
+
+
+561
+00:22:12,886 --> 00:22:15,496
+The next frame we render, it
+emits a slightly greater time.
+
+
+562
+00:22:15,696 --> 00:22:18,396
+That is the value that we use
+for the presentation layer
+
+
+563
+00:22:18,396 --> 00:22:20,086
+and that's how we
+move across screen.
+
+
+564
+00:22:20,496 --> 00:22:23,136
+Now, if we were to start
+reversing direction partway
+
+
+565
+00:22:23,136 --> 00:22:26,536
+through this animation,
+say we set the center
+
+
+566
+00:22:26,536 --> 00:22:28,696
+of the circle back to
+0, then just as before,
+
+
+567
+00:22:28,696 --> 00:22:31,356
+the model layer's value
+jumps immediately back to 0.
+
+
+568
+00:22:32,776 --> 00:22:35,256
+But it's not going to
+draw at 0 immediately.
+
+
+569
+00:22:36,156 --> 00:22:38,876
+So in terms of these
+CAAnimations, the next thing
+
+
+570
+00:22:38,876 --> 00:22:42,656
+that happens is just going to be
+
+
+571
+00:22:42,656 --> 00:22:46,336
+that we destroy the
+current CAAnimation.
+
+
+572
+00:22:46,876 --> 00:22:50,666
+And that's going to be
+why you see that jump.
+
+
+573
+00:22:51,106 --> 00:22:53,126
+We create a new CAAnimation
+to replace it.
+
+
+574
+00:22:53,676 --> 00:22:57,536
+And, just like before, we get
+that new CAAnimation's fromValue
+
+
+575
+00:22:57,726 --> 00:22:59,696
+from the current
+layer's model value,
+
+
+576
+00:22:59,786 --> 00:23:01,686
+which was 500 in this case.
+
+
+577
+00:23:01,686 --> 00:23:03,416
+Now, we didn't make it
+all the way to the 500,
+
+
+578
+00:23:03,416 --> 00:23:05,756
+but the model value was 500.
+
+
+579
+00:23:06,026 --> 00:23:08,916
+So this animation's fromValue is
+500, and that means if we were
+
+
+580
+00:23:08,916 --> 00:23:10,766
+to read this in natural
+text that we're going
+
+
+581
+00:23:10,766 --> 00:23:13,686
+to be interpolating from
+500 to 0 over a second.
+
+
+582
+00:23:13,946 --> 00:23:15,996
+And indeed, the next
+frame we render,
+
+
+583
+00:23:16,516 --> 00:23:18,916
+the animation emits a value
+of 500 and we go ahead and use
+
+
+584
+00:23:18,916 --> 00:23:21,376
+that to render the
+circle's position.
+
+
+585
+00:23:21,376 --> 00:23:22,596
+And that's why we
+have that jump.
+
+
+586
+00:23:23,476 --> 00:23:26,746
+So we'll animate from 500
+back to 0 across the screen
+
+
+587
+00:23:27,076 --> 00:23:28,266
+until we finally get to 0.
+
+
+588
+00:23:30,056 --> 00:23:32,406
+BeginFromCurrentState
+is a little different,
+
+
+589
+00:23:33,256 --> 00:23:35,096
+and I'd like you to understand
+how that works, as well.
+
+
+590
+00:23:35,356 --> 00:23:36,306
+So say that we're at this point.
+
+
+591
+00:23:36,306 --> 00:23:37,806
+We were partway through
+the animation
+
+
+592
+00:23:38,096 --> 00:23:39,966
+and then we emit the code
+to reverse direction.
+
+
+593
+00:23:39,966 --> 00:23:43,486
+So we say, "Animate again.
+
+
+594
+00:23:43,486 --> 00:23:45,256
+This time begin from
+current state."
+
+
+595
+00:23:46,706 --> 00:23:50,756
+Well, again, we're going
+to destroy the animation
+
+
+596
+00:23:50,756 --> 00:23:53,126
+that was preexisting and
+create a new animation.
+
+
+597
+00:23:53,306 --> 00:23:56,586
+But this time, we're going
+to create a new animation
+
+
+598
+00:23:56,586 --> 00:24:00,586
+with a fromValue derived from
+the presentation layer's value,
+
+
+599
+00:24:01,046 --> 00:24:02,786
+rather than from the
+model layer's value.
+
+
+600
+00:24:02,786 --> 00:24:05,176
+Now, at the time this
+animation was created,
+
+
+601
+00:24:05,646 --> 00:24:09,436
+the presentation value was 150,
+and so we make an animation
+
+
+602
+00:24:09,736 --> 00:24:12,246
+which is going to
+animate from 150
+
+
+603
+00:24:12,316 --> 00:24:15,366
+to 0 instead of from 500 to 0.
+
+
+604
+00:24:16,526 --> 00:24:18,206
+And, therefore, the next
+frame that's rendered,
+
+
+605
+00:24:18,526 --> 00:24:20,666
+the animation emits
+a value of 150
+
+
+606
+00:24:21,016 --> 00:24:22,786
+and so we don't have
+that positional jump.
+
+
+607
+00:24:24,066 --> 00:24:25,256
+So it seems like
+everything's good.
+
+
+608
+00:24:25,256 --> 00:24:26,696
+We're animating back
+towards the origin.
+
+
+609
+00:24:27,566 --> 00:24:32,106
+But we still had that kind of
+brick-wall feeling as we looked
+
+
+610
+00:24:32,106 --> 00:24:34,096
+at these three circles
+earlier, and I'd like you
+
+
+611
+00:24:34,096 --> 00:24:36,036
+to understand why
+that is now, as well.
+
+
+612
+00:24:36,036 --> 00:24:38,726
+So say that we're going to
+be animating this circle
+
+
+613
+00:24:38,726 --> 00:24:40,626
+from the left side of the screen
+to the right side of the screen
+
+
+614
+00:24:40,756 --> 00:24:43,536
+and just taking snapshots at
+a regular interval as it goes.
+
+
+615
+00:24:44,146 --> 00:24:45,936
+The snapshots might look
+something like this.
+
+
+616
+00:24:47,276 --> 00:24:50,076
+Now, if partway through that
+animation we were to stop
+
+
+617
+00:24:50,076 --> 00:24:52,486
+and try reversing direction
+of the circle again,
+
+
+618
+00:24:53,286 --> 00:24:56,566
+and then if we were to take
+snapshots at the same interval,
+
+
+619
+00:24:57,026 --> 00:24:59,326
+we would get snapshots that
+looked a little bit like this.
+
+
+620
+00:24:59,746 --> 00:25:01,896
+So the first thing we notice is
+
+
+621
+00:25:03,146 --> 00:25:05,176
+that we are animating
+a smaller distance
+
+
+622
+00:25:05,176 --> 00:25:06,066
+over the same amount of time.
+
+
+623
+00:25:07,086 --> 00:25:08,646
+And that's going to create
+a problem because we can see
+
+
+624
+00:25:08,646 --> 00:25:10,486
+that the slopes of these
+two lines are not the same.
+
+
+625
+00:25:11,386 --> 00:25:12,376
+That's not going to be smooth.
+
+
+626
+00:25:13,776 --> 00:25:16,566
+But that's not the
+whole problem.
+
+
+627
+00:25:16,566 --> 00:25:18,316
+You might think, "Okay, we
+could adjust the duration.
+
+
+628
+00:25:18,776 --> 00:25:19,606
+We can get around this."
+
+
+629
+00:25:20,276 --> 00:25:21,436
+Let's think about easing.
+
+
+630
+00:25:22,026 --> 00:25:24,486
+If we're doing ease-in,
+ease-out,
+
+
+631
+00:25:24,726 --> 00:25:26,216
+this might be what those
+snapshots looked like.
+
+
+632
+00:25:26,216 --> 00:25:28,606
+And then if we were to
+stop partway through
+
+
+633
+00:25:28,606 --> 00:25:31,476
+and reverse direction, that
+problem would be exacerbated.
+
+
+634
+00:25:32,786 --> 00:25:38,306
+Looking at a plot, this
+is the situation we have.
+
+
+635
+00:25:38,496 --> 00:25:39,516
+Really, the issue we have is
+
+
+636
+00:25:39,516 --> 00:25:41,186
+that the velocity
+component isn't smooth.
+
+
+637
+00:25:41,796 --> 00:25:43,296
+There's that kink in
+the middle of the graph.
+
+
+638
+00:25:44,246 --> 00:25:46,576
+And that kink is exactly what
+additive animations are going
+
+
+639
+00:25:46,576 --> 00:25:48,476
+to help us solve.
+
+
+640
+00:25:48,656 --> 00:25:51,406
+So I'd like you to understand
+how additive animations actually
+
+
+641
+00:25:51,406 --> 00:25:52,416
+work under the hood.
+
+
+642
+00:25:53,576 --> 00:25:56,446
+Returning to this example
+here, let's say we try
+
+
+643
+00:25:56,446 --> 00:25:57,526
+to animate across the screen.
+
+
+644
+00:25:58,096 --> 00:26:01,186
+As before, we're going to
+create a new CAAnimation
+
+
+645
+00:26:01,606 --> 00:26:03,456
+and we're going to have this
+additive flag set to YES.
+
+
+646
+00:26:03,606 --> 00:26:05,726
+This is a property that
+already exists on CAAnimation.
+
+
+647
+00:26:05,966 --> 00:26:07,606
+You can use it in
+previous versions of iOS.
+
+
+648
+00:26:07,816 --> 00:26:09,266
+It's just that UIKit
+is configuring this
+
+
+649
+00:26:09,306 --> 00:26:10,396
+for you now by default.
+
+
+650
+00:26:12,716 --> 00:26:14,626
+The fromValue is a
+little different.
+
+
+651
+00:26:14,686 --> 00:26:16,876
+The toValue is now present,
+so let's talk about those.
+
+
+652
+00:26:17,516 --> 00:26:20,376
+The fromValue and the toValue
+are interpreted relatively
+
+
+653
+00:26:20,376 --> 00:26:22,306
+to the model value
+at every frame
+
+
+654
+00:26:22,546 --> 00:26:24,316
+with an additive animation.
+
+
+655
+00:26:24,316 --> 00:26:26,816
+That's basically the purpose
+of additive animations.
+
+
+656
+00:26:27,306 --> 00:26:31,036
+So we create a fromValue by
+subtracting the previous value
+
+
+657
+00:26:31,036 --> 00:26:33,446
+from the destination value,
+basically 2 minus from.
+
+
+658
+00:26:34,206 --> 00:26:37,406
+And we create the toValue
+by just assigning it to 0.
+
+
+659
+00:26:38,066 --> 00:26:39,726
+So what that's going to
+do is at every frame,
+
+
+660
+00:26:40,636 --> 00:26:46,526
+that animation is going to emit
+a contribution - here, -500 -
+
+
+661
+00:26:46,716 --> 00:26:51,306
+which, when added to the
+model value, currently 500,
+
+
+662
+00:26:51,616 --> 00:26:54,976
+will form the presentation
+value, 0.
+
+
+663
+00:26:55,166 --> 00:26:59,596
+So 500 plus -500 is 0 and
+that's why the first frame is
+
+
+664
+00:26:59,596 --> 00:27:00,856
+that circle all the
+way on the left.
+
+
+665
+00:27:01,366 --> 00:27:02,856
+And as it starts moving
+towards the right,
+
+
+666
+00:27:03,066 --> 00:27:05,586
+the animation's contribution
+decreases.
+
+
+667
+00:27:05,586 --> 00:27:06,996
+It's always getting closer to 0.
+
+
+668
+00:27:07,566 --> 00:27:12,196
+So -500, -450, -400, and the
+sum is getting closer to 0.
+
+
+669
+00:27:12,626 --> 00:27:16,616
+So now partway through, if
+we reverse direction, again,
+
+
+670
+00:27:16,616 --> 00:27:18,736
+the model value jumps
+over to the left side.
+
+
+671
+00:27:19,076 --> 00:27:21,026
+But this time we're not going
+to destroy that animation.
+
+
+672
+00:27:21,686 --> 00:27:24,976
+We're going to make a second
+animation and add it on top.
+
+
+673
+00:27:26,106 --> 00:27:29,046
+So now we're going to use both
+of those animations' values,
+
+
+674
+00:27:31,216 --> 00:27:36,096
+0 plus -300 plus 500 is 200.
+
+
+675
+00:27:37,076 --> 00:27:38,976
+And you'll see even though
+we've added this animation
+
+
+676
+00:27:38,976 --> 00:27:42,206
+to reverse direction, we
+overshot a little bit.
+
+
+677
+00:27:42,206 --> 00:27:44,206
+We didn't reverse
+direction instantly,
+
+
+678
+00:27:44,206 --> 00:27:47,946
+and that's because we can't
+do that without making a jump
+
+
+679
+00:27:47,946 --> 00:27:49,036
+in velocity component.
+
+
+680
+00:27:49,416 --> 00:27:50,946
+So here we overshot
+a little bit,
+
+
+681
+00:27:51,336 --> 00:27:53,356
+but now the second
+animation's going
+
+
+682
+00:27:53,356 --> 00:27:56,496
+to overtake the first
+animation all the way
+
+
+683
+00:27:56,496 --> 00:27:57,676
+until we get back to the origin.
+
+
+684
+00:27:58,126 --> 00:27:58,606
+So they stack.
+
+
+685
+00:27:59,516 --> 00:28:03,926
+[ Applause ]
+
+
+686
+00:28:04,426 --> 00:28:05,106
+I'm glad you like it.
+
+
+687
+00:28:06,226 --> 00:28:07,296
+So we get back to the origin,
+
+
+688
+00:28:07,536 --> 00:28:10,886
+they both have a 0
+value, everything's happy.
+
+
+689
+00:28:11,326 --> 00:28:14,276
+We had this graph, and
+now we have this graph.
+
+
+690
+00:28:15,576 --> 00:28:18,666
+[applause] All right, excellent.
+
+
+691
+00:28:19,166 --> 00:28:21,886
+So I promised that I would
+tell you a little more detail
+
+
+692
+00:28:21,886 --> 00:28:23,846
+about when this is going to work
+and when it's not going to work.
+
+
+693
+00:28:24,146 --> 00:28:25,876
+So there are a set of keys
+
+
+694
+00:28:25,876 --> 00:28:27,876
+on which this behavior
+is supported.
+
+
+695
+00:28:28,286 --> 00:28:30,766
+Basically they're
+your geometric keys.
+
+
+696
+00:28:31,946 --> 00:28:33,806
+So this kind of stuff is
+all going to work fine
+
+
+697
+00:28:33,806 --> 00:28:35,606
+for moving objects around
+on the screen, scaling them,
+
+
+698
+00:28:35,776 --> 00:28:37,336
+rotating them; that's
+all going to be fine.
+
+
+699
+00:28:38,246 --> 00:28:40,166
+There are certain kinds
+of rotations, though,
+
+
+700
+00:28:40,166 --> 00:28:41,686
+which work and ones which don't.
+
+
+701
+00:28:41,686 --> 00:28:45,146
+So, just really briefly,
+if you were to actually try
+
+
+702
+00:28:45,146 --> 00:28:48,546
+to animate the layer's transform
+property, you're only going
+
+
+703
+00:28:48,546 --> 00:28:51,996
+to get this additive behavior
+for affine transformations.
+
+
+704
+00:28:52,196 --> 00:28:54,766
+The definition of an
+affine transformation is
+
+
+705
+00:28:54,766 --> 00:28:58,326
+that it keeps parallel
+lines smooth
+
+
+706
+00:28:59,266 --> 00:29:00,666
+after the transformation's
+applied.
+
+
+707
+00:29:00,666 --> 00:29:03,426
+So the bird on the left, we've
+rotated it about the z-axis.
+
+
+708
+00:29:03,426 --> 00:29:05,206
+Those parallel lines
+- I'm sorry,
+
+
+709
+00:29:05,206 --> 00:29:06,276
+parallel lines are not smooth.
+
+
+710
+00:29:06,276 --> 00:29:06,966
+They're still parallel.
+
+
+711
+00:29:07,486 --> 00:29:10,376
+Parallel lines
+pre-transformation remain
+
+
+712
+00:29:10,376 --> 00:29:12,086
+parallel after the
+transformation.
+
+
+713
+00:29:12,336 --> 00:29:13,436
+That is an affine transform.
+
+
+714
+00:29:13,766 --> 00:29:16,096
+So the bird on the left,
+parallel lines still parallel;
+
+
+715
+00:29:16,646 --> 00:29:18,496
+bird on the right, parallel
+lines no longer parallel.
+
+
+716
+00:29:18,786 --> 00:29:23,116
+So a rotation animation
+that is like the bird
+
+
+717
+00:29:23,116 --> 00:29:25,426
+on the left will use
+additive animations;
+
+
+718
+00:29:25,676 --> 00:29:28,466
+and rotation animations, like
+the bird on the right, will not.
+
+
+719
+00:29:29,256 --> 00:29:31,066
+There's a few other
+compatibility requirements,
+
+
+720
+00:29:31,066 --> 00:29:31,486
+as well.
+
+
+721
+00:29:32,436 --> 00:29:34,846
+This feature will not work
+with keyframe animations
+
+
+722
+00:29:34,846 --> 00:29:37,816
+at the time being and
+it also will not work
+
+
+723
+00:29:37,816 --> 00:29:39,866
+if there are pre-existing
+repeating animations
+
+
+724
+00:29:40,116 --> 00:29:41,976
+because that could
+get you to a place
+
+
+725
+00:29:41,976 --> 00:29:43,736
+where you have an
+unlimited number
+
+
+726
+00:29:43,736 --> 00:29:45,156
+of animations stacking forever.
+
+
+727
+00:29:45,676 --> 00:29:46,776
+It's not good for the system.
+
+
+728
+00:29:47,456 --> 00:29:48,626
+Finally, it will also not work
+
+
+729
+00:29:48,826 --> 00:29:50,496
+if you've gone behind
+UIKit's back
+
+
+730
+00:29:50,496 --> 00:29:53,156
+and created preexisting absolute
+animations on that layer.
+
+
+731
+00:29:53,836 --> 00:29:57,406
+But these are, perhaps,
+not common situations.
+
+
+732
+00:29:58,746 --> 00:30:01,076
+Now, I said that not
+all keys are supported.
+
+
+733
+00:30:01,076 --> 00:30:02,676
+For instance, alpha
+is not supported.
+
+
+734
+00:30:02,936 --> 00:30:05,506
+And you don't really know what
+setting the circle's tintColor
+
+
+735
+00:30:05,506 --> 00:30:06,216
+is going to do.
+
+
+736
+00:30:06,216 --> 00:30:07,826
+You know that that's
+an animatable property,
+
+
+737
+00:30:07,826 --> 00:30:10,436
+but you don't really
+know what that means.
+
+
+738
+00:30:10,856 --> 00:30:13,766
+And so you can be defensive
+
+
+739
+00:30:14,676 --> 00:30:18,456
+about whether properties support
+additive animations or not
+
+
+740
+00:30:18,816 --> 00:30:21,016
+by continuing to use
+BeginFromCurrentState.
+
+
+741
+00:30:21,296 --> 00:30:26,686
+So for center.x, for that
+animation, we're not going
+
+
+742
+00:30:26,686 --> 00:30:28,446
+to use the old
+BeginFromCurrentState behavior
+
+
+743
+00:30:28,446 --> 00:30:28,976
+behind the scenes.
+
+
+744
+00:30:28,976 --> 00:30:30,856
+We are still going to make
+that additive animation.
+
+
+745
+00:30:31,096 --> 00:30:33,546
+But for the other two
+properties, for alpha
+
+
+746
+00:30:33,546 --> 00:30:34,826
+and for the tint color, then
+
+
+747
+00:30:34,826 --> 00:30:37,556
+at least you'll get position
+preserving transitions.
+
+
+748
+00:30:38,116 --> 00:30:41,016
+So you can go ahead and
+use BeginFromCurrentState,
+
+
+749
+00:30:41,366 --> 00:30:43,086
+center.x will be additive,
+
+
+750
+00:30:43,466 --> 00:30:46,056
+the others will use
+the presentation value
+
+
+751
+00:30:46,056 --> 00:30:46,966
+in their reverse directions.
+
+
+752
+00:30:47,896 --> 00:30:49,756
+The other thing that's
+interesting
+
+
+753
+00:30:49,756 --> 00:30:51,496
+about this transition is
+sort of a side effect.
+
+
+754
+00:30:51,956 --> 00:30:54,366
+You know, UIKit doesn't
+actually have a way for you
+
+
+755
+00:30:54,366 --> 00:30:55,906
+to cancel in-flight
+animations right now.
+
+
+756
+00:30:55,906 --> 00:30:56,766
+There's no way to do that.
+
+
+757
+00:30:57,816 --> 00:30:59,516
+So some people do it like this.
+
+
+758
+00:31:00,556 --> 00:31:02,896
+They make a new animation
+with a 0 duration,
+
+
+759
+00:31:03,576 --> 00:31:05,586
+and you just set the
+value to something else.
+
+
+760
+00:31:05,916 --> 00:31:08,556
+Now, that will sort of stop
+in-flight animations just
+
+
+761
+00:31:08,606 --> 00:31:09,676
+because the behavior
+
+
+762
+00:31:09,676 --> 00:31:11,516
+of UIKitAnimations
+has always been that,
+
+
+763
+00:31:11,776 --> 00:31:14,456
+when you make a new animation,
+we throw out the old one,
+
+
+764
+00:31:14,706 --> 00:31:15,726
+replace it with the new one,
+
+
+765
+00:31:15,726 --> 00:31:18,146
+and this new one's going
+to be 0 seconds long.
+
+
+766
+00:31:19,256 --> 00:31:21,736
+But, as we just saw,
+we don't throw
+
+
+767
+00:31:21,736 --> 00:31:23,186
+out those animations anymore.
+
+
+768
+00:31:24,176 --> 00:31:26,476
+So this is not going to stop
+any in-flight animations.
+
+
+769
+00:31:26,746 --> 00:31:27,876
+Instead you just have to drop
+
+
+770
+00:31:27,876 --> 00:31:32,876
+down to the CAAnimation API
+directly to do your work.
+
+
+771
+00:31:33,066 --> 00:31:35,816
+One other thing to keep in mind
+is behavior completion handlers.
+
+
+772
+00:31:36,866 --> 00:31:37,616
+These animations stack.
+
+
+773
+00:31:38,806 --> 00:31:40,376
+So before, if you
+had an animation
+
+
+774
+00:31:40,376 --> 00:31:43,286
+with a completion handler, you
+started reversing direction.
+
+
+775
+00:31:44,666 --> 00:31:46,706
+As I said, we were going
+to remove that animation,
+
+
+776
+00:31:46,706 --> 00:31:48,266
+so when we remove
+that animation,
+
+
+777
+00:31:48,266 --> 00:31:49,416
+we call your completion handler.
+
+
+778
+00:31:49,996 --> 00:31:51,406
+The argument is finished,
+
+
+779
+00:31:51,966 --> 00:31:53,486
+and so when we call
+your completion handler,
+
+
+780
+00:31:53,486 --> 00:31:55,146
+we call it with a
+value of false,
+
+
+781
+00:31:55,216 --> 00:31:56,696
+because the animation
+didn't finish.
+
+
+782
+00:31:57,496 --> 00:32:00,116
+And then we'll create
+the new animation.
+
+
+783
+00:32:00,476 --> 00:32:01,576
+And when that one completes,
+
+
+784
+00:32:01,576 --> 00:32:02,616
+we'll call that completion
+handler.
+
+
+785
+00:32:02,616 --> 00:32:05,236
+Well, in the additive
+animations world,
+
+
+786
+00:32:06,006 --> 00:32:08,026
+if you have an additive
+animation
+
+
+787
+00:32:08,026 --> 00:32:12,806
+with completion handler and then
+you reverse directions, then -
+
+
+788
+00:32:12,806 --> 00:32:15,116
+remember, we don't throw
+out that animation.
+
+
+789
+00:32:15,116 --> 00:32:16,636
+We make a new animation.
+
+
+790
+00:32:17,846 --> 00:32:20,916
+And so we don't have
+a completion handler
+
+
+791
+00:32:20,916 --> 00:32:21,586
+to call right now.
+
+
+792
+00:32:21,956 --> 00:32:22,946
+The animation's still going.
+
+
+793
+00:32:23,926 --> 00:32:26,776
+It's only when we actually get
+to the end of the animation
+
+
+794
+00:32:27,006 --> 00:32:28,286
+that we call the
+completion handler,
+
+
+795
+00:32:28,286 --> 00:32:31,386
+and we call the completion
+handler with a finished argument
+
+
+796
+00:32:31,386 --> 00:32:34,486
+of true, because that
+first animation did finish.
+
+
+797
+00:32:34,816 --> 00:32:36,796
+It's just that another
+animation was added on top.
+
+
+798
+00:32:37,656 --> 00:32:40,276
+So this could be
+surprising, potentially,
+
+
+799
+00:32:41,016 --> 00:32:42,936
+and what I'm telling you
+is, do not be surprised.
+
+
+800
+00:32:43,676 --> 00:32:47,426
+[laughter] So, in summary,
+
+
+801
+00:32:48,306 --> 00:32:49,906
+transitions will be
+smoother by default.
+
+
+802
+00:32:51,106 --> 00:32:51,796
+This is a great thing.
+
+
+803
+00:32:53,046 --> 00:32:55,746
+However, there are some kinds
+of animations that are not
+
+
+804
+00:32:55,746 --> 00:32:56,716
+yet supported with this system
+
+
+805
+00:32:56,716 --> 00:32:59,006
+and so you should still
+use BeginFromCurrentState
+
+
+806
+00:32:59,006 --> 00:33:02,166
+if you're not sure about whether
+you're animating a supported
+
+
+807
+00:33:02,166 --> 00:33:03,696
+key, a supported
+scenario or not.
+
+
+808
+00:33:03,696 --> 00:33:04,116
+That's fine.
+
+
+809
+00:33:04,606 --> 00:33:06,436
+We'll do the best
+thing we can do.
+
+
+810
+00:33:07,706 --> 00:33:09,396
+And, finally, do keep in mind
+
+
+811
+00:33:09,396 --> 00:33:10,846
+that those completion
+handlers may stack
+
+
+812
+00:33:11,356 --> 00:33:14,146
+because that does
+actually represent a change
+
+
+813
+00:33:14,146 --> 00:33:15,526
+in when we are calling you back.
+
+
+814
+00:33:16,746 --> 00:33:18,426
+So we've talked about
+how to transition
+
+
+815
+00:33:18,666 --> 00:33:21,246
+from animation to animation.
+
+
+816
+00:33:22,206 --> 00:33:23,876
+And now that you've got
+these animations in-flight,
+
+
+817
+00:33:24,876 --> 00:33:27,906
+you do still want to be able to
+interact with your application.
+
+
+818
+00:33:28,276 --> 00:33:30,976
+So Josh is going to come back
+up and talk about transitioning
+
+
+819
+00:33:30,976 --> 00:33:32,576
+from animations to gestures.
+
+
+820
+00:33:33,516 --> 00:33:38,146
+[ Applause ]
+
+
+821
+00:33:38,646 --> 00:33:39,016
+>> All right.
+
+
+822
+00:33:39,056 --> 00:33:39,636
+Thanks, Andy.
+
+
+823
+00:33:40,246 --> 00:33:41,076
+We're getting close.
+
+
+824
+00:33:41,076 --> 00:33:42,896
+We've got one transition
+point left
+
+
+825
+00:33:43,046 --> 00:33:45,046
+that we're still finding
+we've got some issues with.
+
+
+826
+00:33:45,626 --> 00:33:47,246
+And by default probably
+you're noticing
+
+
+827
+00:33:47,246 --> 00:33:49,666
+that in this transition point,
+going from your animation back
+
+
+828
+00:33:49,666 --> 00:33:52,386
+to your gesture, you're actually
+by default not actually able
+
+
+829
+00:33:52,386 --> 00:33:53,736
+to even start an interaction.
+
+
+830
+00:33:54,316 --> 00:33:56,306
+So before we can even talk
+about making it smooth,
+
+
+831
+00:33:56,306 --> 00:34:00,096
+we have to talk about how to
+allow gestures and touch events
+
+
+832
+00:34:00,096 --> 00:34:02,766
+and interactions to begin
+while you're in the middle
+
+
+833
+00:34:02,766 --> 00:34:03,836
+of one of these animations.
+
+
+834
+00:34:04,876 --> 00:34:06,676
+So let's go and take a look
+at why this is the case
+
+
+835
+00:34:06,676 --> 00:34:08,416
+and what we can do about it.
+
+
+836
+00:34:08,585 --> 00:34:11,406
+So here we've got some big
+view and I've put a subview
+
+
+837
+00:34:11,406 --> 00:34:14,656
+in that I've colored blue
+just to make it stand out.
+
+
+838
+00:34:14,656 --> 00:34:16,166
+And we're going to say
+that we're taking that view
+
+
+839
+00:34:16,166 --> 00:34:19,346
+and we're animating it over to
+the right into this position
+
+
+840
+00:34:19,346 --> 00:34:20,525
+on the right side of the screen
+
+
+841
+00:34:20,525 --> 00:34:23,876
+with some standard
+UIKitAnimation using the
+
+
+842
+00:34:23,876 --> 00:34:26,196
+UIViewAnimateWithDuration API.
+
+
+843
+00:34:26,846 --> 00:34:28,056
+And let's say it's
+halfway through.
+
+
+844
+00:34:28,656 --> 00:34:31,786
+And halfway through, we want
+to start interacting with it.
+
+
+845
+00:34:33,216 --> 00:34:37,786
+So let's say that a touch comes
+down on the screen and it comes
+
+
+846
+00:34:37,786 --> 00:34:39,835
+down on top of where
+that is visually
+
+
+847
+00:34:39,866 --> 00:34:40,896
+in the presentation layer.
+
+
+848
+00:34:42,106 --> 00:34:43,226
+Now the default thing
+that you get
+
+
+849
+00:34:43,226 --> 00:34:45,886
+if you just do
+UIViewAnimateWithDuration is
+
+
+850
+00:34:45,886 --> 00:34:48,416
+that animations that are
+in progress as a result
+
+
+851
+00:34:48,416 --> 00:34:50,766
+of that do not allow
+user interaction during
+
+
+852
+00:34:50,766 --> 00:34:51,366
+the animation.
+
+
+853
+00:34:52,616 --> 00:34:54,585
+So that view is going
+to get hit tested
+
+
+854
+00:34:55,126 --> 00:34:58,166
+and the touch will be
+attached to that view,
+
+
+855
+00:34:58,626 --> 00:35:01,486
+but because the interaction
+is disabled by default,
+
+
+856
+00:35:01,706 --> 00:35:03,576
+what you'll find is that the
+touch actually doesn't get
+
+
+857
+00:35:03,576 --> 00:35:05,356
+delivered anywhere and
+just gets swallowed.
+
+
+858
+00:35:05,426 --> 00:35:06,456
+It just disappears.
+
+
+859
+00:35:06,456 --> 00:35:07,686
+It's as if it didn't
+even happen.
+
+
+860
+00:35:11,846 --> 00:35:14,996
+So obviously we want to fix
+that, and the way that we can go
+
+
+861
+00:35:14,996 --> 00:35:18,526
+about doing it is by using an
+animation option called UIView
+
+
+862
+00:35:18,526 --> 00:35:20,646
+animation option
+.AllowsUserInteraction.
+
+
+863
+00:35:21,126 --> 00:35:22,196
+Not too surprising, the name.
+
+
+864
+00:35:22,646 --> 00:35:25,036
+And you can pass this
+into the UIViewAnimation
+
+
+865
+00:35:25,036 --> 00:35:26,486
+AnimateWithDuration APIs.
+
+
+866
+00:35:27,796 --> 00:35:29,926
+And this will enable interaction
+during these animations.
+
+
+867
+00:35:30,846 --> 00:35:33,626
+Now, once you've opted in to
+allowing user interaction,
+
+
+868
+00:35:34,106 --> 00:35:36,396
+you're basically
+saying, "I've got this.
+
+
+869
+00:35:36,396 --> 00:35:38,916
+I'm an advanced developer
+here and I know what I'm doing
+
+
+870
+00:35:38,916 --> 00:35:40,576
+and I'm going to take
+care of making sure
+
+
+871
+00:35:40,576 --> 00:35:41,616
+that the right thing happens."
+
+
+872
+00:35:42,296 --> 00:35:45,486
+So, you know, by default,
+UIKit is making it safe
+
+
+873
+00:35:45,486 --> 00:35:47,696
+so that you don't have
+weird things going on.
+
+
+874
+00:35:47,696 --> 00:35:49,566
+But once you opt in, you're
+saying that you're going to deal
+
+
+875
+00:35:49,566 --> 00:35:51,206
+with it and you know how
+to do the right thing.
+
+
+876
+00:35:51,206 --> 00:35:53,926
+So let's talk about
+what the right thing is.
+
+
+877
+00:35:54,676 --> 00:35:56,086
+So, again, let's
+look at what happens
+
+
+878
+00:35:56,086 --> 00:35:57,386
+if a touch comes
+down in that view.
+
+
+879
+00:35:58,346 --> 00:36:00,446
+Now, this part is probably
+going to be a little surprising
+
+
+880
+00:36:00,446 --> 00:36:01,476
+at first if you've tried it.
+
+
+881
+00:36:02,056 --> 00:36:03,986
+What actually happens
+is that you'll find
+
+
+882
+00:36:03,986 --> 00:36:07,176
+that the touch gets hit tested
+to that big view in the back,
+
+
+883
+00:36:07,826 --> 00:36:09,386
+which probably wasn't
+what we meant
+
+
+884
+00:36:09,386 --> 00:36:11,176
+because we touch visually
+on what was there.
+
+
+885
+00:36:12,396 --> 00:36:14,836
+In fact, if you go
+and put a touch
+
+
+886
+00:36:14,836 --> 00:36:17,206
+down where we're moving
+the additive view to,
+
+
+887
+00:36:17,206 --> 00:36:20,146
+where it's going to animate
+to, you'll find the thing
+
+
+888
+00:36:20,146 --> 00:36:21,156
+that we hit test is the thing
+
+
+889
+00:36:21,156 --> 00:36:22,926
+that is currently
+animating over to there.
+
+
+890
+00:36:23,996 --> 00:36:26,356
+Understanding why
+that happens goes back
+
+
+891
+00:36:26,356 --> 00:36:28,406
+to what Andy was saying about
+the difference between model
+
+
+892
+00:36:28,406 --> 00:36:29,536
+and presentation values.
+
+
+893
+00:36:30,026 --> 00:36:31,816
+Once you've enabled user
+interaction, you're saying
+
+
+894
+00:36:31,816 --> 00:36:33,636
+that you're going to take
+control of this whole system
+
+
+895
+00:36:33,636 --> 00:36:35,926
+and you're going to decide the
+right place to go do a hit test.
+
+
+896
+00:36:35,926 --> 00:36:38,836
+Because we don't
+actually know if the thing
+
+
+897
+00:36:38,836 --> 00:36:40,456
+that you're animating is
+something that you intend
+
+
+898
+00:36:40,456 --> 00:36:44,036
+to interact with or just
+something that is animating
+
+
+899
+00:36:44,036 --> 00:36:45,926
+in a system, but you're
+actually trying to interact
+
+
+900
+00:36:45,926 --> 00:36:46,856
+with the thing behind it.
+
+
+901
+00:36:48,226 --> 00:36:50,256
+So really we're hit
+testing the model values
+
+
+902
+00:36:50,256 --> 00:36:52,866
+of all these layers, but
+if you want to interact
+
+
+903
+00:36:52,866 --> 00:36:54,226
+with the thing that's
+animating, you really want
+
+
+904
+00:36:54,226 --> 00:36:55,996
+to be hit testing the
+presentation values.
+
+
+905
+00:36:56,566 --> 00:37:00,806
+So we have to go talk about how
+we can make a presentation layer
+
+
+906
+00:37:00,806 --> 00:37:03,316
+hit test, instead of a
+default model value hit test.
+
+
+907
+00:37:04,506 --> 00:37:08,966
+And to do that we can override
+the hitTest withEvent method
+
+
+908
+00:37:08,966 --> 00:37:11,946
+on our UIView that's animating
+to make it so that it's going
+
+
+909
+00:37:11,946 --> 00:37:13,756
+to hit test its presentation
+value instead
+
+
+910
+00:37:13,756 --> 00:37:14,486
+of its model value.
+
+
+911
+00:37:15,046 --> 00:37:19,986
+Now, by default, the method
+is going to take a point.
+
+
+912
+00:37:20,056 --> 00:37:22,576
+It's the point in the view
+that is being hit tested
+
+
+913
+00:37:23,096 --> 00:37:24,906
+and that's the view,
+or the point
+
+
+914
+00:37:24,906 --> 00:37:26,746
+that UIKit thinks
+you have touched.
+
+
+915
+00:37:27,156 --> 00:37:28,826
+But, as I mentioned, it's
+done that in model space.
+
+
+916
+00:37:28,826 --> 00:37:32,046
+So we have to convert it back to
+presentation layer space to see
+
+
+917
+00:37:32,046 --> 00:37:34,176
+if it's currently inside where
+we are as we're animating.
+
+
+918
+00:37:34,956 --> 00:37:36,506
+So we can take that
+point that's passed in
+
+
+919
+00:37:36,506 --> 00:37:38,006
+and convert it back
+into our superview.
+
+
+920
+00:37:38,586 --> 00:37:41,046
+So we'll convertPoint
+toView or superview.
+
+
+921
+00:37:41,806 --> 00:37:43,796
+Once we've got it into
+superview's coordinate space,
+
+
+922
+00:37:43,796 --> 00:37:46,516
+then we can convert it back into
+our presentation layer space.
+
+
+923
+00:37:46,966 --> 00:37:49,436
+So we convert out using
+model space and then back
+
+
+924
+00:37:49,436 --> 00:37:51,826
+in using presentation
+space so that we can see
+
+
+925
+00:37:51,826 --> 00:37:53,936
+where it is inside of
+where we are currently,
+
+
+926
+00:37:53,936 --> 00:37:55,926
+given that we have an
+animation in progress.
+
+
+927
+00:37:56,566 --> 00:38:00,136
+So we can do that by getting
+our presentation layer and using
+
+
+928
+00:38:00,136 --> 00:38:02,546
+that to do the conversion back
+into our coordinate space.
+
+
+929
+00:38:03,306 --> 00:38:05,096
+Once we've got that converted
+into the right space,
+
+
+930
+00:38:05,126 --> 00:38:06,076
+then we can just call super
+
+
+931
+00:38:06,076 --> 00:38:07,486
+and let it do what
+it was going to do.
+
+
+932
+00:38:07,486 --> 00:38:10,516
+So return super.hitTest, passing
+in the converted point now
+
+
+933
+00:38:10,516 --> 00:38:11,626
+in presentation space
+
+
+934
+00:38:11,916 --> 00:38:13,876
+and everything else can just
+move on as it had before.
+
+
+935
+00:38:15,346 --> 00:38:17,616
+So once we've done that,
+we can go take a look
+
+
+936
+00:38:17,616 --> 00:38:18,506
+at what was going on again.
+
+
+937
+00:38:18,896 --> 00:38:21,416
+Now we've enabled these
+interactions, we touch down,
+
+
+938
+00:38:21,486 --> 00:38:22,616
+and now the right view is going
+
+
+939
+00:38:22,616 --> 00:38:24,836
+to get hit giving what we
+were trying to accomplish.
+
+
+940
+00:38:25,406 --> 00:38:31,866
+Now, keep in mind that other
+APIs - like touch, location
+
+
+941
+00:38:31,866 --> 00:38:35,066
+and view - are also assuming
+model space conversions.
+
+
+942
+00:38:35,306 --> 00:38:36,406
+All the UIKit behaviors
+
+
+943
+00:38:36,406 --> 00:38:38,326
+by default are converting
+using model space.
+
+
+944
+00:38:38,616 --> 00:38:40,046
+So if you've now
+enabled hit testing
+
+
+945
+00:38:40,046 --> 00:38:42,716
+into something that's animating
+and you're in the progress
+
+
+946
+00:38:42,716 --> 00:38:45,926
+of doing that animation and you
+want to start handling touches
+
+
+947
+00:38:45,926 --> 00:38:48,396
+in the view, if you ask for
+that touch location in view,
+
+
+948
+00:38:48,396 --> 00:38:49,676
+it's going to be
+back in model space.
+
+
+949
+00:38:49,676 --> 00:38:52,006
+So you would have to be
+careful to go and make sure
+
+
+950
+00:38:52,006 --> 00:38:54,426
+that you know which space
+you're interacting in.
+
+
+951
+00:38:55,756 --> 00:38:58,526
+So really, the reason that the
+default is disabled is because,
+
+
+952
+00:38:58,526 --> 00:39:00,826
+once you enable interactions,
+you have to start knowing more
+
+
+953
+00:39:00,826 --> 00:39:02,406
+about what's going
+on and being careful
+
+
+954
+00:39:02,406 --> 00:39:03,946
+to be using the correct
+coordinate spaces.
+
+
+955
+00:39:05,076 --> 00:39:07,586
+But most of the time, this is
+actually probably not going
+
+
+956
+00:39:07,586 --> 00:39:09,776
+to be a problem, because
+usually if you're enabling
+
+
+957
+00:39:09,776 --> 00:39:11,396
+under interaction on
+something that's animating,
+
+
+958
+00:39:11,396 --> 00:39:13,256
+you're probably trying
+to grab the thing
+
+
+959
+00:39:13,256 --> 00:39:14,296
+and stop the animation.
+
+
+960
+00:39:14,936 --> 00:39:16,296
+So really what we're
+going to talk
+
+
+961
+00:39:16,296 --> 00:39:18,026
+about now is how we
+stop the animation.
+
+
+962
+00:39:18,026 --> 00:39:19,896
+That's the key part that
+we're interested in right now.
+
+
+963
+00:39:20,306 --> 00:39:21,406
+We've got hit testing working.
+
+
+964
+00:39:21,706 --> 00:39:23,656
+Once we're touching down,
+how do we stop an animation?
+
+
+965
+00:39:23,976 --> 00:39:26,846
+Now, as Andy mentioned,
+there is no direct API
+
+
+966
+00:39:26,846 --> 00:39:28,706
+on UIKit to stop an animation.
+
+
+967
+00:39:29,126 --> 00:39:31,226
+So we're going to use the
+CALayer API to do that.
+
+
+968
+00:39:31,656 --> 00:39:33,596
+But there's another interesting
+component that we have to keep
+
+
+969
+00:39:33,596 --> 00:39:37,346
+in mind, because Andy just ran
+you through the whole story
+
+
+970
+00:39:37,346 --> 00:39:39,566
+of how things go when there
+are animations on a layer.
+
+
+971
+00:39:40,346 --> 00:39:44,286
+And part of that is that
+the model value is already
+
+
+972
+00:39:44,286 --> 00:39:44,976
+at its final location.
+
+
+973
+00:39:46,106 --> 00:39:49,556
+So if we just removed the
+animation from the layer,
+
+
+974
+00:39:50,126 --> 00:39:51,636
+that was the thing that was
+keeping it in the center
+
+
+975
+00:39:51,636 --> 00:39:52,896
+of the screen visually
+right now,
+
+
+976
+00:39:52,896 --> 00:39:54,176
+so it would snap to the end.
+
+
+977
+00:39:54,606 --> 00:39:57,306
+So we would touch down on the
+object, remove the animation,
+
+
+978
+00:39:57,306 --> 00:39:58,626
+and it would snap out
+from under our finger
+
+
+979
+00:39:58,626 --> 00:39:59,616
+and land wherever it was going.
+
+
+980
+00:39:59,956 --> 00:40:00,526
+So we don't want that.
+
+
+981
+00:40:01,236 --> 00:40:03,216
+We have to go get the
+presentation values
+
+
+982
+00:40:03,216 --> 00:40:05,496
+of where it currently is
+on screen and set those
+
+
+983
+00:40:05,496 --> 00:40:07,746
+to be the new model values
+so that there's no jump.
+
+
+984
+00:40:08,706 --> 00:40:10,716
+Now let's assume the thing we
+were doing was animating just
+
+
+985
+00:40:10,716 --> 00:40:12,256
+its position, its
+location on screen.
+
+
+986
+00:40:12,686 --> 00:40:15,146
+I'll give you an example of how
+that would look in that case.
+
+
+987
+00:40:15,276 --> 00:40:17,616
+Of course, if you're animating
+something else, like its bounds
+
+
+988
+00:40:17,616 --> 00:40:19,596
+or some other property, you'd
+have to do the same thing
+
+
+989
+00:40:19,596 --> 00:40:21,046
+for whatever property
+you're animating.
+
+
+990
+00:40:21,756 --> 00:40:23,166
+So in this case we're
+just doing the center,
+
+
+991
+00:40:23,166 --> 00:40:25,246
+so let's get the
+view, get its layer,
+
+
+992
+00:40:25,876 --> 00:40:28,156
+get the layer's presentation
+layer, which is going to be
+
+
+993
+00:40:28,156 --> 00:40:29,386
+where it is on screen right now.
+
+
+994
+00:40:29,806 --> 00:40:31,806
+And in this case, I'm asking
+for its position because that's
+
+
+995
+00:40:31,806 --> 00:40:33,586
+where - its location on screen.
+
+
+996
+00:40:33,586 --> 00:40:34,556
+So we'll store that away here.
+
+
+997
+00:40:36,016 --> 00:40:37,896
+Then we just want to set that
+to be the new model value
+
+
+998
+00:40:37,896 --> 00:40:39,856
+so that once we remove the
+animation it doesn't jump.
+
+
+999
+00:40:39,856 --> 00:40:40,766
+It's going to end up right here.
+
+
+1000
+00:40:41,456 --> 00:40:46,146
+Now, presentation - I'm
+sorry, UIView's property
+
+
+1001
+00:40:46,146 --> 00:40:47,346
+for this is called center.
+
+
+1002
+00:40:47,696 --> 00:40:49,246
+CALayer's is called position.
+
+
+1003
+00:40:49,246 --> 00:40:51,336
+They're actually the same thing,
+so you can just assign one
+
+
+1004
+00:40:51,336 --> 00:40:52,626
+to the other and not
+really worry about it.
+
+
+1005
+00:40:52,626 --> 00:40:53,556
+They are the same property.
+
+
+1006
+00:40:53,556 --> 00:40:55,946
+They just have a different name
+in UIKit and Core Animation.
+
+
+1007
+00:40:56,866 --> 00:40:59,176
+So once we've set that, now
+the model value is putting it
+
+
+1008
+00:40:59,176 --> 00:41:00,416
+where we thought it
+would be visually,
+
+
+1009
+00:41:00,416 --> 00:41:01,676
+because that's the
+presentation value.
+
+
+1010
+00:41:01,676 --> 00:41:03,046
+So we can just go and
+remove the animation.
+
+
+1011
+00:41:03,436 --> 00:41:05,516
+Now, in this case I'm
+taking the shortcut
+
+
+1012
+00:41:05,516 --> 00:41:06,846
+and just removing
+all animations.
+
+
+1013
+00:41:07,206 --> 00:41:09,176
+Now, you probably want to be a
+little more careful than that
+
+
+1014
+00:41:09,176 --> 00:41:10,186
+when you're doing it yourself
+
+
+1015
+00:41:10,186 --> 00:41:12,226
+to make sure you're removing
+only the animations you really
+
+
+1016
+00:41:12,226 --> 00:41:13,036
+mean to be removing.
+
+
+1017
+00:41:13,036 --> 00:41:14,596
+You have to be cognizant
+of whether
+
+
+1018
+00:41:14,596 --> 00:41:15,636
+or not there are others there.
+
+
+1019
+00:41:16,156 --> 00:41:16,956
+But that's the key to it,
+
+
+1020
+00:41:16,956 --> 00:41:18,496
+is just removing the
+right animations.
+
+
+1021
+00:41:18,596 --> 00:41:23,636
+So I mentioned that things were
+going to be a little easier
+
+
+1022
+00:41:23,796 --> 00:41:24,486
+when we were talking
+
+
+1023
+00:41:24,486 --> 00:41:26,696
+about UIDynamicAnimator
+earlier in the talk.
+
+
+1024
+00:41:27,006 --> 00:41:28,516
+Now, this is the place
+where things get easier
+
+
+1025
+00:41:28,516 --> 00:41:29,916
+when you're using
+a dynamic animator.
+
+
+1026
+00:41:30,316 --> 00:41:33,356
+Because DynamicAnimator
+doesn't have presentation
+
+
+1027
+00:41:33,356 --> 00:41:36,326
+and model space, we don't have
+this same complication of having
+
+
+1028
+00:41:36,326 --> 00:41:38,026
+to figure out where it
+is on screen compared
+
+
+1029
+00:41:38,026 --> 00:41:39,526
+to where the model is
+or anything like that.
+
+
+1030
+00:41:39,986 --> 00:41:41,856
+DynamicAnimator, it's
+all just wherever it is
+
+
+1031
+00:41:41,856 --> 00:41:43,336
+and it's happening
+in your process
+
+
+1032
+00:41:43,336 --> 00:41:45,836
+and the model value is
+the correct position
+
+
+1033
+00:41:45,836 --> 00:41:46,636
+on screen right now.
+
+
+1034
+00:41:47,766 --> 00:41:48,586
+So stopping this
+
+
+1035
+00:41:49,046 --> 00:41:51,006
+for a DynamicAnimator
+is a lot simpler.
+
+
+1036
+00:41:51,006 --> 00:41:53,536
+So let's take a look at that
+code that we wrote earlier
+
+
+1037
+00:41:53,646 --> 00:41:54,946
+in our GestureRecognizer method
+
+
+1038
+00:41:54,946 --> 00:41:56,576
+where we were handling
+the .Ended case.
+
+
+1039
+00:41:56,996 --> 00:41:59,016
+Now, of course, we're trying
+to deal with new touches coming
+
+
+1040
+00:41:59,016 --> 00:42:00,776
+down so we want to
+handle the .Began case
+
+
+1041
+00:42:00,776 --> 00:42:01,786
+on our Gesture Recognizer.
+
+
+1042
+00:42:01,826 --> 00:42:02,876
+So we'll make some
+space for that.
+
+
+1043
+00:42:04,386 --> 00:42:06,926
+And my suggestion for what you
+would do here - there's a couple
+
+
+1044
+00:42:06,926 --> 00:42:08,766
+of things you could do, but
+the one I'm going to suggest
+
+
+1045
+00:42:08,766 --> 00:42:11,186
+as a good option - is to
+actually just remove the thing
+
+
+1046
+00:42:11,186 --> 00:42:13,446
+that was animating from
+the dynamic item behavior,
+
+
+1047
+00:42:13,826 --> 00:42:15,846
+because once you've removed it,
+it's no longer going to interact
+
+
+1048
+00:42:15,846 --> 00:42:16,896
+with any of the other views;
+
+
+1049
+00:42:16,896 --> 00:42:20,086
+it's going to lose any
+velocity it may have had,
+
+
+1050
+00:42:20,086 --> 00:42:22,266
+because you just took it
+out of the dynamic system;
+
+
+1051
+00:42:22,576 --> 00:42:24,106
+and now you'll be
+able to manipulate it
+
+
+1052
+00:42:24,106 --> 00:42:24,936
+and move it around yourself.
+
+
+1053
+00:42:25,506 --> 00:42:27,066
+So we can take the
+dynamicItemBehavior
+
+
+1054
+00:42:27,066 --> 00:42:28,266
+and remove the thing
+that we're trying
+
+
+1055
+00:42:28,266 --> 00:42:29,506
+to interact with,
+our target view.
+
+
+1056
+00:42:30,466 --> 00:42:32,416
+Now, of course, once we've
+removed it, it's no longer going
+
+
+1057
+00:42:32,416 --> 00:42:34,896
+to have any new velocity when
+we try to add velocity later,
+
+
+1058
+00:42:34,896 --> 00:42:36,826
+so we have to put it back
+in when the gesture's done.
+
+
+1059
+00:42:37,256 --> 00:42:38,726
+So we'll take that
+dynamicItemBehavior
+
+
+1060
+00:42:38,726 --> 00:42:39,656
+and add it back at the end.
+
+
+1061
+00:42:39,656 --> 00:42:41,906
+And there's other things
+you could do instead.
+
+
+1062
+00:42:41,906 --> 00:42:43,946
+If you really wanted to leave
+it in the dynamic system,
+
+
+1063
+00:42:43,946 --> 00:42:45,796
+you could subtract off
+the current velocity
+
+
+1064
+00:42:45,796 --> 00:42:46,936
+so it would just come to a rest.
+
+
+1065
+00:42:47,426 --> 00:42:49,766
+But, first of all, the easiest
+thing to do is to remove it,
+
+
+1066
+00:42:49,766 --> 00:42:52,016
+and it's also probably what
+you mean in a lot of cases,
+
+
+1067
+00:42:52,296 --> 00:42:54,856
+because it'll stop it from
+smacking against other views
+
+
+1068
+00:42:54,856 --> 00:42:57,346
+in your system as
+you drag it around.
+
+
+1069
+00:42:59,336 --> 00:43:03,516
+So now we've really dealt
+with most of the transitions
+
+
+1070
+00:43:03,516 --> 00:43:04,286
+that we wanted to talk about.
+
+
+1071
+00:43:04,286 --> 00:43:07,396
+We got our gesture to animation
+going, we got animation
+
+
+1072
+00:43:07,396 --> 00:43:08,326
+to animation going,
+
+
+1073
+00:43:08,506 --> 00:43:10,546
+we got animation back
+to gestures working.
+
+
+1074
+00:43:10,846 --> 00:43:12,106
+So it seems like
+everything's good.
+
+
+1075
+00:43:12,106 --> 00:43:13,726
+We all - visually,
+everything looks great.
+
+
+1076
+00:43:14,756 --> 00:43:17,406
+So we should be done, but
+we've got 15 minutes left,
+
+
+1077
+00:43:17,566 --> 00:43:20,646
+so what's going on?
+
+
+1078
+00:43:20,926 --> 00:43:25,046
+Well, there's some complications
+that really start to come
+
+
+1079
+00:43:25,046 --> 00:43:27,166
+into things once you do
+this in a real application.
+
+
+1080
+00:43:27,646 --> 00:43:28,696
+So far everything
+we've been talking
+
+
+1081
+00:43:28,696 --> 00:43:29,866
+about is pretty theoretical.
+
+
+1082
+00:43:29,986 --> 00:43:31,916
+If you're just doing animations,
+it's all pretty easy.
+
+
+1083
+00:43:32,426 --> 00:43:34,726
+But if you - in any real
+application you have other
+
+
+1084
+00:43:34,726 --> 00:43:36,976
+state, transient
+animation state,
+
+
+1085
+00:43:37,016 --> 00:43:39,676
+that exists only during
+transitions or animations.
+
+
+1086
+00:43:39,976 --> 00:43:42,276
+Maybe when you start some
+transition, you create a bunch
+
+
+1087
+00:43:42,276 --> 00:43:44,166
+of extra views to use
+during that animation,
+
+
+1088
+00:43:44,166 --> 00:43:46,036
+and then when the animation
+is done, you destroy them.
+
+
+1089
+00:43:46,036 --> 00:43:48,496
+You have to know what the
+right times are to create
+
+
+1090
+00:43:48,496 --> 00:43:49,496
+and destroy these things.
+
+
+1091
+00:43:49,846 --> 00:43:53,016
+And if we're stacking animations
+with additive animations
+
+
+1092
+00:43:53,016 --> 00:43:54,336
+and we're figuring out
+that we're starting
+
+
+1093
+00:43:54,336 --> 00:43:56,806
+and removing things in the
+middle by allowing interaction
+
+
+1094
+00:43:56,806 --> 00:43:59,446
+with gestures, it's no
+longer immediately obvious
+
+
+1095
+00:43:59,446 --> 00:44:02,136
+where the right places are
+to make some of these changes
+
+
+1096
+00:44:02,136 --> 00:44:03,926
+to your view hierarchy
+to set up and tear
+
+
+1097
+00:44:03,926 --> 00:44:05,516
+down your transient
+animation state.
+
+
+1098
+00:44:06,356 --> 00:44:08,226
+So we're not going to
+go through too much
+
+
+1099
+00:44:08,226 --> 00:44:09,486
+in slides about this actually.
+
+
+1100
+00:44:09,486 --> 00:44:11,786
+What we're going to do is just
+do a demo showing you how you
+
+
+1101
+00:44:11,786 --> 00:44:13,726
+can make this happen
+in a real app.
+
+
+1102
+00:44:13,726 --> 00:44:16,086
+So Andy's going to come back
+up and write an app for you
+
+
+1103
+00:44:16,306 --> 00:44:16,966
+that does all of that.
+
+
+1104
+00:44:17,756 --> 00:44:18,556
+>> Thank you very much.
+
+
+1105
+00:44:18,946 --> 00:44:21,756
+I am extremely excited
+about this part of the talk.
+
+
+1106
+00:44:21,756 --> 00:44:24,066
+I don't think we've ever talked
+about this topic publicly
+
+
+1107
+00:44:24,066 --> 00:44:26,586
+and we've been confronting it a
+great deal ourselves as we think
+
+
+1108
+00:44:26,586 --> 00:44:30,256
+about how to effectively deal
+with these kinds of problems.
+
+
+1109
+00:44:30,446 --> 00:44:32,846
+We want everything to be
+fluid as much as possible
+
+
+1110
+00:44:32,846 --> 00:44:37,186
+in our system, and that means
+wrestling with these problems.
+
+
+1111
+00:44:37,246 --> 00:44:40,606
+There's a superstructure of
+state around your animations
+
+
+1112
+00:44:41,416 --> 00:44:43,106
+which you need to deal with,
+which you can't forget.
+
+
+1113
+00:44:43,786 --> 00:44:45,976
+So I have a very
+important application here.
+
+
+1114
+00:44:45,976 --> 00:44:47,836
+It's been a key thing for us.
+
+
+1115
+00:44:48,806 --> 00:44:52,666
+We're using it as a test ground
+for this experimentation,
+
+
+1116
+00:44:52,936 --> 00:44:53,896
+and it's called Toggle Bird.
+
+
+1117
+00:44:54,416 --> 00:44:58,666
+Now, sometimes you need a bird.
+
+
+1118
+00:44:58,886 --> 00:45:04,166
+So, great features, you press
+a button and get a bird.
+
+
+1119
+00:45:04,366 --> 00:45:05,176
+Sometimes you don't want a bird.
+
+
+1120
+00:45:05,336 --> 00:45:06,416
+You press a button and
+the bird goes away.
+
+
+1121
+00:45:07,196 --> 00:45:08,056
+Now you don't have
+a bird anymore.
+
+
+1122
+00:45:08,256 --> 00:45:08,596
+That's great.
+
+
+1123
+00:45:10,196 --> 00:45:12,986
+But, sometimes you're
+indecisive.
+
+
+1124
+00:45:13,886 --> 00:45:15,606
+You say, "Okay, well,
+does this bird - no,
+
+
+1125
+00:45:15,606 --> 00:45:17,056
+I don't actually want the bird.
+
+
+1126
+00:45:17,276 --> 00:45:19,526
+I was overeager with the bird.
+
+
+1127
+00:45:20,096 --> 00:45:20,986
+Put the bird away.
+
+
+1128
+00:45:20,986 --> 00:45:21,716
+Go away, bird."
+
+
+1129
+00:45:21,936 --> 00:45:24,346
+But you can't, because
+the button's disabled.
+
+
+1130
+00:45:25,596 --> 00:45:26,676
+And that's frustrating.
+
+
+1131
+00:45:27,096 --> 00:45:29,966
+You don't really want the
+feeling where an animation's
+
+
+1132
+00:45:29,966 --> 00:45:31,946
+in progress and so
+the world must stop
+
+
+1133
+00:45:32,536 --> 00:45:33,936
+until the animation is done.
+
+
+1134
+00:45:34,496 --> 00:45:37,676
+So we could look at our code
+and say, "Oh, okay, well,
+
+
+1135
+00:45:37,876 --> 00:45:40,456
+I see a couple of pretty
+big red flags here.
+
+
+1136
+00:45:40,876 --> 00:45:42,866
+Looks like we're disabling
+
+
+1137
+00:45:42,866 --> 00:45:46,306
+and re-enabling the birdToggle
+button when this animation's
+
+
+1138
+00:45:46,306 --> 00:45:49,206
+in flight, so I'll just go
+ahead and comment out that code
+
+
+1139
+00:45:49,206 --> 00:45:50,106
+and then everything
+will be cool.
+
+
+1140
+00:45:50,106 --> 00:45:52,926
+You know, the button's not
+disabled anymore, looks good."
+
+
+1141
+00:45:53,616 --> 00:45:56,546
+Let's walk through
+this method together
+
+
+1142
+00:45:57,016 --> 00:45:58,606
+because I think it
+actually illustrates a lot
+
+
+1143
+00:45:58,606 --> 00:46:01,456
+of the common problems that
+people have when trying
+
+
+1144
+00:46:01,546 --> 00:46:03,076
+to make this kind of thing work.
+
+
+1145
+00:46:04,266 --> 00:46:07,086
+So this is just the setter
+for the birdExpanded property,
+
+
+1146
+00:46:07,196 --> 00:46:08,806
+which you'll see
+is just a property.
+
+
+1147
+00:46:09,766 --> 00:46:12,756
+And this is a property
+which is animatable,
+
+
+1148
+00:46:13,306 --> 00:46:14,656
+which means I've
+designed it so that,
+
+
+1149
+00:46:14,936 --> 00:46:16,866
+if you set this property
+inside an animation block,
+
+
+1150
+00:46:16,866 --> 00:46:17,866
+then it'll be animated.
+
+
+1151
+00:46:18,616 --> 00:46:19,506
+I think that's a nice pattern.
+
+
+1152
+00:46:20,086 --> 00:46:24,046
+We do that by inheriting the
+parent's animation context
+
+
+1153
+00:46:24,646 --> 00:46:26,276
+by making a UIView
+animation block
+
+
+1154
+00:46:26,546 --> 00:46:27,686
+that is a zero-length duration.
+
+
+1155
+00:46:27,776 --> 00:46:29,636
+So you'll see here
+there's a toggleBird method
+
+
+1156
+00:46:29,976 --> 00:46:33,666
+that sets the birdExpanded
+property inside an
+
+
+1157
+00:46:33,666 --> 00:46:34,336
+animation block.
+
+
+1158
+00:46:34,336 --> 00:46:36,176
+That's how that part works.
+
+
+1159
+00:46:36,176 --> 00:46:37,566
+So let's walk through
+the rest of it together.
+
+
+1160
+00:46:38,256 --> 00:46:40,496
+There's a bit of state
+that we keep track of.
+
+
+1161
+00:46:40,956 --> 00:46:42,136
+Is the bird expanded?
+
+
+1162
+00:46:42,846 --> 00:46:47,146
+And if the bird is supposed
+to be expanded anew,
+
+
+1163
+00:46:47,476 --> 00:46:50,136
+we make a birdDrawerView,
+set it up.
+
+
+1164
+00:46:50,426 --> 00:46:53,096
+We want it to animate from,
+you know, being full-width
+
+
+1165
+00:46:53,096 --> 00:46:56,166
+but zero height, so we do
+a little layout initially.
+
+
+1166
+00:46:56,206 --> 00:46:57,766
+So this is kind of
+like a preamble.
+
+
+1167
+00:46:58,276 --> 00:46:59,786
+You know, we're making
+some stuff that we need,
+
+
+1168
+00:47:00,066 --> 00:47:03,086
+get it set up, and then we
+actually do the animation.
+
+
+1169
+00:47:03,086 --> 00:47:06,206
+This is the part that is now
+additive, so that's great.
+
+
+1170
+00:47:06,556 --> 00:47:09,036
+You know, we're just changing
+this constraint's constant,
+
+
+1171
+00:47:09,486 --> 00:47:11,146
+telling it to layout inside
+of an animation block.
+
+
+1172
+00:47:11,146 --> 00:47:14,706
+That will synthesize the correct
+bounds and position animations
+
+
+1173
+00:47:15,436 --> 00:47:16,486
+to actually get things moving.
+
+
+1174
+00:47:16,486 --> 00:47:19,076
+And finally there's
+something of a post-amble
+
+
+1175
+00:47:19,316 --> 00:47:20,706
+when that animation's completed.
+
+
+1176
+00:47:21,376 --> 00:47:24,136
+If the bird is no longer
+supposed to be expanded,
+
+
+1177
+00:47:24,426 --> 00:47:27,376
+we clean this up because
+the bird is being drawn
+
+
+1178
+00:47:27,926 --> 00:47:29,386
+with some very novel
+
+
+1179
+00:47:29,386 --> 00:47:31,786
+and expensive rendering
+technologies, and we don't want
+
+
+1180
+00:47:31,786 --> 00:47:33,586
+to waste system resources
+on that.
+
+
+1181
+00:47:34,066 --> 00:47:36,126
+You know, you've got
+to be good Samaritans.
+
+
+1182
+00:47:36,526 --> 00:47:39,126
+So this is the entirety
+of what's going on here,
+
+
+1183
+00:47:40,166 --> 00:47:46,906
+and the problem arises when we
+remove these enabled setters
+
+
+1184
+00:47:47,226 --> 00:47:51,166
+because we can run through this
+method multiple times while the
+
+
+1185
+00:47:51,166 --> 00:47:52,176
+animation's in flight.
+
+
+1186
+00:47:53,396 --> 00:47:57,686
+This completion block, as I said
+earlier, is going to run even
+
+
+1187
+00:47:57,686 --> 00:47:59,566
+if there are new
+animations related
+
+
+1188
+00:47:59,566 --> 00:48:00,736
+to the bird also running.
+
+
+1189
+00:48:01,926 --> 00:48:06,086
+So we really have a more
+complex state machine going
+
+
+1190
+00:48:06,086 --> 00:48:08,746
+on than it seems at first.
+
+
+1191
+00:48:09,356 --> 00:48:12,616
+So I'm just going to jump
+right to the solution here.
+
+
+1192
+00:48:12,716 --> 00:48:14,306
+Only a few lines change.
+
+
+1193
+00:48:14,726 --> 00:48:16,636
+And first let me prove
+
+
+1194
+00:48:16,636 --> 00:48:19,056
+that I have solved our
+bird toggling problems.
+
+
+1195
+00:48:19,456 --> 00:48:20,146
+It's very nice.
+
+
+1196
+00:48:20,786 --> 00:48:22,916
+We can be indecisive
+about the bird safely.
+
+
+1197
+00:48:24,326 --> 00:48:26,256
+And here in the code I've
+only changed a few lines.
+
+
+1198
+00:48:26,836 --> 00:48:29,866
+I've got a new i-bar,
+and that i-bar is going
+
+
+1199
+00:48:29,866 --> 00:48:33,496
+to be tracking how many
+active transitions we have.
+
+
+1200
+00:48:33,716 --> 00:48:37,356
+So at the bottom, every time the
+birdExpanded property changes,
+
+
+1201
+00:48:37,356 --> 00:48:40,176
+we increment that; and
+every time a bird expansion
+
+
+1202
+00:48:40,176 --> 00:48:42,846
+or contraction animation
+completes, we decrement it.
+
+
+1203
+00:48:43,396 --> 00:48:44,816
+So we're just keeping
+track of the number
+
+
+1204
+00:48:44,816 --> 00:48:46,566
+of in-flight state
+transitions currently.
+
+
+1205
+00:48:46,566 --> 00:48:49,616
+And then we change our
+preamble and post-amble
+
+
+1206
+00:48:49,616 --> 00:48:50,796
+to consider that counter.
+
+
+1207
+00:48:51,536 --> 00:48:54,006
+We say, "Okay, well,
+only do this preamble
+
+
+1208
+00:48:54,396 --> 00:48:58,376
+if we're transitioning from
+not having any animations
+
+
+1209
+00:48:58,596 --> 00:49:00,186
+to having some animations.
+
+
+1210
+00:49:01,556 --> 00:49:03,956
+Similarly, only do
+our post-amble
+
+
+1211
+00:49:03,956 --> 00:49:07,216
+if we're transitioning
+from having animations
+
+
+1212
+00:49:07,426 --> 00:49:09,256
+to no longer having
+any animations at all."
+
+
+1213
+00:49:09,926 --> 00:49:12,756
+And that alone solves
+this problem.
+
+
+1214
+00:49:13,246 --> 00:49:17,966
+I do want to show you
+what this would look
+
+
+1215
+00:49:17,966 --> 00:49:20,446
+like with iOS 7-style
+animations.
+
+
+1216
+00:49:20,846 --> 00:49:25,736
+Note that the bird jumps to
+the finished value when I try
+
+
+1217
+00:49:25,736 --> 00:49:26,816
+to make it reverse direction.
+
+
+1218
+00:49:28,696 --> 00:49:33,386
+So even if I were to use the
+BeginFromCurrentState option
+
+
+1219
+00:49:33,976 --> 00:49:36,656
+to try to use presentation
+values.
+
+
+1220
+00:49:37,656 --> 00:49:39,116
+You see that when I
+reverse direction,
+
+
+1221
+00:49:39,116 --> 00:49:40,946
+it's kind of like the
+bird hits a brick wall.
+
+
+1222
+00:49:42,936 --> 00:49:49,266
+Now, we much prefer the
+additive animation solution.
+
+
+1223
+00:49:50,446 --> 00:49:51,156
+It's much smoother.
+
+
+1224
+00:49:54,326 --> 00:49:56,436
+So all that's great, and I
+want to show you quickly,
+
+
+1225
+00:49:56,496 --> 00:50:00,826
+I'm just going to comment
+this a little more in order
+
+
+1226
+00:50:00,826 --> 00:50:04,736
+to make clear how general this
+structure I've created is.
+
+
+1227
+00:50:04,946 --> 00:50:06,846
+Almost everything I've
+written here doesn't have to do
+
+
+1228
+00:50:06,846 --> 00:50:08,106
+with birds or toggling.
+
+
+1229
+00:50:08,696 --> 00:50:11,206
+That is the key point,
+because you might be writing a
+
+
+1230
+00:50:11,206 --> 00:50:11,986
+frog toggler.
+
+
+1231
+00:50:13,306 --> 00:50:15,616
+You know, I don't know; I
+want you to be creative.
+
+
+1232
+00:50:15,916 --> 00:50:17,236
+So there's a few sections here.
+
+
+1233
+00:50:17,236 --> 00:50:18,306
+There's a preamble section.
+
+
+1234
+00:50:18,516 --> 00:50:21,206
+In the preamble section,
+you can deal with all
+
+
+1235
+00:50:21,206 --> 00:50:22,356
+of the possible states.
+
+
+1236
+00:50:23,106 --> 00:50:25,726
+We only have a preamble for
+the bird becoming expanded.
+
+
+1237
+00:50:26,076 --> 00:50:27,356
+You could have a
+preamble the other way.
+
+
+1238
+00:50:28,076 --> 00:50:30,796
+Similarly, this counter, that's
+not about birds or toggling.
+
+
+1239
+00:50:31,026 --> 00:50:32,676
+That's just about
+transitioning between states.
+
+
+1240
+00:50:33,966 --> 00:50:37,096
+And in the post-amble, we
+don't have a post-amble
+
+
+1241
+00:50:37,096 --> 00:50:38,516
+for the bird being expanded.
+
+
+1242
+00:50:38,636 --> 00:50:41,426
+We could. We have a post-amble
+for the bird being contracted.
+
+
+1243
+00:50:41,996 --> 00:50:44,306
+I want to point out that we're
+checking the state at the time
+
+
+1244
+00:50:44,306 --> 00:50:46,626
+of the completion handler
+being called rather
+
+
+1245
+00:50:46,626 --> 00:50:49,916
+than the argument being passed
+into this method because, again,
+
+
+1246
+00:50:49,916 --> 00:50:51,126
+these completion
+handlers can stack
+
+
+1247
+00:50:51,496 --> 00:50:53,406
+and the state might no longer
+be what you thought it was.
+
+
+1248
+00:50:54,986 --> 00:50:57,326
+The one last thing I
+want to point out is
+
+
+1249
+00:50:57,326 --> 00:50:59,516
+that this is the
+solution for two states,
+
+
+1250
+00:51:00,666 --> 00:51:02,686
+but if you have three states
+that you could move between,
+
+
+1251
+00:51:03,166 --> 00:51:04,576
+you could handle
+that this way, too.
+
+
+1252
+00:51:04,876 --> 00:51:07,806
+You just need a counter
+for each of the states,
+
+
+1253
+00:51:08,056 --> 00:51:11,196
+and that counter would track
+how many transitions to or from
+
+
+1254
+00:51:11,196 --> 00:51:12,206
+that state or in-flight.
+
+
+1255
+00:51:12,746 --> 00:51:17,046
+Right now we only have one
+counter, because the number
+
+
+1256
+00:51:17,046 --> 00:51:19,756
+of transitions to or
+from each of the states
+
+
+1257
+00:51:19,756 --> 00:51:21,716
+in our bi-stable system
+is always the same.
+
+
+1258
+00:51:22,626 --> 00:51:24,646
+So this is a solution
+which generalizes
+
+
+1259
+00:51:25,636 --> 00:51:27,766
+and which doesn't have anything
+to do with birds or toggling.
+
+
+1260
+00:51:28,316 --> 00:51:31,556
+>> All right, let's head
+back to slides to wrap up.
+
+
+1261
+00:51:32,036 --> 00:51:33,966
+>> Thank you.
+
+
+1262
+00:51:34,516 --> 00:51:38,546
+[ Applause ]
+
+
+1263
+00:51:39,046 --> 00:51:41,316
+As I said earlier, we don't want
+
+
+1264
+00:51:41,316 --> 00:51:43,206
+to stop the world while
+animations are in-flight.
+
+
+1265
+00:51:43,206 --> 00:51:43,946
+They might be beautiful,
+
+
+1266
+00:51:43,946 --> 00:51:45,316
+but your user is
+trying to do things.
+
+
+1267
+00:51:46,466 --> 00:51:47,666
+We also want to keep
+things fluid.
+
+
+1268
+00:51:48,556 --> 00:51:53,716
+So, use that gesture
+velocity and translate it
+
+
+1269
+00:51:53,716 --> 00:51:56,946
+into the animated actions which
+result and makes an interface
+
+
+1270
+00:51:56,946 --> 00:51:57,866
+which feels more responsive.
+
+
+1271
+00:51:58,336 --> 00:52:00,776
+Once you've got animations
+in flight,
+
+
+1272
+00:52:01,066 --> 00:52:04,876
+make sure that they smoothly
+transition to any new animations
+
+
+1273
+00:52:05,036 --> 00:52:07,426
+which might replace those
+first sets of animations.
+
+
+1274
+00:52:08,756 --> 00:52:10,326
+Finally, as I was
+saying a moment ago,
+
+
+1275
+00:52:10,776 --> 00:52:11,626
+don't stop the world.
+
+
+1276
+00:52:11,846 --> 00:52:13,236
+Try to make animations
+interruptible
+
+
+1277
+00:52:13,236 --> 00:52:13,976
+as much as possible.
+
+
+1278
+00:52:14,266 --> 00:52:15,936
+It is more work,
+but we've talked
+
+
+1279
+00:52:15,936 --> 00:52:17,806
+through some techniques
+for dealing with it.
+
+
+1280
+00:52:19,016 --> 00:52:20,336
+And, finally, keep in mind
+
+
+1281
+00:52:20,546 --> 00:52:22,636
+that there may be
+additional associated states
+
+
+1282
+00:52:22,826 --> 00:52:24,596
+on top of these animations.
+
+
+1283
+00:52:25,956 --> 00:52:27,936
+That is often what
+makes it more difficult
+
+
+1284
+00:52:28,226 --> 00:52:31,366
+to enable user interaction
+while animations are in flight.
+
+
+1285
+00:52:31,806 --> 00:52:33,776
+But we've just talked
+through one technique
+
+
+1286
+00:52:33,776 --> 00:52:36,026
+which I think is quite
+general for dealing with that.
+
+
+1287
+00:52:36,546 --> 00:52:40,166
+And finally, if you
+have more questions,
+
+
+1288
+00:52:40,166 --> 00:52:41,196
+I encourage you to ask Jake.
+
+
+1289
+00:52:41,856 --> 00:52:43,376
+We have a Core Animation
+Programming Guide
+
+
+1290
+00:52:43,376 --> 00:52:45,506
+which actually does talk
+about many of these topics
+
+
+1291
+00:52:45,726 --> 00:52:46,706
+and there's a developer forum
+
+
+1292
+00:52:46,706 --> 00:52:48,556
+where you can ask
+your peers questions.
+
+
+1293
+00:52:49,176 --> 00:52:50,896
+I hope you've had a
+fantastic conference
+
+
+1294
+00:52:50,896 --> 00:52:52,506
+and I can't wait to
+see what you make.
+
+
+1295
+00:52:52,716 --> 00:52:54,166
+Thank you.
+
+
+1296
+00:52:55,516 --> 00:52:57,850
+[ Applause ]
+

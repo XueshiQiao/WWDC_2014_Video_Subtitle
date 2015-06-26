@@ -1,0 +1,7663 @@
+1
+00:00:00,506 --> 00:00:12,706
+[ Silence ]
+
+
+2
+00:00:13,206 --> 00:00:15,056
+>> Good afternoon, everyone.
+
+
+3
+00:00:15,776 --> 00:00:16,446
+How you guys doing?
+
+
+4
+00:00:16,446 --> 00:00:18,466
+Oh, that was weak.
+
+
+5
+00:00:18,466 --> 00:00:18,976
+Yeah, there we go.
+
+
+6
+00:00:19,516 --> 00:00:21,556
+[ Applause ]
+
+
+7
+00:00:22,056 --> 00:00:22,746
+I could have made
+a joke and said
+
+
+8
+00:00:22,746 --> 00:00:24,576
+that was unowned but I won't.
+
+
+9
+00:00:24,576 --> 00:00:28,286
+So this session is
+called "What's New
+
+
+10
+00:00:28,286 --> 00:00:30,486
+in Interface Builder" or,
+as we were joking earlier,
+
+
+11
+00:00:30,486 --> 00:00:32,706
+maybe "What Isn't New
+in Interface Builder."
+
+
+12
+00:00:33,306 --> 00:00:35,846
+We have all kinds of great
+stuff for you guys today.
+
+
+13
+00:00:35,846 --> 00:00:37,246
+And, so, my name
+is Kevin Cathey.
+
+
+14
+00:00:37,246 --> 00:00:39,816
+I'm one of the Interface
+Builder Engineers and me
+
+
+15
+00:00:39,816 --> 00:00:42,326
+and my colleague Quinn,
+who'll be joining us later,
+
+
+16
+00:00:42,326 --> 00:00:44,756
+are going to be walking you
+through some of what's new.
+
+
+17
+00:00:45,246 --> 00:00:46,586
+Now we're going to
+show you some stuff
+
+
+18
+00:00:46,636 --> 00:00:48,186
+that you might not
+have seen yet.
+
+
+19
+00:00:48,186 --> 00:00:50,606
+And we're also going to go
+into more detail about some
+
+
+20
+00:00:50,606 --> 00:00:53,376
+of the things that you have
+seen so far at this conference.
+
+
+21
+00:00:53,606 --> 00:00:55,986
+So what we have today is...
+
+
+22
+00:00:55,986 --> 00:00:57,986
+conveniently falls into
+a couple of themes,
+
+
+23
+00:00:57,986 --> 00:00:58,616
+themes that you're
+going to be --
+
+
+24
+00:00:58,616 --> 00:01:00,686
+have been familiar with
+so far in the conference.
+
+
+25
+00:01:01,006 --> 00:01:02,756
+The first one is Liveness.
+
+
+26
+00:01:03,116 --> 00:01:05,836
+Now I don't know about you but I
+like seeing what I'm working on.
+
+
+27
+00:01:06,466 --> 00:01:08,626
+And so as I work on my
+code we have features
+
+
+28
+00:01:08,626 --> 00:01:13,076
+to bring your content, your
+code, your custom stuff right
+
+
+29
+00:01:13,076 --> 00:01:14,296
+into the Interface
+Builder canvas.
+
+
+30
+00:01:14,636 --> 00:01:16,316
+I think we really want
+to help you guys get
+
+
+31
+00:01:16,316 --> 00:01:17,946
+to your vision faster
+
+
+32
+00:01:18,346 --> 00:01:21,066
+and to have some fun
+while you do it, too.
+
+
+33
+00:01:21,326 --> 00:01:22,656
+Next is Adaptability.
+
+
+34
+00:01:22,776 --> 00:01:24,716
+And I love this about
+our platforms.
+
+
+35
+00:01:24,716 --> 00:01:27,236
+It's all the places
+that your apps can run.
+
+
+36
+00:01:27,426 --> 00:01:28,246
+Let's think about it.
+
+
+37
+00:01:28,246 --> 00:01:32,786
+We've got iPhone, iPad,
+Portrait, Landscape, OS X, iOS,
+
+
+38
+00:01:32,786 --> 00:01:34,656
+and then throw in all
+the languages, too.
+
+
+39
+00:01:35,106 --> 00:01:37,586
+Don't you love getting those
+bugs that are like, hey,
+
+
+40
+00:01:37,586 --> 00:01:38,746
+there's this bug
+in this language?
+
+
+41
+00:01:38,746 --> 00:01:40,946
+And I look at it and I'm like I
+haven't heard of that language
+
+
+42
+00:01:40,946 --> 00:01:42,366
+and I just think that's
+something that's great
+
+
+43
+00:01:42,366 --> 00:01:43,646
+about our platforms --
+
+
+44
+00:01:43,646 --> 00:01:46,636
+and as application developers
+you're probably all well aware
+
+
+45
+00:01:46,876 --> 00:01:47,826
+of this.
+
+
+46
+00:01:48,396 --> 00:01:49,936
+Third is Power & Parity.
+
+
+47
+00:01:50,416 --> 00:01:53,726
+iOS and OS X have taken some
+great steps toward each other
+
+
+48
+00:01:53,726 --> 00:01:55,686
+this year and I think
+one of the places
+
+
+49
+00:01:55,686 --> 00:01:59,416
+that this is really illustrated
+best is in Interface Builder.
+
+
+50
+00:01:59,546 --> 00:02:02,196
+And so we've got some tools
+to help you seamlessly work
+
+
+51
+00:02:02,196 --> 00:02:05,806
+between both of our platforms
+using really familiar
+
+
+52
+00:02:05,836 --> 00:02:07,456
+technologies and workflows.
+
+
+53
+00:02:08,346 --> 00:02:09,776
+So what's our plan for today?
+
+
+54
+00:02:09,776 --> 00:02:10,916
+How are we going to do this?
+
+
+55
+00:02:11,246 --> 00:02:12,576
+Well, my co-worker
+started an app
+
+
+56
+00:02:12,866 --> 00:02:15,896
+and then he conveniently
+left for vacation this week.
+
+
+57
+00:02:15,896 --> 00:02:17,346
+And so he didn't have
+a chance to finish it.
+
+
+58
+00:02:17,346 --> 00:02:19,536
+So we're going to finish
+it for him on stage.
+
+
+59
+00:02:20,156 --> 00:02:22,846
+And here's the ironic thing:
+the app is actually about going
+
+
+60
+00:02:22,846 --> 00:02:25,156
+on vacation and sharing
+your photos while you're
+
+
+61
+00:02:25,156 --> 00:02:27,276
+on vacation and rating those.
+
+
+62
+00:02:27,596 --> 00:02:29,836
+And so we're going to get to
+look at my co-worker's photos
+
+
+63
+00:02:29,836 --> 00:02:31,946
+as he enjoys a drink
+by the beach and Quinn
+
+
+64
+00:02:31,946 --> 00:02:33,046
+and I give this presentation.
+
+
+65
+00:02:33,246 --> 00:02:35,396
+So we have a list of sites here.
+
+
+66
+00:02:35,396 --> 00:02:38,206
+That little ring on the
+outside is showing, kind of,
+
+
+67
+00:02:38,206 --> 00:02:40,766
+the popularity of that
+particular destination.
+
+
+68
+00:02:41,256 --> 00:02:44,536
+Hawaii and London --
+apparently great places to go --
+
+
+69
+00:02:44,536 --> 00:02:45,936
+I've never actually
+been to either of those.
+
+
+70
+00:02:46,336 --> 00:02:49,936
+But New York -- apparently not
+the most fun place to visit.
+
+
+71
+00:02:50,026 --> 00:02:51,976
+It must be that the pizza
+isn't as good as Chicago.
+
+
+72
+00:02:52,516 --> 00:02:56,556
+[ Grumbling, cheering
+and Applause ]
+
+
+73
+00:02:57,056 --> 00:02:59,166
+Now if I tap on one of these
+sites it's going to slide over
+
+
+74
+00:02:59,166 --> 00:03:00,106
+and give me a little slideshow.
+
+
+75
+00:03:00,106 --> 00:03:01,366
+I can rate my photos.
+
+
+76
+00:03:02,036 --> 00:03:03,766
+And then, here's
+the iPad version,
+
+
+77
+00:03:04,426 --> 00:03:06,506
+and you might notice a few
+little differences here.
+
+
+78
+00:03:06,506 --> 00:03:09,176
+So, for one, we have a
+caption, and then, two,
+
+
+79
+00:03:09,176 --> 00:03:11,216
+that rating is kind of
+[whisking sound] moved
+
+
+80
+00:03:11,216 --> 00:03:12,326
+over to the side there.
+
+
+81
+00:03:12,356 --> 00:03:16,606
+I'm also a photo nerd so I love
+to know how you took your photo.
+
+
+82
+00:03:16,726 --> 00:03:18,436
+So if you tap that
+little Details button,
+
+
+83
+00:03:18,436 --> 00:03:20,846
+you get a popover with some
+location data and things
+
+
+84
+00:03:20,846 --> 00:03:22,686
+like the shutter
+speed and f-stop.
+
+
+85
+00:03:23,386 --> 00:03:27,286
+So I think the best way to do
+this is just to jump into a demo
+
+
+86
+00:03:27,286 --> 00:03:28,786
+and start making
+this app awesome.
+
+
+87
+00:03:30,706 --> 00:03:31,656
+All right.
+
+
+88
+00:03:31,726 --> 00:03:34,926
+So I have my storyboard
+here and I have the mockup
+
+
+89
+00:03:35,186 --> 00:03:37,286
+that I showed you earlier
+from my designer, just as kind
+
+
+90
+00:03:37,286 --> 00:03:38,816
+of a reference, and
+we'll use it as we go
+
+
+91
+00:03:38,816 --> 00:03:39,786
+through our presentation.
+
+
+92
+00:03:39,866 --> 00:03:44,096
+So in terms of strategy and
+kind of starting your app:
+
+
+93
+00:03:44,186 --> 00:03:45,596
+the thing that I like
+to do, personally,
+
+
+94
+00:03:45,596 --> 00:03:48,566
+is I like to get all my views
+laid out first and then kind
+
+
+95
+00:03:48,566 --> 00:03:50,036
+of fill in the custom content.
+
+
+96
+00:03:50,386 --> 00:03:52,286
+So let's start by
+adding constraints
+
+
+97
+00:03:52,286 --> 00:03:53,346
+for our table view cell here.
+
+
+98
+00:03:54,336 --> 00:03:56,716
+This box is going to our --
+
+
+99
+00:03:56,786 --> 00:03:59,756
+that circle tile view that
+we'll fill in a little bit.
+
+
+100
+00:03:59,886 --> 00:04:00,826
+There's a couple of ways
+
+
+101
+00:04:00,826 --> 00:04:02,286
+to add constraints
+in Interface Builder.
+
+
+102
+00:04:02,286 --> 00:04:04,916
+One, I can just easily
+control-drag to add, like,
+
+
+103
+00:04:04,916 --> 00:04:06,926
+a spacing constraint
+for this view.
+
+
+104
+00:04:07,556 --> 00:04:10,676
+I can also use the
+constraint popover here,
+
+
+105
+00:04:11,316 --> 00:04:12,896
+and this gives me some
+additional features
+
+
+106
+00:04:12,896 --> 00:04:15,086
+for being able to pick
+constants right on the fly,
+
+
+107
+00:04:15,086 --> 00:04:18,216
+pick a different object to
+constrain to, things like that.
+
+
+108
+00:04:19,136 --> 00:04:22,676
+So now that our tile view
+has got position and height,
+
+
+109
+00:04:22,906 --> 00:04:24,166
+well, what about width?
+
+
+110
+00:04:24,166 --> 00:04:26,286
+Well, we could add an explicit
+width constraint but then
+
+
+111
+00:04:26,676 --> 00:04:28,506
+if I were to go change the
+height of my table view cell,
+
+
+112
+00:04:28,506 --> 00:04:30,376
+I've got to go update it in
+all these different spots.
+
+
+113
+00:04:30,776 --> 00:04:33,676
+So what I really want
+to express is just
+
+
+114
+00:04:33,676 --> 00:04:36,546
+that this view should have the
+same width as the same height.
+
+
+115
+00:04:36,546 --> 00:04:38,556
+And this is what's new since
+last year, which is the ability
+
+
+116
+00:04:38,556 --> 00:04:39,726
+to create aspect ratios.
+
+
+117
+00:04:40,796 --> 00:04:44,196
+With the tile view now in
+the spot that we want it,
+
+
+118
+00:04:44,196 --> 00:04:45,086
+let's work on these labels.
+
+
+119
+00:04:45,086 --> 00:04:47,216
+So I'm just going to grab
+the label and just drag it
+
+
+120
+00:04:47,216 --> 00:04:49,066
+up in this spot, in
+the position here.
+
+
+121
+00:04:49,856 --> 00:04:51,296
+And I can create
+multiple constraints
+
+
+122
+00:04:51,296 --> 00:04:54,136
+at once using control-drag
+by holding the shift
+
+
+123
+00:04:54,136 --> 00:04:56,466
+or the command key and
+then just hitting return.
+
+
+124
+00:04:57,536 --> 00:04:59,496
+Now if I look back at my mockup,
+
+
+125
+00:04:59,786 --> 00:05:04,356
+you can see that the text
+is really not centered
+
+
+126
+00:05:04,356 --> 00:05:04,956
+with the tile view.
+
+
+127
+00:05:04,956 --> 00:05:06,606
+It's kind of like the
+bottom of the text isn't
+
+
+128
+00:05:06,606 --> 00:05:08,976
+in the center this
+particular tile view.
+
+
+129
+00:05:09,616 --> 00:05:11,556
+So now what we can do,
+new since last year,
+
+
+130
+00:05:11,556 --> 00:05:12,676
+is we can actually go ahead
+
+
+131
+00:05:12,676 --> 00:05:15,076
+and change the attributes
+involved in my constraint.
+
+
+132
+00:05:15,346 --> 00:05:18,096
+If I just open up the Attributes
+Inspector for my constraint,
+
+
+133
+00:05:18,246 --> 00:05:23,056
+you can see now I can see the
+Items and their attributes,
+
+
+134
+00:05:23,456 --> 00:05:25,376
+and I can just go ahead and
+change this from Center Y
+
+
+135
+00:05:26,156 --> 00:05:29,666
+to Bottom, which is going to
+move it down to the other side.
+
+
+136
+00:05:30,046 --> 00:05:31,806
+But one thing you'll notice is
+
+
+137
+00:05:31,806 --> 00:05:33,716
+that it didn't do
+exactly what I expected.
+
+
+138
+00:05:34,186 --> 00:05:35,566
+So what's going on here?
+
+
+139
+00:05:35,706 --> 00:05:38,736
+Well, one of the things that I
+notice is that I was thinking
+
+
+140
+00:05:38,736 --> 00:05:41,746
+about it in terms of the label,
+not in terms of the view.
+
+
+141
+00:05:42,146 --> 00:05:44,076
+So another thing that our
+Inspector gives us is the
+
+
+142
+00:05:44,076 --> 00:05:47,346
+ability to reverse the pieces
+of the constraint in a way
+
+
+143
+00:05:47,346 --> 00:05:48,486
+that makes sense to you.
+
+
+144
+00:05:48,586 --> 00:05:50,246
+So let me undo that change.
+
+
+145
+00:05:51,146 --> 00:05:54,406
+And if I open this up again,
+I can select Reverse First
+
+
+146
+00:05:54,406 --> 00:05:56,956
+and Second Item, and it
+just flips the constraint.
+
+
+147
+00:05:56,956 --> 00:05:58,426
+This is mathematically
+equivalent
+
+
+148
+00:05:58,426 --> 00:06:00,876
+to the other constraint but
+I can express it in a way
+
+
+149
+00:06:00,876 --> 00:06:01,746
+that makes sense to me.
+
+
+150
+00:06:02,736 --> 00:06:06,816
+And now I can say, okay,
+the label's Bottom should be
+
+
+151
+00:06:06,816 --> 00:06:08,706
+at the View's Center Y.
+
+
+152
+00:06:09,366 --> 00:06:12,506
+Now one new field that you
+might have noticed here is
+
+
+153
+00:06:12,506 --> 00:06:13,226
+the Multiplier.
+
+
+154
+00:06:13,566 --> 00:06:16,036
+So this is what enables
+things like aspect ratios
+
+
+155
+00:06:16,036 --> 00:06:18,836
+and also proportional sizing
+constraints and there's a couple
+
+
+156
+00:06:18,836 --> 00:06:20,796
+of different ways I can
+insert a multiplier depending
+
+
+157
+00:06:20,796 --> 00:06:21,706
+on my situation.
+
+
+158
+00:06:22,106 --> 00:06:24,556
+So if I'm thinking about it
+in terms of an aspect ratio,
+
+
+159
+00:06:24,556 --> 00:06:26,496
+I can do something like 1:4.
+
+
+160
+00:06:27,296 --> 00:06:31,356
+And you can see that now that
+label's Bottom is in a ratio
+
+
+161
+00:06:31,356 --> 00:06:34,176
+of 1 to 4 with the
+Center Y of my tile view.
+
+
+162
+00:06:34,966 --> 00:06:35,476
+But you know what?
+
+
+163
+00:06:35,476 --> 00:06:37,466
+Fractions might make more
+sense to me so I'm going
+
+
+164
+00:06:37,466 --> 00:06:38,496
+to use a fraction instead.
+
+
+165
+00:06:38,496 --> 00:06:40,196
+So I can just type
+in a fraction.
+
+
+166
+00:06:40,856 --> 00:06:45,506
+Or, of course, decimal numbers
+are also applicable as well.
+
+
+167
+00:06:46,386 --> 00:06:48,646
+So our Title Label is
+now in the right spot.
+
+
+168
+00:06:48,646 --> 00:06:49,716
+So let's do this Sub-Label.
+
+
+169
+00:06:50,226 --> 00:06:52,416
+So I can just drag
+this into position.
+
+
+170
+00:06:53,416 --> 00:06:55,276
+And I'm just going to
+do two more constraints
+
+
+171
+00:06:55,626 --> 00:06:58,106
+to get my views all laid out.
+
+
+172
+00:06:58,526 --> 00:07:02,146
+And I can show this by
+resizing my Table View.
+
+
+173
+00:07:02,146 --> 00:07:04,866
+Now, one of the things
+I love about getting
+
+
+174
+00:07:04,866 --> 00:07:07,646
+to show Xcode is giving you
+guys a few tips and tricks
+
+
+175
+00:07:07,646 --> 00:07:09,436
+for being even more
+productive in Xcode.
+
+
+176
+00:07:09,436 --> 00:07:11,496
+So this is going to
+be Pro Tip Number 1.
+
+
+177
+00:07:12,256 --> 00:07:14,926
+If I hold shift when
+I right-click
+
+
+178
+00:07:15,046 --> 00:07:17,376
+in the canvas it will give
+me a menu of everything
+
+
+179
+00:07:17,376 --> 00:07:19,856
+under the mouse at the
+point that I clicked.
+
+
+180
+00:07:20,166 --> 00:07:22,316
+So if I want to quickly
+get to my Table View cell,
+
+
+181
+00:07:22,626 --> 00:07:27,156
+I just do that and select
+it and now I'm ready to go.
+
+
+182
+00:07:27,346 --> 00:07:31,386
+If I resize my Table View cell,
+you can see those constraints,
+
+
+183
+00:07:31,766 --> 00:07:34,626
+they're doing exactly
+what I want.
+
+
+184
+00:07:34,626 --> 00:07:37,826
+I'm going to go ahead
+and undo that change.
+
+
+185
+00:07:38,706 --> 00:07:39,556
+All right.
+
+
+186
+00:07:39,556 --> 00:07:41,566
+So, with our views in place,
+
+
+187
+00:07:41,566 --> 00:07:43,696
+we're ready to start
+filling in that custom view.
+
+
+188
+00:07:43,766 --> 00:07:47,596
+And you've already seen our
+Custom Views feature showed a
+
+
+189
+00:07:47,596 --> 00:07:48,536
+couple of different times.
+
+
+190
+00:07:48,986 --> 00:07:50,016
+What I'm going to
+do now is I'm going
+
+
+191
+00:07:50,016 --> 00:07:53,546
+to show you the steps necessary
+to have your content showing
+
+
+192
+00:07:53,546 --> 00:07:56,526
+up Interface Building from
+start to finish, and show you,
+
+
+193
+00:07:56,526 --> 00:07:59,146
+I mean really, how easy it is.
+
+
+194
+00:07:59,366 --> 00:08:02,166
+The first thing we need to do,
+Step 1 of 4, is we're going
+
+
+195
+00:08:02,166 --> 00:08:04,206
+to create a custom framework.
+
+
+196
+00:08:05,206 --> 00:08:08,586
+Frameworks are in OS X and
+are new in iOS with iOS 8.
+
+
+197
+00:08:09,456 --> 00:08:12,116
+So I'm going to jump to
+my Project Editor here.
+
+
+198
+00:08:12,256 --> 00:08:16,206
+I have my list of targets, and
+I'm going to add a new target.
+
+
+199
+00:08:16,206 --> 00:08:17,656
+We want a Cocoa Touch framework.
+
+
+200
+00:08:19,116 --> 00:08:21,606
+So I'm going to call
+this SiteRateKit.
+
+
+201
+00:08:22,016 --> 00:08:23,796
+(The name of our
+app is SiteRate.)
+
+
+202
+00:08:24,656 --> 00:08:27,046
+And I'm choosing to embed
+this in my iOS application.
+
+
+203
+00:08:27,046 --> 00:08:28,546
+It's going to do
+two things: one,
+
+
+204
+00:08:28,546 --> 00:08:30,296
+it's going to link
+my application
+
+
+205
+00:08:30,296 --> 00:08:31,866
+against this framework,
+and; two,
+
+
+206
+00:08:31,866 --> 00:08:33,966
+when the application
+builds, it's going to copy
+
+
+207
+00:08:33,966 --> 00:08:35,816
+that framework into
+the app bundle.
+
+
+208
+00:08:35,846 --> 00:08:39,035
+So let's go ahead and
+create that framework.
+
+
+209
+00:08:39,116 --> 00:08:40,466
+And that's it.
+
+
+210
+00:08:40,466 --> 00:08:43,285
+I have a custom framework
+and it's all ready for me.
+
+
+211
+00:08:43,436 --> 00:08:47,506
+Now Step Number 2 in
+getting your content to show
+
+
+212
+00:08:47,506 --> 00:08:49,666
+up in Interface Builder
+is to create a subclass
+
+
+213
+00:08:49,746 --> 00:08:52,576
+of UIView (or NSView
+if you're on the Mac).
+
+
+214
+00:08:53,796 --> 00:08:57,426
+So I can just right-click on
+my group here, choose New File.
+
+
+215
+00:08:57,426 --> 00:08:59,406
+I want a Cocoa Touch class.
+
+
+216
+00:09:00,416 --> 00:09:04,016
+And I'm going to call
+this SiteTileView.
+
+
+217
+00:09:04,896 --> 00:09:05,916
+Subclass UIView.
+
+
+218
+00:09:05,916 --> 00:09:07,506
+And we're going to use
+Swift as our language.
+
+
+219
+00:09:08,226 --> 00:09:10,326
+I just want to make sure this
+is added to the right target.
+
+
+220
+00:09:10,326 --> 00:09:12,136
+You want to make sure to add
+it to your framework target.
+
+
+221
+00:09:12,886 --> 00:09:15,846
+And now our class is created.
+
+
+222
+00:09:16,196 --> 00:09:17,616
+So two steps down already.
+
+
+223
+00:09:18,286 --> 00:09:20,766
+The third step is to
+tell Interface Builder
+
+
+224
+00:09:20,766 --> 00:09:23,646
+that this class can
+display custom content
+
+
+225
+00:09:23,646 --> 00:09:24,436
+in Interface Builder.
+
+
+226
+00:09:25,406 --> 00:09:30,006
+And I can do that by marking
+the class as @IBDesignable.
+
+
+227
+00:09:31,176 --> 00:09:38,066
+If I'm in Objective-C, the
+attribute just looks like that.
+
+
+228
+00:09:38,946 --> 00:09:40,006
+So, Step 3 is done.
+
+
+229
+00:09:40,006 --> 00:09:42,216
+Our class is Designable,
+our framework is created.
+
+
+230
+00:09:42,666 --> 00:09:45,726
+And the final step is to
+simply tell Interface Builder
+
+
+231
+00:09:46,056 --> 00:09:48,336
+that an instance of a view
+
+
+232
+00:09:48,336 --> 00:09:51,246
+in my storyboard should
+actually be this class.
+
+
+233
+00:09:51,276 --> 00:09:53,526
+So I'm going to go
+back to the storyboard,
+
+
+234
+00:09:53,976 --> 00:09:55,376
+just using the recent
+files here.
+
+
+235
+00:09:58,056 --> 00:10:00,596
+And let me go ahead and
+select my tile view.
+
+
+236
+00:10:01,396 --> 00:10:03,406
+I'm going to open the
+Identity Inspector
+
+
+237
+00:10:03,486 --> 00:10:06,846
+and now I can just type
+in that tile view class
+
+
+238
+00:10:06,886 --> 00:10:07,866
+that I just created.
+
+
+239
+00:10:07,866 --> 00:10:10,136
+Interface Builder will
+auto-complete it for me.
+
+
+240
+00:10:10,706 --> 00:10:12,696
+And now that's everything
+that I have to do
+
+
+241
+00:10:12,696 --> 00:10:14,626
+to get my content showing
+up in Interface Builder.
+
+
+242
+00:10:14,666 --> 00:10:15,876
+It's super, super easy.
+
+
+243
+00:10:16,916 --> 00:10:17,996
+Now, of course, nothing
+is showing up
+
+
+244
+00:10:17,996 --> 00:10:19,406
+yet because we haven't
+written any code,
+
+
+245
+00:10:19,526 --> 00:10:20,456
+but we're going to get there.
+
+
+246
+00:10:20,576 --> 00:10:24,506
+So, speaking of which,
+let's actually now go ahead
+
+
+247
+00:10:24,506 --> 00:10:25,896
+and create some code
+for our view.
+
+
+248
+00:10:26,156 --> 00:10:29,006
+So I want to show the code
+for my view side-by-side
+
+
+249
+00:10:29,006 --> 00:10:31,016
+with my storyboard,
+and that's really easy.
+
+
+250
+00:10:31,186 --> 00:10:33,476
+To open my class I'm going
+
+
+251
+00:10:33,476 --> 00:10:36,426
+to show you another
+Xcode Pro Tip: Number 2.
+
+
+252
+00:10:37,556 --> 00:10:41,126
+If I option-click this
+file, many of you know
+
+
+253
+00:10:41,126 --> 00:10:44,696
+that it will open in a new
+assistant or in a new tab,
+
+
+254
+00:10:45,056 --> 00:10:46,696
+based upon how your
+preferences are set.
+
+
+255
+00:10:47,326 --> 00:10:49,946
+But if I hold option-shift
+and click,
+
+
+256
+00:10:49,946 --> 00:10:51,746
+I get a little chooser view.
+
+
+257
+00:10:51,996 --> 00:10:54,706
+And this chooser allows
+me to pick the destination
+
+
+258
+00:10:54,706 --> 00:10:56,316
+of where I want this
+file to open.
+
+
+259
+00:10:56,716 --> 00:10:59,816
+I can target a new split,
+a new tab, a new window,
+
+
+260
+00:10:59,816 --> 00:11:03,136
+I can even target splits in
+tabs that aren't even open.
+
+
+261
+00:11:03,446 --> 00:11:05,366
+So, very, very flexible to get
+
+
+262
+00:11:05,366 --> 00:11:06,506
+to where I want to
+open this file.
+
+
+263
+00:11:06,586 --> 00:11:09,836
+I'm just going to create it
+
+
+264
+00:11:09,836 --> 00:11:12,426
+in a new split side-by-side
+with my storyboard.
+
+
+265
+00:11:15,416 --> 00:11:15,876
+All right.
+
+
+266
+00:11:15,876 --> 00:11:17,416
+So, there's a couple
+different ways
+
+
+267
+00:11:17,416 --> 00:11:20,096
+that you can create
+your custom views.
+
+
+268
+00:11:20,536 --> 00:11:22,196
+And the way that we're going
+to do that today is we're going
+
+
+269
+00:11:22,196 --> 00:11:24,196
+to create our custom
+view by composing it
+
+
+270
+00:11:24,656 --> 00:11:26,136
+of smaller components.
+
+
+271
+00:11:26,136 --> 00:11:29,386
+And these components are
+either subviews like UILabel,
+
+
+272
+00:11:29,386 --> 00:11:30,916
+UIImageView or layers.
+
+
+273
+00:11:30,916 --> 00:11:32,866
+And we're going to
+use layers today.
+
+
+274
+00:11:33,646 --> 00:11:35,936
+If I were to implement
+drawRect, that's not going
+
+
+275
+00:11:35,936 --> 00:11:38,676
+to get us the best performance;
+whereas, using sublayers
+
+
+276
+00:11:38,676 --> 00:11:41,006
+and subviews is going to get
+us really good performance.
+
+
+277
+00:11:41,006 --> 00:11:43,806
+So I can just go ahead
+and delete this code here.
+
+
+278
+00:11:43,806 --> 00:11:47,456
+And we're going to start
+creating our view (if we go back
+
+
+279
+00:11:47,456 --> 00:11:51,536
+to our mockup here) by working
+on these rings on the outside.
+
+
+280
+00:11:51,536 --> 00:11:54,976
+So I'm going to start with
+this grey ring and then fill it
+
+
+281
+00:11:54,976 --> 00:11:56,206
+in with a colored one.
+
+
+282
+00:11:56,326 --> 00:12:01,666
+So let's create a
+new shape layer
+
+
+283
+00:12:01,666 --> 00:12:03,046
+on this, set it as a property.
+
+
+284
+00:12:03,046 --> 00:12:04,826
+And you can see it's giving
+me an error because I need
+
+
+285
+00:12:04,826 --> 00:12:05,916
+to import the module
+
+
+286
+00:12:05,916 --> 00:12:08,146
+that contains the core
+animation classes.
+
+
+287
+00:12:09,146 --> 00:12:10,296
+And I want to create this thing.
+
+
+288
+00:12:10,826 --> 00:12:13,726
+A really convenient
+place to create this is
+
+
+289
+00:12:13,956 --> 00:12:16,926
+in an override of
+layout sub-views.
+
+
+290
+00:12:18,276 --> 00:12:20,156
+First I want to call
+super which will make sure
+
+
+291
+00:12:20,156 --> 00:12:22,306
+that all my subviews
+have the right size.
+
+
+292
+00:12:22,476 --> 00:12:25,056
+And then, if I haven't
+created the ring layer yet...
+
+
+293
+00:12:25,056 --> 00:12:26,436
+I'm going to go ahead
+and create one,
+
+
+294
+00:12:26,436 --> 00:12:27,906
+add it to the layer of my view.
+
+
+295
+00:12:28,856 --> 00:12:30,476
+And then, of course,
+we want to make sure
+
+
+296
+00:12:30,476 --> 00:12:31,926
+that we position it
+in the right place.
+
+
+297
+00:12:32,546 --> 00:12:35,706
+So now we have a layer, let's do
+something interesting with it.
+
+
+298
+00:12:35,886 --> 00:12:38,556
+I'm going to close
+the utility area
+
+
+299
+00:12:39,046 --> 00:12:42,266
+to give myself a
+little bit more space.
+
+
+300
+00:12:42,946 --> 00:12:44,966
+So let's create a Bézier
+path and we're just going
+
+
+301
+00:12:44,966 --> 00:12:45,986
+to make this be a circle.
+
+
+302
+00:12:45,986 --> 00:12:49,996
+And then let's set this as
+the shape of my shape layer.
+
+
+303
+00:12:50,066 --> 00:12:53,216
+And there, Interface Builder
+is showing me the result
+
+
+304
+00:12:53,326 --> 00:12:55,146
+of my code so far.
+
+
+305
+00:12:56,516 --> 00:13:01,076
+[ Applause ]
+
+
+306
+00:13:01,576 --> 00:13:03,466
+Responds SUPER-fast,
+which is just great.
+
+
+307
+00:13:04,496 --> 00:13:06,686
+So now I don't really want
+a solid circle, right?
+
+
+308
+00:13:06,686 --> 00:13:07,636
+We want to create a ring.
+
+
+309
+00:13:08,506 --> 00:13:11,866
+And so CAShapeLayer has
+a feature that allows me
+
+
+310
+00:13:11,906 --> 00:13:13,526
+to stroke the outside
+of the path.
+
+
+311
+00:13:13,526 --> 00:13:16,956
+And so I'm going to go ahead
+and turn off the fill color
+
+
+312
+00:13:16,956 --> 00:13:19,716
+to set a line width and set
+the stroke color to black.
+
+
+313
+00:13:20,646 --> 00:13:22,686
+Now because my content
+is showing live
+
+
+314
+00:13:22,686 --> 00:13:24,276
+in Interface Builder, I can see
+
+
+315
+00:13:24,276 --> 00:13:25,576
+that I've already
+made a mistake.
+
+
+316
+00:13:25,756 --> 00:13:27,626
+For those of you
+familiar with BezierPath,
+
+
+317
+00:13:27,816 --> 00:13:29,906
+you'll know that when
+you have a stroke,
+
+
+318
+00:13:29,906 --> 00:13:32,416
+half of it draws
+outside the path and half
+
+
+319
+00:13:32,416 --> 00:13:33,526
+of it inside the path.
+
+
+320
+00:13:33,996 --> 00:13:37,516
+So, actually, I want to inset my
+path by half of the linewidth.
+
+
+321
+00:13:37,646 --> 00:13:40,176
+Now I know that I'm going
+to use my linewidth a lot,
+
+
+322
+00:13:40,176 --> 00:13:42,446
+so let's create a
+new property for it.
+
+
+323
+00:13:42,896 --> 00:13:47,816
+And now I can inset my
+rectangle by that amount
+
+
+324
+00:13:47,816 --> 00:13:50,146
+and I'll make sure that
+I use it in both spots.
+
+
+325
+00:13:50,526 --> 00:13:52,466
+And now my shape is
+looking much better.
+
+
+326
+00:13:53,896 --> 00:13:56,096
+So the last thing we want to do
+is we want to fill it in with
+
+
+327
+00:13:56,176 --> 00:13:59,056
+that color that our Designer
+gave us, so we'll fill that in.
+
+
+328
+00:13:59,696 --> 00:14:03,416
+And, wow, that looks
+really, really light.
+
+
+329
+00:14:03,416 --> 00:14:06,616
+Hmm. I'm going to
+change this to 0.3.
+
+
+330
+00:14:07,346 --> 00:14:08,846
+Designers aren't always right.
+
+
+331
+00:14:12,236 --> 00:14:14,046
+So now that my ring
+layer -- [applause] --
+
+
+332
+00:14:15,796 --> 00:14:18,476
+[laughs] I love all
+of our designers.
+
+
+333
+00:14:18,716 --> 00:14:21,976
+Now that our ring layer for
+the background's looking pretty
+
+
+334
+00:14:21,976 --> 00:14:23,256
+good, let's fill it
+in with some color.
+
+
+335
+00:14:23,256 --> 00:14:26,146
+I'm just going to do the
+exact same thing, pretty much.
+
+
+336
+00:14:26,786 --> 00:14:28,036
+The only difference
+I'm going to do
+
+
+337
+00:14:28,036 --> 00:14:30,346
+with this other ring layer is
+I'm just going to rotate it
+
+
+338
+00:14:30,346 --> 00:14:32,926
+by 90 degrees so that when we
+fill in our rating it's going
+
+
+339
+00:14:32,926 --> 00:14:35,866
+to come from the top of the
+circle and not out of the side.
+
+
+340
+00:14:36,596 --> 00:14:40,936
+So I want to drive my shape
+layer now by an actual rating.
+
+
+341
+00:14:40,936 --> 00:14:43,366
+So let's create a new
+property which is the rating.
+
+
+342
+00:14:46,466 --> 00:14:48,796
+And now we want to actually
+update our layer based upon this
+
+
+343
+00:14:48,796 --> 00:14:51,426
+rating, so I'm going to use
+a feature of CAShapeLayer
+
+
+344
+00:14:51,426 --> 00:14:54,156
+that allows me to set the, kind
+of, the progress of the stroke.
+
+
+345
+00:14:54,536 --> 00:14:56,236
+And I'm going to do it in a
+new method, because I'm going
+
+
+346
+00:14:56,236 --> 00:14:58,716
+to call this row in a
+bunch of different spots.
+
+
+347
+00:14:59,536 --> 00:15:02,996
+So one of these spots that
+I'm going to call this from is
+
+
+348
+00:15:02,996 --> 00:15:04,746
+from changing the rating itself.
+
+
+349
+00:15:05,286 --> 00:15:07,976
+It couldn't be easier now
+to react to property changes
+
+
+350
+00:15:08,196 --> 00:15:10,186
+with Swift's new
+Property Observers.
+
+
+351
+00:15:10,716 --> 00:15:13,296
+So all I have to do is just say
+
+
+352
+00:15:13,296 --> 00:15:18,176
+that when this rating did change
+I can just go ahead and call
+
+
+353
+00:15:18,176 --> 00:15:21,726
+that method that
+updates my shape layer.
+
+
+354
+00:15:22,716 --> 00:15:25,146
+And I'm also going to call
+it inside of here just
+
+
+355
+00:15:25,146 --> 00:15:27,666
+in case we haven't actually
+changed those properties yet.
+
+
+356
+00:15:28,576 --> 00:15:31,766
+And now my shape layer is
+looking exactly how I want it,
+
+
+357
+00:15:31,766 --> 00:15:32,246
+so far.
+
+
+358
+00:15:33,356 --> 00:15:37,396
+Now it's really common when
+you're creating different types
+
+
+359
+00:15:37,396 --> 00:15:41,056
+of custom views that you want to
+have properties that you expose
+
+
+360
+00:15:41,316 --> 00:15:43,776
+that people can change,
+either for your code or even
+
+
+361
+00:15:43,776 --> 00:15:44,666
+within Interface Builder.
+
+
+362
+00:15:44,666 --> 00:15:46,876
+And Interface Builder
+makes that really easy
+
+
+363
+00:15:46,876 --> 00:15:48,506
+with a new feature
+called Inspectables.
+
+
+364
+00:15:49,356 --> 00:15:52,776
+So if I go up to my
+rating property here
+
+
+365
+00:15:52,776 --> 00:15:56,136
+and mark it as IBInspectable...
+
+
+366
+00:15:57,866 --> 00:15:59,716
+This is a flag for
+Interface Builder
+
+
+367
+00:15:59,716 --> 00:16:01,886
+that says, "Hey, this property?
+
+
+368
+00:16:01,886 --> 00:16:04,176
+I want you to show it in
+Interface Builder" just
+
+
+369
+00:16:04,176 --> 00:16:07,196
+like all the other properties
+that you edit on your views.
+
+
+370
+00:16:08,066 --> 00:16:12,226
+So if I jump back to Xcode
+and I open the Inspector,
+
+
+371
+00:16:12,226 --> 00:16:16,096
+you can see that that rating
+is showing up and I can edit it
+
+
+372
+00:16:16,096 --> 00:16:19,526
+and it reflects instantly
+in the canvas.
+
+
+373
+00:16:20,516 --> 00:16:25,996
+[ Applause ]
+
+
+374
+00:16:26,496 --> 00:16:28,506
+So you might be wondering, well,
+
+
+375
+00:16:28,506 --> 00:16:30,066
+what can I use with
+Inspectables?
+
+
+376
+00:16:30,746 --> 00:16:31,976
+You can use all kinds
+
+
+377
+00:16:32,046 --> 00:16:34,656
+of different types
+for Inspectables.
+
+
+378
+00:16:35,326 --> 00:16:36,896
+Now the way that
+Inspectables works is
+
+
+379
+00:16:36,896 --> 00:16:38,346
+that you might be
+wondering "well,
+
+
+380
+00:16:38,346 --> 00:16:40,126
+where does all the
+data get stored?"
+
+
+381
+00:16:40,886 --> 00:16:42,406
+Inspectables takes advantage
+
+
+382
+00:16:42,716 --> 00:16:45,626
+of the user-defined runtime
+attributes that we've had
+
+
+383
+00:16:45,626 --> 00:16:47,146
+for a couple of releases
+of Interface Builder.
+
+
+384
+00:16:48,436 --> 00:16:51,006
+You can see that the rating that
+I just set is showing up here.
+
+
+385
+00:16:51,566 --> 00:16:55,416
+Now it's important that we
+are using user-defined runtime
+
+
+386
+00:16:55,416 --> 00:16:57,036
+attributes for Inspectables
+because it means
+
+
+387
+00:16:57,036 --> 00:16:58,996
+that you don't have
+to worry about where
+
+
+388
+00:16:58,996 --> 00:17:01,226
+to store this data
+and how to encode it.
+
+
+389
+00:17:01,416 --> 00:17:02,996
+We take care of all
+of that for you
+
+
+390
+00:17:02,996 --> 00:17:04,955
+at design time and at runtime.
+
+
+391
+00:17:05,516 --> 00:17:08,715
+The different types
+that I can use
+
+
+392
+00:17:08,715 --> 00:17:10,226
+for Inspectables are
+anything supported
+
+
+393
+00:17:10,226 --> 00:17:12,826
+by user-defined runtime
+attributes: Booleans, strings,
+
+
+394
+00:17:12,826 --> 00:17:19,396
+numbers, values like points and
+sizes and rects and even images,
+
+
+395
+00:17:19,396 --> 00:17:25,185
+which is new this year.
+
+
+396
+00:17:25,376 --> 00:17:29,796
+Love it. So Inspectables
+I think are great
+
+
+397
+00:17:29,796 --> 00:17:32,146
+for exposing properties of
+your views that you can edit.
+
+
+398
+00:17:32,456 --> 00:17:34,746
+But I think it's
+also really helpful
+
+
+399
+00:17:34,746 --> 00:17:37,806
+for helping you develop
+your views.
+
+
+400
+00:17:38,056 --> 00:17:40,066
+So there's two ways
+that I see this.
+
+
+401
+00:17:40,166 --> 00:17:42,506
+The first thing is it helps
+you just validate the changes
+
+
+402
+00:17:42,506 --> 00:17:44,956
+that you're making, especially
+as you're experimenting
+
+
+403
+00:17:45,266 --> 00:17:46,356
+with new types of things.
+
+
+404
+00:17:47,096 --> 00:17:48,906
+So I want to change the color
+
+
+405
+00:17:49,216 --> 00:17:51,726
+of my rating based upon
+how good that rating is.
+
+
+406
+00:17:52,236 --> 00:17:56,686
+Red means "you better catch up,"
+and green might be "well done!"
+
+
+407
+00:17:57,266 --> 00:18:00,706
+So let's go ahead
+and change the color
+
+
+408
+00:18:00,706 --> 00:18:02,896
+of our stroke based
+upon that rating.
+
+
+409
+00:18:02,896 --> 00:18:05,006
+And I'm using a new
+switch statement
+
+
+410
+00:18:05,076 --> 00:18:06,616
+in Swift to accomplish this.
+
+
+411
+00:18:07,766 --> 00:18:08,806
+And now you can see
+
+
+412
+00:18:09,056 --> 00:18:11,526
+that Interface Builder
+is doing the right thing
+
+
+413
+00:18:11,526 --> 00:18:12,346
+in terms of the color.
+
+
+414
+00:18:12,346 --> 00:18:14,596
+Now I'm going to switch
+back to Interface Builder
+
+
+415
+00:18:14,596 --> 00:18:16,286
+so I can edit the Inspectable.
+
+
+416
+00:18:16,286 --> 00:18:19,036
+And I'm going to show you
+Xcode Pro Trip Number 3.
+
+
+417
+00:18:19,826 --> 00:18:21,216
+I like to navigate sometimes --
+
+
+418
+00:18:21,216 --> 00:18:22,806
+a lot of times --
+without the mouse.
+
+
+419
+00:18:23,116 --> 00:18:25,776
+And I can jump around within
+Xcode and put the focus
+
+
+420
+00:18:25,776 --> 00:18:29,006
+in different editors
+using command-J.
+
+
+421
+00:18:30,056 --> 00:18:33,016
+If I hit command-J it gives me
+a little chooser and I can pick
+
+
+422
+00:18:33,016 --> 00:18:34,486
+which editor I want
+to have focused.
+
+
+423
+00:18:34,486 --> 00:18:36,356
+So in this case I want
+to jump-focus back
+
+
+424
+00:18:36,866 --> 00:18:37,936
+to the Interface Builder editor.
+
+
+425
+00:18:37,936 --> 00:18:39,516
+So I can just go ahead
+and hit command-J.
+
+
+426
+00:18:39,516 --> 00:18:41,476
+It picks the primary;
+hit return.
+
+
+427
+00:18:41,736 --> 00:18:43,586
+And now you can see I'm
+seeing my inspectors
+
+
+428
+00:18:43,646 --> 00:18:44,396
+for Interface Builder.
+
+
+429
+00:18:44,846 --> 00:18:48,356
+I can jump to the attributes
+inspector with command-option-4.
+
+
+430
+00:18:48,936 --> 00:18:53,386
+And now that field's in focus
+and I can try out our colors.
+
+
+431
+00:18:53,776 --> 00:18:56,726
+And everything looks to
+be behaving as expected.
+
+
+432
+00:18:59,276 --> 00:19:06,056
+Now the next place that I
+can use Inspectables in terms
+
+
+433
+00:19:06,056 --> 00:19:10,616
+of playing with my views is
+also in just experimenting
+
+
+434
+00:19:11,236 --> 00:19:12,636
+with different types of values.
+
+
+435
+00:19:12,936 --> 00:19:15,646
+So I haven't decided
+yet on my line width.
+
+
+436
+00:19:15,846 --> 00:19:18,956
+10 might work, or it might
+not be the right thing.
+
+
+437
+00:19:18,956 --> 00:19:20,686
+So let's mark that
+as Inspectable.
+
+
+438
+00:19:21,386 --> 00:19:23,006
+I'm going to jump back
+
+
+439
+00:19:23,006 --> 00:19:24,656
+to Interface Builder
+using command-J.
+
+
+440
+00:19:24,926 --> 00:19:26,976
+That language is showing up.
+
+
+441
+00:19:26,976 --> 00:19:28,596
+And let's try a new value: 12.
+
+
+442
+00:19:28,596 --> 00:19:30,476
+Whoa, that is pretty thick.
+
+
+443
+00:19:30,566 --> 00:19:32,746
+So let's just, you know,
+come back down here.
+
+
+444
+00:19:32,976 --> 00:19:34,416
+5's a little small.
+
+
+445
+00:19:34,416 --> 00:19:35,176
+What about 6?
+
+
+446
+00:19:35,176 --> 00:19:36,396
+Yeah, 6 looks pretty good to me.
+
+
+447
+00:19:36,476 --> 00:19:38,616
+So it's very, very
+easy to experiment
+
+
+448
+00:19:38,856 --> 00:19:40,776
+with your custom
+views when using them
+
+
+449
+00:19:40,776 --> 00:19:41,626
+with an Interface Builder.
+
+
+450
+00:19:42,806 --> 00:19:45,306
+Now I'm also going to show you
+just how live these views are.
+
+
+451
+00:19:45,886 --> 00:19:49,096
+I'm going to go ahead and
+resize my table view again.
+
+
+452
+00:19:50,326 --> 00:19:52,276
+And you can see,
+as I'm resizing it,
+
+
+453
+00:19:52,476 --> 00:19:55,566
+it's just perfectly
+redrawing my view.
+
+
+454
+00:19:56,066 --> 00:19:57,416
+It's interacting with it just
+
+
+455
+00:19:57,416 --> 00:20:00,426
+like any other view that's
+inside of Interface Builder.
+
+
+456
+00:20:02,216 --> 00:20:03,936
+Let me go ahead and
+undo that change.
+
+
+457
+00:20:05,536 --> 00:20:07,376
+Okay. So our rings are
+looking pretty good.
+
+
+458
+00:20:07,376 --> 00:20:08,626
+Let's go ahead and
+fill in that image.
+
+
+459
+00:20:08,626 --> 00:20:10,926
+So I'm going to create a
+new layer for my image.
+
+
+460
+00:20:11,946 --> 00:20:13,796
+I'm also going to declare
+a property that I can set
+
+
+461
+00:20:13,796 --> 00:20:15,366
+for my code to update
+that image.
+
+
+462
+00:20:16,026 --> 00:20:19,816
+Now, I want to put an image in
+there, and so let's go ahead
+
+
+463
+00:20:19,816 --> 00:20:21,366
+and set that on our layer.
+
+
+464
+00:20:21,446 --> 00:20:25,276
+I'm going to come back down
+to our layer properties here.
+
+
+465
+00:20:26,576 --> 00:20:31,036
+And, actually, I don't think
+I want to create this inside
+
+
+466
+00:20:31,036 --> 00:20:33,546
+of our property, so let's
+actually go ahead and undo that,
+
+
+467
+00:20:34,266 --> 00:20:35,746
+and let's create
+the layer first.
+
+
+468
+00:20:35,746 --> 00:20:38,106
+And I'm going to do that
+inside of our layout subviews.
+
+
+469
+00:20:38,946 --> 00:20:39,756
+That's looking a little better.
+
+
+470
+00:20:39,756 --> 00:20:40,786
+That's a better place to do it.
+
+
+471
+00:20:40,986 --> 00:20:43,816
+But let's update it down
+here in our layer properties.
+
+
+472
+00:20:45,006 --> 00:20:46,936
+So you can see Interface
+Builder is --
+
+
+473
+00:20:46,936 --> 00:20:49,296
+all I'm doing is I'm
+just I'm drawing a square
+
+
+474
+00:20:49,296 --> 00:20:50,786
+and then I'm drawing a
+circle and masking it.
+
+
+475
+00:20:51,096 --> 00:20:53,976
+And now we can set the
+image as the contents
+
+
+476
+00:20:54,286 --> 00:20:56,956
+of that square layer behind it.
+
+
+477
+00:20:57,286 --> 00:20:59,336
+So let's get an image
+to set inside of here.
+
+
+478
+00:20:59,336 --> 00:21:03,326
+Now I don't want
+to ship any images
+
+
+479
+00:21:03,446 --> 00:21:06,776
+with my actual framework
+(the images
+
+
+480
+00:21:06,776 --> 00:21:08,016
+that I use for testing, right?)
+
+
+481
+00:21:08,016 --> 00:21:09,636
+because that would just
+bloat the framework.
+
+
+482
+00:21:10,476 --> 00:21:13,246
+What I'd like to do is be able
+to reference an image that's
+
+
+483
+00:21:13,246 --> 00:21:15,986
+in my project without actually
+putting it in a target.
+
+
+484
+00:21:16,786 --> 00:21:20,056
+And Interface Builder provides
+a great place to do this
+
+
+485
+00:21:20,056 --> 00:21:21,106
+and a great way to do this
+
+
+486
+00:21:21,216 --> 00:21:22,706
+through
+prepareForInterfaceBuilder.
+
+
+487
+00:21:23,596 --> 00:21:26,126
+So this is a method
+that gets called
+
+
+488
+00:21:26,126 --> 00:21:29,736
+after your views are initialized
+inside of Interface Builder,
+
+
+489
+00:21:30,086 --> 00:21:32,326
+and allows me to do any
+kind of design-time setup.
+
+
+490
+00:21:32,506 --> 00:21:34,286
+Again, this only gets
+called at design-time.
+
+
+491
+00:21:35,376 --> 00:21:38,246
+Now I have some images in my
+projects, some test images.
+
+
+492
+00:21:38,246 --> 00:21:41,136
+Let me show them to you
+over here in this folder.
+
+
+493
+00:21:41,136 --> 00:21:42,486
+And these aren't in any target.
+
+
+494
+00:21:42,486 --> 00:21:44,336
+They're just some images
+that my designers gave me
+
+
+495
+00:21:44,336 --> 00:21:45,556
+to help me test to make sure
+
+
+496
+00:21:45,556 --> 00:21:46,916
+that my app is doing
+the right thing.
+
+
+497
+00:21:47,036 --> 00:21:48,916
+So I'm going to go and
+reference one of these.
+
+
+498
+00:21:49,296 --> 00:21:51,606
+But I want to -- so, I
+could pass a, you know,
+
+
+499
+00:21:51,606 --> 00:21:53,616
+an absolute path and
+generate an image.
+
+
+500
+00:21:53,616 --> 00:21:54,986
+But I'm going to do it
+in a way that's going
+
+
+501
+00:21:54,986 --> 00:21:56,456
+to make sense for
+my entire team.
+
+
+502
+00:21:57,146 --> 00:22:00,576
+So Interface Builder will
+actually pass the paths
+
+
+503
+00:22:01,156 --> 00:22:05,156
+to your projects through the
+environment and allow you
+
+
+504
+00:22:05,206 --> 00:22:09,136
+to actually take advantage of
+the resources in your project.
+
+
+505
+00:22:10,346 --> 00:22:14,786
+So let's go back here and
+let's go ahead and look
+
+
+506
+00:22:14,786 --> 00:22:15,546
+at what that looks like.
+
+
+507
+00:22:15,546 --> 00:22:17,786
+So inside of our
+environment there is an
+
+
+508
+00:22:18,066 --> 00:22:20,876
+"IB-PROJECT-SOURCE-DIRECTORIES"
+string.
+
+
+509
+00:22:21,016 --> 00:22:24,146
+That's just a bunch of project
+directories concatenated
+
+
+510
+00:22:24,146 --> 00:22:24,786
+with a colon.
+
+
+511
+00:22:25,436 --> 00:22:28,386
+And I can split those
+up and go ahead
+
+
+512
+00:22:28,386 --> 00:22:30,016
+and actually get the strings.
+
+
+513
+00:22:30,496 --> 00:22:32,746
+So I only have one project path
+so I'm just going to go ahead
+
+
+514
+00:22:32,746 --> 00:22:36,576
+and grab the first one and
+I can get the path relative
+
+
+515
+00:22:36,576 --> 00:22:38,906
+to my project just by appending
+
+
+516
+00:22:38,906 --> 00:22:42,026
+that test image's --
+and, that image name.
+
+
+517
+00:22:42,246 --> 00:22:44,956
+And then we can go ahead
+and create the image.
+
+
+518
+00:22:46,106 --> 00:22:48,586
+And it should -- hmm.
+
+
+519
+00:22:48,586 --> 00:22:50,516
+It should show up
+here any second.
+
+
+520
+00:22:51,206 --> 00:22:54,006
+Huh. Well, this isn't
+exactly looking right to me.
+
+
+521
+00:22:54,006 --> 00:22:56,876
+I think I must have
+missed something.
+
+
+522
+00:22:56,926 --> 00:22:59,776
+Wouldn't it be great if I
+could just debug my view right
+
+
+523
+00:22:59,776 --> 00:23:00,476
+in the canvas?
+
+
+524
+00:23:00,926 --> 00:23:01,156
+>> Yeah.
+
+
+525
+00:23:01,606 --> 00:23:02,856
+>> Well, with live
+views you can.
+
+
+526
+00:23:03,726 --> 00:23:06,956
+So I'm going to set a
+breakpoint on my image here.
+
+
+527
+00:23:07,526 --> 00:23:09,866
+Go back to Interface Builder
+and select my tile view.
+
+
+528
+00:23:10,286 --> 00:23:13,406
+And from the Editor Menu
+I can just select Debug
+
+
+529
+00:23:13,406 --> 00:23:14,306
+Selected Views.
+
+
+530
+00:23:15,176 --> 00:23:19,126
+And this is going to attach to
+Interface Builder and allow me
+
+
+531
+00:23:19,606 --> 00:23:22,706
+to actually debug
+my custom view just
+
+
+532
+00:23:22,706 --> 00:23:24,326
+like any other debug session.
+
+
+533
+00:23:25,966 --> 00:23:28,966
+So I can see here the -- it
+looks like I'm getting inside
+
+
+534
+00:23:28,966 --> 00:23:31,446
+of here, so I'm getting
+a project path.
+
+
+535
+00:23:31,446 --> 00:23:36,406
+Let's go ahead and step over and
+let's see what that image is.
+
+
+536
+00:23:36,476 --> 00:23:39,686
+You can see the LDB is
+automatically printing
+
+
+537
+00:23:39,686 --> 00:23:41,286
+out the fact that this
+is an optional type
+
+
+538
+00:23:41,286 --> 00:23:43,456
+and that the optional type
+actually has something in it.
+
+
+539
+00:23:43,656 --> 00:23:45,286
+So let's see what that image is.
+
+
+540
+00:23:45,476 --> 00:23:47,176
+And, yep, sure enough,
+we got an image,
+
+
+541
+00:23:47,656 --> 00:23:49,026
+so what's going wrong here?
+
+
+542
+00:23:49,356 --> 00:23:50,766
+Well, let me put a breakpoint
+
+
+543
+00:23:52,106 --> 00:23:54,366
+where we actually set
+our image contents.
+
+
+544
+00:23:54,576 --> 00:23:55,616
+And let's hit Continue.
+
+
+545
+00:23:56,066 --> 00:23:58,986
+And, oh, interesting.
+
+
+546
+00:23:59,176 --> 00:24:00,776
+That method never
+actually gets called.
+
+
+547
+00:24:01,426 --> 00:24:03,456
+What I must be doing is
+I must have forgotten
+
+
+548
+00:24:03,456 --> 00:24:07,666
+to actually update my image
+property in my image layer
+
+
+549
+00:24:07,666 --> 00:24:09,086
+when the image property changes.
+
+
+550
+00:24:10,026 --> 00:24:12,546
+If I scroll up --
+oh, yep, sure enough.
+
+
+551
+00:24:12,546 --> 00:24:15,246
+I forgot to use a property
+observer to make sure
+
+
+552
+00:24:15,246 --> 00:24:18,276
+that my image layer was
+going to get updated
+
+
+553
+00:24:18,276 --> 00:24:19,296
+when the image changed.
+
+
+554
+00:24:19,296 --> 00:24:21,536
+And there you go.
+
+
+555
+00:24:21,746 --> 00:24:25,726
+So Interface Builder provides
+lots of different ways for you
+
+
+556
+00:24:25,936 --> 00:24:28,016
+to be able to design your
+views using something
+
+
+557
+00:24:28,016 --> 00:24:29,046
+like prepareForInterfaceBuilder
+
+
+558
+00:24:29,046 --> 00:24:30,806
+in these IB Project
+Source Directories:
+
+
+559
+00:24:31,146 --> 00:24:33,986
+you can see your custom
+images, you can debug them...
+
+
+560
+00:24:34,846 --> 00:24:36,146
+but there's even
+more you can do.
+
+
+561
+00:24:36,626 --> 00:24:39,506
+So let's go ahead and
+close the debug area here.
+
+
+562
+00:24:40,076 --> 00:24:43,346
+I'm going to jump over to a
+different View Controller now.
+
+
+563
+00:24:45,006 --> 00:24:47,736
+And we have this Rating View
+which is showing us the number
+
+
+564
+00:24:47,736 --> 00:24:50,156
+of stars for our
+particular image.
+
+
+565
+00:24:50,936 --> 00:24:53,126
+Now this Rating View
+has an Inspectable.
+
+
+566
+00:24:53,786 --> 00:24:54,946
+It's called Star Rating.
+
+
+567
+00:24:55,656 --> 00:24:58,336
+And I'm going to go ahead
+and change this to 3.5.
+
+
+568
+00:24:59,316 --> 00:25:01,176
+And when I zoom back
+out and zoom in instead
+
+
+569
+00:25:01,176 --> 00:25:05,926
+on our rating layer,
+you can see -- oh, yeah.
+
+
+570
+00:25:06,106 --> 00:25:08,836
+That label there is
+overlapping our star.
+
+
+571
+00:25:09,146 --> 00:25:10,236
+Well, why is that?
+
+
+572
+00:25:10,236 --> 00:25:13,316
+Well, we have this explicit
+width and height constraint
+
+
+573
+00:25:13,666 --> 00:25:16,036
+so that the Rating View
+doesn't have a chance to grow it
+
+
+574
+00:25:16,036 --> 00:25:17,056
+at whatever size it is.
+
+
+575
+00:25:17,056 --> 00:25:19,106
+So let's just go ahead
+and delete those.
+
+
+576
+00:25:19,766 --> 00:25:22,186
+We don't need them.
+
+
+577
+00:25:22,296 --> 00:25:23,176
+So, again, delete those.
+
+
+578
+00:25:23,176 --> 00:25:25,666
+And now Interface Builder
+is helpfully telling me
+
+
+579
+00:25:26,046 --> 00:25:27,146
+that my view is ambiguous.
+
+
+580
+00:25:27,146 --> 00:25:28,556
+It doesn't have enough
+constraints.
+
+
+581
+00:25:29,686 --> 00:25:31,496
+Now for those of you
+familiar with Auto Layout,
+
+
+582
+00:25:31,576 --> 00:25:33,786
+you'll know that there's a
+method called Intrinsic Content
+
+
+583
+00:25:33,786 --> 00:25:37,706
+Size which allows you to define
+a size-to-fit-size for my view.
+
+
+584
+00:25:38,046 --> 00:25:39,046
+Well, I can take advantage
+
+
+585
+00:25:39,046 --> 00:25:40,756
+of that right inside
+of Interface Builder.
+
+
+586
+00:25:42,156 --> 00:25:45,946
+If we go to our Rating View
+Class, and I'm going to open
+
+
+587
+00:25:45,946 --> 00:25:47,066
+that using Open Quickly.
+
+
+588
+00:25:48,036 --> 00:25:49,756
+Site Rating View.
+
+
+589
+00:25:49,756 --> 00:25:52,836
+And I'm going to use
+my little option-shift
+
+
+590
+00:25:53,016 --> 00:25:54,276
+to target the assistant here.
+
+
+591
+00:25:55,236 --> 00:25:58,526
+And we'll scroll to the bottom
+of the file to add our new code.
+
+
+592
+00:25:59,416 --> 00:26:02,276
+So I've overwritten our
+intrinsicContentSize method
+
+
+593
+00:26:02,666 --> 00:26:04,516
+and now Interface
+Builder is going
+
+
+594
+00:26:04,516 --> 00:26:06,276
+to recognize that
+method is there.
+
+
+595
+00:26:06,276 --> 00:26:08,696
+It's going to call it just like
+it normally would at runtime.
+
+
+596
+00:26:09,026 --> 00:26:14,536
+And now it's showing me that my
+view can grow to fill the size
+
+
+597
+00:26:14,536 --> 00:26:17,796
+of the stars and the intrinsic
+content size of my label,
+
+
+598
+00:26:18,006 --> 00:26:19,826
+and I can just put
+it right into place.
+
+
+599
+00:26:20,296 --> 00:26:23,196
+And it's also telling me that my
+view is now no longer ambiguous.
+
+
+600
+00:26:23,256 --> 00:26:24,256
+I'm all good to go.
+
+
+601
+00:26:24,476 --> 00:26:26,556
+It's executing my code and using
+
+
+602
+00:26:26,556 --> 00:26:29,036
+that intrinsicContentSize
+override to figure
+
+
+603
+00:26:29,036 --> 00:26:31,006
+out which constraints
+need to be there.
+
+
+604
+00:26:32,226 --> 00:26:34,296
+Now for those of you who
+are "pixel perfectionists,"
+
+
+605
+00:26:35,056 --> 00:26:38,966
+you might realize that that
+caption is actually 1 point off
+
+
+606
+00:26:39,516 --> 00:26:42,926
+from this label in
+terms of being aligned.
+
+
+607
+00:26:43,326 --> 00:26:46,466
+I would like to be able
+to align these two things
+
+
+608
+00:26:46,466 --> 00:26:49,356
+by their baseline but my
+Rating View is a custom view
+
+
+609
+00:26:49,356 --> 00:26:50,506
+that has stuff inside of it.
+
+
+610
+00:26:50,506 --> 00:26:52,936
+Well, how do I align
+it by the baseline?
+
+
+611
+00:26:53,556 --> 00:26:57,876
+Well, I can override another
+method on UIView and NSView,
+
+
+612
+00:26:58,376 --> 00:26:59,776
+called viewForBaselineLayout.
+
+
+613
+00:26:59,776 --> 00:27:02,606
+I'm going to return the
+label that's internal
+
+
+614
+00:27:02,606 --> 00:27:03,776
+to my custom view.
+
+
+615
+00:27:04,196 --> 00:27:06,166
+And now Interface
+Builder is showing me
+
+
+616
+00:27:06,506 --> 00:27:09,006
+that this view now has
+a baseline running right
+
+
+617
+00:27:09,006 --> 00:27:10,536
+through the baseline of my label
+
+
+618
+00:27:11,516 --> 00:27:14,976
+and if I delete the centering
+contraint on my caption,
+
+
+619
+00:27:15,186 --> 00:27:16,226
+I can just drag this
+thing around
+
+
+620
+00:27:16,226 --> 00:27:18,496
+and you can see it snapping
+right to the baseline
+
+
+621
+00:27:18,796 --> 00:27:22,606
+of that custom view that I
+just created entirely in code.
+
+
+622
+00:27:23,516 --> 00:27:28,806
+[ Applause ]
+
+
+623
+00:27:29,306 --> 00:27:30,586
+Now I can go ahead
+and finish this off
+
+
+624
+00:27:30,656 --> 00:27:35,666
+by baseline aligning
+these to these two views.
+
+
+625
+00:27:35,666 --> 00:27:39,686
+So that's just a little look
+into using live views and some
+
+
+626
+00:27:39,686 --> 00:27:43,166
+of the things that you can use
+to make sure really cool views.
+
+
+627
+00:27:43,166 --> 00:27:45,896
+I'm really looking forward
+to seeing what you guys do.
+
+
+628
+00:27:47,166 --> 00:27:50,436
+So, the four steps
+that you need to do
+
+
+629
+00:27:50,436 --> 00:27:52,506
+to get your custom content
+showing up in Interface Builder:
+
+
+630
+00:27:52,836 --> 00:27:54,176
+1, create a framework.
+
+
+631
+00:27:54,586 --> 00:27:56,416
+Why do you need to create a
+framework in the first place?
+
+
+632
+00:27:56,946 --> 00:28:01,016
+The way that this feature works
+is that when you define a class
+
+
+633
+00:28:01,016 --> 00:28:03,186
+as designable, Interface
+Builder is going
+
+
+634
+00:28:03,186 --> 00:28:04,756
+to build your framework target.
+
+
+635
+00:28:04,896 --> 00:28:07,136
+It's going to launch
+a Helper process.
+
+
+636
+00:28:07,136 --> 00:28:09,226
+It's going to dynamically
+load your framework
+
+
+637
+00:28:09,226 --> 00:28:12,586
+into that Helper process
+and then interact with it.
+
+
+638
+00:28:12,586 --> 00:28:15,146
+And this also helps keep you
+from the mistakes that --
+
+
+639
+00:28:15,146 --> 00:28:17,606
+at least that I make
+-- while writing code,
+
+
+640
+00:28:17,946 --> 00:28:19,676
+which is something like a crash.
+
+
+641
+00:28:20,136 --> 00:28:22,376
+That way you don't have to --
+you can see what the error is
+
+
+642
+00:28:22,376 --> 00:28:24,006
+without having to
+suffer from it.
+
+
+643
+00:28:24,966 --> 00:28:29,096
+Secondly, you create a
+subclass of UIView either
+
+
+644
+00:28:29,096 --> 00:28:31,846
+with Objective-C or with Swift.
+
+
+645
+00:28:32,936 --> 00:28:35,146
+Third, you mark it
+as Designable.
+
+
+646
+00:28:35,216 --> 00:28:38,226
+And I wanted to say a quick
+note about Inspectable as well.
+
+
+647
+00:28:38,846 --> 00:28:42,956
+While Designable is a feature
+of this Custom Views feature,
+
+
+648
+00:28:43,006 --> 00:28:46,906
+you can use Inspectables without
+having a Designable class.
+
+
+649
+00:28:46,906 --> 00:28:49,196
+You can add Inspectables
+to any of your classes
+
+
+650
+00:28:49,436 --> 00:28:50,806
+that you interact with
+in Interface Builder,
+
+
+651
+00:28:50,806 --> 00:28:52,856
+and we'll show you those
+properties in the Inspector.
+
+
+652
+00:28:53,416 --> 00:28:56,946
+And then, finally, you just
+hook up your custom view
+
+
+653
+00:28:57,316 --> 00:28:59,866
+with the class that
+you just created.
+
+
+654
+00:29:00,596 --> 00:29:02,516
+Live Views allows you to
+do all kinds of things:
+
+
+655
+00:29:02,516 --> 00:29:05,346
+you can see your custom drawing,
+you can have custom geometry
+
+
+656
+00:29:05,346 --> 00:29:06,086
+and interact with it...
+
+
+657
+00:29:06,536 --> 00:29:08,986
+One that I didn't show you
+is you can also provide the
+
+
+658
+00:29:08,986 --> 00:29:13,276
+alignment rect insets that
+are on both iOS and OS X.
+
+
+659
+00:29:13,276 --> 00:29:15,256
+You can debug your views
+right in the canvas.
+
+
+660
+00:29:15,616 --> 00:29:18,256
+And you can also use several
+mechanisms for interacting
+
+
+661
+00:29:18,256 --> 00:29:19,426
+with your code in design-time.
+
+
+662
+00:29:19,796 --> 00:29:21,416
+I showed you
+prepareForInterfaceBuilder,
+
+
+663
+00:29:21,416 --> 00:29:24,176
+but another one is this
+target conditional,
+
+
+664
+00:29:24,176 --> 00:29:25,316
+TARGET-INTERFACE-BUILDER.
+
+
+665
+00:29:25,806 --> 00:29:29,256
+And you can use this with
+#if to either opt code
+
+
+666
+00:29:29,336 --> 00:29:31,076
+in or out of live views.
+
+
+667
+00:29:31,076 --> 00:29:34,526
+So, for example, you might have
+some server connection code
+
+
+668
+00:29:34,526 --> 00:29:35,466
+that you don't want to run
+
+
+669
+00:29:35,466 --> 00:29:37,376
+when you're inside
+of Interface Builder.
+
+
+670
+00:29:37,446 --> 00:29:39,956
+So you can just opt that out
+using this Target Conditional.
+
+
+671
+00:29:40,556 --> 00:29:44,736
+I also showed you some new Auto
+Layout features since last year.
+
+
+672
+00:29:45,506 --> 00:29:46,966
+Now what we want to do is want
+
+
+673
+00:29:46,966 --> 00:29:50,066
+to add iPhone Support
+to our application.
+
+
+674
+00:29:50,066 --> 00:29:51,936
+My co-worker just had
+time for iPad support.
+
+
+675
+00:29:52,906 --> 00:29:53,896
+And our goal is that we're going
+
+
+676
+00:29:53,896 --> 00:29:55,746
+to use a single storyboard
+to do this.
+
+
+677
+00:29:55,746 --> 00:29:56,896
+and this is made possible
+
+
+678
+00:29:56,896 --> 00:29:59,026
+because of a feature
+called Size Classes.
+
+
+679
+00:29:59,626 --> 00:30:03,216
+Size Classes is a feature of iOS
+8 and Xcode 6 that allows you
+
+
+680
+00:30:03,216 --> 00:30:05,746
+to specify how your View
+Controller and your UI adapt
+
+
+681
+00:30:05,746 --> 00:30:07,976
+as the available size for
+your View Controller changes.
+
+
+682
+00:30:08,336 --> 00:30:11,766
+Let me tell you -- I'm going
+to walk you through an example.
+
+
+683
+00:30:12,246 --> 00:30:13,676
+Let's say you start out
+with some View Controller
+
+
+684
+00:30:13,766 --> 00:30:16,446
+with some size and it
+grows to some new size.
+
+
+685
+00:30:16,986 --> 00:30:20,056
+What's important here
+is not the point size
+
+
+686
+00:30:20,556 --> 00:30:23,366
+of your View Controller
+either in the smaller
+
+
+687
+00:30:23,366 --> 00:30:24,866
+or bigger configuration.
+
+
+688
+00:30:25,186 --> 00:30:27,126
+What's important
+is the magnitude
+
+
+689
+00:30:27,126 --> 00:30:29,776
+of the change, small versus big.
+
+
+690
+00:30:30,516 --> 00:30:33,026
+This magnitude is
+called a Size Class.
+
+
+691
+00:30:33,796 --> 00:30:35,696
+A Size Class can have
+one of two values.
+
+
+692
+00:30:35,696 --> 00:30:38,706
+Compact (think small) or
+Regular (think bigger).
+
+
+693
+00:30:38,796 --> 00:30:41,866
+At any given time, a
+View Controller is going
+
+
+694
+00:30:41,866 --> 00:30:45,326
+to have two Size Classes, one
+horizontally and one vertically,
+
+
+695
+00:30:45,776 --> 00:30:48,476
+making the total number
+of combinations four.
+
+
+696
+00:30:48,606 --> 00:30:50,786
+So let's look at a
+concrete example.
+
+
+697
+00:30:50,886 --> 00:30:54,636
+So I have our UI here and
+when we're in landscape
+
+
+698
+00:30:54,636 --> 00:30:57,826
+on the iPhone, I'd really like
+that bottom bar to tighten
+
+
+699
+00:30:57,826 --> 00:31:00,546
+up a little bit, to make
+more room for those images.
+
+
+700
+00:31:00,546 --> 00:31:05,226
+So what we can do is
+in the configurations
+
+
+701
+00:31:05,226 --> 00:31:08,066
+of our four configurations,
+for whether that bar
+
+
+702
+00:31:08,066 --> 00:31:09,426
+or whether the View
+Controller is
+
+
+703
+00:31:09,426 --> 00:31:12,946
+in a more compact vertical
+environment, we can just set
+
+
+704
+00:31:12,986 --> 00:31:16,346
+that constant to 30 and in the
+bigger ones we can set it to 52.
+
+
+705
+00:31:16,346 --> 00:31:17,136
+We're all good, right?
+
+
+706
+00:31:17,136 --> 00:31:18,096
+Well, kind of.
+
+
+707
+00:31:18,956 --> 00:31:21,416
+If you notice, I have to
+specify the value twice.
+
+
+708
+00:31:21,416 --> 00:31:23,116
+And this is going to
+make it really hard
+
+
+709
+00:31:23,116 --> 00:31:24,306
+to make edits in the future.
+
+
+710
+00:31:24,376 --> 00:31:26,456
+It's going to make it
+hard to maintain my app
+
+
+711
+00:31:26,456 --> 00:31:27,736
+because every time I
+make a change I've got
+
+
+712
+00:31:27,736 --> 00:31:28,806
+to make it in two places.
+
+
+713
+00:31:29,026 --> 00:31:31,496
+So Interface Builder
+exposes a third value
+
+
+714
+00:31:31,496 --> 00:31:32,846
+in the Size Class called Any.
+
+
+715
+00:31:33,486 --> 00:31:36,396
+And Any is simply,
+as its name suggests,
+
+
+716
+00:31:36,616 --> 00:31:38,036
+either of the size classes.
+
+
+717
+00:31:38,526 --> 00:31:42,716
+So I can say that I want that 30
+to be for any horizontal class.
+
+
+718
+00:31:42,716 --> 00:31:44,256
+I don't care what the width is.
+
+
+719
+00:31:44,306 --> 00:31:46,416
+All I care is about the
+height, which is compact.
+
+
+720
+00:31:47,456 --> 00:31:48,616
+What about this 52?
+
+
+721
+00:31:49,196 --> 00:31:52,476
+Well, I could also put
+it in Any for regular,
+
+
+722
+00:31:52,476 --> 00:31:55,476
+but where I really want
+to put it is in Any Any.
+
+
+723
+00:31:56,346 --> 00:31:58,466
+This is the default
+configuration.
+
+
+724
+00:31:58,796 --> 00:32:01,646
+This says that it doesn't
+matter which device
+
+
+725
+00:32:01,646 --> 00:32:04,716
+or which orientation or what the
+size of my View controller is,
+
+
+726
+00:32:04,716 --> 00:32:06,226
+I want to use these values.
+
+
+727
+00:32:06,486 --> 00:32:08,426
+And this brings up a
+really important strategy
+
+
+728
+00:32:08,426 --> 00:32:10,746
+as you're designing
+your applications.
+
+
+729
+00:32:11,206 --> 00:32:14,906
+You want to do as much work
+in Any Any as possible.
+
+
+730
+00:32:15,226 --> 00:32:16,586
+And then you just branch
+
+
+731
+00:32:16,586 --> 00:32:20,856
+out to those more specific
+configurations as needed.
+
+
+732
+00:32:20,856 --> 00:32:23,586
+And this is going to make your
+app much more maintainable
+
+
+733
+00:32:23,586 --> 00:32:24,816
+and much more adaptable.
+
+
+734
+00:32:24,816 --> 00:32:27,946
+Now this grid is going
+to become really familiar
+
+
+735
+00:32:27,946 --> 00:32:31,206
+because this is actually
+exactly how we expose switching
+
+
+736
+00:32:31,496 --> 00:32:34,026
+between the different
+configurations inside of Xcode.
+
+
+737
+00:32:34,026 --> 00:32:35,796
+And let me show you
+how that works.
+
+
+738
+00:32:35,796 --> 00:32:36,406
+All right.
+
+
+739
+00:32:37,156 --> 00:32:40,206
+So we're back in our
+lovely storyboard here.
+
+
+740
+00:32:41,076 --> 00:32:42,166
+And the first thing
+I'm going to do
+
+
+741
+00:32:42,166 --> 00:32:44,056
+in this storyboard is I'm
+going to enable Size Classes.
+
+
+742
+00:32:44,146 --> 00:32:48,886
+So let me go ahead and open
+up the Document Inspector here
+
+
+743
+00:32:48,886 --> 00:32:49,956
+and check Size Classes.
+
+
+744
+00:32:49,956 --> 00:32:51,366
+Now two things are
+going to happen.
+
+
+745
+00:32:52,006 --> 00:32:54,176
+One, if your document
+isn't using Auto Layout,
+
+
+746
+00:32:54,176 --> 00:32:55,686
+we're going to turn on
+Auto Layout for you.
+
+
+747
+00:32:55,806 --> 00:32:59,246
+And them, secondly, it's going
+to upgrade all of your segues
+
+
+748
+00:32:59,246 --> 00:33:01,636
+to the new Adaptive Segues.
+
+
+749
+00:33:01,636 --> 00:33:03,196
+Now, I'm going to talk
+about that in a little bit.
+
+
+750
+00:33:03,196 --> 00:33:06,186
+So we're going to
+enable Size Classes
+
+
+751
+00:33:06,186 --> 00:33:08,646
+and immediately we're seeing
+the result, the designing,
+
+
+752
+00:33:08,806 --> 00:33:11,556
+and this great, flexible,
+adaptable environment.
+
+
+753
+00:33:11,736 --> 00:33:14,956
+Our View Controllers are showing
+a square to help reinforce
+
+
+754
+00:33:14,956 --> 00:33:17,716
+that you're not designing for
+any specific, particular device,
+
+
+755
+00:33:17,996 --> 00:33:22,206
+but rather for the particular
+size or magnitude of size
+
+
+756
+00:33:22,206 --> 00:33:23,096
+of your View Controller.
+
+
+757
+00:33:24,426 --> 00:33:26,986
+So, the first thing that we
+want to do is we want to take
+
+
+758
+00:33:26,986 --> 00:33:31,066
+that bar and make it a little
+bit narrower or shorter
+
+
+759
+00:33:31,896 --> 00:33:33,786
+when our height is
+a little narrower.
+
+
+760
+00:33:33,786 --> 00:33:39,166
+So I can just go ahead and put
+the canvas into a configuration
+
+
+761
+00:33:39,166 --> 00:33:40,026
+that allows me to do that.
+
+
+762
+00:33:40,026 --> 00:33:42,766
+So this is the first thing with
+Size Classes is transitioning
+
+
+763
+00:33:42,766 --> 00:33:44,186
+through the different
+configurations.
+
+
+764
+00:33:44,296 --> 00:33:45,476
+It's really easy.
+
+
+765
+00:33:46,746 --> 00:33:49,646
+If I open up this control here
+in the bottom of the canvas,
+
+
+766
+00:33:49,646 --> 00:33:52,546
+you can see it was that grid
+that we were seeing earlier.
+
+
+767
+00:33:52,546 --> 00:33:54,906
+And this allows me to pick
+which configuration I'm editing.
+
+
+768
+00:33:55,286 --> 00:33:56,686
+When I pick a configuration
+to edit,
+
+
+769
+00:33:56,686 --> 00:33:58,646
+it's going to resize
+the View Controllers
+
+
+770
+00:33:58,906 --> 00:34:01,126
+for that particular
+configuration to reflect that.
+
+
+771
+00:34:01,496 --> 00:34:03,596
+And now, any edits
+that I make inside
+
+
+772
+00:34:03,596 --> 00:34:06,546
+of this particular
+configuration will be customized
+
+
+773
+00:34:06,546 --> 00:34:07,566
+for that configuration.
+
+
+774
+00:34:08,436 --> 00:34:11,005
+So let's go ahead and do
+that now for the constant --
+
+
+775
+00:34:11,005 --> 00:34:12,896
+the height constant
+-- on our bar.
+
+
+776
+00:34:12,896 --> 00:34:14,856
+So I'm going to go
+ahead and select this.
+
+
+777
+00:34:14,856 --> 00:34:16,856
+Now I could double-click
+to edit this constraint,
+
+
+778
+00:34:16,856 --> 00:34:17,876
+but instead what I'm
+going to do is I'm going
+
+
+779
+00:34:17,876 --> 00:34:19,136
+to open the Size Inspector.
+
+
+780
+00:34:19,275 --> 00:34:23,326
+And you can see here all
+the constraints for my bar.
+
+
+781
+00:34:23,676 --> 00:34:26,606
+Well, I really just want to see
+the ones that are being defined
+
+
+782
+00:34:26,606 --> 00:34:28,826
+by my parent to kind of
+position and size this.
+
+
+783
+00:34:28,826 --> 00:34:32,056
+I'm just going to filter the
+constraints down to those.
+
+
+784
+00:34:32,926 --> 00:34:35,896
+And furthermore, I'm just going
+to look at size constraints.
+
+
+785
+00:34:37,456 --> 00:34:41,556
+Then, to change the constant,
+just click once, type in 30,
+
+
+786
+00:34:41,686 --> 00:34:44,335
+hit Return, and now
+I've customized my bar
+
+
+787
+00:34:44,656 --> 00:34:46,976
+for Any, Compact.
+
+
+788
+00:34:47,516 --> 00:34:53,096
+[ Applause ]
+
+
+789
+00:34:53,596 --> 00:34:55,545
+You can see the result of that
+
+
+790
+00:34:55,545 --> 00:34:56,775
+if I switch back
+to "Any Any" here.
+
+
+791
+00:34:56,976 --> 00:35:00,436
+And you can see that bar grew
+back to that taller height.
+
+
+792
+00:35:00,666 --> 00:35:03,356
+So, really, really easy
+to make customizations
+
+
+793
+00:35:03,356 --> 00:35:04,446
+between configurations.
+
+
+794
+00:35:04,866 --> 00:35:07,296
+Now the second thing about Size
+Classes that I wanted to say is,
+
+
+795
+00:35:07,716 --> 00:35:10,196
+well, what's customizable
+between configurations.
+
+
+796
+00:35:10,636 --> 00:35:12,406
+There are four things
+that are customizable
+
+
+797
+00:35:12,406 --> 00:35:13,576
+between configurations.
+
+
+798
+00:35:13,726 --> 00:35:15,566
+One: I can change a
+constraint constant.
+
+
+799
+00:35:16,076 --> 00:35:17,156
+Two: I can change a font.
+
+
+800
+00:35:17,756 --> 00:35:20,056
+Three: I can change whole
+sets of constraints --
+
+
+801
+00:35:20,056 --> 00:35:22,136
+I can turn off an entire
+set of constraints (say,
+
+
+802
+00:35:22,496 --> 00:35:24,936
+my Portrait constraints) and
+turn on a whole other set (say,
+
+
+803
+00:35:24,936 --> 00:35:26,106
+my Landscape constraints).
+
+
+804
+00:35:27,036 --> 00:35:29,886
+And then, fourth, I can
+also customize subviews,
+
+
+805
+00:35:29,926 --> 00:35:30,926
+turning them on and off.
+
+
+806
+00:35:30,926 --> 00:35:32,256
+And this is different
+from hidden.
+
+
+807
+00:35:32,656 --> 00:35:35,266
+When a view is just hidden, it's
+still participating in layout.
+
+
+808
+00:35:35,756 --> 00:35:38,836
+But when I uninstall the
+constraint using the view using
+
+
+809
+00:35:38,836 --> 00:35:41,726
+Size Classes, it actually takes
+it out of the View hierarchy
+
+
+810
+00:35:41,956 --> 00:35:43,436
+so I can have new
+sets of constraints.
+
+
+811
+00:35:44,356 --> 00:35:45,986
+So let's see an example
+of that now.
+
+
+812
+00:35:46,906 --> 00:35:48,966
+When I don't have a lot
+of horizontal space,
+
+
+813
+00:35:48,966 --> 00:35:50,936
+I want to turn off this rating.
+
+
+814
+00:35:52,186 --> 00:35:56,406
+So I'm going to go ahead and put
+the canvas into Compact width.
+
+
+815
+00:35:56,406 --> 00:35:57,806
+And I don't really
+care what height it is.
+
+
+816
+00:35:57,806 --> 00:36:01,456
+It can, you know, be as tall
+or short as it needs to be.
+
+
+817
+00:36:01,986 --> 00:36:02,736
+And you can see...
+
+
+818
+00:36:02,796 --> 00:36:04,846
+oh wow, yeah, that
+looks pretty bad.
+
+
+819
+00:36:04,946 --> 00:36:06,656
+So let's go ahead and
+turn that caption off.
+
+
+820
+00:36:06,776 --> 00:36:09,606
+When I want to turn
+a subview off
+
+
+821
+00:36:09,606 --> 00:36:12,146
+in a configuration it's
+really just as easy
+
+
+822
+00:36:12,146 --> 00:36:14,036
+as turning off the constraints
+of that configuration
+
+
+823
+00:36:14,036 --> 00:36:15,566
+and then turning
+the View off itself.
+
+
+824
+00:36:16,526 --> 00:36:19,156
+When I use the constraint
+commands over in this menu,
+
+
+825
+00:36:19,156 --> 00:36:21,626
+they're going to apply, again,
+for just this configuration.
+
+
+826
+00:36:21,626 --> 00:36:23,876
+So let's go ahead and just clear
+the constraints for this View,
+
+
+827
+00:36:24,156 --> 00:36:26,416
+and now we can uninstall
+it from this configuration.
+
+
+828
+00:36:26,906 --> 00:36:29,556
+I can do this using the
+Inspector on a per-view instance
+
+
+829
+00:36:29,636 --> 00:36:31,286
+or a really quick
+shortcut for getting
+
+
+830
+00:36:31,286 --> 00:36:33,776
+that done is just
+command-delete.
+
+
+831
+00:36:34,116 --> 00:36:36,046
+And command-delete
+will just turn it off
+
+
+832
+00:36:36,046 --> 00:36:36,996
+in this configuration.
+
+
+833
+00:36:37,236 --> 00:36:39,716
+Delete will delete it in
+all of the configurations.
+
+
+834
+00:36:41,156 --> 00:36:44,306
+I also want to go ahead
+and remove this constraint.
+
+
+835
+00:36:44,306 --> 00:36:46,246
+So I can just select the
+constraint, command-delete,
+
+
+836
+00:36:46,246 --> 00:36:47,126
+and now I've turned it off.
+
+
+837
+00:36:47,356 --> 00:36:48,916
+And now I can add
+new constraints
+
+
+838
+00:36:48,916 --> 00:36:50,166
+for just this configuration.
+
+
+839
+00:36:50,336 --> 00:36:52,176
+So I'd like to take
+this Rating View
+
+
+840
+00:36:52,176 --> 00:36:54,416
+and align it horizontally
+in my container.
+
+
+841
+00:36:54,486 --> 00:36:56,966
+And I'm going to use the
+new -- or not the new --
+
+
+842
+00:36:57,046 --> 00:36:59,686
+just the existing
+alignment popover here.
+
+
+843
+00:37:00,486 --> 00:37:02,936
+I'm going to choose Horizontal,
+Center, and Container.
+
+
+844
+00:37:03,356 --> 00:37:06,616
+And I'm going to change one
+of this Update Frame's values.
+
+
+845
+00:37:06,716 --> 00:37:08,026
+You might have been
+wondering what this is.
+
+
+846
+00:37:08,476 --> 00:37:09,236
+This allows...
+
+
+847
+00:37:09,236 --> 00:37:11,216
+when you're adding
+new constraints,
+
+
+848
+00:37:11,596 --> 00:37:13,946
+the values that you're
+adding those constraints
+
+
+849
+00:37:13,946 --> 00:37:15,466
+for might not be
+the actual values
+
+
+850
+00:37:15,466 --> 00:37:17,046
+that are currently
+reflected in the canvas.
+
+
+851
+00:37:17,046 --> 00:37:19,636
+For example, I want to add
+Center in my bottom bar
+
+
+852
+00:37:19,636 --> 00:37:22,016
+but my View currently isn't
+centered in the bottom bar.
+
+
+853
+00:37:22,376 --> 00:37:23,656
+So I can tell Interface
+Builder, hey,
+
+
+854
+00:37:23,656 --> 00:37:25,866
+when you add these constraints,
+just go ahead and put the Views
+
+
+855
+00:37:26,196 --> 00:37:27,296
+in those new locations.
+
+
+856
+00:37:27,656 --> 00:37:29,496
+And that's what these
+options allow me to do.
+
+
+857
+00:37:29,946 --> 00:37:31,546
+All Frames is just
+-- it updates it
+
+
+858
+00:37:31,546 --> 00:37:32,566
+for the whole View Controller.
+
+
+859
+00:37:32,866 --> 00:37:35,316
+And "Items of New Constraints,"
+this is helpful if you're
+
+
+860
+00:37:35,316 --> 00:37:37,546
+in the middle of doing a lot
+of different constraint surgery
+
+
+861
+00:37:37,546 --> 00:37:39,326
+and you just want to
+move one or two Views.
+
+
+862
+00:37:39,776 --> 00:37:40,676
+What I'm going to
+do in this case,
+
+
+863
+00:37:40,716 --> 00:37:43,226
+I'm going to do all the
+frames in my View Controller.
+
+
+864
+00:37:43,226 --> 00:37:44,606
+And you can see it adds that
+constraint [whisking sound]
+
+
+865
+00:37:44,606 --> 00:37:47,686
+and it slides that
+Rating View right on over.
+
+
+866
+00:37:47,966 --> 00:37:53,916
+And if we go back
+to Any Any, voila.
+
+
+867
+00:37:53,916 --> 00:37:56,086
+We've customized our interface
+
+
+868
+00:37:56,086 --> 00:37:58,416
+across two different
+configurations very,
+
+
+869
+00:37:58,416 --> 00:37:59,096
+very easily.
+
+
+870
+00:37:59,466 --> 00:38:01,246
+And let's see what this
+looks like at runtime.
+
+
+871
+00:38:02,636 --> 00:38:04,646
+If I go ahead and
+run my application...
+
+
+872
+00:38:08,116 --> 00:38:10,786
+There, it's showing up, and I
+can rotate it, and you can see
+
+
+873
+00:38:10,786 --> 00:38:12,626
+that bar is automatically
+adjusting.
+
+
+874
+00:38:13,026 --> 00:38:15,456
+And on iPhone, because
+it's Compact,
+
+
+875
+00:38:15,456 --> 00:38:17,076
+you can see that that
+caption isn't showing.
+
+
+876
+00:38:17,706 --> 00:38:21,116
+Now one thing I haven't
+talked about or pointed out
+
+
+877
+00:38:21,116 --> 00:38:22,866
+yet is maybe something
+that you guys are wondering
+
+
+878
+00:38:22,866 --> 00:38:25,826
+and you're saying, hey,
+you had an iPad storyboard.
+
+
+879
+00:38:25,976 --> 00:38:26,586
+Wait a second.
+
+
+880
+00:38:27,166 --> 00:38:28,696
+I saw a Split View
+Controller in there.
+
+
+881
+00:38:28,696 --> 00:38:30,066
+I saw that you had
+a Replace Segue.
+
+
+882
+00:38:30,066 --> 00:38:31,616
+I saw that you had
+a Popover Segue.
+
+
+883
+00:38:32,136 --> 00:38:33,716
+How is that working on iPhone?
+
+
+884
+00:38:34,416 --> 00:38:37,786
+With the new adaptive View
+Controller API in iOS 8,
+
+
+885
+00:38:38,416 --> 00:38:41,206
+all the wonderful system
+classes that you've come to know
+
+
+886
+00:38:41,206 --> 00:38:43,926
+and love work on
+both iPad and iPhone.
+
+
+887
+00:38:44,446 --> 00:38:45,356
+And the way that it works is
+
+
+888
+00:38:45,356 --> 00:38:47,556
+that they adapt their
+environment based upon
+
+
+889
+00:38:47,556 --> 00:38:48,706
+that available size.
+
+
+890
+00:38:49,266 --> 00:38:51,036
+So, for example, our
+Split View Controller ,
+
+
+891
+00:38:51,476 --> 00:38:54,436
+instead of showing side-by-side
+(because the environment is more
+
+
+892
+00:38:54,436 --> 00:38:57,166
+compact) it's actually
+going to just push my detail
+
+
+893
+00:38:57,226 --> 00:38:58,936
+onto my master when I'm
+
+
+894
+00:38:58,986 --> 00:39:02,116
+in a more compact
+environment like an iPhone.
+
+
+895
+00:39:02,266 --> 00:39:05,396
+Similarly, with my
+Popover Segue,
+
+
+896
+00:39:05,396 --> 00:39:08,956
+instead of being a popover
+on iPhone, it's been turned
+
+
+897
+00:39:08,956 --> 00:39:11,956
+into a modal without
+me writing any code.
+
+
+898
+00:39:12,046 --> 00:39:15,306
+And this has to do with those
+new Adaptive Segue types.
+
+
+899
+00:39:15,306 --> 00:39:20,196
+So let's take a look
+at those now.
+
+
+900
+00:39:20,336 --> 00:39:23,866
+If I select this
+Popover Segue here and go
+
+
+901
+00:39:23,866 --> 00:39:26,006
+over to the Attributes
+Inspector, you can see it's one
+
+
+902
+00:39:26,006 --> 00:39:28,076
+of the new Present
+As Popover Segues.
+
+
+903
+00:39:28,076 --> 00:39:29,556
+And this is one of the
+new Adaptive Segues.
+
+
+904
+00:39:29,556 --> 00:39:32,116
+Let's take a look at what
+other Adaptive Segues we have.
+
+
+905
+00:39:33,146 --> 00:39:35,336
+Show is a replacement,
+for example, for Push.
+
+
+906
+00:39:35,616 --> 00:39:38,656
+And what Show in Show Detail
+does is it looks at the context
+
+
+907
+00:39:38,656 --> 00:39:40,876
+that you're in to
+decide what to do.
+
+
+908
+00:39:41,256 --> 00:39:43,566
+So, for example, a Split
+View Controller in iPad:
+
+
+909
+00:39:43,566 --> 00:39:45,136
+it's going to actually
+replace the Detail
+
+
+910
+00:39:45,136 --> 00:39:47,136
+if you have a Show Detail.
+
+
+911
+00:39:47,636 --> 00:39:49,436
+But on iPhone, it's
+going to push
+
+
+912
+00:39:49,436 --> 00:39:52,456
+that Detail aside
+on to the Master.
+
+
+913
+00:39:53,106 --> 00:39:54,696
+Now what's really
+cool about this is
+
+
+914
+00:39:54,696 --> 00:39:56,276
+that this is accomplished
+
+
+915
+00:39:56,276 --> 00:39:59,486
+by using two new UIView
+Controller Selectors,
+
+
+916
+00:39:59,486 --> 00:40:00,976
+Show View Controller and
+Show Detail View Controller.
+
+
+917
+00:40:01,136 --> 00:40:05,106
+You can override these
+for custom containers
+
+
+918
+00:40:05,366 --> 00:40:07,786
+and then you can design those
+containers in Interface Builder
+
+
+919
+00:40:07,786 --> 00:40:10,786
+to set up your Segues and it's
+just going to work at runtime.
+
+
+920
+00:40:11,336 --> 00:40:15,636
+The other two types are Present
+Modally and Present As Popover.
+
+
+921
+00:40:16,126 --> 00:40:20,676
+And these are using the Present
+View Controller API instead
+
+
+922
+00:40:20,676 --> 00:40:23,296
+of Present Modal View
+Controller which allows you
+
+
+923
+00:40:23,296 --> 00:40:27,456
+to take advantage of the new
+Presentation Controller API
+
+
+924
+00:40:27,926 --> 00:40:30,606
+which is a new object when you
+use Present View Controller.
+
+
+925
+00:40:30,756 --> 00:40:33,986
+And you can do things like make
+sure that the custom transitions
+
+
+926
+00:40:33,986 --> 00:40:36,656
+that you have are
+all coordinated along
+
+
+927
+00:40:36,656 --> 00:40:39,236
+with the animations which
+is really, really great.
+
+
+928
+00:40:39,456 --> 00:40:42,186
+So we're going to use
+Present As Popover
+
+
+929
+00:40:42,586 --> 00:40:45,796
+which will allow our
+Presentation View Controller
+
+
+930
+00:40:46,716 --> 00:40:47,786
+to automatically adapt.
+
+
+931
+00:40:48,936 --> 00:40:52,206
+Now if I go back to
+my storyboard here,
+
+
+932
+00:40:52,206 --> 00:40:55,106
+you can see there's no
+button for closing this.
+
+
+933
+00:40:55,656 --> 00:40:59,526
+And so, if I had time, I
+could go ahead and add this,
+
+
+934
+00:40:59,786 --> 00:41:01,046
+and you're welcome to
+come down to the labs
+
+
+935
+00:41:01,046 --> 00:41:02,076
+and I'll show you
+how to do this.
+
+
+936
+00:41:02,376 --> 00:41:04,436
+But with the new Adaptive
+View Controller API,
+
+
+937
+00:41:04,436 --> 00:41:07,686
+what I can do is I can
+take advantage of some
+
+
+938
+00:41:07,686 --> 00:41:10,006
+of the overrides in delicate
+methods to do things like,
+
+
+939
+00:41:10,076 --> 00:41:11,656
+for example in this
+case, I can say,
+
+
+940
+00:41:11,656 --> 00:41:14,746
+when this Popover Segue
+gets fired, go ahead
+
+
+941
+00:41:14,746 --> 00:41:16,576
+and wrap the View Control
+that you're presenting
+
+
+942
+00:41:16,756 --> 00:41:20,256
+in a Navigation Controller,
+add a bar item, and then just
+
+
+943
+00:41:20,256 --> 00:41:22,886
+on iPhone it's going to show
+me a Done button that I can use
+
+
+944
+00:41:22,886 --> 00:41:25,406
+to close that Modal
+View Controller.
+
+
+945
+00:41:25,746 --> 00:41:28,486
+But when on iPad, and it's
+showing as a Popover, well,
+
+
+946
+00:41:28,486 --> 00:41:30,896
+I don't need that,
+so it won't show it.
+
+
+947
+00:41:30,896 --> 00:41:34,306
+Very, very cool for being
+able to create great apps
+
+
+948
+00:41:34,356 --> 00:41:37,166
+between both iPhone and iPad.
+
+
+949
+00:41:39,116 --> 00:41:41,036
+So we just talked
+about Size Classes.
+
+
+950
+00:41:41,496 --> 00:41:43,956
+And, again, Size Classes is
+a really great technology
+
+
+951
+00:41:43,956 --> 00:41:45,696
+that will make it
+really easy for you guys
+
+
+952
+00:41:46,046 --> 00:41:49,346
+to create these experiences
+both for iPhone and iPad all
+
+
+953
+00:41:49,346 --> 00:41:50,966
+within the same storyboard.
+
+
+954
+00:41:51,176 --> 00:41:54,166
+And I also talked to you about
+the new Adaptive Segue Types.
+
+
+955
+00:41:54,166 --> 00:41:55,046
+And we really want you guys
+
+
+956
+00:41:55,046 --> 00:41:56,956
+to use these new Adaptive
+Segue Types because it's going
+
+
+957
+00:41:56,956 --> 00:41:59,806
+to make your application
+be able to (hence,
+
+
+958
+00:41:59,806 --> 00:42:02,426
+as their name suggests)
+adapt very easily
+
+
+959
+00:42:02,736 --> 00:42:03,646
+between the different types
+
+
+960
+00:42:03,646 --> 00:42:05,036
+of environments that
+it might run in.
+
+
+961
+00:42:05,036 --> 00:42:08,936
+I also pointed out that you
+can create custom containers
+
+
+962
+00:42:08,936 --> 00:42:12,476
+and use those Show and Show
+Detail View Controller methods
+
+
+963
+00:42:12,826 --> 00:42:16,176
+to customize exactly how those
+View Controllers are going
+
+
+964
+00:42:16,176 --> 00:42:16,636
+to get presented.
+
+
+965
+00:42:16,636 --> 00:42:19,176
+Maybe you have a Sliding
+View Controller or something
+
+
+966
+00:42:19,176 --> 00:42:21,066
+like that, and you
+can build all that now
+
+
+967
+00:42:21,066 --> 00:42:22,006
+within Interface Builder.
+
+
+968
+00:42:22,886 --> 00:42:25,396
+What I want to do now is have
+my colleague, Quinn, come up.
+
+
+969
+00:42:25,396 --> 00:42:27,336
+He's going to show you
+even more stuff that's new
+
+
+970
+00:42:27,336 --> 00:42:28,046
+in Interface Builder
+
+
+971
+00:42:28,046 --> 00:42:29,586
+and hopefully tell some
+better jokes than I did.
+
+
+972
+00:42:29,886 --> 00:42:30,166
+Quinn?
+
+
+973
+00:42:31,516 --> 00:42:36,546
+[ Applause ]
+
+
+974
+00:42:37,046 --> 00:42:37,356
+>> Thank you.
+
+
+975
+00:42:37,356 --> 00:42:38,016
+Hi. Thank you, Kevin.
+
+
+976
+00:42:38,426 --> 00:42:39,446
+So my name is Quinn Taylor.
+
+
+977
+00:42:39,446 --> 00:42:41,866
+I'm also an Engineer on
+the Interface Builder Team.
+
+
+978
+00:42:41,866 --> 00:42:43,126
+This is such a fantastic team
+
+
+979
+00:42:43,126 --> 00:42:45,356
+and I hope you can feel how
+much hard work we've done
+
+
+980
+00:42:45,356 --> 00:42:46,186
+to bring to you guys.
+
+
+981
+00:42:46,186 --> 00:42:48,086
+We love these new features
+and I can't wait to tell you
+
+
+982
+00:42:48,086 --> 00:42:48,796
+about a few more of them.
+
+
+983
+00:42:49,806 --> 00:42:52,066
+So, first off, I want to talk
+to you about Asset Catalogs.
+
+
+984
+00:42:52,366 --> 00:42:54,936
+We introduced Asset Catalogs
+last year with Xcode 5.
+
+
+985
+00:42:55,286 --> 00:42:56,346
+And they're a fantastic way
+
+
+986
+00:42:56,346 --> 00:42:58,766
+to manage resources
+inside your application,
+
+
+987
+00:42:58,856 --> 00:43:00,186
+both for iOS and for OS X.
+
+
+988
+00:43:00,186 --> 00:43:03,026
+And one of the first new
+features that we've added
+
+
+989
+00:43:03,026 --> 00:43:06,396
+to Asset Catalogs in Xcode 6
+is support for Size Classes.
+
+
+990
+00:43:06,716 --> 00:43:08,576
+As Kevin has just been
+demonstrating to you,
+
+
+991
+00:43:08,816 --> 00:43:12,066
+you can easily adapt your
+user interface for Compact
+
+
+992
+00:43:12,066 --> 00:43:13,026
+or Regular height or width.
+
+
+993
+00:43:13,296 --> 00:43:15,716
+And now notice that we have
+new fields in the Inspector
+
+
+994
+00:43:15,776 --> 00:43:17,646
+when you selected an image
+in your Asset Catalog
+
+
+995
+00:43:17,956 --> 00:43:19,476
+that allow you to
+customize the same way.
+
+
+996
+00:43:20,016 --> 00:43:21,026
+Now if you select
+one of these --
+
+
+997
+00:43:21,186 --> 00:43:23,576
+for example, we'll
+customize on Compact width.
+
+
+998
+00:43:23,996 --> 00:43:25,566
+You'll see that new rows
+appear that allow me
+
+
+999
+00:43:25,626 --> 00:43:29,336
+to optionally specify new
+images that will be used if I'm
+
+
+1000
+00:43:29,366 --> 00:43:30,956
+in a Compact width scenario.
+
+
+1001
+00:43:31,536 --> 00:43:34,266
+So, any images that you
+don't actually specify
+
+
+1002
+00:43:34,436 --> 00:43:36,316
+for a specific configuration
+will be inherited
+
+
+1003
+00:43:36,386 --> 00:43:37,846
+from a less specific
+configuration,
+
+
+1004
+00:43:37,846 --> 00:43:40,176
+just as Kevin was talking
+about with Any Any.
+
+
+1005
+00:43:40,366 --> 00:43:42,186
+So this is a fantastic feature
+to allow you to customize.
+
+
+1006
+00:43:43,476 --> 00:43:45,206
+Second, Alignment support.
+
+
+1007
+00:43:45,586 --> 00:43:48,196
+So, there may be occasions
+where you have an image provided
+
+
+1008
+00:43:48,196 --> 00:43:49,066
+to you by a designer
+
+
+1009
+00:43:49,316 --> 00:43:51,406
+that doesn't fill the
+entire space of the image.
+
+
+1010
+00:43:51,406 --> 00:43:54,196
+For example, it may have a
+glow effect, some other padding
+
+
+1011
+00:43:54,276 --> 00:43:55,926
+that causes it to be inset.
+
+
+1012
+00:43:56,286 --> 00:43:59,516
+And now you can also show
+that information and convey
+
+
+1013
+00:43:59,516 --> 00:44:02,476
+that inside of Interface
+Builder and your Asset Catalogs.
+
+
+1014
+00:44:02,726 --> 00:44:05,426
+And this will correspond to
+the alignmentRect properties
+
+
+1015
+00:44:05,426 --> 00:44:08,566
+on either NSImage or UIImage
+when you can specify alignments
+
+
+1016
+00:44:08,726 --> 00:44:10,196
+from any of the four edges.
+
+
+1017
+00:44:10,466 --> 00:44:11,226
+This is fantastic.
+
+
+1018
+00:44:12,436 --> 00:44:14,706
+And next is Image Formats.
+
+
+1019
+00:44:14,816 --> 00:44:16,696
+So when we launched the
+Asset Catalogs last year,
+
+
+1020
+00:44:16,816 --> 00:44:18,206
+we supported PNG images.
+
+
+1021
+00:44:18,536 --> 00:44:19,416
+So we've heard your requests.
+
+
+1022
+00:44:19,416 --> 00:44:20,696
+The first thing we
+added is support
+
+
+1023
+00:44:20,696 --> 00:44:21,716
+for JPEG images [applause].
+
+
+1024
+00:44:22,556 --> 00:44:22,646
+>> Whoo.
+
+
+1025
+00:44:23,276 --> 00:44:25,666
+>> Some of you love
+your JPEG images.
+
+
+1026
+00:44:26,496 --> 00:44:28,536
+This can be really handy
+when you have resources
+
+
+1027
+00:44:28,536 --> 00:44:30,896
+that might be large and compress
+better with JPEG than they do
+
+
+1028
+00:44:31,026 --> 00:44:32,196
+with PNG, so you can save space
+
+
+1029
+00:44:32,196 --> 00:44:33,806
+in your application,
+and that's great.
+
+
+1030
+00:44:33,876 --> 00:44:37,006
+Second is PDF vector images,
+and these are great as well.
+
+
+1031
+00:44:37,316 --> 00:44:40,516
+So this is -- let me tell
+you, this is a fantastic way
+
+
+1032
+00:44:41,086 --> 00:44:44,006
+to specify an image that
+will scale automatically
+
+
+1033
+00:44:44,006 --> 00:44:45,586
+to your different
+scales and resolutions.
+
+
+1034
+00:44:46,396 --> 00:44:48,476
+When you're building an
+Asset Catalog for iOS,
+
+
+1035
+00:44:48,916 --> 00:44:50,756
+those vector images
+we've rasterized
+
+
+1036
+00:44:50,946 --> 00:44:53,586
+to the correct resolutions
+and scales at build time.
+
+
+1037
+00:44:54,006 --> 00:44:56,216
+On OS X, however, they're
+preserved at runtime
+
+
+1038
+00:44:56,216 --> 00:44:58,376
+and they'll even appear
+at scale for printing
+
+
+1039
+00:44:58,536 --> 00:45:00,466
+which is a really cool bonus.
+
+
+1040
+00:45:00,466 --> 00:45:03,796
+And you're also able to mix and
+match bitmap and vector images
+
+
+1041
+00:45:03,796 --> 00:45:05,186
+for any particular asset.
+
+
+1042
+00:45:06,136 --> 00:45:07,826
+And last is support
+for template images.
+
+
+1043
+00:45:07,876 --> 00:45:09,256
+Matthew mentioned
+this a bit on Monday.
+
+
+1044
+00:45:09,636 --> 00:45:12,606
+Template images allow an
+image to be treated kind
+
+
+1045
+00:45:12,606 --> 00:45:15,116
+of as a stencil in
+your application
+
+
+1046
+00:45:15,346 --> 00:45:17,926
+so you get kind of
+an outline effect.
+
+
+1047
+00:45:18,426 --> 00:45:19,576
+And traditionally this is done
+
+
+1048
+00:45:19,576 --> 00:45:22,186
+by detecting whether the
+file name ends in "Template."
+
+
+1049
+00:45:22,646 --> 00:45:23,646
+And now we give you the ability
+
+
+1050
+00:45:23,646 --> 00:45:26,336
+to override this
+default behavior directly
+
+
+1051
+00:45:26,336 --> 00:45:28,046
+in Interface Builder
+in your Asset Catalogs.
+
+
+1052
+00:45:28,826 --> 00:45:30,306
+So, that's it for
+Asset Catalogs.
+
+
+1053
+00:45:30,636 --> 00:45:32,206
+Next, you've seen
+a few new classes.
+
+
+1054
+00:45:32,206 --> 00:45:33,756
+I'm going to talk
+about OS X for minute.
+
+
+1055
+00:45:33,756 --> 00:45:37,016
+NSVisualEffectView is a brand
+new class in OS X Yosemite.
+
+
+1056
+00:45:37,886 --> 00:45:39,936
+You've seen it pervasively
+throughout the system behind
+
+
+1057
+00:45:39,936 --> 00:45:42,936
+Notification Center,
+behind your menus
+
+
+1058
+00:45:42,936 --> 00:45:44,506
+and behind your source
+lists and so on.
+
+
+1059
+00:45:44,826 --> 00:45:47,586
+You'll see effects like
+blurring, translucency,
+
+
+1060
+00:45:47,676 --> 00:45:49,926
+vibrancy, punch-through
+effects, and masking.
+
+
+1061
+00:45:50,246 --> 00:45:52,986
+And you can bring
+these same effects
+
+
+1062
+00:45:53,096 --> 00:45:54,426
+to your own applications.
+
+
+1063
+00:45:55,256 --> 00:45:57,786
+VisualEffectView is supported
+completely in Interface Builder.
+
+
+1064
+00:45:58,086 --> 00:46:00,706
+And you can have your own
+custom views participate
+
+
+1065
+00:46:00,706 --> 00:46:01,696
+in vibrancy effects
+
+
+1066
+00:46:01,966 --> 00:46:04,936
+by overriding the allowsVibrancy
+method on NSView or UIView.
+
+
+1067
+00:46:05,176 --> 00:46:07,556
+For much more information
+about how to integrate this,
+
+
+1068
+00:46:07,946 --> 00:46:10,386
+definitely check out this
+session on Adopting New Features
+
+
+1069
+00:46:10,386 --> 00:46:11,866
+of the UI in Yosemite on video.
+
+
+1070
+00:46:13,496 --> 00:46:15,926
+Next, you've heard word
+of a new System Font.
+
+
+1071
+00:46:15,926 --> 00:46:16,706
+Andrea's talked about this.
+
+
+1072
+00:46:16,736 --> 00:46:19,286
+The great news is for you,
+you don't have to do anything.
+
+
+1073
+00:46:19,726 --> 00:46:21,446
+Use the system font;
+it's going to work.
+
+
+1074
+00:46:21,516 --> 00:46:23,006
+AppKit and Xcode will
+take care of you,
+
+
+1075
+00:46:23,356 --> 00:46:24,846
+so you don't have any
+worries on that front.
+
+
+1076
+00:46:25,556 --> 00:46:28,366
+Speaking of fonts,
+iOS Custom Fonts...
+
+
+1077
+00:46:28,366 --> 00:46:30,446
+[applause] [Laughs]
+You're already excited.
+
+
+1078
+00:46:32,656 --> 00:46:33,626
+I share your enthusiasm.
+
+
+1079
+00:46:34,906 --> 00:46:36,656
+For a couple of releases
+now, you've been able
+
+
+1080
+00:46:36,656 --> 00:46:40,036
+to use Custom Fonts in
+your iOS Applications.
+
+
+1081
+00:46:40,156 --> 00:46:42,206
+You can put them in your project
+and copy them to your bundle.
+
+
+1082
+00:46:42,586 --> 00:46:44,666
+And now we're adding
+support for being able
+
+
+1083
+00:46:44,666 --> 00:46:46,946
+to pick those fonts
+directly in Interface Builder
+
+
+1084
+00:46:47,086 --> 00:46:48,696
+and have them show up in
+the canvas live for you.
+
+
+1085
+00:46:49,036 --> 00:46:51,606
+So here I've chosen this font
+that looked pretty cool in OS X,
+
+
+1086
+00:46:51,606 --> 00:46:54,106
+brought it over, and I can
+see, I can ingest the metrics
+
+
+1087
+00:46:54,106 --> 00:46:55,846
+and make sure that it looks
+just right without having
+
+
+1088
+00:46:55,846 --> 00:46:57,146
+to run my application
+over and over.
+
+
+1089
+00:46:57,326 --> 00:46:58,646
+This is a fantastic timesaver.
+
+
+1090
+00:47:00,026 --> 00:47:01,366
+All right.
+
+
+1091
+00:47:01,366 --> 00:47:03,246
+So pictures are worth
+a thousand words.
+
+
+1092
+00:47:03,926 --> 00:47:06,076
+I feel that demos are
+worth a thousand pictures.
+
+
+1093
+00:47:06,076 --> 00:47:11,976
+You know, I'm going to,
+I'm going to get in a --
+
+
+1094
+00:47:11,976 --> 00:47:13,896
+step on Kevin's toes
+just a little bit here
+
+
+1095
+00:47:14,486 --> 00:47:15,696
+with this custom font.
+
+
+1096
+00:47:15,826 --> 00:47:18,136
+So I've got my iOS storyboard
+that he's been working on.
+
+
+1097
+00:47:18,806 --> 00:47:20,716
+And, you know, this
+looks fantastic.
+
+
+1098
+00:47:20,716 --> 00:47:21,916
+He's done such an awesome job.
+
+
+1099
+00:47:22,416 --> 00:47:25,346
+But, you know, the thing
+is, this is a vacation app.
+
+
+1100
+00:47:25,346 --> 00:47:27,046
+And to make it, you know,
+make it a little bit more fun
+
+
+1101
+00:47:27,046 --> 00:47:29,236
+and vacationey, maybe we
+just need a custom font.
+
+
+1102
+00:47:29,686 --> 00:47:32,426
+Now I've actually snuck a
+font into his project here.
+
+
+1103
+00:47:32,426 --> 00:47:36,206
+So I'm going to go right over to
+the Font Picker, and you'll see
+
+
+1104
+00:47:36,206 --> 00:47:38,506
+that it shows right up in
+here in Interface Builder,
+
+
+1105
+00:47:38,746 --> 00:47:39,716
+and I can pick my font.
+
+
+1106
+00:47:39,716 --> 00:47:40,216
+It shows right up.
+
+
+1107
+00:47:40,476 --> 00:47:41,576
+Now that looks a
+little bit smaller
+
+
+1108
+00:47:41,576 --> 00:47:43,476
+than what I was expecting,
+so maybe I can bump
+
+
+1109
+00:47:43,476 --> 00:47:45,446
+up the size just a
+little bit to 36.
+
+
+1110
+00:47:45,446 --> 00:47:46,096
+That looks pretty good.
+
+
+1111
+00:47:46,416 --> 00:47:50,356
+And I could do the same thing
+here for my subtitle, my label.
+
+
+1112
+00:47:51,066 --> 00:47:56,166
+Hmm. Bump the size up to
+-- 20 looks pretty good.
+
+
+1113
+00:47:56,166 --> 00:47:59,296
+Okay. And now, since those fonts
+are just a little bit different
+
+
+1114
+00:47:59,296 --> 00:48:02,396
+in metrics, I can
+update those frames.
+
+
+1115
+00:48:02,796 --> 00:48:04,136
+Okay. So that looks fantastic.
+
+
+1116
+00:48:04,136 --> 00:48:06,006
+So now I can see right on
+the canvas what it's going
+
+
+1117
+00:48:06,006 --> 00:48:06,656
+to look like at runtime.
+
+
+1118
+00:48:06,656 --> 00:48:08,446
+I've got that information
+available to me.
+
+
+1119
+00:48:08,676 --> 00:48:10,116
+And it's going to
+save a lot of time
+
+
+1120
+00:48:10,356 --> 00:48:12,026
+when you're designing
+your iOS Applications.
+
+
+1121
+00:48:12,946 --> 00:48:13,316
+All right.
+
+
+1122
+00:48:13,316 --> 00:48:15,516
+So now I'm going to jump over
+to what I've been working
+
+
+1123
+00:48:15,516 --> 00:48:16,956
+on while Kevin was onstage.
+
+
+1124
+00:48:16,956 --> 00:48:19,136
+I was working on the
+Mac version of this.
+
+
+1125
+00:48:19,536 --> 00:48:21,906
+He's a pretty quick worker, so I
+was trying to catch up with him.
+
+
+1126
+00:48:22,076 --> 00:48:24,456
+I've kind of copied some of
+his work here, you can see.
+
+
+1127
+00:48:24,456 --> 00:48:25,896
+So we've got a very
+similar layout.
+
+
+1128
+00:48:25,896 --> 00:48:28,326
+And what you'll notice is
+I'm using OS X Storyboards
+
+
+1129
+00:48:28,666 --> 00:48:30,786
+which is a new feature
+in OS X Yosemite.
+
+
+1130
+00:48:31,366 --> 00:48:32,756
+And, if you're familiar
+with storyboards,
+
+
+1131
+00:48:32,756 --> 00:48:34,856
+this will be immediately
+comfortable to you.
+
+
+1132
+00:48:35,016 --> 00:48:38,226
+We're building up our
+interface using Scenes connected
+
+
+1133
+00:48:38,226 --> 00:48:38,866
+with Segues.
+
+
+1134
+00:48:38,956 --> 00:48:41,176
+And we're showing our
+organization directly here
+
+
+1135
+00:48:41,176 --> 00:48:42,926
+in the canvas, all the
+connections between them,
+
+
+1136
+00:48:42,926 --> 00:48:44,546
+and how my application's
+going to flow.
+
+
+1137
+00:48:44,826 --> 00:48:46,486
+And this can be an
+incredibly convenient way
+
+
+1138
+00:48:46,836 --> 00:48:49,396
+to see how your application
+works.
+
+
+1139
+00:48:49,646 --> 00:48:51,996
+You'll notice that my main menu
+is actually still present here
+
+
+1140
+00:48:51,996 --> 00:48:55,626
+and I can edit that just
+as I would in .XIB Files.
+
+
+1141
+00:48:55,796 --> 00:48:58,206
+You can actually do your
+entire application development
+
+
+1142
+00:48:58,206 --> 00:48:59,366
+within an OS X Storyboard.
+
+
+1143
+00:48:59,866 --> 00:49:04,176
+So, in addition to just being
+familiar to iOS developers,
+
+
+1144
+00:49:04,376 --> 00:49:06,276
+there's some great
+features within storyboards
+
+
+1145
+00:49:06,376 --> 00:49:08,676
+that actually make your life a
+lot easier, you Mac developers.
+
+
+1146
+00:49:08,756 --> 00:49:10,956
+For example, presenting
+a Popover
+
+
+1147
+00:49:10,956 --> 00:49:13,196
+or a Sheet can be
+rather difficult.
+
+
+1148
+00:49:13,196 --> 00:49:15,566
+And you have to write code
+to get it to start and end.
+
+
+1149
+00:49:15,746 --> 00:49:17,036
+And this is just as simple
+
+
+1150
+00:49:17,036 --> 00:49:19,266
+as creating a Segue
+to present a Popover.
+
+
+1151
+00:49:19,266 --> 00:49:20,536
+You have a scene
+that has your view,
+
+
+1152
+00:49:20,886 --> 00:49:22,576
+and voila, it's right there.
+
+
+1153
+00:49:22,726 --> 00:49:24,226
+It's a really fast way to do it.
+
+
+1154
+00:49:24,546 --> 00:49:26,376
+In addition, managing
+Tab and Split Views.
+
+
+1155
+00:49:26,616 --> 00:49:28,516
+Here, in fact, we have
+a Split View Controller.
+
+
+1156
+00:49:29,236 --> 00:49:30,646
+Now NSSplitViewController
+
+
+1157
+00:49:30,846 --> 00:49:33,216
+and NSTabViewController
+are also new in Yosemite.
+
+
+1158
+00:49:33,216 --> 00:49:35,906
+And you can use those in
+either XIBs or Storyboards.
+
+
+1159
+00:49:36,456 --> 00:49:38,316
+So I've configured a
+Split View Controller here
+
+
+1160
+00:49:38,316 --> 00:49:42,366
+with two Split View items
+with my Master and my Detail,
+
+
+1161
+00:49:42,526 --> 00:49:44,186
+similar as what I
+would do on iPad.
+
+
+1162
+00:49:44,186 --> 00:49:47,026
+And you can see I can use
+the same type of things here.
+
+
+1163
+00:49:47,026 --> 00:49:47,656
+I've got, in fact,
+
+
+1164
+00:49:47,656 --> 00:49:50,096
+an NSVisualEffectView
+down at the bottom.
+
+
+1165
+00:49:50,096 --> 00:49:51,346
+And it just works.
+
+
+1166
+00:49:51,346 --> 00:49:53,646
+So let me show you,
+running this application,
+
+
+1167
+00:49:55,186 --> 00:49:56,756
+on Mac using storyboards.
+
+
+1168
+00:50:00,786 --> 00:50:00,956
+Okay.
+
+
+1169
+00:50:01,126 --> 00:50:02,546
+So here's my application.
+
+
+1170
+00:50:02,986 --> 00:50:04,436
+I've got a nice looking
+source list
+
+
+1171
+00:50:04,436 --> 00:50:06,516
+and I can click between them.
+
+
+1172
+00:50:06,516 --> 00:50:07,716
+I've got my photos,
+I've got my rating
+
+
+1173
+00:50:07,716 --> 00:50:09,446
+at the bottom, I've
+got my captions.
+
+
+1174
+00:50:10,006 --> 00:50:11,456
+And I've done it
+with Storyboards.
+
+
+1175
+00:50:11,626 --> 00:50:14,156
+I can see all of it in one place
+and it's incredibly convenient.
+
+
+1176
+00:50:14,156 --> 00:50:16,456
+So I hope you guys will check
+this out as you're working
+
+
+1177
+00:50:16,456 --> 00:50:17,946
+on Yosemite and higher.
+
+
+1178
+00:50:17,946 --> 00:50:19,866
+These can be deployed only
+to Yosemite and above.
+
+
+1179
+00:50:20,296 --> 00:50:22,486
+But they are a fantastic way
+for new application development
+
+
+1180
+00:50:22,636 --> 00:50:23,916
+to speed up your development.
+
+
+1181
+00:50:24,546 --> 00:50:25,566
+All right.
+
+
+1182
+00:50:25,786 --> 00:50:27,546
+Next I want to talk
+to you a little bit
+
+
+1183
+00:50:27,546 --> 00:50:28,706
+about gesture recognizers.
+
+
+1184
+00:50:28,706 --> 00:50:30,786
+You're probably also
+familiar with these from iOS.
+
+
+1185
+00:50:31,246 --> 00:50:34,146
+Now in Yosemite we've added
+five gesture recognizers
+
+
+1186
+00:50:34,146 --> 00:50:35,906
+and we have support for them
+in Interface Builder as well.
+
+
+1187
+00:50:35,906 --> 00:50:38,796
+So let's say that I want to
+add a gesture recognizer.
+
+
+1188
+00:50:38,796 --> 00:50:40,046
+I'll filter an Object Library.
+
+
+1189
+00:50:40,116 --> 00:50:42,336
+You can see these
+five that pop up.
+
+
+1190
+00:50:42,736 --> 00:50:45,206
+Let's say that I want
+to go ahead and put
+
+
+1191
+00:50:45,206 --> 00:50:47,006
+in a magnification
+gesture recognizer.
+
+
+1192
+00:50:47,006 --> 00:50:49,786
+I want to do some sort of
+pinch-to-zoom kind of action.
+
+
+1193
+00:50:50,156 --> 00:50:52,326
+So it's as simple as dragging
+it from the Object Library
+
+
+1194
+00:50:52,326 --> 00:50:54,646
+onto the view where you want
+to recognize the events.
+
+
+1195
+00:50:55,056 --> 00:50:55,736
+Drop it right there.
+
+
+1196
+00:50:56,086 --> 00:50:56,776
+You'll see it appears
+
+
+1197
+00:50:56,776 --> 00:50:58,496
+in my Document Outline
+here on the left.
+
+
+1198
+00:50:59,096 --> 00:51:00,876
+Okay? Now all I have
+to do is connect it
+
+
+1199
+00:51:00,876 --> 00:51:01,656
+up to the source code.
+
+
+1200
+00:51:01,796 --> 00:51:04,036
+So I have my View
+Controller here.
+
+
+1201
+00:51:04,036 --> 00:51:07,186
+I'm going to Option-Click
+on my Site View Controller
+
+
+1202
+00:51:07,616 --> 00:51:08,636
+to open it in a split.
+
+
+1203
+00:51:09,056 --> 00:51:11,616
+And let me close
+this area for now.
+
+
+1204
+00:51:12,296 --> 00:51:14,816
+I can use the ConnectToSource
+feature
+
+
+1205
+00:51:15,266 --> 00:51:16,176
+within Interface Builder.
+
+
+1206
+00:51:17,146 --> 00:51:18,976
+I can control-click and drag
+
+
+1207
+00:51:19,056 --> 00:51:21,776
+from my magnification
+gesture recognizer directly
+
+
+1208
+00:51:21,776 --> 00:51:24,286
+into my source code and
+have it create an outlet
+
+
+1209
+00:51:24,286 --> 00:51:24,906
+or an action for me.
+
+
+1210
+00:51:25,316 --> 00:51:27,436
+In this case, I want to
+create an action method
+
+
+1211
+00:51:27,676 --> 00:51:30,536
+that my gesture recognizer
+will invoke when events happen.
+
+
+1212
+00:51:30,536 --> 00:51:32,616
+So I'm going to select
+Action and try
+
+
+1213
+00:51:33,136 --> 00:51:34,126
+to be a little clever here.
+
+
+1214
+00:51:34,216 --> 00:51:36,066
+I like to use fun names
+sometimes, so I'm going
+
+
+1215
+00:51:36,236 --> 00:51:38,346
+to call this "Biggify."
+
+
+1216
+00:51:38,346 --> 00:51:40,196
+Add some mystique and
+excitement to the code.
+
+
+1217
+00:51:40,196 --> 00:51:40,616
+All right.
+
+
+1218
+00:51:40,616 --> 00:51:43,346
+So now you can see I've got
+this connection right here
+
+
+1219
+00:51:43,646 --> 00:51:46,066
+to the action method, right,
+for my gesture recognizer.
+
+
+1220
+00:51:46,066 --> 00:51:48,496
+And when I run this, this
+method's going to be invoked
+
+
+1221
+00:51:48,806 --> 00:51:52,516
+and the code that I write here
+will be fired without me having
+
+
+1222
+00:51:52,516 --> 00:51:54,186
+to do any event detection
+myself.
+
+
+1223
+00:51:54,346 --> 00:51:55,956
+It's a fantastically
+convenient way
+
+
+1224
+00:51:56,266 --> 00:51:57,316
+to develop your applications.
+
+
+1225
+00:51:58,276 --> 00:52:01,506
+Okay. You know I'm already kind
+of starting to regret the choice
+
+
+1226
+00:52:01,636 --> 00:52:02,896
+of that selector
+name, "Biggify."
+
+
+1227
+00:52:03,406 --> 00:52:06,116
+It's a -- you know, when
+my co-worker comes back
+
+
+1228
+00:52:06,116 --> 00:52:07,656
+from vacation -- look
+at how happy he is there
+
+
+1229
+00:52:07,656 --> 00:52:08,806
+on vacation while we're at WWDC.
+
+
+1230
+00:52:08,806 --> 00:52:11,306
+And you know, he's not
+going to be too pleased
+
+
+1231
+00:52:11,306 --> 00:52:12,296
+to find a name like "Biggify."
+
+
+1232
+00:52:12,296 --> 00:52:15,056
+So we're going to use the
+new Find and Replace feature.
+
+
+1233
+00:52:15,056 --> 00:52:17,686
+And I'm going to use
+command-option-shift-F to bring
+
+
+1234
+00:52:17,686 --> 00:52:20,566
+up my Find Navigator in
+the Find and Replace mode.
+
+
+1235
+00:52:21,186 --> 00:52:22,176
+So I'm going to get
+
+
+1236
+00:52:22,176 --> 00:52:23,706
+that horrible selector
+name out of here.
+
+
+1237
+00:52:23,706 --> 00:52:24,956
+I'm going to search
+for "Biggify" and...
+
+
+1238
+00:52:25,066 --> 00:52:26,826
+something more reasonable,
+like "Zoom."
+
+
+1239
+00:52:26,826 --> 00:52:31,286
+And as I hit return, you'll see
+that it detects now instances
+
+
+1240
+00:52:31,286 --> 00:52:33,136
+of that selector,
+both in my source code
+
+
+1241
+00:52:33,136 --> 00:52:34,736
+and in my Interface
+Builder documents.
+
+
+1242
+00:52:34,996 --> 00:52:35,976
+They're a fantastic timesaver.
+
+
+1243
+00:52:36,516 --> 00:52:40,746
+[ Applause ]
+
+
+1244
+00:52:41,246 --> 00:52:44,816
+So I can select both of these
+instances and replace them.
+
+
+1245
+00:52:44,946 --> 00:52:46,486
+Oh, see -- Snapshots
+is trying to get
+
+
+1246
+00:52:46,486 --> 00:52:47,886
+in on my photo application here.
+
+
+1247
+00:52:47,886 --> 00:52:49,186
+It wants to take a picture, too.
+
+
+1248
+00:52:49,576 --> 00:52:51,396
+So we're going to
+actually just replace that.
+
+
+1249
+00:52:51,396 --> 00:52:53,506
+And you can see I've
+got Zoom right here
+
+
+1250
+00:52:53,866 --> 00:52:55,686
+for my Magnification
+Gesture Recognizer.
+
+
+1251
+00:52:55,876 --> 00:52:57,336
+The action has been
+replaced as Zoom.
+
+
+1252
+00:52:57,336 --> 00:52:59,636
+I don't have to destroy
+my connection,
+
+
+1253
+00:52:59,936 --> 00:53:02,406
+change my selector name, and
+recreate all those connections
+
+
+1254
+00:53:02,406 --> 00:53:03,086
+that may call into it.
+
+
+1255
+00:53:03,086 --> 00:53:05,916
+So it's a fantastic timesaver
+for Find and Replace.
+
+
+1256
+00:53:06,576 --> 00:53:10,926
+In fact, Find and Replace also
+works within Document Find.
+
+
+1257
+00:53:11,516 --> 00:53:14,446
+So, with command-F, I can
+bring it up right inside
+
+
+1258
+00:53:14,446 --> 00:53:16,856
+of my document here and I can
+search for all sorts of things.
+
+
+1259
+00:53:16,856 --> 00:53:19,226
+You can find strings
+that appear in text.
+
+
+1260
+00:53:19,486 --> 00:53:22,106
+If I look for a label, I
+can find those as well.
+
+
+1261
+00:53:22,686 --> 00:53:25,006
+And it will highlight for
+me where it may appear
+
+
+1262
+00:53:25,006 --> 00:53:27,026
+in a Selector Name, where
+it may appear in text
+
+
+1263
+00:53:27,026 --> 00:53:28,656
+in a string, and so on.
+
+
+1264
+00:53:28,656 --> 00:53:31,336
+For example, let's look for --
+another thing that you can use,
+
+
+1265
+00:53:31,636 --> 00:53:34,736
+to find for (unexpectedly
+convenient) is to jump
+
+
+1266
+00:53:34,736 --> 00:53:36,286
+between parts of your
+view, if you like.
+
+
+1267
+00:53:36,566 --> 00:53:38,556
+So, for example, I have
+my Site View Control
+
+
+1268
+00:53:38,556 --> 00:53:39,426
+and I have a list you can draw.
+
+
+1269
+00:53:39,426 --> 00:53:41,526
+So I can type List, and
+it's going to show me --
+
+
+1270
+00:53:41,726 --> 00:53:43,426
+here's my Site List
+Table View Controller.
+
+
+1271
+00:53:43,746 --> 00:53:46,076
+This can be incredibly handy
+when you have a large storyboard
+
+
+1272
+00:53:46,076 --> 00:53:48,746
+and you have your scenes named
+appropriately, and you can jump
+
+
+1273
+00:53:48,746 --> 00:53:51,126
+between them with Find
+right in the document.
+
+
+1274
+00:53:51,376 --> 00:53:53,186
+So this is a fantastic
+timesaver as well.
+
+
+1275
+00:53:53,866 --> 00:53:56,146
+So the last thing that
+I'd like to demonstrate
+
+
+1276
+00:53:56,196 --> 00:53:59,826
+for you is a little bit of how
+Interface Builder participates
+
+
+1277
+00:53:59,876 --> 00:54:02,576
+in your localization
+workflow to help improve that.
+
+
+1278
+00:54:02,996 --> 00:54:05,056
+So I'm going to open my
+Assistant Editor again,
+
+
+1279
+00:54:05,166 --> 00:54:07,486
+and I'm going to
+close my utility area.
+
+
+1280
+00:54:08,046 --> 00:54:09,726
+Now I want to bring
+up my Preview.
+
+
+1281
+00:54:10,576 --> 00:54:12,156
+And you'll see that
+my Selected View shows
+
+
+1282
+00:54:12,156 --> 00:54:15,746
+up in the Preview
+on the right side.
+
+
+1283
+00:54:15,816 --> 00:54:18,556
+Now if I have localizations
+already,
+
+
+1284
+00:54:18,646 --> 00:54:19,596
+I can use those to preview.
+
+
+1285
+00:54:19,756 --> 00:54:20,986
+Kevin and I have
+only been working
+
+
+1286
+00:54:20,986 --> 00:54:22,156
+on this for a little bit.
+
+
+1287
+00:54:22,156 --> 00:54:24,326
+But we're pretty sure this app
+is going to take off worldwide
+
+
+1288
+00:54:24,326 --> 00:54:25,876
+and we're going to have
+all sorts of localizations.
+
+
+1289
+00:54:25,876 --> 00:54:27,816
+For now, all we have is English.
+
+
+1290
+00:54:28,356 --> 00:54:30,186
+But even when you don't
+have any translations,
+
+
+1291
+00:54:30,546 --> 00:54:32,956
+you'll see this entry in there,
+Double Length Pseudo-Language.
+
+
+1292
+00:54:33,356 --> 00:54:34,906
+So I can test this and see:
+
+
+1293
+00:54:35,096 --> 00:54:36,996
+"How is my user interface
+going to react?
+
+
+1294
+00:54:37,376 --> 00:54:38,856
+Are my auto-layout
+constraints set
+
+
+1295
+00:54:38,856 --> 00:54:40,176
+up correctly to help
+those views?"
+
+
+1296
+00:54:40,216 --> 00:54:41,486
+You can go ahead and clap, yeah.
+
+
+1297
+00:54:41,486 --> 00:54:41,976
+That's fantastic.
+
+
+1298
+00:54:42,516 --> 00:54:44,996
+[ Applause ]
+
+
+1299
+00:54:45,496 --> 00:54:48,936
+I can see without running my
+application how my interface is
+
+
+1300
+00:54:48,936 --> 00:54:49,546
+going to react.
+
+
+1301
+00:54:49,846 --> 00:54:52,206
+And I can see that as I
+select from view to view.
+
+
+1302
+00:54:52,206 --> 00:54:54,326
+All my strings will be doubled
+and I can easily see that.
+
+
+1303
+00:54:54,586 --> 00:54:58,176
+Once you have translations, you
+can easily plug those in as well
+
+
+1304
+00:54:58,176 --> 00:55:01,066
+and you can test those in
+Interface Builder at design time
+
+
+1305
+00:55:01,166 --> 00:55:02,496
+which is a fantastic timesaver.
+
+
+1306
+00:55:03,316 --> 00:55:03,856
+All right.
+
+
+1307
+00:55:04,696 --> 00:55:08,366
+So, you've seen some of
+the great new features
+
+
+1308
+00:55:08,366 --> 00:55:10,856
+that we've been working hard
+to bring to you this year
+
+
+1309
+00:55:10,966 --> 00:55:12,366
+in Interface Builder
+and Xcode 6.
+
+
+1310
+00:55:12,636 --> 00:55:16,106
+Again, revisiting these three
+big themes: First is Liveness,
+
+
+1311
+00:55:16,416 --> 00:55:18,906
+that more of your
+views and your content
+
+
+1312
+00:55:18,906 --> 00:55:20,986
+and your application are live
+
+
+1313
+00:55:21,156 --> 00:55:23,566
+in the IB design
+canvas than ever before.
+
+
+1314
+00:55:23,956 --> 00:55:26,256
+There's more power for
+you to iterate quickly
+
+
+1315
+00:55:26,326 --> 00:55:29,896
+and avoid the costly build
+and run and debug loops.
+
+
+1316
+00:55:30,616 --> 00:55:33,266
+Second is Adaptability
+and greater dynamism.
+
+
+1317
+00:55:33,266 --> 00:55:35,746
+Being able to adapt to
+changes in configuration
+
+
+1318
+00:55:35,746 --> 00:55:36,646
+where your view can appear.
+
+
+1319
+00:55:38,196 --> 00:55:39,486
+And third is Power & Parity.
+
+
+1320
+00:55:39,576 --> 00:55:42,126
+Great new features
+in OS X and iOS
+
+
+1321
+00:55:42,546 --> 00:55:43,856
+and within Interface
+Builder itself
+
+
+1322
+00:55:43,856 --> 00:55:45,146
+to help you work more quickly
+
+
+1323
+00:55:45,146 --> 00:55:46,566
+and efficiently than
+ever before.
+
+
+1324
+00:55:47,866 --> 00:55:49,366
+Any questions you have
+should be directed
+
+
+1325
+00:55:49,366 --> 00:55:51,116
+to our Developer
+Evangelist, Dave Delong.
+
+
+1326
+00:55:51,356 --> 00:55:53,436
+We have great documentation
+online available.
+
+
+1327
+00:55:53,906 --> 00:55:56,726
+There are quite a few related
+sessions that will be fantastic
+
+
+1328
+00:55:56,726 --> 00:55:58,496
+for deeper dives into
+the subject matter
+
+
+1329
+00:55:58,496 --> 00:55:59,636
+that you can catch on video.
+
+
+1330
+00:55:59,636 --> 00:56:00,976
+Thank you so much and enjoy
+the rest of the conference.
+
+
+1331
+00:56:01,516 --> 00:56:16,100
+[ Applause ]
+

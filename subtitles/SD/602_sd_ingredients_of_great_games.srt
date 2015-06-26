@@ -1,0 +1,6531 @@
+1
+00:00:12,626 --> 00:00:12,976
+>> Welcome.
+
+
+2
+00:00:13,516 --> 00:00:18,546
+[ Applause ]
+
+
+3
+00:00:19,046 --> 00:00:20,546
+So welcome to "Ingredients
+of Great Games".
+
+
+4
+00:00:21,066 --> 00:00:23,606
+What we're going to talk
+about today is some things
+
+
+5
+00:00:23,636 --> 00:00:27,176
+that you can do in your game to
+make it really, really great.
+
+
+6
+00:00:27,986 --> 00:00:30,876
+Because having a fun game
+is simply not enough.
+
+
+7
+00:00:31,956 --> 00:00:34,236
+There are things
+that great games do.
+
+
+8
+00:00:34,526 --> 00:00:37,826
+What I mean is, games that are
+recognized as industry leading
+
+
+9
+00:00:38,376 --> 00:00:39,286
+in the games industry.
+
+
+10
+00:00:39,286 --> 00:00:40,926
+Things that they do
+that you should be doing
+
+
+11
+00:00:41,056 --> 00:00:44,106
+or what you really need to be
+doing to make your game great.
+
+
+12
+00:00:44,106 --> 00:00:46,726
+And there's a massive
+opportunity.
+
+
+13
+00:00:47,396 --> 00:00:48,786
+As Tim talked about yesterday,
+
+
+14
+00:00:48,786 --> 00:00:53,276
+there's 75 billion
+downloads of applications.
+
+
+15
+00:00:53,276 --> 00:00:55,446
+And as everyone in
+this room knows,
+
+
+16
+00:00:55,446 --> 00:00:58,246
+a huge portion of
+those are games.
+
+
+17
+00:00:59,886 --> 00:01:01,586
+Game Center also reinforces this
+
+
+18
+00:01:01,586 --> 00:01:06,436
+with 130 million monthly
+active users last month.
+
+
+19
+00:01:06,476 --> 00:01:10,456
+That is a huge audience that
+you can tap into for your game.
+
+
+20
+00:01:11,516 --> 00:01:13,856
+But, and to do that, you need
+to start with a great idea,
+
+
+21
+00:01:14,586 --> 00:01:18,826
+obviously put in hard work, and
+you need to follow some really,
+
+
+22
+00:01:18,826 --> 00:01:21,976
+really important key tips
+to make your game great.
+
+
+23
+00:01:23,486 --> 00:01:26,216
+So over the last couple days,
+yesterday and this morning,
+
+
+24
+00:01:26,216 --> 00:01:27,766
+we've been talking
+about technology.
+
+
+25
+00:01:28,846 --> 00:01:32,286
+And so technology like OpenGL
+ES 3.0, which was introduced
+
+
+26
+00:01:32,286 --> 00:01:37,566
+since WWDC last year, and is
+the most advanced OpenGL ES
+
+
+27
+00:01:37,566 --> 00:01:38,226
+out there.
+
+
+28
+00:01:38,706 --> 00:01:43,456
+We also have Metal, our low
+level highly optimized GPU API.
+
+
+29
+00:01:44,216 --> 00:01:45,646
+We have Game Center,
+which provides
+
+
+30
+00:01:45,876 --> 00:01:47,636
+that social connection
+for your players.
+
+
+31
+00:01:48,546 --> 00:01:49,726
+SpriteKit and SceneKit.
+
+
+32
+00:01:50,606 --> 00:01:52,306
+You know, let us do the
+heavy lifting for you.
+
+
+33
+00:01:52,656 --> 00:01:55,506
+If you don't need to go
+right to OpenGL or Metal,
+
+
+34
+00:01:55,596 --> 00:01:56,956
+you can use SpriteKit
+and SceneKit.
+
+
+35
+00:01:57,466 --> 00:02:00,876
+It'll allow you to do less
+programming and let us build
+
+
+36
+00:02:00,876 --> 00:02:02,736
+out efficient API
+underneath your game.
+
+
+37
+00:02:03,296 --> 00:02:06,956
+And Game Controllers: open your
+game up to many forms of input.
+
+
+38
+00:02:08,166 --> 00:02:12,186
+Of course, there's also Xcode
+6 with Swift and Playground.
+
+
+39
+00:02:12,666 --> 00:02:18,956
+We have tools like the
+Metal or OpenGL Debuggers.
+
+
+40
+00:02:19,796 --> 00:02:22,246
+We have SceneKit and
+SpriteKit editors.
+
+
+41
+00:02:23,206 --> 00:02:25,216
+And, also this week,
+we have a mass amount
+
+
+42
+00:02:25,216 --> 00:02:26,906
+of sessions about games.
+
+
+43
+00:02:26,906 --> 00:02:31,736
+We have three on Metal, two
+on SceneKit, two on SpriteKit.
+
+
+44
+00:02:31,736 --> 00:02:34,666
+We have labs on all of
+these technologies all week,
+
+
+45
+00:02:34,666 --> 00:02:37,456
+and we have sessions
+about developer tools.
+
+
+46
+00:02:38,296 --> 00:02:40,936
+But technology alone
+is not enough.
+
+
+47
+00:02:41,406 --> 00:02:44,076
+You can't just take the
+technology, build a game on top
+
+
+48
+00:02:44,076 --> 00:02:45,426
+of it, and expect
+it to be successful.
+
+
+49
+00:02:45,886 --> 00:02:49,606
+You have to go about the games
+business and the business
+
+
+50
+00:02:49,606 --> 00:02:52,386
+of building a game with the
+same passion that you would go
+
+
+51
+00:02:52,386 --> 00:02:53,546
+about your game design
+
+
+52
+00:02:53,856 --> 00:02:56,576
+or choosing your technology
+or your graphics API.
+
+
+53
+00:02:58,136 --> 00:02:59,926
+If you look at the winners
+
+
+54
+00:02:59,926 --> 00:03:03,976
+from the Apple Design Awards
+last night, like "Threes",
+
+
+55
+00:03:04,226 --> 00:03:08,656
+"Leo's Fortune", "DEVICE 6",
+"Blek", or "Monument Valley",
+
+
+56
+00:03:08,906 --> 00:03:11,036
+they have some common
+traits that attract,
+
+
+57
+00:03:11,776 --> 00:03:14,576
+engage and retain their players.
+
+
+58
+00:03:14,786 --> 00:03:16,736
+And this engagement
+is key to success.
+
+
+59
+00:03:17,646 --> 00:03:22,256
+So what we find are there are
+some common threads among these
+
+
+60
+00:03:22,296 --> 00:03:23,196
+successful games.
+
+
+61
+00:03:23,196 --> 00:03:26,606
+Things like, make it easy
+to buy and play your game
+
+
+62
+00:03:26,856 --> 00:03:28,436
+by reducing the friction.
+
+
+63
+00:03:29,436 --> 00:03:34,336
+Or refresh your content to
+continually be able to retain
+
+
+64
+00:03:34,336 --> 00:03:35,356
+and engage those players.
+
+
+65
+00:03:35,356 --> 00:03:37,156
+As I said, engagement
+is really key.
+
+
+66
+00:03:37,746 --> 00:03:41,516
+We've identified these and
+other traits among these games.
+
+
+67
+00:03:42,116 --> 00:03:44,916
+And I'd like to invite Allan
+Schaffer up on stage to talk
+
+
+68
+00:03:44,916 --> 00:03:48,566
+about these key ingredients
+for great games.
+
+
+69
+00:03:51,366 --> 00:03:53,766
+>> Thank you, sir.
+
+
+70
+00:03:53,766 --> 00:03:54,786
+Hello, everyone.
+
+
+71
+00:03:54,786 --> 00:03:57,756
+Welcome to WWDC 2014 and games.
+
+
+72
+00:03:58,456 --> 00:03:59,936
+So my name is Allan Schaffer.
+
+
+73
+00:03:59,936 --> 00:04:02,566
+I'm the Game Technologies
+Evangelist at Apple.
+
+
+74
+00:04:02,566 --> 00:04:05,576
+And, as Geoff said, I'm here
+to talk to you about some
+
+
+75
+00:04:05,576 --> 00:04:09,086
+of the things we see in some
+of the best games on iOS.
+
+
+76
+00:04:10,106 --> 00:04:11,996
+Now, there's a lot
+of things that go
+
+
+77
+00:04:11,996 --> 00:04:13,706
+into making a great game.
+
+
+78
+00:04:13,946 --> 00:04:17,136
+And a lot of different ways to
+describe that process, right?
+
+
+79
+00:04:17,136 --> 00:04:19,956
+But to echo back to what he was
+saying, when we look at games
+
+
+80
+00:04:19,956 --> 00:04:22,646
+and we think about the
+Apple Design Award winners
+
+
+81
+00:04:22,646 --> 00:04:25,906
+over the years, we start to
+see common threads and the kind
+
+
+82
+00:04:25,906 --> 00:04:28,746
+of key ingredients that all
+of these games get right.
+
+
+83
+00:04:28,746 --> 00:04:31,296
+And that's what I want to
+talk to you about today.
+
+
+84
+00:04:31,886 --> 00:04:35,206
+So I'm going to go through a
+list of some of these things
+
+
+85
+00:04:35,236 --> 00:04:36,756
+that just really
+stand out to me.
+
+
+86
+00:04:36,756 --> 00:04:39,766
+There is a lot more than
+what I'm going to go through,
+
+
+87
+00:04:39,766 --> 00:04:43,446
+but here is the first
+thing on my list: Okay,
+
+
+88
+00:04:44,056 --> 00:04:45,706
+is to remove friction.
+
+
+89
+00:04:46,556 --> 00:04:50,256
+So I'm talking here about
+making a great first impression
+
+
+90
+00:04:50,256 --> 00:04:53,916
+and a really frictionless first
+time experience in the game,
+
+
+91
+00:04:54,366 --> 00:04:58,356
+really streamlining
+everything that gets in the way
+
+
+92
+00:04:58,356 --> 00:05:01,066
+of the player getting into
+the game as they start.
+
+
+93
+00:05:01,356 --> 00:05:03,376
+So what do I really
+mean by friction here?
+
+
+94
+00:05:04,176 --> 00:05:07,746
+So here's our imaginary
+game, "Paddle Mania 3000".
+
+
+95
+00:05:07,746 --> 00:05:08,876
+It is awesome, by the way.
+
+
+96
+00:05:09,346 --> 00:05:12,506
+But it has some of the
+problems with friction
+
+
+97
+00:05:12,506 --> 00:05:13,766
+that I'm thinking of here.
+
+
+98
+00:05:13,766 --> 00:05:16,206
+So let me show you first
+the start up experience
+
+
+99
+00:05:16,206 --> 00:05:18,646
+of this game: Player comes in?
+
+
+100
+00:05:19,446 --> 00:05:22,576
+Loading. So, yeah,
+still loading.
+
+
+101
+00:05:22,576 --> 00:05:24,776
+And it's going to take
+it about a minute to load
+
+
+102
+00:05:24,776 --> 00:05:25,966
+because that's how
+long it will take me
+
+
+103
+00:05:25,966 --> 00:05:27,046
+to get through the slide.
+
+
+104
+00:05:27,046 --> 00:05:30,766
+So, you know, the problem
+that I have or that I see here
+
+
+105
+00:05:31,006 --> 00:05:33,806
+with a number of games is
+that they really take kind
+
+
+106
+00:05:33,806 --> 00:05:37,466
+of a monolithic approach
+to loading their assets.
+
+
+107
+00:05:37,906 --> 00:05:41,786
+And they preload everything
+up front instead of, you know,
+
+
+108
+00:05:41,786 --> 00:05:44,626
+trying to just do what they
+need just to get started.
+
+
+109
+00:05:45,536 --> 00:05:48,366
+So your goal should
+be to get interactive
+
+
+110
+00:05:48,366 --> 00:05:49,926
+as quickly as you can.
+
+
+111
+00:05:50,216 --> 00:05:53,296
+Load just enough of your
+assets so that you can get up
+
+
+112
+00:05:53,296 --> 00:05:55,616
+and running to your
+first interactive screen.
+
+
+113
+00:05:55,616 --> 00:05:58,356
+And then use technologies
+like Grand Central Dispatch,
+
+
+114
+00:05:58,356 --> 00:06:02,286
+and so on, to move work off
+of your main thread and so,
+
+
+115
+00:06:02,286 --> 00:06:04,326
+and let that continue
+asynchronously.
+
+
+116
+00:06:05,136 --> 00:06:09,366
+Then, also, use the Time
+Profiler to really take a look
+
+
+117
+00:06:09,366 --> 00:06:11,166
+at your loading performance.
+
+
+118
+00:06:11,616 --> 00:06:13,706
+And it will show you in a lot
+
+
+119
+00:06:13,706 --> 00:06:17,836
+of detail exactly what work the
+app is doing during that time.
+
+
+120
+00:06:18,496 --> 00:06:21,396
+But even before you get into
+the Time Profiler, I don't want
+
+
+121
+00:06:21,396 --> 00:06:24,376
+to just punt to the Time
+Profiler as my advice.
+
+
+122
+00:06:24,756 --> 00:06:28,616
+You have to really think
+about it first, right?
+
+
+123
+00:06:28,686 --> 00:06:31,546
+Why are so many things
+being loaded up front?
+
+
+124
+00:06:32,036 --> 00:06:34,986
+And isn't there something
+that could be deferred
+
+
+125
+00:06:34,986 --> 00:06:39,006
+and loaded asynchronously
+a little bit later?
+
+
+126
+00:06:39,556 --> 00:06:41,726
+So, okay. So it's done loading.
+
+
+127
+00:06:41,726 --> 00:06:46,996
+And now let's go on to now
+we're downloading some assets.
+
+
+128
+00:06:47,386 --> 00:06:50,896
+Okay. So, you know, a lot of
+you guys do this in the game.
+
+
+129
+00:06:50,896 --> 00:06:51,596
+And it's fine.
+
+
+130
+00:06:51,626 --> 00:06:53,566
+In many cases, it's
+a good thing.
+
+
+131
+00:06:54,026 --> 00:06:56,406
+But it doesn't have
+to be something
+
+
+132
+00:06:56,406 --> 00:06:58,586
+where it makes the player wait.
+
+
+133
+00:06:59,306 --> 00:07:02,276
+So later in the talk I'm going
+to go through a couple of things
+
+
+134
+00:07:02,276 --> 00:07:04,726
+that you can do to move
+this off to the side
+
+
+135
+00:07:04,726 --> 00:07:07,056
+so the user doesn't
+even have to notice it.
+
+
+136
+00:07:08,046 --> 00:07:11,256
+Okay, next: registration.
+
+
+137
+00:07:11,446 --> 00:07:13,366
+Would I like a "Paddle
+Mania" account?
+
+
+138
+00:07:13,886 --> 00:07:16,386
+No, I would like to
+play "Paddle Mania".
+
+
+139
+00:07:17,866 --> 00:07:21,156
+So, you know, when you think
+about the registration,
+
+
+140
+00:07:21,496 --> 00:07:23,416
+there's a couple of
+possibilities here.
+
+
+141
+00:07:23,896 --> 00:07:27,166
+You know, maybe, actually
+that registration is needed.
+
+
+142
+00:07:27,166 --> 00:07:30,386
+Maybe you have a game
+that is server backed,
+
+
+143
+00:07:30,896 --> 00:07:33,536
+and you need some way to
+uniquely identify this player.
+
+
+144
+00:07:34,126 --> 00:07:35,486
+If that's the case,
+
+
+145
+00:07:35,486 --> 00:07:39,236
+then actually you could just use
+the Vendor ID that we provide
+
+
+146
+00:07:39,306 --> 00:07:42,776
+to the game as the unique
+identifier for that player.
+
+
+147
+00:07:42,776 --> 00:07:45,616
+And get it so that it's
+out of the player's way.
+
+
+148
+00:07:45,916 --> 00:07:47,216
+Handle it automatically.
+
+
+149
+00:07:48,266 --> 00:07:51,426
+But maybe the case isn't that
+you have a server backed game.
+
+
+150
+00:07:51,426 --> 00:07:53,906
+Maybe you're just asking the
+user to sign up for an account
+
+
+151
+00:07:53,906 --> 00:07:57,526
+because you want to give
+them news or special offers
+
+
+152
+00:07:57,526 --> 00:07:59,446
+or just whatever
+the reason may be.
+
+
+153
+00:08:00,146 --> 00:08:02,516
+Well, the first-time experience
+
+
+154
+00:08:02,516 --> 00:08:05,626
+in the game is not the right
+time to ask for this yet.
+
+
+155
+00:08:05,926 --> 00:08:09,296
+They don't who, you know,
+why you might be asking.
+
+
+156
+00:08:09,296 --> 00:08:12,226
+So, of course, you would
+need to clearly explain it.
+
+
+157
+00:08:12,226 --> 00:08:13,226
+Like, is it needed?
+
+
+158
+00:08:13,226 --> 00:08:14,756
+Or is it just kind of extra?
+
+
+159
+00:08:14,756 --> 00:08:19,556
+And if it's not really needed,
+then defer it until later.
+
+
+160
+00:08:20,016 --> 00:08:22,396
+So I want to play, I'm
+going to say, no thanks.
+
+
+161
+00:08:24,066 --> 00:08:26,246
+Next, configure my paddle.
+
+
+162
+00:08:26,646 --> 00:08:27,596
+It's "Paddle Mania".
+
+
+163
+00:08:28,106 --> 00:08:30,236
+But, so, let me be clear:
+
+
+164
+00:08:30,566 --> 00:08:33,385
+If this is my first
+time playing the game,
+
+
+165
+00:08:33,726 --> 00:08:35,606
+then I don't know the
+implications of any
+
+
+166
+00:08:35,606 --> 00:08:38,056
+of these choices,
+right, to go and play.
+
+
+167
+00:08:38,586 --> 00:08:42,256
+So if they matter, then
+now is not the time
+
+
+168
+00:08:42,256 --> 00:08:43,775
+to ask me because I don't know.
+
+
+169
+00:08:44,496 --> 00:08:47,736
+And if they don't matter,
+then don't put them in the way
+
+
+170
+00:08:47,736 --> 00:08:49,866
+of user getting onboard
+into the game.
+
+
+171
+00:08:51,496 --> 00:08:55,476
+And, you know, not knowing
+either way sort of conveys
+
+
+172
+00:08:55,476 --> 00:08:58,886
+to the players that it's not
+really-the experience here
+
+
+173
+00:08:58,886 --> 00:09:00,446
+hadn't really been
+thought through.
+
+
+174
+00:09:00,656 --> 00:09:03,056
+And so there's some real trouble
+with "Paddle Mania", actually.
+
+
+175
+00:09:04,156 --> 00:09:06,286
+And then, yeah, there we go.
+
+
+176
+00:09:06,856 --> 00:09:08,906
+The last one here:
+please leave a rating.
+
+
+177
+00:09:08,906 --> 00:09:13,526
+You know, this is fine, right,
+we talk about this all the time.
+
+
+178
+00:09:14,136 --> 00:09:17,356
+But, you know, at
+this point, actually,
+
+
+179
+00:09:17,356 --> 00:09:19,106
+I haven't even played
+the game yet.
+
+
+180
+00:09:19,106 --> 00:09:21,296
+So, you know, now is not
+the best time to come
+
+
+181
+00:09:21,296 --> 00:09:22,756
+and ask me about rating it.
+
+
+182
+00:09:23,226 --> 00:09:26,086
+But, you know, I think, you
+guys are getting it here, right.
+
+
+183
+00:09:26,156 --> 00:09:28,216
+So let me give you the
+takeaways of this first section:
+
+
+184
+00:09:28,216 --> 00:09:30,686
+So you've got to get the
+player into the game.
+
+
+185
+00:09:31,076 --> 00:09:34,236
+Reduce the load time
+and any blocking updates
+
+
+186
+00:09:34,236 --> 00:09:37,306
+to get the game interactive
+as quickly as possible.
+
+
+187
+00:09:37,776 --> 00:09:40,226
+Then streamline the
+registration, right.
+
+
+188
+00:09:40,486 --> 00:09:43,866
+Provide an escape from
+tutorials and long intros
+
+
+189
+00:09:43,866 --> 00:09:45,606
+and all those things that
+might get in the way.
+
+
+190
+00:09:45,606 --> 00:09:49,846
+And then don't force
+decisions about something
+
+
+191
+00:09:49,846 --> 00:09:52,846
+that the player can't
+possibly know about yet.
+
+
+192
+00:09:53,316 --> 00:09:55,666
+And be patient, you
+know, show some restraint
+
+
+193
+00:09:55,666 --> 00:09:57,296
+when you're asking for feedback.
+
+
+194
+00:09:58,626 --> 00:10:00,966
+So that's number
+one: remove friction
+
+
+195
+00:10:00,966 --> 00:10:02,766
+from the first time experience.
+
+
+196
+00:10:04,046 --> 00:10:07,146
+Okay, here's number
+two: be a good teacher.
+
+
+197
+00:10:08,196 --> 00:10:11,766
+So being a good teacher is
+really all about thinking
+
+
+198
+00:10:11,806 --> 00:10:13,496
+through that onboarding
+experience
+
+
+199
+00:10:13,496 --> 00:10:15,316
+and really kind of
+making it fun.
+
+
+200
+00:10:15,686 --> 00:10:19,826
+Because if you can help
+your players get started,
+
+
+201
+00:10:19,826 --> 00:10:22,806
+it's more likely that they'll
+become more deeply engaged
+
+
+202
+00:10:22,806 --> 00:10:23,676
+into the game.
+
+
+203
+00:10:24,126 --> 00:10:26,406
+And, you know, it's
+almost easier to think
+
+
+204
+00:10:26,406 --> 00:10:27,576
+of it on the other side.
+
+
+205
+00:10:27,966 --> 00:10:30,806
+If you just leave it
+to the player to figure
+
+
+206
+00:10:30,806 --> 00:10:34,596
+out your game themselves,
+then you run a lot of risks.
+
+
+207
+00:10:34,596 --> 00:10:37,466
+You risk people just
+failing a couple of times
+
+
+208
+00:10:37,466 --> 00:10:39,956
+and getting frustrated
+and leaving the game.
+
+
+209
+00:10:40,396 --> 00:10:43,986
+Or maybe they'll miss something
+that was really important
+
+
+210
+00:10:44,166 --> 00:10:46,696
+to the gameplay and would
+have captured their interest,
+
+
+211
+00:10:46,926 --> 00:10:47,936
+but they just didn't see it.
+
+
+212
+00:10:47,936 --> 00:10:50,306
+They didn't know to
+go down that path.
+
+
+213
+00:10:50,676 --> 00:10:52,906
+So yesterday during the
+design award ceremony,
+
+
+214
+00:10:52,906 --> 00:10:53,696
+John was up here.
+
+
+215
+00:10:53,696 --> 00:10:56,546
+He talked about "Leo's
+Fortune" as his example.
+
+
+216
+00:10:56,776 --> 00:10:58,446
+I'm going to use a
+different example:
+
+
+217
+00:10:58,446 --> 00:11:03,626
+Apple Design Award Winner from
+2011, and that's "Cut the Rope".
+
+
+218
+00:11:04,086 --> 00:11:06,046
+So this was an awesome
+puzzle game.
+
+
+219
+00:11:06,046 --> 00:11:09,016
+And it's kind of the
+perfect example here to use
+
+
+220
+00:11:09,016 --> 00:11:10,956
+as an onboarding case study.
+
+
+221
+00:11:11,436 --> 00:11:15,156
+So right away what you see here
+is they're using coaching tips
+
+
+222
+00:11:15,206 --> 00:11:18,076
+to explain the goal,
+which is to deliver candy
+
+
+223
+00:11:18,076 --> 00:11:19,456
+to Om Nom, the little character.
+
+
+224
+00:11:20,356 --> 00:11:22,556
+And then they start to
+tell you about things
+
+
+225
+00:11:22,556 --> 00:11:24,186
+like the primary interaction.
+
+
+226
+00:11:24,246 --> 00:11:25,576
+In "Cut the Rope", you swipe
+
+
+227
+00:11:25,736 --> 00:11:27,216
+with your finger
+to cut the rope.
+
+
+228
+00:11:27,746 --> 00:11:30,016
+Now you might be looking at
+this kind of going like, well,
+
+
+229
+00:11:30,016 --> 00:11:30,926
+that's totally obvious.
+
+
+230
+00:11:31,376 --> 00:11:33,776
+But, no, it's only because
+you've seen this picture.
+
+
+231
+00:11:34,146 --> 00:11:38,426
+And so the, you know what
+people would do without this,
+
+
+232
+00:11:38,426 --> 00:11:41,656
+they would tap the candy,
+they would tap Om Nom trying
+
+
+233
+00:11:41,656 --> 00:11:43,596
+to get him to jump
+up and eat the candy.
+
+
+234
+00:11:43,596 --> 00:11:44,576
+They don't know what to do.
+
+
+235
+00:11:44,916 --> 00:11:46,836
+And those aren't the
+right interactions, right?
+
+
+236
+00:11:46,876 --> 00:11:49,646
+The correct one is to
+swipe, cut the rope.
+
+
+237
+00:11:50,396 --> 00:11:53,526
+So then once the
+player has that down,
+
+
+238
+00:11:53,526 --> 00:11:56,446
+then they start introducing new
+interactions one at that time.
+
+
+239
+00:11:56,916 --> 00:11:58,866
+So each time there's
+another coaching tip.
+
+
+240
+00:11:59,276 --> 00:12:03,126
+So here you cut the rope,
+the candy flows down,
+
+
+241
+00:12:03,126 --> 00:12:04,156
+it goes into the bubble,
+
+
+242
+00:12:04,156 --> 00:12:06,216
+and then the bubble will
+start to lift it up.
+
+
+243
+00:12:06,686 --> 00:12:09,946
+And then there's another tip
+put right in context once
+
+
+244
+00:12:09,986 --> 00:12:12,726
+that happens telling the
+player to pop the bubble
+
+
+245
+00:12:12,726 --> 00:12:15,456
+with their finger and
+that will release it
+
+
+246
+00:12:15,456 --> 00:12:17,626
+and it will come down to Om Nom.
+
+
+247
+00:12:18,236 --> 00:12:23,426
+Okay. And then more really
+sort of subtle thing is
+
+
+248
+00:12:23,426 --> 00:12:27,906
+that a big part of the
+gameplay in Cut the Rope comes
+
+
+249
+00:12:27,966 --> 00:12:30,456
+from trying to get the candy
+
+
+250
+00:12:30,456 --> 00:12:35,566
+to touch all the stars before
+it gets down to Om Nom and kind
+
+
+251
+00:12:35,566 --> 00:12:36,926
+of routing around that way.
+
+
+252
+00:12:36,926 --> 00:12:40,166
+And to be successful at that
+usually takes some trial
+
+
+253
+00:12:40,166 --> 00:12:41,526
+and error on every level
+
+
+254
+00:12:41,766 --> 00:12:42,906
+when you're actually
+playing the game.
+
+
+255
+00:12:43,226 --> 00:12:46,946
+So it's actually really
+important to the Core Loop
+
+
+256
+00:12:46,946 --> 00:12:52,196
+of this game to show players
+how they can try again, right.
+
+
+257
+00:12:52,196 --> 00:12:55,976
+So in their onboarding, they
+call that out specifically.
+
+
+258
+00:12:55,976 --> 00:12:57,996
+And you would think oh,
+that's just, you know,
+
+
+259
+00:12:57,996 --> 00:12:59,856
+okay fine they're showing
+me around the buttons.
+
+
+260
+00:13:00,236 --> 00:13:03,306
+But, no, if they had left
+that to the player to discover
+
+
+261
+00:13:03,306 --> 00:13:05,756
+on their own, some people
+might not have played
+
+
+262
+00:13:05,756 --> 00:13:08,666
+around with all the buttons and
+the menus to go and play again.
+
+
+263
+00:13:08,666 --> 00:13:10,896
+But really this is
+core to the gameplay
+
+
+264
+00:13:11,066 --> 00:13:13,956
+so that's why they show it.
+
+
+265
+00:13:14,286 --> 00:13:15,636
+But, okay, so to summarize now:
+
+
+266
+00:13:16,236 --> 00:13:19,876
+So start by bringing the
+player right into the game
+
+
+267
+00:13:19,876 --> 00:13:21,546
+and show them how
+to get started.
+
+
+268
+00:13:21,546 --> 00:13:25,386
+And then introduce more complex
+interactions one at that time.
+
+
+269
+00:13:26,136 --> 00:13:28,806
+Provide tips and
+context as you go along
+
+
+270
+00:13:28,806 --> 00:13:32,726
+and then help them discover the
+things that will be important
+
+
+271
+00:13:32,726 --> 00:13:34,636
+in the game as they
+play through it.
+
+
+272
+00:13:35,046 --> 00:13:36,926
+So that's number two:
+be a good teacher.
+
+
+273
+00:13:37,776 --> 00:13:41,166
+Now, I want to mention, also,
+we're having a related session.
+
+
+274
+00:13:41,166 --> 00:13:43,506
+It's going to be on
+Thursday, very aptly named,
+
+
+275
+00:13:43,886 --> 00:13:46,866
+"Making a Great First Impression
+with Strong Onboarding Design".
+
+
+276
+00:13:46,866 --> 00:13:49,456
+We'll spend a whole hour
+going through some examples
+
+
+277
+00:13:49,456 --> 00:13:50,956
+that really get this right.
+
+
+278
+00:13:50,956 --> 00:13:52,606
+So be sure to catch
+that on Thursday.
+
+
+279
+00:13:53,746 --> 00:13:57,816
+All right, now I want to turn
+focus to the gameplay itself.
+
+
+280
+00:13:57,816 --> 00:14:02,116
+So number three is to really
+tune and perfect your Core Loop.
+
+
+281
+00:14:02,116 --> 00:14:04,366
+You know, I talk to
+people all the time.
+
+
+282
+00:14:04,366 --> 00:14:06,996
+And people will ask me to
+take a look at their game,
+
+
+283
+00:14:06,996 --> 00:14:09,206
+give them some feedback, you
+know stuff under development.
+
+
+284
+00:14:09,726 --> 00:14:12,486
+And a lot of times what I'm
+looking at is something,
+
+
+285
+00:14:12,486 --> 00:14:15,716
+you know, they're saying, I just
+it doesn't really feel fun yet.
+
+
+286
+00:14:16,156 --> 00:14:19,446
+And what that really comes
+down to is the Core Loop.
+
+
+287
+00:14:20,316 --> 00:14:23,126
+So Core Loop is the
+term that wraps up how
+
+
+288
+00:14:23,126 --> 00:14:25,786
+to describe the game mechanic
+in terms of, you know,
+
+
+289
+00:14:25,786 --> 00:14:27,836
+the actions the player
+takes in the game;
+
+
+290
+00:14:28,106 --> 00:14:30,916
+the reward that they
+receive, you know,
+
+
+291
+00:14:30,916 --> 00:14:35,816
+as they're pursuing a goal;
+and the resulting expansion
+
+
+292
+00:14:35,816 --> 00:14:40,086
+of the game or the growth of the
+character that motivated them
+
+
+293
+00:14:40,086 --> 00:14:41,236
+to pursue that reward.
+
+
+294
+00:14:42,056 --> 00:14:44,396
+And just in games that
+aren't quite right,
+
+
+295
+00:14:44,536 --> 00:14:46,996
+what I often find is that
+there's some disconnect
+
+
+296
+00:14:46,996 --> 00:14:51,026
+in this cycle or some
+mismatch between the parts
+
+
+297
+00:14:51,466 --> 00:14:52,796
+so they don't really
+line up well.
+
+
+298
+00:14:53,556 --> 00:14:55,386
+But, so let me just
+illustrate this
+
+
+299
+00:14:55,426 --> 00:14:58,576
+by showing you some typical
+examples from different genres,
+
+
+300
+00:14:58,576 --> 00:14:59,746
+just to set the stage.
+
+
+301
+00:14:59,746 --> 00:15:02,326
+So, you know, here is a
+fantasy role playing game.
+
+
+302
+00:15:02,646 --> 00:15:05,046
+I explore the dungeon.
+
+
+303
+00:15:05,046 --> 00:15:06,746
+I fight enemies.
+
+
+304
+00:15:06,746 --> 00:15:09,676
+Defeating the enemies gets
+me treasure and experience.
+
+
+305
+00:15:10,206 --> 00:15:12,706
+And then I use that
+treasure and experience
+
+
+306
+00:15:12,706 --> 00:15:15,306
+to level up and to buy things.
+
+
+307
+00:15:15,306 --> 00:15:17,236
+And then that lets
+me go and fight more
+
+
+308
+00:15:17,236 --> 00:15:18,786
+and more powerful enemies, okay?
+
+
+309
+00:15:18,786 --> 00:15:19,336
+Very clear.
+
+
+310
+00:15:20,426 --> 00:15:23,296
+Or a platformer, you know, the
+basic idea in a platformer is
+
+
+311
+00:15:23,296 --> 00:15:25,616
+to run and jump, okay,
+that's the player action.
+
+
+312
+00:15:25,966 --> 00:15:28,616
+But their goal is really to
+complete the level itself
+
+
+313
+00:15:28,616 --> 00:15:31,086
+and avoid all the
+obstacles and the bad guys
+
+
+314
+00:15:31,086 --> 00:15:33,336
+and collect the stars
+or power ups
+
+
+315
+00:15:33,336 --> 00:15:35,166
+or whatever is happening
+on that level.
+
+
+316
+00:15:35,726 --> 00:15:38,616
+But then if you're
+successful the expansion is
+
+
+317
+00:15:38,616 --> 00:15:42,106
+to unlock the next stage,
+literally expand the universe,
+
+
+318
+00:15:42,106 --> 00:15:44,216
+the game universe,
+for that game.
+
+
+319
+00:15:44,666 --> 00:15:47,796
+And where then you then go
+and find new things to run
+
+
+320
+00:15:47,796 --> 00:15:50,786
+and jump over, new
+obstacles, and so on.
+
+
+321
+00:15:50,846 --> 00:15:51,186
+But, okay.
+
+
+322
+00:15:51,186 --> 00:15:54,006
+So now to get a little
+deeper, you know,
+
+
+323
+00:15:54,006 --> 00:15:56,686
+it's really worth
+noting that some
+
+
+324
+00:15:56,686 --> 00:15:58,816
+of the most compelling
+games are the ones
+
+
+325
+00:15:59,086 --> 00:16:01,066
+with more than one Core Loop.
+
+
+326
+00:16:01,466 --> 00:16:03,136
+And I'm showing these
+side by side.
+
+
+327
+00:16:03,236 --> 00:16:05,516
+But really they're
+meant to be overlapping.
+
+
+328
+00:16:05,866 --> 00:16:07,546
+So you're fighting monsters,
+
+
+329
+00:16:07,546 --> 00:16:09,146
+you gain experience,
+you're leveling up.
+
+
+330
+00:16:09,206 --> 00:16:12,126
+But, at the same time,
+you're collecting clues.
+
+
+331
+00:16:12,126 --> 00:16:14,356
+You're using the clues
+to solve a puzzle.
+
+
+332
+00:16:14,646 --> 00:16:16,676
+The puzzle lets you
+unlock a door.
+
+
+333
+00:16:16,716 --> 00:16:19,686
+Behind the door there's more
+monsters and more clues.
+
+
+334
+00:16:19,686 --> 00:16:23,276
+And these are overlaid in the
+experience on top of each other.
+
+
+335
+00:16:23,886 --> 00:16:25,186
+But, okay.
+
+
+336
+00:16:25,396 --> 00:16:28,996
+So let me give you some
+more concrete advice here.
+
+
+337
+00:16:28,996 --> 00:16:31,356
+So, you know, what
+really is the bottom line?
+
+
+338
+00:16:31,696 --> 00:16:36,176
+So the best games, first,
+are the ones that really,
+
+
+339
+00:16:37,036 --> 00:16:40,576
+clearly understand their
+target audience and are able
+
+
+340
+00:16:40,576 --> 00:16:43,416
+to put center excuse
+me, put the centerpoint
+
+
+341
+00:16:43,416 --> 00:16:46,686
+of the Core Loop right
+on top of that audience.
+
+
+342
+00:16:47,786 --> 00:16:51,186
+And it's important that the Core
+Loop be easy to express and kind
+
+
+343
+00:16:51,186 --> 00:16:52,326
+of easy to understand.
+
+
+344
+00:16:52,326 --> 00:16:54,196
+That's kind of, when
+I find games
+
+
+345
+00:16:54,576 --> 00:16:57,956
+that are have these little
+mismatches, usually it's a case
+
+
+346
+00:16:57,956 --> 00:16:59,756
+where it's difficult
+for the developer
+
+
+347
+00:16:59,756 --> 00:17:02,906
+to actually express the
+Core Loop, these components,
+
+
+348
+00:17:02,936 --> 00:17:06,175
+clearly in terms of the action,
+the reward, the expansion.
+
+
+349
+00:17:07,455 --> 00:17:09,806
+Now, as I have been
+saying, make sure each phase
+
+
+350
+00:17:09,806 --> 00:17:12,746
+of this feeds right
+into the next.
+
+
+351
+00:17:12,746 --> 00:17:15,016
+And, sort of, all of the
+energy that the player gives
+
+
+352
+00:17:15,016 --> 00:17:17,726
+into one part of it flows
+around and, kind of,
+
+
+353
+00:17:17,726 --> 00:17:19,266
+reinforces the other parts.
+
+
+354
+00:17:20,566 --> 00:17:23,286
+Make each iteration meaningful.
+
+
+355
+00:17:23,286 --> 00:17:25,336
+And I'll talk about this
+a little more as I talk
+
+
+356
+00:17:25,336 --> 00:17:27,286
+about progression in the game.
+
+
+357
+00:17:27,906 --> 00:17:30,866
+But then also question
+your assumptions.
+
+
+358
+00:17:30,866 --> 00:17:33,696
+And this is probably the best
+advice for any developer is
+
+
+359
+00:17:33,696 --> 00:17:37,346
+to go back and really
+rethink it and keep iterating
+
+
+360
+00:17:37,346 --> 00:17:39,696
+until you know you've
+done it well.
+
+
+361
+00:17:40,326 --> 00:17:42,406
+And, you know, how do you know?
+
+
+362
+00:17:42,406 --> 00:17:43,546
+How do you really know?
+
+
+363
+00:17:43,546 --> 00:17:47,396
+I could say playtest, but
+that's just a punt, right.
+
+
+364
+00:17:47,396 --> 00:17:51,256
+It's like, how do you really
+know that you did it well?
+
+
+365
+00:17:52,036 --> 00:17:56,026
+Well, you know it by really
+thinking it through yourself.
+
+
+366
+00:17:56,556 --> 00:17:59,336
+You know, if you find the
+clues, will you be able
+
+
+367
+00:17:59,336 --> 00:18:02,666
+to solve the puzzle without
+some giant leap of faith
+
+
+368
+00:18:02,666 --> 00:18:06,276
+or going online to Google how
+to figure out this puzzle.
+
+
+369
+00:18:07,156 --> 00:18:10,676
+Well, you know, if you unlock
+something, if you solve
+
+
+370
+00:18:10,676 --> 00:18:13,386
+that puzzle, is it going
+to unlock the next stage?
+
+
+371
+00:18:13,716 --> 00:18:16,576
+If you unlock that next stage,
+will I have something new
+
+
+372
+00:18:16,576 --> 00:18:18,926
+or novel to really look
+at once I get there?
+
+
+373
+00:18:19,666 --> 00:18:20,956
+Okay. So test it.
+
+
+374
+00:18:21,766 --> 00:18:25,046
+But, at the same time,
+don't feel boxed in.
+
+
+375
+00:18:25,416 --> 00:18:27,326
+I am not saying that
+every game needs
+
+
+376
+00:18:27,326 --> 00:18:31,576
+to follow the same design
+methodology or, you know,
+
+
+377
+00:18:31,576 --> 00:18:34,226
+kind of deal with its
+audience in the same way.
+
+
+378
+00:18:34,576 --> 00:18:36,906
+A lot of the really
+best expressions
+
+
+379
+00:18:37,076 --> 00:18:40,706
+of great games are the ones that
+aren't afraid to mix this up.
+
+
+380
+00:18:41,226 --> 00:18:45,166
+But, so, now, let me show
+you just a quick example,
+
+
+381
+00:18:45,986 --> 00:18:47,786
+a game that's really
+fantastic in the way
+
+
+382
+00:18:47,786 --> 00:18:50,376
+that it does its Core Loop is
+the Apple Design Award winner
+
+
+383
+00:18:50,376 --> 00:18:53,046
+last year, this is "Ridiculous
+Fishing" by Vlambeer.
+
+
+384
+00:18:53,626 --> 00:18:56,806
+So it really has, I
+think you could break it
+
+
+385
+00:18:56,806 --> 00:18:58,976
+down into three distinct
+mechanics.
+
+
+386
+00:18:59,256 --> 00:19:03,216
+The first one is when you
+are dropping your line
+
+
+387
+00:19:03,216 --> 00:19:03,926
+into the water.
+
+
+388
+00:19:03,926 --> 00:19:06,566
+You're just trying to, you're
+using the accelerometer
+
+
+389
+00:19:06,566 --> 00:19:08,456
+or the gyroscope and
+trying to get the line
+
+
+390
+00:19:08,456 --> 00:19:10,896
+down through the water
+avoiding the fish,
+
+
+391
+00:19:11,016 --> 00:19:12,326
+get it as deep as you can.
+
+
+392
+00:19:12,466 --> 00:19:16,576
+Okay. Then once you run out
+of line or once you hit a fish
+
+
+393
+00:19:16,576 --> 00:19:19,186
+on the way down,
+everything reverses.
+
+
+394
+00:19:19,186 --> 00:19:21,976
+And now you're going
+back up and reeling
+
+
+395
+00:19:21,976 --> 00:19:23,766
+in as many fish as you can.
+
+
+396
+00:19:24,096 --> 00:19:27,846
+We're back on the gyro again
+and just trying now to collect
+
+
+397
+00:19:27,936 --> 00:19:29,576
+as many of the fish
+and try to run
+
+
+398
+00:19:29,616 --> 00:19:31,776
+into them while avoiding
+the jellyfish
+
+
+399
+00:19:31,776 --> 00:19:33,156
+and other baddies
+that are there.
+
+
+400
+00:19:33,206 --> 00:19:37,716
+And then the third loop, when
+we get up to the surface,
+
+
+401
+00:19:37,716 --> 00:19:42,146
+of course, we fling the fish up
+into the air and then you tap
+
+
+402
+00:19:42,286 --> 00:19:44,836
+on them to shoot them
+out of the sky, right,
+
+
+403
+00:19:45,146 --> 00:19:46,756
+so and collect points.
+
+
+404
+00:19:47,616 --> 00:19:50,936
+And so, and then those
+points are what we use
+
+
+405
+00:19:51,506 --> 00:19:53,066
+as the expansion in the game.
+
+
+406
+00:19:53,066 --> 00:19:56,856
+It lets us get a better lure,
+a longer line, and so on.
+
+
+407
+00:19:56,856 --> 00:19:59,356
+And so the game is really,
+you know, hilarious.
+
+
+408
+00:20:00,046 --> 00:20:00,966
+And if you didn't
+see it last year
+
+
+409
+00:20:00,966 --> 00:20:03,646
+from the design awards,
+check it out.
+
+
+410
+00:20:03,916 --> 00:20:05,876
+But so that's tuning
+your Core Loop.
+
+
+411
+00:20:07,666 --> 00:20:09,876
+Now, let me expand
+out from there.
+
+
+412
+00:20:10,186 --> 00:20:13,726
+And so for the next few parts
+of the talk, I want to go
+
+
+413
+00:20:13,726 --> 00:20:17,766
+through some aspects of this
+next ring around the Core Loop
+
+
+414
+00:20:18,036 --> 00:20:20,736
+and I want to start with
+the interaction mechanic.
+
+
+415
+00:20:20,736 --> 00:20:22,756
+Because obviously, you know,
+how the player interacts
+
+
+416
+00:20:22,756 --> 00:20:25,296
+with your game is completely
+fundamental to the success
+
+
+417
+00:20:25,806 --> 00:20:27,346
+of the Core Loop,
+to it feeling fun.
+
+
+418
+00:20:27,956 --> 00:20:30,906
+And if your players seem
+to be having trouble
+
+
+419
+00:20:30,906 --> 00:20:33,286
+with the controls,
+this is where to start.
+
+
+420
+00:20:34,006 --> 00:20:36,506
+And it's to design for touch.
+
+
+421
+00:20:37,296 --> 00:20:38,836
+So sometimes when I'm working
+
+
+422
+00:20:38,836 --> 00:20:41,246
+with someone who's
+bringing a game over to iOS
+
+
+423
+00:20:41,446 --> 00:20:45,026
+from another platform like a
+PC or a console or whatever,
+
+
+424
+00:20:45,346 --> 00:20:49,006
+their first instinct is actually
+to just bring their Core Loop
+
+
+425
+00:20:49,006 --> 00:20:52,606
+over completely unchanged,
+you know, including all
+
+
+426
+00:20:52,606 --> 00:20:54,996
+of their old interaction
+mechanic, right.
+
+
+427
+00:20:54,996 --> 00:20:58,166
+And so, you know, if their game
+was based on pressing buttons
+
+
+428
+00:20:58,216 --> 00:21:00,016
+than they just overlay
+the screen,
+
+
+429
+00:21:00,016 --> 00:21:01,176
+superimpose some buttons.
+
+
+430
+00:21:02,026 --> 00:21:05,006
+Or if they used to use a
+D pad, then, okay, great,
+
+
+431
+00:21:05,006 --> 00:21:07,226
+then they'll put a virtual
+D pad on the screen.
+
+
+432
+00:21:07,976 --> 00:21:11,046
+But the truth is that this is
+usually not really optimal.
+
+
+433
+00:21:11,316 --> 00:21:13,076
+These overlays get in the way
+
+
+434
+00:21:13,076 --> 00:21:15,476
+of the player seeing
+the game field.
+
+
+435
+00:21:16,226 --> 00:21:18,906
+And, but more profoundly,
+they're indirect.
+
+
+436
+00:21:19,286 --> 00:21:20,986
+They're controls
+that are controlling
+
+
+437
+00:21:20,986 --> 00:21:23,566
+that little paddle that's
+going to go underneath.
+
+
+438
+00:21:23,566 --> 00:21:26,316
+And, you know, it's a
+bouncy ball game, right?
+
+
+439
+00:21:26,736 --> 00:21:31,566
+And so since they're indirect,
+it relies on the player
+
+
+440
+00:21:31,566 --> 00:21:33,576
+to really be able
+to be in control
+
+
+441
+00:21:33,576 --> 00:21:35,096
+of the controls themselves.
+
+
+442
+00:21:35,476 --> 00:21:38,506
+But they can't feel when their
+finger is in the right spot.
+
+
+443
+00:21:38,506 --> 00:21:42,016
+And so they kind of have to look
+at their finger a lot in order
+
+
+444
+00:21:42,016 --> 00:21:43,976
+to be confident in
+their actions.
+
+
+445
+00:21:45,096 --> 00:21:48,146
+Okay. Now, if you step back
+a moment and really think
+
+
+446
+00:21:48,146 --> 00:21:51,036
+about where all this is
+coming from, you know,
+
+
+447
+00:21:51,036 --> 00:21:54,296
+if the game was designed with a
+different interaction mechanic
+
+
+448
+00:21:54,296 --> 00:21:57,336
+in mind, then a lot
+of the assumptions
+
+
+449
+00:21:57,336 --> 00:22:00,336
+of that other mechanic just
+get built into the game.
+
+
+450
+00:22:00,336 --> 00:22:03,806
+They become kind of implicit and
+ultimately kind of forgotten.
+
+
+451
+00:22:04,706 --> 00:22:09,716
+And when that happens, the
+answer isn't just to, kind of,
+
+
+452
+00:22:09,716 --> 00:22:11,586
+remap some controls
+
+
+453
+00:22:11,586 --> 00:22:14,036
+onto a virtual joystick
+or virtual buttons.
+
+
+454
+00:22:14,496 --> 00:22:18,686
+You really need to go back
+and rethink those assumptions.
+
+
+455
+00:22:18,926 --> 00:22:22,276
+And, you know, go back
+and redesign for touch.
+
+
+456
+00:22:23,256 --> 00:22:25,746
+And if you're not sure what I
+really, really mean by this,
+
+
+457
+00:22:25,746 --> 00:22:27,796
+then let's just go
+back and look at some
+
+
+458
+00:22:27,796 --> 00:22:30,546
+of the Design Award winners
+over the past couple of years.
+
+
+459
+00:22:31,176 --> 00:22:34,866
+"Monument Valley": tap the
+path, and that directs Ida
+
+
+460
+00:22:34,866 --> 00:22:36,006
+around to walk around.
+
+
+461
+00:22:36,646 --> 00:22:37,536
+She's the main character.
+
+
+462
+00:22:37,536 --> 00:22:40,766
+And then you or you do
+these little twist gestures
+
+
+463
+00:22:40,866 --> 00:22:44,046
+and that'll turn the cranks
+and move the walkways.
+
+
+464
+00:22:44,796 --> 00:22:47,126
+So it's based on
+taps and gestures.
+
+
+465
+00:22:48,166 --> 00:22:50,696
+"Blek": You make a
+shake with your finger.
+
+
+466
+00:22:50,906 --> 00:22:54,046
+And that's the pattern that the
+stroke that's generated is going
+
+
+467
+00:22:54,046 --> 00:22:56,726
+to follow and you try
+and get that to repeat.
+
+
+468
+00:22:56,966 --> 00:22:58,746
+And try to hit the dots.
+
+
+469
+00:22:58,946 --> 00:23:00,416
+By the way, I'm going
+to hang this picture
+
+
+470
+00:23:00,416 --> 00:23:01,966
+in John's office
+when we get back.
+
+
+471
+00:23:02,996 --> 00:23:06,706
+So but it's about
+stroking a path.
+
+
+472
+00:23:06,916 --> 00:23:10,986
+"Threes". So in "Threes", you
+push the tiles against the walls
+
+
+473
+00:23:10,986 --> 00:23:14,146
+to make, you know, matching
+numbers join together.
+
+
+474
+00:23:14,146 --> 00:23:15,456
+It's very, kind of, physical.
+
+
+475
+00:23:15,456 --> 00:23:16,806
+You're pushing the tiles.
+
+
+476
+00:23:17,126 --> 00:23:18,996
+They're coming, they're
+squeezing together
+
+
+477
+00:23:18,996 --> 00:23:20,046
+against the walls, and so on.
+
+
+478
+00:23:21,056 --> 00:23:23,836
+But it's all based on
+short strokes and swipes.
+
+
+479
+00:23:25,396 --> 00:23:26,296
+Infinity Blade.
+
+
+480
+00:23:26,296 --> 00:23:29,396
+You swipe the screen to control
+how your character's going
+
+
+481
+00:23:29,396 --> 00:23:30,706
+to swing its sword.
+
+
+482
+00:23:30,986 --> 00:23:35,606
+Then there's some buttons you
+press to dodge, and raise,
+
+
+483
+00:23:35,606 --> 00:23:37,476
+you know, you put
+on your shield.
+
+
+484
+00:23:37,886 --> 00:23:41,786
+And there's some gestures
+you use to cast a spell.
+
+
+485
+00:23:42,316 --> 00:23:45,926
+But so it's taps,
+swipes, and gestures.
+
+
+486
+00:23:47,216 --> 00:23:48,606
+"Cut the Rope": We
+just showed you.
+
+
+487
+00:23:48,606 --> 00:23:51,206
+You swipe to cut the rope,
+and then you tap things
+
+
+488
+00:23:51,206 --> 00:23:55,476
+like balloons and you tap on the
+bubbles and so on to blow air
+
+
+489
+00:23:55,476 --> 00:23:56,596
+around or pop the bubbles.
+
+
+490
+00:23:56,596 --> 00:23:58,326
+So it's taps and swipes.
+
+
+491
+00:23:59,406 --> 00:24:01,846
+"Where's My Water": You
+guys are getting this.
+
+
+492
+00:24:01,846 --> 00:24:06,666
+You know, you take your finger,
+you drag a path through the dirt
+
+
+493
+00:24:06,826 --> 00:24:08,686
+and that's where the
+water is going to flow.
+
+
+494
+00:24:09,296 --> 00:24:12,186
+So you feel your finger
+touching the glass.
+
+
+495
+00:24:12,186 --> 00:24:17,366
+You instantly get audio feedback
+when you touch the screen.
+
+
+496
+00:24:17,786 --> 00:24:20,656
+You feel the friction
+as you draw that path,
+
+
+497
+00:24:21,076 --> 00:24:22,236
+move your finger around.
+
+
+498
+00:24:22,476 --> 00:24:25,346
+And you instantly see
+the path you drew.
+
+
+499
+00:24:25,796 --> 00:24:28,106
+So it's a game that
+gets everything right.
+
+
+500
+00:24:28,106 --> 00:24:29,286
+Everything is in sync.
+
+
+501
+00:24:30,156 --> 00:24:33,356
+So let's take all this and
+sort of distill it down
+
+
+502
+00:24:33,356 --> 00:24:34,916
+and summarize what
+I mean by this.
+
+
+503
+00:24:35,586 --> 00:24:38,316
+So the key to what
+all those games,
+
+
+504
+00:24:38,316 --> 00:24:43,036
+and others that are all doing,
+is to design their controls
+
+
+505
+00:24:43,276 --> 00:24:45,986
+around direct interactions
+reinforced
+
+
+506
+00:24:46,206 --> 00:24:48,206
+by instantaneous feedback.
+
+
+507
+00:24:49,306 --> 00:24:51,446
+So direct manipulation
+is the key
+
+
+508
+00:24:51,446 --> 00:24:53,606
+to that interaction
+model on iOS.
+
+
+509
+00:24:53,606 --> 00:24:55,436
+You've got to embrace the idea
+
+
+510
+00:24:55,436 --> 00:24:59,606
+that the best iOS games are
+the ones where you reach
+
+
+511
+00:24:59,776 --> 00:25:04,576
+through the glass and touch the
+game elements themselves, right.
+
+
+512
+00:25:04,886 --> 00:25:08,236
+So it's based on touches and
+taps and gestures and swipes
+
+
+513
+00:25:08,676 --> 00:25:10,236
+and panning and drawing paths
+
+
+514
+00:25:11,416 --> 00:25:15,326
+where those interactions are the
+ones that define the gameplay.
+
+
+515
+00:25:16,786 --> 00:25:21,676
+And then it's critical that you
+provide instantaneous feedback.
+
+
+516
+00:25:22,156 --> 00:25:26,116
+So these are the visual cues and
+audio cues so that what you see
+
+
+517
+00:25:26,396 --> 00:25:31,456
+and what you hear and what you
+feel all reinforce what you did.
+
+
+518
+00:25:31,656 --> 00:25:33,466
+And they reinforce each other.
+
+
+519
+00:25:35,066 --> 00:25:35,436
+But, okay.
+
+
+520
+00:25:36,186 --> 00:25:39,636
+So, with all that passion,
+that was designed for touch.
+
+
+521
+00:25:40,206 --> 00:25:43,956
+But if people seem to be
+having a lot of trouble
+
+
+522
+00:25:43,956 --> 00:25:47,116
+with your controls, go
+back to those principles
+
+
+523
+00:25:47,116 --> 00:25:50,516
+and really redesign your
+Core Loop around the idea
+
+
+524
+00:25:50,516 --> 00:25:53,246
+of direct interactions
+that are reinforced
+
+
+525
+00:25:53,466 --> 00:25:55,016
+by instantaneous feedback.
+
+
+526
+00:25:56,376 --> 00:25:58,996
+Okay, next is to
+foster engagement.
+
+
+527
+00:26:00,226 --> 00:26:02,956
+So, you know, this about
+keeping the player coming back
+
+
+528
+00:26:03,336 --> 00:26:03,876
+to your game.
+
+
+529
+00:26:03,876 --> 00:26:06,646
+And we use a lot of different
+terms to describe this,
+
+
+530
+00:26:07,126 --> 00:26:08,946
+you know, it's a
+huge, a huge area.
+
+
+531
+00:26:08,946 --> 00:26:12,236
+But all this is done because,
+just hopefully, you know,
+
+
+532
+00:26:12,236 --> 00:26:15,836
+having a really deeply engaged
+player is going to generate word
+
+
+533
+00:26:15,836 --> 00:26:19,326
+of mouth and viral discovery,
+more business for you,
+
+
+534
+00:26:19,326 --> 00:26:21,126
+more of a fan base, and so on.
+
+
+535
+00:26:21,846 --> 00:26:24,736
+And there are a ton of
+things to talk about here.
+
+
+536
+00:26:24,736 --> 00:26:28,316
+But, you know, and I'll get
+to some specifics in a minute.
+
+
+537
+00:26:28,886 --> 00:26:31,716
+But I want to first say
+something else that's a little
+
+
+538
+00:26:31,716 --> 00:26:33,576
+deeper about this.
+
+
+539
+00:26:34,676 --> 00:26:37,896
+So it's really easy for
+any of us to, kind of,
+
+
+540
+00:26:37,896 --> 00:26:41,286
+get wrapped up in the
+details of the Core Loop
+
+
+541
+00:26:41,286 --> 00:26:42,816
+and the onboarding and so on.
+
+
+542
+00:26:43,526 --> 00:26:49,466
+But it's important for you to be
+able to rise above those details
+
+
+543
+00:26:49,926 --> 00:26:53,816
+of the game and really see the
+game from the player perspective
+
+
+544
+00:26:54,366 --> 00:26:58,186
+and understand that the
+design process here is
+
+
+545
+00:26:58,186 --> 00:27:00,266
+profoundly fractal.
+
+
+546
+00:27:01,206 --> 00:27:05,426
+The same patterns emerge
+at every level of detail.
+
+
+547
+00:27:05,706 --> 00:27:08,006
+And there are resonances
+among them.
+
+
+548
+00:27:08,946 --> 00:27:12,096
+So even if you get the
+game loop completely right,
+
+
+549
+00:27:12,096 --> 00:27:16,066
+if you can't rise above
+that, it won't resonate
+
+
+550
+00:27:16,066 --> 00:27:17,846
+with your meta game
+or your progression.
+
+
+551
+00:27:18,276 --> 00:27:22,236
+If you get the progression right
+but you can't rise above that,
+
+
+552
+00:27:22,816 --> 00:27:25,986
+it won't resonate with the
+storyline, and so on and so on.
+
+
+553
+00:27:27,496 --> 00:27:27,886
+But, okay.
+
+
+554
+00:27:28,026 --> 00:27:31,516
+So now taking this down a notch,
+back to Earth just a moment.
+
+
+555
+00:27:31,966 --> 00:27:35,666
+Do you remember how a couple
+of moments ago I said that,
+
+
+556
+00:27:35,666 --> 00:27:38,146
+you know, a lot of really
+interesting games overlay
+
+
+557
+00:27:38,146 --> 00:27:39,436
+multiple Core Loops?
+
+
+558
+00:27:40,066 --> 00:27:42,816
+Well, that holds true for
+the progression as well.
+
+
+559
+00:27:42,816 --> 00:27:45,036
+And so one way that
+you can really get,
+
+
+560
+00:27:45,036 --> 00:27:48,826
+hold the player's interest is
+to provide layers of progression
+
+
+561
+00:27:48,826 --> 00:27:52,386
+or overlays of it, of
+progression and expansion
+
+
+562
+00:27:52,386 --> 00:27:55,496
+with multiple goals, multiple
+paths of goals, I mean,
+
+
+563
+00:27:55,666 --> 00:27:57,576
+multiple paths of challenges,
+
+
+564
+00:27:58,076 --> 00:28:01,936
+and different paths
+giving different balance
+
+
+565
+00:28:01,936 --> 00:28:03,836
+between risk and reward.
+
+
+566
+00:28:04,286 --> 00:28:07,106
+That's something that players
+will find very, very compelling.
+
+
+567
+00:28:07,906 --> 00:28:11,556
+And you can even gamify
+the expansions themselves.
+
+
+568
+00:28:11,956 --> 00:28:13,996
+So this is, you know, kind
+of the essence of a lot
+
+
+569
+00:28:13,996 --> 00:28:17,996
+of crafting games is that you
+make the expansions themselves
+
+
+570
+00:28:17,996 --> 00:28:21,466
+into choices that the players
+have to make that are strategic
+
+
+571
+00:28:21,466 --> 00:28:23,236
+to the future of their gameplay.
+
+
+572
+00:28:23,636 --> 00:28:26,356
+And then you ensure
+that you take them
+
+
+573
+00:28:26,356 --> 00:28:30,086
+down different paths
+depending on what they've done.
+
+
+574
+00:28:30,976 --> 00:28:31,666
+But, okay.
+
+
+575
+00:28:31,836 --> 00:28:35,136
+This next one now, so this
+is particularly important
+
+
+576
+00:28:35,136 --> 00:28:37,186
+for anyone who's making
+free to play games.
+
+
+577
+00:28:37,526 --> 00:28:40,326
+And that's to provide
+value for everyone,
+
+
+578
+00:28:40,596 --> 00:28:43,966
+both your paying players
+and your non-paying players.
+
+
+579
+00:28:44,696 --> 00:28:48,176
+So work through the
+entire experience for both
+
+
+580
+00:28:48,176 --> 00:28:51,066
+of those audiences
+to ensure that those
+
+
+581
+00:28:51,066 --> 00:28:56,006
+who are playing your game for
+free can progress, can expand,
+
+
+582
+00:28:56,456 --> 00:28:58,656
+and, sure, they can
+see the benefit.
+
+
+583
+00:28:58,806 --> 00:29:01,496
+Show them the benefit of
+becoming a paying player.
+
+
+584
+00:29:01,966 --> 00:29:05,436
+But if you try to force them,
+then you'll lose engagement
+
+
+585
+00:29:05,526 --> 00:29:07,126
+with a fair number of them.
+
+
+586
+00:29:07,986 --> 00:29:11,516
+And on the other side, ensure
+that those who are paying
+
+
+587
+00:29:11,516 --> 00:29:13,506
+in your game will feel
+
+
+588
+00:29:13,506 --> 00:29:16,006
+that they're getting
+properly rewarded in the game
+
+
+589
+00:29:16,006 --> 00:29:18,296
+and getting something for the
+money that they're spending.
+
+
+590
+00:29:19,676 --> 00:29:23,286
+Then next, again, this is
+holding the player's interest.
+
+
+591
+00:29:23,716 --> 00:29:27,876
+So really do what you can
+to incentivize repeat play.
+
+
+592
+00:29:28,446 --> 00:29:32,886
+So enable and motivate the
+player to try one more time.
+
+
+593
+00:29:33,386 --> 00:29:36,276
+Enable and motivate the
+player to see what's next.
+
+
+594
+00:29:36,736 --> 00:29:40,416
+Enable and motivate to
+see how it ends, right.
+
+
+595
+00:29:40,416 --> 00:29:42,566
+And if you think about
+where these fit in,
+
+
+596
+00:29:43,516 --> 00:29:45,606
+"one more try" is
+about the Core Loop.
+
+
+597
+00:29:46,646 --> 00:29:48,926
+"See what's next" is
+about the progression.
+
+
+598
+00:29:49,636 --> 00:29:53,106
+"See how it ends" is about
+the storyline, right.
+
+
+599
+00:29:54,746 --> 00:29:59,976
+Okay. Now, let me talk a
+bit about re engagement.
+
+
+600
+00:30:00,146 --> 00:30:02,356
+So providing really,
+you know, coming out
+
+
+601
+00:30:02,356 --> 00:30:05,146
+and providing really
+fresh new content
+
+
+602
+00:30:05,336 --> 00:30:07,926
+after you've launched
+is a great way
+
+
+603
+00:30:07,926 --> 00:30:10,376
+to keep your momentum
+going and, in many cases,
+
+
+604
+00:30:10,376 --> 00:30:12,406
+even to help drive new growth.
+
+
+605
+00:30:13,046 --> 00:30:16,846
+So really think about how
+you will continue your story
+
+
+606
+00:30:17,126 --> 00:30:20,506
+to provide new content or
+new levels or new goals
+
+
+607
+00:30:20,506 --> 00:30:21,826
+or challenges, and so on.
+
+
+608
+00:30:22,366 --> 00:30:25,146
+Or seasonal content
+around holidays.
+
+
+609
+00:30:25,336 --> 00:30:27,846
+Or regional content
+in different locales.
+
+
+610
+00:30:28,476 --> 00:30:31,686
+It's all to give your players
+another positive reason
+
+
+611
+00:30:31,686 --> 00:30:33,336
+to come back into the game.
+
+
+612
+00:30:33,926 --> 00:30:38,156
+And it's important that you
+plan this out before you launch.
+
+
+613
+00:30:39,086 --> 00:30:43,496
+Because the people who have had
+catastrophic success are the
+
+
+614
+00:30:43,496 --> 00:30:45,566
+ones who a game takes off
+
+
+615
+00:30:45,566 --> 00:30:47,606
+and then they realize
+people are done.
+
+
+616
+00:30:48,376 --> 00:30:51,116
+And they need to scramble
+to get more content out.
+
+
+617
+00:30:51,466 --> 00:30:53,476
+You're most engaged
+players are going
+
+
+618
+00:30:53,476 --> 00:30:58,216
+to consume your content very
+quickly; so have it ready.
+
+
+619
+00:30:58,986 --> 00:31:01,076
+Have it ready to go
+so that your really,
+
+
+620
+00:31:01,076 --> 00:31:03,516
+deeply engaged players can
+have something that's going
+
+
+621
+00:31:03,516 --> 00:31:05,006
+to bring them back
+into the game.
+
+
+622
+00:31:05,266 --> 00:31:09,316
+And you'll attract new
+players to come in as well.
+
+
+623
+00:31:09,526 --> 00:31:12,256
+Now, it's also important
+to really measure
+
+
+624
+00:31:12,256 --> 00:31:15,016
+and understand how well
+you're retaining your players.
+
+
+625
+00:31:15,456 --> 00:31:17,216
+And starting later this fall,
+
+
+626
+00:31:17,476 --> 00:31:21,116
+we'll be providing
+retention information to you
+
+
+627
+00:31:21,366 --> 00:31:22,536
+through iTunes Connect.
+
+
+628
+00:31:23,276 --> 00:31:25,736
+So this is going to show you
+how many players have downloaded
+
+
+629
+00:31:25,736 --> 00:31:30,356
+your game by day, by region,
+by platform, by source
+
+
+630
+00:31:30,996 --> 00:31:34,576
+and what percentage of them
+kept playing in the days
+
+
+631
+00:31:34,576 --> 00:31:36,816
+that followed their download.
+
+
+632
+00:31:37,486 --> 00:31:39,936
+And so this is just
+a taste, okay.
+
+
+633
+00:31:39,936 --> 00:31:42,116
+So we'll show you a
+lot more about this
+
+
+634
+00:31:42,656 --> 00:31:45,356
+in the iTunes Connect
+session tomorrow morning.
+
+
+635
+00:31:45,946 --> 00:31:49,736
+But so that's number five:
+to foster engagement.
+
+
+636
+00:31:50,726 --> 00:31:53,816
+So now, let me turn the
+focus the other way and get
+
+
+637
+00:31:53,816 --> 00:31:56,046
+into a couple of things
+on the technical side.
+
+
+638
+00:31:56,576 --> 00:31:59,866
+And so this is number six:
+to use background transfers.
+
+
+639
+00:32:00,356 --> 00:32:01,216
+Huh? Okay.
+
+
+640
+00:32:01,216 --> 00:32:04,176
+So you remember back
+in the first section
+
+
+641
+00:32:04,176 --> 00:32:05,596
+where I was talking
+about friction,
+
+
+642
+00:32:05,596 --> 00:32:07,476
+I talked about downloading
+updates,
+
+
+643
+00:32:07,786 --> 00:32:10,076
+and I said that that was
+something that we could move
+
+
+644
+00:32:10,076 --> 00:32:11,236
+out of the player's way?
+
+
+645
+00:32:11,236 --> 00:32:14,856
+That's what this is about and
+that's what I'll get into here.
+
+
+646
+00:32:15,096 --> 00:32:18,436
+So in "Paddle Mania
+3000", we have, you know,
+
+
+647
+00:32:18,536 --> 00:32:20,526
+thousands of image
+assets because we have
+
+
+648
+00:32:20,526 --> 00:32:21,876
+so many levels, right.
+
+
+649
+00:32:21,876 --> 00:32:25,026
+We have-and for all of
+those different assets,
+
+
+650
+00:32:25,236 --> 00:32:28,936
+we have one for Retina,
+non Retina, iPhone 5s,
+
+
+651
+00:32:29,016 --> 00:32:30,596
+the iPad, iPad Air, right.
+
+
+652
+00:32:30,596 --> 00:32:32,606
+And then we have
+all of our sounds,
+
+
+653
+00:32:32,606 --> 00:32:34,976
+AAC and MP3 for our soundtrack.
+
+
+654
+00:32:34,976 --> 00:32:39,236
+We've got Linear PCM for
+audio effects with OpenAL.
+
+
+655
+00:32:39,676 --> 00:32:42,806
+We've got 13 different
+localizations, right.
+
+
+656
+00:32:42,806 --> 00:32:46,296
+So English, French, you
+know, EFIGS, Japanese,
+
+
+657
+00:32:46,296 --> 00:32:48,866
+Traditional Chinese,
+Simplified Chinese, Brazilian,
+
+
+658
+00:32:48,866 --> 00:32:50,226
+Portuguese, and a few more.
+
+
+659
+00:32:50,766 --> 00:32:53,536
+And then we have a binary
+compiled three different,
+
+
+660
+00:32:53,536 --> 00:32:57,326
+you know, three ways:
+armv7, armv7s, arm64.
+
+
+661
+00:32:57,326 --> 00:33:01,386
+Okay. So there's a lot of
+stuff in "Paddle Mania 3000".
+
+
+662
+00:33:01,976 --> 00:33:05,266
+And you know putting all
+that together is putting us
+
+
+663
+00:33:05,266 --> 00:33:08,806
+over the limit for
+downloading over cellular.
+
+
+664
+00:33:09,246 --> 00:33:10,806
+So what do you do?
+
+
+665
+00:33:10,846 --> 00:33:15,556
+Well, you know, a lot of times,
+a discussion will begin, and,
+
+
+666
+00:33:15,556 --> 00:33:17,786
+you know, quite often there
+will be somebody who will chime
+
+
+667
+00:33:17,786 --> 00:33:22,006
+in with advice like this:
+"One size fits all!"
+
+
+668
+00:33:22,546 --> 00:33:23,926
+Just ship one size.
+
+
+669
+00:33:23,926 --> 00:33:24,746
+Stretch it.
+
+
+670
+00:33:25,136 --> 00:33:27,236
+Stretch it to fit
+on all platforms,
+
+
+671
+00:33:27,576 --> 00:33:29,616
+or just ship one localization.
+
+
+672
+00:33:29,616 --> 00:33:31,316
+They all speak English, right?
+
+
+673
+00:33:32,076 --> 00:33:33,626
+No, they really don't.
+
+
+674
+00:33:34,696 --> 00:33:37,306
+So don't sacrifice quality.
+
+
+675
+00:33:37,526 --> 00:33:40,656
+And don't shortchange
+your global audience.
+
+
+676
+00:33:41,196 --> 00:33:44,976
+Realize that what you could
+probably get your game
+
+
+677
+00:33:44,976 --> 00:33:48,596
+under 100 megabytes if you use
+background transfers, you know,
+
+
+678
+00:33:48,596 --> 00:33:51,686
+and let the user download
+the main bundle of it now
+
+
+679
+00:33:51,686 --> 00:33:54,026
+but have more content
+that gets transferred
+
+
+680
+00:33:54,026 --> 00:33:56,056
+down after they've
+run it the first time.
+
+
+681
+00:33:57,126 --> 00:33:59,406
+So there's a couple of
+things to do this now.
+
+
+682
+00:33:59,756 --> 00:34:02,336
+So the first step really is
+to take a good solid look
+
+
+683
+00:34:02,336 --> 00:34:05,696
+at your game and the
+game design and determine
+
+
+684
+00:34:05,696 --> 00:34:07,016
+if there is some content
+
+
+685
+00:34:07,016 --> 00:34:09,485
+that isn't really
+needed right up front.
+
+
+686
+00:34:10,206 --> 00:34:12,545
+And games, especially
+games with any kind
+
+
+687
+00:34:12,545 --> 00:34:16,485
+of a linear progression are
+perfect for this, right.
+
+
+688
+00:34:16,795 --> 00:34:19,275
+You put the first couple of
+hours or whatever, you know,
+
+
+689
+00:34:19,275 --> 00:34:23,226
+the first 20, 30 levels in
+the bundle at full quality.
+
+
+690
+00:34:23,815 --> 00:34:26,696
+And then that's going to
+provide enough time for the user
+
+
+691
+00:34:26,696 --> 00:34:29,666
+to be playing, and then you
+use background transfers
+
+
+692
+00:34:29,906 --> 00:34:32,576
+to download the rest while
+their playing those first 20.
+
+
+693
+00:34:32,576 --> 00:34:34,946
+So how's this done?
+
+
+694
+00:34:35,735 --> 00:34:38,966
+Okay. So NSURLSession is an
+API that we introduced back
+
+
+695
+00:34:38,966 --> 00:34:42,596
+in iOS 7, and the
+use is to upload
+
+
+696
+00:34:42,596 --> 00:34:44,956
+and download data
+from your own server.
+
+
+697
+00:34:45,286 --> 00:34:47,676
+And this is intended
+for large data sets.
+
+
+698
+00:34:47,726 --> 00:34:52,176
+So game levels, big images,
+sound files, texture atlases,
+
+
+699
+00:34:52,176 --> 00:34:53,565
+all that kind of thing, right.
+
+
+700
+00:34:54,196 --> 00:34:58,046
+Now, the transfer, itself,
+happens outside of your process.
+
+
+701
+00:34:58,046 --> 00:34:58,996
+You just set it off.
+
+
+702
+00:34:58,996 --> 00:35:01,096
+You'll get notified
+when it's completed.
+
+
+703
+00:35:01,396 --> 00:35:04,116
+The player can continue
+or the app can even be,
+
+
+704
+00:35:04,116 --> 00:35:05,946
+you know, quit or terminated.
+
+
+705
+00:35:05,946 --> 00:35:07,986
+And the download is
+going to keep on going.
+
+
+706
+00:35:08,696 --> 00:35:11,276
+And the app, if it's
+running, will be notified,
+
+
+707
+00:35:11,276 --> 00:35:14,726
+or it'll be woken up when
+the transfer is done.
+
+
+708
+00:35:15,136 --> 00:35:18,236
+And it's just enough so that you
+can take the content that's been
+
+
+709
+00:35:18,236 --> 00:35:21,156
+downloaded and, kind
+of, unpack it and put it
+
+
+710
+00:35:21,156 --> 00:35:22,666
+into its permanent location.
+
+
+711
+00:35:23,376 --> 00:35:24,646
+So it's really useful.
+
+
+712
+00:35:25,566 --> 00:35:28,456
+It does obviously, it adds
+some complexity, right.
+
+
+713
+00:35:28,456 --> 00:35:30,926
+Because you're going to have
+to handle some corner cases now
+
+
+714
+00:35:31,046 --> 00:35:33,736
+that you didn't have before,
+like the player running
+
+
+715
+00:35:33,736 --> 00:35:37,646
+out of disk space or, you
+know, reaching a level
+
+
+716
+00:35:37,646 --> 00:35:39,866
+that you haven't
+successfully downloaded yet.
+
+
+717
+00:35:40,676 --> 00:35:42,346
+And it's important, also,
+
+
+718
+00:35:42,346 --> 00:35:44,806
+that you follow the iOS
+Data Storage Guidelines.
+
+
+719
+00:35:44,896 --> 00:35:46,996
+So these will tell you exactly
+
+
+720
+00:35:46,996 --> 00:35:49,986
+where to put any
+downloaded assets.
+
+
+721
+00:35:50,596 --> 00:35:55,416
+And also remember, this is about
+assets, you know, new textures,
+
+
+722
+00:35:55,416 --> 00:35:59,166
+new levels, new sounds, and that
+kind of thing, but not code.
+
+
+723
+00:35:59,616 --> 00:36:02,256
+If you're making code
+changes, that has to go back
+
+
+724
+00:36:02,256 --> 00:36:05,206
+up through app review
+as an update to the app.
+
+
+725
+00:36:05,776 --> 00:36:09,236
+But, okay, so that's number six:
+to use background transfers.
+
+
+726
+00:36:09,646 --> 00:36:13,316
+And, you know, if you're going
+to be targeting iOS 7 and above,
+
+
+727
+00:36:13,316 --> 00:36:16,596
+like now is the time, right,
+because you can move cleanly
+
+
+728
+00:36:16,596 --> 00:36:22,026
+up to all of your supported
+devices with NSURLSession.
+
+
+729
+00:36:23,886 --> 00:36:27,176
+Okay, number seven: optimize
+graphics performance.
+
+
+730
+00:36:28,256 --> 00:36:29,656
+So, you know, I've
+mentioned I meet
+
+
+731
+00:36:29,656 --> 00:36:30,896
+with developers all the time.
+
+
+732
+00:36:30,896 --> 00:36:32,896
+I probably met with some
+of the people in this room.
+
+
+733
+00:36:33,276 --> 00:36:35,876
+And, you know, to give people
+feedback on their games,
+
+
+734
+00:36:36,116 --> 00:36:40,806
+but one of the things that just
+very, very honestly that I love
+
+
+735
+00:36:40,916 --> 00:36:43,446
+to do is to run their game
+
+
+736
+00:36:43,446 --> 00:36:47,146
+through our performance tools
+and, kind of, use that to figure
+
+
+737
+00:36:47,836 --> 00:36:52,596
+out what optimizations they need
+to make in OpenGL and so on.
+
+
+738
+00:36:52,596 --> 00:36:55,176
+It's kind of what I eat
+for breakfast, right.
+
+
+739
+00:36:55,496 --> 00:36:59,546
+Now, so as I get into this
+section, though, the first thing
+
+
+740
+00:36:59,546 --> 00:37:02,266
+to realize and to
+say about it is
+
+
+741
+00:37:02,376 --> 00:37:07,256
+that optimizing graphics is
+totally what Metal is all about.
+
+
+742
+00:37:07,256 --> 00:37:09,076
+But I'll get to Metal
+in a second.
+
+
+743
+00:37:09,556 --> 00:37:12,566
+I want to talk first just
+about optimizing the games
+
+
+744
+00:37:12,566 --> 00:37:13,686
+that are already out there.
+
+
+745
+00:37:14,396 --> 00:37:17,846
+So, you know, every game
+is different, right,
+
+
+746
+00:37:17,846 --> 00:37:21,466
+and most of them are actually
+pretty well optimized.
+
+
+747
+00:37:21,466 --> 00:37:22,036
+They're okay.
+
+
+748
+00:37:22,346 --> 00:37:26,866
+But in the games that are having
+performance issues with OpenGL,
+
+
+749
+00:37:26,866 --> 00:37:30,666
+it's usually because for some
+portion of the frame, at least,
+
+
+750
+00:37:30,666 --> 00:37:33,646
+or maybe all of the frame,
+they're trying to do a lot
+
+
+751
+00:37:33,646 --> 00:37:36,786
+of draw calls with a
+low number of triangles
+
+
+752
+00:37:36,786 --> 00:37:38,806
+to be processed in
+each draw call.
+
+
+753
+00:37:39,736 --> 00:37:45,116
+And the worst case scenario
+is actually fairly common.
+
+
+754
+00:37:45,116 --> 00:37:46,096
+I see it sometimes.
+
+
+755
+00:37:46,096 --> 00:37:49,056
+It's particularly in
+2D and isometric games
+
+
+756
+00:37:49,056 --> 00:37:50,356
+that I'll find this sometimes.
+
+
+757
+00:37:50,716 --> 00:37:52,466
+Is that they're just,
+they're in a loop
+
+
+758
+00:37:52,466 --> 00:37:55,966
+where they're binding a texture,
+drawing a quad, and then repeat.
+
+
+759
+00:37:55,966 --> 00:37:57,506
+Bind; draw; bind;
+draw; bind; draw.
+
+
+760
+00:37:57,506 --> 00:38:01,656
+And that's how they draw their
+entire scene with one draw call
+
+
+761
+00:38:01,656 --> 00:38:04,786
+for every quad, one texture
+bind for every draw call.
+
+
+762
+00:38:05,846 --> 00:38:08,376
+And, you know, for
+OpenGL ES, there's just,
+
+
+763
+00:38:08,426 --> 00:38:12,046
+there's a fair amount of CPU
+overhead that's involved here
+
+
+764
+00:38:12,046 --> 00:38:15,276
+in the validation and the
+processing draw calls.
+
+
+765
+00:38:15,276 --> 00:38:19,166
+So, you know, the theory behind
+this becomes very important
+
+
+766
+00:38:19,246 --> 00:38:20,746
+to optimize this.
+
+
+767
+00:38:21,006 --> 00:38:24,356
+It's super important that
+those developers find a way
+
+
+768
+00:38:24,356 --> 00:38:28,036
+to amortize that overhead
+over more triangles.
+
+
+769
+00:38:28,886 --> 00:38:33,066
+Now, this is something that
+I can help any of you with,
+
+
+770
+00:38:33,066 --> 00:38:36,996
+and we have tons of people
+in the lab this week.
+
+
+771
+00:38:36,996 --> 00:38:40,576
+So if you're falling into this
+situation, we can help you.
+
+
+772
+00:38:41,026 --> 00:38:44,816
+But these 15 recommendations
+that are up here cover most
+
+
+773
+00:38:44,816 --> 00:38:46,446
+of the cases that I run into.
+
+
+774
+00:38:46,446 --> 00:38:50,616
+This is the solutions that we
+apply depending on the game,
+
+
+775
+00:38:50,616 --> 00:38:55,016
+depending on the structure, and
+what they're doing in OpenGL.
+
+
+776
+00:38:56,556 --> 00:38:59,286
+But, and I'm not going to
+go deep into any of these.
+
+
+777
+00:38:59,476 --> 00:39:03,426
+But, so, more broadly,
+what you need to realize is
+
+
+778
+00:39:03,426 --> 00:39:07,436
+that optimizing graphics
+performance is really
+
+
+779
+00:39:07,666 --> 00:39:12,426
+and primarily about identifying
+the bottlenecks that you have
+
+
+780
+00:39:12,426 --> 00:39:15,786
+and then addressing them, taking
+some action to address them.
+
+
+781
+00:39:16,796 --> 00:39:19,496
+Okay, so that lets me
+talk about the tools.
+
+
+782
+00:39:19,496 --> 00:39:21,706
+You know, we have
+these fantastic tools
+
+
+783
+00:39:22,206 --> 00:39:25,126
+that will help you
+identify exactly
+
+
+784
+00:39:25,126 --> 00:39:27,076
+where your performance
+bottlenecks are
+
+
+785
+00:39:27,076 --> 00:39:28,966
+and different bottlenecks
+that might be happening.
+
+
+786
+00:39:29,576 --> 00:39:33,306
+So this is a screenshot from the
+GPU performance graphs in Xcode.
+
+
+787
+00:39:34,036 --> 00:39:38,026
+And this, along with the
+GPU frame debugger in Xcode
+
+
+788
+00:39:38,026 --> 00:39:40,636
+and the OpenGL ES
+analyzer instrument,
+
+
+789
+00:39:41,006 --> 00:39:42,436
+are kind of the tools
+of the trade
+
+
+790
+00:39:42,436 --> 00:39:44,366
+that you should familiarize
+yourself with here.
+
+
+791
+00:39:44,966 --> 00:39:46,156
+So now let me zoom in.
+
+
+792
+00:39:47,116 --> 00:39:50,386
+So what you see here: Section
+at the top you see this sort
+
+
+793
+00:39:50,386 --> 00:39:53,506
+of speedometer on the left up
+at the top, the purple bars
+
+
+794
+00:39:53,506 --> 00:39:55,826
+with utilization in the
+middle that's showing me my
+
+
+795
+00:39:55,826 --> 00:39:57,256
+GPU utilization.
+
+
+796
+00:39:57,256 --> 00:39:59,796
+And then over here on the
+right, the frame time,
+
+
+797
+00:40:00,086 --> 00:40:03,176
+or how much time the CPU
+is working on this frame,
+
+
+798
+00:40:03,176 --> 00:40:05,306
+and how much time the GPU
+is working on this frame.
+
+
+799
+00:40:06,186 --> 00:40:09,406
+Now, in this particular
+screenshot,
+
+
+800
+00:40:09,836 --> 00:40:12,266
+this is a little different
+than what I was just talking
+
+
+801
+00:40:12,266 --> 00:40:14,786
+about with bind, draw,
+bind, draw, bind, draw.
+
+
+802
+00:40:14,786 --> 00:40:18,376
+In this one, what it is, I can
+see the renderer utilization is
+
+
+803
+00:40:18,376 --> 00:40:21,626
+at 100 percent and that's
+pushing the device utilization
+
+
+804
+00:40:21,626 --> 00:40:22,636
+up to 100 percent.
+
+
+805
+00:40:23,096 --> 00:40:25,246
+And that is typically
+a sign actually
+
+
+806
+00:40:25,246 --> 00:40:26,996
+of a very expensive
+fragment shader.
+
+
+807
+00:40:27,436 --> 00:40:30,736
+Okay. And so down in the
+bottom here, you can see,
+
+
+808
+00:40:30,886 --> 00:40:36,526
+a view here now where I can-it's
+showing me the cost of every one
+
+
+809
+00:40:36,526 --> 00:40:38,656
+of my shaders that was
+used in this frame.
+
+
+810
+00:40:38,936 --> 00:40:41,266
+And I can turn down
+these disclosures
+
+
+811
+00:40:41,546 --> 00:40:44,736
+and see the specific draw
+calls that use that shader
+
+
+812
+00:40:44,736 --> 00:40:46,836
+and how much each one
+of them cost as well.
+
+
+813
+00:40:48,146 --> 00:40:50,946
+And, then, I can
+also go and drill
+
+
+814
+00:40:50,946 --> 00:40:52,656
+down into a particular shader.
+
+
+815
+00:40:52,656 --> 00:40:54,366
+I'm not going to walk
+you through all the UI.
+
+
+816
+00:40:54,366 --> 00:40:57,426
+But once you get to the
+view where you're looking
+
+
+817
+00:40:57,426 --> 00:41:00,426
+that your shaders, if
+I zoom that in again.
+
+
+818
+00:41:01,056 --> 00:41:05,066
+Okay. So what this
+is showing me now,
+
+
+819
+00:41:05,066 --> 00:41:07,856
+look at on the right hand
+side, these little bars.
+
+
+820
+00:41:08,616 --> 00:41:11,086
+This is taken live
+from the device.
+
+
+821
+00:41:11,086 --> 00:41:13,056
+It's able to see the
+performance data.
+
+
+822
+00:41:13,386 --> 00:41:16,046
+And it's going line by
+line through the shader
+
+
+823
+00:41:16,046 --> 00:41:18,686
+to show you the performance
+cost of each line.
+
+
+824
+00:41:19,036 --> 00:41:22,596
+And so here I see that,
+okay, 59 percent of the cost
+
+
+825
+00:41:22,876 --> 00:41:25,936
+of this shader was going
+into shadow projection.
+
+
+826
+00:41:25,936 --> 00:41:27,926
+And that's probably
+something I can optimize.
+
+
+827
+00:41:27,926 --> 00:41:30,206
+I can use a lower resolution
+shadow map or something.
+
+
+828
+00:41:30,616 --> 00:41:33,886
+Because, remember, this was
+the most expensive shader
+
+
+829
+00:41:34,096 --> 00:41:34,466
+in the app.
+
+
+830
+00:41:35,126 --> 00:41:37,776
+And the renderer utilization
+was at 100 percent.
+
+
+831
+00:41:37,886 --> 00:41:41,616
+So this is the bottleneck,
+this shadow projection.
+
+
+832
+00:41:41,616 --> 00:41:43,646
+And so it's exactly
+what, in this case,
+
+
+833
+00:41:43,936 --> 00:41:45,156
+needs to be optimized out.
+
+
+834
+00:41:45,896 --> 00:41:48,556
+But, so the point, though,
+is that the tools can be used
+
+
+835
+00:41:48,556 --> 00:41:52,026
+to exactly pinpoint what's
+going on in your app.
+
+
+836
+00:41:52,256 --> 00:41:54,976
+Now, you know, if you're
+not familiar with the tool
+
+
+837
+00:41:54,976 --> 00:41:58,546
+or this isn't something that
+you know your way around yet,
+
+
+838
+00:41:58,546 --> 00:41:59,606
+just come down to the labs.
+
+
+839
+00:42:00,006 --> 00:42:01,866
+We have so many people
+down there who would love
+
+
+840
+00:42:01,866 --> 00:42:03,996
+to help you to suss this out.
+
+
+841
+00:42:04,936 --> 00:42:07,086
+But so, obviously, there's
+an opportunity here, right,
+
+
+842
+00:42:07,136 --> 00:42:11,486
+for OpenGL ES-based games to
+kind of use the tools, optimize
+
+
+843
+00:42:11,486 --> 00:42:12,706
+and get better performance.
+
+
+844
+00:42:12,756 --> 00:42:15,676
+But I also want to be
+super clear, you know,
+
+
+845
+00:42:15,676 --> 00:42:20,316
+that seeing so many developers
+struggle and face these kinds
+
+
+846
+00:42:20,316 --> 00:42:24,176
+of issues are a big part
+of the reason why SpriteKit
+
+
+847
+00:42:24,176 --> 00:42:26,396
+and SceneKit were
+developed, right.
+
+
+848
+00:42:26,696 --> 00:42:28,826
+Their purpose is to provide you
+
+
+849
+00:42:28,826 --> 00:42:30,916
+with the capabilities
+that you need, right?
+
+
+850
+00:42:30,916 --> 00:42:34,876
+2D games with SpriteKit,
+3D games with SceneKit.
+
+
+851
+00:42:35,146 --> 00:42:38,116
+Or now they can be
+mixed together, right.
+
+
+852
+00:42:38,626 --> 00:42:41,546
+But the real key is that
+once you're using them
+
+
+853
+00:42:41,546 --> 00:42:43,726
+and taking advantage
+of their feature set,
+
+
+854
+00:42:44,136 --> 00:42:48,926
+they take on the burden of
+rendering optimally in OpenGL.
+
+
+855
+00:42:48,926 --> 00:42:50,716
+And you don't have to
+worry about it anymore.
+
+
+856
+00:42:51,666 --> 00:42:54,726
+And, if you think about it,
+one more step, you know,
+
+
+857
+00:42:54,726 --> 00:42:58,766
+since Apple provides the
+entire technology stack
+
+
+858
+00:42:58,766 --> 00:43:02,836
+from these APIs all the
+way down to the hardware,
+
+
+859
+00:43:03,176 --> 00:43:06,936
+it means that everything can
+be made very optimal in a way
+
+
+860
+00:43:06,936 --> 00:43:08,356
+that you don't have to work on.
+
+
+861
+00:43:08,896 --> 00:43:13,156
+And then, okay, speaking
+of optimal, right.
+
+
+862
+00:43:13,356 --> 00:43:15,246
+Now there's Metal, right.
+
+
+863
+00:43:15,476 --> 00:43:19,296
+So this, this is for those
+of you with games or engines
+
+
+864
+00:43:19,296 --> 00:43:22,546
+that need to push a
+lot more draw calls.
+
+
+865
+00:43:23,206 --> 00:43:27,156
+And really allow your code
+to have very efficient access
+
+
+866
+00:43:27,156 --> 00:43:31,576
+to the GPU to interleave
+graphics and compute, and so on.
+
+
+867
+00:43:31,576 --> 00:43:33,286
+And really take control yourself
+
+
+868
+00:43:33,286 --> 00:43:35,616
+over how the frame
+is being rendered.
+
+
+869
+00:43:36,426 --> 00:43:39,546
+So that is number seven:
+optimize graphics performance.
+
+
+870
+00:43:41,326 --> 00:43:44,256
+Okay, number eight: now,
+we're lifting out of the tech
+
+
+871
+00:43:44,256 --> 00:43:46,206
+in just a couple of
+really kind of quick
+
+
+872
+00:43:46,206 --> 00:43:47,826
+and light bits of advice here.
+
+
+873
+00:43:48,266 --> 00:43:50,136
+This is a super quick one.
+
+
+874
+00:43:50,346 --> 00:43:52,526
+It's to make a great
+gameplay video.
+
+
+875
+00:43:52,946 --> 00:43:54,356
+You know, so earlier
+in the talk,
+
+
+876
+00:43:54,356 --> 00:43:55,386
+I talked about the importance
+
+
+877
+00:43:55,386 --> 00:43:57,476
+of making a really
+great first impression.
+
+
+878
+00:43:57,796 --> 00:44:00,176
+But what I didn't
+really get into then was
+
+
+879
+00:44:00,176 --> 00:44:01,876
+that from the user's
+perspective,
+
+
+880
+00:44:01,876 --> 00:44:04,496
+your player's perspective,
+all of that is going
+
+
+881
+00:44:04,496 --> 00:44:05,896
+to start on the App Store.
+
+
+882
+00:44:06,326 --> 00:44:09,186
+And, you know, as we talked
+about yesterday, you know,
+
+
+883
+00:44:09,186 --> 00:44:11,326
+when people are really
+coming on to the App Store,
+
+
+884
+00:44:11,326 --> 00:44:13,536
+they're looking for
+something that's cool and new.
+
+
+885
+00:44:13,536 --> 00:44:16,806
+You know, they're going to be
+looking for some way to kind
+
+
+886
+00:44:16,806 --> 00:44:19,396
+of understand what
+your game is doing.
+
+
+887
+00:44:19,396 --> 00:44:22,856
+And you want to have something
+that's going to stand out
+
+
+888
+00:44:23,566 --> 00:44:25,426
+and exactly explain it.
+
+
+889
+00:44:25,946 --> 00:44:28,266
+And so that they'll
+be more confident
+
+
+890
+00:44:28,266 --> 00:44:30,386
+and more ready to get your game.
+
+
+891
+00:44:31,586 --> 00:44:34,066
+Okay. Now, as we talked
+about a little bit yesterday,
+
+
+892
+00:44:34,066 --> 00:44:37,226
+so in iOS 8, OS X
+Yosemite, you'll be able
+
+
+893
+00:44:37,226 --> 00:44:39,556
+to create these short
+app previews
+
+
+894
+00:44:39,556 --> 00:44:41,626
+or game previews
+to demo your game.
+
+
+895
+00:44:42,086 --> 00:44:44,516
+You should use this to show
+how the game is played.
+
+
+896
+00:44:44,516 --> 00:44:45,156
+You know, use it.
+
+
+897
+00:44:45,446 --> 00:44:48,316
+Tell a story with
+this and really appeal
+
+
+898
+00:44:48,316 --> 00:44:50,736
+to what makes the
+gameplay so much fun.
+
+
+899
+00:44:51,276 --> 00:44:54,686
+You know, here's how it'll look
+when it's on the App Store.
+
+
+900
+00:44:54,966 --> 00:44:58,146
+We showed this "Monument
+Valley" example yesterday.
+
+
+901
+00:44:58,146 --> 00:45:03,226
+And how it works is just
+the app preview just appears
+
+
+902
+00:45:03,696 --> 00:45:06,326
+as the first image there
+along with the screenshot.
+
+
+903
+00:45:06,736 --> 00:45:09,286
+User taps on that, and they
+can see this gameplay video.
+
+
+904
+00:45:09,816 --> 00:45:11,996
+But now some details about this.
+
+
+905
+00:45:12,916 --> 00:45:15,926
+Okay. So the app preview
+needs to be, you know,
+
+
+906
+00:45:15,926 --> 00:45:17,276
+a video of your gameplay.
+
+
+907
+00:45:17,276 --> 00:45:19,096
+It's not intended to be an ad.
+
+
+908
+00:45:19,416 --> 00:45:23,086
+It should convey the real
+experience of playing the game.
+
+
+909
+00:45:23,516 --> 00:45:26,136
+It can be up to 30 seconds long.
+
+
+910
+00:45:26,756 --> 00:45:30,846
+You provide it as an H.264,
+you know, MPEG4 encoded file
+
+
+911
+00:45:30,846 --> 00:45:32,506
+that you upload into
+iTunes Connect.
+
+
+912
+00:45:32,966 --> 00:45:36,136
+You can have, or you should
+have a different video
+
+
+913
+00:45:36,136 --> 00:45:38,126
+for iPhone versus iPad.
+
+
+914
+00:45:38,166 --> 00:45:43,136
+And your content itself can
+be captured directly off
+
+
+915
+00:45:43,136 --> 00:45:47,216
+of your iOS device and onto
+your Mac that's running OS
+
+
+916
+00:45:47,246 --> 00:45:47,976
+X Yosemite.
+
+
+917
+00:45:48,266 --> 00:45:51,346
+The Mac just sees the iOS
+device as a video camera.
+
+
+918
+00:45:51,666 --> 00:45:53,096
+And you start playing the game,
+
+
+919
+00:45:53,096 --> 00:45:55,596
+and you can capture it using
+whatever tool you like:
+
+
+920
+00:45:55,636 --> 00:45:57,806
+Quicktime Player, and so on.
+
+
+921
+00:45:57,806 --> 00:45:59,876
+iMovie is where you
+can do your editing.
+
+
+922
+00:45:59,876 --> 00:46:01,626
+And then just put it
+all together and get it
+
+
+923
+00:46:01,626 --> 00:46:03,746
+up on iTunes Connect,
+and you're ready to go.
+
+
+924
+00:46:04,416 --> 00:46:07,636
+And then this is really
+just sort of one piece
+
+
+925
+00:46:07,636 --> 00:46:11,706
+of building a great App
+Store presence, right.
+
+
+926
+00:46:11,706 --> 00:46:14,956
+So having a great icon,
+compelling screenshots,
+
+
+927
+00:46:15,286 --> 00:46:19,506
+localizations, description,
+your keywords, and so on.
+
+
+928
+00:46:20,016 --> 00:46:23,066
+Okay. So about app previews,
+there's a whole session
+
+
+929
+00:46:23,066 --> 00:46:25,426
+on it that's also on
+Thursday afternoon.
+
+
+930
+00:46:25,426 --> 00:46:27,176
+Check your schedule to see that.
+
+
+931
+00:46:28,366 --> 00:46:32,236
+And make a great video
+that's going to show players
+
+
+932
+00:46:32,236 --> 00:46:35,136
+who are interested in your
+game what the gameplay is
+
+
+933
+00:46:35,136 --> 00:46:35,626
+really like.
+
+
+934
+00:46:35,626 --> 00:46:39,936
+Okay. Number nine
+is to localize.
+
+
+935
+00:46:40,836 --> 00:46:43,466
+You know the App Store
+is a global business.
+
+
+936
+00:46:43,856 --> 00:46:49,156
+It's available in 155 countries
+in 40 languages, right.
+
+
+937
+00:46:49,156 --> 00:46:53,456
+So this, this is an opportunity
+that is just phenomenal
+
+
+938
+00:46:53,686 --> 00:46:55,466
+and you should think globally.
+
+
+939
+00:46:55,466 --> 00:46:57,956
+You know, you need to think
+about the distribution
+
+
+940
+00:46:57,956 --> 00:47:00,676
+of your game as a
+global opportunity.
+
+
+941
+00:47:02,766 --> 00:47:05,026
+Now, so the first thing
+that you should do,
+
+
+942
+00:47:05,026 --> 00:47:06,746
+if you haven't already
+done this,
+
+
+943
+00:47:07,066 --> 00:47:10,476
+is to localize your App
+Store presence, right.
+
+
+944
+00:47:11,016 --> 00:47:15,346
+Just so that when a player in
+some other region is coming in
+
+
+945
+00:47:15,346 --> 00:47:17,856
+and looking at your game,
+it just stands to reason
+
+
+946
+00:47:17,856 --> 00:47:19,996
+that they'll be more
+interested in it
+
+
+947
+00:47:20,336 --> 00:47:23,166
+if they can read the description
+of these other things
+
+
+948
+00:47:23,166 --> 00:47:24,996
+in their native language, right.
+
+
+949
+00:47:24,996 --> 00:47:28,936
+So localize the name, the
+description, the keywords,
+
+
+950
+00:47:29,176 --> 00:47:32,826
+the snapshots, and so on, right.
+
+
+951
+00:47:32,826 --> 00:47:35,606
+And then the second
+piece of this, of course,
+
+
+952
+00:47:35,606 --> 00:47:37,856
+is to localize the
+app content itself.
+
+
+953
+00:47:38,456 --> 00:47:42,556
+So by that I mean to really go
+back and structure your game
+
+
+954
+00:47:42,646 --> 00:47:44,136
+for internationalization.
+
+
+955
+00:47:44,136 --> 00:47:46,216
+You'll need to do what
+you can to separate text
+
+
+956
+00:47:46,576 --> 00:47:48,856
+from artwork and texture.
+
+
+957
+00:47:48,856 --> 00:47:51,446
+So you don't have to
+make copies of big images
+
+
+958
+00:47:51,446 --> 00:47:53,156
+for every language
+that you support.
+
+
+959
+00:47:53,256 --> 00:47:55,706
+And then go through your UI.
+
+
+960
+00:47:56,366 --> 00:47:57,646
+And, of course, right.
+
+
+961
+00:47:57,646 --> 00:48:00,326
+And translate the text into
+all the different languages
+
+
+962
+00:48:00,326 --> 00:48:01,876
+that you want to support.
+
+
+963
+00:48:01,876 --> 00:48:05,226
+And then, finally, you
+know, also, consider things
+
+
+964
+00:48:05,226 --> 00:48:07,106
+like whether your game is right
+
+
+965
+00:48:07,106 --> 00:48:10,286
+to provide some culturalized
+content
+
+
+966
+00:48:10,416 --> 00:48:11,906
+where it would be appropriate.
+
+
+967
+00:48:12,286 --> 00:48:14,336
+For example, if it
+was a driving game,
+
+
+968
+00:48:14,526 --> 00:48:16,596
+maybe you would use
+local road signs
+
+
+969
+00:48:16,596 --> 00:48:18,326
+for different locales and so on.
+
+
+970
+00:48:18,676 --> 00:48:20,796
+Local license plates
+from different locales.
+
+
+971
+00:48:23,216 --> 00:48:27,466
+So, now, here's a list
+of some of the languages
+
+
+972
+00:48:27,466 --> 00:48:29,546
+that we've recommended before.
+
+
+973
+00:48:29,546 --> 00:48:31,466
+It's certainly not exhaustive.
+
+
+974
+00:48:31,466 --> 00:48:32,826
+It's a big list.
+
+
+975
+00:48:32,886 --> 00:48:34,746
+And it's a good place
+to start though.
+
+
+976
+00:48:35,206 --> 00:48:38,046
+So first is EFIGS,
+right: English, French,
+
+
+977
+00:48:38,046 --> 00:48:39,246
+Italian, German, Spanish.
+
+
+978
+00:48:39,856 --> 00:48:44,786
+Then many regions in Asia, so
+Japanese, Korean, Traditional
+
+
+979
+00:48:44,786 --> 00:48:47,616
+and Simplified Chinese, and
+then branches out from there.
+
+
+980
+00:48:47,616 --> 00:48:50,146
+So Brazilian, Portuguese,
+Russian, Turkish,
+
+
+981
+00:48:50,146 --> 00:48:53,036
+and Arabic are what
+we would recommend
+
+
+982
+00:48:53,036 --> 00:48:54,596
+that you really put
+some focus into.
+
+
+983
+00:48:55,236 --> 00:48:57,796
+And there's a great
+resource online:
+
+
+984
+00:48:57,936 --> 00:49:00,696
+developer.apple.com/
+internationalization.
+
+
+985
+00:49:01,156 --> 00:49:03,876
+So this will take you step
+by step through the process
+
+
+986
+00:49:03,876 --> 00:49:07,326
+of internationalizing and
+localizing your app, your game.
+
+
+987
+00:49:07,806 --> 00:49:12,486
+And it gives you some links to
+third party localization vendors
+
+
+988
+00:49:12,486 --> 00:49:15,186
+if you don't have that
+expertise in-house.
+
+
+989
+00:49:16,176 --> 00:49:19,096
+But, so that is number
+nine: to localize.
+
+
+990
+00:49:19,496 --> 00:49:24,056
+And so number 10: to
+target the state of the art.
+
+
+991
+00:49:25,266 --> 00:49:29,626
+So if you think about some of
+the best games that are on iOS,
+
+
+992
+00:49:30,516 --> 00:49:32,686
+you know, a real common
+thread, as we've been saying,
+
+
+993
+00:49:32,686 --> 00:49:35,466
+is how they consistently
+aim high
+
+
+994
+00:49:35,466 --> 00:49:38,936
+and consistently target
+the latest and greatest
+
+
+995
+00:49:39,006 --> 00:49:41,546
+to differentiate
+themselves on our devices.
+
+
+996
+00:49:42,676 --> 00:49:46,956
+So to be state-of-the-art
+means really taking advantage
+
+
+997
+00:49:46,956 --> 00:49:48,036
+of the capabilities
+
+
+998
+00:49:48,036 --> 00:49:50,896
+of the latest hardware
+like the A7, right.
+
+
+999
+00:49:51,186 --> 00:49:54,226
+And target the feature
+set of those devices
+
+
+1000
+00:49:54,226 --> 00:49:55,866
+so that you stand out.
+
+
+1001
+00:49:56,496 --> 00:50:00,566
+I mean, you guys, you saw
+those demos yesterday, right,
+
+
+1002
+00:50:00,566 --> 00:50:02,366
+during the "Keynote",
+the "State of the Union".
+
+
+1003
+00:50:03,046 --> 00:50:04,686
+They were on this hardware.
+
+
+1004
+00:50:04,856 --> 00:50:08,316
+You know, you've
+seen what it can do.
+
+
+1005
+00:50:08,656 --> 00:50:11,686
+So take advantage
+of that, that power,
+
+
+1006
+00:50:11,726 --> 00:50:14,626
+that capability that's there.
+
+
+1007
+00:50:14,826 --> 00:50:17,616
+Then hand in hand with
+that, is that state
+
+
+1008
+00:50:17,616 --> 00:50:21,566
+of the art apps support
+the latest versions of iOS.
+
+
+1009
+00:50:22,816 --> 00:50:26,616
+And I think that this week
+should be that turning point
+
+
+1010
+00:50:26,616 --> 00:50:31,346
+for you where it's time now for
+you to realign your projects
+
+
+1011
+00:50:31,586 --> 00:50:36,376
+to aim for the release of iOS 8
+and the APIs and the frameworks
+
+
+1012
+00:50:36,376 --> 00:50:38,646
+that you'll be learning
+about all this week.
+
+
+1013
+00:50:38,956 --> 00:50:42,586
+And then bring your
+minimum OS up to iOS 7.
+
+
+1014
+00:50:43,066 --> 00:50:44,736
+That is our recommendation.
+
+
+1015
+00:50:44,736 --> 00:50:47,776
+Support the latest
+N and N minus 1.
+
+
+1016
+00:50:48,156 --> 00:50:51,396
+So when iOS 8 is released,
+you'll probably want
+
+
+1017
+00:50:51,516 --> 00:50:53,116
+to be looking at 7 and 8.
+
+
+1018
+00:50:54,276 --> 00:50:58,776
+Okay. Now something, you know,
+something that we do hear
+
+
+1019
+00:50:58,776 --> 00:51:01,346
+from developers, actually more
+often than you might think,
+
+
+1020
+00:51:01,346 --> 00:51:05,886
+is that they're telling us
+that they'll, they're deciding
+
+
+1021
+00:51:05,886 --> 00:51:08,716
+to stick with an older version
+of Xcode or an older SDK
+
+
+1022
+00:51:08,716 --> 00:51:12,716
+because they think that if
+they move up to what's latest,
+
+
+1023
+00:51:13,106 --> 00:51:15,006
+they won't be able
+to still ship a game
+
+
+1024
+00:51:15,006 --> 00:51:17,336
+that supports anything
+older than that.
+
+
+1025
+00:51:17,846 --> 00:51:20,356
+But obviously that's
+not the case.
+
+
+1026
+00:51:21,066 --> 00:51:24,886
+So you can adopt the latest SDK
+version by setting your base SDK
+
+
+1027
+00:51:24,886 --> 00:51:29,026
+to what is current and then
+setting your deployment target
+
+
+1028
+00:51:29,026 --> 00:51:32,746
+down to the lowest OS version
+that you want to support
+
+
+1029
+00:51:33,056 --> 00:51:35,016
+and dropping support
+for the rest.
+
+
+1030
+00:51:35,716 --> 00:51:39,286
+And then handle differences
+between 7 and 8 in your code.
+
+
+1031
+00:51:39,386 --> 00:51:40,826
+You know, check for
+the existence
+
+
+1032
+00:51:41,146 --> 00:51:42,666
+of hardware capabilities.
+
+
+1033
+00:51:42,996 --> 00:51:45,116
+Or check whether
+classes are defined.
+
+
+1034
+00:51:45,386 --> 00:51:47,086
+Or check whether classes respond
+
+
+1035
+00:51:47,086 --> 00:51:49,016
+to a particular selector
+and so on.
+
+
+1036
+00:51:49,746 --> 00:51:52,116
+Now for those of you who
+are coming over to iOS
+
+
+1037
+00:51:52,116 --> 00:51:55,156
+and are just not as
+familiar with that process,
+
+
+1038
+00:51:55,296 --> 00:51:57,986
+we actually went through
+it all in pretty good depth
+
+
+1039
+00:51:58,556 --> 00:52:02,566
+when we went out for our iOS
+7 Tech Talks last November,
+
+
+1040
+00:52:02,566 --> 00:52:03,056
+December.
+
+
+1041
+00:52:03,556 --> 00:52:06,926
+And so those videos are online
+on our developer website.
+
+
+1042
+00:52:06,926 --> 00:52:08,566
+So you should check them out.
+
+
+1043
+00:52:10,376 --> 00:52:12,946
+Then also, state of the
+art games are the ones
+
+
+1044
+00:52:12,976 --> 00:52:15,876
+that integrate with our
+built in game technologies
+
+
+1045
+00:52:16,536 --> 00:52:19,186
+as Geoff talked about.
+
+
+1046
+00:52:20,026 --> 00:52:24,186
+So we're providing just this
+incredible foundation for you.
+
+
+1047
+00:52:24,506 --> 00:52:27,866
+It's built on a lot of different
+APIs, you know, like SpriteKit,
+
+
+1048
+00:52:28,166 --> 00:52:32,446
+Game Center, OpenGL, and
+Game Controllers and so on.
+
+
+1049
+00:52:32,446 --> 00:52:36,426
+And then the new APIs, like
+Metal and SceneKit on iOS.
+
+
+1050
+00:52:37,316 --> 00:52:40,006
+Right. And these are just
+a few of the technologies.
+
+
+1051
+00:52:40,006 --> 00:52:40,976
+You know this.
+
+
+1052
+00:52:41,616 --> 00:52:45,056
+But the point I want to make
+is about the other things.
+
+
+1053
+00:52:45,056 --> 00:52:48,746
+You know, the tools and the
+APIs that are available to you
+
+
+1054
+00:52:48,746 --> 00:52:52,606
+as game developers is
+comprehensive on iOS.
+
+
+1055
+00:52:53,436 --> 00:52:55,966
+And you should learn
+the entire stack.
+
+
+1056
+00:52:56,796 --> 00:52:59,056
+Oh, my god, that's a
+lot of learning to do.
+
+
+1057
+00:52:59,056 --> 00:53:02,676
+But really what I mean is
+to familiarize yourself
+
+
+1058
+00:53:02,676 --> 00:53:06,066
+with the technologies
+that are on iOS rather
+
+
+1059
+00:53:06,066 --> 00:53:09,536
+than just taking a project
+that you were working on,
+
+
+1060
+00:53:09,766 --> 00:53:12,916
+maybe on another platform
+or on an older OS version,
+
+
+1061
+00:53:13,076 --> 00:53:16,526
+and just shifting that over and
+fitting it into the equivalent.
+
+
+1062
+00:53:17,116 --> 00:53:20,676
+Your target should be to go
+for the latest and greatest.
+
+
+1063
+00:53:20,736 --> 00:53:24,586
+Target the top, target the
+state of the art, target the A7,
+
+
+1064
+00:53:24,586 --> 00:53:28,236
+target iOS 8 and its
+capabilities, right,
+
+
+1065
+00:53:28,896 --> 00:53:31,766
+rather than just coming
+over and just fitting
+
+
+1066
+00:53:31,986 --> 00:53:33,806
+in with something that's older.
+
+
+1067
+00:53:34,256 --> 00:53:38,066
+But, so that's number 10:
+target the state of the art.
+
+
+1068
+00:53:38,626 --> 00:53:40,796
+But before I finish, I
+do have one more thing
+
+
+1069
+00:53:40,796 --> 00:53:42,476
+that I want to talk about.
+
+
+1070
+00:53:43,706 --> 00:53:47,346
+So you know let's say that
+you've done all 10 of these.
+
+
+1071
+00:53:47,346 --> 00:53:51,496
+You've fixed your onboarding,
+you tuned up your Core Loop,
+
+
+1072
+00:53:51,496 --> 00:53:53,036
+you're optimized,
+you're localized,
+
+
+1073
+00:53:53,036 --> 00:53:55,416
+you're state-of-the-art,
+etc., all 10.
+
+
+1074
+00:53:55,916 --> 00:53:58,856
+So where do you go from here?
+
+
+1075
+00:53:59,076 --> 00:54:01,696
+Yeah, well, go to 11.
+
+
+1076
+00:54:02,796 --> 00:54:05,506
+Really, give it that extra push.
+
+
+1077
+00:54:06,216 --> 00:54:07,686
+Go the extra mile.
+
+
+1078
+00:54:08,126 --> 00:54:10,496
+Because here is my
+observation about this,
+
+
+1079
+00:54:11,226 --> 00:54:12,996
+you know: We keep innovating.
+
+
+1080
+00:54:13,386 --> 00:54:16,066
+We keep enhancing our
+game technologies.
+
+
+1081
+00:54:16,206 --> 00:54:19,306
+And we have this
+thriving ecosystem, right,
+
+
+1082
+00:54:19,586 --> 00:54:20,716
+where we're investing.
+
+
+1083
+00:54:20,956 --> 00:54:23,946
+We're adding performance,
+and we're adding capability.
+
+
+1084
+00:54:24,446 --> 00:54:26,566
+You guys, you can't stand still.
+
+
+1085
+00:54:26,836 --> 00:54:28,246
+Keep inventing.
+
+
+1086
+00:54:28,576 --> 00:54:29,346
+Keep learning.
+
+
+1087
+00:54:29,746 --> 00:54:30,506
+Keep current.
+
+
+1088
+00:54:30,946 --> 00:54:35,546
+Get started on that next update
+for iOS 8, and keep up with us
+
+
+1089
+00:54:35,906 --> 00:54:39,426
+because we love to shine
+the spotlight on developers
+
+
+1090
+00:54:39,426 --> 00:54:42,086
+who can go one louder.
+
+
+1091
+00:54:43,186 --> 00:54:43,536
+All right.
+
+
+1092
+00:54:44,056 --> 00:54:45,216
+So thank you, everyone.
+
+
+1093
+00:54:45,316 --> 00:54:46,926
+That is my list.
+
+
+1094
+00:54:47,516 --> 00:54:52,986
+[ Applause ]
+
+
+1095
+00:54:53,486 --> 00:54:57,706
+And just to wrap things up,
+I'd like to pass the stage back
+
+
+1096
+00:54:57,706 --> 00:54:59,076
+to Geoff for just a moment.
+
+
+1097
+00:54:59,076 --> 00:54:59,876
+So thank you.
+
+
+1098
+00:55:06,456 --> 00:55:07,326
+>> Thank you, Allan.
+
+
+1099
+00:55:09,376 --> 00:55:10,906
+So thank you very much, Allan.
+
+
+1100
+00:55:11,226 --> 00:55:15,566
+And I think, when I step
+back and look at this,
+
+
+1101
+00:55:15,566 --> 00:55:16,686
+we see a tremendous
+amount of games.
+
+
+1102
+00:55:16,686 --> 00:55:18,116
+You look around the room;
+there's a lot of you
+
+
+1103
+00:55:18,116 --> 00:55:19,586
+who are interested
+in building games.
+
+
+1104
+00:55:19,906 --> 00:55:22,376
+And there's a large number
+of games in the App Store.
+
+
+1105
+00:55:22,376 --> 00:55:25,386
+We're talking about how you
+can make your game stand out.
+
+
+1106
+00:55:25,746 --> 00:55:27,746
+It isn't good enough to
+just go, "Oh, I'm going to.
+
+
+1107
+00:55:27,746 --> 00:55:28,396
+I have a great idea.
+
+
+1108
+00:55:28,976 --> 00:55:29,596
+It's a cool game.
+
+
+1109
+00:55:29,596 --> 00:55:32,316
+I'm going to toss it up onto the
+App Store and see what happens."
+
+
+1110
+00:55:32,316 --> 00:55:35,976
+It is a very big pond, so
+use what Allan has told you.
+
+
+1111
+00:55:35,976 --> 00:55:38,116
+Use these 10 steps,
+and use the 11th step.
+
+
+1112
+00:55:39,346 --> 00:55:41,216
+And really make your game shine.
+
+
+1113
+00:55:41,656 --> 00:55:44,196
+These are the things which may
+not be apparent when you look
+
+
+1114
+00:55:44,196 --> 00:55:45,696
+at it, it may not be
+apparent when you look
+
+
+1115
+00:55:45,696 --> 00:55:48,976
+at the Design Awards Winners
+that they do these things.
+
+
+1116
+00:55:48,976 --> 00:55:51,116
+But they really do, they
+spend a lot of time.
+
+
+1117
+00:55:51,536 --> 00:55:52,816
+"Cut the Rope" was
+a great example.
+
+
+1118
+00:55:52,816 --> 00:55:55,916
+Spent a lot of time on
+going through with people
+
+
+1119
+00:55:55,916 --> 00:55:58,366
+who haven't played the
+game before and say, "Hey,
+
+
+1120
+00:55:58,666 --> 00:56:01,656
+when you approach the game
+what do you need to know?"
+
+
+1121
+00:56:01,876 --> 00:56:03,996
+It's not just like that
+came to them in an hour.
+
+
+1122
+00:56:04,366 --> 00:56:05,786
+So take the time with your game.
+
+
+1123
+00:56:06,106 --> 00:56:07,666
+Take the time to
+go that extra mile.
+
+
+1124
+00:56:08,046 --> 00:56:10,856
+Take the time to adopt
+these 10 items and the 11th
+
+
+1125
+00:56:11,196 --> 00:56:14,326
+and really bring your
+content up so it stands out.
+
+
+1126
+00:56:14,326 --> 00:56:17,106
+And we really hope to
+see someone in this room
+
+
+1127
+00:56:17,106 --> 00:56:19,836
+or many people in this
+room on stage next year
+
+
+1128
+00:56:19,836 --> 00:56:20,846
+at the Apple Design Awards.
+
+
+1129
+00:56:21,116 --> 00:56:22,446
+Thank you very much
+and enjoy the week.
+

@@ -1,0 +1,5263 @@
+1
+00:00:00,506 --> 00:00:11,516
+[ Silence ]
+
+
+2
+00:00:12,016 --> 00:00:13,000
+[ Applause ]
+
+
+3
+00:00:13,186 --> 00:00:13,556
+>> Thank you.
+
+
+4
+00:00:16,446 --> 00:00:17,286
+I'm Mike Hess.
+
+
+5
+00:00:17,286 --> 00:00:20,436
+I'm a software engineer on the
+iOS Apps and Frameworks team,
+
+
+6
+00:00:20,436 --> 00:00:22,866
+and I'm here with Johannes
+Fortmann to talk to you
+
+
+7
+00:00:22,866 --> 00:00:25,876
+about building great cloud
+documents-based applications.
+
+
+8
+00:00:26,836 --> 00:00:28,006
+So here we go.
+
+
+9
+00:00:28,086 --> 00:00:30,776
+We've made some important
+changes to iCloud.
+
+
+10
+00:00:30,866 --> 00:00:34,196
+First, the iCloud daemon has
+been completely rewritten
+
+
+11
+00:00:34,196 --> 00:00:35,336
+on top of CloudKit.
+
+
+12
+00:00:35,966 --> 00:00:37,736
+We're calling it iCloud Drive.
+
+
+13
+00:00:37,736 --> 00:00:41,906
+If you're interested in
+learning more about CloudKit,
+
+
+14
+00:00:41,906 --> 00:00:45,496
+I encourage you to attend
+their sessions and labs.
+
+
+15
+00:00:45,896 --> 00:00:49,606
+Second, we've added
+Windows support to iCloud.
+
+
+16
+00:00:50,176 --> 00:00:53,836
+Now your users with
+Windows devices can access
+
+
+17
+00:00:53,836 --> 00:00:56,916
+and modify their documents
+on their Windows devices.
+
+
+18
+00:00:58,216 --> 00:01:01,796
+Third, we've added an
+iCloud folder into Finder.
+
+
+19
+00:01:02,706 --> 00:01:05,446
+Now your users can add
+whatever documents they want
+
+
+20
+00:01:05,616 --> 00:01:07,686
+into their iCloud
+folder in Finder
+
+
+21
+00:01:07,916 --> 00:01:10,746
+and organize them
+however they see fit.
+
+
+22
+00:01:11,796 --> 00:01:16,156
+Fourth, we've added access
+to this iCloud folder
+
+
+23
+00:01:16,156 --> 00:01:18,016
+from within your iOS apps.
+
+
+24
+00:01:18,276 --> 00:01:19,826
+We'll get into this
+a little more later.
+
+
+25
+00:01:19,826 --> 00:01:22,266
+So, what are we going
+to cover here today?
+
+
+26
+00:01:22,266 --> 00:01:25,256
+We're going to start off
+by talking about some
+
+
+27
+00:01:25,256 --> 00:01:26,336
+of the best practices
+
+
+28
+00:01:26,336 --> 00:01:28,366
+of accessing your
+documents in the cloud.
+
+
+29
+00:01:29,666 --> 00:01:32,976
+Then we're going to move on to
+talking about how to discover
+
+
+30
+00:01:32,976 --> 00:01:34,816
+and list your documents
+in the cloud.
+
+
+31
+00:01:35,776 --> 00:01:39,736
+Next, we're going to talk about
+displaying thumbnails in your UI
+
+
+32
+00:01:39,736 --> 00:01:41,386
+when you're listing your
+documents in the cloud.
+
+
+33
+00:01:42,316 --> 00:01:46,236
+Then, we're going to talk about
+accessing documents from outside
+
+
+34
+00:01:46,236 --> 00:01:49,206
+of your apps container such
+as the shared iCloud folder.
+
+
+35
+00:01:50,506 --> 00:01:53,656
+And finally, we're going to talk
+about providing document storage
+
+
+36
+00:01:53,656 --> 00:01:55,956
+to other applications
+from within your app.
+
+
+37
+00:01:56,466 --> 00:01:58,026
+So, what is a document anyways?
+
+
+38
+00:01:59,156 --> 00:02:02,356
+We're going to define
+a document here
+
+
+39
+00:02:02,356 --> 00:02:06,686
+as a single standalone entity,
+and it's understood by the user
+
+
+40
+00:02:06,686 --> 00:02:08,205
+as a single standalone entity.
+
+
+41
+00:02:08,886 --> 00:02:11,396
+A user might want to modify it,
+
+
+42
+00:02:11,886 --> 00:02:13,996
+or give it a name that's
+meaningful to them,
+
+
+43
+00:02:14,476 --> 00:02:17,556
+or send it via email to one of
+their friends or colleagues.
+
+
+44
+00:02:18,396 --> 00:02:20,706
+There are some documents
+which we all sort
+
+
+45
+00:02:20,706 --> 00:02:23,896
+of understand are
+documents: a keynote document
+
+
+46
+00:02:24,196 --> 00:02:28,536
+or a numbers document or a pages
+document are clearly documents.
+
+
+47
+00:02:28,986 --> 00:02:32,256
+But we're also going to consider
+something like a chess game
+
+
+48
+00:02:32,256 --> 00:02:34,396
+to be a document, for
+this presentation.
+
+
+49
+00:02:35,106 --> 00:02:38,046
+A user might want to
+save the current state
+
+
+50
+00:02:38,046 --> 00:02:41,186
+of their chess game and email
+it to one of their friends
+
+
+51
+00:02:41,186 --> 00:02:42,666
+so they can pick up
+where they left off
+
+
+52
+00:02:42,696 --> 00:02:44,386
+against some hard AI level.
+
+
+53
+00:02:44,846 --> 00:02:47,366
+So, we're going to consider a
+chess game to be a document.
+
+
+54
+00:02:48,126 --> 00:02:50,266
+Now, let's talk about dealing
+
+
+55
+00:02:50,266 --> 00:02:51,536
+with your documents
+in the cloud.
+
+
+56
+00:02:52,306 --> 00:02:55,476
+So, it's important, when you're
+dealing with your documents
+
+
+57
+00:02:55,476 --> 00:02:58,016
+in the cloud, to use
+file coordination.
+
+
+58
+00:02:58,806 --> 00:03:00,366
+There are several
+reasons for this,
+
+
+59
+00:03:00,366 --> 00:03:02,776
+but one of the main ones
+is to avoid data loss.
+
+
+60
+00:03:03,916 --> 00:03:07,266
+You may have the simplest
+single-threaded application
+
+
+61
+00:03:07,266 --> 00:03:10,556
+in the world, and you may think
+that you're the only one reading
+
+
+62
+00:03:10,626 --> 00:03:12,216
+from or writing to
+your documents,
+
+
+63
+00:03:12,516 --> 00:03:14,716
+but once you add the
+iCloud daemon into the mix,
+
+
+64
+00:03:14,926 --> 00:03:17,856
+that's no longer the case,
+so use file coordination.
+
+
+65
+00:03:18,636 --> 00:03:21,296
+Let's take a quick
+example of this.
+
+
+66
+00:03:21,646 --> 00:03:24,186
+Say your app is doing
+proper file coordination.
+
+
+67
+00:03:24,856 --> 00:03:26,316
+You'll write your
+changes to disk,
+
+
+68
+00:03:26,896 --> 00:03:29,426
+the iCloud Drive daemon
+will pick up those changes
+
+
+69
+00:03:29,486 --> 00:03:31,426
+and push them up to
+the cloud and down
+
+
+70
+00:03:31,426 --> 00:03:33,066
+to all the other users' devices.
+
+
+71
+00:03:33,596 --> 00:03:35,056
+Everything's working
+properly here.
+
+
+72
+00:03:35,376 --> 00:03:36,666
+That's what you want
+to have happen.
+
+
+73
+00:03:37,786 --> 00:03:40,356
+Now let's say you're not using
+proper file coordination.
+
+
+74
+00:03:41,966 --> 00:03:44,016
+You may be writing
+your changes to disk,
+
+
+75
+00:03:44,146 --> 00:03:48,016
+but iCloud Drive may also be
+writing changes at the same time
+
+
+76
+00:03:48,166 --> 00:03:49,276
+for that same document.
+
+
+77
+00:03:49,816 --> 00:03:51,956
+This could result in
+a corrupt document
+
+
+78
+00:03:52,386 --> 00:03:55,946
+which the iCloud Drive daemon
+will again push up to the cloud
+
+
+79
+00:03:55,946 --> 00:03:58,676
+and down to the other
+users' devices which results
+
+
+80
+00:03:58,676 --> 00:04:00,056
+in data loss everywhere,
+
+
+81
+00:04:00,056 --> 00:04:02,216
+so use file coordination;
+it's very important.
+
+
+82
+00:04:03,466 --> 00:04:04,576
+There's good news though.
+
+
+83
+00:04:05,276 --> 00:04:07,316
+UIDocument makes things simple.
+
+
+84
+00:04:08,406 --> 00:04:11,376
+UIDocument and NSDocument,
+on OS X,
+
+
+85
+00:04:11,806 --> 00:04:13,196
+does all the heavy
+lifting for you.
+
+
+86
+00:04:13,626 --> 00:04:15,396
+It takes care of
+file coordination.
+
+
+87
+00:04:15,946 --> 00:04:19,616
+It also uses background queues
+to prevent the file coordination
+
+
+88
+00:04:19,676 --> 00:04:24,526
+from blocking your apps UI,
+and UIDocument provides you
+
+
+89
+00:04:24,526 --> 00:04:26,306
+with several high-level APIs
+
+
+90
+00:04:26,306 --> 00:04:28,086
+for whatever use
+case you might have.
+
+
+91
+00:04:29,946 --> 00:04:32,836
+Let's take a quick example
+like reading a document
+
+
+92
+00:04:32,836 --> 00:04:37,526
+from disk with UIDocument.
+
+
+93
+00:04:39,916 --> 00:04:44,856
+So, at the highest-level
+UIDocument does all
+
+
+94
+00:04:44,856 --> 00:04:46,376
+of the file coordination
+for you,
+
+
+95
+00:04:46,676 --> 00:04:50,256
+and in addition reads
+your document from disk.
+
+
+96
+00:04:50,256 --> 00:04:53,566
+If your document is a file
+you'll get an NSData object,
+
+
+97
+00:04:53,566 --> 00:04:55,526
+which is the contents
+of your file on disk,
+
+
+98
+00:04:55,966 --> 00:04:57,566
+and if the document
+is a package,
+
+
+99
+00:04:57,846 --> 00:04:59,726
+you'll get an NSFileWrapper
+object,
+
+
+100
+00:04:59,726 --> 00:05:01,496
+which represents
+your package on disk.
+
+
+101
+00:05:01,976 --> 00:05:05,156
+You just have to override the
+LoadFromContentsofType method
+
+
+102
+00:05:05,156 --> 00:05:08,616
+and then display the contents
+of the document to your users.
+
+
+103
+00:05:09,216 --> 00:05:14,236
+At a slightly lower level
+UIDocument still does all
+
+
+104
+00:05:14,236 --> 00:05:15,686
+of the file coordination
+for you,
+
+
+105
+00:05:16,276 --> 00:05:19,376
+but this time you would an
+NSURL back which is the location
+
+
+106
+00:05:19,376 --> 00:05:20,506
+of your document on disk.
+
+
+107
+00:05:21,216 --> 00:05:23,586
+You then just have
+to read the document
+
+
+108
+00:05:23,586 --> 00:05:25,026
+and display it to your users.
+
+
+109
+00:05:25,546 --> 00:05:29,276
+At the lowest level we have an
+option that's really provided
+
+
+110
+00:05:29,276 --> 00:05:30,076
+only for hooking.
+
+
+111
+00:05:31,016 --> 00:05:33,446
+If you override the
+openWithCompletionHandler
+
+
+112
+00:05:33,446 --> 00:05:36,496
+method, you should really
+invoke super, and implement one
+
+
+113
+00:05:36,496 --> 00:05:37,766
+of the other two methods.
+
+
+114
+00:05:38,636 --> 00:05:40,346
+You can override
+this method though
+
+
+115
+00:05:40,686 --> 00:05:43,286
+if you want some custom
+application behavior
+
+
+116
+00:05:43,286 --> 00:05:46,016
+when UIDocument would be
+doing the file coordination
+
+
+117
+00:05:46,016 --> 00:05:49,286
+to read the document from disk.
+
+
+118
+00:05:50,306 --> 00:05:52,876
+New in IOS 8, we have
+some asynchronous file
+
+
+119
+00:05:52,876 --> 00:05:54,256
+coordination APIs.
+
+
+120
+00:05:55,486 --> 00:05:58,696
+So, the existing file
+coordination APIs were
+
+
+121
+00:05:58,696 --> 00:05:59,876
+completely synchronous.
+
+
+122
+00:06:00,846 --> 00:06:03,616
+That means you would have to
+do your own background queuing
+
+
+123
+00:06:03,656 --> 00:06:07,326
+to prevent file coordination
+from blocking your app.
+
+
+124
+00:06:07,326 --> 00:06:09,756
+That can be a little
+bit tricky to do.
+
+
+125
+00:06:09,906 --> 00:06:12,956
+So, we have some new
+file coordinator APIs
+
+
+126
+00:06:12,956 --> 00:06:14,746
+for asynchronous
+file coordination,
+
+
+127
+00:06:15,376 --> 00:06:17,916
+which is the coordinateAccess
+WithIntents method.
+
+
+128
+00:06:19,036 --> 00:06:21,216
+We also have a new
+corresponding class
+
+
+129
+00:06:21,636 --> 00:06:26,036
+which is the NSFileAccessIntent
+class
+
+
+130
+00:06:26,576 --> 00:06:29,936
+which essentially just
+contains a URL and some options
+
+
+131
+00:06:29,966 --> 00:06:31,606
+for your intent of coordination.
+
+
+132
+00:06:32,406 --> 00:06:34,016
+You pass these in an array
+
+
+133
+00:06:34,066 --> 00:06:35,816
+to the
+coordinateAccessWithIntents
+
+
+134
+00:06:35,816 --> 00:06:39,846
+method to do your file
+coordination operations.
+
+
+135
+00:06:40,406 --> 00:06:42,426
+Let's take a quick look at
+that in some simple code.
+
+
+136
+00:06:44,196 --> 00:06:47,126
+So, this code might be if
+I want to copy a document
+
+
+137
+00:06:47,126 --> 00:06:48,516
+from one location to another.
+
+
+138
+00:06:49,376 --> 00:06:53,006
+As you can see I
+allocate a source intent
+
+
+139
+00:06:53,376 --> 00:06:56,356
+to read the document where
+it currently exists on disk.
+
+
+140
+00:06:57,256 --> 00:07:00,886
+I then, allocate a destination
+intent for the location
+
+
+141
+00:07:00,886 --> 00:07:02,776
+that I want to copy
+the document to.
+
+
+142
+00:07:03,346 --> 00:07:07,026
+I pass these to the
+file coordinator method
+
+
+143
+00:07:07,026 --> 00:07:11,076
+of coordinateAccess
+WithIntents, and at some point
+
+
+144
+00:07:11,076 --> 00:07:13,496
+in the future my accessor
+block will be called
+
+
+145
+00:07:13,496 --> 00:07:14,606
+on the queue I provide.
+
+
+146
+00:07:15,456 --> 00:07:18,816
+I then just have to do my
+operation in my accessor block.
+
+
+147
+00:07:20,006 --> 00:07:22,876
+Now, it's important when
+you do your operation
+
+
+148
+00:07:22,876 --> 00:07:26,456
+in your accessor block to use
+the URLs that are attached
+
+
+149
+00:07:26,736 --> 00:07:28,676
+to the NSFileAccessIntents
+
+
+150
+00:07:28,976 --> 00:07:31,716
+because they may have
+changed while you were waiting
+
+
+151
+00:07:31,716 --> 00:07:32,626
+for your coordination.
+
+
+152
+00:07:35,586 --> 00:07:37,406
+Now let's move on to discovering
+
+
+153
+00:07:37,406 --> 00:07:41,706
+and listing your
+documents in the cloud.
+
+
+154
+00:07:42,546 --> 00:07:46,626
+So, the way to discover and list
+your documents in the cloud is
+
+
+155
+00:07:46,666 --> 00:07:49,706
+through the existing
+NSMetadataQuery APIs.
+
+
+156
+00:07:50,336 --> 00:07:56,956
+Now, in previous versions of iOS
+NSMetadataQuery has been slow
+
+
+157
+00:07:56,956 --> 00:08:00,766
+to pick up your local
+changes like creates, deletes
+
+
+158
+00:08:00,766 --> 00:08:03,456
+and renames; let's take
+a quick look at this.
+
+
+159
+00:08:04,286 --> 00:08:07,666
+So, let's say you have your app,
+you have a couple of documents
+
+
+160
+00:08:07,666 --> 00:08:10,476
+in your apps container,
+you also have a couple
+
+
+161
+00:08:10,476 --> 00:08:14,486
+of NSMetadata items from your
+NSMetadataQuery which correspond
+
+
+162
+00:08:14,486 --> 00:08:16,786
+to those documents on disk.
+
+
+163
+00:08:17,206 --> 00:08:19,756
+Now let's say your app
+creates a new document on disk.
+
+
+164
+00:08:20,556 --> 00:08:24,776
+There might be a long delay
+before NSMetadataQuery updates
+
+
+165
+00:08:24,776 --> 00:08:27,946
+and gives you a new
+NSMetadata item corresponding
+
+
+166
+00:08:27,946 --> 00:08:30,026
+to that newly created
+local document.
+
+
+167
+00:08:30,566 --> 00:08:35,686
+New in iOS 8 NSMetadataQuery
+is easier
+
+
+168
+00:08:35,686 --> 00:08:37,416
+to use directly with stitching.
+
+
+169
+00:08:38,525 --> 00:08:40,466
+Let's take a look at that.
+
+
+170
+00:08:40,976 --> 00:08:43,885
+Now let's say your app creates
+this new document on disk,
+
+
+171
+00:08:43,885 --> 00:08:46,186
+and is using proper
+file coordination.
+
+
+172
+00:08:46,186 --> 00:08:48,876
+This only works if you create
+the document using proper
+
+
+173
+00:08:48,876 --> 00:08:49,776
+file coordination.
+
+
+174
+00:08:50,506 --> 00:08:54,416
+We actually have a hook in
+your file coordination access
+
+
+175
+00:08:54,856 --> 00:08:58,166
+which will update the
+NSMetadataQuery quickly
+
+
+176
+00:08:58,166 --> 00:09:01,976
+and automatically to
+create a new NSMetadata item
+
+
+177
+00:09:02,016 --> 00:09:03,546
+to update your app.
+
+
+178
+00:09:04,036 --> 00:09:06,786
+That means that you no
+longer need two data sources
+
+
+179
+00:09:07,276 --> 00:09:10,676
+to show your app's UI,
+one from local changes
+
+
+180
+00:09:10,676 --> 00:09:12,786
+and one for cloud changes.
+
+
+181
+00:09:13,036 --> 00:09:14,596
+You just need NSMetadataQuery.
+
+
+182
+00:09:16,236 --> 00:09:21,216
+[applause] Thank you.
+
+
+183
+00:09:22,676 --> 00:09:26,696
+Also, NSMetadataQuery can
+list non-local documents.
+
+
+184
+00:09:27,496 --> 00:09:30,676
+You may want to display
+some file system attributes
+
+
+185
+00:09:30,676 --> 00:09:34,306
+about those documents
+though, to display in your UI
+
+
+186
+00:09:34,306 --> 00:09:35,686
+when you're listing
+your documents.
+
+
+187
+00:09:36,746 --> 00:09:39,546
+We have a new NSURL API for you,
+
+
+188
+00:09:39,986 --> 00:09:42,136
+which will let you get
+file system attributes
+
+
+189
+00:09:42,136 --> 00:09:43,746
+about those documents, which may
+
+
+190
+00:09:43,746 --> 00:09:46,236
+or may not have their
+content available locally.
+
+
+191
+00:09:46,876 --> 00:09:49,276
+The way to do this is
+with the NSURL method,
+
+
+192
+00:09:49,646 --> 00:09:52,126
+getPromisedItem
+ResourceValue:forKey.
+
+
+193
+00:09:53,016 --> 00:09:56,206
+If you want more than one file
+system attribute we also have a
+
+
+194
+00:09:56,206 --> 00:09:58,466
+bulk method, which is
+the promisedItemResource
+
+
+195
+00:09:58,466 --> 00:09:59,386
+ValuesForKeys.
+
+
+196
+00:10:00,146 --> 00:10:05,446
+You don't need to be
+under file coordination
+
+
+197
+00:10:05,596 --> 00:10:08,506
+when using these methods
+for listing your documents.
+
+
+198
+00:10:11,206 --> 00:10:14,436
+Also, if you are under
+file coordination,
+
+
+199
+00:10:14,826 --> 00:10:17,076
+we have some new file
+coordinator flags
+
+
+200
+00:10:17,076 --> 00:10:18,296
+for dealing with metadata.
+
+
+201
+00:10:19,996 --> 00:10:24,376
+The key difference with these
+methods is that the content
+
+
+202
+00:10:24,446 --> 00:10:28,126
+with these flags that you pass
+through your file coordinator is
+
+
+203
+00:10:28,126 --> 00:10:30,366
+that the content of the
+documents does not need
+
+
+204
+00:10:30,366 --> 00:10:34,226
+to be available locally when
+you are doing file coordination
+
+
+205
+00:10:34,226 --> 00:10:35,306
+using these flags.
+
+
+206
+00:10:36,316 --> 00:10:38,396
+Now let's move onto
+document thumbnails.
+
+
+207
+00:10:39,326 --> 00:10:41,996
+So, we think the
+best user experience
+
+
+208
+00:10:42,286 --> 00:10:44,646
+when you're listing your
+documents in your app is
+
+
+209
+00:10:44,646 --> 00:10:46,506
+to show document previews.
+
+
+210
+00:10:47,086 --> 00:10:49,356
+This gives your user
+more context
+
+
+211
+00:10:50,086 --> 00:10:52,276
+so that they can
+quickly identify
+
+
+212
+00:10:52,276 --> 00:10:55,466
+which document is meaningful
+to them at that point in time.
+
+
+213
+00:10:56,456 --> 00:11:01,036
+As you can see in this pages
+app, we have document previews,
+
+
+214
+00:11:01,286 --> 00:11:03,866
+which lets your user
+quickly identify
+
+
+215
+00:11:03,866 --> 00:11:05,076
+which document is which.
+
+
+216
+00:11:05,706 --> 00:11:10,686
+Now it was possible to show
+document previews previously,
+
+
+217
+00:11:10,806 --> 00:11:12,996
+but it required a
+custom implementation.
+
+
+218
+00:11:13,826 --> 00:11:18,506
+New in iOS 8 we have some new
+file system attribute keys
+
+
+219
+00:11:18,506 --> 00:11:21,056
+for you to display
+thumbnails in your app.
+
+
+220
+00:11:21,966 --> 00:11:23,296
+The main way to do this is
+
+
+221
+00:11:23,296 --> 00:11:25,836
+with the NSURLThumbnail
+DictionaryKey.
+
+
+222
+00:11:26,256 --> 00:11:29,736
+If you call this on
+your document using the
+
+
+223
+00:11:29,736 --> 00:11:32,836
+getPromisedItem ResourceValue
+:forKey method you'll get a
+
+
+224
+00:11:32,836 --> 00:11:35,626
+dictionary which
+contains your thumbnails,
+
+
+225
+00:11:35,706 --> 00:11:38,106
+which you can display
+on your UI.
+
+
+226
+00:11:38,526 --> 00:11:41,796
+The only key in this dictionary
+right now is the NSThumbnail
+
+
+227
+00:11:41,796 --> 00:11:47,036
+2024x1024SizeKey, which
+corresponds to the UIImage
+
+
+228
+00:11:47,036 --> 00:11:51,066
+or NSImage which you can
+then just display in your UI.
+
+
+229
+00:11:52,176 --> 00:11:54,416
+Now onto saving document
+thumbnails.
+
+
+230
+00:11:55,096 --> 00:11:57,796
+So, the easiest way
+to save thumbnails is
+
+
+231
+00:11:57,796 --> 00:11:58,906
+through UIDocument.
+
+
+232
+00:12:00,046 --> 00:12:03,146
+If you override the
+fileAttributesTo WriteToURL
+
+
+233
+00:12:03,146 --> 00:12:08,196
+:forSaveOperation method and
+have it generate a UIImage
+
+
+234
+00:12:08,546 --> 00:12:09,986
+which is your thumbnail
+and return it,
+
+
+235
+00:12:10,436 --> 00:12:13,706
+UIDocument will automatically
+write the thumbnail to disk
+
+
+236
+00:12:13,806 --> 00:12:17,166
+for you, and then the iCloud
+daemon will go ahead and pick
+
+
+237
+00:12:17,166 --> 00:12:20,096
+up those changes and push
+them up to the cloud.
+
+
+238
+00:12:21,066 --> 00:12:24,036
+Alternatively, if you're not
+using UIDocument you can save
+
+
+239
+00:12:24,036 --> 00:12:28,026
+your thumbnails manually using
+the existing NSURLsetResource
+
+
+240
+00:12:28,026 --> 00:12:30,376
+Value:forKey method,
+but you should really be
+
+
+241
+00:12:30,376 --> 00:12:32,716
+under file coordination
+when you invoke this method.
+
+
+242
+00:12:33,286 --> 00:12:38,326
+On OS X thumbnails are actually
+generated for you automatically.
+
+
+243
+00:12:39,226 --> 00:12:42,686
+However, if you have a custom
+document format you'll need
+
+
+244
+00:12:42,686 --> 00:12:46,226
+to let Quick Look know
+how to display thumbnails
+
+
+245
+00:12:46,226 --> 00:12:48,326
+for your documents, so you'll
+need a Quick Look plug-in
+
+
+246
+00:12:48,546 --> 00:12:49,596
+to generate your thumbnails.
+
+
+247
+00:12:50,326 --> 00:12:55,256
+Now let's move onto to
+discovery documents outside
+
+
+248
+00:12:55,256 --> 00:12:56,336
+of your apps container.
+
+
+249
+00:12:56,876 --> 00:13:03,506
+Now, in previous version of
+the OS, it's been difficult
+
+
+250
+00:13:03,506 --> 00:13:06,826
+for your users to
+access documents outside
+
+
+251
+00:13:06,826 --> 00:13:09,076
+of your apps container
+from within your app.
+
+
+252
+00:13:09,326 --> 00:13:11,746
+Let's take a look at how they
+might do this previously.
+
+
+253
+00:13:12,816 --> 00:13:16,006
+So, let's say you have your
+app, you have direct access
+
+
+254
+00:13:16,006 --> 00:13:18,196
+to all the documents in
+your app's container;
+
+
+255
+00:13:18,566 --> 00:13:19,596
+there's no problem there.
+
+
+256
+00:13:19,596 --> 00:13:22,136
+But let's say your user wants
+
+
+257
+00:13:22,136 --> 00:13:26,196
+to open say document three
+from within your app.
+
+
+258
+00:13:26,396 --> 00:13:28,166
+How might they go
+about doing this?
+
+
+259
+00:13:28,776 --> 00:13:31,306
+Well, one way they might
+do this is they would have
+
+
+260
+00:13:31,376 --> 00:13:32,956
+to launch the other app,
+
+
+261
+00:13:33,426 --> 00:13:36,746
+then using the UIDocument
+interaction controller make a
+
+
+262
+00:13:36,746 --> 00:13:39,266
+copy of the document from
+the other apps container
+
+
+263
+00:13:39,526 --> 00:13:41,066
+into your app's local container.
+
+
+264
+00:13:41,856 --> 00:13:45,406
+Only then could they read the
+document from within your app.
+
+
+265
+00:13:45,736 --> 00:13:49,466
+We think a better
+user experience is
+
+
+266
+00:13:49,466 --> 00:13:52,116
+if your app can just
+access those documents
+
+
+267
+00:13:52,116 --> 00:13:53,816
+in the other apps
+container directly.
+
+
+268
+00:13:54,426 --> 00:13:56,526
+So, if you have your app again,
+
+
+269
+00:13:56,526 --> 00:13:59,716
+if you can just open
+those documents directly,
+
+
+270
+00:14:00,036 --> 00:14:00,896
+the user is happy.
+
+
+271
+00:14:01,906 --> 00:14:04,096
+So, we think that's a
+better user experience.
+
+
+272
+00:14:04,636 --> 00:14:07,646
+New in iOS 8 there's
+a way to do this
+
+
+273
+00:14:07,646 --> 00:14:09,986
+with a UIDocumentPicker
+ViewController.
+
+
+274
+00:14:11,096 --> 00:14:14,376
+This allows your users to
+discover documents outside
+
+
+275
+00:14:14,376 --> 00:14:18,246
+of your app's sandbox and
+lets your users grant your app
+
+
+276
+00:14:18,246 --> 00:14:21,526
+permission to access
+and modify the documents
+
+
+277
+00:14:21,586 --> 00:14:22,476
+that they have chosen.
+
+
+278
+00:14:23,086 --> 00:14:27,846
+Now, to have your
+apps container show
+
+
+279
+00:14:27,846 --> 00:14:30,656
+up in the document
+picker you have to opt-in
+
+
+280
+00:14:31,046 --> 00:14:32,306
+by marking your container
+
+
+281
+00:14:32,306 --> 00:14:37,366
+with a NSUbiquitousContainer
+IsDocumjentScopePublic to be
+
+
+282
+00:14:37,366 --> 00:14:39,396
+"yes" in your info plist.
+
+
+283
+00:14:39,396 --> 00:14:44,566
+I have a great new UI -- we
+have a great new UI here,
+
+
+284
+00:14:45,196 --> 00:14:47,406
+which you can display in
+your app for your users
+
+
+285
+00:14:47,406 --> 00:14:49,936
+to choose documents,
+and I'd like to show you
+
+
+286
+00:14:49,936 --> 00:14:51,376
+that now with a quick demo.
+
+
+287
+00:14:52,026 --> 00:14:55,106
+Okay. Let's go ahead
+and launch my app.
+
+
+288
+00:14:55,456 --> 00:14:56,286
+Yeah, the app I've written.
+
+
+289
+00:14:56,286 --> 00:14:58,056
+It's a simple text-editing app.
+
+
+290
+00:14:58,606 --> 00:15:00,856
+So, as you can see, I'm
+using NSMetadataQuery
+
+
+291
+00:15:00,856 --> 00:15:03,836
+to list only one document
+in my container right now,
+
+
+292
+00:15:04,636 --> 00:15:07,116
+but I'm using NSMetadataQuery
+without file coordination
+
+
+293
+00:15:07,116 --> 00:15:11,026
+to list my documents and
+display a quick simple preview
+
+
+294
+00:15:11,026 --> 00:15:11,676
+of the documents.
+
+
+295
+00:15:12,306 --> 00:15:14,366
+Now let's go ahead and launch
+up the document picker.
+
+
+296
+00:15:15,256 --> 00:15:17,376
+So, this is our new
+document picker UI.
+
+
+297
+00:15:17,376 --> 00:15:21,076
+As you can see there are
+several containers listed here
+
+
+298
+00:15:21,226 --> 00:15:25,746
+but I also have a document which
+lives in the shared icon folder
+
+
+299
+00:15:25,746 --> 00:15:28,036
+which is listed alongside
+my containers.
+
+
+300
+00:15:28,756 --> 00:15:31,106
+Now I can switch to list
+view here; there's a bunch
+
+
+301
+00:15:31,106 --> 00:15:36,546
+of stuff I can do, sort by
+name, tag, state, etc. Now,
+
+
+302
+00:15:36,546 --> 00:15:37,646
+let's go ahead and like drill
+
+
+303
+00:15:37,646 --> 00:15:42,476
+down into this text edit
+container, and select a document
+
+
+304
+00:15:42,476 --> 00:15:44,966
+from the text edit container.
+
+
+305
+00:15:44,966 --> 00:15:47,996
+So, now I have opened the
+document which actually lives
+
+
+306
+00:15:48,056 --> 00:15:49,276
+in the text edit container.
+
+
+307
+00:15:49,276 --> 00:15:51,436
+I have not made a
+copy of this document.
+
+
+308
+00:15:51,966 --> 00:15:54,896
+This document still exists in
+the text edit container but now
+
+
+309
+00:15:54,896 --> 00:15:57,646
+that I, as the user,
+have granted my access
+
+
+310
+00:15:57,646 --> 00:16:01,926
+to it I can edit and access
+it in the text edit container.
+
+
+311
+00:16:02,976 --> 00:16:05,236
+Let's go ahead and
+X out of this.
+
+
+312
+00:16:05,766 --> 00:16:09,376
+As you can see, now that
+I've granted my app access
+
+
+313
+00:16:09,376 --> 00:16:14,036
+to this document it has now
+updated in the NSMetadataQuery
+
+
+314
+00:16:14,466 --> 00:16:18,296
+and I can list it alongside
+the other documents in my app.
+
+
+315
+00:16:18,836 --> 00:16:22,296
+I've also annotated it, if you
+can see with a text edit name,
+
+
+316
+00:16:22,296 --> 00:16:24,016
+just to tell my user
+that it lives
+
+
+317
+00:16:24,016 --> 00:16:25,166
+in the text edit container.
+
+
+318
+00:16:26,026 --> 00:16:33,256
+Let's take a quick
+look at this in code.
+
+
+319
+00:16:33,396 --> 00:16:35,896
+So this is basically all
+the code I had to write
+
+
+320
+00:16:36,386 --> 00:16:38,106
+to display the document picker.
+
+
+321
+00:16:38,796 --> 00:16:43,566
+All I have to do is allocate the
+document menu view controller
+
+
+322
+00:16:44,036 --> 00:16:46,566
+and pass it on array
+of the document types
+
+
+323
+00:16:46,566 --> 00:16:47,666
+that I'm interested in.
+
+
+324
+00:16:48,366 --> 00:16:50,196
+I have a simple text-editing
+app,
+
+
+325
+00:16:50,546 --> 00:16:54,396
+so I only pass the plain
+text UTI as the documents
+
+
+326
+00:16:54,396 --> 00:16:56,086
+that my app can access.
+
+
+327
+00:16:56,636 --> 00:16:58,356
+I then just present
+the view controller
+
+
+328
+00:16:59,306 --> 00:17:01,866
+and then implement these
+two simple delicate methods,
+
+
+329
+00:17:02,596 --> 00:17:05,876
+and finally when the document --
+when the user picks a document
+
+
+330
+00:17:05,876 --> 00:17:08,596
+of a given URL I just load it
+and display it to my users.
+
+
+331
+00:17:08,675 --> 00:17:09,496
+It's super simple.
+
+
+332
+00:17:10,925 --> 00:17:14,866
+Now if you noticed my
+app did not actually show
+
+
+333
+00:17:14,866 --> 00:17:15,896
+up in the document picker.
+
+
+334
+00:17:16,746 --> 00:17:21,316
+That's because I
+haven't set my container
+
+
+335
+00:17:21,316 --> 00:17:22,945
+to be a public container, yet.
+
+
+336
+00:17:22,945 --> 00:17:25,996
+Let's take just a quick
+look at how to do that.
+
+
+337
+00:17:27,306 --> 00:17:33,836
+So, if I open up my info plist
+here, drill down into this.
+
+
+338
+00:17:35,136 --> 00:17:38,816
+As you can see my document
+scope is set to be not public.
+
+
+339
+00:17:39,536 --> 00:17:43,716
+All I have to do is
+set this to "yes"
+
+
+340
+00:17:44,356 --> 00:17:47,536
+and then bump the
+bundled version
+
+
+341
+00:17:48,196 --> 00:17:53,206
+so that the document picker
+knows that I have made a change
+
+
+342
+00:17:53,206 --> 00:17:57,286
+to my info plist, and then
+my app will be displayed
+
+
+343
+00:17:57,286 --> 00:18:01,356
+in the document picker so
+that other apps can get access
+
+
+344
+00:18:01,356 --> 00:18:02,176
+to my documents.
+
+
+345
+00:18:02,946 --> 00:18:03,966
+All right, so quick summary.
+
+
+346
+00:18:04,696 --> 00:18:06,916
+We've just shown
+you how easy it is
+
+
+347
+00:18:06,916 --> 00:18:10,566
+to display the Document
+Picker inside your app,
+
+
+348
+00:18:11,406 --> 00:18:14,946
+and how easy it is for users
+to grant your app access
+
+
+349
+00:18:14,946 --> 00:18:16,986
+to documents in other
+apps' containers
+
+
+350
+00:18:17,076 --> 00:18:18,946
+such as the shared
+iCloud folder.
+
+
+351
+00:18:20,236 --> 00:18:23,126
+We've also shown you how easy it
+is to make your container show
+
+
+352
+00:18:23,126 --> 00:18:27,126
+up in the UIDocumentPicker just
+by setting a flag to be yes
+
+
+353
+00:18:27,576 --> 00:18:29,086
+and then bumping
+your bundled version.
+
+
+354
+00:18:29,646 --> 00:18:34,986
+With that I would like to
+Johannes Fortmann to the stage,
+
+
+355
+00:18:35,186 --> 00:18:37,086
+who is going to talk
+to you about some
+
+
+356
+00:18:37,086 --> 00:18:39,656
+of the key principals
+behind the Document Picker.
+
+
+357
+00:18:40,046 --> 00:18:41,666
+Please welcome Johannes
+to the stage [applause].
+
+
+358
+00:18:47,066 --> 00:18:47,646
+>> Thank you, Mike.
+
+
+359
+00:18:48,116 --> 00:18:51,806
+Hi, I'm Johannes from the UIKit
+team, and I would like to talk
+
+
+360
+00:18:51,806 --> 00:18:56,176
+to you about some of
+the main differences
+
+
+361
+00:18:56,546 --> 00:18:59,226
+between external
+documents and documents
+
+
+362
+00:18:59,256 --> 00:19:00,516
+that may live in your container.
+
+
+363
+00:19:01,336 --> 00:19:07,346
+As you know, your application
+right now has access
+
+
+364
+00:19:07,476 --> 00:19:09,106
+to its own container only.
+
+
+365
+00:19:10,396 --> 00:19:13,476
+So, you're able to read
+
+
+366
+00:19:13,476 --> 00:19:15,956
+and write the documents
+inside your own container.
+
+
+367
+00:19:16,606 --> 00:19:19,696
+And as you have seen
+in Mike's demonstration
+
+
+368
+00:19:19,746 --> 00:19:25,406
+for other documents what we do
+is once the user has chosen this
+
+
+369
+00:19:25,916 --> 00:19:29,526
+document we save a
+so-called document reference
+
+
+370
+00:19:29,976 --> 00:19:30,956
+into your container.
+
+
+371
+00:19:32,276 --> 00:19:35,266
+This document reference
+will then go and point
+
+
+372
+00:19:35,336 --> 00:19:38,126
+to your external document.
+
+
+373
+00:19:39,426 --> 00:19:42,326
+To ease this new concept
+
+
+374
+00:19:42,326 --> 00:19:46,216
+into your application we
+provide a few new features
+
+
+375
+00:19:46,216 --> 00:19:48,566
+and attributes on
+the NSMetadataQuery.
+
+
+376
+00:19:50,556 --> 00:19:53,366
+You are probably using
+the NSMetaDataQuery
+
+
+377
+00:19:53,366 --> 00:19:55,706
+with the UbiquitousDocuments
+Scope right now
+
+
+378
+00:19:56,006 --> 00:19:58,976
+to list the documents that are
+inside your container, locally.
+
+
+379
+00:19:59,046 --> 00:20:03,936
+And even if the user has
+granted your application access
+
+
+380
+00:20:03,996 --> 00:20:07,296
+to a document outside
+of your container --
+
+
+381
+00:20:07,736 --> 00:20:10,906
+even if the user has gotten
+your application access
+
+
+382
+00:20:10,976 --> 00:20:13,576
+to document outside
+of your container,
+
+
+383
+00:20:13,936 --> 00:20:16,936
+we will still continue to
+merely list the documents
+
+
+384
+00:20:17,276 --> 00:20:19,456
+that are local to
+your container as long
+
+
+385
+00:20:19,456 --> 00:20:21,186
+as you don't pass a new scope
+
+
+386
+00:20:21,626 --> 00:20:24,276
+which is the UbiquitousExternal
+DocumentScope.
+
+
+387
+00:20:25,096 --> 00:20:27,916
+The UbiquitousExternal
+DocumentScope ensures
+
+
+388
+00:20:27,916 --> 00:20:30,706
+that you've got an NSMetadata
+item that corresponds
+
+
+389
+00:20:30,736 --> 00:20:34,666
+to the file references
+that the user has extended
+
+
+390
+00:20:34,936 --> 00:20:37,446
+to your application container.
+
+
+391
+00:20:38,646 --> 00:20:43,116
+Now, these new NSMetadata
+items are effectively just
+
+
+392
+00:20:43,116 --> 00:20:44,016
+like the old ones.
+
+
+393
+00:20:44,446 --> 00:20:47,236
+They also have an
+NSMetadata item URL key
+
+
+394
+00:20:47,566 --> 00:20:53,616
+and this NSMetadata item URL
+key will point to this --
+
+
+395
+00:20:53,796 --> 00:20:57,476
+NSMetadata item URL key
+will point to the URL
+
+
+396
+00:20:57,476 --> 00:21:01,126
+that your document is
+actually located at.
+
+
+397
+00:21:01,466 --> 00:21:04,276
+That means that if your app is
+using the NSMetadata item URL
+
+
+398
+00:21:04,276 --> 00:21:07,256
+key right now to
+access the file directly
+
+
+399
+00:21:07,256 --> 00:21:09,766
+that will still work even
+with the document reference.
+
+
+400
+00:21:10,316 --> 00:21:15,136
+You can pass the return value
+of getting this key directly to,
+
+
+401
+00:21:15,136 --> 00:21:19,706
+for example a UIDocument,
+and use that URL
+
+
+402
+00:21:19,876 --> 00:21:23,136
+to directly access
+the external document.
+
+
+403
+00:21:23,796 --> 00:21:26,536
+Now, of course sometimes that
+is not actually what you want
+
+
+404
+00:21:26,536 --> 00:21:26,886
+to do.
+
+
+405
+00:21:27,306 --> 00:21:28,406
+Sometimes, what you're
+interested
+
+
+406
+00:21:28,406 --> 00:21:32,426
+in is not the actual document
+backing this reference,
+
+
+407
+00:21:32,516 --> 00:21:34,896
+but rather the reference itself.
+
+
+408
+00:21:35,396 --> 00:21:36,416
+For example, you may want
+
+
+409
+00:21:36,416 --> 00:21:38,876
+to display the reference
+inside a folder
+
+
+410
+00:21:38,876 --> 00:21:41,546
+in your application's
+container, in your UI,
+
+
+411
+00:21:42,086 --> 00:21:44,256
+or you might even
+want to allow the user
+
+
+412
+00:21:44,256 --> 00:21:46,886
+to move these references
+around inside their folder.
+
+
+413
+00:21:48,236 --> 00:21:52,406
+For that we provide a new key,
+and this one is actually new
+
+
+414
+00:21:52,406 --> 00:21:56,896
+on iOS 8, the UbiquitousItemURL
+InLocalContainerKey.
+
+
+415
+00:21:58,186 --> 00:22:01,276
+This key points to the
+actual reference inside your
+
+
+416
+00:22:01,276 --> 00:22:05,256
+applicant's container, so the
+user can use the file that is
+
+
+417
+00:22:05,256 --> 00:22:07,506
+at this location
+to move it around.
+
+
+418
+00:22:08,976 --> 00:22:10,836
+Now, there are a few other keys.
+
+
+419
+00:22:11,276 --> 00:22:13,886
+It may be useful for you
+to know whether a file
+
+
+420
+00:22:13,886 --> 00:22:14,936
+that has been returned
+
+
+421
+00:22:14,936 --> 00:22:17,666
+by the NSMetadataQuery
+is actually external
+
+
+422
+00:22:17,666 --> 00:22:19,916
+to your application or not --
+
+
+423
+00:22:19,916 --> 00:22:21,336
+sorry, to your application's
+container.
+
+
+424
+00:22:21,996 --> 00:22:25,146
+And for that we provide
+the IsExternalDocumentKey,
+
+
+425
+00:22:25,796 --> 00:22:28,736
+which will return "no" for
+local documents and "yes"
+
+
+426
+00:22:28,736 --> 00:22:29,926
+for external documents.
+
+
+427
+00:22:30,416 --> 00:22:34,416
+And as you've seen in Mike's
+demo he showed a little badge
+
+
+428
+00:22:34,416 --> 00:22:39,606
+or text a label to inform
+the user that the document
+
+
+429
+00:22:39,606 --> 00:22:43,196
+that he's shown that popped
+in there was actually not
+
+
+430
+00:22:43,196 --> 00:22:45,336
+from the local container
+but rather from Text Edit,
+
+
+431
+00:22:46,066 --> 00:22:49,746
+and to enable you to do that we
+have the container display name
+
+
+432
+00:22:49,746 --> 00:22:52,876
+key, the container display
+name key is a localized key
+
+
+433
+00:22:53,286 --> 00:22:59,086
+that is fit for display
+DOS and for example would
+
+
+434
+00:22:59,086 --> 00:23:01,826
+if you extended a document
+
+
+435
+00:23:01,826 --> 00:23:06,256
+from Text Edit would
+show Text Edit's name.
+
+
+436
+00:23:06,586 --> 00:23:09,346
+All right, so, we've got
+these document references,
+
+
+437
+00:23:09,346 --> 00:23:10,966
+but why do you even need these?
+
+
+438
+00:23:12,186 --> 00:23:14,816
+So, the main reason
+is for security.
+
+
+439
+00:23:15,806 --> 00:23:19,456
+We do not generally
+allow any app
+
+
+440
+00:23:19,626 --> 00:23:22,396
+to access any other
+app's container.
+
+
+441
+00:23:22,896 --> 00:23:24,756
+Only the Document
+Picker can do that.
+
+
+442
+00:23:26,026 --> 00:23:30,626
+The Document Picker is running
+out-of-process, so it's not --
+
+
+443
+00:23:31,606 --> 00:23:35,296
+it is able and has the
+sufficient entitlements
+
+
+444
+00:23:35,326 --> 00:23:38,616
+to be able to list all of
+the document containers.
+
+
+445
+00:23:38,996 --> 00:23:42,466
+And the only way to
+get a document inside
+
+
+446
+00:23:42,466 --> 00:23:45,686
+of your application is to
+use the Document Picker.
+
+
+447
+00:23:46,946 --> 00:23:48,976
+To that -- for that purpose,
+
+
+448
+00:23:48,976 --> 00:23:51,616
+we return a so-called
+security scoped URL
+
+
+449
+00:23:52,196 --> 00:23:54,266
+and if you've used the
+sandboxing mechanism
+
+
+450
+00:23:54,266 --> 00:23:57,346
+on OS X you may already
+know this concept
+
+
+451
+00:23:57,346 --> 00:23:59,726
+of a security scoped URL.
+
+
+452
+00:23:59,756 --> 00:24:03,336
+You get a NSURL, which has a
+tiny bit of information attached
+
+
+453
+00:24:03,336 --> 00:24:07,886
+to it, that informs the kernel,
+and of course the owning app,
+
+
+454
+00:24:08,626 --> 00:24:13,386
+that in fact the owning app is
+allowed to access this document,
+
+
+455
+00:24:13,676 --> 00:24:16,236
+and is allowed to for
+example modify it as well.
+
+
+456
+00:24:17,136 --> 00:24:23,596
+Now importantly, if you
+naively were to save this URL,
+
+
+457
+00:24:23,596 --> 00:24:26,546
+for example you would
+serialize it into a string
+
+
+458
+00:24:26,676 --> 00:24:29,616
+and then de-serialize
+it out of the string,
+
+
+459
+00:24:30,386 --> 00:24:32,446
+you would lose this
+security scope.
+
+
+460
+00:24:32,666 --> 00:24:34,846
+And that is not something
+you want to happen
+
+
+461
+00:24:35,396 --> 00:24:38,026
+because of course the
+security scope is what you use
+
+
+462
+00:24:38,026 --> 00:24:39,126
+to access this URL.
+
+
+463
+00:24:40,006 --> 00:24:42,726
+Of course, you need a way to
+get back to the scoped URL,
+
+
+464
+00:24:43,406 --> 00:24:47,936
+and the document references
+feature is providing one
+
+
+465
+00:24:47,936 --> 00:24:50,256
+of the ways to get
+back to these URLs.
+
+
+466
+00:24:50,746 --> 00:24:55,996
+If you get a NSURL from the
+document reference this NSURL
+
+
+467
+00:24:55,996 --> 00:24:58,776
+already has the security scope
+attached, so you can use it
+
+
+468
+00:24:58,896 --> 00:25:02,186
+with your document or
+with the start accessing
+
+
+469
+00:25:02,186 --> 00:25:05,456
+and stop accessing security
+scoped resource methods
+
+
+470
+00:25:05,456 --> 00:25:08,886
+on NSURL - but I strongly
+suggest that you use UIDocument
+
+
+471
+00:25:08,886 --> 00:25:14,196
+because that does all of
+this for you; for example,
+
+
+472
+00:25:14,366 --> 00:25:19,306
+load the contents off of
+the file backed by this URL.
+
+
+473
+00:25:20,416 --> 00:25:23,926
+Now, sometimes enumerating your
+documents is not actually what
+
+
+474
+00:25:23,926 --> 00:25:25,556
+you want to get back
+to the document.
+
+
+475
+00:25:26,146 --> 00:25:30,216
+For example, one thing you might
+be using is state restoration,
+
+
+476
+00:25:30,726 --> 00:25:32,546
+and in state restoration
+of course what you want
+
+
+477
+00:25:32,546 --> 00:25:37,016
+to do is pop the user back into
+the UI that they saw before.
+
+
+478
+00:25:37,416 --> 00:25:39,866
+So, you instead of
+enumerating files
+
+
+479
+00:25:39,916 --> 00:25:42,836
+that the user had access
+previously, what you want
+
+
+480
+00:25:42,836 --> 00:25:47,016
+to do is access a
+very specific file.
+
+
+481
+00:25:47,406 --> 00:25:51,636
+We offer a mechanism to do that
+for you, which is a bookmark.
+
+
+482
+00:25:52,356 --> 00:25:55,326
+The bookmark is also possibly
+known to you if you've used it
+
+
+483
+00:25:55,326 --> 00:26:00,036
+with the sandbox on
+OS X, and the bookmark
+
+
+484
+00:26:00,036 --> 00:26:02,886
+and codes the security
+scope alongside the URL
+
+
+485
+00:26:03,576 --> 00:26:05,306
+so you can use the
+bookmark to get back
+
+
+486
+00:26:05,606 --> 00:26:08,646
+to the security scoped URL.
+
+
+487
+00:26:09,856 --> 00:26:14,486
+We offer API, which
+already exists.
+
+
+488
+00:26:15,036 --> 00:26:19,756
+The bookmarkDataWithOptions
+API is used for, by you,
+
+
+489
+00:26:19,756 --> 00:26:24,156
+on a NSURL instance to create a
+bookmark that you can then save.
+
+
+490
+00:26:24,156 --> 00:26:28,466
+It's basically opaque NSData
+blob that you can then save
+
+
+491
+00:26:28,466 --> 00:26:30,696
+into a state restoration
+archive, for example.
+
+
+492
+00:26:31,536 --> 00:26:35,966
+And of course its counter-part
+is a class method on NSURL.
+
+
+493
+00:26:36,246 --> 00:26:39,816
+The URL by resolving bookmark
+data which we can then use
+
+
+494
+00:26:40,146 --> 00:26:42,706
+to resolve this bookmark
+into a NSURL
+
+
+495
+00:26:42,706 --> 00:26:46,456
+that has the scope attached.
+
+
+496
+00:26:47,526 --> 00:26:48,686
+All right.
+
+
+497
+00:26:48,956 --> 00:26:52,246
+Now, Mike showed you the
+UIDocument picker view
+
+
+498
+00:26:52,246 --> 00:26:56,296
+controller in the
+so-called open mode.
+
+
+499
+00:26:56,946 --> 00:27:00,846
+In open mode what we will do
+is indeed create a bookmark
+
+
+500
+00:27:01,796 --> 00:27:04,266
+and a corresponding
+security scope URL,
+
+
+501
+00:27:04,836 --> 00:27:07,366
+hand you back the
+security scope URL
+
+
+502
+00:27:07,726 --> 00:27:10,176
+and of course place
+the bookmark,
+
+
+503
+00:27:10,256 --> 00:27:13,306
+the reference document
+inside your app's container.
+
+
+504
+00:27:15,046 --> 00:27:17,516
+Now, sometimes that is not
+what you want to do, actually.
+
+
+505
+00:27:18,006 --> 00:27:20,236
+For example, you may
+have an application
+
+
+506
+00:27:20,236 --> 00:27:23,336
+that does not instead of
+opening specific documents,
+
+
+507
+00:27:23,416 --> 00:27:26,626
+may also aggregate
+documents, Keynote,
+
+
+508
+00:27:26,626 --> 00:27:29,066
+for example would be one
+of these applications,
+
+
+509
+00:27:29,686 --> 00:27:33,356
+in which you, for example,
+might want to open an image
+
+
+510
+00:27:33,356 --> 00:27:36,186
+from an application to insert
+it into your presentation.
+
+
+511
+00:27:36,826 --> 00:27:38,606
+You don't want to maintain
+a persistent reference
+
+
+512
+00:27:38,606 --> 00:27:41,046
+to that image, but instead
+want to copy this image
+
+
+513
+00:27:41,086 --> 00:27:44,596
+into your presentation
+as one piece.
+
+
+514
+00:27:45,266 --> 00:27:47,216
+And we also support
+a mode for that,
+
+
+515
+00:27:47,216 --> 00:27:48,786
+it's the so-called import mode.
+
+
+516
+00:27:49,386 --> 00:27:51,176
+In import mode will
+not create a bookmark,
+
+
+517
+00:27:51,506 --> 00:27:55,776
+but instead we'll copy the
+file to a temporary location.
+
+
+518
+00:27:56,476 --> 00:27:58,496
+You will of course
+still be granted access
+
+
+519
+00:27:58,496 --> 00:27:59,706
+to this temporary location,
+
+
+520
+00:28:00,306 --> 00:28:04,336
+but the file is not persistently
+referenced by your application.
+
+
+521
+00:28:04,806 --> 00:28:06,786
+After your application
+terminates
+
+
+522
+00:28:06,786 --> 00:28:11,226
+for any reason we will clean
+out the temporary location
+
+
+523
+00:28:11,476 --> 00:28:13,006
+and you will no longer
+have access,
+
+
+524
+00:28:13,006 --> 00:28:14,596
+so you have to make a copy soon
+
+
+525
+00:28:14,596 --> 00:28:16,086
+after you get your
+delegate call back
+
+
+526
+00:28:16,136 --> 00:28:19,756
+to actually hang
+onto the document.
+
+
+527
+00:28:19,966 --> 00:28:20,336
+All right.
+
+
+528
+00:28:21,046 --> 00:28:23,076
+This is reading documents
+and it is
+
+
+529
+00:28:23,076 --> 00:28:27,326
+of course a very important part,
+but equally as important is
+
+
+530
+00:28:27,326 --> 00:28:29,866
+of course writing document
+and creating new documents.
+
+
+531
+00:28:30,896 --> 00:28:34,666
+Now, as I've mentioned you
+will not have general access
+
+
+532
+00:28:34,666 --> 00:28:38,916
+to containers outside of
+your app's own container.
+
+
+533
+00:28:40,196 --> 00:28:43,186
+But of course you can write
+into that container, so --
+
+
+534
+00:28:43,186 --> 00:28:45,606
+or possibly into a
+temporary location.
+
+
+535
+00:28:46,036 --> 00:28:49,286
+So, to create a new
+UIDocument that is --
+
+
+536
+00:28:49,286 --> 00:28:52,436
+sorry, a new document on disk
+
+
+537
+00:28:52,936 --> 00:28:56,346
+that is exactly what
+you want to do.
+
+
+538
+00:28:56,706 --> 00:29:00,266
+You can then use a special
+document picker mode to move
+
+
+539
+00:29:00,266 --> 00:29:02,326
+that document outside
+of your app's container,
+
+
+540
+00:29:02,686 --> 00:29:05,336
+but again the user chooses
+where to move the document.
+
+
+541
+00:29:06,976 --> 00:29:08,876
+Let's have a quick
+look at how that works.
+
+
+542
+00:29:09,696 --> 00:29:12,776
+You would, of course, you
+already have a document,
+
+
+543
+00:29:12,776 --> 00:29:16,706
+Doc 3 in this case, and you
+use the initWithURL method
+
+
+544
+00:29:16,706 --> 00:29:21,976
+on your document picker with the
+URL of your existing document
+
+
+545
+00:29:22,606 --> 00:29:25,876
+to allow the user to
+choose a new location.
+
+
+546
+00:29:26,766 --> 00:29:30,726
+The user now chooses a new
+location, and we move the file
+
+
+547
+00:29:30,726 --> 00:29:31,996
+into the new location.
+
+
+548
+00:29:33,206 --> 00:29:36,556
+We will return a
+document reference to you,
+
+
+549
+00:29:37,216 --> 00:29:40,206
+so you still maintain
+access to the document.
+
+
+550
+00:29:40,866 --> 00:29:44,016
+And this URL is effectively
+exactly like one
+
+
+551
+00:29:44,016 --> 00:29:47,066
+that has been returned to
+you by the open mechanism,
+
+
+552
+00:29:47,646 --> 00:29:51,756
+so you can enumerate this
+new document preference
+
+
+553
+00:29:51,806 --> 00:29:53,286
+in your NSMetadataQuery.
+
+
+554
+00:29:54,426 --> 00:29:57,496
+Now of course sometimes that
+is exactly not what you want.
+
+
+555
+00:29:57,496 --> 00:29:58,636
+You don't want the reference.
+
+
+556
+00:29:59,266 --> 00:30:03,146
+So, we also have an expert
+mode, which allows you
+
+
+557
+00:30:03,146 --> 00:30:05,236
+to forego the entire
+reference thing.
+
+
+558
+00:30:05,236 --> 00:30:09,366
+In that case we will make
+a copy of your document
+
+
+559
+00:30:09,706 --> 00:30:14,486
+into another app's container
+and that is basically it.
+
+
+560
+00:30:15,226 --> 00:30:18,086
+Okay. Let me give a
+quick summary of how
+
+
+561
+00:30:18,086 --> 00:30:20,916
+to use document management here.
+
+
+562
+00:30:21,256 --> 00:30:24,826
+We've seen that you can use the
+document reference mechanism
+
+
+563
+00:30:24,826 --> 00:30:30,236
+to enumerate documents that
+have been previously used by,
+
+
+564
+00:30:30,346 --> 00:30:32,066
+or granted access by the user.
+
+
+565
+00:30:32,906 --> 00:30:35,736
+We've also seen that you can use
+bookmarks for state restoration
+
+
+566
+00:30:36,506 --> 00:30:42,356
+and we've also shown you quickly
+how to use the import open
+
+
+567
+00:30:42,356 --> 00:30:43,686
+and export and move modes.
+
+
+568
+00:30:45,316 --> 00:30:50,276
+And all of these of course play
+together to enable your user
+
+
+569
+00:30:50,276 --> 00:30:53,366
+to access all of their iCloud
+documents, not merely those
+
+
+570
+00:30:53,406 --> 00:30:54,576
+that are inside your folder.
+
+
+571
+00:30:56,166 --> 00:31:00,446
+But you noticed I said all of
+your iCloud documents here, and,
+
+
+572
+00:31:00,446 --> 00:31:05,816
+of course, your users may
+have different locations
+
+
+573
+00:31:05,816 --> 00:31:07,276
+for storing their documents.
+
+
+574
+00:31:07,666 --> 00:31:10,636
+For example, you may be
+part of an enterprise
+
+
+575
+00:31:10,636 --> 00:31:14,046
+that has their own storage
+management system, and,
+
+
+576
+00:31:14,046 --> 00:31:16,166
+of course, it would be grand
+
+
+577
+00:31:16,166 --> 00:31:19,436
+if you could grant
+your users access
+
+
+578
+00:31:19,436 --> 00:31:21,256
+to those documents as well.
+
+
+579
+00:31:21,816 --> 00:31:23,616
+And for that we are
+introducing a new feature,
+
+
+580
+00:31:23,666 --> 00:31:25,796
+the so-called Document
+Provider Extensions.
+
+
+581
+00:31:27,486 --> 00:31:29,996
+Now, what is a Document
+Provider Extension?
+
+
+582
+00:31:30,846 --> 00:31:34,226
+A Document Provider Extension
+is an alternate way for you,
+
+
+583
+00:31:34,226 --> 00:31:37,696
+or a third party, to
+provide document storage.
+
+
+584
+00:31:38,536 --> 00:31:42,706
+From the host application's
+perspective this works exactly
+
+
+585
+00:31:42,706 --> 00:31:46,056
+the same way as the pre-existing
+iCloud storage location.
+
+
+586
+00:31:47,206 --> 00:31:51,616
+The user is able to select
+one of these storage locations
+
+
+587
+00:31:51,616 --> 00:31:53,476
+from the Document Picker,
+
+
+588
+00:31:53,476 --> 00:31:57,996
+and they can use these storage
+locations in the exact same mode
+
+
+589
+00:31:57,996 --> 00:32:02,376
+so they can open documents
+and move out documents
+
+
+590
+00:32:02,376 --> 00:32:03,676
+to the storage locations.
+
+
+591
+00:32:05,036 --> 00:32:10,826
+We implement these using two
+different, separate extensions,
+
+
+592
+00:32:11,396 --> 00:32:15,586
+the first of which is the
+so-called Document Picker
+
+
+593
+00:32:15,716 --> 00:32:19,536
+Extension, which provides
+a UI view control subclass
+
+
+594
+00:32:20,076 --> 00:32:24,646
+that is effectively free
+form; that the user can use
+
+
+595
+00:32:24,646 --> 00:32:28,676
+to choose a document from your
+storage location, or from,
+
+
+596
+00:32:28,676 --> 00:32:30,416
+of course, from someone
+at the storage locations.
+
+
+597
+00:32:31,076 --> 00:32:34,366
+This UR Document Picker
+subclass is displayed as part
+
+
+598
+00:32:34,366 --> 00:32:36,186
+of the document picker
+view controller,
+
+
+599
+00:32:36,336 --> 00:32:38,736
+so it's effectively
+contained inside one
+
+
+600
+00:32:38,736 --> 00:32:42,306
+of these view controllers just
+like the iCloud Picker is.
+
+
+601
+00:32:42,766 --> 00:32:45,166
+There is also a separate
+second extension,
+
+
+602
+00:32:45,416 --> 00:32:47,446
+which is the so-called
+File Provider Extension.
+
+
+603
+00:32:48,146 --> 00:32:51,196
+The File Provider Extension
+is a non-UI extension,
+
+
+604
+00:32:51,446 --> 00:32:54,546
+which deals with actually
+providing the files.
+
+
+605
+00:32:55,406 --> 00:33:01,116
+The usual use cases where you
+want to provide files would be,
+
+
+606
+00:33:01,116 --> 00:33:05,996
+for example, ensuring that
+a file on disk is current,
+
+
+607
+00:33:07,726 --> 00:33:10,396
+uploading a file that has
+been changed by the user,
+
+
+608
+00:33:11,086 --> 00:33:17,076
+or enabling us to identify a
+file, so the user can save,
+
+
+609
+00:33:17,346 --> 00:33:20,256
+or the user's app can save a
+bookmark for state restoration.
+
+
+610
+00:33:20,856 --> 00:33:24,766
+The file provider extension --
+
+
+611
+00:33:24,766 --> 00:33:27,256
+access to the file provider
+extension is modulated
+
+
+612
+00:33:27,256 --> 00:33:30,786
+through file coordination, which
+means that all accesses that go
+
+
+613
+00:33:30,786 --> 00:33:33,266
+through file coordination will
+automatically do the right thing
+
+
+614
+00:33:33,656 --> 00:33:35,736
+with regards to providing
+access to the file.
+
+
+615
+00:33:35,896 --> 00:33:38,376
+This is another important case
+
+
+616
+00:33:38,376 --> 00:33:40,726
+where you absolutely must
+use file coordination
+
+
+617
+00:33:40,726 --> 00:33:43,666
+or everything else --
+everything will just not work.
+
+
+618
+00:33:44,976 --> 00:33:45,856
+All right.
+
+
+619
+00:33:46,056 --> 00:33:50,016
+Let's have a quick look
+at how the data flow works
+
+
+620
+00:33:50,016 --> 00:33:53,616
+with a File Provider
+Extension, specifically
+
+
+621
+00:33:53,616 --> 00:33:55,146
+when reading a file from disk.
+
+
+622
+00:33:56,306 --> 00:33:59,146
+Let's say you have a host
+app and this host app is used
+
+
+623
+00:33:59,146 --> 00:34:00,876
+by the user who is trying
+
+
+624
+00:34:00,876 --> 00:34:03,556
+to actually open a
+document, in this case.
+
+
+625
+00:34:04,286 --> 00:34:07,106
+So, the host app,
+through some UI action,
+
+
+626
+00:34:07,166 --> 00:34:09,876
+is calling the
+initWithDocumentTypes inMode
+
+
+627
+00:34:09,876 --> 00:34:13,186
+method on the
+UIDocumentPickerViewController,
+
+
+628
+00:34:14,396 --> 00:34:16,025
+and now the Document Picker --
+
+
+629
+00:34:16,025 --> 00:34:20,106
+well, the user inside the
+Document Picker selects a
+
+
+630
+00:34:20,106 --> 00:34:24,996
+third-party Document
+Picker extension: yours.
+
+
+631
+00:34:26,536 --> 00:34:30,156
+We instantiate your
+UIDocument Picker Extension
+
+
+632
+00:34:30,606 --> 00:34:33,485
+and send it prepare for
+presentation in mode call.
+
+
+633
+00:34:34,286 --> 00:34:36,775
+Now, this method is
+called with the mode
+
+
+634
+00:34:36,775 --> 00:34:38,076
+that the user has
+actually selected,
+
+
+635
+00:34:38,076 --> 00:34:40,636
+and at this point you want
+
+
+636
+00:34:40,636 --> 00:34:43,585
+to probably display a View
+Controller that corresponds
+
+
+637
+00:34:43,585 --> 00:34:46,206
+to the mode that
+the user has chosen.
+
+
+638
+00:34:46,206 --> 00:34:48,556
+For example, for the
+open mode you would want
+
+
+639
+00:34:48,556 --> 00:34:51,456
+to display a view controller
+that allows the user
+
+
+640
+00:34:51,456 --> 00:34:56,255
+to pick a specific document,
+and of course for the move
+
+
+641
+00:34:56,255 --> 00:34:58,816
+out mode you will want to
+display a view controller
+
+
+642
+00:34:58,816 --> 00:35:03,246
+that allows them to select a
+location instead of a document.
+
+
+643
+00:35:03,436 --> 00:35:03,776
+All right.
+
+
+644
+00:35:04,686 --> 00:35:10,006
+The user now goes ahead and uses
+your UI to select a document
+
+
+645
+00:35:10,686 --> 00:35:13,716
+at which point, after the user
+has confirmed their intentions,
+
+
+646
+00:35:14,456 --> 00:35:17,676
+you have to determine
+which location
+
+
+647
+00:35:17,716 --> 00:35:21,056
+in the file system you want
+to store this document in.
+
+
+648
+00:35:21,056 --> 00:35:26,086
+You can then call the
+dismiss grant access --
+
+
+649
+00:35:26,086 --> 00:35:30,106
+the granting access to
+URL method on self, well,
+
+
+650
+00:35:30,106 --> 00:35:35,976
+that is your Document Picker
+View Controller Subclass,
+
+
+651
+00:35:36,846 --> 00:35:42,046
+and thereby inform us
+about your intention
+
+
+652
+00:35:42,046 --> 00:35:44,146
+to actually the user
+to access this URL.
+
+
+653
+00:35:45,346 --> 00:35:48,496
+The document picker will
+then call the document picker
+
+
+654
+00:35:48,496 --> 00:35:51,636
+didPickDocument AtURL
+method on its delegate
+
+
+655
+00:35:52,466 --> 00:35:55,576
+to inform the user app that
+the user has just picked
+
+
+656
+00:35:55,576 --> 00:35:56,286
+this document.
+
+
+657
+00:35:57,646 --> 00:35:59,756
+Now what the user is
+probably wanting to do is
+
+
+658
+00:35:59,906 --> 00:36:01,776
+to read the document
+at this location.
+
+
+659
+00:36:01,776 --> 00:36:04,846
+It will use the
+NSFileCoordinator methods,
+
+
+660
+00:36:05,236 --> 00:36:07,856
+for example, coordinateReading
+ItemAtURL
+
+
+661
+00:36:08,616 --> 00:36:11,696
+and its file coordinator
+that it should ensure
+
+
+662
+00:36:11,696 --> 00:36:13,166
+that the document
+is actually present.
+
+
+663
+00:36:13,986 --> 00:36:17,336
+NSFileCoordinator will call out
+to your file provider extension,
+
+
+664
+00:36:17,336 --> 00:36:19,046
+that's your tiny
+non-UI extension,
+
+
+665
+00:36:19,166 --> 00:36:22,196
+with the startProvidingItemAtURL
+method.
+
+
+666
+00:36:22,996 --> 00:36:25,126
+This method takes a
+completion call back
+
+
+667
+00:36:25,126 --> 00:36:29,906
+which you can call once
+you're sure that the item
+
+
+668
+00:36:30,136 --> 00:36:33,106
+at this specific location
+is actually current.
+
+
+669
+00:36:33,806 --> 00:36:35,026
+So, once you call
+
+
+670
+00:36:35,026 --> 00:36:39,596
+that completion call
+back on -- sorry.
+
+
+671
+00:36:40,036 --> 00:36:43,256
+Once you call that completion
+call back the file coordinator
+
+
+672
+00:36:43,256 --> 00:36:45,956
+will know that it is now
+able to unlock the file
+
+
+673
+00:36:46,716 --> 00:36:49,006
+and it itself can call
+its accessorBlock.
+
+
+674
+00:36:50,166 --> 00:36:52,396
+And now inside your
+accessorBlock the user
+
+
+675
+00:36:52,396 --> 00:36:54,936
+application can use this UR
+document like it sees fit,
+
+
+676
+00:36:55,326 --> 00:36:57,686
+for example, using data
+with contents of URL
+
+
+677
+00:36:58,076 --> 00:37:00,966
+to be able to read the file.
+
+
+678
+00:37:02,506 --> 00:37:06,236
+Let's take a quick
+look at how security
+
+
+679
+00:37:06,276 --> 00:37:12,256
+and persistent file access
+works for document providers.
+
+
+680
+00:37:12,736 --> 00:37:14,666
+Unlike the iCloud
+document provider,
+
+
+681
+00:37:14,666 --> 00:37:18,546
+which saves the special document
+reference inside an iCloud
+
+
+682
+00:37:18,546 --> 00:37:21,816
+container the document provider
+extensions don't take part
+
+
+683
+00:37:21,816 --> 00:37:23,196
+in the document reference
+mechanism.
+
+
+684
+00:37:24,266 --> 00:37:28,086
+This is because, of course,
+in this let's say we're
+
+
+685
+00:37:28,086 --> 00:37:29,226
+in an enterprise setting,
+
+
+686
+00:37:29,226 --> 00:37:31,296
+our enterprise administration
+has decided
+
+
+687
+00:37:31,296 --> 00:37:33,306
+that they do not
+want to use iCloud,
+
+
+688
+00:37:33,306 --> 00:37:36,966
+but of course we still want
+this document provider extension
+
+
+689
+00:37:36,966 --> 00:37:41,456
+mechanism to still work because
+our enterprise has given us an
+
+
+690
+00:37:41,456 --> 00:37:46,636
+application that can be
+used to access the files
+
+
+691
+00:37:46,636 --> 00:37:48,156
+on the enterprise's file server.
+
+
+692
+00:37:49,276 --> 00:37:53,086
+So, it's no good to use iCloud
+in this case, of course,
+
+
+693
+00:37:53,186 --> 00:37:54,976
+to get back to your
+document preferences.
+
+
+694
+00:37:55,736 --> 00:37:58,546
+But, of course, the bookmark
+mechanism will still work.
+
+
+695
+00:37:59,816 --> 00:38:04,796
+To that end, the file provider
+is able, or has to be able,
+
+
+696
+00:38:04,796 --> 00:38:10,896
+to resolve or resolve
+into a file URL
+
+
+697
+00:38:11,216 --> 00:38:12,326
+and the other way around.
+
+
+698
+00:38:13,556 --> 00:38:18,326
+Now for security purposes
+we have an isolation layer
+
+
+699
+00:38:18,326 --> 00:38:20,136
+that saves the state information
+
+
+700
+00:38:20,136 --> 00:38:23,486
+about which application
+has been granted access
+
+
+701
+00:38:23,486 --> 00:38:26,716
+to which identifier --
+inside which file provider,
+
+
+702
+00:38:27,686 --> 00:38:31,466
+and this is also something that
+we use these identifiers for.
+
+
+703
+00:38:32,186 --> 00:38:36,536
+Let's have a quick look at how a
+bookmark is created and resolved
+
+
+704
+00:38:36,686 --> 00:38:38,486
+by a Document Provider
+Extension.
+
+
+705
+00:38:39,486 --> 00:38:42,586
+Let's say we have our host
+app and the host app is,
+
+
+706
+00:38:42,796 --> 00:38:47,856
+for some reason, going into
+the background and just wants
+
+
+707
+00:38:47,856 --> 00:38:52,946
+to save its state, it will call
+the bookmarkData WithOptions
+
+
+708
+00:38:52,946 --> 00:38:57,456
+method on NSURL, and NSURL
+will call the persistent
+
+
+709
+00:38:57,456 --> 00:39:01,816
+IdentifierForItemAtURL method
+on your file provider extension,
+
+
+710
+00:39:01,816 --> 00:39:04,556
+which can then return
+a persistentdentifier.
+
+
+711
+00:39:05,006 --> 00:39:06,686
+This might be a database key
+
+
+712
+00:39:07,116 --> 00:39:08,936
+or it might be something
+much simpler;
+
+
+713
+00:39:09,366 --> 00:39:12,636
+it depends on the actual way
+
+
+714
+00:39:12,636 --> 00:39:17,126
+that your file provider is
+actually accessing files.
+
+
+715
+00:39:18,116 --> 00:39:21,546
+Now, at some point it will
+return the Personal Identifier,
+
+
+716
+00:39:21,546 --> 00:39:25,116
+which is just a freeform
+NS string to the NSURL,
+
+
+717
+00:39:25,516 --> 00:39:29,176
+and NSURL will package
+that up and return it
+
+
+718
+00:39:29,176 --> 00:39:32,126
+as the opaque data blob,
+that has the bookmark data.
+
+
+719
+00:39:32,606 --> 00:39:38,046
+At this point our user app can
+go and save its state, and,
+
+
+720
+00:39:38,646 --> 00:39:41,836
+for example, get terminated
+in some way, for example,
+
+
+721
+00:39:41,836 --> 00:39:43,696
+the user reboots their device.
+
+
+722
+00:39:44,816 --> 00:39:48,906
+Now, at some point later the
+user is reopening their app,
+
+
+723
+00:39:49,176 --> 00:39:54,086
+the user app is doing state
+restoration, and in the process
+
+
+724
+00:39:54,086 --> 00:39:56,056
+of doing this is calling the URL
+
+
+725
+00:39:56,056 --> 00:39:58,676
+by resulting bookmark
+data on NSURL.
+
+
+726
+00:39:59,826 --> 00:40:04,086
+We hand the identifier back to
+your file provider which can
+
+
+727
+00:40:04,086 --> 00:40:08,046
+in the URLForItemWith
+PersistentIdentifier method
+
+
+728
+00:40:08,046 --> 00:40:14,406
+and it can then resolve this
+identifier into a NSURL on disk.
+
+
+729
+00:40:14,816 --> 00:40:19,336
+Now, soon after, we call the
+providePlaceholder AtURL method
+
+
+730
+00:40:20,066 --> 00:40:23,236
+which you can use to
+provide a small placeholder
+
+
+731
+00:40:23,666 --> 00:40:28,246
+that can be used
+in correspondence
+
+
+732
+00:40:28,246 --> 00:40:33,506
+with the previously discussed
+getPromisedItem ResourceValueby
+
+
+733
+00:40:33,506 --> 00:40:37,256
+theUser app to merely get
+Metadata on this file.
+
+
+734
+00:40:37,766 --> 00:40:43,346
+But what it can also do at this
+point eagerly download the file.
+
+
+735
+00:40:44,426 --> 00:40:47,276
+We will at least ensure
+that you are providing a
+
+
+736
+00:40:47,276 --> 00:40:48,086
+placeholder though.
+
+
+737
+00:40:49,966 --> 00:40:54,486
+You pass the NSURL off
+the file on disk back.
+
+
+738
+00:40:55,036 --> 00:40:58,856
+The NSURL method can
+now return this NSURL
+
+
+739
+00:40:58,856 --> 00:41:01,806
+and the host app can use the
+getPromisedItem ResourceValue
+
+
+740
+00:41:02,286 --> 00:41:05,996
+to merely read metadata
+or use FileCoordinator AP
+
+
+741
+00:41:05,996 --> 00:41:10,566
+on the NSURL to access the file.
+
+
+742
+00:41:10,736 --> 00:41:12,616
+Well, no matter what you
+have chosen that we will
+
+
+743
+00:41:12,616 --> 00:41:17,016
+at least call you to ensure if
+the user uses file coordination
+
+
+744
+00:41:17,016 --> 00:41:19,606
+in this case to load the
+actual data from this document
+
+
+745
+00:41:20,056 --> 00:41:23,786
+to ensure that the file
+on disk is current.
+
+
+746
+00:41:23,786 --> 00:41:24,116
+All right.
+
+
+747
+00:41:24,666 --> 00:41:26,656
+We've seen how reading
+works and how getting back
+
+
+748
+00:41:26,656 --> 00:41:27,686
+to your documents works.
+
+
+749
+00:41:28,186 --> 00:41:31,286
+Let's have a quick look at
+how writing files works.
+
+
+750
+00:41:31,916 --> 00:41:35,246
+In this case, the user is using,
+
+
+751
+00:41:35,246 --> 00:41:39,666
+or the host app is using
+the file coordination API
+
+
+752
+00:41:39,666 --> 00:41:42,786
+to actually write data to disk.
+
+
+753
+00:41:43,796 --> 00:41:47,116
+So, it would do a
+coordinated write
+
+
+754
+00:41:47,796 --> 00:41:50,196
+to the file inside your
+storage apps folder.
+
+
+755
+00:41:50,536 --> 00:41:53,336
+The file is now changed inside
+your storage apps folder.
+
+
+756
+00:41:54,826 --> 00:41:59,306
+At some point very soon after,
+but importantly to note not
+
+
+757
+00:41:59,566 --> 00:42:02,776
+in a blocking way, so the file
+coordination will have succeeded
+
+
+758
+00:42:02,776 --> 00:42:06,446
+by this point, we will
+call itemChanged AtURL
+
+
+759
+00:42:06,446 --> 00:42:07,766
+on your file provider.
+
+
+760
+00:42:07,766 --> 00:42:10,946
+At this point your
+file provider can go
+
+
+761
+00:42:10,946 --> 00:42:13,166
+and for example initiate
+an upload of this file,
+
+
+762
+00:42:13,836 --> 00:42:17,606
+or at the very least mark it as
+being dirty and needing upload,
+
+
+763
+00:42:17,606 --> 00:42:23,886
+so you don't accidently
+overwrite it at a later point.
+
+
+764
+00:42:25,076 --> 00:42:25,616
+All right.
+
+
+765
+00:42:25,926 --> 00:42:27,926
+Let's have a quick
+look at how that works.
+
+
+766
+00:42:28,446 --> 00:42:34,546
+What I've done is I've built a
+very small sample project using
+
+
+767
+00:42:34,546 --> 00:42:38,096
+the template that comes with
+xcode, which is very nice,
+
+
+768
+00:42:38,166 --> 00:42:39,306
+because it provides you
+
+
+769
+00:42:39,306 --> 00:42:42,806
+with almost everything
+you need at the start.
+
+
+770
+00:42:43,596 --> 00:42:46,636
+We can use the target here
+and use the application
+
+
+771
+00:42:46,636 --> 00:42:50,236
+and get extension template
+for the Document Picker,
+
+
+772
+00:42:50,526 --> 00:42:53,246
+and basically choose a
+name here and it'll set
+
+
+773
+00:42:53,246 --> 00:42:55,226
+up the two different extensions.
+
+
+774
+00:42:56,306 --> 00:42:59,666
+Inside my project I just have
+the two different extensions,
+
+
+775
+00:43:00,066 --> 00:43:03,146
+one folder here for
+the actual picker.
+
+
+776
+00:43:03,516 --> 00:43:05,926
+I'm doing a text
+snippet picker to go
+
+
+777
+00:43:05,926 --> 00:43:08,286
+with the text display
+app that Mike showed.
+
+
+778
+00:43:09,246 --> 00:43:12,096
+And inside this I have
+a whole bunch of files
+
+
+779
+00:43:12,096 --> 00:43:16,846
+which are basically, well,
+classes to display some sort
+
+
+780
+00:43:16,846 --> 00:43:20,796
+of picking UI, but the
+important part is my subclass
+
+
+781
+00:43:20,796 --> 00:43:23,106
+of UIDocumentPicker
+ExtensionViewController here.
+
+
+782
+00:43:23,506 --> 00:43:28,796
+And inside this subclass
+the important parts are the
+
+
+783
+00:43:29,086 --> 00:43:32,206
+prepareForPresentationinMode
+method - let me make this big
+
+
+784
+00:43:32,206 --> 00:43:33,436
+so you can see this -
+
+
+785
+00:43:33,576 --> 00:43:36,616
+and in this PresentationinMode
+method what I want
+
+
+786
+00:43:36,616 --> 00:43:41,246
+to do is basically
+display a specific,
+
+
+787
+00:43:42,006 --> 00:43:44,646
+in this case I'm using a
+collection view controller
+
+
+788
+00:43:44,646 --> 00:43:49,866
+to display a list of documents,
+and I'm displaying this.
+
+
+789
+00:43:49,866 --> 00:43:52,776
+And all of my picking
+actually is not handled
+
+
+790
+00:43:52,846 --> 00:43:54,986
+by my DocumentPicker
+ViewController,
+
+
+791
+00:43:55,276 --> 00:43:56,276
+but by a subclass.
+
+
+792
+00:43:56,736 --> 00:44:00,846
+Of course, I use a
+delegate pattern to get back
+
+
+793
+00:44:00,846 --> 00:44:04,556
+to my main class once the
+user has picked a document
+
+
+794
+00:44:04,676 --> 00:44:07,446
+and we'll call this method here
+
+
+795
+00:44:07,546 --> 00:44:09,616
+and inside this method
+all I have
+
+
+796
+00:44:09,666 --> 00:44:12,696
+to do is call the
+dismissGrantingAccesstoURL
+
+
+797
+00:44:13,006 --> 00:44:16,086
+with the file URL that I've
+previously written out.
+
+
+798
+00:44:17,306 --> 00:44:23,576
+Now, the document file
+provider here is very simple
+
+
+799
+00:44:23,576 --> 00:44:24,206
+in this case.
+
+
+800
+00:44:25,046 --> 00:44:28,896
+The interesting method for this
+demo is the startProvidingItem
+
+
+801
+00:44:28,896 --> 00:44:31,926
+withURL method, which
+I implement to ensure
+
+
+802
+00:44:31,926 --> 00:44:34,426
+that the snippet at
+this URL is current,
+
+
+803
+00:44:34,836 --> 00:44:36,156
+and then call the
+Completion Handler.
+
+
+804
+00:44:36,636 --> 00:44:39,836
+Let's have a quick look at
+how that looks on the machine.
+
+
+805
+00:44:40,786 --> 00:44:41,156
+All right.
+
+
+806
+00:44:41,666 --> 00:44:46,466
+I've got my demo app here, which
+is basically, since I started
+
+
+807
+00:44:46,516 --> 00:44:47,856
+from the template,
+just an empty app.
+
+
+808
+00:44:48,166 --> 00:44:50,766
+So, instead I'm going to
+pop off the Document Picker
+
+
+809
+00:44:51,416 --> 00:44:53,566
+and you notice I don't
+even have any documents
+
+
+810
+00:44:53,566 --> 00:44:58,096
+in my iCloud account,
+but when I pop
+
+
+811
+00:44:58,096 --> 00:45:00,136
+up this Document
+Picker menu here,
+
+
+812
+00:45:00,406 --> 00:45:03,666
+I see a list including
+the iCloud document picker
+
+
+813
+00:45:03,666 --> 00:45:04,776
+and my SnippetPicker.
+
+
+814
+00:45:05,566 --> 00:45:06,396
+And if I pop
+
+
+815
+00:45:06,396 --> 00:45:10,056
+up the SnippetPicker what is
+displayed is my SnippetPicker
+
+
+816
+00:45:10,056 --> 00:45:13,236
+View Controller and I
+can use that to pick any
+
+
+817
+00:45:13,236 --> 00:45:15,136
+of these documents
+or Snippets in here.
+
+
+818
+00:45:15,956 --> 00:45:20,026
+So, when I pick these with
+the exact same sample app
+
+
+819
+00:45:20,026 --> 00:45:24,046
+that Mike showed you I'm
+able to access these Snippets
+
+
+820
+00:45:24,226 --> 00:45:27,446
+from my little document
+picker app.
+
+
+821
+00:45:27,706 --> 00:45:33,356
+Now, when you use the
+seed one to try this out,
+
+
+822
+00:45:33,686 --> 00:45:37,276
+note that this Snippet that the
+document picker you will create
+
+
+823
+00:45:37,276 --> 00:45:38,516
+will not show up by default,
+
+
+824
+00:45:39,216 --> 00:45:42,166
+so you can use the
+little locations button
+
+
+825
+00:45:42,876 --> 00:45:46,646
+in the navigation bar of
+the iCloud Document Picker.
+
+
+826
+00:45:47,336 --> 00:45:48,976
+It has a little more pop
+
+
+827
+00:45:48,976 --> 00:45:52,636
+out where you can enable
+the Snippet Picker.
+
+
+828
+00:45:52,816 --> 00:45:53,186
+All right.
+
+
+829
+00:45:54,616 --> 00:45:59,116
+Now let's switch back to slides.
+
+
+830
+00:46:00,566 --> 00:46:04,106
+Cool. To summarize the demo,
+we've got an Xcode template
+
+
+831
+00:46:04,106 --> 00:46:06,986
+to get you started with the
+document picker mechanism.
+
+
+832
+00:46:07,726 --> 00:46:13,716
+The Document Picker, or a
+Document Provider will show
+
+
+833
+00:46:13,716 --> 00:46:15,656
+up right next to
+the iCloud picker
+
+
+834
+00:46:15,656 --> 00:46:18,736
+if the user installs them.
+
+
+835
+00:46:19,856 --> 00:46:25,106
+And we also have
+sample code available
+
+
+836
+00:46:25,106 --> 00:46:29,576
+on the Session Home Page,
+that will enable you
+
+
+837
+00:46:29,576 --> 00:46:31,156
+to quickly test this out.
+
+
+838
+00:46:31,666 --> 00:46:35,776
+The sample code is basically a
+little test app that we wrote
+
+
+839
+00:46:35,846 --> 00:46:41,126
+to be able to display each
+of the document picker modes.
+
+
+840
+00:46:41,276 --> 00:46:45,186
+Cool. So that's Document
+Providers,
+
+
+841
+00:46:46,056 --> 00:46:51,166
+and that almost concludes the
+session, but I have a little bit
+
+
+842
+00:46:51,166 --> 00:46:52,746
+of information for you --
+
+
+843
+00:46:53,896 --> 00:46:59,656
+to inform you how since we have
+this new Cloud Drive mechanism,
+
+
+844
+00:47:00,086 --> 00:47:04,066
+how the migration
+story is for that.
+
+
+845
+00:47:04,276 --> 00:47:10,006
+On iOS 8 the users can either
+choose to, once it comes out,
+
+
+846
+00:47:10,266 --> 00:47:13,606
+choose to use the old
+iCloud Documents mechanism,
+
+
+847
+00:47:13,906 --> 00:47:15,776
+or to migrate to iCloud Drive.
+
+
+848
+00:47:16,556 --> 00:47:21,196
+On OS X Yosemite we do
+not provide the backwards
+
+
+849
+00:47:21,196 --> 00:47:24,776
+compatibility for the old
+iCloud documents mechanism,
+
+
+850
+00:47:25,406 --> 00:47:28,376
+so the user has to either
+choose to migrate to Cloud Drive
+
+
+851
+00:47:29,276 --> 00:47:33,316
+or they will no longer
+receive the updates
+
+
+852
+00:47:34,096 --> 00:47:35,236
+across their devices.
+
+
+853
+00:47:35,626 --> 00:47:37,866
+Of course, they can choose
+to migrate at a later point,
+
+
+854
+00:47:37,866 --> 00:47:39,786
+at which point the
+upgrades resume.
+
+
+855
+00:47:40,226 --> 00:47:42,786
+And of course after
+an account is migrated
+
+
+856
+00:47:42,836 --> 00:47:45,516
+to iCloud Drive only the devices
+
+
+857
+00:47:45,566 --> 00:47:48,806
+that are actually using iCloud
+Drive will propagate changes
+
+
+858
+00:47:49,296 --> 00:47:50,306
+between each other.
+
+
+859
+00:47:50,856 --> 00:47:55,656
+For US developers this
+is important to know
+
+
+860
+00:47:56,246 --> 00:48:01,426
+because even though the
+current Seed Build that you have
+
+
+861
+00:48:01,426 --> 00:48:06,226
+in your hands right now is
+automatically using iCloud
+
+
+862
+00:48:07,206 --> 00:48:11,896
+Drive, the actual new features -
+and thus you can easily test all
+
+
+863
+00:48:11,896 --> 00:48:14,586
+of this out - the new
+features that we've presented
+
+
+864
+00:48:14,586 --> 00:48:17,556
+in today's presentation
+will only be available
+
+
+865
+00:48:17,556 --> 00:48:19,686
+if your user is using
+iCloud Drive.
+
+
+866
+00:48:20,836 --> 00:48:23,936
+So you have to be aware
+of this possibility
+
+
+867
+00:48:24,686 --> 00:48:29,876
+in case they have not
+actually chosen to migrate.
+
+
+868
+00:48:30,496 --> 00:48:31,046
+All right.
+
+
+869
+00:48:31,906 --> 00:48:36,466
+To summarize, if you're
+just taking one thing away
+
+
+870
+00:48:36,466 --> 00:48:38,496
+from today's session it would be
+
+
+871
+00:48:38,496 --> 00:48:40,066
+that you should use
+file coordination
+
+
+872
+00:48:40,066 --> 00:48:42,496
+for document access.
+
+
+873
+00:48:42,496 --> 00:48:43,956
+Without using file coordination,
+
+
+874
+00:48:43,956 --> 00:48:49,766
+none of these mechanisms can
+work, and you will probably be
+
+
+875
+00:48:49,766 --> 00:48:53,886
+at some point experiencing
+data loss on the machines
+
+
+876
+00:48:53,886 --> 00:48:56,946
+of your users; which of
+course is extremely bad.
+
+
+877
+00:48:57,726 --> 00:49:01,366
+We've seen how to discover
+and display files not only
+
+
+878
+00:49:01,366 --> 00:49:04,336
+in your own container, but
+also using the UIDocumentPicker
+
+
+879
+00:49:05,196 --> 00:49:07,466
+which allows you to
+access files outside
+
+
+880
+00:49:07,466 --> 00:49:08,906
+of your applications'
+containers.
+
+
+881
+00:49:09,556 --> 00:49:11,316
+We've given a quick
+overview on how
+
+
+882
+00:49:11,316 --> 00:49:15,746
+to use document provider
+extensions to be able
+
+
+883
+00:49:15,746 --> 00:49:20,366
+to integrate your own
+company's storage system
+
+
+884
+00:49:20,796 --> 00:49:23,066
+into the whole document
+access mechanism.
+
+
+885
+00:49:23,586 --> 00:49:28,486
+For more information I
+would like to guide you
+
+
+886
+00:49:28,486 --> 00:49:31,036
+to Dave DeLong, our App
+Frameworks Evangelist
+
+
+887
+00:49:31,936 --> 00:49:35,886
+and also Jake Behrens
+who is the UIKit specific
+
+
+888
+00:49:35,976 --> 00:49:37,066
+Frameworks Evangelist.
+
+
+889
+00:49:38,406 --> 00:49:40,636
+We have some neat
+documentation out.
+
+
+890
+00:49:40,636 --> 00:49:43,886
+There is a brand new
+iCloud for Developers guide
+
+
+891
+00:49:44,856 --> 00:49:47,396
+and we also have guides
+for the Document Picker,
+
+
+892
+00:49:48,306 --> 00:49:51,756
+and of course also guides for
+the extensions mechanisms.
+
+
+893
+00:49:52,016 --> 00:49:56,686
+We also have the Apple Developer
+Forums where our developers hang
+
+
+894
+00:49:56,686 --> 00:49:58,516
+out and will answer questions.
+
+
+895
+00:50:00,036 --> 00:50:03,866
+Related sessions: there
+was a very nice session
+
+
+896
+00:50:03,866 --> 00:50:05,156
+on introducing CloudKit.
+
+
+897
+00:50:05,806 --> 00:50:06,546
+If you're interested
+
+
+898
+00:50:06,546 --> 00:50:11,236
+in the technology behind the
+new iCloud Drive mechanism
+
+
+899
+00:50:11,456 --> 00:50:12,636
+that powers all of this.
+
+
+900
+00:50:13,196 --> 00:50:15,596
+This session is of course
+not entirely necessary
+
+
+901
+00:50:15,596 --> 00:50:17,486
+if you merely want to
+store your documents
+
+
+902
+00:50:18,086 --> 00:50:21,086
+because the CloudKit mechanism
+is entirely transparent
+
+
+903
+00:50:21,206 --> 00:50:24,086
+from the document
+storage perspective.
+
+
+904
+00:50:24,816 --> 00:50:29,726
+We also have had sessions on
+creating extensions for iOS
+
+
+905
+00:50:29,766 --> 00:50:34,086
+and OS X, and with that
+thank you for your time
+
+
+906
+00:50:34,326 --> 00:50:37,906
+and I wish you pleasant rest
+of the week and a nice bash.
+
+
+907
+00:50:39,016 --> 00:50:40,650
+[ Applause ]
+

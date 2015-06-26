@@ -1,0 +1,4653 @@
+1
+00:00:13,396 --> 00:00:15,386
+>> Good morning,
+how's everybody doing?
+
+
+2
+00:00:16,486 --> 00:00:17,536
+Enjoying the conference, I hope.
+
+
+3
+00:00:19,866 --> 00:00:21,866
+My name's Eric Clements
+and I'm here to talk to you
+
+
+4
+00:00:21,866 --> 00:00:24,176
+about a new technology
+we're introducing for iOS 8
+
+
+5
+00:00:24,176 --> 00:00:26,536
+and Mac OS X Yosemite
+called activity tracing.
+
+
+6
+00:00:27,116 --> 00:00:30,476
+The goal of this is to hopefully
+improve your ability to fix bugs
+
+
+7
+00:00:30,916 --> 00:00:32,625
+in a much quicker fashion.
+
+
+8
+00:00:33,316 --> 00:00:37,216
+So, I'm going to cover
+a few topics today.
+
+
+9
+00:00:37,216 --> 00:00:40,026
+First of all, we'll go over
+a little bit of a background
+
+
+10
+00:00:40,026 --> 00:00:43,096
+and why we developed this
+and what our goals were.
+
+
+11
+00:00:43,096 --> 00:00:46,686
+We'll talk about some new
+concepts, including things
+
+
+12
+00:00:46,686 --> 00:00:52,996
+like activities, breadcrumbs,
+new concept of trace messages,
+
+
+13
+00:00:54,136 --> 00:00:57,746
+as well as some tools and
+some considerations to take
+
+
+14
+00:00:57,746 --> 00:00:59,726
+into account while adopting
+this new technology.
+
+
+15
+00:01:00,216 --> 00:01:04,885
+So, let's go into
+some background.
+
+
+16
+00:01:05,186 --> 00:01:08,386
+As many of you know, here
+
+
+17
+00:01:08,386 --> 00:01:11,026
+at Apple we encourage
+asynchronous development very
+
+
+18
+00:01:11,026 --> 00:01:12,636
+much so because it's
+very important
+
+
+19
+00:01:12,636 --> 00:01:15,266
+to have a very responsive user
+interface and application.
+
+
+20
+00:01:15,636 --> 00:01:17,846
+And in doing so, we've
+introduced a lot of technology
+
+
+21
+00:01:17,846 --> 00:01:21,756
+over the years, including
+XPC, GCD, NSOperationsQueue,
+
+
+22
+00:01:22,056 --> 00:01:25,586
+to simplify those common tasks
+that were previously complex.
+
+
+23
+00:01:27,336 --> 00:01:28,556
+In doing so we realized
+
+
+24
+00:01:28,556 --> 00:01:30,796
+that this became very
+difficult to debug.
+
+
+25
+00:01:30,796 --> 00:01:32,336
+How many of you have
+had problems trying
+
+
+26
+00:01:32,336 --> 00:01:34,836
+to debug your XPC and-yeah.
+
+
+27
+00:01:35,716 --> 00:01:37,526
+So, we wanted to really
+find a way to improve
+
+
+28
+00:01:37,526 --> 00:01:39,046
+that with this release
+and we've done a lot.
+
+
+29
+00:01:39,046 --> 00:01:41,956
+Not only in XCode with
+the new Queue debugging,
+
+
+30
+00:01:42,246 --> 00:01:44,316
+but also with this new
+activity tracing technology.
+
+
+31
+00:01:45,146 --> 00:01:46,756
+And you'll hear more
+about this as we go along.
+
+
+32
+00:01:47,376 --> 00:01:51,766
+In addition to that, privilege
+separation has, in addition,
+
+
+33
+00:01:51,846 --> 00:01:56,096
+has made that much worse because
+we have another process involved
+
+
+34
+00:01:56,506 --> 00:01:58,076
+trying to separate privilege
+
+
+35
+00:01:58,076 --> 00:02:02,266
+and now you have two processes
+involved that may log separately
+
+
+36
+00:02:02,266 --> 00:02:02,836
+and you have no way
+
+
+37
+00:02:02,836 --> 00:02:04,426
+to understand who's
+causing the problem.
+
+
+38
+00:02:04,936 --> 00:02:07,006
+So, this is just another
+piece of the puzzle
+
+
+39
+00:02:07,006 --> 00:02:08,746
+that has complicated our lives.
+
+
+40
+00:02:09,205 --> 00:02:12,056
+The reality is debug
+tools have not kept pace.
+
+
+41
+00:02:12,556 --> 00:02:13,386
+We've done our best.
+
+
+42
+00:02:13,676 --> 00:02:15,176
+You'll see in this release,
+we've done a whole lot,
+
+
+43
+00:02:15,336 --> 00:02:17,636
+as I mentioned, Queue
+debugging in a session
+
+
+44
+00:02:17,636 --> 00:02:18,846
+that has happened as well.
+
+
+45
+00:02:19,666 --> 00:02:24,576
+The reality is, a lot of us
+log, and I'm sure and all of you
+
+
+46
+00:02:24,576 --> 00:02:26,596
+in the room have used
+this log or NSLog
+
+
+47
+00:02:26,596 --> 00:02:29,006
+or some logging mechanism to
+try to debug your situation.
+
+
+48
+00:02:29,006 --> 00:02:32,146
+What we really found that that's
+really not sufficient these days
+
+
+49
+00:02:32,466 --> 00:02:34,266
+because there's really not
+enough context to understand
+
+
+50
+00:02:34,266 --> 00:02:36,616
+where you were and how you
+got there and we really want
+
+
+51
+00:02:36,616 --> 00:02:38,886
+to find a way to
+resolve that and get you
+
+
+52
+00:02:38,886 --> 00:02:41,036
+that information you really
+need to diagnose the problem.
+
+
+53
+00:02:41,036 --> 00:02:46,256
+One of the diagnostic
+challenges we find is
+
+
+54
+00:02:46,296 --> 00:02:50,106
+as you see going forward, you
+know, when you sample a Daemon
+
+
+55
+00:02:50,106 --> 00:02:52,066
+or an XPCService, it
+may look very idle,
+
+
+56
+00:02:52,756 --> 00:02:55,406
+looks like nothing's really
+happening, but the reality is,
+
+
+57
+00:02:55,936 --> 00:02:58,436
+there may be two processes
+or multi-processes talking
+
+
+58
+00:02:58,436 --> 00:02:59,916
+to this service that
+are blocked,
+
+
+59
+00:03:00,296 --> 00:03:02,266
+but they also look
+idle, so how do you know
+
+
+60
+00:03:02,266 --> 00:03:03,636
+that that's actually
+the situation?
+
+
+61
+00:03:04,686 --> 00:03:06,676
+We really wanted to find
+a way to improve this.
+
+
+62
+00:03:07,496 --> 00:03:10,856
+In addition to that, I'm
+sure, if you're like me,
+
+
+63
+00:03:10,966 --> 00:03:14,226
+you probably have a desktop
+that has multiple windows open,
+
+
+64
+00:03:14,226 --> 00:03:18,366
+including console, terminal,
+XCode, your application
+
+
+65
+00:03:18,366 --> 00:03:19,916
+and any numerous
+number of applications,
+
+
+66
+00:03:19,916 --> 00:03:21,136
+trying to understand
+what's happening
+
+
+67
+00:03:21,136 --> 00:03:24,026
+at that moment in time.
+
+
+68
+00:03:24,246 --> 00:03:26,216
+We really wanted to find
+a better way to do this,
+
+
+69
+00:03:26,776 --> 00:03:29,976
+so we think we developed
+something.
+
+
+70
+00:03:31,786 --> 00:03:33,426
+In addition to that,
+the complexity
+
+
+71
+00:03:33,426 --> 00:03:35,176
+of the OS has really
+gone up over the years.
+
+
+72
+00:03:35,506 --> 00:03:38,466
+If you look at a simple
+query, in this case the touch
+
+
+73
+00:03:38,466 --> 00:03:42,496
+that opendirectoryd, that
+query may actually talk
+
+
+74
+00:03:42,496 --> 00:03:44,856
+to multiple daemons
+in a circular fashion.
+
+
+75
+00:03:45,176 --> 00:03:47,786
+And how do you really understand
+what's happening at that moment
+
+
+76
+00:03:47,786 --> 00:03:50,286
+in time because you never
+know which Daemon is actually
+
+
+77
+00:03:50,286 --> 00:03:53,246
+in flight, what they're
+doing and how you got there.
+
+
+78
+00:03:54,066 --> 00:03:56,946
+In addition to all this, we
+also have what I call a complex
+
+
+79
+00:03:56,946 --> 00:04:00,356
+crash, where over time as an
+application is being used,
+
+
+80
+00:04:00,356 --> 00:04:04,386
+it may invoke multiple Daemons
+or XPCServices and ultimately,
+
+
+81
+00:04:04,386 --> 00:04:07,746
+at the end, you have the final
+event, as you see at the top,
+
+
+82
+00:04:07,746 --> 00:04:10,176
+button click that talked
+to an XPCService, well,
+
+
+83
+00:04:10,176 --> 00:04:11,876
+that XPCService happened
+to crash.
+
+
+84
+00:04:13,316 --> 00:04:15,826
+You may not have noticed it
+in the background and all
+
+
+85
+00:04:16,026 --> 00:04:17,226
+that shows at the top
+
+
+86
+00:04:17,226 --> 00:04:19,505
+of the screen is your
+query cannot be completed
+
+
+87
+00:04:19,505 --> 00:04:20,026
+at this time.
+
+
+88
+00:04:20,826 --> 00:04:21,586
+Not very helpful.
+
+
+89
+00:04:21,726 --> 00:04:23,646
+So, how do we find a
+way to improve that?
+
+
+90
+00:04:23,646 --> 00:04:28,926
+So, we set out with several
+goals, we really wanted
+
+
+91
+00:04:28,926 --> 00:04:32,626
+to make the additional data that
+we're providing in this release,
+
+
+92
+00:04:32,846 --> 00:04:35,526
+available in a diagnostics
+report you see on a daily basis,
+
+
+93
+00:04:35,526 --> 00:04:38,006
+whether that would be a
+Crash Report, a spin report
+
+
+94
+00:04:38,006 --> 00:04:41,356
+or any other type of
+report that we provide.
+
+
+95
+00:04:41,486 --> 00:04:42,706
+In addition to that,
+we really wanted
+
+
+96
+00:04:42,706 --> 00:04:45,446
+to reduce the time you spend
+guessing what, where and when.
+
+
+97
+00:04:45,776 --> 00:04:46,676
+How did I get here?
+
+
+98
+00:04:46,676 --> 00:04:49,066
+What was happening at that
+moment in time and why?
+
+
+99
+00:04:49,676 --> 00:04:51,526
+You know, that's really
+the biggest challenge
+
+
+100
+00:04:51,526 --> 00:04:54,316
+in this complex environment and
+we really wanted to find a way
+
+
+101
+00:04:54,316 --> 00:04:55,666
+to provide you that insight.
+
+
+102
+00:04:56,806 --> 00:05:01,276
+In addition to that,
+sometimes we look at problems
+
+
+103
+00:05:01,276 --> 00:05:05,016
+as a single click or a single
+button that caused the problem.
+
+
+104
+00:05:05,836 --> 00:05:08,466
+It's not necessarily a single
+action that caused the problem,
+
+
+105
+00:05:08,506 --> 00:05:10,856
+sometimes it's the interaction
+of actions over time.
+
+
+106
+00:05:11,186 --> 00:05:13,396
+Maybe there's a button click
+that created a new mail,
+
+
+107
+00:05:13,396 --> 00:05:16,166
+deleted the trash and then
+tried to create a new mail.
+
+
+108
+00:05:17,146 --> 00:05:18,596
+Take the pick of
+your application,
+
+
+109
+00:05:18,706 --> 00:05:20,556
+it's sometimes not
+just a single event,
+
+
+110
+00:05:20,556 --> 00:05:23,906
+it's actually the combination of
+events that caused the problem.
+
+
+111
+00:05:23,906 --> 00:05:26,226
+So, how do we understand those
+types of events over time?
+
+
+112
+00:05:27,916 --> 00:05:29,656
+Whatever we did, we knew
+it had to be lightweight
+
+
+113
+00:05:29,656 --> 00:05:30,766
+and really easy to use.
+
+
+114
+00:05:31,326 --> 00:05:33,486
+So, let's look at
+a Crash Report.
+
+
+115
+00:05:33,486 --> 00:05:36,596
+You can see a little
+hint here, we're looking
+
+
+116
+00:05:36,596 --> 00:05:38,436
+to add some new additional
+information, we're obviously
+
+
+117
+00:05:38,436 --> 00:05:39,916
+in a Crash Report, maybe
+
+
+118
+00:05:39,916 --> 00:05:41,736
+at the top we'll actually
+have the events leading
+
+
+119
+00:05:41,736 --> 00:05:42,616
+up to the crash.
+
+
+120
+00:05:44,336 --> 00:05:47,466
+Down below the crashing
+thread, some detailed messages
+
+
+121
+00:05:47,466 --> 00:05:49,496
+about what was happening
+at that moment in time
+
+
+122
+00:05:49,796 --> 00:05:50,726
+when the crash happened.
+
+
+123
+00:05:52,086 --> 00:05:53,226
+What's really exciting
+is to point
+
+
+124
+00:05:53,226 --> 00:05:54,306
+out some performance gains here
+
+
+125
+00:05:54,626 --> 00:05:56,996
+by adopting this new
+activity trace mechanism,
+
+
+126
+00:05:57,326 --> 00:06:01,436
+you get some power back and
+CPU back to your application
+
+
+127
+00:06:01,436 --> 00:06:03,676
+and focus on the actual
+work, versus trying
+
+
+128
+00:06:03,676 --> 00:06:07,276
+to understand what
+was happening.
+
+
+129
+00:06:07,276 --> 00:06:08,976
+You see measured across
+various platforms,
+
+
+130
+00:06:08,976 --> 00:06:10,266
+we've got really nice numbers.
+
+
+131
+00:06:11,956 --> 00:06:17,826
+Similarly on iOS, dramatic
+difference, gives you that CPU
+
+
+132
+00:06:17,826 --> 00:06:20,176
+and power back to your
+application focused on that
+
+
+133
+00:06:20,176 --> 00:06:22,386
+versus trying to understand
+what was happening.
+
+
+134
+00:06:23,186 --> 00:06:25,056
+So, to cover some
+terminology again
+
+
+135
+00:06:25,436 --> 00:06:27,846
+and we put these
+boxes into place.
+
+
+136
+00:06:29,796 --> 00:06:33,056
+Those events I mentioned
+over time, those menu clicks
+
+
+137
+00:06:33,606 --> 00:06:35,226
+and such, are what
+we call activities.
+
+
+138
+00:06:35,226 --> 00:06:39,076
+An activity flows from
+one process to another
+
+
+139
+00:06:39,636 --> 00:06:42,856
+and this is kind of our
+scoping mechanism, so to speak.
+
+
+140
+00:06:43,036 --> 00:06:45,576
+On top of that we have a
+concept of breadcrumbs,
+
+
+141
+00:06:46,436 --> 00:06:50,586
+and these are those high-level
+interesting or meaningful events
+
+
+142
+00:06:50,586 --> 00:06:53,516
+that you as a developer
+understand
+
+
+143
+00:06:54,036 --> 00:06:56,946
+because not every click or
+every menu option is interesting
+
+
+144
+00:06:57,046 --> 00:06:59,386
+or meaningful, you get the
+opportunity to actually point
+
+
+145
+00:06:59,386 --> 00:07:01,416
+out the ones that are meaningful
+to you as a developer.
+
+
+146
+00:07:02,226 --> 00:07:03,776
+In addition to that,
+you have trace messages
+
+
+147
+00:07:03,776 --> 00:07:05,226
+that are actually
+part of this activity,
+
+
+148
+00:07:05,836 --> 00:07:10,026
+so that you actually have a
+scoped view of that action
+
+
+149
+00:07:10,026 --> 00:07:14,676
+and things over time versus
+a huge log to try and sift
+
+
+150
+00:07:14,676 --> 00:07:16,016
+through to understand
+what was happening
+
+
+151
+00:07:16,016 --> 00:07:16,856
+at that moment in time.
+
+
+152
+00:07:16,856 --> 00:07:19,056
+And we'll show you
+some great examples
+
+
+153
+00:07:19,056 --> 00:07:20,156
+of what this does for you.
+
+
+154
+00:07:21,086 --> 00:07:25,216
+We do have a new Daemon,
+nothing you typically have
+
+
+155
+00:07:25,216 --> 00:07:27,286
+to worry about, but it does
+come up in the background
+
+
+156
+00:07:27,286 --> 00:07:28,786
+and it will-it's the one
+
+
+157
+00:07:28,786 --> 00:07:30,956
+that handles all this
+behind the scenes
+
+
+158
+00:07:31,006 --> 00:07:33,076
+and provides a diagnostic
+report mechanism.
+
+
+159
+00:07:33,486 --> 00:07:35,696
+So, let's talk a little
+bit about activities.
+
+
+160
+00:07:36,056 --> 00:07:37,956
+I alluded to an activity
+of what it was,
+
+
+161
+00:07:37,956 --> 00:07:39,326
+but what really is an activity?
+
+
+162
+00:07:39,826 --> 00:07:42,916
+You think of an activity
+as a set of work
+
+
+163
+00:07:42,916 --> 00:07:44,486
+that was triggered by an action.
+
+
+164
+00:07:44,656 --> 00:07:46,576
+As the diagram I showed before,
+
+
+165
+00:07:46,576 --> 00:07:48,426
+an application could
+have done a simple query.
+
+
+166
+00:07:48,996 --> 00:07:51,306
+That query talked to
+another Daemon, which talked
+
+
+167
+00:07:51,306 --> 00:07:52,376
+to other Daemons along the way.
+
+
+168
+00:07:53,016 --> 00:07:55,576
+That is a set of work that
+is triggered by an action.
+
+
+169
+00:07:56,496 --> 00:07:58,266
+But I totally understand
+that there are cases
+
+
+170
+00:07:58,266 --> 00:07:59,396
+where you have explicit work,
+
+
+171
+00:07:59,396 --> 00:08:01,116
+maybe you have an
+initialization phase,
+
+
+172
+00:08:01,436 --> 00:08:02,916
+you're reindexing databases,
+
+
+173
+00:08:03,196 --> 00:08:06,476
+you're building a new asset
+database, various reasons
+
+
+174
+00:08:06,476 --> 00:08:09,166
+that you want to xScope that,
+where you can actually create
+
+
+175
+00:08:09,166 --> 00:08:11,516
+that explicitly defined sort
+of work with an activity.
+
+
+176
+00:08:12,406 --> 00:08:14,786
+But what does that activity
+really mean to the system?
+
+
+177
+00:08:15,486 --> 00:08:18,526
+What I mean is, it's essentially
+a 64-bit identifier that's
+
+
+178
+00:08:18,526 --> 00:08:19,676
+created by the operating system.
+
+
+179
+00:08:20,466 --> 00:08:21,996
+Something you don't
+have any control over,
+
+
+180
+00:08:22,096 --> 00:08:24,986
+it's automatic as
+part of the API.
+
+
+181
+00:08:26,156 --> 00:08:28,616
+What's great about it is,
+it's also autopropagated,
+
+
+182
+00:08:28,766 --> 00:08:32,506
+meaning it flows throughout
+the system across GCD queues,
+
+
+183
+00:08:32,506 --> 00:08:34,916
+NSOperationQueues,
+as well as processes.
+
+
+184
+00:08:35,546 --> 00:08:40,135
+For example, take process A
+and process B, may have queues
+
+
+185
+00:08:40,135 --> 00:08:43,525
+in flight and you can see here
+those-activity ID number 1
+
+
+186
+00:08:43,525 --> 00:08:46,816
+and activity ID number
+2-you can see them flowing
+
+
+187
+00:08:46,816 --> 00:08:49,696
+across the process and that
+happens to be XPC and GCD,
+
+
+188
+00:08:50,816 --> 00:08:52,346
+all behind the scenes,
+nothing for you
+
+
+189
+00:08:52,346 --> 00:08:53,976
+to do, it's all transparent.
+
+
+190
+00:08:54,546 --> 00:08:57,396
+So, you look at activities over
+time as I've showed previously
+
+
+191
+00:08:57,396 --> 00:09:00,586
+in a previous chart,
+now you have a concept
+
+
+192
+00:09:00,586 --> 00:09:03,696
+of a menu selection,
+has a single activity ID
+
+
+193
+00:09:03,696 --> 00:09:05,786
+and then the next menu
+select has a new activity ID.
+
+
+194
+00:09:05,786 --> 00:09:07,956
+And this is happening every
+time a button is pressed
+
+
+195
+00:09:07,956 --> 00:09:10,116
+on the screen or
+a click is done.
+
+
+196
+00:09:10,766 --> 00:09:13,916
+So, now you have a new
+scoping mechanism that tracks
+
+
+197
+00:09:13,916 --> 00:09:19,146
+that activity across the system,
+very simple concept, automatic,
+
+
+198
+00:09:19,466 --> 00:09:21,666
+nothing for you to
+track directly.
+
+
+199
+00:09:22,666 --> 00:09:24,536
+Well, we obviously wanted
+to make a way for you
+
+
+200
+00:09:24,536 --> 00:09:27,216
+to create these activities
+and we wanted
+
+
+201
+00:09:27,216 --> 00:09:29,316
+to make sure it was easy
+for you so you had nothing
+
+
+202
+00:09:29,316 --> 00:09:31,186
+to do directly unless
+you wanted to.
+
+
+203
+00:09:31,506 --> 00:09:33,186
+So, we made it as
+simple as possible,
+
+
+204
+00:09:33,186 --> 00:09:36,156
+we provided this automatically
+through the UIKit on iOS
+
+
+205
+00:09:36,396 --> 00:09:37,996
+and the AppKit on OS X.
+
+
+206
+00:09:38,416 --> 00:09:40,486
+So, as part of every
+action on the screen,
+
+
+207
+00:09:40,826 --> 00:09:43,816
+an activity is already created
+on your behalf, nothing for you
+
+
+208
+00:09:43,816 --> 00:09:46,776
+to do, you just do your normal
+coding as you do every day.
+
+
+209
+00:09:47,846 --> 00:09:50,136
+And we obviously have
+an API to allow you
+
+
+210
+00:09:50,136 --> 00:09:52,776
+to create activities
+explicitly for those cases
+
+
+211
+00:09:52,776 --> 00:09:55,446
+where you may be startup phase,
+that database that I was talking
+
+
+212
+00:09:55,446 --> 00:09:58,526
+about earlier, to really scope
+that information to the action
+
+
+213
+00:09:58,526 --> 00:09:59,976
+that you are trying to track.
+
+
+214
+00:10:00,066 --> 00:10:03,276
+We have a concept of detached
+activities because now
+
+
+215
+00:10:03,276 --> 00:10:05,766
+that we have this
+automatically created activity,
+
+
+216
+00:10:06,036 --> 00:10:08,566
+how do you disassociate things?
+
+
+217
+00:10:08,676 --> 00:10:12,906
+Take, for example, an API
+callback comes in to your query
+
+
+218
+00:10:13,486 --> 00:10:15,376
+and you realize the
+database is out of sync.
+
+
+219
+00:10:15,576 --> 00:10:17,696
+How do you disassociate
+that resync
+
+
+220
+00:10:18,066 --> 00:10:20,166
+or rebuild the database
+from the action?
+
+
+221
+00:10:20,516 --> 00:10:22,656
+Because those are two separate
+activities that you want
+
+
+222
+00:10:22,656 --> 00:10:23,666
+to track individually.
+
+
+223
+00:10:24,606 --> 00:10:27,086
+It wasn't the fact that
+the person did the query
+
+
+224
+00:10:27,176 --> 00:10:31,506
+that caused the rebuild, so you
+want to track those separately
+
+
+225
+00:10:31,506 --> 00:10:33,066
+and understand why
+the rebuild failed
+
+
+226
+00:10:33,396 --> 00:10:35,166
+versus why the action failed.
+
+
+227
+00:10:35,766 --> 00:10:38,216
+So, here's a quick diagram
+
+
+228
+00:10:38,216 --> 00:10:39,356
+of what detached
+activity looks like.
+
+
+229
+00:10:39,356 --> 00:10:41,286
+You can see activity
+ID number 1,
+
+
+230
+00:10:41,896 --> 00:10:43,446
+went over across another queue
+
+
+231
+00:10:43,866 --> 00:10:46,866
+and then you had an access
+you wanted to create,
+
+
+232
+00:10:47,156 --> 00:10:49,436
+it will actually create
+a separate activity ID
+
+
+233
+00:10:49,706 --> 00:10:52,106
+on that next thread on whatever
+work you're trying to initiate.
+
+
+234
+00:10:52,656 --> 00:10:54,936
+So, now you have two
+completely individual activities
+
+
+235
+00:10:55,266 --> 00:10:58,656
+to scope this information
+into your diagnostic reports.
+
+
+236
+00:10:59,956 --> 00:11:01,476
+So, how do you initiate
+an activity?
+
+
+237
+00:11:01,556 --> 00:11:05,786
+So, I'm going to try to make
+this a very easy API to use.
+
+
+238
+00:11:06,746 --> 00:11:11,486
+OS activity, activity name,
+put some flags and a block.
+
+
+239
+00:11:12,856 --> 00:11:15,056
+One very important fact you'll
+see throughout this entire
+
+
+240
+00:11:15,056 --> 00:11:17,916
+presentation, all these
+strings must be constant.
+
+
+241
+00:11:18,916 --> 00:11:21,036
+We do not allow you to
+pass arbitrary strings
+
+
+242
+00:11:21,036 --> 00:11:22,016
+as part of these names.
+
+
+243
+00:11:22,616 --> 00:11:25,526
+This is for various
+reasons, including security,
+
+
+244
+00:11:25,666 --> 00:11:27,466
+performance and privacy.
+
+
+245
+00:11:27,466 --> 00:11:29,986
+And obviously you saw the
+performance difference.
+
+
+246
+00:11:30,536 --> 00:11:33,246
+This is part of the reasons why
+we get this performance gain.
+
+
+247
+00:11:34,576 --> 00:11:37,156
+We provide a flag option so
+you can control the behavior.
+
+
+248
+00:11:37,156 --> 00:11:39,506
+This is when you would say I
+want to detach and activity
+
+
+249
+00:11:40,016 --> 00:11:41,856
+or some other options
+provided in the future.
+
+
+250
+00:11:43,806 --> 00:11:45,666
+We do provide a non-block
+variant of course.
+
+
+251
+00:11:45,666 --> 00:11:48,376
+I didn't lay them all out today,
+but you can look at the headers
+
+
+252
+00:11:48,786 --> 00:11:54,006
+and you can find the header,
+#include os/activity.h. So,
+
+
+253
+00:11:54,006 --> 00:11:56,876
+let's talk about those
+automatic generated activities.
+
+
+254
+00:11:57,826 --> 00:12:01,566
+Take a process that has the
+search query about to initiate,
+
+
+255
+00:12:02,526 --> 00:12:05,256
+type some characters, hit
+return, AppKit's going
+
+
+256
+00:12:05,256 --> 00:12:08,936
+to actually do an OS
+activity start for you
+
+
+257
+00:12:09,276 --> 00:12:10,736
+on your behalf behind
+the scenes.
+
+
+258
+00:12:10,736 --> 00:12:11,846
+It'll come up with a name,
+
+
+259
+00:12:12,176 --> 00:12:14,916
+button pressed, control,
+send action.
+
+
+260
+00:12:14,916 --> 00:12:19,296
+And then your actual
+callback will be called just
+
+
+261
+00:12:19,296 --> 00:12:20,016
+as it is today.
+
+
+262
+00:12:20,016 --> 00:12:25,756
+And then upon return, it's going
+to actually stop that scope
+
+
+263
+00:12:25,756 --> 00:12:28,216
+because it realizes that you've
+returned from the function,
+
+
+264
+00:12:28,466 --> 00:12:30,676
+so the scope of this
+activity is kind of returned,
+
+
+265
+00:12:32,246 --> 00:12:34,436
+but that doesn't mean the
+activity itself has stopped
+
+
+266
+00:12:35,166 --> 00:12:37,026
+because, as I mentioned earlier,
+these activities are flowing
+
+
+267
+00:12:37,026 --> 00:12:38,246
+across the work that
+is occurring.
+
+
+268
+00:12:38,246 --> 00:12:39,726
+So, the work may
+still be in flight,
+
+
+269
+00:12:40,246 --> 00:12:41,836
+but we've returned
+control back to the UI
+
+
+270
+00:12:41,836 --> 00:12:43,406
+and this is just kind
+of ending that scope.
+
+
+271
+00:12:44,836 --> 00:12:47,056
+As you saw previously, to create
+an activity is pretty simple.
+
+
+272
+00:12:48,166 --> 00:12:53,186
+In the case here, I got a
+callback doing a checkCache OS
+
+
+273
+00:12:53,186 --> 00:12:58,246
+activity initiate, flag default
+and the block, very simple.
+
+
+274
+00:12:59,536 --> 00:13:02,986
+Similarly, the detached
+activity-you have a searchField
+
+
+275
+00:13:03,536 --> 00:13:06,266
+and you realize, as I mentioned
+earlier, maybe the database is
+
+
+276
+00:13:06,266 --> 00:13:08,546
+out of sync, so therefore,
+
+
+277
+00:13:08,786 --> 00:13:12,026
+you want to reinitiate a
+synchronize, or rebuild.
+
+
+278
+00:13:12,656 --> 00:13:14,306
+You create a new
+activity and say detach it
+
+
+279
+00:13:14,306 --> 00:13:15,016
+from the current activity
+
+
+280
+00:13:15,016 --> 00:13:16,636
+because it's really
+not the same operation.
+
+
+281
+00:13:17,196 --> 00:13:19,336
+I'm searching for
+data and I'm going
+
+
+282
+00:13:19,336 --> 00:13:20,976
+to rebuild the database
+asynchronously,
+
+
+283
+00:13:20,976 --> 00:13:22,216
+so you really want
+to separate them.
+
+
+284
+00:13:22,646 --> 00:13:25,156
+So, that's activities
+in a nutshell.
+
+
+285
+00:13:25,606 --> 00:13:27,876
+Most of the time you don't have
+to worry about it, they're there
+
+
+286
+00:13:27,876 --> 00:13:29,676
+and if you need to
+create some explicitly,
+
+
+287
+00:13:29,946 --> 00:13:31,066
+you have the option to do so.
+
+
+288
+00:13:31,136 --> 00:13:34,336
+So, let's talk about
+briefly about breadcrumbs.
+
+
+289
+00:13:35,586 --> 00:13:36,976
+Breadcrumbs are essentially
+a way
+
+
+290
+00:13:36,976 --> 00:13:39,386
+to label those meaningful
+activities
+
+
+291
+00:13:39,386 --> 00:13:40,886
+to you, as the developer.
+
+
+292
+00:13:41,376 --> 00:13:43,516
+As I mentioned, you
+understand your code,
+
+
+293
+00:13:43,516 --> 00:13:46,016
+you understand those things
+that your application does
+
+
+294
+00:13:46,196 --> 00:13:48,346
+because now that we have the
+automatic activities being
+
+
+295
+00:13:48,346 --> 00:13:52,656
+created from the UI, they
+all look the same, you know,
+
+
+296
+00:13:52,736 --> 00:13:54,536
+you have the Send action,
+you have a keypress.
+
+
+297
+00:13:55,006 --> 00:13:56,746
+Those aren't very interesting
+or meaningful to you.
+
+
+298
+00:13:57,186 --> 00:14:00,256
+You actually want to hone in on
+those things that are occurring
+
+
+299
+00:14:00,806 --> 00:14:03,436
+like that composed
+mail, empty trash,
+
+
+300
+00:14:03,616 --> 00:14:05,986
+whatever application
+you may have.
+
+
+301
+00:14:06,566 --> 00:14:08,236
+This gives us the opportunity
+
+
+302
+00:14:08,236 --> 00:14:10,386
+to see those interactions
+at a microlevel.
+
+
+303
+00:14:10,846 --> 00:14:13,346
+So, as I mentioned
+before, you know,
+
+
+304
+00:14:13,346 --> 00:14:15,076
+advanced essentially
+isn't a particular event
+
+
+305
+00:14:15,076 --> 00:14:17,396
+that causes a problem,
+it's a combination
+
+
+306
+00:14:17,396 --> 00:14:18,516
+of events that cause a problem.
+
+
+307
+00:14:19,246 --> 00:14:21,506
+So, this gives you
+the opportunity
+
+
+308
+00:14:22,276 --> 00:14:25,996
+to see those over time.
+
+
+309
+00:14:26,076 --> 00:14:28,466
+You'll see this throughout,
+when you see the button clicks,
+
+
+310
+00:14:30,486 --> 00:14:32,246
+now you can put an
+actual name to it.
+
+
+311
+00:14:32,706 --> 00:14:34,956
+So, instead of this just
+being a menu selection,
+
+
+312
+00:14:34,956 --> 00:14:36,256
+it's actually, compose
+an e-mail.
+
+
+313
+00:14:37,396 --> 00:14:39,366
+Instead of being a button
+click, it's a send e-mail.
+
+
+314
+00:14:40,246 --> 00:14:42,626
+Go back to our original
+diagram with the activities
+
+
+315
+00:14:42,626 --> 00:14:45,366
+with activities ID's
+in flight, same thing.
+
+
+316
+00:14:45,366 --> 00:14:50,486
+Now you have an activity ID with
+a name as well as a breadcrumb
+
+
+317
+00:14:50,776 --> 00:14:54,126
+of those interesting
+meaningful activities over time.
+
+
+318
+00:14:54,676 --> 00:14:57,776
+One thing to note
+about breadcrumbs,
+
+
+319
+00:14:57,776 --> 00:15:00,956
+they're a separate kind of
+ring buffer of their own.
+
+
+320
+00:15:01,366 --> 00:15:04,806
+We track the last
+50 events over time.
+
+
+321
+00:15:04,986 --> 00:15:08,646
+So, you can look back in history
+and see the last 50 actions
+
+
+322
+00:15:08,646 --> 00:15:10,816
+that occurred to see
+what was happening
+
+
+323
+00:15:10,816 --> 00:15:12,686
+when an application
+crashed or had an issue.
+
+
+324
+00:15:13,286 --> 00:15:15,436
+So, how to do you
+add a breadcrumb?
+
+
+325
+00:15:16,676 --> 00:15:19,026
+Just like the previous
+API, very simple,
+
+
+326
+00:15:19,446 --> 00:15:22,706
+OSactivitysetbreadcrumb
+and give it a string.
+
+
+327
+00:15:23,886 --> 00:15:25,596
+This is something you
+define and you control.
+
+
+328
+00:15:27,576 --> 00:15:31,036
+One key note is, this is only
+supported in the main process
+
+
+329
+00:15:31,646 --> 00:15:34,156
+because it's an application
+concept at a high level,
+
+
+330
+00:15:34,766 --> 00:15:37,436
+you really can't do this
+from plugins or libraries.
+
+
+331
+00:15:38,276 --> 00:15:39,366
+As with the previous API,
+
+
+332
+00:15:39,576 --> 00:15:44,056
+these must be constant
+strings-for both security,
+
+
+333
+00:15:44,056 --> 00:15:45,156
+privacy and performance.
+
+
+334
+00:15:45,316 --> 00:15:46,666
+Excuse me.
+
+
+335
+00:15:46,726 --> 00:15:48,506
+And as you saw previously,
+same include,
+
+
+336
+00:15:48,926 --> 00:15:54,366
+#include os/activity.h. This
+here is in string example
+
+
+337
+00:15:54,766 --> 00:15:58,576
+because many of its combined
+callbacks for the same routine,
+
+
+338
+00:15:58,896 --> 00:16:00,406
+but in this case,
+I have a search
+
+
+339
+00:16:00,406 --> 00:16:02,286
+which actually has
+an offline database.
+
+
+340
+00:16:02,756 --> 00:16:04,716
+I can actually have two
+different code paths
+
+
+341
+00:16:04,986 --> 00:16:06,696
+that have two different
+profiles.
+
+
+342
+00:16:06,696 --> 00:16:09,086
+I can now highlight them
+separately and say, okay,
+
+
+343
+00:16:09,606 --> 00:16:11,816
+while search was initiated,
+it was a button click
+
+
+344
+00:16:11,816 --> 00:16:14,576
+or as a menu selection
+and this path actually,
+
+
+345
+00:16:14,726 --> 00:16:16,136
+was searching the offline cache,
+
+
+346
+00:16:16,136 --> 00:16:17,916
+which was has a different
+characteristic
+
+
+347
+00:16:17,916 --> 00:16:18,806
+and different problems.
+
+
+348
+00:16:19,466 --> 00:16:22,216
+Whereas, if I'm online actually
+talking to a live database,
+
+
+349
+00:16:22,446 --> 00:16:24,776
+I'll set a different
+breadcrumb, because then you see
+
+
+350
+00:16:24,776 --> 00:16:26,076
+that microinteraction over time.
+
+
+351
+00:16:26,176 --> 00:16:27,706
+You understand what
+the person was doing
+
+
+352
+00:16:28,146 --> 00:16:29,056
+at that moment in time.
+
+
+353
+00:16:29,566 --> 00:16:34,896
+And that's breadcrumbs in
+a nutshell, simple concept,
+
+
+354
+00:16:35,326 --> 00:16:37,756
+microlevel interactions
+over time.
+
+
+355
+00:16:39,566 --> 00:16:42,156
+Now, this is the most important
+part and I think you're going
+
+
+356
+00:16:42,156 --> 00:16:43,236
+to find this the most exciting.
+
+
+357
+00:16:44,016 --> 00:16:48,086
+Trace messages: We provide
+a new API to allow you
+
+
+358
+00:16:48,086 --> 00:16:50,746
+to add trace messages to that
+activity that was created.
+
+
+359
+00:16:51,526 --> 00:16:54,036
+Uses a standard printf
+file, printf format
+
+
+360
+00:16:54,036 --> 00:16:55,666
+that you're used to
+on a daily basis.
+
+
+361
+00:16:56,706 --> 00:16:57,986
+It's very lightweight,
+
+
+362
+00:16:57,986 --> 00:16:59,946
+as you saw from the
+performance numbers.
+
+
+363
+00:17:00,796 --> 00:17:03,106
+What's very interesting
+about this is we understand
+
+
+364
+00:17:03,106 --> 00:17:04,546
+that there's two
+modes of operation.
+
+
+365
+00:17:05,056 --> 00:17:07,286
+There's a development mode,
+where you're debugging
+
+
+366
+00:17:07,286 --> 00:17:10,465
+and working on an application
+and there's the release mode,
+
+
+367
+00:17:10,465 --> 00:17:13,616
+the part that's shipping
+on our shipping platform,
+
+
+368
+00:17:13,826 --> 00:17:16,136
+whether that be an iOS
+device or a desktop.
+
+
+369
+00:17:16,846 --> 00:17:18,506
+So, we really wanted to
+take that into account
+
+
+370
+00:17:18,506 --> 00:17:20,695
+when we developed this
+because it's a very different
+
+
+371
+00:17:20,695 --> 00:17:21,816
+development cycle.
+
+
+372
+00:17:22,316 --> 00:17:24,826
+When there's a problem
+on a production system,
+
+
+373
+00:17:25,076 --> 00:17:26,576
+you have less information
+available,
+
+
+374
+00:17:26,935 --> 00:17:28,996
+but when you're actually
+trying to live debug a system,
+
+
+375
+00:17:28,996 --> 00:17:30,966
+you may want to have
+more information;
+
+
+376
+00:17:31,296 --> 00:17:33,716
+those debug messages,
+additional detail
+
+
+377
+00:17:33,716 --> 00:17:34,786
+to understand what
+was happening.
+
+
+378
+00:17:35,956 --> 00:17:38,176
+All of this is stored in
+an in-memory ring buffer.
+
+
+379
+00:17:39,126 --> 00:17:41,366
+So, this is where we get
+our huge performance gains.
+
+
+380
+00:17:41,536 --> 00:17:46,926
+What's very unique about this
+is, unlike traditional logging,
+
+
+381
+00:17:46,926 --> 00:17:48,896
+we actually craft through
+the PC of the caller.
+
+
+382
+00:17:49,606 --> 00:17:52,606
+We have the timestamp, we have
+the data that was provided
+
+
+383
+00:17:52,606 --> 00:17:54,956
+as well as the sting offset
+and some additional data,
+
+
+384
+00:17:55,286 --> 00:17:57,776
+including even the thread ID
+that was running at the moment
+
+
+385
+00:17:58,336 --> 00:17:59,836
+that this was created.
+
+
+386
+00:17:59,836 --> 00:18:03,996
+As you can see offside here, we
+actually have, the entire entry
+
+
+387
+00:18:03,996 --> 00:18:06,276
+for trace buffer is 64 bytes.
+
+
+388
+00:18:06,406 --> 00:18:08,056
+No matter how long
+your string is,
+
+
+389
+00:18:08,056 --> 00:18:11,706
+how long your printf format
+string is, it's always 64 bytes.
+
+
+390
+00:18:12,806 --> 00:18:14,326
+So, what does a trace
+message look like?
+
+
+391
+00:18:14,856 --> 00:18:17,826
+As I said, looks
+just like printf.
+
+
+392
+00:18:18,246 --> 00:18:19,336
+In fact, if you use printf,
+
+
+393
+00:18:19,336 --> 00:18:24,636
+you almost just do a
+search and replace.
+
+
+394
+00:18:24,756 --> 00:18:27,726
+One key difference and
+this is where privacy,
+
+
+395
+00:18:27,726 --> 00:18:29,036
+security come into play.
+
+
+396
+00:18:29,646 --> 00:18:32,886
+This API will only
+take scalar formats.
+
+
+397
+00:18:33,516 --> 00:18:36,916
+So, you can only provide
+ints, longs, doubles and such.
+
+
+398
+00:18:38,026 --> 00:18:40,216
+And you'll see the benefits
+and we have some other things
+
+
+399
+00:18:40,216 --> 00:18:41,806
+that are available,
+too, as well.
+
+
+400
+00:18:41,806 --> 00:18:43,986
+Part of this, of course, strings
+
+
+401
+00:18:43,986 --> 00:18:45,636
+and characters are
+a privacy problem,
+
+
+402
+00:18:46,646 --> 00:18:48,036
+they're a security problem.
+
+
+403
+00:18:48,306 --> 00:18:52,146
+You know, accidentally logging
+a password or a username.
+
+
+404
+00:18:52,926 --> 00:18:56,196
+Those are inappropriate to
+do and this is a safeguard,
+
+
+405
+00:18:56,596 --> 00:18:58,756
+but most importantly, it
+gives us the performance
+
+
+406
+00:18:58,756 --> 00:19:00,936
+that we cannot gain
+with arbitrary strings.
+
+
+407
+00:19:01,216 --> 00:19:04,066
+There's no way to copy an
+arbitrary string efficiently
+
+
+408
+00:19:04,066 --> 00:19:06,166
+and not impact the
+performance of an application.
+
+
+409
+00:19:06,996 --> 00:19:08,516
+There's another header
+to include,
+
+
+410
+00:19:08,776 --> 00:19:13,276
+#include os/trace.h. Now, this
+is the release trace message
+
+
+411
+00:19:13,276 --> 00:19:14,916
+that we were talking
+about two loads earlier.
+
+
+412
+00:19:15,276 --> 00:19:16,436
+This is your release message.
+
+
+413
+00:19:16,976 --> 00:19:18,456
+We also have a debug
+trace message.
+
+
+414
+00:19:18,456 --> 00:19:21,146
+This is when you actually
+live debugging application.
+
+
+415
+00:19:21,886 --> 00:19:24,986
+Just like the release one, under
+debug is the only difference,
+
+
+416
+00:19:25,306 --> 00:19:26,946
+very simple, very
+straightforward.
+
+
+417
+00:19:27,636 --> 00:19:30,496
+What's great about it is the
+debug messages are only saved
+
+
+418
+00:19:30,496 --> 00:19:32,686
+in the ring buffer if
+you're in a debug mode.
+
+
+419
+00:19:33,356 --> 00:19:34,746
+So, a typical running
+application
+
+
+420
+00:19:34,746 --> 00:19:36,676
+on a shipping device
+will not record these
+
+
+421
+00:19:36,676 --> 00:19:38,466
+into the ring buffer,
+saving space
+
+
+422
+00:19:38,466 --> 00:19:40,726
+for those more interesting
+messages that you care
+
+
+423
+00:19:40,726 --> 00:19:42,466
+about for the application.
+
+
+424
+00:19:43,396 --> 00:19:46,886
+Additionally, in debug mode
+dash, it takes more resources.
+
+
+425
+00:19:46,886 --> 00:19:48,216
+Obviously, in this case,
+
+
+426
+00:19:48,216 --> 00:19:50,446
+we actually increase
+the buffer size.
+
+
+427
+00:19:50,826 --> 00:19:53,286
+Well, we're also recording
+additional messages,
+
+
+428
+00:19:53,286 --> 00:19:56,326
+so we want to, we may take
+more resources in this mode
+
+
+429
+00:19:56,326 --> 00:19:58,526
+so we really don't want
+that on a production system.
+
+
+430
+00:19:59,046 --> 00:20:01,506
+But we obviously want you to
+have that while you're trying
+
+
+431
+00:20:01,506 --> 00:20:02,976
+to debug your application.
+
+
+432
+00:20:03,596 --> 00:20:04,836
+One thing to note,
+there is a way
+
+
+433
+00:20:04,836 --> 00:20:07,316
+to enable what we call
+the debug mode at launch.
+
+
+434
+00:20:08,516 --> 00:20:12,076
+All you do is set an
+environment variable
+
+
+435
+00:20:12,076 --> 00:20:14,346
+called OSActivityModeDebug.
+
+
+436
+00:20:14,346 --> 00:20:18,236
+And then from there on, every
+tool application you run
+
+
+437
+00:20:18,516 --> 00:20:20,846
+from that environment variable
+will run in debug mode.
+
+
+438
+00:20:20,846 --> 00:20:22,946
+We have an additional type
+
+
+439
+00:20:22,946 --> 00:20:24,386
+of trace message
+called the payload.
+
+
+440
+00:20:24,426 --> 00:20:28,236
+Now, this one's really unique
+because as I mentioned earlier,
+
+
+441
+00:20:28,236 --> 00:20:29,746
+we don't support strings.
+
+
+442
+00:20:30,816 --> 00:20:34,806
+So, we want you to be able to
+debug your application and such
+
+
+443
+00:20:35,156 --> 00:20:37,176
+and have additional data
+that we can't provide you
+
+
+444
+00:20:37,176 --> 00:20:38,066
+in the Crash Reports.
+
+
+445
+00:20:38,766 --> 00:20:40,616
+As you can see, there's one
+slight difference with this API,
+
+
+446
+00:20:41,176 --> 00:20:43,346
+it actually takes a block
+as the last parameter.
+
+
+447
+00:20:44,376 --> 00:20:47,946
+It passes an XPC dictionary and
+you can populate the dictionary
+
+
+448
+00:20:47,946 --> 00:20:48,916
+with any data you'd like,
+
+
+449
+00:20:50,226 --> 00:20:52,466
+anything arbitrary
+can be output to this.
+
+
+450
+00:20:52,926 --> 00:20:55,646
+In this case, I'm setting a
+string of the interface string
+
+
+451
+00:20:55,646 --> 00:20:56,746
+that I'm talking through.
+
+
+452
+00:20:57,626 --> 00:20:59,716
+What's great about this is
+the block is only called
+
+
+453
+00:20:59,716 --> 00:21:00,656
+when it's requested.
+
+
+454
+00:21:01,466 --> 00:21:02,846
+So, in a typical
+running application,
+
+
+455
+00:21:02,846 --> 00:21:06,196
+this block is skipped, but if
+I'm using one of the tools,
+
+
+456
+00:21:06,196 --> 00:21:08,356
+and I say I want to see
+the block because I want
+
+
+457
+00:21:08,356 --> 00:21:10,996
+to understand what's going
+on, you'll get these messages,
+
+
+458
+00:21:11,346 --> 00:21:12,786
+just like you would
+have otherwise
+
+
+459
+00:21:12,786 --> 00:21:14,186
+with all the other messages.
+
+
+460
+00:21:14,466 --> 00:21:16,766
+The great part is, now you
+get that additional data.
+
+
+461
+00:21:16,766 --> 00:21:19,996
+I'll give you a great
+example of this.
+
+
+462
+00:21:20,226 --> 00:21:22,756
+One thing to note, this does
+use XPC to transmit this,
+
+
+463
+00:21:22,756 --> 00:21:25,006
+so this is extra overhead,
+when this mode is enabled
+
+
+464
+00:21:25,006 --> 00:21:28,156
+because there's no simple
+way to process this data,
+
+
+465
+00:21:28,156 --> 00:21:29,536
+that's why it's in
+XPC dictionary,
+
+
+466
+00:21:29,536 --> 00:21:34,436
+but we do send any XPC message
+across your diagnosticd.
+
+
+467
+00:21:35,296 --> 00:21:37,246
+Just like I showed
+with the debug mode,
+
+
+468
+00:21:37,276 --> 00:21:39,086
+there's also an environment
+variable, which you can set
+
+
+469
+00:21:39,086 --> 00:21:41,606
+to enable stream mode at launch
+because sometimes you want
+
+
+470
+00:21:41,606 --> 00:21:43,906
+to understand what was happening
+while the application launched,
+
+
+471
+00:21:44,266 --> 00:21:47,246
+you're going to set the similar,
+OS ACTIVITY MODE=stream.
+
+
+472
+00:21:47,616 --> 00:21:51,126
+Now, this will stream all the
+events from that application
+
+
+473
+00:21:51,176 --> 00:21:53,246
+to diagnosticd and
+to any listeners.
+
+
+474
+00:21:53,896 --> 00:21:55,436
+So, how does this
+fit into the picture?
+
+
+475
+00:21:55,436 --> 00:21:58,376
+You saw [inaudible] obviously
+the trace messages fit
+
+
+476
+00:21:58,376 --> 00:21:59,236
+into that activity.
+
+
+477
+00:22:00,206 --> 00:22:01,876
+As I mentioned earlier,
+there's a ring buffer.
+
+
+478
+00:22:02,386 --> 00:22:04,846
+There's an individual
+ring buffer per process,
+
+
+479
+00:22:04,946 --> 00:22:05,756
+per activity.
+
+
+480
+00:22:06,676 --> 00:22:09,206
+So, unlike the typical sys
+log and the other cases
+
+
+481
+00:22:09,206 --> 00:22:10,716
+where everything goes
+into one big bucket,
+
+
+482
+00:22:10,716 --> 00:22:13,986
+you have an individual ring
+buffer for that activity,
+
+
+483
+00:22:14,016 --> 00:22:15,546
+in each application binary
+
+
+484
+00:22:16,086 --> 00:22:17,806
+so that one cannot
+step on the other.
+
+
+485
+00:22:18,326 --> 00:22:20,136
+So, now you can get
+a very different view
+
+
+486
+00:22:20,256 --> 00:22:22,596
+of your application, whether
+it's your own application
+
+
+487
+00:22:22,596 --> 00:22:23,646
+or other Daemons involved.
+
+
+488
+00:22:24,056 --> 00:22:27,876
+So, let's show you what we
+did for you in Crash Reports.
+
+
+489
+00:22:28,316 --> 00:22:30,746
+First of all, up top we
+have our breadcrumb trail.
+
+
+490
+00:22:31,406 --> 00:22:33,486
+So, these are the events
+that were occurring
+
+
+491
+00:22:33,486 --> 00:22:35,606
+up until the point that
+the application crashed.
+
+
+492
+00:22:36,376 --> 00:22:39,326
+And notice the last event listed
+up top or the first event listed
+
+
+493
+00:22:39,326 --> 00:22:41,886
+at the top, has an activity
+ID associated with it.
+
+
+494
+00:22:42,216 --> 00:22:46,666
+This is the activity that was
+in flight while it crashed.
+
+
+495
+00:22:48,116 --> 00:22:49,246
+Then down below the thread,
+
+
+496
+00:22:49,246 --> 00:22:51,556
+you actually have the
+activity information.
+
+
+497
+00:22:51,876 --> 00:22:52,666
+In this case you have an ID.
+
+
+498
+00:22:52,666 --> 00:22:55,746
+You have the name that it was
+created, in this case by UIkit
+
+
+499
+00:22:55,746 --> 00:22:57,096
+or AppKit called sendAction.
+
+
+500
+00:22:57,636 --> 00:22:58,806
+You have the breadcrumb.
+
+
+501
+00:22:59,066 --> 00:23:02,236
+You have how long it's been
+running and any failure
+
+
+502
+00:23:02,236 --> 00:23:03,546
+that we may have detected.
+
+
+503
+00:23:04,316 --> 00:23:06,316
+Our long-term goal is to be
+able to detect some situations
+
+
+504
+00:23:06,316 --> 00:23:08,086
+and inform you of that
+because we can tell
+
+
+505
+00:23:08,086 --> 00:23:08,936
+that from the information.
+
+
+506
+00:23:09,466 --> 00:23:12,036
+But, most importantly,
+down below,
+
+
+507
+00:23:12,036 --> 00:23:15,026
+you have all the trace messages
+leading up to the crash.
+
+
+508
+00:23:15,096 --> 00:23:15,976
+And I'd like to point
+out here...
+
+
+509
+00:23:16,516 --> 00:23:21,116
+[ Applause ]
+
+
+510
+00:23:21,616 --> 00:23:24,186
+As you can see, it's not just
+the application that I wrote,
+
+
+511
+00:23:24,516 --> 00:23:27,056
+Query Directory, it's also
+the Daemon behind the scenes.
+
+
+512
+00:23:27,506 --> 00:23:29,676
+There was nothing you had to do.
+
+
+513
+00:23:29,876 --> 00:23:31,556
+It was automatically
+provided and it's
+
+
+514
+00:23:31,556 --> 00:23:33,436
+in the Crash Report
+for you to look at.
+
+
+515
+00:23:33,656 --> 00:23:35,406
+This could be any number
+of Daemon's involved,
+
+
+516
+00:23:35,406 --> 00:23:38,536
+any number of processes,
+but you get that entire view
+
+
+517
+00:23:38,996 --> 00:23:40,506
+of why your application crashed
+
+
+518
+00:23:40,736 --> 00:23:43,056
+for the first time
+directly in a Crash Report.
+
+
+519
+00:23:43,906 --> 00:23:46,536
+So, how does this exactly work?
+
+
+520
+00:23:47,106 --> 00:23:50,756
+In a crashing process, as
+I showed earlier, you know,
+
+
+521
+00:23:51,276 --> 00:23:55,716
+the XPCService may have failed
+while diagnosticd actually comes
+
+
+522
+00:23:55,716 --> 00:23:57,446
+up when the process fails,
+
+
+523
+00:23:57,726 --> 00:24:00,796
+the buffers from the individual
+processes that are running,
+
+
+524
+00:24:00,796 --> 00:24:03,396
+are sent to diagnosticd along
+with the activities that were
+
+
+525
+00:24:03,396 --> 00:24:05,216
+in flight and the breadcrumbs.
+
+
+526
+00:24:06,046 --> 00:24:08,056
+And this is how we get
+all this information
+
+
+527
+00:24:08,056 --> 00:24:11,646
+into the diagnostic
+report, all automatic,
+
+
+528
+00:24:12,156 --> 00:24:14,816
+nothing for you to do.
+
+
+529
+00:24:15,496 --> 00:24:17,316
+So, that's great for
+all the general cases,
+
+
+530
+00:24:17,316 --> 00:24:18,966
+you got trace messages,
+you got lots of detail,
+
+
+531
+00:24:19,336 --> 00:24:21,556
+but how do you report
+those unexpected errors?
+
+
+532
+00:24:22,296 --> 00:24:26,646
+You know, you're trying to
+debug a problem or you want
+
+
+533
+00:24:26,646 --> 00:24:29,286
+to highlight the fact that an
+error occurred, you can also do
+
+
+534
+00:24:29,286 --> 00:24:31,756
+that with another API
+called OS trace error.
+
+
+535
+00:24:32,476 --> 00:24:35,766
+It allows you to pass any
+amount of data, like you saw
+
+
+536
+00:24:35,766 --> 00:24:36,816
+in the previous APIs...
+
+
+537
+00:24:36,816 --> 00:24:37,776
+[ Applause ]
+
+
+538
+00:24:37,776 --> 00:24:39,096
+All right, okay.
+
+
+539
+00:24:39,616 --> 00:24:41,336
+So, as mentioned, we
+have OS trace error.
+
+
+540
+00:24:41,696 --> 00:24:45,446
+We have OS trace
+error, it allows you
+
+
+541
+00:24:45,876 --> 00:24:47,496
+to provide similar format string
+
+
+542
+00:24:47,496 --> 00:24:48,876
+and whatever data
+you want to output.
+
+
+543
+00:24:49,226 --> 00:24:50,706
+The only difference
+about this is the fact
+
+
+544
+00:24:50,706 --> 00:24:52,456
+that it actually signals
+that an error occurred.
+
+
+545
+00:24:53,176 --> 00:24:53,986
+And what does that do?
+
+
+546
+00:24:53,986 --> 00:24:57,686
+It sends those trace messages
+at that time to diagnosticd
+
+
+547
+00:24:57,686 --> 00:25:01,876
+to evaluate and store, so you
+can retrieve this via tools
+
+
+548
+00:25:01,876 --> 00:25:03,596
+or via any other
+mechanism we provide.
+
+
+549
+00:25:04,236 --> 00:25:06,276
+That's what you consider
+a soft error,
+
+
+550
+00:25:06,276 --> 00:25:07,866
+but what about those
+fatal errors, you know,
+
+
+551
+00:25:07,866 --> 00:25:09,406
+I'm about to crash, I got
+
+
+552
+00:25:09,406 --> 00:25:11,196
+into a state I don't
+know how I got here.
+
+
+553
+00:25:11,776 --> 00:25:15,526
+We will provide an API for that
+as well, cut, OS trace fault.
+
+
+554
+00:25:16,366 --> 00:25:18,046
+This may be something you
+can call just before you're
+
+
+555
+00:25:18,046 --> 00:25:18,826
+about to crash.
+
+
+556
+00:25:19,326 --> 00:25:22,596
+It could be something that
+you'd call to avoid a crash.
+
+
+557
+00:25:23,066 --> 00:25:25,266
+As I mentioned, it can be an
+impending catastrophic failure.
+
+
+558
+00:25:25,336 --> 00:25:27,996
+This is a really bad situation,
+I shouldn't be in this state,
+
+
+559
+00:25:27,996 --> 00:25:29,356
+I want to gather
+this information.
+
+
+560
+00:25:29,906 --> 00:25:35,896
+The difference between this and
+the error is all the buffers
+
+
+561
+00:25:35,896 --> 00:25:38,636
+from all the processes involved
+are sent, just like you saw
+
+
+562
+00:25:38,636 --> 00:25:41,426
+in the crash, without
+it actually crashing.
+
+
+563
+00:25:41,996 --> 00:25:45,726
+To give you a view of this, just
+like you saw in the crash mode,
+
+
+564
+00:25:45,726 --> 00:25:48,636
+the difference is the
+application stays up
+
+
+565
+00:25:48,636 --> 00:25:49,656
+or the Daemon stays up.
+
+
+566
+00:25:49,826 --> 00:25:52,576
+The buffers are sent and
+accumulated by diagnosticd.
+
+
+567
+00:25:53,966 --> 00:25:56,436
+Simple API, you see
+in this example,
+
+
+568
+00:25:56,636 --> 00:25:58,806
+we have an application main.
+
+
+569
+00:25:58,836 --> 00:26:00,786
+It's starting up some
+initialization phase,
+
+
+570
+00:26:01,276 --> 00:26:05,826
+we create activity, the
+initialization fails.
+
+
+571
+00:26:06,296 --> 00:26:10,206
+And this is bad, so we
+initiate a fault and then exit.
+
+
+572
+00:26:10,206 --> 00:26:12,746
+In a typical situation,
+which is really bad,
+
+
+573
+00:26:12,746 --> 00:26:14,356
+you crash because
+that's your only way
+
+
+574
+00:26:14,356 --> 00:26:16,516
+to get information
+about what failed.
+
+
+575
+00:26:17,196 --> 00:26:19,666
+Now you have a new mechanism
+without actually crashing.
+
+
+576
+00:26:19,866 --> 00:26:20,966
+And I'll show you
+what this gets you.
+
+
+577
+00:26:21,876 --> 00:26:24,116
+With all this said, we should
+talk about what's supported
+
+
+578
+00:26:24,786 --> 00:26:25,996
+as far as trace messages.
+
+
+579
+00:26:27,696 --> 00:26:32,636
+For example, this is a perfectly
+valid good trace message.
+
+
+580
+00:26:33,636 --> 00:26:36,526
+Similarly, I can pass other
+types whether they be longs
+
+
+581
+00:26:36,526 --> 00:26:37,726
+or shorts and such.
+
+
+582
+00:26:37,976 --> 00:26:39,796
+You can see various forms.
+
+
+583
+00:26:39,796 --> 00:26:41,756
+You can even pass a pointer
+because sometimes a pointer
+
+
+584
+00:26:41,756 --> 00:26:43,916
+to us is a correlation
+point and, you know,
+
+
+585
+00:26:43,916 --> 00:26:45,446
+maybe it's a connection
+you're trying to follow
+
+
+586
+00:26:45,446 --> 00:26:47,796
+and understand that's
+being shared
+
+
+587
+00:26:47,796 --> 00:26:49,276
+across multiple activities.
+
+
+588
+00:26:49,746 --> 00:26:53,236
+You can even output floats.
+
+
+589
+00:26:53,236 --> 00:26:55,426
+In this case, I can output
+how many clients I had
+
+
+590
+00:26:55,426 --> 00:26:59,006
+and the average time they
+were connected to that.
+
+
+591
+00:26:59,006 --> 00:27:02,466
+And that's additional data you
+didn't have in your application
+
+
+592
+00:27:02,586 --> 00:27:03,606
+at the time it crashed.
+
+
+593
+00:27:04,046 --> 00:27:07,686
+So, let's talk about
+unsupported trace messages.
+
+
+594
+00:27:07,686 --> 00:27:09,656
+As I mentioned earlier,
+strings are not supported.
+
+
+595
+00:27:10,726 --> 00:27:12,366
+So, well, how do
+we protect that?
+
+
+596
+00:27:12,816 --> 00:27:17,056
+Well, you can try to trace
+one, but you're going
+
+
+597
+00:27:17,056 --> 00:27:18,426
+to get unsupported
+string in the output,
+
+
+598
+00:27:18,656 --> 00:27:21,006
+so it doesn't break anything,
+so if you actually do it,
+
+
+599
+00:27:21,006 --> 00:27:21,716
+it's not going to hurt you,
+
+
+600
+00:27:22,676 --> 00:27:24,696
+but you won't ever see
+the data out of it.
+
+
+601
+00:27:24,786 --> 00:27:28,086
+Now, it's partially because of
+the way the mechanism is built.
+
+
+602
+00:27:28,576 --> 00:27:32,106
+There's basically no
+way to provide a string
+
+
+603
+00:27:32,316 --> 00:27:34,176
+because we don't copy
+data out of the binary.
+
+
+604
+00:27:34,746 --> 00:27:39,406
+But, providing a string doesn't
+break valid data-in this case,
+
+
+605
+00:27:39,406 --> 00:27:44,136
+I can still pass the UID and you
+can see the password will not be
+
+
+606
+00:27:44,136 --> 00:27:45,976
+admitted, you get
+unsupported string.
+
+
+607
+00:27:46,886 --> 00:27:48,386
+So, you can mix and
+match, it doesn't hurt you.
+
+
+608
+00:27:49,106 --> 00:27:53,436
+Just be aware that
+it's not supported.
+
+
+609
+00:27:53,436 --> 00:27:55,416
+Along the same lines,
+characters are not supported
+
+
+610
+00:27:55,416 --> 00:27:56,116
+because we don't want
+
+
+611
+00:27:56,116 --> 00:28:00,556
+to be accidentally outputting
+passwords with characters.
+
+
+612
+00:28:01,526 --> 00:28:03,376
+So, obviously we have limits.
+
+
+613
+00:28:03,726 --> 00:28:09,226
+Format string cannot
+exceed 100 characters.
+
+
+614
+00:28:09,436 --> 00:28:10,906
+That's a pretty long
+format string,
+
+
+615
+00:28:10,906 --> 00:28:12,876
+so hopefully that's more
+than enough for you.
+
+
+616
+00:28:13,446 --> 00:28:17,856
+One thing to note, the trace
+message content will truncate,
+
+
+617
+00:28:18,376 --> 00:28:20,696
+so if you put too much
+data or too long a string,
+
+
+618
+00:28:20,696 --> 00:28:21,906
+it's going to truncate
+it in the output.
+
+
+619
+00:28:22,496 --> 00:28:24,026
+This is expected behavior.
+
+
+620
+00:28:25,446 --> 00:28:28,146
+Initially we're only
+providing you seven parameters,
+
+
+621
+00:28:28,146 --> 00:28:30,496
+so you can output
+up to seven scalars.
+
+
+622
+00:28:31,106 --> 00:28:34,556
+One very important note,
+these trace messages
+
+
+623
+00:28:34,886 --> 00:28:38,106
+and the buffers may vary
+by platform and mode.
+
+
+624
+00:28:38,256 --> 00:28:39,796
+As I mentioned earlier
+in your debug mode,
+
+
+625
+00:28:39,796 --> 00:28:42,156
+we may provide a much
+larger ring buffer.
+
+
+626
+00:28:43,206 --> 00:28:46,476
+Whereas, when you're not in a
+debug mode, it's much smaller,
+
+
+627
+00:28:46,476 --> 00:28:48,826
+or maybe on a particular
+iOS device, where we're low
+
+
+628
+00:28:48,826 --> 00:28:50,516
+on memory, so we don't
+enable it at all.
+
+
+629
+00:28:51,336 --> 00:28:52,526
+Just be aware there are limits.
+
+
+630
+00:28:52,526 --> 00:28:53,626
+We can't enable it everywhere
+
+
+631
+00:28:53,626 --> 00:28:55,666
+and it may vary by
+that by platform.
+
+
+632
+00:28:56,266 --> 00:28:57,706
+So, let's do a quick demo.
+
+
+633
+00:28:58,286 --> 00:29:05,816
+So, I have an application
+running here, Query Directory.
+
+
+634
+00:29:05,966 --> 00:29:08,186
+I'm just going to
+search for something
+
+
+635
+00:29:08,186 --> 00:29:09,336
+that I know is in admin.
+
+
+636
+00:29:09,766 --> 00:29:12,246
+Okay, you'll see down
+here, there's the result.
+
+
+637
+00:29:13,206 --> 00:29:14,216
+Nothing bad happened.
+
+
+638
+00:29:15,176 --> 00:29:19,016
+Try it again and I'll do a
+NSOperatationQueue mode instead,
+
+
+639
+00:29:20,426 --> 00:29:21,196
+still no failure.
+
+
+640
+00:29:21,746 --> 00:29:24,566
+Now I'm going to type something
+I know that will cause a crash.
+
+
+641
+00:29:25,046 --> 00:29:28,136
+Now, you see in the
+Crash Report,
+
+
+642
+00:29:28,246 --> 00:29:33,496
+you have that breadcrumb trail
+that I was talking about.
+
+
+643
+00:29:34,936 --> 00:29:38,346
+You see the last operation
+queue that was in flight,
+
+
+644
+00:29:38,766 --> 00:29:43,916
+the activity ID and if I scroll
+down to the crashing thread,
+
+
+645
+00:29:44,826 --> 00:29:47,866
+you can see this was the
+NSOperationQueue that was
+
+
+646
+00:29:47,866 --> 00:29:50,976
+in flight, but now you've
+got all this new info
+
+
+647
+00:29:50,976 --> 00:29:54,656
+that you didn't have
+before, the activity
+
+
+648
+00:29:55,856 --> 00:29:57,976
+and all the trace messages
+leading up to the event.
+
+
+649
+00:29:58,836 --> 00:30:02,056
+In this case, you can
+see query directory
+
+
+650
+00:30:02,056 --> 00:30:03,766
+and opendirectoryd involved.
+
+
+651
+00:30:06,756 --> 00:30:07,446
+Exciting?
+
+
+652
+00:30:09,516 --> 00:30:13,096
+[ Applause ]
+
+
+653
+00:30:13,596 --> 00:30:15,826
+I know I'm excited because
+this has always been a problem
+
+
+654
+00:30:15,826 --> 00:30:16,876
+for me.
+
+
+655
+00:30:17,366 --> 00:30:20,296
+That's just a quick demo,
+so you can see it for real.
+
+
+656
+00:30:21,246 --> 00:30:24,476
+So, it's great, but what
+about debugger support?
+
+
+657
+00:30:25,666 --> 00:30:27,846
+Well, it's great for
+having the Crash Reports
+
+
+658
+00:30:27,846 --> 00:30:29,646
+and the string reports, but
+when you're really working
+
+
+659
+00:30:29,646 --> 00:30:31,626
+on a problem, how do
+you see this live?
+
+
+660
+00:30:32,546 --> 00:30:34,356
+Well, we made it
+built-in to the debugger.
+
+
+661
+00:30:34,356 --> 00:30:37,626
+So you can actually see the
+activity that's on a thread,
+
+
+662
+00:30:38,476 --> 00:30:41,306
+as well as any trace
+messages for that activity.
+
+
+663
+00:30:42,206 --> 00:30:43,736
+This is a very powerful
+mechanism.
+
+
+664
+00:30:44,306 --> 00:30:49,076
+In the case of lldb you can
+see here, I have a thread
+
+
+665
+00:30:49,076 --> 00:30:51,626
+that was crashing, I
+can type thread info.
+
+
+666
+00:30:51,736 --> 00:30:55,066
+As part of that thread info, I
+have the activity name that was
+
+
+667
+00:30:55,066 --> 00:30:57,406
+in flight, how many
+messages it accumulated
+
+
+668
+00:30:58,036 --> 00:31:01,176
+and down below it you have all
+that detail in the debugger.
+
+
+669
+00:31:01,276 --> 00:31:04,336
+So, instead of switching
+between console and terminal,
+
+
+670
+00:31:04,336 --> 00:31:07,266
+you can just stay in your
+debugger, output those messages
+
+
+671
+00:31:07,266 --> 00:31:09,556
+and say, oh, this is how I got
+here and why did this happen?
+
+
+672
+00:31:10,056 --> 00:31:12,826
+Click it here so you
+can see that activity,
+
+
+673
+00:31:13,426 --> 00:31:15,676
+the current breadcrumb
+and those trace messages.
+
+
+674
+00:31:16,226 --> 00:31:20,686
+So, let's demo that
+because that's the fun part.
+
+
+675
+00:31:21,926 --> 00:31:29,786
+And if the demo gods are good
+to me or I'm good to them,
+
+
+676
+00:31:29,786 --> 00:31:32,066
+we'll have a demo that works.
+
+
+677
+00:31:32,216 --> 00:31:33,866
+So, let's do the
+same as I did before.
+
+
+678
+00:31:34,646 --> 00:31:36,526
+I'll search and you
+can see the result.
+
+
+679
+00:31:37,426 --> 00:31:43,066
+I'll do an OperationQueue,
+and let's crash.
+
+
+680
+00:31:43,386 --> 00:31:47,966
+Now, in the same window I
+can say thread info and,
+
+
+681
+00:31:47,966 --> 00:31:48,826
+of course, it didn't work.
+
+
+682
+00:31:49,516 --> 00:32:05,616
+[ Background Sounds ]
+
+
+683
+00:32:06,116 --> 00:32:07,636
+So, there's that same info.
+
+
+684
+00:32:08,516 --> 00:32:14,516
+[ Applause ]
+
+
+685
+00:32:15,016 --> 00:32:19,000
+[ Background Sounds ]
+
+
+686
+00:32:19,236 --> 00:32:21,386
+So, you can try this with
+various combinations,
+
+
+687
+00:32:21,386 --> 00:32:24,216
+obviously this works with
+all of our infrastructure,
+
+
+688
+00:32:24,856 --> 00:32:27,476
+which is really exciting
+because it works with XPC,
+
+
+689
+00:32:27,476 --> 00:32:31,956
+GCD and NSOperationQueue
+and obviously the tools.
+
+
+690
+00:32:32,756 --> 00:32:34,166
+So, we talked about
+what we have,
+
+
+691
+00:32:34,166 --> 00:32:38,076
+let's talk about a new tool
+we provided, ostraceutil.
+
+
+692
+00:32:38,726 --> 00:32:41,926
+This will allow you to watch
+
+
+693
+00:32:41,926 --> 00:32:44,486
+that live streaming I was
+talking about earlier, right?
+
+
+694
+00:32:44,486 --> 00:32:46,776
+All that XPC dictionary
+and additional data
+
+
+695
+00:32:46,776 --> 00:32:48,486
+that you didn't have
+in the Crash Report.
+
+
+696
+00:32:48,966 --> 00:32:53,576
+You'll be able to watch
+for faults and errors
+
+
+697
+00:32:53,576 --> 00:32:55,656
+across the system or by process.
+
+
+698
+00:32:56,086 --> 00:32:57,556
+So, while you're
+debugging the application,
+
+
+699
+00:32:57,556 --> 00:33:01,786
+you can actually say ostraceutil
+watch fault application.
+
+
+700
+00:33:02,226 --> 00:33:04,466
+And you'll see the faults that
+your application are generating
+
+
+701
+00:33:04,786 --> 00:33:07,386
+without having to enable
+any logs and having
+
+
+702
+00:33:07,386 --> 00:33:08,446
+to do any extra effort.
+
+
+703
+00:33:08,986 --> 00:33:13,656
+In addition to that, you
+can actually look what kind
+
+
+704
+00:33:13,726 --> 00:33:16,726
+of activities and trace
+messages the binary has,
+
+
+705
+00:33:17,006 --> 00:33:19,656
+whether it be your binary
+to check it before it goes
+
+
+706
+00:33:19,656 --> 00:33:21,536
+out into production, or to look
+
+
+707
+00:33:21,536 --> 00:33:24,036
+at what other processes are
+providing in this mechanism.
+
+
+708
+00:33:24,996 --> 00:33:28,526
+So, you see a complete view
+of your development cycle.
+
+
+709
+00:33:29,046 --> 00:33:30,856
+This is a look at
+the live stream.
+
+
+710
+00:33:31,276 --> 00:33:36,836
+In this case, ostraceutilwatch
+Query Directory, very simple.
+
+
+711
+00:33:37,406 --> 00:33:41,366
+You'll notice down here in
+the middle, you actually have
+
+
+712
+00:33:41,366 --> 00:33:42,676
+that payload I was
+talking about.
+
+
+713
+00:33:43,126 --> 00:33:46,476
+So, even though we don't
+support strings and characters,
+
+
+714
+00:33:46,476 --> 00:33:47,666
+you can put whatever
+you like here.
+
+
+715
+00:33:47,666 --> 00:33:51,676
+It could be a binary block,
+it could be strings, data.
+
+
+716
+00:33:52,616 --> 00:33:54,516
+You still get it so you
+can still do your job
+
+
+717
+00:33:54,516 --> 00:33:55,876
+and debug your application.
+
+
+718
+00:33:56,386 --> 00:33:59,956
+And in this case, you can
+see the case I've typed
+
+
+719
+00:34:00,036 --> 00:34:01,456
+to crash the app
+every time is Z.
+
+
+720
+00:34:02,256 --> 00:34:03,826
+I got the Z as part
+of the query string.
+
+
+721
+00:34:04,796 --> 00:34:05,956
+Similarly, with faults.
+
+
+722
+00:34:06,356 --> 00:34:08,666
+This is kind of fun because
+I can actually watch faults
+
+
+723
+00:34:08,666 --> 00:34:09,906
+across the entire system.
+
+
+724
+00:34:10,366 --> 00:34:15,996
+Inthis case,
+ostraceutilwatchfaults.
+
+
+725
+00:34:16,505 --> 00:34:20,536
+And you can see the Query
+Directory triggered a fault
+
+
+726
+00:34:20,996 --> 00:34:22,025
+because something bad happened.
+
+
+727
+00:34:22,275 --> 00:34:27,585
+You get the Image uuid,
+the PID and the path.
+
+
+728
+00:34:27,686 --> 00:34:30,085
+You'll see the breadcrumbs
+and the timestamps
+
+
+729
+00:34:30,085 --> 00:34:30,916
+with those breadcrumbs.
+
+
+730
+00:34:31,406 --> 00:34:37,636
+You'll see that same
+activity information as well
+
+
+731
+00:34:37,806 --> 00:34:39,246
+as the trace messages.
+
+
+732
+00:34:39,856 --> 00:34:42,596
+So, for the first time without
+enabling any additional logging,
+
+
+733
+00:34:42,815 --> 00:34:45,085
+you can see this data
+while you're working
+
+
+734
+00:34:45,085 --> 00:34:45,786
+on your application.
+
+
+735
+00:34:46,606 --> 00:34:48,985
+So, what are some things
+to take into consideration?
+
+
+736
+00:34:50,966 --> 00:34:55,985
+Privacy-we're very
+concerned about privacy.
+
+
+737
+00:34:57,486 --> 00:34:59,276
+So, be very conscious
+about what you're tracing
+
+
+738
+00:34:59,576 --> 00:35:01,426
+when you're adding
+trace messages.
+
+
+739
+00:35:01,896 --> 00:35:05,726
+Never trace information
+about a user device.
+
+
+740
+00:35:06,926 --> 00:35:08,076
+There's a session at 2:00.
+
+
+741
+00:35:08,076 --> 00:35:11,106
+If you don't get a chance to see
+it, please take a look at it,
+
+
+742
+00:35:11,106 --> 00:35:13,746
+there's a privacy session
+on both OS X and iOS.
+
+
+743
+00:35:14,096 --> 00:35:15,066
+I think we have one every year
+
+
+744
+00:35:15,066 --> 00:35:16,626
+and there's one again
+today at 2:00.
+
+
+745
+00:35:17,076 --> 00:35:21,306
+One thing I'd like to note
+is we've done our best to try
+
+
+746
+00:35:21,306 --> 00:35:23,486
+to do what we call with
+propagation failures.
+
+
+747
+00:35:24,096 --> 00:35:27,106
+Because this mechanism is
+automatic, there are cases
+
+
+748
+00:35:27,106 --> 00:35:30,106
+where a custom queuing mechanism
+is built into an application.
+
+
+749
+00:35:30,626 --> 00:35:32,866
+And that little connection
+is missing.
+
+
+750
+00:35:33,116 --> 00:35:35,746
+So, even though the work
+happened, we don't have the idea
+
+
+751
+00:35:35,746 --> 00:35:37,496
+of the trace message
+or the activity.
+
+
+752
+00:35:38,306 --> 00:35:40,516
+And what ends up happening
+is you get two-thirds
+
+
+753
+00:35:40,516 --> 00:35:42,456
+of the picture.
+
+
+754
+00:35:42,546 --> 00:35:44,566
+We've done our best
+to cover the bases
+
+
+755
+00:35:44,566 --> 00:35:45,806
+and get these where we can.
+
+
+756
+00:35:46,926 --> 00:35:50,036
+Just be aware that, you know,
+we can't catch them all.
+
+
+757
+00:35:51,676 --> 00:35:53,446
+As you see from the
+chart, this is supported
+
+
+758
+00:35:53,446 --> 00:35:56,696
+in our diagnostic tools,
+OS X Yosemite supports
+
+
+759
+00:35:56,696 --> 00:36:00,156
+in Crash Reports, Spin
+Reports, Stackshots and lldb.
+
+
+760
+00:36:00,826 --> 00:36:03,016
+Please note that
+the lldb support
+
+
+761
+00:36:03,016 --> 00:36:05,836
+that I showed you onstage
+is not active in your seat,
+
+
+762
+00:36:06,526 --> 00:36:09,076
+but look forward to it in
+a future seat for Yosemite,
+
+
+763
+00:36:09,446 --> 00:36:10,946
+but it is active for iOS 8.
+
+
+764
+00:36:10,946 --> 00:36:13,946
+So, you can actually look at
+your Crash Reports and lldb
+
+
+765
+00:36:13,946 --> 00:36:14,926
+to get this information.
+
+
+766
+00:36:15,486 --> 00:36:21,426
+So, in summary, why
+use activity tracing?
+
+
+767
+00:36:22,576 --> 00:36:24,786
+Well, I think there is a lot of
+good reasons, as you may tell
+
+
+768
+00:36:24,786 --> 00:36:25,866
+from the presentation.
+
+
+769
+00:36:26,476 --> 00:36:28,666
+It's already included in
+your diagnostic reports.
+
+
+770
+00:36:29,686 --> 00:36:30,636
+No additional work.
+
+
+771
+00:36:30,756 --> 00:36:31,826
+No more enable logging.
+
+
+772
+00:36:31,826 --> 00:36:34,306
+No more turn on this
+log or this messaging.
+
+
+773
+00:36:35,136 --> 00:36:41,196
+It's all part of your diagnostic
+report right out of the gate.
+
+
+774
+00:36:41,196 --> 00:36:43,656
+We have built-in debugger
+support, so you don't have
+
+
+775
+00:36:43,656 --> 00:36:45,406
+to leave your debugger and
+figure out what was happening.
+
+
+776
+00:36:45,976 --> 00:36:55,126
+It works on both iOS and OS X,
+extremely fast and efficient,
+
+
+777
+00:36:55,126 --> 00:36:59,296
+integrated with GCD, XPC,
+NSOperationQueue and Foundation.
+
+
+778
+00:37:00,676 --> 00:37:02,996
+And as I alluded to, it
+captures additional data
+
+
+779
+00:37:02,996 --> 00:37:06,526
+that traditional logging
+doesn't-the caller of the API,
+
+
+780
+00:37:07,366 --> 00:37:11,286
+the thread it was running on and
+other additional information.
+
+
+781
+00:37:11,736 --> 00:37:13,666
+But most exciting to me,
+
+
+782
+00:37:13,906 --> 00:37:16,766
+is these trace messages are
+actually scoped to the action
+
+
+783
+00:37:16,766 --> 00:37:17,806
+that caused the problem.
+
+
+784
+00:37:17,956 --> 00:37:20,376
+So, instead of sifting
+through tons and tons of logs,
+
+
+785
+00:37:20,566 --> 00:37:22,636
+through different processes to
+understand what was happening,
+
+
+786
+00:37:22,966 --> 00:37:25,336
+you finally have the information
+right in front of you
+
+
+787
+00:37:25,516 --> 00:37:28,036
+at the time it happened.
+
+
+788
+00:37:28,036 --> 00:37:29,016
+For more information,
+
+
+789
+00:37:29,146 --> 00:37:31,336
+please contact Paul
+Danbold our Evangelist.
+
+
+790
+00:37:32,096 --> 00:37:34,346
+We don't have official
+documentation,
+
+
+791
+00:37:34,346 --> 00:37:35,946
+as you can see this
+is a very simple API,
+
+
+792
+00:37:35,946 --> 00:37:40,026
+but there are headers and manned
+pages for them, please feel free
+
+
+793
+00:37:40,026 --> 00:37:42,066
+to take a look at them
+
+
+794
+00:37:42,066 --> 00:37:43,976
+and please contact
+the developer forums.
+
+
+795
+00:37:45,076 --> 00:37:47,006
+Some related sessions-some of
+these have already occurred,
+
+
+796
+00:37:47,456 --> 00:37:50,686
+but I do encourage you to go to
+the privacy session if you can
+
+
+797
+00:37:50,686 --> 00:37:52,666
+at 2:00, which of
+course conflicts
+
+
+798
+00:37:52,666 --> 00:37:55,876
+with the diagnostics
+performance in GCD and XPC,
+
+
+799
+00:37:57,006 --> 00:37:58,526
+but both of those
+are very important.
+
+
+800
+00:37:58,526 --> 00:38:00,146
+I would suggest taking
+a look at them.
+
+
+801
+00:38:01,086 --> 00:38:01,536
+Thank you.
+
+
+802
+00:38:02,516 --> 00:38:10,860
+[ Applause ]
+

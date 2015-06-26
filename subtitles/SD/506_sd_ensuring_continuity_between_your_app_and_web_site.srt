@@ -1,0 +1,6412 @@
+1
+00:00:14,076 --> 00:00:18,476
+>> Welcome to Session 506, "Your
+App, Your Website, and Safari."
+
+
+2
+00:00:19,106 --> 00:00:21,056
+My name is Ricky Mondello,
+and I'm an engineer
+
+
+3
+00:00:21,056 --> 00:00:22,586
+on the Safari and WebKit team.
+
+
+4
+00:00:23,186 --> 00:00:24,466
+So before we get started,
+
+
+5
+00:00:24,546 --> 00:00:26,446
+I'm going to ask one
+obvious question.
+
+
+6
+00:00:27,106 --> 00:00:28,756
+Show of hands and then
+a second question.
+
+
+7
+00:00:29,086 --> 00:00:31,846
+So first off, how many of you
+have apps in the App Store?
+
+
+8
+00:00:33,236 --> 00:00:33,936
+Nearly all of you.
+
+
+9
+00:00:34,056 --> 00:00:35,206
+Great. Welcome to WWDC.
+
+
+10
+00:00:35,206 --> 00:00:36,016
+You're in the right place.
+
+
+11
+00:00:36,476 --> 00:00:40,186
+How many of those apps
+have an associated website?
+
+
+12
+00:00:40,666 --> 00:00:41,476
+Another show of hands.
+
+
+13
+00:00:42,316 --> 00:00:43,386
+That's excellent.
+
+
+14
+00:00:43,386 --> 00:00:44,546
+You are all in the right place.
+
+
+15
+00:00:45,526 --> 00:00:50,126
+Awesome. So yesterday you
+saw Craig demo a bunch
+
+
+16
+00:00:50,126 --> 00:00:52,416
+of cool new features
+with the name Continuity.
+
+
+17
+00:00:53,046 --> 00:00:56,456
+The ability to pick up writing
+an email where you left off
+
+
+18
+00:00:56,456 --> 00:00:57,576
+from one device to another.
+
+
+19
+00:00:57,996 --> 00:01:00,176
+Picking up a phone call
+from one device to another.
+
+
+20
+00:01:01,036 --> 00:01:02,516
+I've been thinking
+about Continuity.
+
+
+21
+00:01:03,226 --> 00:01:05,876
+Continuity is more than
+just a suite of features
+
+
+22
+00:01:05,876 --> 00:01:08,806
+that we've included in
+OS X Yosemite and iOS 8.
+
+
+23
+00:01:09,826 --> 00:01:10,836
+Just a regular old word.
+
+
+24
+00:01:11,706 --> 00:01:12,716
+Looked it up in the dictionary.
+
+
+25
+00:01:12,776 --> 00:01:16,866
+It's the unbroken and consistent
+experience or operation
+
+
+26
+00:01:16,866 --> 00:01:20,256
+of something over
+a period of time.
+
+
+27
+00:01:20,456 --> 00:01:24,396
+I take comfort in this
+definition because unbrokenness
+
+
+28
+00:01:24,826 --> 00:01:27,346
+and consistency are
+exactly what all
+
+
+29
+00:01:27,346 --> 00:01:28,846
+of us users are looking
+for today.
+
+
+30
+00:01:29,806 --> 00:01:31,956
+Many of us own more
+than one device.
+
+
+31
+00:01:32,556 --> 00:01:34,416
+We move between those
+devices throughout our day.
+
+
+32
+00:01:35,156 --> 00:01:38,336
+Something that's not uncommon
+is starting a task within an app
+
+
+33
+00:01:38,336 --> 00:01:41,586
+on your iPhone and finishing it
+up later on the app's website
+
+
+34
+00:01:41,586 --> 00:01:43,046
+on your Mac, for instance.
+
+
+35
+00:01:43,356 --> 00:01:46,316
+And this year, we've
+got a cool technologies
+
+
+36
+00:01:46,316 --> 00:01:48,066
+that you can participate
+in Continuity.
+
+
+37
+00:01:48,846 --> 00:01:51,506
+Handoff. That's exactly
+what Craig used to move
+
+
+38
+00:01:51,506 --> 00:01:53,116
+from sending an email
+on one device
+
+
+39
+00:01:53,706 --> 00:01:54,716
+to typing it up on the other.
+
+
+40
+00:01:55,846 --> 00:01:57,816
+We've got a full session
+on Handoff this year.
+
+
+41
+00:01:58,296 --> 00:02:01,366
+It's tomorrow at 2 p.m. So
+if you're here, you're going
+
+
+42
+00:02:01,366 --> 00:02:02,536
+to be interested
+in that as well.
+
+
+43
+00:02:04,096 --> 00:02:07,956
+But even before Handoff,
+users are making these kinds
+
+
+44
+00:02:07,956 --> 00:02:11,206
+of transitions between
+apps, websites
+
+
+45
+00:02:11,806 --> 00:02:14,056
+and various devices
+every single day.
+
+
+46
+00:02:14,106 --> 00:02:17,006
+And in this session I'm
+going to go over some
+
+
+47
+00:02:17,006 --> 00:02:19,076
+of the best opportunities
+that we've identified
+
+
+48
+00:02:19,556 --> 00:02:20,356
+to make these kinds
+
+
+49
+00:02:20,356 --> 00:02:22,306
+of transitions smoother
+for our users.
+
+
+50
+00:02:23,296 --> 00:02:25,936
+Ensuring Continuity for
+all of our users is going
+
+
+51
+00:02:25,936 --> 00:02:28,586
+to require a holistic approach
+to software development.
+
+
+52
+00:02:29,006 --> 00:02:31,686
+Bringing together three
+different kinds of disciplines.
+
+
+53
+00:02:32,236 --> 00:02:35,816
+The first discipline is
+that of the App developer,
+
+
+54
+00:02:36,296 --> 00:02:38,176
+whoever's writing
+Cocoa, Cocoa Touch,
+
+
+55
+00:02:38,556 --> 00:02:40,526
+Objective-C and now Swift.
+
+
+56
+00:02:40,986 --> 00:02:42,446
+Probably most of you
+in this audience.
+
+
+57
+00:02:43,386 --> 00:02:46,276
+But it's also going to take the
+back-end website administrator.
+
+
+58
+00:02:48,046 --> 00:02:52,096
+It's also going to take the
+back-end website administrator.
+
+
+59
+00:02:52,736 --> 00:02:55,646
+Whoever's running user
+accounts, state, databases,
+
+
+60
+00:02:55,956 --> 00:02:57,906
+all that sort of stuff.
+
+
+61
+00:02:58,306 --> 00:03:00,046
+But finally, it's also going
+
+
+62
+00:03:00,046 --> 00:03:02,406
+to take the front
+end web developer.
+
+
+63
+00:03:02,866 --> 00:03:04,946
+Whoever is writing
+JavaScript, HTML,
+
+
+64
+00:03:04,946 --> 00:03:08,146
+CSS or whatever cool new
+fancy languages preprocessing
+
+
+65
+00:03:08,146 --> 00:03:09,056
+down to those these days.
+
+
+66
+00:03:10,666 --> 00:03:13,026
+So if you're here, you
+probably specialize
+
+
+67
+00:03:13,026 --> 00:03:13,996
+in one of these areas.
+
+
+68
+00:03:14,566 --> 00:03:15,676
+You might know about
+two of them.
+
+
+69
+00:03:16,156 --> 00:03:17,226
+You might just be
+getting started.
+
+
+70
+00:03:18,056 --> 00:03:20,526
+Or if you work in a one-person
+shop, you might be responsible
+
+
+71
+00:03:20,526 --> 00:03:23,186
+for all three of these aspects
+of your application or service.
+
+
+72
+00:03:24,016 --> 00:03:26,696
+Regardless, no matter
+which bucket you fall into,
+
+
+73
+00:03:27,096 --> 00:03:28,356
+you're going to leave
+this session today
+
+
+74
+00:03:28,356 --> 00:03:30,676
+with actionable techniques
+you can put into place
+
+
+75
+00:03:31,006 --> 00:03:32,766
+to make your users'
+experiences better.
+
+
+76
+00:03:34,076 --> 00:03:36,266
+Specifically what
+we're going to go
+
+
+77
+00:03:36,266 --> 00:03:41,896
+into today is giving your native
+iOS app access to credentials
+
+
+78
+00:03:41,896 --> 00:03:44,406
+that Safari has stored
+for your website
+
+
+79
+00:03:44,746 --> 00:03:47,616
+to make your users' login
+experiences easier than ever.
+
+
+80
+00:03:48,696 --> 00:03:51,066
+Then we're going to learn about
+AutoFill and how that works
+
+
+81
+00:03:51,066 --> 00:03:53,466
+on the web and ways to
+make that better as well.
+
+
+82
+00:03:54,026 --> 00:03:56,796
+Then we're going to look at ways
+
+
+83
+00:03:56,796 --> 00:03:58,626
+that Safari promotes
+your website
+
+
+84
+00:03:58,626 --> 00:04:00,076
+and your website's content.
+
+
+85
+00:04:01,186 --> 00:04:02,686
+Learn how to make
+that even better.
+
+
+86
+00:04:03,606 --> 00:04:05,556
+And finally we're going
+to look at your website
+
+
+87
+00:04:05,556 --> 00:04:07,736
+and how we can make
+your website consistent
+
+
+88
+00:04:07,736 --> 00:04:10,486
+across devices whether the
+user's viewing it on an iPhone
+
+
+89
+00:04:10,986 --> 00:04:12,966
+or on a Mac with a
+27-inch cinema display.
+
+
+90
+00:04:14,356 --> 00:04:15,206
+That sounds good to you?
+
+
+91
+00:04:15,756 --> 00:04:16,435
+Let's get started.
+
+
+92
+00:04:18,476 --> 00:04:21,036
+First thing I want to talk
+to you about is credentials.
+
+
+93
+00:04:22,286 --> 00:04:23,986
+If your app or service
+has accounts,
+
+
+94
+00:04:24,966 --> 00:04:27,416
+you're defining the credentials
+these days for your users
+
+
+95
+00:04:27,416 --> 00:04:29,856
+to prove that they are
+who they say they are.
+
+
+96
+00:04:30,886 --> 00:04:32,566
+Today most credentials
+are in the form
+
+
+97
+00:04:32,566 --> 00:04:34,636
+of user names, passwords.
+
+
+98
+00:04:35,576 --> 00:04:36,406
+And as a matter of fact,
+
+
+99
+00:04:36,836 --> 00:04:38,206
+my colleague Andrew
+has been working
+
+
+100
+00:04:38,206 --> 00:04:39,806
+on a cool new application
+on the side.
+
+
+101
+00:04:40,316 --> 00:04:43,156
+It's called "Shiny," and this
+application has accounts.
+
+
+102
+00:04:43,816 --> 00:04:47,156
+What it does is, every single
+day that you log into "Shiny,"
+
+
+103
+00:04:47,246 --> 00:04:50,156
+it's going to show you a
+picture of a shiny object,
+
+
+104
+00:04:50,726 --> 00:04:51,796
+but only if you're logged in.
+
+
+105
+00:04:51,796 --> 00:04:52,886
+That's very important to him.
+
+
+106
+00:04:53,016 --> 00:04:57,006
+Don't understand it but
+it's going to be okay.
+
+
+107
+00:04:57,006 --> 00:04:59,656
+Something that I realized while
+I was beta testing Andrew's app
+
+
+108
+00:05:00,466 --> 00:05:03,376
+is that my first run
+experience with the app wasn't
+
+
+109
+00:05:03,376 --> 00:05:04,456
+as good as I wanted it to be.
+
+
+110
+00:05:05,266 --> 00:05:08,226
+I started my relationship with
+"Shiny" by creating an account
+
+
+111
+00:05:08,266 --> 00:05:11,376
+on the "Shiny" website, and
+then later I went to the app
+
+
+112
+00:05:11,376 --> 00:05:13,716
+for the first time and
+I got this login screen,
+
+
+113
+00:05:13,866 --> 00:05:15,996
+and I couldn't do anything until
+I got past the login screen.
+
+
+114
+00:05:17,126 --> 00:05:20,646
+When I run into a situation like
+this, I might go ahead and look
+
+
+115
+00:05:20,646 --> 00:05:23,986
+up my password in
+settings on iOS, or,
+
+
+116
+00:05:24,106 --> 00:05:25,626
+if I'm feeling a little
+lazy at the moment,
+
+
+117
+00:05:26,316 --> 00:05:28,186
+I just might switch back
+to using the website
+
+
+118
+00:05:28,506 --> 00:05:29,736
+or leave the app altogether.
+
+
+119
+00:05:30,736 --> 00:05:32,096
+We don't want people
+to leave your apps.
+
+
+120
+00:05:32,096 --> 00:05:34,006
+We want engaged, happy users.
+
+
+121
+00:05:34,466 --> 00:05:36,956
+So today I'm very happy
+to say that we're going
+
+
+122
+00:05:36,956 --> 00:05:40,366
+to solve this problem by giving
+your application access to some
+
+
+123
+00:05:40,366 --> 00:05:43,026
+of the data that Safari has
+stored for your website,
+
+
+124
+00:05:43,536 --> 00:05:46,096
+the user names and passwords
+that are saved for your website.
+
+
+125
+00:05:46,926 --> 00:05:48,766
+Safari's technology
+for saving user names
+
+
+126
+00:05:48,766 --> 00:05:50,466
+and passwords is
+called AutoFill.
+
+
+127
+00:05:50,466 --> 00:05:52,096
+And I'd like to give
+you a little background
+
+
+128
+00:05:52,096 --> 00:05:54,086
+on that right now.
+
+
+129
+00:05:54,256 --> 00:05:55,626
+First thing that
+AutoFill does is
+
+
+130
+00:05:55,896 --> 00:05:57,096
+that it fills out forms for you.
+
+
+131
+00:05:57,746 --> 00:05:59,336
+Kind of like the forms
+that you see when checking
+
+
+132
+00:05:59,336 --> 00:06:01,766
+out of the online shopping
+site with information
+
+
+133
+00:06:01,766 --> 00:06:04,376
+from your contacts card.
+
+
+134
+00:06:04,546 --> 00:06:07,926
+AutoFill also saves and fills
+user names and passwords
+
+
+135
+00:06:08,236 --> 00:06:10,576
+to make logging into
+your websites a breeze.
+
+
+136
+00:06:12,156 --> 00:06:15,276
+And finally, AutoFill
+generates passwords for users.
+
+
+137
+00:06:16,276 --> 00:06:18,206
+Given the state of website
+security these days,
+
+
+138
+00:06:18,666 --> 00:06:21,016
+with major websites being
+compromised what seems
+
+
+139
+00:06:21,016 --> 00:06:23,716
+like every other week,
+it's a really good idea
+
+
+140
+00:06:23,716 --> 00:06:25,866
+to use a random password
+that doesn't overlap
+
+
+141
+00:06:25,866 --> 00:06:27,936
+with passwords you're
+using on other websites.
+
+
+142
+00:06:28,486 --> 00:06:32,306
+And finally with
+iCloud Keychain,
+
+
+143
+00:06:32,616 --> 00:06:35,356
+AutoFill syncs your passwords
+across all of your devices
+
+
+144
+00:06:35,356 --> 00:06:37,586
+so that it's a breeze
+to log in no matter
+
+
+145
+00:06:37,586 --> 00:06:38,406
+which device you're on.
+
+
+146
+00:06:40,026 --> 00:06:42,446
+I really love it when my
+credentials are syncing
+
+
+147
+00:06:42,446 --> 00:06:43,356
+across my devices.
+
+
+148
+00:06:44,196 --> 00:06:45,896
+When those credentials
+are randomly generated,
+
+
+149
+00:06:46,286 --> 00:06:49,736
+I am in a sweet spot of both
+security and convenience.
+
+
+150
+00:06:50,606 --> 00:06:52,536
+But I've already
+mentioned one place
+
+
+151
+00:06:52,826 --> 00:06:53,916
+that the system breaks down.
+
+
+152
+00:06:54,356 --> 00:06:56,956
+And that's when your
+application enters the picture.
+
+
+153
+00:06:57,956 --> 00:07:01,206
+When a user hits an apps login
+screen anything can happen.
+
+
+154
+00:07:02,026 --> 00:07:03,396
+They might look up
+their password.
+
+
+155
+00:07:03,526 --> 00:07:04,346
+They might already know it.
+
+
+156
+00:07:05,096 --> 00:07:07,016
+They might decide
+to leave your app.
+
+
+157
+00:07:07,016 --> 00:07:09,426
+So what we want to do today
+is take this failure point
+
+
+158
+00:07:10,306 --> 00:07:11,666
+and turn it into
+something awesome,
+
+
+159
+00:07:12,226 --> 00:07:14,646
+letting your applications
+leverage the security
+
+
+160
+00:07:14,816 --> 00:07:18,366
+and convenience of iCloud
+Keychain and Safari AutoFill.
+
+
+161
+00:07:19,746 --> 00:07:21,656
+For your users, it's
+going to mean going
+
+
+162
+00:07:21,656 --> 00:07:24,336
+from seeing an application login
+screen that looks like this
+
+
+163
+00:07:25,416 --> 00:07:28,486
+to seeing a simple picker
+where they can securely
+
+
+164
+00:07:28,556 --> 00:07:31,366
+and easily hand credentials
+back to your application
+
+
+165
+00:07:31,586 --> 00:07:33,156
+that you can use to
+attempt the login.
+
+
+166
+00:07:33,736 --> 00:07:34,696
+No typing required.
+
+
+167
+00:07:35,356 --> 00:07:37,986
+To get into the details
+of how this works,
+
+
+168
+00:07:38,276 --> 00:07:40,826
+I'm excited to invite my
+colleague Andrew Whalley
+
+
+169
+00:07:40,826 --> 00:07:41,426
+to the stage.
+
+
+170
+00:07:41,886 --> 00:07:42,226
+Andrew.
+
+
+171
+00:07:43,516 --> 00:07:48,546
+[ Applause ]
+
+
+172
+00:07:49,046 --> 00:07:49,536
+>> Andrew: Thank you, Ricky.
+
+
+173
+00:07:49,536 --> 00:07:54,236
+Yes. I'm Andrew Whalley from
+Core OS Security Engineering,
+
+
+174
+00:07:54,676 --> 00:07:57,376
+and maybe predictably
+for a security engineer,
+
+
+175
+00:07:57,406 --> 00:08:00,286
+I'm going to start off by
+talking about password security.
+
+
+176
+00:08:01,566 --> 00:08:04,786
+Passwords are some of the most
+sensitive and important data
+
+
+177
+00:08:04,846 --> 00:08:06,656
+that we have on any
+of our devices.
+
+
+178
+00:08:07,316 --> 00:08:10,786
+Passwords to banking websites
+have access to all our money,
+
+
+179
+00:08:10,946 --> 00:08:13,846
+and passwords to even
+something like social media -
+
+
+180
+00:08:13,846 --> 00:08:17,016
+well that's really our
+entire online reputation.
+
+
+181
+00:08:17,616 --> 00:08:21,126
+So we've really got
+to protect them.
+
+
+182
+00:08:21,896 --> 00:08:26,356
+As we visit websites in Safari
+and let Safari save user names
+
+
+183
+00:08:26,356 --> 00:08:28,826
+and passwords for us,
+it's keeping track
+
+
+184
+00:08:28,826 --> 00:08:31,546
+of which websites they
+came from to make sure
+
+
+185
+00:08:31,546 --> 00:08:34,606
+that they are only ever filled
+back to the exact same website.
+
+
+186
+00:08:35,856 --> 00:08:37,785
+This security and
+actually privacy
+
+
+187
+00:08:37,785 --> 00:08:41,606
+as well guarantee is
+provided by Safari itself
+
+
+188
+00:08:42,046 --> 00:08:44,806
+since it has all the
+necessary information
+
+
+189
+00:08:44,836 --> 00:08:47,906
+about which credentials
+went with which website.
+
+
+190
+00:08:48,696 --> 00:08:50,356
+And I'm using credentials here
+
+
+191
+00:08:50,356 --> 00:08:54,236
+to mean a user name
+and password pair.
+
+
+192
+00:08:54,806 --> 00:08:57,276
+I'm sure like me
+you have hundreds
+
+
+193
+00:08:57,496 --> 00:09:00,636
+of native iOS applications
+installed.
+
+
+194
+00:09:01,956 --> 00:09:05,036
+And these are all run
+and managed by iOS.
+
+
+195
+00:09:05,866 --> 00:09:10,026
+So what we need to do is
+provide a way to let iOS know
+
+
+196
+00:09:10,326 --> 00:09:12,866
+that a particular
+app is associated
+
+
+197
+00:09:13,136 --> 00:09:17,106
+with a particular website
+and to do so in a secure way.
+
+
+198
+00:09:17,106 --> 00:09:21,666
+So I'm going to be
+talking about a way
+
+
+199
+00:09:21,666 --> 00:09:24,116
+to associate your
+app and your website.
+
+
+200
+00:09:24,236 --> 00:09:25,796
+And it's really quite easy.
+
+
+201
+00:09:26,626 --> 00:09:29,406
+It involves adding one
+file to your website
+
+
+202
+00:09:30,086 --> 00:09:33,666
+and one new entitlement
+to your app.
+
+
+203
+00:09:34,136 --> 00:09:36,556
+Once you've done that,
+then you've got access
+
+
+204
+00:09:36,556 --> 00:09:40,286
+to a few simple APIs,
+which allows you to see
+
+
+205
+00:09:40,326 --> 00:09:43,576
+if your user has anything
+saved in Safari, and if so,
+
+
+206
+00:09:43,576 --> 00:09:45,286
+gets the user name and password.
+
+
+207
+00:09:46,596 --> 00:09:50,646
+And to let Safari know if a
+user has created an account
+
+
+208
+00:09:50,946 --> 00:09:53,296
+or changed their password
+within your application.
+
+
+209
+00:09:57,246 --> 00:10:00,546
+So really what we're doing
+is trying to make sure
+
+
+210
+00:10:00,626 --> 00:10:04,506
+that the website
+developer and the owner
+
+
+211
+00:10:04,506 --> 00:10:06,456
+of the website are really OK
+
+
+212
+00:10:06,706 --> 00:10:09,496
+with their two entities
+sharing information.
+
+
+213
+00:10:10,896 --> 00:10:13,186
+Luckily we can use
+cryptography for this subject.
+
+
+214
+00:10:13,186 --> 00:10:14,796
+My favorite, favorite subject.
+
+
+215
+00:10:15,266 --> 00:10:20,486
+Every iOS developer has a
+key and a certificate issued
+
+
+216
+00:10:20,706 --> 00:10:23,636
+through the developer portal
+or now automatically by Xcode.
+
+
+217
+00:10:24,276 --> 00:10:28,726
+Every website has or
+really should have a key
+
+
+218
+00:10:28,726 --> 00:10:32,326
+and certificate issued
+by a CA which they use
+
+
+219
+00:10:32,326 --> 00:10:35,406
+to secure HTTPS TLS websites.
+
+
+220
+00:10:36,166 --> 00:10:42,416
+First we're going to look
+at the app side of things.
+
+
+221
+00:10:42,856 --> 00:10:47,076
+So in the same way that Safari
+is maintaining internally a
+
+
+222
+00:10:47,076 --> 00:10:50,506
+mapping between a credential
+and which website it came from,
+
+
+223
+00:10:51,216 --> 00:10:55,026
+you can imagine iOS having
+a similar table linking apps
+
+
+224
+00:10:55,186 --> 00:10:57,616
+and websites and whether
+they have been approved
+
+
+225
+00:10:57,786 --> 00:11:00,126
+to share information
+between them.
+
+
+226
+00:11:00,446 --> 00:11:02,476
+You can see here that
+two have been mapped
+
+
+227
+00:11:02,476 --> 00:11:04,766
+as approved, and one is pending.
+
+
+228
+00:11:05,026 --> 00:11:06,846
+So let's look and see
+what it takes to go
+
+
+229
+00:11:06,846 --> 00:11:09,046
+from pending to approved.
+
+
+230
+00:11:09,976 --> 00:11:14,166
+Whenever your app is
+installed, it gives iOS a list
+
+
+231
+00:11:14,166 --> 00:11:17,076
+of all the domains it
+wishes to share with.
+
+
+232
+00:11:17,366 --> 00:11:21,556
+iOS then appends
+apple-app-site-association
+
+
+233
+00:11:21,556 --> 00:11:26,156
+to the end to form a URL and
+request it from the server.
+
+
+234
+00:11:27,076 --> 00:11:29,036
+The server then responds
+
+
+235
+00:11:29,316 --> 00:11:31,866
+with a signed file listing
+all the applications
+
+
+236
+00:11:31,866 --> 00:11:33,146
+that it wants to share with.
+
+
+237
+00:11:33,946 --> 00:11:36,606
+iOS then verifies that signature
+
+
+238
+00:11:36,686 --> 00:11:38,756
+and check the two
+app names match.
+
+
+239
+00:11:39,166 --> 00:11:43,106
+Once that's occurred,
+we know the app name
+
+
+240
+00:11:43,626 --> 00:11:47,756
+and the website name and we
+can go complete our table
+
+
+241
+00:11:47,756 --> 00:11:49,036
+and marked it as approved.
+
+
+242
+00:11:49,436 --> 00:11:52,246
+So that's the flow.
+
+
+243
+00:11:52,566 --> 00:11:55,156
+Let's go into a little
+more detail.
+
+
+244
+00:11:55,496 --> 00:11:58,066
+I mention that apps
+include a list of domains.
+
+
+245
+00:11:58,396 --> 00:12:01,106
+They're included in
+the app's entitlements.
+
+
+246
+00:12:01,726 --> 00:12:07,886
+An entitlement is a signed
+key value that's included
+
+
+247
+00:12:07,886 --> 00:12:08,826
+with every application.
+
+
+248
+00:12:09,886 --> 00:12:14,956
+It's signed so iOS knows the
+developer really intended
+
+
+249
+00:12:15,416 --> 00:12:16,796
+to include that information.
+
+
+250
+00:12:17,416 --> 00:12:20,606
+Anything that's added or
+removed breaks the signature,
+
+
+251
+00:12:20,976 --> 00:12:24,356
+and code signing
+won't let it run.
+
+
+252
+00:12:24,756 --> 00:12:25,956
+Whether you know it or not,
+
+
+253
+00:12:26,146 --> 00:12:29,426
+your application already
+includes the entitlement
+
+
+254
+00:12:29,586 --> 00:12:31,046
+application-identifier.
+
+
+255
+00:12:31,446 --> 00:12:33,206
+It's added automatically
+by Xcode.
+
+
+256
+00:12:33,746 --> 00:12:39,396
+And its value is in the form
+of teamid.bundle-identifier,
+
+
+257
+00:12:39,396 --> 00:12:41,316
+and it looks something
+like this.
+
+
+258
+00:12:42,426 --> 00:12:48,746
+Of the two parts, the team ID
+is a unique ten character string
+
+
+259
+00:12:48,746 --> 00:12:51,406
+that's issued to every
+developer, and you can look it
+
+
+260
+00:12:51,406 --> 00:12:53,176
+up on the developer portal.
+
+
+261
+00:12:53,986 --> 00:12:57,646
+The bundle-identifier part
+you actually specify yourself
+
+
+262
+00:12:57,646 --> 00:13:02,516
+from within Xcode in the
+general identity section.
+
+
+263
+00:13:02,936 --> 00:13:04,626
+Together the team ID
+
+
+264
+00:13:04,806 --> 00:13:08,876
+and bundle-identifier create an
+application-identifier that's
+
+
+265
+00:13:08,876 --> 00:13:11,616
+unique for everything
+single iOS app out there,
+
+
+266
+00:13:12,136 --> 00:13:16,116
+so we can specify we
+really want that one.
+
+
+267
+00:13:16,426 --> 00:13:19,796
+Today in iOS 8, we're
+announcing the new
+
+
+268
+00:13:19,796 --> 00:13:21,706
+associated-domains entitlement.
+
+
+269
+00:13:22,836 --> 00:13:28,606
+Its value has the form of
+service:fully.qualified.
+
+
+270
+00:13:28,606 --> 00:13:30,586
+domain.name and optionally
+a port.
+
+
+271
+00:13:31,116 --> 00:13:33,106
+It will look something like this
+
+
+272
+00:13:33,256 --> 00:13:37,116
+because for this feature we want
+the service of web credentials.
+
+
+273
+00:13:39,856 --> 00:13:43,036
+It's easy to add values
+to this entitlement.
+
+
+274
+00:13:43,216 --> 00:13:46,406
+There's a new section
+under the Capabilities tab
+
+
+275
+00:13:46,406 --> 00:13:48,766
+of Xcode associated domains.
+
+
+276
+00:13:49,346 --> 00:13:54,086
+And actually that's all you
+need to set up that association
+
+
+277
+00:13:54,446 --> 00:13:55,666
+on the app side of things.
+
+
+278
+00:13:56,116 --> 00:13:58,206
+Let's look at what's
+needed service side.
+
+
+279
+00:13:58,796 --> 00:14:02,206
+As I mentioned, iOS is going
+
+
+280
+00:14:02,296 --> 00:14:05,526
+to be requesting the
+apple-app-site-association file.
+
+
+281
+00:14:06,046 --> 00:14:08,116
+But if we just get
+that far what's in it?
+
+
+282
+00:14:08,536 --> 00:14:10,426
+Well, it's just a
+big binary blob,
+
+
+283
+00:14:10,546 --> 00:14:12,746
+but inside is a very
+simple bit of JSON.
+
+
+284
+00:14:14,116 --> 00:14:17,146
+There's a dictionary
+which contains a list
+
+
+285
+00:14:17,146 --> 00:14:18,506
+of application-identifiers.
+
+
+286
+00:14:20,096 --> 00:14:23,096
+In the same way you could
+list multiple domains
+
+
+287
+00:14:23,096 --> 00:14:26,306
+in your entitlement,
+you can list multiple
+
+
+288
+00:14:26,306 --> 00:14:29,336
+application-identifiers
+in this file,
+
+
+289
+00:14:29,746 --> 00:14:32,426
+which allows a really flexible
+many-to-many relationship.
+
+
+290
+00:14:34,576 --> 00:14:38,366
+The content type returned
+by the web server needs
+
+
+291
+00:14:38,366 --> 00:14:42,676
+to be application/pkcs7-mime,
+which means it's been signed.
+
+
+292
+00:14:43,556 --> 00:14:46,256
+The signature is
+provided by CMS,
+
+
+293
+00:14:46,686 --> 00:14:48,546
+that's the Cryptographic
+Message Syntax,
+
+
+294
+00:14:48,846 --> 00:14:50,966
+which is the same
+format used by S/MIME.
+
+
+295
+00:14:51,486 --> 00:14:55,956
+Let's do a quick look at what
+it takes to sign the file.
+
+
+296
+00:14:57,296 --> 00:14:59,196
+So here's the JSON
+you saw a moment ago
+
+
+297
+00:14:59,196 --> 00:15:00,696
+but with all the
+white space removed,
+
+
+298
+00:15:00,866 --> 00:15:05,386
+and I'm saving it
+off into json.txt.
+
+
+299
+00:15:05,896 --> 00:15:11,796
+Next I'm providing it to open
+SSL's S/MIME command and feeding
+
+
+300
+00:15:11,796 --> 00:15:15,836
+in the certificate and key
+provided by the CA for our site.
+
+
+301
+00:15:17,016 --> 00:15:19,816
+This is almost certainly going
+to be the same that is used
+
+
+302
+00:15:19,816 --> 00:15:23,886
+by a web server, but it doesn't
+have to be as long as it's valid
+
+
+303
+00:15:24,326 --> 00:15:29,696
+for the site being associated,
+in this case, example.com.
+
+
+304
+00:15:29,886 --> 00:15:34,396
+The output then is the
+apple-app-site-association file
+
+
+305
+00:15:34,456 --> 00:15:36,926
+you can copy straight to
+your web server for hosting.
+
+
+306
+00:15:37,436 --> 00:15:42,036
+And when that's there, that's
+everything you need to do.
+
+
+307
+00:15:42,226 --> 00:15:45,456
+Except iOS is going to be
+making requests of the file
+
+
+308
+00:15:45,456 --> 00:15:50,036
+from the web server, and web
+servers can return different
+
+
+309
+00:15:50,036 --> 00:15:52,776
+codes, so let's have a look
+at some of the statuses.
+
+
+310
+00:15:53,286 --> 00:15:59,036
+If the file exists and we
+get 200 okay, iOS is going
+
+
+311
+00:15:59,036 --> 00:16:02,766
+to take the file and
+check the service name
+
+
+312
+00:16:02,766 --> 00:16:06,326
+and application-identifier match
+and the signature is valid.
+
+
+313
+00:16:06,956 --> 00:16:10,816
+And if it is, it marks that
+app domain pair as approved.
+
+
+314
+00:16:11,706 --> 00:16:15,406
+If it gets 200 okay, but
+there's a problem with any
+
+
+315
+00:16:15,406 --> 00:16:19,866
+of those checks, we go
+and mark it as denied.
+
+
+316
+00:16:19,866 --> 00:16:25,516
+Likewise in the 300 or 400
+range, like 301, 302 Redirect,
+
+
+317
+00:16:25,816 --> 00:16:29,596
+or 404 File Not Found, we're
+going to go straight ahead
+
+
+318
+00:16:29,596 --> 00:16:30,776
+and mark it as denied.
+
+
+319
+00:16:32,306 --> 00:16:36,926
+Anything in the 500 range,
+like 500 Internal Server Error,
+
+
+320
+00:16:37,476 --> 00:16:39,716
+we're going to just assume
+there's a temporary glitch
+
+
+321
+00:16:39,716 --> 00:16:41,516
+with the web server and retry.
+
+
+322
+00:16:42,766 --> 00:16:45,866
+It's worth noting
+that this association
+
+
+323
+00:16:45,866 --> 00:16:49,996
+and approval state is removed
+any time the application is
+
+
+324
+00:16:49,996 --> 00:16:53,356
+uninstalled by the user,
+which is really useful
+
+
+325
+00:16:53,356 --> 00:16:55,696
+if you're developing and
+testing and need to go
+
+
+326
+00:16:55,696 --> 00:17:00,076
+through this a few
+times to get it right.
+
+
+327
+00:17:00,436 --> 00:17:03,226
+So now we've set up
+that trust relationship
+
+
+328
+00:17:03,316 --> 00:17:04,996
+between our app and our website.
+
+
+329
+00:17:05,695 --> 00:17:08,185
+Let's see how we can
+integrate prompting
+
+
+330
+00:17:08,326 --> 00:17:12,326
+for Safari's saved passwords
+into our app's application flow.
+
+
+331
+00:17:15,616 --> 00:17:17,965
+Here we are on our home screen.
+
+
+332
+00:17:18,356 --> 00:17:21,276
+The "Shiny" app just installed
+and waiting to be launched.
+
+
+333
+00:17:22,445 --> 00:17:24,886
+Once launched, it's going
+to go through this flow.
+
+
+334
+00:17:25,726 --> 00:17:30,776
+Because we need a user
+name and password to log
+
+
+335
+00:17:30,776 --> 00:17:32,146
+on to our back-end
+server right away,
+
+
+336
+00:17:33,316 --> 00:17:35,536
+the first thing it
+does is check to see
+
+
+337
+00:17:35,536 --> 00:17:36,906
+if we already have any saved.
+
+
+338
+00:17:37,716 --> 00:17:40,146
+They could be saved in the
+Keychain as a user name
+
+
+339
+00:17:40,146 --> 00:17:43,446
+and password, could be
+an auth token or a cookie
+
+
+340
+00:17:43,546 --> 00:17:44,846
+that we can use to log in.
+
+
+341
+00:17:45,796 --> 00:17:48,086
+Because we've just installed
+it there's nothing there,
+
+
+342
+00:17:48,086 --> 00:17:49,526
+so we're just going to
+have to prompt the user.
+
+
+343
+00:17:50,686 --> 00:17:53,876
+Once the user has entered their
+credentials, then we're going
+
+
+344
+00:17:53,876 --> 00:17:57,646
+to save them for accessing them
+next time and then we can log in
+
+
+345
+00:17:57,706 --> 00:18:01,096
+and see a wonderful "Shiny"
+teapot - tea also another one
+
+
+346
+00:18:01,096 --> 00:18:02,056
+of my favorite things.
+
+
+347
+00:18:02,316 --> 00:18:06,866
+So next time we come back
+and launch the application,
+
+
+348
+00:18:07,096 --> 00:18:10,316
+our check for saved credentials
+is going to be successful
+
+
+349
+00:18:10,426 --> 00:18:12,446
+and we can log straight in.
+
+
+350
+00:18:13,946 --> 00:18:18,376
+Now let's go back to see what
+the first user experience flow
+
+
+351
+00:18:18,376 --> 00:18:21,816
+is like when we can check the
+saved credentials in Safari.
+
+
+352
+00:18:22,776 --> 00:18:24,556
+We're just inserting
+another step.
+
+
+353
+00:18:25,336 --> 00:18:28,356
+Again the app is going to check
+if it's saved anything itself,
+
+
+354
+00:18:28,356 --> 00:18:31,956
+but if there isn't any, we're
+going to be prompted to see
+
+
+355
+00:18:32,246 --> 00:18:34,406
+if they have saved
+anything in Safari.
+
+
+356
+00:18:34,936 --> 00:18:40,436
+If they select their credential
+or they select an account,
+
+
+357
+00:18:40,936 --> 00:18:42,986
+the user name and password
+is going to be returned
+
+
+358
+00:18:42,986 --> 00:18:45,256
+to your application which
+can then exchange it
+
+
+359
+00:18:45,256 --> 00:18:46,716
+for an auth token
+and also save it
+
+
+360
+00:18:46,716 --> 00:18:48,526
+in the Keychain whatever's
+required
+
+
+361
+00:18:48,526 --> 00:18:50,086
+by your back-end
+server to authenticate.
+
+
+362
+00:18:50,546 --> 00:18:52,316
+And then you can
+log straight in.
+
+
+363
+00:18:53,196 --> 00:18:57,276
+It might be worth noting that
+you still need the user name
+
+
+364
+00:18:57,276 --> 00:18:59,196
+and password view as a fallback
+
+
+365
+00:18:59,466 --> 00:19:02,376
+in case the user hasn't
+saved anything with Safari
+
+
+366
+00:19:02,436 --> 00:19:03,726
+or declined to select one.
+
+
+367
+00:19:03,816 --> 00:19:05,786
+So that's the flow.
+
+
+368
+00:19:05,936 --> 00:19:09,506
+Now let's look at the APIs that
+you can use to implement this.
+
+
+369
+00:19:09,766 --> 00:19:11,346
+We're introducing three today.
+
+
+370
+00:19:12,186 --> 00:19:17,236
+SecRequestSharedWebCredential,
+SecAddSharedWebCredential
+
+
+371
+00:19:17,296 --> 00:19:20,376
+and SetCreateSharedWeb
+CredentialPassword.
+
+
+372
+00:19:20,596 --> 00:19:25,926
+The first is what causes the
+account picker be displayed.
+
+
+373
+00:19:26,356 --> 00:19:29,806
+It has three arguments
+and a completion block.
+
+
+374
+00:19:30,156 --> 00:19:34,126
+The first allows you
+to specify domain name,
+
+
+375
+00:19:35,016 --> 00:19:37,876
+the second a user name, if
+you already know it somehow,
+
+
+376
+00:19:37,956 --> 00:19:41,206
+and then a completion
+block, which will be run
+
+
+377
+00:19:41,206 --> 00:19:45,256
+after the user has
+selected an item,
+
+
+378
+00:19:45,466 --> 00:19:48,386
+or it has not been
+displayed for some reason.
+
+
+379
+00:19:49,746 --> 00:19:53,126
+Now you've already
+listed all those domains
+
+
+380
+00:19:53,126 --> 00:19:56,716
+in your entitlements and you
+have usually no idea what your
+
+
+381
+00:19:56,716 --> 00:19:58,836
+user names your users have.
+
+
+382
+00:19:59,066 --> 00:20:01,686
+So what you can do
+is pass NULL for both
+
+
+383
+00:20:01,686 --> 00:20:03,486
+of those first two fields.
+
+
+384
+00:20:04,496 --> 00:20:07,976
+Passing NULL for the domain just
+uses the entitlement values.
+
+
+385
+00:20:08,516 --> 00:20:11,896
+And passing NULL for the
+user name will get anything
+
+
+386
+00:20:11,896 --> 00:20:17,106
+that can be found for any of
+the domains in the entitlement.
+
+
+387
+00:20:17,106 --> 00:20:20,956
+So whenever that code is
+executed, we get the picker,
+
+
+388
+00:20:21,616 --> 00:20:25,596
+user selects a credential,
+and the completion block runs.
+
+
+389
+00:20:26,376 --> 00:20:30,796
+Into it is passed a data
+structure credential
+
+
+390
+00:20:30,856 --> 00:20:34,046
+which contains the user name
+and password and maybe an error
+
+
+391
+00:20:34,146 --> 00:20:35,366
+if anything's gone wrong.
+
+
+392
+00:20:35,856 --> 00:20:38,896
+So let's look at some of the
+code you might want to include
+
+
+393
+00:20:39,106 --> 00:20:40,246
+in such a completion block.
+
+
+394
+00:20:40,616 --> 00:20:42,396
+And it's again pretty
+straightforward.
+
+
+395
+00:20:42,826 --> 00:20:45,206
+We're just checking
+that there was no error,
+
+
+396
+00:20:45,206 --> 00:20:47,076
+and a credential was returned.
+
+
+397
+00:20:48,536 --> 00:20:51,816
+We extract the user name and
+password from the data structure
+
+
+398
+00:20:51,816 --> 00:20:56,376
+and pass it off to the method
+that our application already had
+
+
+399
+00:20:56,686 --> 00:20:57,496
+to log in to the server.
+
+
+400
+00:20:57,496 --> 00:21:00,466
+Because this is running in
+the block, I'm going to run
+
+
+401
+00:21:00,466 --> 00:21:04,546
+that on the main queue just in
+case it needs to deal with UI.
+
+
+402
+00:21:04,676 --> 00:21:07,856
+Our error condition
+down here will run
+
+
+403
+00:21:07,856 --> 00:21:09,486
+if the user didn't
+select the password
+
+
+404
+00:21:09,486 --> 00:21:10,526
+or there's just none there.
+
+
+405
+00:21:11,216 --> 00:21:14,836
+And we're going to show the
+login UI, which is our fallback,
+
+
+406
+00:21:14,836 --> 00:21:16,836
+and again dispatch
+that to the main queue.
+
+
+407
+00:21:18,096 --> 00:21:20,216
+And that's really all there is.
+
+
+408
+00:21:20,216 --> 00:21:23,066
+However your application
+might allow a user
+
+
+409
+00:21:23,066 --> 00:21:27,416
+to create an account from
+within the native application,
+
+
+410
+00:21:27,416 --> 00:21:30,736
+and in this case, we need
+SecAddSharedWebCredential.
+
+
+411
+00:21:32,176 --> 00:21:35,116
+This time you must
+specify a domain name
+
+
+412
+00:21:35,116 --> 00:21:37,796
+and a user name and
+the password.
+
+
+413
+00:21:38,296 --> 00:21:42,386
+There's a completion
+block, but an error
+
+
+414
+00:21:42,386 --> 00:21:44,776
+in this case usually means
+there's something amiss
+
+
+415
+00:21:45,026 --> 00:21:47,516
+with your app site linking
+and the approval process,
+
+
+416
+00:21:47,566 --> 00:21:49,346
+so it's more useful
+during development.
+
+
+417
+00:21:50,326 --> 00:21:53,196
+If there are no existing
+accounts in Safari
+
+
+418
+00:21:53,196 --> 00:21:55,946
+when you call this, this
+completes with no UI.
+
+
+419
+00:21:56,066 --> 00:21:56,986
+It just goes straight in.
+
+
+420
+00:21:57,346 --> 00:22:00,376
+Which makes it really easy
+to include in your flow
+
+
+421
+00:22:00,876 --> 00:22:04,026
+and make sure those credentials
+are just there the next time the
+
+
+422
+00:22:04,026 --> 00:22:08,166
+user goes to your website in
+Safari and with iCloud Keychain
+
+
+423
+00:22:08,166 --> 00:22:09,416
+on any of their devices.
+
+
+424
+00:22:10,776 --> 00:22:14,456
+If the user can change their
+password within an application,
+
+
+425
+00:22:14,456 --> 00:22:16,096
+you make exactly the same call
+
+
+426
+00:22:16,096 --> 00:22:18,506
+but just supply the
+new password.
+
+
+427
+00:22:19,006 --> 00:22:22,006
+In this case with an existing
+item, we're going to prompt
+
+
+428
+00:22:22,166 --> 00:22:23,876
+to make sure that's
+what the user wants.
+
+
+429
+00:22:25,136 --> 00:22:27,666
+To delete an account,
+you just pass NULL
+
+
+430
+00:22:27,666 --> 00:22:28,666
+as the password argument.
+
+
+431
+00:22:29,696 --> 00:22:32,986
+Again the user's
+going to be prompted.
+
+
+432
+00:22:32,986 --> 00:22:34,796
+Note you should only delete this
+
+
+433
+00:22:34,866 --> 00:22:36,546
+if they really are
+deleting their account.
+
+
+434
+00:22:36,546 --> 00:22:38,416
+If they're just logging
+out then they're going
+
+
+435
+00:22:38,416 --> 00:22:40,626
+to need their credentials next
+time they log back in again.
+
+
+436
+00:22:41,016 --> 00:22:43,206
+Or maybe you've already
+determined
+
+
+437
+00:22:43,206 --> 00:22:44,986
+that those credentials are stale
+
+
+438
+00:22:44,986 --> 00:22:46,276
+and they would never
+work anyway.
+
+
+439
+00:22:46,866 --> 00:22:52,116
+So the final API simply returns
+a random password each time
+
+
+440
+00:22:52,116 --> 00:22:52,816
+it's called.
+
+
+441
+00:22:53,676 --> 00:22:55,776
+It's in the same
+format used by Safari.
+
+
+442
+00:22:56,556 --> 00:23:00,506
+Returning for a moment
+to the completion block,
+
+
+443
+00:23:01,216 --> 00:23:03,166
+there are a number of errors
+that could be returned,
+
+
+444
+00:23:03,896 --> 00:23:07,486
+and we'll have a
+look at them now.
+
+
+445
+00:23:07,606 --> 00:23:10,896
+The first is errSecParam error.
+
+
+446
+00:23:11,616 --> 00:23:14,146
+And a description of
+"No domain provided."
+
+
+447
+00:23:14,956 --> 00:23:18,686
+And what tends to be happening
+here is you're passing NULL
+
+
+448
+00:23:18,686 --> 00:23:21,106
+as your domain so we're going
+to look at the entitlement.
+
+
+449
+00:23:21,246 --> 00:23:22,586
+But the entitlement isn't there,
+
+
+450
+00:23:22,726 --> 00:23:24,326
+so we get the "no
+domain provided" error.
+
+
+451
+00:23:24,896 --> 00:23:28,586
+You can also get a
+missing entitlement error,
+
+
+452
+00:23:29,036 --> 00:23:31,996
+and this means you are
+specifying a domain name
+
+
+453
+00:23:32,336 --> 00:23:33,326
+but there is no entitlement.
+
+
+454
+00:23:33,706 --> 00:23:38,086
+Next you could get a
+SecItemNotFound error.
+
+
+455
+00:23:38,836 --> 00:23:42,466
+And this means that there
+is no proved domain,
+
+
+456
+00:23:42,966 --> 00:23:46,316
+which is the saying you get
+
+
+457
+00:23:46,816 --> 00:23:49,226
+if there just aren't any,
+but you are approved.
+
+
+458
+00:23:50,676 --> 00:23:53,216
+We're returning the same error
+condition for both of these
+
+
+459
+00:23:53,336 --> 00:23:54,436
+as a privacy feature,
+
+
+460
+00:23:54,886 --> 00:23:57,306
+which means that rogue
+applications are never going
+
+
+461
+00:23:57,306 --> 00:23:59,756
+to get any more information
+than they really deserve.
+
+
+462
+00:23:59,756 --> 00:24:04,666
+So now let's have a
+quick demo of putting
+
+
+463
+00:24:04,666 --> 00:24:06,106
+that all into practice.
+
+
+464
+00:24:06,616 --> 00:24:10,726
+So first of all let's go
+to the "Shiny" website.
+
+
+465
+00:24:11,326 --> 00:24:13,776
+But I haven't actually
+gotten an account yet,
+
+
+466
+00:24:13,776 --> 00:24:18,046
+so I'm going to sign up.
+
+
+467
+00:24:18,046 --> 00:24:21,146
+Safari is suggesting to fill
+a password, so I'm going
+
+
+468
+00:24:21,146 --> 00:24:24,516
+to accept that, and oh, today
+Shiny's thing is macaroons.
+
+
+469
+00:24:24,516 --> 00:24:26,016
+That's going to go
+very well with the tea.
+
+
+470
+00:24:26,836 --> 00:24:30,436
+So let's go over to
+iOS and have a look
+
+
+471
+00:24:30,556 --> 00:24:32,646
+at iOS native "Shiny" app.
+
+
+472
+00:24:33,246 --> 00:24:34,436
+Well, here it is.
+
+
+473
+00:24:34,606 --> 00:24:35,256
+Going to launch it.
+
+
+474
+00:24:36,046 --> 00:24:37,616
+And here we are.
+
+
+475
+00:24:37,856 --> 00:24:39,076
+User name and password.
+
+
+476
+00:24:39,276 --> 00:24:44,136
+So it was Andrew, and I actually
+have no idea what it was,
+
+
+477
+00:24:44,136 --> 00:24:45,016
+it came up too quickly.
+
+
+478
+00:24:45,496 --> 00:24:46,986
+So let's go back and see
+
+
+479
+00:24:46,986 --> 00:24:49,796
+if we can change the
+application to fix that.
+
+
+480
+00:24:55,046 --> 00:24:57,706
+Here we are in the Log
+On View Controller.
+
+
+481
+00:24:58,126 --> 00:24:59,616
+And if you scroll down a bit,
+
+
+482
+00:24:59,616 --> 00:25:02,576
+we've got the method
+loginWithCached
+
+
+483
+00:25:02,576 --> 00:25:03,716
+CredentialsIfPossible.
+
+
+484
+00:25:05,096 --> 00:25:08,036
+It in turn is calling
+loginWithLocalKeychain
+
+
+485
+00:25:08,036 --> 00:25:09,606
+CredentialsifPossible.
+
+
+486
+00:25:11,036 --> 00:25:12,686
+That takes two blocks.
+
+
+487
+00:25:13,236 --> 00:25:16,506
+The first will be passed
+the user name and password
+
+
+488
+00:25:16,506 --> 00:25:17,646
+if there's one in the Keychain.
+
+
+489
+00:25:18,166 --> 00:25:20,976
+And the second is
+what's run on failure.
+
+
+490
+00:25:21,096 --> 00:25:22,526
+There's no credentials saved.
+
+
+491
+00:25:23,756 --> 00:25:26,926
+So I'm going to create a new
+method to parallel this one.
+
+
+492
+00:25:32,376 --> 00:25:34,466
+LoginWithSafari
+CredentialsifPossible.
+
+
+493
+00:25:34,806 --> 00:25:37,346
+Again taking a success
+block and a failure block.
+
+
+494
+00:25:38,066 --> 00:25:40,606
+So this code is very
+similar to the one I walked
+
+
+495
+00:25:40,606 --> 00:25:41,506
+through in the slides,
+
+
+496
+00:25:41,976 --> 00:25:44,996
+but instead of calling
+a method directly,
+
+
+497
+00:25:45,426 --> 00:25:48,496
+we're calling the success
+block and the failure block
+
+
+498
+00:25:48,736 --> 00:25:49,536
+if there was an error
+
+
+499
+00:25:49,626 --> 00:25:51,316
+or the user declines
+to select anything.
+
+
+500
+00:25:53,026 --> 00:25:58,126
+So now I'm back in the error
+block, the failure block
+
+
+501
+00:25:58,346 --> 00:26:00,936
+of our previous method.
+
+
+502
+00:26:00,936 --> 00:26:06,016
+And instead of the back,
+fallback being show log
+
+
+503
+00:26:06,016 --> 00:26:08,866
+on UI entitlements I'm
+going to put a call
+
+
+504
+00:26:08,866 --> 00:26:12,876
+to our new method there.
+
+
+505
+00:26:13,226 --> 00:26:18,486
+And in this way we have
+a cascade of blocks,
+
+
+506
+00:26:18,836 --> 00:26:21,076
+so if there's nothing
+found in the Keychain,
+
+
+507
+00:26:21,246 --> 00:26:22,406
+it calls a failure block.
+
+
+508
+00:26:22,986 --> 00:26:25,276
+If there's no Safari
+saved credentials,
+
+
+509
+00:26:25,356 --> 00:26:26,386
+it calls its failure block,
+
+
+510
+00:26:26,656 --> 00:26:30,416
+which falls back
+to the login UI.
+
+
+511
+00:26:30,476 --> 00:26:33,536
+So let's give this a build
+and see what happens.
+
+
+512
+00:26:34,036 --> 00:26:39,696
+So we launch it, and
+yes, we get a picker.
+
+
+513
+00:26:39,786 --> 00:26:42,946
+Log in and there are
+today's macaroons.
+
+
+514
+00:26:43,686 --> 00:26:48,236
+The app did provide a way
+for us to change a password,
+
+
+515
+00:26:48,766 --> 00:26:50,176
+and it's already prefilled one
+
+
+516
+00:26:50,176 --> 00:26:53,566
+out from the SetCreateSharedWeb
+CredentialPassword.
+
+
+517
+00:26:53,566 --> 00:26:55,446
+So I'm going to accept that.
+
+
+518
+00:26:55,476 --> 00:26:57,156
+That looks reasonably secure.
+
+
+519
+00:26:57,706 --> 00:27:00,116
+Change password, and because
+I already had something
+
+
+520
+00:27:00,116 --> 00:27:01,606
+in the Keychain,
+it's prompted me.
+
+
+521
+00:27:02,616 --> 00:27:03,956
+So I'm going to go
+ahead and update.
+
+
+522
+00:27:04,516 --> 00:27:04,956
+There we are.
+
+
+523
+00:27:05,096 --> 00:27:06,796
+Logged straight in.
+
+
+524
+00:27:06,896 --> 00:27:12,436
+And now I'll come
+back to the Mac.
+
+
+525
+00:27:13,556 --> 00:27:18,196
+All being well, yes,
+there we go.
+
+
+526
+00:27:18,196 --> 00:27:21,716
+iCloud Keychain has done
+its magic and the user name
+
+
+527
+00:27:21,716 --> 00:27:26,126
+and password - yes iCloud
+Keychain has done its magic.
+
+
+528
+00:27:26,456 --> 00:27:28,266
+The updated password
+is over there.
+
+
+529
+00:27:29,516 --> 00:27:34,176
+[ Applause ]
+
+
+530
+00:27:34,676 --> 00:27:37,986
+So, though there are
+quite a few steps,
+
+
+531
+00:27:38,216 --> 00:27:41,726
+none of them are particularly
+difficult and it allows - well,
+
+
+532
+00:27:41,726 --> 00:27:44,266
+it's maintaining a very,
+very high level of security -
+
+
+533
+00:27:44,996 --> 00:27:48,466
+this last broken point
+in the convenience
+
+
+534
+00:27:48,466 --> 00:27:50,526
+and security ecosystem
+to be made complete.
+
+
+535
+00:27:53,126 --> 00:27:54,216
+Thank you all.
+
+
+536
+00:27:55,516 --> 00:27:59,556
+[ Applause ]
+
+
+537
+00:28:00,056 --> 00:28:00,606
+>> Thanks, Andrew.
+
+
+538
+00:28:02,086 --> 00:28:04,746
+I am really excited to see
+what you guys are going
+
+
+539
+00:28:04,746 --> 00:28:05,986
+to do with these APIs.
+
+
+540
+00:28:06,446 --> 00:28:08,736
+It's really a personal pet
+peeve of mine to get stopped
+
+
+541
+00:28:08,736 --> 00:28:11,656
+in my tracks at a login
+screen, and I'm really excited
+
+
+542
+00:28:11,656 --> 00:28:13,996
+that if I've gone to Safari,
+created an account there,
+
+
+543
+00:28:14,346 --> 00:28:16,966
+to never see that again.
+
+
+544
+00:28:17,136 --> 00:28:20,736
+SecAddSharedWebCredential,
+the API that Andrew told you
+
+
+545
+00:28:20,736 --> 00:28:23,626
+about that you'll use to add a
+password to the user's Keychain,
+
+
+546
+00:28:24,006 --> 00:28:27,316
+update a password in the user's
+Keychain or delete something?
+
+
+547
+00:28:27,766 --> 00:28:29,006
+It's really neat.
+
+
+548
+00:28:29,736 --> 00:28:32,156
+It's not neat just because of
+what it's going to mean for all
+
+
+549
+00:28:32,156 --> 00:28:33,706
+of us in this room as users.
+
+
+550
+00:28:34,566 --> 00:28:36,796
+But because it perfectly
+captures your
+
+
+551
+00:28:36,796 --> 00:28:38,056
+application's intent.
+
+
+552
+00:28:38,506 --> 00:28:43,356
+Your app tells iOS exactly
+what it wants to happen
+
+
+553
+00:28:43,356 --> 00:28:45,796
+to a user's credentials, and
+they're automatically synced
+
+
+554
+00:28:45,796 --> 00:28:48,596
+across all of the user's
+devices with iCloud Keychain.
+
+
+555
+00:28:49,936 --> 00:28:53,106
+It's not as clear cut
+on the web however.
+
+
+556
+00:28:54,046 --> 00:28:56,516
+Your website doesn't have
+a way of saying, "Hey,
+
+
+557
+00:28:56,516 --> 00:29:00,366
+Safari I just updated Andrew's
+password from Foo to Bar."
+
+
+558
+00:29:01,296 --> 00:29:05,136
+Instead, what Safari does is
+it uses a series of heuristics
+
+
+559
+00:29:05,136 --> 00:29:07,086
+in order to figure out
+what your website's doing
+
+
+560
+00:29:07,366 --> 00:29:09,686
+and then update your user's
+passwords accordingly.
+
+
+561
+00:29:10,456 --> 00:29:12,546
+And to make this all
+work, Safari needs
+
+
+562
+00:29:12,546 --> 00:29:15,006
+to understand your
+websites' forms.
+
+
+563
+00:29:16,326 --> 00:29:17,626
+So here's a flow diagram
+
+
+564
+00:29:18,116 --> 00:29:21,156
+of how conceptually a password
+manager could be looking
+
+
+565
+00:29:21,156 --> 00:29:22,076
+at your websites.
+
+
+566
+00:29:22,986 --> 00:29:25,506
+Users move between states
+like not having an account,
+
+
+567
+00:29:25,996 --> 00:29:28,286
+registering for an
+account, having the account
+
+
+568
+00:29:28,286 --> 00:29:30,236
+and logging in and out of it.
+
+
+569
+00:29:30,656 --> 00:29:32,476
+Safari does all of
+this automatically.
+
+
+570
+00:29:33,006 --> 00:29:34,356
+There's nothing that
+you have to do.
+
+
+571
+00:29:34,356 --> 00:29:37,016
+There's no opt in for Safari
+analyzing your website
+
+
+572
+00:29:37,016 --> 00:29:39,226
+and offering password
+features to its users.
+
+
+573
+00:29:40,446 --> 00:29:41,956
+Because this is automatic
+
+
+574
+00:29:42,096 --> 00:29:45,836
+and it's using heuristics,
+things can go wrong.
+
+
+575
+00:29:46,166 --> 00:29:47,516
+Heuristics aren't perfect.
+
+
+576
+00:29:48,236 --> 00:29:49,506
+And when things do go wrong,
+
+
+577
+00:29:49,836 --> 00:29:52,116
+Continuity breaks
+down for your users.
+
+
+578
+00:29:52,776 --> 00:29:55,496
+For instance, if Safari
+didn't have a password saved
+
+
+579
+00:29:55,496 --> 00:29:58,846
+for your website when you call
+SecRequestShared WebCredential
+
+
+580
+00:29:58,846 --> 00:30:00,496
+from within your iOS
+app, you're going
+
+
+581
+00:30:00,496 --> 00:30:01,546
+to get back an empty array.
+
+
+582
+00:30:03,046 --> 00:30:03,856
+And if Safari didn't notice
+
+
+583
+00:30:03,856 --> 00:30:05,676
+that a user had changed
+their password on your site,
+
+
+584
+00:30:05,866 --> 00:30:07,536
+if Safari didn't understand
+that that happened,
+
+
+585
+00:30:08,006 --> 00:30:10,506
+when you call SecRequestShared
+WebCredential you're going
+
+
+586
+00:30:10,506 --> 00:30:13,166
+to get back a stale credential,
+and your users aren't going
+
+
+587
+00:30:13,166 --> 00:30:14,406
+to be logged in effortlessly.
+
+
+588
+00:30:15,656 --> 00:30:18,616
+Because of this, it's in
+everyone's best interest
+
+
+589
+00:30:18,936 --> 00:30:21,616
+to test their websites
+with Safari AutoFill.
+
+
+590
+00:30:22,656 --> 00:30:25,116
+Fortunately, it's really
+straightforward to do this.
+
+
+591
+00:30:25,446 --> 00:30:27,006
+All you have to do
+is pretend to be one
+
+
+592
+00:30:27,006 --> 00:30:28,276
+of your users for a few minutes.
+
+
+593
+00:30:28,966 --> 00:30:31,346
+So let's go back to
+the state diagram.
+
+
+594
+00:30:32,266 --> 00:30:33,426
+The first thing you're
+going to want
+
+
+595
+00:30:33,426 --> 00:30:35,976
+to do is get yourself a clean
+device or a clean user account
+
+
+596
+00:30:36,316 --> 00:30:37,206
+because you don't
+want to interfere
+
+
+597
+00:30:37,206 --> 00:30:39,216
+with whatever credentials
+you personally have stored
+
+
+598
+00:30:39,216 --> 00:30:40,386
+for the websites
+that you're building.
+
+
+599
+00:30:40,926 --> 00:30:44,186
+And then the first
+thing that you're going
+
+
+600
+00:30:44,186 --> 00:30:46,866
+to do is create an account
+just like your users would.
+
+
+601
+00:30:47,226 --> 00:30:50,586
+Go to your account - website's
+account creation forms
+
+
+602
+00:30:50,806 --> 00:30:51,386
+and sign up.
+
+
+603
+00:30:52,256 --> 00:30:53,226
+The two things that
+you're looking
+
+
+604
+00:30:53,226 --> 00:30:57,026
+for here are the Safari offer
+to generate a random credential
+
+
+605
+00:30:57,026 --> 00:30:58,366
+for the user, a random password,
+
+
+606
+00:30:58,366 --> 00:31:01,196
+and then after you've
+created the account,
+
+
+607
+00:31:01,476 --> 00:31:03,836
+Safari's saved the
+user name and password.
+
+
+608
+00:31:04,336 --> 00:31:07,486
+And the way that you're going to
+check this is by on OS X opening
+
+
+609
+00:31:07,486 --> 00:31:09,966
+up Safari's preferences and
+going to the Passwords pane,
+
+
+610
+00:31:10,726 --> 00:31:14,276
+and on iOS, you'll open Settings
+and go to the Safari section,
+
+
+611
+00:31:14,306 --> 00:31:15,806
+and you'll have to find
+a list of passwords
+
+
+612
+00:31:15,806 --> 00:31:17,446
+and user names that
+have been saved.
+
+
+613
+00:31:17,816 --> 00:31:18,186
+All right.
+
+
+614
+00:31:19,146 --> 00:31:19,926
+Now you have an account.
+
+
+615
+00:31:20,036 --> 00:31:22,466
+So now that you have an
+account and you're logged in,
+
+
+616
+00:31:22,916 --> 00:31:25,076
+the first thing you're
+going to do is log out
+
+
+617
+00:31:25,456 --> 00:31:26,896
+and then try to log
+back in again.
+
+
+618
+00:31:27,586 --> 00:31:29,336
+And when you go to your
+website's login page,
+
+
+619
+00:31:29,556 --> 00:31:31,046
+the thing that you're
+looking for is
+
+
+620
+00:31:31,046 --> 00:31:33,096
+that Safari prefilled
+the credentials
+
+
+621
+00:31:33,096 --> 00:31:36,266
+so that the user doesn't
+have to type them in.
+
+
+622
+00:31:36,266 --> 00:31:36,526
+All right.
+
+
+623
+00:31:37,026 --> 00:31:37,526
+We've done that.
+
+
+624
+00:31:38,236 --> 00:31:40,676
+Next up, the user's going
+to change their passwords
+
+
+625
+00:31:40,676 --> 00:31:43,886
+at some point during their
+relationship with your website.
+
+
+626
+00:31:44,406 --> 00:31:46,116
+So you're going to want to do
+that when you're logged in.
+
+
+627
+00:31:46,646 --> 00:31:49,246
+Go to your Change Password
+form, and while you're there,
+
+
+628
+00:31:49,526 --> 00:31:51,486
+make sure that Safari offered
+to generate a credential
+
+
+629
+00:31:51,486 --> 00:31:54,116
+for your users and that
+it saved the updated
+
+
+630
+00:31:54,116 --> 00:31:55,116
+credential appropriately.
+
+
+631
+00:31:55,166 --> 00:31:56,636
+Go back to that list
+and make sure
+
+
+632
+00:31:56,636 --> 00:31:57,736
+that the new credential
+is saved.
+
+
+633
+00:31:58,256 --> 00:32:02,486
+And then finally if your
+website offers a way for users
+
+
+634
+00:32:02,486 --> 00:32:04,486
+to change their passwords
+when they have forgotten them,
+
+
+635
+00:32:05,106 --> 00:32:06,006
+go ahead and check that too.
+
+
+636
+00:32:06,826 --> 00:32:09,236
+Make sure that Safari
+saves a good credential.
+
+
+637
+00:32:09,786 --> 00:32:14,366
+And then finally, to simulate
+a user having started their
+
+
+638
+00:32:14,366 --> 00:32:17,186
+relationship with your website
+outside of Safari's watch,
+
+
+639
+00:32:17,816 --> 00:32:20,306
+delete the credentials that
+you've created for this website.
+
+
+640
+00:32:20,656 --> 00:32:21,386
+Go into Settings.
+
+
+641
+00:32:21,756 --> 00:32:23,736
+Go into Safari's
+Preferences, delete them.
+
+
+642
+00:32:24,446 --> 00:32:27,956
+Then go back to your login
+page, manually enter them
+
+
+643
+00:32:28,216 --> 00:32:30,346
+and make sure that Safari
+saved them at that point,
+
+
+644
+00:32:30,926 --> 00:32:32,676
+so that your users have
+a great experience.
+
+
+645
+00:32:37,146 --> 00:32:38,446
+All right.
+
+
+646
+00:32:39,176 --> 00:32:39,836
+Testing's over.
+
+
+647
+00:32:40,886 --> 00:32:43,736
+Hopefully everything worked
+perfectly, but if it didn't,
+
+
+648
+00:32:44,126 --> 00:32:46,726
+I'm happy to say that we have
+two new strategies to tell you
+
+
+649
+00:32:46,726 --> 00:32:48,586
+about today that you
+can put into place
+
+
+650
+00:32:48,586 --> 00:32:51,496
+on your website's forms to
+help Safari understand your
+
+
+651
+00:32:51,496 --> 00:32:52,186
+website better.
+
+
+652
+00:32:53,316 --> 00:32:54,526
+The first one is the
+
+
+653
+00:32:54,526 --> 00:32:56,596
+about declaring your
+forms' intentions.
+
+
+654
+00:32:58,146 --> 00:33:02,416
+New in Safari 8 on Yosemite
+and Safari on iOS 8,
+
+
+655
+00:33:02,906 --> 00:33:06,806
+Safari supports three new values
+for the autocomplete attribute.
+
+
+656
+00:33:07,236 --> 00:33:10,306
+User name, current-password
+and new-password.
+
+
+657
+00:33:11,186 --> 00:33:12,926
+These are a relatively
+recent addition
+
+
+658
+00:33:12,926 --> 00:33:16,286
+to the HTML specification, and
+they're really easy to use.
+
+
+659
+00:33:16,526 --> 00:33:18,586
+Just label your user
+name fields as user name,
+
+
+660
+00:33:19,246 --> 00:33:21,446
+any field that's asking for
+the user's current password
+
+
+661
+00:33:21,446 --> 00:33:22,256
+is current-password.
+
+
+662
+00:33:23,026 --> 00:33:25,106
+And you guessed it, a new
+password is new-password.
+
+
+663
+00:33:25,666 --> 00:33:27,506
+So let's walk through
+a few examples of this.
+
+
+664
+00:33:28,126 --> 00:33:29,506
+Here's a standard login form.
+
+
+665
+00:33:29,906 --> 00:33:32,256
+You're probably asking for the
+user's user name and password.
+
+
+666
+00:33:32,666 --> 00:33:35,466
+Go ahead, label them,
+input type "text."
+
+
+667
+00:33:35,606 --> 00:33:37,366
+User name autocomplete
+is "user name,"
+
+
+668
+00:33:37,736 --> 00:33:39,906
+and label the password
+field current-password.
+
+
+669
+00:33:40,456 --> 00:33:43,376
+On whatever form
+users create accounts.
+
+
+670
+00:33:43,836 --> 00:33:44,686
+It's pretty similar.
+
+
+671
+00:33:45,256 --> 00:33:47,876
+Just label the fields as
+user name and new-password,
+
+
+672
+00:33:48,146 --> 00:33:50,346
+and Safari's going to understand
+your forms a little bit better
+
+
+673
+00:33:50,556 --> 00:33:53,476
+and be sure to offer password
+generation for your users.
+
+
+674
+00:33:54,026 --> 00:33:57,286
+If you want your users to
+confirm their passwords
+
+
+675
+00:33:57,286 --> 00:33:59,346
+to make sure they entered
+them the right way both times,
+
+
+676
+00:33:59,816 --> 00:34:00,326
+that's fine.
+
+
+677
+00:34:00,676 --> 00:34:02,936
+Just go ahead and label
+both your password field
+
+
+678
+00:34:03,086 --> 00:34:05,716
+and your confirm password
+field as new-password
+
+
+679
+00:34:06,096 --> 00:34:07,906
+and Safari's going to
+understand that better as well.
+
+
+680
+00:34:08,525 --> 00:34:10,966
+And then now changing passwords.
+
+
+681
+00:34:11,606 --> 00:34:12,206
+That's fine.
+
+
+682
+00:34:12,646 --> 00:34:14,565
+You're going to want to know the
+user's current password to prove
+
+
+683
+00:34:14,565 --> 00:34:15,716
+that they are who
+they say they are.
+
+
+684
+00:34:15,716 --> 00:34:17,516
+And you're going to
+want a new password
+
+
+685
+00:34:17,516 --> 00:34:18,275
+because that's the point.
+
+
+686
+00:34:19,005 --> 00:34:20,985
+Just use current-password
+and new-password.
+
+
+687
+00:34:21,466 --> 00:34:25,456
+Something that you might
+notice about this slide is
+
+
+688
+00:34:25,456 --> 00:34:29,156
+that I'm specifically outputting
+the current user's user name
+
+
+689
+00:34:29,426 --> 00:34:30,246
+within the form.
+
+
+690
+00:34:31,376 --> 00:34:32,525
+This is a really good idea
+
+
+691
+00:34:32,846 --> 00:34:35,295
+because what this does
+is it tells Safari
+
+
+692
+00:34:35,626 --> 00:34:37,656
+which user is having
+their password updated.
+
+
+693
+00:34:38,496 --> 00:34:41,176
+This is really important if
+users have more than one account
+
+
+694
+00:34:41,176 --> 00:34:43,436
+on your site, but it's just
+a good idea in general.
+
+
+695
+00:34:44,326 --> 00:34:47,666
+Now if your design doesn't
+accommodate this sort of thing,
+
+
+696
+00:34:47,926 --> 00:34:50,005
+putting the user name out
+in plain text read only
+
+
+697
+00:34:50,005 --> 00:34:51,766
+like this, don't worry about it.
+
+
+698
+00:34:52,376 --> 00:34:55,045
+Just change the input from
+type "text" to type "hidden."
+
+
+699
+00:34:55,916 --> 00:34:58,426
+Your users aren't going
+to see it, but Safari is,
+
+
+700
+00:34:58,786 --> 00:35:00,556
+and Safari is going to
+understand your forms better
+
+
+701
+00:35:01,146 --> 00:35:04,106
+and do a better job insuring
+continuity with respect
+
+
+702
+00:35:04,106 --> 00:35:05,266
+to your users' credentials.
+
+
+703
+00:35:05,826 --> 00:35:09,046
+And then finally, the
+forgotten password case.
+
+
+704
+00:35:09,516 --> 00:35:11,696
+In this case you might want
+
+
+705
+00:35:11,696 --> 00:35:13,746
+to know their user name,
+same thing as before.
+
+
+706
+00:35:13,746 --> 00:35:14,496
+Same caveat.
+
+
+707
+00:35:14,496 --> 00:35:17,126
+You can hide it, and this time
+all you want is a new password,
+
+
+708
+00:35:17,366 --> 00:35:20,566
+so label it that way.
+
+
+709
+00:35:20,796 --> 00:35:24,306
+These three new values add to
+an already long list of values
+
+
+710
+00:35:24,306 --> 00:35:26,486
+that you can use with the
+autocomplete attribute
+
+
+711
+00:35:26,886 --> 00:35:29,146
+to help Safari understand
+your forms
+
+
+712
+00:35:29,366 --> 00:35:30,476
+and your intentions better.
+
+
+713
+00:35:31,076 --> 00:35:33,316
+So for instance if you
+have an input element
+
+
+714
+00:35:33,426 --> 00:35:35,406
+and you label it
+autocomplete phone,
+
+
+715
+00:35:36,946 --> 00:35:40,396
+when the user uses AutoFill to
+fill out the form, you're going
+
+
+716
+00:35:40,396 --> 00:35:42,986
+to be saying "hey Safari
+when you're AutoFilling this,
+
+
+717
+00:35:43,186 --> 00:35:44,586
+please put the phone
+number here -
+
+
+718
+00:35:44,966 --> 00:35:46,196
+please don't put anything else,"
+
+
+719
+00:35:46,896 --> 00:35:48,016
+and Safari's going
+to do it right.
+
+
+720
+00:35:49,486 --> 00:35:49,936
+Okie doke.
+
+
+721
+00:35:50,826 --> 00:35:52,416
+That was the first
+technique I want to tell you
+
+
+722
+00:35:52,416 --> 00:35:54,986
+about to make Safari
+understand your forms better,
+
+
+723
+00:35:54,986 --> 00:35:56,856
+and it's pretty universally
+applicable.
+
+
+724
+00:35:56,856 --> 00:35:59,396
+I mean you can use it on
+any website that has forms.
+
+
+725
+00:36:00,016 --> 00:36:02,296
+The second technique
+I want to tell you
+
+
+726
+00:36:02,296 --> 00:36:04,496
+about is a little
+more specialized.
+
+
+727
+00:36:04,956 --> 00:36:07,726
+Specialized because it has
+to do with a certain type
+
+
+728
+00:36:07,726 --> 00:36:11,226
+of web application, and that's
+the kind of web application
+
+
+729
+00:36:11,576 --> 00:36:15,426
+that loads content dynamically
+via XHR and using JavaScript.
+
+
+730
+00:36:15,826 --> 00:36:16,566
+You know these pages.
+
+
+731
+00:36:16,976 --> 00:36:18,856
+They don't do a full page
+refresh when you click
+
+
+732
+00:36:18,856 --> 00:36:20,546
+on a link; everything
+just snaps in instantly.
+
+
+733
+00:36:21,466 --> 00:36:23,206
+These pages are great for users.
+
+
+734
+00:36:23,426 --> 00:36:25,026
+This dynamism is awesome.
+
+
+735
+00:36:25,846 --> 00:36:27,446
+But it's that same
+kind of dynamism,
+
+
+736
+00:36:27,446 --> 00:36:30,136
+no full page transition, that
+makes it a little bit harder
+
+
+737
+00:36:30,136 --> 00:36:32,966
+for Safari to understand
+that one of these transitions
+
+
+738
+00:36:32,966 --> 00:36:35,246
+in the password state
+diagram had happened.
+
+
+739
+00:36:36,476 --> 00:36:39,486
+Fortunately, using
+some of the same APIs
+
+
+740
+00:36:39,726 --> 00:36:41,266
+that you're probably
+already using
+
+
+741
+00:36:41,266 --> 00:36:44,136
+to build these web applications,
+those APIs are going
+
+
+742
+00:36:44,136 --> 00:36:45,986
+to tell Safari that something
+interesting had happened
+
+
+743
+00:36:45,986 --> 00:36:46,986
+with the users' credentials.
+
+
+744
+00:36:47,886 --> 00:36:50,996
+What we're talking about is
+history and history's pushState
+
+
+745
+00:36:51,246 --> 00:36:52,326
+and replaceState methods.
+
+
+746
+00:36:53,216 --> 00:36:55,346
+What you do with these
+is you contribute
+
+
+747
+00:36:55,346 --> 00:36:58,166
+to the browser's back-forward
+list, so if I'm a user
+
+
+748
+00:36:58,166 --> 00:36:59,916
+on your site and I
+click three links
+
+
+749
+00:37:00,426 --> 00:37:02,876
+when I hit the back button,
+if you're not using this,
+
+
+750
+00:37:03,186 --> 00:37:05,476
+you go back three
+pages, not a single page.
+
+
+751
+00:37:06,126 --> 00:37:08,366
+If you're using pushState,
+you're adding state
+
+
+752
+00:37:08,366 --> 00:37:10,896
+to the back-forward list and
+you only go back one page.
+
+
+753
+00:37:12,556 --> 00:37:16,126
+Specifically, pushState and
+replaceState take a data object
+
+
+754
+00:37:16,676 --> 00:37:18,976
+which represents the current
+state of your web application.
+
+
+755
+00:37:19,496 --> 00:37:21,606
+This is what you're going
+to get back when you listen
+
+
+756
+00:37:21,606 --> 00:37:22,876
+for the PopStateEvent.
+
+
+757
+00:37:23,506 --> 00:37:25,986
+When the user hits the Back
+button, that event will fire,
+
+
+758
+00:37:25,986 --> 00:37:27,936
+and you'll go ahead
+and re-set up the state
+
+
+759
+00:37:28,156 --> 00:37:30,696
+as if the user had just hit Back
+and loaded a whole new page.
+
+
+760
+00:37:31,236 --> 00:37:35,406
+As a user it's really
+easy to think
+
+
+761
+00:37:35,406 --> 00:37:37,816
+about the back-forward
+list as a left-to-right
+
+
+762
+00:37:37,816 --> 00:37:40,036
+or right-to-left
+series of pages.
+
+
+763
+00:37:40,686 --> 00:37:43,866
+But I want to encourage you to
+change your thinking on this.
+
+
+764
+00:37:44,316 --> 00:37:47,786
+Really, what the back-forward
+list is, is just a stack
+
+
+765
+00:37:47,786 --> 00:37:50,676
+of user state, and with
+pushState and replaceState,
+
+
+766
+00:37:51,176 --> 00:37:55,136
+your dynamic HTML5
+JavaScript-driven XHR never
+
+
+767
+00:37:55,136 --> 00:37:59,466
+reload awesome web application
+can go ahead and add to it.
+
+
+768
+00:37:59,696 --> 00:38:03,326
+So the next time that a user
+is on your dynamic website
+
+
+769
+00:38:03,326 --> 00:38:05,166
+and they go to change
+their password,
+
+
+770
+00:38:06,156 --> 00:38:08,896
+just call pushState once the
+password change has succeeded.
+
+
+771
+00:38:09,936 --> 00:38:11,636
+This way, Safari
+is going to know
+
+
+772
+00:38:11,636 --> 00:38:13,166
+that it's a really
+good time to prompt
+
+
+773
+00:38:13,166 --> 00:38:15,416
+about saving an updated
+password, saying:
+
+
+774
+00:38:15,736 --> 00:38:17,216
+"It looks like you just
+changed your password.
+
+
+775
+00:38:17,296 --> 00:38:19,396
+Are you sure you
+want to do this?"
+
+
+776
+00:38:19,856 --> 00:38:21,866
+And remember, the history API
+
+
+777
+00:38:21,866 --> 00:38:24,296
+and everything I just showed
+you really only comes into play
+
+
+778
+00:38:24,296 --> 00:38:25,616
+if you're building
+one of those dynamic
+
+
+779
+00:38:25,906 --> 00:38:27,326
+JavaScript-driven applications.
+
+
+780
+00:38:28,006 --> 00:38:28,946
+If when you click on a link
+
+
+781
+00:38:28,946 --> 00:38:30,906
+or do something else a
+full page reload happens,
+
+
+782
+00:38:31,136 --> 00:38:34,946
+you don't have to
+worry about this.
+
+
+783
+00:38:35,136 --> 00:38:38,546
+So, by testing your website
+with Safari AutoFill,
+
+
+784
+00:38:39,656 --> 00:38:41,766
+finding any problems,
+and trying to fix them
+
+
+785
+00:38:41,766 --> 00:38:44,176
+with the two new techniques that
+I told you about, you're going
+
+
+786
+00:38:44,176 --> 00:38:46,546
+to do a better job insuring
+continuity with respect
+
+
+787
+00:38:46,546 --> 00:38:47,486
+to a user's credentials.
+
+
+788
+00:38:48,606 --> 00:38:50,176
+Their passwords will
+automatically fill,
+
+
+789
+00:38:50,176 --> 00:38:52,316
+and they'll be logged in on
+all their devices in Safari.
+
+
+790
+00:38:52,866 --> 00:38:56,056
+And your iOS applications will
+have access to great passwords
+
+
+791
+00:38:56,316 --> 00:38:58,356
+in
+SecRequestSharedWebCredential.
+
+
+792
+00:38:59,456 --> 00:39:01,096
+But if these two
+techniques don't solve all
+
+
+793
+00:39:01,096 --> 00:39:02,636
+of your problems, what I'm going
+
+
+794
+00:39:02,636 --> 00:39:05,386
+to do is encourage you
+to please file a bug.
+
+
+795
+00:39:06,596 --> 00:39:08,256
+If you file a bug,
+we might be able
+
+
+796
+00:39:08,256 --> 00:39:09,906
+to give you a workaround
+for your problem.
+
+
+797
+00:39:10,746 --> 00:39:13,256
+And regardless of whether we
+can give you a workaround,
+
+
+798
+00:39:13,876 --> 00:39:18,176
+your real world test case, your
+problem, is exactly what we need
+
+
+799
+00:39:18,176 --> 00:39:19,676
+to make Safari's
+heuristics better.
+
+
+800
+00:39:20,316 --> 00:39:22,416
+Real world test cases
+make everything better
+
+
+801
+00:39:22,416 --> 00:39:24,466
+for everyone, so
+please file bugs.
+
+
+802
+00:39:24,726 --> 00:39:26,496
+I promise that we'll use them.
+
+
+803
+00:39:27,966 --> 00:39:32,196
+So that was AutoFill and
+ensuring continuity with respect
+
+
+804
+00:39:32,196 --> 00:39:33,226
+to your users' credentials.
+
+
+805
+00:39:34,106 --> 00:39:36,206
+The next thing I want to
+tell you about is ways
+
+
+806
+00:39:36,206 --> 00:39:37,506
+that Safari promotes
+your website.
+
+
+807
+00:39:38,466 --> 00:39:42,566
+As of iOS 7, a Safari user's
+start page is a nice friendly
+
+
+808
+00:39:42,596 --> 00:39:45,436
+easily tappable list of a
+user's handpicked favorites.
+
+
+809
+00:39:46,546 --> 00:39:50,566
+And on iOS 8, we've augmented
+that view to contain a few sites
+
+
+810
+00:39:50,566 --> 00:39:51,906
+that the users visited
+frequently.
+
+
+811
+00:39:52,996 --> 00:39:56,266
+And Safari 8 and
+OS X Yosemite share
+
+
+812
+00:39:56,326 --> 00:39:57,836
+that same start page design.
+
+
+813
+00:39:59,136 --> 00:40:01,826
+The quality of the icon
+for your website that shows
+
+
+814
+00:40:01,826 --> 00:40:03,896
+up here can make
+a huge difference.
+
+
+815
+00:40:04,116 --> 00:40:06,936
+It's a first impression, and
+it can make all the difference
+
+
+816
+00:40:06,936 --> 00:40:11,286
+between a user promoting
+a frequently visited site
+
+
+817
+00:40:11,286 --> 00:40:13,476
+to a favorite or
+removing it outright.
+
+
+818
+00:40:14,476 --> 00:40:18,096
+And I bet that you
+and your teams sweat
+
+
+819
+00:40:18,096 --> 00:40:20,166
+over your applications
+icons on iOS
+
+
+820
+00:40:20,166 --> 00:40:21,336
+for what you submit
+to the App Store.
+
+
+821
+00:40:21,866 --> 00:40:24,376
+And it's time to do the same
+exact thing for your website.
+
+
+822
+00:40:24,816 --> 00:40:26,066
+So let's get into
+the details of how
+
+
+823
+00:40:26,066 --> 00:40:27,476
+to specify these kinds of icons.
+
+
+824
+00:40:28,396 --> 00:40:29,956
+First up, Favicon.
+
+
+825
+00:40:30,586 --> 00:40:32,226
+Your website probably
+has a favicon.
+
+
+826
+00:40:32,406 --> 00:40:34,086
+It shows up in the
+address bar next
+
+
+827
+00:40:34,086 --> 00:40:37,026
+to a website address on OS X.
+
+
+828
+00:40:37,456 --> 00:40:39,736
+Websites have been specifying
+favicons for a long time.
+
+
+829
+00:40:39,966 --> 00:40:40,676
+It's really easy.
+
+
+830
+00:40:41,046 --> 00:40:42,906
+A little bit of markup in
+your pages head section,
+
+
+831
+00:40:43,366 --> 00:40:46,456
+or a standard path on
+your file on a server,
+
+
+832
+00:40:46,736 --> 00:40:48,526
+and Safari's going
+to fetch that.
+
+
+833
+00:40:49,326 --> 00:40:52,016
+But for the start
+page on iOS and OS X,
+
+
+834
+00:40:52,796 --> 00:40:53,756
+what you're really going to want
+
+
+835
+00:40:53,756 --> 00:40:56,306
+to specify is what's
+called an apple-touch-icon.
+
+
+836
+00:40:56,536 --> 00:40:58,466
+You might already
+be specifying this
+
+
+837
+00:40:58,676 --> 00:41:00,396
+because this is the
+icon that's used
+
+
+838
+00:41:00,396 --> 00:41:03,806
+when a user adds your website
+to their home screen on iOS.
+
+
+839
+00:41:04,666 --> 00:41:05,866
+It's really easy to do this.
+
+
+840
+00:41:06,226 --> 00:41:08,116
+A simple link tag inside
+of the head section,
+
+
+841
+00:41:08,116 --> 00:41:10,646
+and you can even
+specify multiple of these
+
+
+842
+00:41:10,646 --> 00:41:13,406
+with different sizes
+so that an application
+
+
+843
+00:41:13,506 --> 00:41:16,096
+like Safari only downloads
+the one that it needs.
+
+
+844
+00:41:16,406 --> 00:41:18,556
+Downloads the lowest
+resolution one possible,
+
+
+845
+00:41:18,706 --> 00:41:20,276
+conserving bandwidth
+for your users.
+
+
+846
+00:41:21,206 --> 00:41:23,306
+For information on the sizing,
+I'm going to encourage you
+
+
+847
+00:41:23,306 --> 00:41:25,246
+to check out "Configuring
+Web Applications"
+
+
+848
+00:41:25,246 --> 00:41:26,596
+on the Safari Web Content Guide.
+
+
+849
+00:41:27,186 --> 00:41:30,876
+So the reason that we're
+using Apple Touch Icons
+
+
+850
+00:41:30,876 --> 00:41:33,536
+for the start page is because
+there are already a ton of them
+
+
+851
+00:41:33,536 --> 00:41:36,386
+out there and they're
+already the right resolution
+
+
+852
+00:41:36,616 --> 00:41:38,926
+to be shown an a Mac
+and an iOS device.
+
+
+853
+00:41:40,216 --> 00:41:41,686
+Don't let the part
+where there's touch
+
+
+854
+00:41:41,686 --> 00:41:43,906
+in Apple Touch Icon
+weird you out with OS X.
+
+
+855
+00:41:44,396 --> 00:41:46,366
+Just think of this as
+your website's icon.
+
+
+856
+00:41:46,806 --> 00:41:51,976
+And about the icon itself,
+use every single pixel
+
+
+857
+00:41:51,976 --> 00:41:53,686
+in a square canvas
+available to you.
+
+
+858
+00:41:54,486 --> 00:41:56,756
+Safari is going to show
+all of those pixels,
+
+
+859
+00:41:57,516 --> 00:41:59,866
+and if a user goes ahead
+and adds your website
+
+
+860
+00:41:59,866 --> 00:42:02,056
+to their home screen
+on iOS, where you know
+
+
+861
+00:42:02,056 --> 00:42:05,346
+that icons are rounded off, iOS
+is going to handle that for you
+
+
+862
+00:42:05,696 --> 00:42:07,506
+so there's no need for
+you to mask the image.
+
+
+863
+00:42:08,616 --> 00:42:10,436
+We don't want to have
+mismatched corner-radii.
+
+
+864
+00:42:11,536 --> 00:42:16,106
+And finally now that Safari on
+OS X is using Apple Touch icons,
+
+
+865
+00:42:16,386 --> 00:42:18,216
+you're going to want to put
+the Apple Touch icon markup
+
+
+866
+00:42:18,336 --> 00:42:19,706
+on all of your pages.
+
+
+867
+00:42:20,386 --> 00:42:23,366
+Not just the ones that you're
+serving to mobile devices.
+
+
+868
+00:42:23,766 --> 00:42:26,746
+There's really no cost to doing
+this little bit of markup,
+
+
+869
+00:42:27,236 --> 00:42:29,736
+and only devices that care
+about the icon are going
+
+
+870
+00:42:29,736 --> 00:42:30,776
+to go ahead and download them.
+
+
+871
+00:42:31,106 --> 00:42:32,416
+All right.
+
+
+872
+00:42:32,626 --> 00:42:34,216
+So that's icons.
+
+
+873
+00:42:34,556 --> 00:42:37,026
+The first impression of
+how your website is seen
+
+
+874
+00:42:37,026 --> 00:42:38,296
+by users in Safari.
+
+
+875
+00:42:38,846 --> 00:42:42,996
+Let's talk about other ways that
+Safari promotes your content.
+
+
+876
+00:42:44,196 --> 00:42:48,546
+Safari today is more than just a
+way that people browse the web.
+
+
+877
+00:42:48,746 --> 00:42:51,806
+Safari users add pages to
+read later using Reading List.
+
+
+878
+00:42:52,896 --> 00:42:55,726
+They ask Safari to clean up
+articles for them to read later
+
+
+879
+00:42:55,936 --> 00:42:57,876
+or right now using
+Safari Reader.
+
+
+880
+00:42:59,916 --> 00:43:02,836
+And on OS X Mavericks and iOS 7,
+
+
+881
+00:43:03,176 --> 00:43:06,526
+a feature called Shared Links
+lets the user find articles
+
+
+882
+00:43:06,526 --> 00:43:08,486
+to read, find other
+stuff that's interesting
+
+
+883
+00:43:08,486 --> 00:43:10,186
+that were shared
+on social networks.
+
+
+884
+00:43:11,626 --> 00:43:16,666
+Well, new to Safari 8 on
+OS X Yosemite and iOS 8,
+
+
+885
+00:43:17,336 --> 00:43:19,436
+your website can
+participate in shared links.
+
+
+886
+00:43:20,466 --> 00:43:24,756
+This works, as you might expect,
+using your website's RSS feed.
+
+
+887
+00:43:24,966 --> 00:43:28,296
+So as soon as the user chooses
+Subscribe and Shared Links
+
+
+888
+00:43:28,676 --> 00:43:32,396
+on iOS or OS X, Safari's going
+to periodically fetch your feed
+
+
+889
+00:43:33,076 --> 00:43:34,786
+and show that content to users.
+
+
+890
+00:43:35,406 --> 00:43:36,686
+The content that's shown
+
+
+891
+00:43:36,686 --> 00:43:39,746
+in the sidebar is directly
+taken from your RSS feeds.
+
+
+892
+00:43:42,926 --> 00:43:46,706
+Something to note here is that
+you want to serve your RSS feeds
+
+
+893
+00:43:46,706 --> 00:43:48,826
+and the markup inside of
+your pages head sections
+
+
+894
+00:43:49,186 --> 00:43:53,226
+that let browsers detect them to
+all devices, even mobile ones.
+
+
+895
+00:43:54,346 --> 00:43:57,066
+Safari on an iPhone is just
+as capable of participating
+
+
+896
+00:43:57,066 --> 00:44:01,596
+in shared links as
+Safari on a Mac.
+
+
+897
+00:44:01,766 --> 00:44:03,526
+Let's turn our attention
+back to Reading List.
+
+
+898
+00:44:03,816 --> 00:44:05,596
+Even if your site
+doesn't have a RSS feed,
+
+
+899
+00:44:05,896 --> 00:44:08,206
+users can add your content
+to their Reading Lists.
+
+
+900
+00:44:09,296 --> 00:44:11,306
+And as you might know, many
+of you in the audience,
+
+
+901
+00:44:11,876 --> 00:44:17,276
+as of iOS 7 your application can
+add to a user's Reading List.
+
+
+902
+00:44:17,936 --> 00:44:18,606
+It's a piece of cake.
+
+
+903
+00:44:19,236 --> 00:44:21,896
+All you have to do is import
+the Safari services framework
+
+
+904
+00:44:22,206 --> 00:44:25,186
+and call a single method
+that takes a URL, a title
+
+
+905
+00:44:25,186 --> 00:44:26,566
+and some preview text.
+
+
+906
+00:44:27,326 --> 00:44:29,696
+Because you're specifying the
+title in the preview text,
+
+
+907
+00:44:30,196 --> 00:44:31,126
+you're in complete control.
+
+
+908
+00:44:32,536 --> 00:44:33,096
+But hold up.
+
+
+909
+00:44:34,046 --> 00:44:36,496
+This situation should sound
+a little bit familiar to you.
+
+
+910
+00:44:37,076 --> 00:44:41,586
+Yet again it's not always clear
+cut on how to express these sort
+
+
+911
+00:44:41,586 --> 00:44:43,006
+of concepts on the web.
+
+
+912
+00:44:43,526 --> 00:44:45,316
+A page on your website
+doesn't have a way of saying,
+
+
+913
+00:44:45,776 --> 00:44:48,076
+"When I'm added to Reading
+List, use this as my title
+
+
+914
+00:44:48,216 --> 00:44:49,256
+and this as my description."
+
+
+915
+00:44:50,356 --> 00:44:52,836
+It can't say exactly
+that, but there are things
+
+
+916
+00:44:52,836 --> 00:44:54,886
+that your web pages can
+say that help them out.
+
+
+917
+00:44:56,316 --> 00:44:58,216
+So let's look at
+an example of this.
+
+
+918
+00:44:59,156 --> 00:45:01,116
+Here's some markup taken
+from the WebKit blog,
+
+
+919
+00:45:01,566 --> 00:45:03,556
+a recent blog post
+about the fourth tier,
+
+
+920
+00:45:03,556 --> 00:45:06,926
+LOVM JIT that makes
+JavaScript and Safari superfast.
+
+
+921
+00:45:06,966 --> 00:45:07,946
+I encourage you to read it.
+
+
+922
+00:45:07,946 --> 00:45:08,986
+It's an awesome blog post.
+
+
+923
+00:45:09,406 --> 00:45:14,376
+That title doesn't really work
+as the title of a user's page
+
+
+924
+00:45:14,546 --> 00:45:17,826
+because it has those bread
+crumbs, Surfin' Safari archive.
+
+
+925
+00:45:18,616 --> 00:45:21,266
+But here using the open
+graph metadata standard,
+
+
+926
+00:45:21,676 --> 00:45:24,896
+I've put markup on the page that
+clearly expresses a good title
+
+
+927
+00:45:24,896 --> 00:45:26,066
+and a good description.
+
+
+928
+00:45:26,736 --> 00:45:28,176
+It's really simple to use.
+
+
+929
+00:45:30,136 --> 00:45:33,146
+And when your website speaks
+with intention this strong,
+
+
+930
+00:45:33,596 --> 00:45:34,956
+Safari is going to listen.
+
+
+931
+00:45:35,496 --> 00:45:37,886
+Because you've expressed
+the exact information
+
+
+932
+00:45:37,886 --> 00:45:41,356
+that Safari is looking for,
+Safari can rely on you rather
+
+
+933
+00:45:41,356 --> 00:45:43,856
+than using heuristics
+to get the job done.
+
+
+934
+00:45:44,696 --> 00:45:45,726
+There are other ways
+
+
+935
+00:45:45,726 --> 00:45:47,296
+of specifying the
+same sort of data.
+
+
+936
+00:45:47,846 --> 00:45:49,336
+Here's some markup
+you might be familiar
+
+
+937
+00:45:49,336 --> 00:45:52,206
+with if you're a web developer,
+meta name, description.
+
+
+938
+00:45:53,226 --> 00:45:55,616
+This is one way that you might
+be specifying a description
+
+
+939
+00:45:55,616 --> 00:45:58,826
+to let's say, search engines
+for your pages on your site.
+
+
+940
+00:45:59,476 --> 00:46:00,816
+Safari can listen to this, too,
+
+
+941
+00:46:00,946 --> 00:46:04,246
+because the concepts are closely
+aligned: your site's description
+
+
+942
+00:46:04,976 --> 00:46:06,156
+and a Reading List description.
+
+
+943
+00:46:08,306 --> 00:46:10,986
+OpenGraph is just
+one metadata standard
+
+
+944
+00:46:11,106 --> 00:46:13,046
+that you should be
+checking out today.
+
+
+945
+00:46:13,656 --> 00:46:14,856
+There are a bunch
+of them on the web.
+
+
+946
+00:46:15,476 --> 00:46:18,446
+And this example with Reading
+List and getting better titles
+
+
+947
+00:46:18,446 --> 00:46:20,506
+and descriptions
+is just one example
+
+
+948
+00:46:20,506 --> 00:46:22,106
+of how metadata can
+help you out today.
+
+
+949
+00:46:22,966 --> 00:46:26,496
+Browsers, search
+engines, other websites.
+
+
+950
+00:46:26,886 --> 00:46:29,506
+They're all going to find uses
+for this metadata in the future
+
+
+951
+00:46:29,506 --> 00:46:31,566
+as they display your
+content to try
+
+
+952
+00:46:31,566 --> 00:46:33,046
+and make it more
+attractive to users.
+
+
+953
+00:46:33,496 --> 00:46:35,936
+So I encourage you to check
+these formats out and think
+
+
+954
+00:46:35,936 --> 00:46:37,426
+about adopting a
+metadata strategy.
+
+
+955
+00:46:37,986 --> 00:46:40,396
+Okie doke.
+
+
+956
+00:46:41,166 --> 00:46:41,646
+Checkpoint.
+
+
+957
+00:46:42,556 --> 00:46:46,296
+By now, you've added the
+simple file to your web server.
+
+
+958
+00:46:46,516 --> 00:46:49,046
+You've adopted entitlements
+in your iOS application,
+
+
+959
+00:46:49,626 --> 00:46:51,206
+and you're ensuring
+continuity with respect
+
+
+960
+00:46:51,206 --> 00:46:53,216
+to your user's credentials
+by making it easy for them
+
+
+961
+00:46:53,216 --> 00:46:54,676
+to log in to your app.
+
+
+962
+00:46:54,756 --> 00:46:55,996
+You've tested Safari AutoFill.
+
+
+963
+00:46:56,406 --> 00:46:57,886
+You've made it work
+great on your website.
+
+
+964
+00:46:58,776 --> 00:46:59,936
+Your icons are awesome.
+
+
+965
+00:46:59,936 --> 00:47:01,246
+Just as good as your app icons.
+
+
+966
+00:47:01,886 --> 00:47:05,236
+And you've adopted some metadata
+so that websites, browsers
+
+
+967
+00:47:05,236 --> 00:47:07,996
+and search engines understand
+your web content better.
+
+
+968
+00:47:09,706 --> 00:47:12,186
+For the rest of our time
+together, I want to go
+
+
+969
+00:47:12,186 --> 00:47:16,346
+over a few examples of how we
+can make your website have a
+
+
+970
+00:47:16,726 --> 00:47:19,036
+great experience when
+transitioning between devices.
+
+
+971
+00:47:19,406 --> 00:47:20,896
+Users viewing your websites
+
+
+972
+00:47:21,056 --> 00:47:23,386
+on mobile devices
+and desktop devices.
+
+
+973
+00:47:25,656 --> 00:47:27,636
+The first example of
+this that I want to talk
+
+
+974
+00:47:27,636 --> 00:47:30,276
+about is called The
+Sticky Mobile Website.
+
+
+975
+00:47:31,016 --> 00:47:32,066
+So let me tell you
+about a problem
+
+
+976
+00:47:32,066 --> 00:47:33,376
+that I just ran into
+the other day.
+
+
+977
+00:47:33,516 --> 00:47:34,886
+I have this all the time,
+
+
+978
+00:47:35,286 --> 00:47:36,676
+but it actually just
+happened last week.
+
+
+979
+00:47:38,066 --> 00:47:40,346
+My friend was reading an
+article on her iPhone,
+
+
+980
+00:47:41,286 --> 00:47:43,416
+looked good to her, and she
+thought that I might like it
+
+
+981
+00:47:43,696 --> 00:47:44,746
+so she sent me a link to it.
+
+
+982
+00:47:45,416 --> 00:47:47,676
+I was sitting at my
+Mac and I opened it up
+
+
+983
+00:47:48,106 --> 00:47:49,186
+and this is what I saw.
+
+
+984
+00:47:50,006 --> 00:47:54,256
+I saw the website's mobile
+layout stretch up super wide
+
+
+985
+00:47:54,386 --> 00:47:56,196
+with lines of text that
+are completely unreadable.
+
+
+986
+00:47:56,736 --> 00:47:59,906
+On other websites when
+I've run into this problem,
+
+
+987
+00:48:00,206 --> 00:48:01,886
+I've seen this version of it,
+
+
+988
+00:48:02,426 --> 00:48:06,476
+where the content is
+constrained to say, 320 points.
+
+
+989
+00:48:07,376 --> 00:48:08,466
+This isn't readable either.
+
+
+990
+00:48:09,076 --> 00:48:13,396
+So what I was able to do
+with this problem was look
+
+
+991
+00:48:13,396 --> 00:48:16,706
+at the website's address,
+the page that I was on.
+
+
+992
+00:48:17,166 --> 00:48:19,846
+And notice that I was on a
+mobile specific subdomain
+
+
+993
+00:48:19,846 --> 00:48:23,846
+of the site, and by removing
+the m dot from the URL,
+
+
+994
+00:48:23,846 --> 00:48:27,086
+I can get a version of the
+website that looked great
+
+
+995
+00:48:27,086 --> 00:48:29,666
+on a desktop with a
+nice constrained width.
+
+
+996
+00:48:30,656 --> 00:48:33,516
+So some of our users are going
+to be able to figure some
+
+
+997
+00:48:33,516 --> 00:48:35,836
+of this stuff out, but
+they shouldn't have to,
+
+
+998
+00:48:36,466 --> 00:48:37,366
+and most of them won't.
+
+
+999
+00:48:38,286 --> 00:48:39,826
+So let's get to the
+bottom of this problem
+
+
+1000
+00:48:39,826 --> 00:48:41,646
+and figure out how to fix it.
+
+
+1001
+00:48:42,556 --> 00:48:44,686
+So here's what I
+think what happened.
+
+
+1002
+00:48:45,136 --> 00:48:46,446
+This is a concept diagram.
+
+
+1003
+00:48:46,536 --> 00:48:49,026
+It might not be exactly
+the same from site to site,
+
+
+1004
+00:48:49,026 --> 00:48:50,226
+but it's the big picture.
+
+
+1005
+00:48:50,926 --> 00:48:53,866
+And what happened here is
+that the user, my friend,
+
+
+1006
+00:48:54,876 --> 00:48:58,816
+went to a link on her iPhone,
+and when she went to example.com
+
+
+1007
+00:48:58,816 --> 00:49:01,726
+in this case, the website
+said, "Hey, I can tell you're
+
+
+1008
+00:49:01,726 --> 00:49:03,486
+on an iPhone from your
+user agent string.
+
+
+1009
+00:49:03,856 --> 00:49:06,026
+I'm going to send you to a
+mobile version of the site
+
+
+1010
+00:49:06,286 --> 00:49:07,586
+because I think that's
+better for you."
+
+
+1011
+00:49:08,906 --> 00:49:11,996
+And then she sent me a link to
+that mobile version of the site,
+
+
+1012
+00:49:13,436 --> 00:49:15,106
+and I went straight
+to that mobile site.
+
+
+1013
+00:49:15,106 --> 00:49:17,966
+It didn't have the kind of
+same courtesy to route me back
+
+
+1014
+00:49:17,966 --> 00:49:20,446
+up to the desktop
+version of the site.
+
+
+1015
+00:49:21,136 --> 00:49:25,516
+And now with Handoff on
+OS X Yosemite and iOS 8,
+
+
+1016
+00:49:26,036 --> 00:49:28,096
+it only takes one person
+to reproduce this problem.
+
+
+1017
+00:49:28,446 --> 00:49:30,196
+You don't need friends
+sending links to each other.
+
+
+1018
+00:49:30,866 --> 00:49:33,046
+So there's even more
+reason than ever before
+
+
+1019
+00:49:33,886 --> 00:49:36,066
+to get your URL strategy
+together.
+
+
+1020
+00:49:38,096 --> 00:49:39,416
+The solution in this case,
+
+
+1021
+00:49:39,556 --> 00:49:41,556
+I alluded to it earlier,
+is pretty simple.
+
+
+1022
+00:49:42,776 --> 00:49:45,086
+Let the mobile website
+route users back
+
+
+1023
+00:49:45,356 --> 00:49:48,786
+to the desktop website,
+giving me the version
+
+
+1024
+00:49:48,786 --> 00:49:50,256
+of the website that's
+appropriate
+
+
+1025
+00:49:50,486 --> 00:49:52,076
+on my 27-inch cinema display.
+
+
+1026
+00:49:52,706 --> 00:49:56,006
+So this would have solved
+my immediate problem,
+
+
+1027
+00:49:56,536 --> 00:49:58,716
+but there is a much
+better solution to be had.
+
+
+1028
+00:49:59,386 --> 00:50:02,636
+And that comes by
+admitting that the time
+
+
+1029
+00:50:02,636 --> 00:50:04,846
+of the mobile website is over.
+
+
+1030
+00:50:06,226 --> 00:50:09,096
+Using technologies like
+Responsive Design and Layout,
+
+
+1031
+00:50:09,366 --> 00:50:13,266
+HTML 5, CSS, you can make
+one version of your website
+
+
+1032
+00:50:13,446 --> 00:50:15,966
+that looks awesome for all
+of your users whether they're
+
+
+1033
+00:50:15,966 --> 00:50:18,616
+on an iPhone, an iPad or a Mac.
+
+
+1034
+00:50:19,956 --> 00:50:22,896
+I'm happy to say that
+we have a full session
+
+
+1035
+00:50:22,896 --> 00:50:25,926
+on Responsive Design this year,
+and you should check it out.
+
+
+1036
+00:50:26,266 --> 00:50:27,166
+It's Friday morning.
+
+
+1037
+00:50:27,456 --> 00:50:29,786
+And if you're interested in this
+and you have a mobile website,
+
+
+1038
+00:50:30,236 --> 00:50:34,216
+you're going to want
+to go to that.
+
+
+1039
+00:50:34,216 --> 00:50:35,676
+Okay. One more topic
+to talk about.
+
+
+1040
+00:50:36,026 --> 00:50:37,566
+And that's video.
+
+
+1041
+00:50:38,126 --> 00:50:42,506
+Since the dawn of iPhone,
+users have been grading -
+
+
+1042
+00:50:42,626 --> 00:50:45,456
+getting amazing video
+on their iOS devices.
+
+
+1043
+00:50:46,276 --> 00:50:49,076
+And that amazing video has been
+coming to them without the use
+
+
+1044
+00:50:49,076 --> 00:50:52,346
+of any browser plug-ins,
+using standards based video.
+
+
+1045
+00:50:53,086 --> 00:50:56,426
+And because of this, users have
+been getting excellent battery
+
+
+1046
+00:50:56,426 --> 00:50:59,236
+life and smooth video
+playback even
+
+
+1047
+00:50:59,236 --> 00:51:01,046
+on relatively low-powered
+devices.
+
+
+1048
+00:51:02,226 --> 00:51:04,946
+For a consistent
+unbroken experience
+
+
+1049
+00:51:04,946 --> 00:51:06,696
+for how users get
+video on your site,
+
+
+1050
+00:51:07,286 --> 00:51:09,696
+you should use the same
+video strategy on OS X.
+
+
+1051
+00:51:10,166 --> 00:51:11,546
+It works just as well there.
+
+
+1052
+00:51:11,876 --> 00:51:14,476
+Give users better battery
+life and smooth playback.
+
+
+1053
+00:51:15,676 --> 00:51:18,786
+And if the reason that maybe
+you might be avoiding losing the
+
+
+1054
+00:51:18,786 --> 00:51:20,976
+plug-ins on the desktop is
+
+
+1055
+00:51:20,976 --> 00:51:22,966
+because of maybe
+pre-rolled advertising
+
+
+1056
+00:51:22,966 --> 00:51:26,486
+of some other interactive
+component, you can do that today
+
+
+1057
+00:51:26,486 --> 00:51:28,646
+with JavaScript HTML and video.
+
+
+1058
+00:51:29,136 --> 00:51:29,866
+It's really simple.
+
+
+1059
+00:51:31,306 --> 00:51:33,386
+For more information on
+Advanced Media for the Web,
+
+
+1060
+00:51:34,116 --> 00:51:36,186
+you should check out -
+actually you should have checked
+
+
+1061
+00:51:36,186 --> 00:51:38,226
+out this session this
+morning at 11:30.
+
+
+1062
+00:51:38,556 --> 00:51:40,046
+Go back and watch the
+video if you weren't there.
+
+
+1063
+00:51:40,636 --> 00:51:46,736
+Okay. So in the last 50 minutes,
+we've covered quite a bit.
+
+
+1064
+00:51:47,496 --> 00:51:52,426
+And all of it has been about
+ensuring continuity: unbroken,
+
+
+1065
+00:51:52,736 --> 00:51:55,566
+consistent experiences
+for all of our users,
+
+
+1066
+00:51:55,956 --> 00:51:57,706
+whether they're using
+our products and services
+
+
+1067
+00:51:58,136 --> 00:52:00,726
+with an app, with a
+website and no matter
+
+
+1068
+00:52:00,726 --> 00:52:01,756
+which device they're on.
+
+
+1069
+00:52:03,196 --> 00:52:05,076
+And so to recap, here's
+what I want you all
+
+
+1070
+00:52:05,076 --> 00:52:05,926
+to go out and do today.
+
+
+1071
+00:52:06,786 --> 00:52:07,726
+First things first.
+
+
+1072
+00:52:08,296 --> 00:52:12,446
+Put the signed JSON file on your
+server, add the entitlements
+
+
+1073
+00:52:12,446 --> 00:52:15,436
+to your application, and
+call the APIs to make sure
+
+
+1074
+00:52:15,436 --> 00:52:18,136
+that nobody in this room
+ever sees a login screen
+
+
+1075
+00:52:18,136 --> 00:52:21,866
+on an iOS app when they created
+their account on the website
+
+
+1076
+00:52:21,866 --> 00:52:23,806
+in Safari and Safari
+has credentials.
+
+
+1077
+00:52:24,916 --> 00:52:27,616
+The next thing to make
+sure that those credentials
+
+
+1078
+00:52:27,616 --> 00:52:28,406
+that you're getting back
+
+
+1079
+00:52:28,676 --> 00:52:30,406
+from the
+SecRequestSharedWebCredential
+
+
+1080
+00:52:30,686 --> 00:52:34,596
+are always up to date, test your
+website with Safari AutoFill.
+
+
+1081
+00:52:35,246 --> 00:52:37,556
+Everything might work
+great, but you should run
+
+
+1082
+00:52:37,556 --> 00:52:40,196
+into the problems before your
+users do, if there are any.
+
+
+1083
+00:52:41,006 --> 00:52:43,186
+And if there are, look
+at the two techniques
+
+
+1084
+00:52:43,186 --> 00:52:44,116
+that I told you about today.
+
+
+1085
+00:52:45,136 --> 00:52:46,816
+No matter what kind
+of website you have,
+
+
+1086
+00:52:47,086 --> 00:52:48,926
+you should adopt the
+AutoComplete attribute
+
+
+1087
+00:52:49,226 --> 00:52:52,166
+and use user name, current
+password, and new password
+
+
+1088
+00:52:52,706 --> 00:52:54,066
+to make it easier for Safari
+
+
+1089
+00:52:54,066 --> 00:52:55,626
+to do the right thing
+with your forms.
+
+
+1090
+00:52:56,296 --> 00:52:57,826
+It might only take five minutes,
+
+
+1091
+00:52:58,156 --> 00:52:59,926
+and it will make a huge
+difference for your users.
+
+
+1092
+00:53:00,996 --> 00:53:03,956
+Then sweat the details on
+your application's icons.
+
+
+1093
+00:53:04,406 --> 00:53:07,336
+Make your website's icons look
+as great as that of your apps.
+
+
+1094
+00:53:08,216 --> 00:53:09,856
+And then look at metadata.
+
+
+1095
+00:53:10,166 --> 00:53:12,816
+Find ways to make web
+browsers, search engines
+
+
+1096
+00:53:13,836 --> 00:53:16,196
+and other websites
+understand your content better
+
+
+1097
+00:53:16,196 --> 00:53:17,786
+for when they're
+showing it to users.
+
+
+1098
+00:53:18,676 --> 00:53:21,576
+And then think about your
+desktop and mobile websites.
+
+
+1099
+00:53:21,956 --> 00:53:23,076
+If you have two different
+versions
+
+
+1100
+00:53:23,076 --> 00:53:25,466
+of your website,
+try to have one.
+
+
+1101
+00:53:26,036 --> 00:53:29,806
+If you want more information
+on any of this, I encourage you
+
+
+1102
+00:53:29,806 --> 00:53:34,316
+to get in touch with Evangelism,
+DTS or the Support Forums.
+
+
+1103
+00:53:35,606 --> 00:53:37,916
+And we've got some really cool
+related sessions this year,
+
+
+1104
+00:53:38,166 --> 00:53:39,556
+some of which I pointed
+out earlier.
+
+
+1105
+00:53:40,146 --> 00:53:45,306
+"Advanced Media for the Web,"
+Touch ID and the Keychain,
+
+
+1106
+00:53:45,956 --> 00:53:48,316
+Adopting Handoff to make
+these smooth transitions,
+
+
+1107
+00:53:48,536 --> 00:53:50,096
+just like you saw
+with Craig and Mel,
+
+
+1108
+00:53:50,806 --> 00:53:52,376
+and Designing Responsive
+Websites.
+
+
+1109
+00:53:52,886 --> 00:53:54,046
+Thank you so much everybody.
+
+
+1110
+00:53:54,046 --> 00:53:55,656
+I hope you're having
+an awesome WWDC.
+
+
+1111
+00:53:56,516 --> 00:54:01,720
+[ Applause ]
+

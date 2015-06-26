@@ -1,0 +1,6380 @@
+1
+00:00:11,296 --> 00:00:11,796
+>> Good morning.
+
+
+2
+00:00:12,096 --> 00:00:14,736
+Welcome to session 702
+Managing Apple Devices.
+
+
+3
+00:00:15,516 --> 00:00:18,236
+[ Applause ]
+
+
+4
+00:00:18,736 --> 00:00:20,446
+Wow. I wasn't expecting
+that enthusiastic
+
+
+5
+00:00:20,446 --> 00:00:21,846
+of welcome this early
+in the morning.
+
+
+6
+00:00:22,546 --> 00:00:24,636
+I'm Todd Fernandez, and I
+am very happy to be here
+
+
+7
+00:00:24,636 --> 00:00:26,806
+with you even at this
+ridiculously early hour
+
+
+8
+00:00:26,896 --> 00:00:27,966
+for techies like me.
+
+
+9
+00:00:28,786 --> 00:00:31,296
+Although for some of you, this
+may be the middle of your day
+
+
+10
+00:00:31,296 --> 00:00:33,066
+if you work in schools
+our otherwise have
+
+
+11
+00:00:33,066 --> 00:00:33,976
+to wear a tie to work.
+
+
+12
+00:00:35,256 --> 00:00:37,726
+Many of us are far more likely
+to see this hour at the end
+
+
+13
+00:00:37,726 --> 00:00:40,276
+of a long night of coding than
+at the beginning of our day.
+
+
+14
+00:00:41,606 --> 00:00:43,766
+Now, I open by recognizing
+our differences
+
+
+15
+00:00:43,976 --> 00:00:45,886
+because this session's
+content is intended
+
+
+16
+00:00:45,886 --> 00:00:47,116
+for a diverse audience.
+
+
+17
+00:00:47,116 --> 00:00:50,946
+From Indian vendors, who need to
+learn how to take full advantage
+
+
+18
+00:00:50,946 --> 00:00:52,926
+of the powerful device
+management capabilities
+
+
+19
+00:00:52,926 --> 00:00:58,206
+that we've built into iOS 8 and
+OS X Yosemite, to app developers
+
+
+20
+00:00:58,206 --> 00:01:01,196
+who want to understand how their
+apps may be used in schools
+
+
+21
+00:01:01,196 --> 00:01:04,036
+and businesses, to
+administrators who need
+
+
+22
+00:01:04,036 --> 00:01:06,946
+to know what changes are coming
+in the OS releases this year.
+
+
+23
+00:01:08,716 --> 00:01:11,666
+When I stood before you here
+last year, I was thrilled
+
+
+24
+00:01:11,666 --> 00:01:15,176
+to announce 2 huge leaps forward
+in managing Apple devices.
+
+
+25
+00:01:16,056 --> 00:01:17,966
+In the addition of
+managed distribution
+
+
+26
+00:01:17,966 --> 00:01:21,016
+to our Volume Purchase
+Program and the introduction
+
+
+27
+00:01:21,016 --> 00:01:23,656
+of the Device Enrollment
+Program which Craig highlighted
+
+
+28
+00:01:23,656 --> 00:01:25,846
+in the enterprise section
+of yesterday's Keynote.
+
+
+29
+00:01:25,846 --> 00:01:28,226
+It's hard to believe there
+was an enterprise section
+
+
+30
+00:01:28,226 --> 00:01:29,976
+at the Keynote, but it
+was very exciting to see.
+
+
+31
+00:01:30,516 --> 00:01:36,626
+[ Applause ]
+
+
+32
+00:01:37,126 --> 00:01:40,116
+When we set out to create
+the device in Roman program,
+
+
+33
+00:01:40,116 --> 00:01:43,436
+we did so after wondering, why
+does it have to be painful to do
+
+
+34
+00:01:43,436 --> 00:01:44,716
+that initial configuration
+
+
+35
+00:01:44,716 --> 00:01:47,316
+of your devices before handing
+them out to their users?
+
+
+36
+00:01:48,016 --> 00:01:50,076
+And we started by
+asking a simple question.
+
+
+37
+00:01:50,886 --> 00:01:54,246
+Why can't it be as easy as
+just un-boxing that device
+
+
+38
+00:01:54,246 --> 00:01:57,626
+and handing that iPad or that
+iPhone or that Mac to its user?
+
+
+39
+00:01:57,626 --> 00:02:01,476
+And it turns out many of you
+are asking the same question.
+
+
+40
+00:02:01,946 --> 00:02:05,116
+And I'm very pleased to report
+that our customers are just
+
+
+41
+00:02:05,116 --> 00:02:06,856
+as thrilled by the
+transformative nature
+
+
+42
+00:02:06,856 --> 00:02:08,455
+of this new service
+as we had hoped.
+
+
+43
+00:02:09,606 --> 00:02:12,666
+One noteworthy example is
+Immaculata La Salle High School
+
+
+44
+00:02:12,666 --> 00:02:16,496
+in Florida who believe
+that we, indeed,
+
+
+45
+00:02:16,496 --> 00:02:18,056
+turned this dream
+into a reality.
+
+
+46
+00:02:18,826 --> 00:02:22,296
+And they proved it by completely
+replacing their fleet of iPads
+
+
+47
+00:02:22,646 --> 00:02:26,826
+with 600 new iPad Airs including
+restoring all the student apps
+
+
+48
+00:02:26,826 --> 00:02:29,756
+and data from iCloud
+in 2.5 hours.
+
+
+49
+00:02:30,816 --> 00:02:33,016
+They made a wonderful video
+showing just how they did it.
+
+
+50
+00:02:33,016 --> 00:02:35,426
+And if you've never seen the
+Device Enrollment Program
+
+
+51
+00:02:35,426 --> 00:02:37,636
+in action, I highly
+recommend checking it out.
+
+
+52
+00:02:39,336 --> 00:02:42,996
+So since we last met, we've
+been very busy launching managed
+
+
+53
+00:02:42,996 --> 00:02:44,336
+distribution last fall.
+
+
+54
+00:02:45,346 --> 00:02:47,356
+The Device Enrollment
+Program a few months ago.
+
+
+55
+00:02:48,536 --> 00:02:53,806
+And we've also been busy adding
+all these features to fill
+
+
+56
+00:02:53,806 --> 00:02:56,576
+in the gaps and smooth
+out the inconsistencies
+
+
+57
+00:02:56,576 --> 00:02:58,296
+between iOS and OS X.
+
+
+58
+00:02:58,926 --> 00:03:00,256
+So that vendors, like some
+
+
+59
+00:03:00,256 --> 00:03:02,516
+of you creating device
+management tools,
+
+
+60
+00:03:02,816 --> 00:03:04,676
+and the administrators,
+using those tools,
+
+
+61
+00:03:05,026 --> 00:03:07,896
+have a much easier time managing
+all their Apple devices.
+
+
+62
+00:03:09,656 --> 00:03:12,546
+This session is going to cover
+the entire life cycle device
+
+
+63
+00:03:12,546 --> 00:03:15,966
+management including both
+new tools existing tools
+
+
+64
+00:03:15,966 --> 00:03:18,386
+and technologies and
+all the changes coming
+
+
+65
+00:03:18,386 --> 00:03:20,716
+in iOS 8 and OS X Yosemite.
+
+
+66
+00:03:21,146 --> 00:03:22,946
+And we'll show you how
+they all come together
+
+
+67
+00:03:22,946 --> 00:03:24,416
+to provide a great experience
+
+
+68
+00:03:24,416 --> 00:03:26,936
+for both the administrators
+and their end users.
+
+
+69
+00:03:27,156 --> 00:03:31,056
+From enrolling devices in your
+management solution of choice
+
+
+70
+00:03:32,106 --> 00:03:36,226
+to distributing content to
+all those devices to the day
+
+
+71
+00:03:36,226 --> 00:03:38,136
+to day ongoing management
+tasks that come
+
+
+72
+00:03:38,136 --> 00:03:40,546
+up as time goes on
+and needs change.
+
+
+73
+00:03:41,486 --> 00:03:45,056
+So let's dive right in and
+talk about enrolling devices.
+
+
+74
+00:03:45,906 --> 00:03:47,736
+Of course, we're going to
+spend a fair amount of time
+
+
+75
+00:03:47,736 --> 00:03:48,946
+on the device enrollment
+program,
+
+
+76
+00:03:48,946 --> 00:03:50,126
+the best way to do this.
+
+
+77
+00:03:50,716 --> 00:03:53,486
+I'll also talk about
+Apple Configurator
+
+
+78
+00:03:53,486 --> 00:03:55,606
+as an alternative way
+to enroll your devices.
+
+
+79
+00:03:56,836 --> 00:03:59,826
+You also need to be aware of
+how to manage Activation Lock
+
+
+80
+00:03:59,826 --> 00:04:01,596
+on supervised devices
+and be thinking
+
+
+81
+00:04:01,596 --> 00:04:03,086
+about that at enrollment time.
+
+
+82
+00:04:03,606 --> 00:04:06,376
+And then I'll conclude
+with what's coming
+
+
+83
+00:04:06,376 --> 00:04:08,056
+in this year's OS releases.
+
+
+84
+00:04:08,926 --> 00:04:10,826
+So before we go any
+further, I want to make sure
+
+
+85
+00:04:10,826 --> 00:04:13,576
+that everyone understands what
+the Device Enrollment Program is
+
+
+86
+00:04:13,576 --> 00:04:14,226
+and is not.
+
+
+87
+00:04:14,906 --> 00:04:16,956
+So it relates, you know,
+audience participation.
+
+
+88
+00:04:16,956 --> 00:04:19,106
+Let's get going, although I
+appreciate all the responses
+
+
+89
+00:04:19,106 --> 00:04:22,756
+already, the Device Enrollment
+Program is not a MDM server.
+
+
+90
+00:04:22,856 --> 00:04:23,816
+Come on, say it with me,
+
+
+91
+00:04:24,236 --> 00:04:27,146
+Device Enrollment Program
+is not an MDM server.
+
+
+92
+00:04:27,256 --> 00:04:27,806
+Thank you.
+
+
+93
+00:04:28,346 --> 00:04:31,316
+Though you'll note they're both
+3 letter acronyms, those of you
+
+
+94
+00:04:31,316 --> 00:04:33,726
+with eagle eyes with note
+they're not the same 3 letters.
+
+
+95
+00:04:35,266 --> 00:04:38,496
+In fact, the Device Enrollment
+Program is the best way
+
+
+96
+00:04:38,496 --> 00:04:39,966
+to get your devices enrolled
+
+
+97
+00:04:39,966 --> 00:04:41,966
+in whatever MDM solution
+you're going to use.
+
+
+98
+00:04:41,966 --> 00:04:44,926
+It's an easy button to get your
+devices in your MDM server.
+
+
+99
+00:04:45,566 --> 00:04:50,276
+It's really 2 parts: A way
+for administrators to specify
+
+
+100
+00:04:50,276 --> 00:04:52,736
+which settings they want to use
+when their devices are enrolled
+
+
+101
+00:04:52,736 --> 00:04:53,916
+in their management solution.
+
+
+102
+00:04:54,456 --> 00:04:58,036
+And the integration
+of the completion
+
+
+103
+00:04:58,036 --> 00:05:00,436
+of that enrollment process
+right into the normal set
+
+
+104
+00:05:00,436 --> 00:05:02,656
+of assistant process
+that the user will go
+
+
+105
+00:05:02,656 --> 00:05:05,666
+through on both iOS and OS X.
+
+
+106
+00:05:06,236 --> 00:05:08,746
+As I mentioned, we
+launched this in February
+
+
+107
+00:05:09,156 --> 00:05:12,656
+with devices eligible that
+are purchased via direct sales
+
+
+108
+00:05:12,656 --> 00:05:15,826
+in the U.S. And we've heard all
+of your feedback loud and clear
+
+
+109
+00:05:15,826 --> 00:05:17,326
+that you'd like to
+see us expanded
+
+
+110
+00:05:17,326 --> 00:05:19,716
+to additional countries
+and channels.
+
+
+111
+00:05:20,356 --> 00:05:21,266
+So I'm very pleased that,
+
+
+112
+00:05:21,266 --> 00:05:23,546
+although we've only launched
+this a few months ago,
+
+
+113
+00:05:23,916 --> 00:05:26,946
+we've already expanded access
+to our neighbors to the North.
+
+
+114
+00:05:27,776 --> 00:05:28,946
+Any Canadians here?
+
+
+115
+00:05:30,256 --> 00:05:32,826
+I'm so sorry about the
+Canadians, but, in fact,
+
+
+116
+00:05:32,826 --> 00:05:34,806
+the Rangers knocked my Flyers
+out in the first round;
+
+
+117
+00:05:34,806 --> 00:05:36,476
+so get them next year.
+
+
+118
+00:05:39,756 --> 00:05:41,666
+We've also made a number
+of other changes already
+
+
+119
+00:05:41,666 --> 00:05:43,656
+since launch that I
+wanted to point out.
+
+
+120
+00:05:44,356 --> 00:05:47,006
+Devices are now eligible
+up to 3 years in the past
+
+
+121
+00:05:47,006 --> 00:05:48,566
+if you've purchased
+them up to 3 years ago.
+
+
+122
+00:05:48,626 --> 00:05:51,556
+And there's some enhancements
+to the portal that allow you
+
+
+123
+00:05:51,556 --> 00:05:54,736
+to set a default MDM server so
+that any new device purchases
+
+
+124
+00:05:54,736 --> 00:05:57,066
+with automatically be
+assigned to that MDM server
+
+
+125
+00:05:57,096 --> 00:05:58,666
+without you needing to
+take further action.
+
+
+126
+00:05:59,626 --> 00:06:01,876
+You can also now see which
+administrators assigned
+
+
+127
+00:06:01,876 --> 00:06:04,216
+which devices to
+which MDM servers.
+
+
+128
+00:06:05,656 --> 00:06:08,756
+And another, coming soon,
+expansion of eligibility is
+
+
+129
+00:06:08,756 --> 00:06:09,906
+that when devices that are
+
+
+130
+00:06:09,906 --> 00:06:13,066
+in the Device Enrollment
+Program are replaced by service,
+
+
+131
+00:06:13,496 --> 00:06:15,796
+those devices will
+soon be remain
+
+
+132
+00:06:15,796 --> 00:06:18,876
+in the Device Enrollment Program
+including, retroactively,
+
+
+133
+00:06:19,066 --> 00:06:21,326
+devices that have been
+replaced over the past 3 years.
+
+
+134
+00:06:21,766 --> 00:06:23,826
+We think customers will
+really appreciate that too.
+
+
+135
+00:06:25,806 --> 00:06:30,146
+So let's quickly recap exactly
+how this service works before I
+
+
+136
+00:06:30,146 --> 00:06:32,496
+go into details, especially
+for the MDM vendors.
+
+
+137
+00:06:33,676 --> 00:06:36,946
+Customer purchases devices,
+that information is fed
+
+
+138
+00:06:36,946 --> 00:06:38,246
+into the Device Enrollment
+Program.
+
+
+139
+00:06:40,396 --> 00:06:43,236
+When the customer provides
+their account information
+
+
+140
+00:06:43,236 --> 00:06:46,276
+to their MDM solution, the MDM
+solution can download the device
+
+
+141
+00:06:46,276 --> 00:06:47,586
+information from the program.
+
+
+142
+00:06:48,326 --> 00:06:50,426
+The administrator can then
+specify their settings
+
+
+143
+00:06:50,426 --> 00:06:51,826
+and upload those to the program.
+
+
+144
+00:06:52,496 --> 00:06:55,896
+Then, when users open
+the box and start walking
+
+
+145
+00:06:55,896 --> 00:06:59,096
+through the setup assistant,
+the device receives its settings
+
+
+146
+00:06:59,096 --> 00:07:01,766
+from the Device Enrollment
+Program which tell it
+
+
+147
+00:07:02,146 --> 00:07:03,656
+to enroll with the MDM server.
+
+
+148
+00:07:04,186 --> 00:07:05,966
+And I also, again, want
+to emphasize that once
+
+
+149
+00:07:05,966 --> 00:07:08,986
+that happens, Device Enrollment
+Program has done its job.
+
+
+150
+00:07:08,986 --> 00:07:09,976
+It's out of the picture,
+
+
+151
+00:07:10,136 --> 00:07:12,736
+and your MDM solution is the
+only thing that's talking
+
+
+152
+00:07:12,736 --> 00:07:13,376
+to the devices.
+
+
+153
+00:07:13,376 --> 00:07:19,356
+So we're going to talk about
+3 topics a few moments here
+
+
+154
+00:07:20,456 --> 00:07:22,566
+related to the Device
+Enrollment Program and how best
+
+
+155
+00:07:22,566 --> 00:07:24,586
+to integrate this into
+your MDM solutions.
+
+
+156
+00:07:26,656 --> 00:07:30,706
+So the first concept is, where
+should the ultimate repository
+
+
+157
+00:07:30,706 --> 00:07:33,336
+of the truth relating to
+the program, the devices
+
+
+158
+00:07:33,336 --> 00:07:34,836
+and the settings reside?
+
+
+159
+00:07:36,216 --> 00:07:38,546
+The device information
+should really be
+
+
+160
+00:07:38,546 --> 00:07:40,806
+in the Device Enrollment Program
+and treat that as the truth.
+
+
+161
+00:07:40,806 --> 00:07:42,276
+You can always fetch
+that information
+
+
+162
+00:07:42,276 --> 00:07:43,936
+from the service
+to your MDM server.
+
+
+163
+00:07:44,586 --> 00:07:47,396
+But the settings that the
+administrator decides to apply
+
+
+164
+00:07:47,396 --> 00:07:48,786
+to certain groups of devices,
+
+
+165
+00:07:49,426 --> 00:07:52,986
+your server should really treat
+itself as the truth for that.
+
+
+166
+00:07:52,986 --> 00:07:55,166
+It can always upload new
+settings to the program.
+
+
+167
+00:07:56,176 --> 00:08:01,056
+One caveat here to keep in mind,
+though, is what I explained
+
+
+168
+00:08:01,056 --> 00:08:03,046
+on the previous slide: Even
+
+
+169
+00:08:03,046 --> 00:08:05,296
+if the administrator
+changes the settings that are
+
+
+170
+00:08:05,296 --> 00:08:07,546
+in the Device Enrollment
+Program for a particular device
+
+
+171
+00:08:07,546 --> 00:08:10,536
+or devices, those devices
+will not see those settings
+
+
+172
+00:08:10,536 --> 00:08:13,486
+until the next time that they go
+through activation after wiping
+
+
+173
+00:08:13,486 --> 00:08:15,016
+and going back through
+the setup assistant.
+
+
+174
+00:08:15,296 --> 00:08:17,336
+So if the device is already
+enrolled and you happen
+
+
+175
+00:08:17,336 --> 00:08:18,956
+to change the setting to
+say, Well, now I want it
+
+
+176
+00:08:18,956 --> 00:08:21,016
+to be supervised,
+that won't take effect
+
+
+177
+00:08:21,016 --> 00:08:24,886
+until the next time
+the device is set up.
+
+
+178
+00:08:25,066 --> 00:08:25,606
+All right.
+
+
+179
+00:08:25,736 --> 00:08:28,676
+So disowning devices, you may be
+thinking, what does that mean?
+
+
+180
+00:08:28,756 --> 00:08:30,506
+Well, this removing a device
+
+
+181
+00:08:30,506 --> 00:08:31,836
+from the Device Enrollment
+Program.
+
+
+182
+00:08:31,896 --> 00:08:33,236
+And I'm here to scare you.
+
+
+183
+00:08:35,936 --> 00:08:38,765
+Our recommendation is to
+not implement this feature.
+
+
+184
+00:08:39,616 --> 00:08:40,316
+Why is that?
+
+
+185
+00:08:40,356 --> 00:08:42,446
+Well, and if you're
+going to break Rule No.
+
+
+186
+00:08:42,446 --> 00:08:44,756
+1, you need to really,
+
+
+187
+00:08:44,756 --> 00:08:46,356
+really how many "reallys"
+did I put on there?
+
+
+188
+00:08:46,946 --> 00:08:48,976
+really make sure they
+understand the consequences:
+
+
+189
+00:08:48,976 --> 00:08:51,396
+That they will not be able
+to undo this action and get
+
+
+190
+00:08:51,396 --> 00:08:52,976
+that device back
+into the program.
+
+
+191
+00:08:53,616 --> 00:08:55,786
+So, again, we recommend
+following Rule 1.
+
+
+192
+00:08:55,886 --> 00:08:58,116
+All right.
+
+
+193
+00:08:58,116 --> 00:09:01,696
+Our final topic is thinking
+about the combinations of two
+
+
+194
+00:09:02,096 --> 00:09:04,776
+of the specific enrollment
+settings that you can configure
+
+
+195
+00:09:04,776 --> 00:09:06,916
+for a device: Whether
+it's supervised or not,
+
+
+196
+00:09:07,166 --> 00:09:10,026
+and whether that MDM
+enrollment can be removed or not
+
+
+197
+00:09:10,026 --> 00:09:11,456
+by the user on the device.
+
+
+198
+00:09:12,206 --> 00:09:15,776
+And there our own Profile
+Manager has taken the approach
+
+
+199
+00:09:15,776 --> 00:09:17,566
+of not separating
+these settings.
+
+
+200
+00:09:17,566 --> 00:09:21,196
+That if you choose to supervise
+a device, it automatically,
+
+
+201
+00:09:21,196 --> 00:09:24,556
+the MDM enrollment is not
+removable, that top right box.
+
+
+202
+00:09:25,756 --> 00:09:27,636
+The bottom right
+box is forbidden.
+
+
+203
+00:09:27,686 --> 00:09:30,016
+If you try to upload settings
+
+
+204
+00:09:30,226 --> 00:09:33,026
+where the device
+is not supervised
+
+
+205
+00:09:33,026 --> 00:09:35,256
+and the MDM enrollment is
+not removable by the user,
+
+
+206
+00:09:35,776 --> 00:09:37,336
+the service will
+reject those settings.
+
+
+207
+00:09:38,526 --> 00:09:40,596
+The lower left box
+may be interesting,
+
+
+208
+00:09:40,716 --> 00:09:43,206
+again Profile Manager
+doesn't well,
+
+
+209
+00:09:43,206 --> 00:09:44,806
+that's what profile manger does
+
+
+210
+00:09:44,806 --> 00:09:46,396
+if you don't check
+the supervised box
+
+
+211
+00:09:46,396 --> 00:09:47,786
+that it's completely open.
+
+
+212
+00:09:47,966 --> 00:09:51,606
+It's not supervised; end user
+can undo the MDM enrollment.
+
+
+213
+00:09:52,096 --> 00:09:53,676
+Those 2 are really
+the interesting ones.
+
+
+214
+00:09:53,676 --> 00:09:56,146
+The kind of half one in
+the upper left is allowed,
+
+
+215
+00:09:56,146 --> 00:09:58,456
+but probably not
+super interesting
+
+
+216
+00:09:58,456 --> 00:10:00,386
+to supervise a device
+but still allow the user
+
+
+217
+00:10:00,386 --> 00:10:02,066
+to un enroll from MDM.
+
+
+218
+00:10:03,676 --> 00:10:06,796
+So that's a couple notes about
+the Device Enrollment Program.
+
+
+219
+00:10:07,736 --> 00:10:09,656
+Let's talk a bit about
+Apple Configurator.
+
+
+220
+00:10:10,616 --> 00:10:13,936
+So again Apple Configurator
+is also not an MDM server.
+
+
+221
+00:10:13,936 --> 00:10:15,596
+I want to make sure
+everyone's clear about that.
+
+
+222
+00:10:15,936 --> 00:10:20,106
+But it is an alternative way
+to install enrollment settings
+
+
+223
+00:10:20,106 --> 00:10:22,356
+on a particular iOS
+device over USB.
+
+
+224
+00:10:22,356 --> 00:10:25,206
+As an alternative to using
+Device Enrollment Program
+
+
+225
+00:10:25,206 --> 00:10:25,776
+over the Air.
+
+
+226
+00:10:27,186 --> 00:10:29,276
+Once those settings have
+been loaded to the device,
+
+
+227
+00:10:29,786 --> 00:10:32,186
+the actual requests that
+go to the MDM server
+
+
+228
+00:10:32,186 --> 00:10:34,716
+to complete the enrollment
+are indistinguishable
+
+
+229
+00:10:34,716 --> 00:10:37,406
+from whether they were
+done the settings got there
+
+
+230
+00:10:37,406 --> 00:10:38,866
+over the Air or over USB.
+
+
+231
+00:10:39,846 --> 00:10:42,456
+However, you can teach
+your server to distinguish
+
+
+232
+00:10:42,456 --> 00:10:44,586
+between the 2 if
+you check to see
+
+
+233
+00:10:44,586 --> 00:10:48,486
+if that particular device
+that's enrolling is in the list
+
+
+234
+00:10:48,486 --> 00:10:50,316
+that you've gotten from the
+Device Enrollment Program.
+
+
+235
+00:10:51,696 --> 00:10:54,656
+Also, if a device has
+already gotten its settings
+
+
+236
+00:10:54,656 --> 00:10:56,056
+from the Device Enrollment
+Program,
+
+
+237
+00:10:56,056 --> 00:10:58,376
+Configurator will not
+overwrite those settings.
+
+
+238
+00:10:59,486 --> 00:11:01,716
+One additional caveat is
+
+
+239
+00:11:01,716 --> 00:11:04,156
+that delivering your enrollment
+settings via the Device
+
+
+240
+00:11:04,156 --> 00:11:06,036
+Enrollment Program
+is the only way
+
+
+241
+00:11:06,036 --> 00:11:08,216
+that you can make your MDM
+enrollment not removable
+
+
+242
+00:11:08,216 --> 00:11:08,896
+by the user.
+
+
+243
+00:11:10,776 --> 00:11:13,676
+Another recommendation and
+one that we followed ourselves
+
+
+244
+00:11:13,676 --> 00:11:16,216
+in Profile Manager is that
+it's probably a good idea
+
+
+245
+00:11:16,216 --> 00:11:17,916
+to offer administrators
+the option
+
+
+246
+00:11:17,916 --> 00:11:22,606
+to disallow installing settings
+over USB if you want to ensure
+
+
+247
+00:11:22,606 --> 00:11:25,636
+that they only get your
+institution's devices only get
+
+
+248
+00:11:25,636 --> 00:11:27,946
+the settings that
+you specify via DEP.
+
+
+249
+00:11:28,676 --> 00:11:32,046
+That would present a user
+from using Configurator
+
+
+250
+00:11:32,046 --> 00:11:36,436
+to install settings that allow
+enrollment in your MDM server
+
+
+251
+00:11:36,436 --> 00:11:37,876
+without supervising for example.
+
+
+252
+00:11:38,416 --> 00:11:41,706
+Let's now talk a little bit
+
+
+253
+00:11:41,706 --> 00:11:43,186
+about Activation
+Lock Management.
+
+
+254
+00:11:43,966 --> 00:11:47,496
+So by default a supervised
+device does not allow the user
+
+
+255
+00:11:47,496 --> 00:11:50,786
+to enroll in or to
+enable Activation Lock.
+
+
+256
+00:11:52,156 --> 00:11:57,656
+But there is now a way that
+we introduced in the spring
+
+
+257
+00:11:58,266 --> 00:12:03,446
+that MDM can request a bypass
+code that allows the MDM server
+
+
+258
+00:12:03,446 --> 00:12:06,226
+to later or the administrator
+to later clear Activation Lock
+
+
+259
+00:12:06,226 --> 00:12:08,016
+without needing the
+user's password.
+
+
+260
+00:12:08,576 --> 00:12:12,066
+At that time, there's
+also a MDM command
+
+
+261
+00:12:12,066 --> 00:12:14,926
+that can tell the device, well,
+okay, now you can allow the user
+
+
+262
+00:12:14,926 --> 00:12:16,076
+to enable Activation Lock.
+
+
+263
+00:12:16,076 --> 00:12:18,716
+So you want to do all of
+this at enrollment time.
+
+
+264
+00:12:18,916 --> 00:12:21,446
+If, in fact, your institution
+wants to use Activation Lock,
+
+
+265
+00:12:21,446 --> 00:12:22,946
+which is a great feature.
+
+
+266
+00:12:24,766 --> 00:12:27,006
+We also recommend
+that once you retrieve
+
+
+267
+00:12:27,006 --> 00:12:30,856
+that Activation Lock bypass
+code that you provide access
+
+
+268
+00:12:30,856 --> 00:12:33,866
+to the administrator to in the
+UI because it may be useful
+
+
+269
+00:12:33,866 --> 00:12:35,586
+to maybe enter it
+manually on a device
+
+
+270
+00:12:35,586 --> 00:12:38,076
+that for whatever reason
+is not currently reachable
+
+
+271
+00:12:38,166 --> 00:12:39,226
+by the MDM server.
+
+
+272
+00:12:40,656 --> 00:12:44,416
+There are 3 new MDM commands
+to retrieve the code,
+
+
+273
+00:12:45,016 --> 00:12:46,356
+to then delete it
+from the device
+
+
+274
+00:12:46,356 --> 00:12:48,766
+so that no one can
+grab it off the device
+
+
+275
+00:12:48,766 --> 00:12:51,866
+if they get physical access
+to it, and then, of course,
+
+
+276
+00:12:51,866 --> 00:12:54,936
+to enable or allow the device
+to enable Activation Lock.
+
+
+277
+00:12:55,696 --> 00:12:56,656
+And we strongly recommend
+
+
+278
+00:12:56,656 --> 00:12:58,996
+that when you're completing
+the MDM enrollment, that,
+
+
+279
+00:12:58,996 --> 00:13:00,816
+at that time, you
+always retrieve
+
+
+280
+00:13:00,816 --> 00:13:03,196
+and then clear the bypass
+code from the device
+
+
+281
+00:13:03,536 --> 00:13:05,446
+because it's only
+available for 15 days
+
+
+282
+00:13:05,446 --> 00:13:06,916
+after the device was supervised.
+
+
+283
+00:13:07,356 --> 00:13:10,756
+You should also save
+that bypass code even
+
+
+284
+00:13:10,756 --> 00:13:13,336
+if a particular device
+is un-enrolled from MDM
+
+
+285
+00:13:13,506 --> 00:13:15,796
+because Activation Lock
+may still be enabled.
+
+
+286
+00:13:15,796 --> 00:13:17,166
+And you may still
+need to clear it.
+
+
+287
+00:13:17,626 --> 00:13:19,646
+And the device can
+later re enroll.
+
+
+288
+00:13:19,646 --> 00:13:22,396
+And there won't be another
+opportunity to get a bypass code
+
+
+289
+00:13:22,566 --> 00:13:25,376
+until the device is
+wiped and re supervised.
+
+
+290
+00:13:25,816 --> 00:13:30,596
+So those are the topics I
+wanted to cover on enrolling.
+
+
+291
+00:13:30,596 --> 00:13:34,156
+But I'm also happy to tell you
+that there's important change
+
+
+292
+00:13:34,156 --> 00:13:35,966
+in how the device responds
+
+
+293
+00:13:36,556 --> 00:13:39,206
+when the enrollment is being
+completed in Setup Assistant.
+
+
+294
+00:13:39,776 --> 00:13:42,636
+And I know your servers
+are all real excited.
+
+
+295
+00:13:42,636 --> 00:13:45,186
+The administrators have no
+doubt specified lots of settings
+
+
+296
+00:13:45,186 --> 00:13:46,536
+and apps and all
+sorts of things.
+
+
+297
+00:13:46,536 --> 00:13:48,506
+They want to deliver to the
+device as soon as it's enrolled;
+
+
+298
+00:13:49,126 --> 00:13:51,136
+however, the device
+isn't ready to respond
+
+
+299
+00:13:51,136 --> 00:13:53,526
+to all those requests while
+the user is still completing
+
+
+300
+00:13:53,526 --> 00:13:54,286
+Setup Assistant.
+
+
+301
+00:13:54,846 --> 00:13:57,336
+So now when any of these
+MDM commands are sent
+
+
+302
+00:13:57,336 --> 00:14:00,006
+to the device while it is
+still in the Setup Assistant,
+
+
+303
+00:14:00,006 --> 00:14:02,086
+it will return the
+"not now" status.
+
+
+304
+00:14:02,086 --> 00:14:04,386
+So your server can know,
+hey, device isn't ready.
+
+
+305
+00:14:04,386 --> 00:14:07,656
+I'm going to wait until
+it returns success
+
+
+306
+00:14:07,656 --> 00:14:08,326
+for that enrollment.
+
+
+307
+00:14:08,756 --> 00:14:12,366
+And then you can start
+completing your enrollment tasks
+
+
+308
+00:14:12,506 --> 00:14:14,856
+or configuration tasks.
+
+
+309
+00:14:15,136 --> 00:14:17,386
+So without further ado, I'd
+like to show you how this works,
+
+
+310
+00:14:17,386 --> 00:14:20,336
+and I'm going to invite my
+colleagues Jussi Pekka and Mark
+
+
+311
+00:14:20,336 --> 00:14:22,946
+up to show you a demo
+of enrolling devices.
+
+
+312
+00:14:24,516 --> 00:14:26,726
+[ Applause ]
+
+
+313
+00:14:27,226 --> 00:14:27,716
+>> All right, thank you, Todd.
+
+
+314
+00:14:27,716 --> 00:14:31,396
+So here we have an out of box,
+freshly delivered, new iPad.
+
+
+315
+00:14:31,896 --> 00:14:35,806
+Basically it was purchased by
+the institution and it didn't go
+
+
+316
+00:14:35,806 --> 00:14:36,706
+through some boiler room.
+
+
+317
+00:14:36,786 --> 00:14:38,276
+It was just handed
+straight to the user
+
+
+318
+00:14:38,646 --> 00:14:41,526
+and our Profile Manager
+server this is our MDM server
+
+
+319
+00:14:41,526 --> 00:14:45,116
+for this demo knows about
+this device because the time
+
+
+320
+00:14:45,116 --> 00:14:47,646
+between Device Enrollment
+Program and Profile Manager
+
+
+321
+00:14:47,916 --> 00:14:50,416
+and the device the purchase
+was made through the channels.
+
+
+322
+00:14:50,686 --> 00:14:53,906
+So we know that this device is
+configured for our services.
+
+
+323
+00:14:54,166 --> 00:14:56,916
+So I'm going to walk
+through the setup as usual.
+
+
+324
+00:14:56,916 --> 00:14:57,956
+I'm going to pick my language.
+
+
+325
+00:14:58,076 --> 00:14:59,586
+Go pick my country.
+
+
+326
+00:15:00,046 --> 00:15:00,876
+Connect to my network.
+
+
+327
+00:15:01,176 --> 00:15:03,566
+So at this point, the
+device is now talking
+
+
+328
+00:15:03,566 --> 00:15:04,576
+to the Apple Services
+
+
+329
+00:15:04,886 --> 00:15:07,336
+and obtaining its
+activation information.
+
+
+330
+00:15:07,336 --> 00:15:10,866
+And as part of that information
+is the notice that we are now
+
+
+331
+00:15:10,866 --> 00:15:16,146
+in the DEP and we got prompted
+for enrolling in the MDM server.
+
+
+332
+00:15:16,566 --> 00:15:20,646
+So just in a second we are still
+returning some information.
+
+
+333
+00:15:21,206 --> 00:15:24,206
+And now we are talking
+to our server.
+
+
+334
+00:15:24,206 --> 00:15:27,196
+So this is as far as DEP
+has talked to the device.
+
+
+335
+00:15:27,446 --> 00:15:29,556
+Now we're talking
+to our MDM server.
+
+
+336
+00:15:29,866 --> 00:15:32,496
+And I can find more
+information about our instance.
+
+
+337
+00:15:32,766 --> 00:15:34,776
+So if I need to know
+what to do next,
+
+
+338
+00:15:34,776 --> 00:15:36,196
+I can call the ACME Help Desk.
+
+
+339
+00:15:36,556 --> 00:15:38,656
+And now I go to the next.
+
+
+340
+00:15:38,656 --> 00:15:42,646
+And you see that when I go
+forward, I'm now prompted
+
+
+341
+00:15:42,646 --> 00:15:44,556
+for my user name and password.
+
+
+342
+00:15:44,906 --> 00:15:47,906
+And I cannot bypass this;
+so I do have to enroll this.
+
+
+343
+00:15:48,166 --> 00:15:51,646
+So this device has been
+configured to be supervised,
+
+
+344
+00:15:51,906 --> 00:15:53,956
+and the MDM profile
+is mandatory.
+
+
+345
+00:15:54,176 --> 00:15:56,236
+So I have no way of
+bypassing this step.
+
+
+346
+00:15:56,736 --> 00:15:59,856
+So I'll provide my log in
+information and move on.
+
+
+347
+00:15:59,856 --> 00:16:04,726
+And now we're downloading the
+profiles from our MDM server.
+
+
+348
+00:16:04,926 --> 00:16:09,576
+So, again the DEP phase has been
+completed, and now we're talking
+
+
+349
+00:16:09,576 --> 00:16:11,206
+to our management server.
+
+
+350
+00:16:11,676 --> 00:16:14,626
+And Mark has set some
+screens to be bypassed here,
+
+
+351
+00:16:14,846 --> 00:16:16,836
+so we're not seeing
+registration and other pieces.
+
+
+352
+00:16:17,116 --> 00:16:19,956
+And while I complete my setup
+logging into my iCloud account,
+
+
+353
+00:16:20,246 --> 00:16:22,486
+I'll have Mark show you
+the setup in the backside.
+
+
+354
+00:16:22,796 --> 00:16:25,576
+>> Yep. So Jussi is going to
+finish setting up his iPad.
+
+
+355
+00:16:25,576 --> 00:16:27,396
+And I want to walk
+you through how
+
+
+356
+00:16:27,396 --> 00:16:29,556
+in Profile Manager we've
+implemented this UI
+
+
+357
+00:16:29,556 --> 00:16:31,676
+to support configuring
+Device Enrollment Program.
+
+
+358
+00:16:32,236 --> 00:16:34,706
+So on the left side
+you see the devices
+
+
+359
+00:16:34,706 --> 00:16:35,646
+that my server has retrieved
+
+
+360
+00:16:35,646 --> 00:16:37,516
+from the Device Enrollment
+Program.
+
+
+361
+00:16:37,516 --> 00:16:40,396
+My server is configured
+to download these devices,
+
+
+362
+00:16:40,396 --> 00:16:42,856
+and then I have Jussi's
+iPad selected here.
+
+
+363
+00:16:42,856 --> 00:16:44,536
+And you can see the
+enrollment settings
+
+
+364
+00:16:44,536 --> 00:16:45,846
+that I've got selected here.
+
+
+365
+00:16:45,846 --> 00:16:49,566
+Our first option is whether
+to turn on this configuration
+
+
+366
+00:16:49,566 --> 00:16:50,436
+for this device or not.
+
+
+367
+00:16:50,746 --> 00:16:52,356
+You can also put
+these configurations
+
+
+368
+00:16:52,396 --> 00:16:53,776
+on device groups as well.
+
+
+369
+00:16:53,776 --> 00:16:54,756
+So you can get a
+whole collection
+
+
+370
+00:16:54,756 --> 00:16:56,896
+of devices get the
+same settings.
+
+
+371
+00:16:56,956 --> 00:16:58,556
+So we have this checked
+on because we wanted
+
+
+372
+00:16:58,556 --> 00:16:59,456
+to send the settings down.
+
+
+373
+00:16:59,736 --> 00:17:00,826
+The next option is whether
+
+
+374
+00:17:00,826 --> 00:17:03,066
+or not the user is
+allowed to skip enrollment.
+
+
+375
+00:17:03,486 --> 00:17:06,715
+And, as you saw in the case of
+Jussi's device, he's not allowed
+
+
+376
+00:17:06,715 --> 00:17:09,205
+to skip enrollment; he's going
+to be prompted for credentials,
+
+
+377
+00:17:09,205 --> 00:17:10,486
+credentials for his
+directory server.
+
+
+378
+00:17:11,276 --> 00:17:12,816
+Our next option is whether
+or not we want to do
+
+
+379
+00:17:12,816 --> 00:17:14,675
+over the air supervision
+of the device.
+
+
+380
+00:17:15,106 --> 00:17:17,856
+Now, in addition to being
+able to supervise the device,
+
+
+381
+00:17:17,906 --> 00:17:20,236
+when you supervise the device,
+you also have the option
+
+
+382
+00:17:20,636 --> 00:17:22,205
+of locking the MDM Profile
+
+
+383
+00:17:22,205 --> 00:17:23,756
+so it can't be removed
+from the device.
+
+
+384
+00:17:23,856 --> 00:17:26,486
+In our case, we've combined
+those into one option
+
+
+385
+00:17:26,486 --> 00:17:28,566
+because we think our customers,
+whenever they supervise,
+
+
+386
+00:17:28,566 --> 00:17:30,446
+they're going to want
+to have locked MDM.
+
+
+387
+00:17:30,446 --> 00:17:33,696
+But if you're a third party MDM
+developer, you can always break
+
+
+388
+00:17:33,696 --> 00:17:36,446
+that out and have it
+as a separate option.
+
+
+389
+00:17:37,616 --> 00:17:41,276
+The next thing is whether or
+not you want to allow pairing.
+
+
+390
+00:17:41,756 --> 00:17:44,296
+So I have that turned on
+so the device can pair
+
+
+391
+00:17:44,296 --> 00:17:45,226
+with another Mac if you want.
+
+
+392
+00:17:45,586 --> 00:17:48,016
+Next is to request
+credentials for enrollment.
+
+
+393
+00:17:48,016 --> 00:17:50,436
+You saw Jussi's device was
+prompted for credentials.
+
+
+394
+00:17:50,806 --> 00:17:51,786
+And then there are
+various things
+
+
+395
+00:17:51,786 --> 00:17:53,646
+that we can skip
+during the setup show
+
+
+396
+00:17:53,646 --> 00:17:55,486
+or skip during the
+Setup Assistant.
+
+
+397
+00:17:55,656 --> 00:17:58,276
+In our case, we have Apple
+ID enabled because we want
+
+
+398
+00:17:58,606 --> 00:18:00,426
+to caption on, Jussi's
+device will get Activation
+
+
+399
+00:18:00,426 --> 00:18:01,036
+Lock enabled.
+
+
+400
+00:18:01,376 --> 00:18:05,356
+So Jussi is finished actually
+setting up his device.
+
+
+401
+00:18:05,716 --> 00:18:10,666
+So I am going to show
+you, our security settings
+
+
+402
+00:18:10,766 --> 00:18:12,776
+for the device right now show
+
+
+403
+00:18:12,776 --> 00:18:14,356
+that Activation Lock
+is not enabled.
+
+
+404
+00:18:14,356 --> 00:18:16,156
+But I do have the
+Activation Lock bypass code.
+
+
+405
+00:18:16,156 --> 00:18:18,086
+This what Profile
+Manager grabbed
+
+
+406
+00:18:18,086 --> 00:18:19,456
+from the device when
+it was enrolled.
+
+
+407
+00:18:19,746 --> 00:18:25,676
+If I update my info
+now that he's done,
+
+
+408
+00:18:26,566 --> 00:18:27,606
+we'll see in a moment here
+
+
+409
+00:18:27,716 --> 00:18:29,486
+that Activation Lock is
+going to change to yes.
+
+
+410
+00:18:29,576 --> 00:18:32,056
+And find my iPhone is
+enabled, is set to yes.
+
+
+411
+00:18:32,346 --> 00:18:37,586
+So when this device comes
+back to me, I'll be able
+
+
+412
+00:18:37,586 --> 00:18:39,036
+to run this clear
+Activation Lock
+
+
+413
+00:18:39,036 --> 00:18:40,916
+if Activation Lock
+is still enabled.
+
+
+414
+00:18:41,156 --> 00:18:43,246
+And I and clear that
+and hand this device
+
+
+415
+00:18:43,246 --> 00:18:44,106
+out to the next user.
+
+
+416
+00:18:44,376 --> 00:18:45,456
+So back to Todd.
+
+
+417
+00:18:45,456 --> 00:18:46,746
+>> All right.
+
+
+418
+00:18:46,746 --> 00:18:47,416
+Thank you, guys.
+
+
+419
+00:18:48,516 --> 00:18:52,556
+[ Applause ]
+
+
+420
+00:18:53,056 --> 00:18:55,816
+So Jussi and Mark just
+showed you how you can enroll
+
+
+421
+00:18:55,816 --> 00:18:58,186
+and supervise an iOS device
+using the Device Enrollment
+
+
+422
+00:18:58,186 --> 00:19:01,286
+Program and how to configure
+the enrollment settings
+
+
+423
+00:19:01,286 --> 00:19:03,096
+that were used using
+Profile Manager.
+
+
+424
+00:19:03,096 --> 00:19:05,666
+But, of course, that can be
+done with any MDM solution
+
+
+425
+00:19:05,666 --> 00:19:07,176
+that supports the Device
+Enrollment Program.
+
+
+426
+00:19:07,176 --> 00:19:09,216
+And we hope all of them do.
+
+
+427
+00:19:09,686 --> 00:19:11,986
+Mark showed you how Profile
+Manager had retrieved the
+
+
+428
+00:19:11,986 --> 00:19:13,446
+Activation Lock bypass code
+
+
+429
+00:19:13,446 --> 00:19:15,366
+as it completed enrollment
+of that device.
+
+
+430
+00:19:16,596 --> 00:19:20,966
+And then Profile Manager
+actually automatically allows
+
+
+431
+00:19:20,966 --> 00:19:23,496
+or there's a setting, enrollment
+setting which I don't know
+
+
+432
+00:19:23,496 --> 00:19:25,856
+that Mark showed that the
+administrator can choose
+
+
+433
+00:19:25,856 --> 00:19:29,486
+to always automatically allow
+Activation Lock once it's
+
+
+434
+00:19:29,486 --> 00:19:31,866
+retrieved, successfully
+retrieved the bypass code.
+
+
+435
+00:19:32,476 --> 00:19:35,316
+So let's move on to the next
+section of our talk and talk
+
+
+436
+00:19:35,316 --> 00:19:37,226
+about distributing
+content to our devices.
+
+
+437
+00:19:38,406 --> 00:19:39,226
+We're, of course, going to talk
+
+
+438
+00:19:39,226 --> 00:19:40,506
+about the Volume
+Purchase Program
+
+
+439
+00:19:40,506 --> 00:19:41,556
+and managed distribution.
+
+
+440
+00:19:42,226 --> 00:19:45,366
+We'll talk a little bit about
+managed apps and then conclude
+
+
+441
+00:19:45,366 --> 00:19:48,526
+with the significant
+enhancements in iOS 8
+
+
+442
+00:19:48,526 --> 00:19:51,026
+and OS X Yosemite to
+fill in some gaps here.
+
+
+443
+00:19:52,536 --> 00:19:56,126
+So, again, to recap, managed
+distribution allows the
+
+
+444
+00:19:56,126 --> 00:19:59,166
+administrator to buy
+licenses instead of codes,
+
+
+445
+00:20:00,226 --> 00:20:03,206
+which can be revoked and
+reallocated to a different user
+
+
+446
+00:20:03,466 --> 00:20:06,406
+for both apps and books.
+
+
+447
+00:20:07,466 --> 00:20:10,956
+And we provided API so that
+MDM solutions can integrate the
+
+
+448
+00:20:10,956 --> 00:20:12,986
+service into their solutions.
+
+
+449
+00:20:13,766 --> 00:20:15,666
+And it's currently
+available in 10 countries.
+
+
+450
+00:20:18,006 --> 00:20:20,696
+So, again a refresher of
+exactly how this works:
+
+
+451
+00:20:20,696 --> 00:20:23,976
+The administrator can
+purchase apps and books
+
+
+452
+00:20:23,976 --> 00:20:26,376
+in the VPP Portal, that
+information is stored
+
+
+453
+00:20:26,376 --> 00:20:28,216
+in the iBookstore
+and the App Store.
+
+
+454
+00:20:29,226 --> 00:20:31,336
+When they provide their
+account information
+
+
+455
+00:20:31,336 --> 00:20:34,366
+to their management solution,
+it can download information
+
+
+456
+00:20:34,366 --> 00:20:36,476
+about which apps and
+books have been purchased
+
+
+457
+00:20:36,906 --> 00:20:38,216
+and are available
+for assignment.
+
+
+458
+00:20:39,296 --> 00:20:41,826
+It can send assignments
+up to the iTunes Store
+
+
+459
+00:20:41,826 --> 00:20:45,656
+and credit a particular app
+or book to a user account.
+
+
+460
+00:20:46,856 --> 00:20:48,806
+When the user configures
+their Apple ID
+
+
+461
+00:20:48,806 --> 00:20:52,666
+on a particular Apple device,
+they'll see those assignments
+
+
+462
+00:20:52,666 --> 00:20:55,766
+in their purchase list and
+can download the bits directly
+
+
+463
+00:20:55,766 --> 00:20:58,176
+from the store just as if they
+had purchased them themselves.
+
+
+464
+00:20:59,306 --> 00:21:02,196
+And, also, the administrator
+can send MDM commands
+
+
+465
+00:21:02,196 --> 00:21:04,746
+from the server to the devices
+to say download this app
+
+
+466
+00:21:05,816 --> 00:21:07,686
+to make sure that it
+is actually installed
+
+
+467
+00:21:07,686 --> 00:21:08,766
+on that particular device.
+
+
+468
+00:21:11,226 --> 00:21:13,836
+So, again, dive into a
+number of topics related
+
+
+469
+00:21:13,836 --> 00:21:15,976
+to the Volume Purchase Program
+to give you some advice on how
+
+
+470
+00:21:15,976 --> 00:21:18,926
+to best integrate this
+program into your solutions.
+
+
+471
+00:21:19,646 --> 00:21:22,686
+Starting off again with where
+should the different pieces
+
+
+472
+00:21:22,686 --> 00:21:24,576
+of truth reside?
+
+
+473
+00:21:25,266 --> 00:21:28,276
+And the VPP service itself
+should really be the truth
+
+
+474
+00:21:28,276 --> 00:21:30,356
+for the status of
+user enrollment,
+
+
+475
+00:21:30,396 --> 00:21:32,666
+whether a user has
+accepted an invitation
+
+
+476
+00:21:32,666 --> 00:21:35,666
+and associate the their
+Apple ID with the VPP user,
+
+
+477
+00:21:36,756 --> 00:21:38,246
+which licenses have
+been purchased,
+
+
+478
+00:21:38,246 --> 00:21:41,336
+as I showed on the previous
+slide, as well as tracking
+
+
+479
+00:21:41,336 --> 00:21:44,276
+in irrevocable book
+assignments that have been made.
+
+
+480
+00:21:44,946 --> 00:21:47,026
+You're MDM server should
+actually be the truth
+
+
+481
+00:21:47,026 --> 00:21:50,046
+for everything else including
+revocable app assignments.
+
+
+482
+00:21:50,186 --> 00:21:51,836
+And you might be
+wondering why shouldn't
+
+
+483
+00:21:51,836 --> 00:21:53,246
+that be in the VPP service?
+
+
+484
+00:21:53,896 --> 00:21:56,506
+Well if your MDM solution
+supports group assignments,
+
+
+485
+00:21:56,696 --> 00:21:59,006
+you'll need to keep that
+information in your MDM server
+
+
+486
+00:21:59,006 --> 00:22:01,286
+because there's no way to
+store group information
+
+
+487
+00:22:01,286 --> 00:22:02,526
+in the VPP service.
+
+
+488
+00:22:02,946 --> 00:22:04,936
+So if you're going to be able to
+reconstitute that, you're going
+
+
+489
+00:22:04,936 --> 00:22:06,766
+to need to have all that
+within your database.
+
+
+490
+00:22:07,286 --> 00:22:10,396
+Let's talk a little bit
+about account management.
+
+
+491
+00:22:10,396 --> 00:22:14,556
+When a particular administrator
+provides their credentials,
+
+
+492
+00:22:14,556 --> 00:22:18,126
+their VPP account to your
+solution, and you want
+
+
+493
+00:22:18,126 --> 00:22:19,346
+to establish that
+initial connection
+
+
+494
+00:22:19,346 --> 00:22:22,546
+with the Volume Purchase
+Program you're going to need
+
+
+495
+00:22:22,546 --> 00:22:24,306
+to check the client
+context attribute.
+
+
+496
+00:22:24,896 --> 00:22:26,796
+And if it's empty that means
+
+
+497
+00:22:26,796 --> 00:22:29,106
+that no other server
+has claimed this account
+
+
+498
+00:22:29,106 --> 00:22:30,156
+or is using this account.
+
+
+499
+00:22:30,486 --> 00:22:31,656
+And you should go
+ahead and claim it
+
+
+500
+00:22:31,656 --> 00:22:35,766
+by providing the host name of
+your server and a unique a GUID
+
+
+501
+00:22:35,766 --> 00:22:38,426
+so that you'll be able to tell
+whether your server is still the
+
+
+502
+00:22:38,426 --> 00:22:39,066
+one managing.
+
+
+503
+00:22:40,296 --> 00:22:42,506
+If the client context
+has a value
+
+
+504
+00:22:42,506 --> 00:22:45,326
+and it doesn't match the GUID
+that you have for that server,
+
+
+505
+00:22:45,666 --> 00:22:47,876
+some other server is
+actually using that account.
+
+
+506
+00:22:47,876 --> 00:22:49,876
+And you're going to want
+to alert the administrator
+
+
+507
+00:22:49,876 --> 00:22:52,936
+that some other server is
+managing the licenses tied
+
+
+508
+00:22:52,936 --> 00:22:56,786
+to this account and ask them
+to confirm that they, in fact,
+
+
+509
+00:22:56,786 --> 00:22:58,506
+want this server to
+take over that account.
+
+
+510
+00:22:58,896 --> 00:23:01,356
+That may, in fact, be the right
+thing if they're transitioning
+
+
+511
+00:23:01,356 --> 00:23:02,796
+from one server to the next.
+
+
+512
+00:23:03,286 --> 00:23:06,766
+And then further, whenever you
+re establish the connection
+
+
+513
+00:23:06,766 --> 00:23:09,816
+to the service, you need to
+check client context again
+
+
+514
+00:23:09,816 --> 00:23:12,826
+to make sure that your server is
+still the one that's connected
+
+
+515
+00:23:12,826 --> 00:23:13,526
+to this account.
+
+
+516
+00:23:14,286 --> 00:23:16,416
+If it doesn't match
+any longer, you, again,
+
+
+517
+00:23:16,466 --> 00:23:18,706
+need to stop making
+requests to the service
+
+
+518
+00:23:18,926 --> 00:23:20,346
+and alert the administrator
+
+
+519
+00:23:20,346 --> 00:23:23,436
+that this other host name
+has now claimed this account
+
+
+520
+00:23:23,436 --> 00:23:24,926
+so they can take
+appropriate action.
+
+
+521
+00:23:27,326 --> 00:23:29,146
+If I've mentioned
+invitations already,
+
+
+522
+00:23:29,526 --> 00:23:32,466
+that's part of bootstrapping
+this program is
+
+
+523
+00:23:32,466 --> 00:23:35,336
+that the administrator
+needs it to invite each user
+
+
+524
+00:23:35,336 --> 00:23:39,116
+to link their Apple ID to
+this particular VPP account
+
+
+525
+00:23:39,506 --> 00:23:41,206
+so that licenses
+can be assigned.
+
+
+526
+00:23:42,016 --> 00:23:45,386
+We strongly recommend that you
+do this invitation via MDM.
+
+
+527
+00:23:46,016 --> 00:23:46,986
+You can easily send
+
+
+528
+00:23:46,986 --> 00:23:48,986
+that invitation via an
+MDM command directly
+
+
+529
+00:23:48,986 --> 00:23:50,006
+to an enrolled device.
+
+
+530
+00:23:50,006 --> 00:23:52,526
+It's much more secure
+and reliable.
+
+
+531
+00:23:53,416 --> 00:23:56,886
+Email is a fall back if you
+have a user you need to invite
+
+
+532
+00:23:56,886 --> 00:23:58,636
+that doesn't currently
+have an enrolled device.
+
+
+533
+00:23:59,986 --> 00:24:02,636
+But there's a concern that
+you need to be aware of that
+
+
+534
+00:24:02,636 --> 00:24:05,616
+because the invitation URL,
+there's an example on screen,
+
+
+535
+00:24:06,026 --> 00:24:08,356
+is for the apple.com domain.
+
+
+536
+00:24:08,996 --> 00:24:12,186
+Many mail servers will
+treat an email coming
+
+
+537
+00:24:12,186 --> 00:24:15,986
+from your server's domain,
+including a URL from apple.com
+
+
+538
+00:24:15,986 --> 00:24:18,136
+as a phishing attack and
+they filter them out.
+
+
+539
+00:24:18,936 --> 00:24:20,526
+There are a number
+of alternative ways
+
+
+540
+00:24:20,526 --> 00:24:21,506
+to avoid this problem.
+
+
+541
+00:24:22,266 --> 00:24:26,056
+You could create your invitation
+email URL that brings the user,
+
+
+542
+00:24:26,056 --> 00:24:28,836
+first, back to your MDM
+server before redirected them
+
+
+543
+00:24:28,836 --> 00:24:29,936
+to the VPP URL.
+
+
+544
+00:24:30,906 --> 00:24:33,456
+Or you could integrate the
+invitation process right
+
+
+545
+00:24:33,456 --> 00:24:35,016
+into your user portal
+if you have one.
+
+
+546
+00:24:35,566 --> 00:24:39,796
+Let's spend a few
+moments talking, again,
+
+
+547
+00:24:39,796 --> 00:24:42,996
+about user IDs relating to
+Volume Purchase Program.
+
+
+548
+00:24:42,996 --> 00:24:44,306
+I showed this slide last year.
+
+
+549
+00:24:44,916 --> 00:24:49,616
+There are really 3 ideas of who
+the user is from the perspective
+
+
+550
+00:24:49,616 --> 00:24:54,046
+of the MDM server, from the
+perspective of the VPP service,
+
+
+551
+00:24:54,446 --> 00:24:56,296
+and the end user's Apple ID,
+
+
+552
+00:24:56,426 --> 00:25:00,416
+which your MDM server will never
+see directly but will see a hash
+
+
+553
+00:25:00,416 --> 00:25:02,246
+of it to protect
+the user's privacy.
+
+
+554
+00:25:03,246 --> 00:25:05,046
+Now, this is would be
+very simple if we lived
+
+
+555
+00:25:05,046 --> 00:25:08,066
+in the ideal world
+where each user had one
+
+
+556
+00:25:08,066 --> 00:25:11,376
+and only one Apple ID
+associated with your VPP account
+
+
+557
+00:25:11,816 --> 00:25:13,276
+and would never change
+that Apple ID.
+
+
+558
+00:25:13,276 --> 00:25:16,576
+In this case, there would be
+a simple one to one mapping
+
+
+559
+00:25:16,616 --> 00:25:19,196
+between all 3 of these
+representations of the user.
+
+
+560
+00:25:20,056 --> 00:25:22,126
+Sadly, as many of
+you may be aware,
+
+
+561
+00:25:22,256 --> 00:25:23,496
+we don't live in an ideal world.
+
+
+562
+00:25:24,306 --> 00:25:28,236
+In the real world, multiple
+VPP users can accept their
+
+
+563
+00:25:28,236 --> 00:25:30,266
+individual invitations
+with the same Apple ID.
+
+
+564
+00:25:30,266 --> 00:25:32,736
+And you need to be aware
+of the implications
+
+
+565
+00:25:32,736 --> 00:25:34,506
+of the sharing of Apple IDs.
+
+
+566
+00:25:35,086 --> 00:25:38,786
+Specifically if you've
+assigned a license to a user
+
+
+567
+00:25:38,786 --> 00:25:41,276
+that than is connected to
+that particular Apple ID.
+
+
+568
+00:25:41,576 --> 00:25:43,606
+If you revoke that assignment,
+it's going to revoke it
+
+
+569
+00:25:43,606 --> 00:25:47,156
+from every Apple every VPP
+user sharing that Apple ID.
+
+
+570
+00:25:48,416 --> 00:25:51,696
+Also, if you try to
+assign an app or a book
+
+
+571
+00:25:51,696 --> 00:25:55,966
+to a VPP user that's
+associated with an Apple ID
+
+
+572
+00:25:55,966 --> 00:25:59,276
+that already has that
+app or book assigned,
+
+
+573
+00:25:59,636 --> 00:26:02,546
+that second assignment
+will fail.
+
+
+574
+00:26:02,546 --> 00:26:05,736
+Another issue in the real
+world is that users can,
+
+
+575
+00:26:06,056 --> 00:26:08,606
+after accepting an
+invitation with one Apple ID,
+
+
+576
+00:26:08,606 --> 00:26:12,016
+can disassociate from that Apple
+ID and associate and accept
+
+
+577
+00:26:12,016 --> 00:26:13,786
+that invitation with
+a different Apple ID.
+
+
+578
+00:26:13,886 --> 00:26:16,956
+This becomes a problem if you've
+assigned any irrevocable book
+
+
+579
+00:26:17,326 --> 00:26:20,436
+licenses to that Apple,
+that retired Apple ID.
+
+
+580
+00:26:20,436 --> 00:26:23,296
+And you'll have to keep track
+and think about whether you want
+
+
+581
+00:26:23,296 --> 00:26:25,436
+to allocate another
+irrevocable book license
+
+
+582
+00:26:25,436 --> 00:26:26,726
+to the new Apple ID or not.
+
+
+583
+00:26:30,426 --> 00:26:33,236
+So the MDM server's
+representation of the user,
+
+
+584
+00:26:33,236 --> 00:26:34,686
+the client user ID string,
+
+
+585
+00:26:35,396 --> 00:26:37,076
+is something that's
+under your control.
+
+
+586
+00:26:37,076 --> 00:26:38,986
+And we strongly recommend
+you pick a value
+
+
+587
+00:26:38,986 --> 00:26:40,926
+that will never change,
+for example,
+
+
+588
+00:26:40,926 --> 00:26:42,836
+the user ID from your
+directory services
+
+
+589
+00:26:42,836 --> 00:26:45,056
+where you're getting your
+user and group information.
+
+
+590
+00:26:45,636 --> 00:26:46,446
+You shouldn't choose something
+
+
+591
+00:26:46,446 --> 00:26:48,256
+like an email address
+which can change.
+
+
+592
+00:26:48,746 --> 00:26:51,276
+And it's very simple.
+
+
+593
+00:26:51,276 --> 00:26:53,246
+I had to have a slide with
+some SQL on, I'm sorry.
+
+
+594
+00:26:53,246 --> 00:26:56,566
+It's very easy, then, to
+look up which VPP account
+
+
+595
+00:26:56,566 --> 00:26:59,896
+that that particular MDM
+user is associated with.
+
+
+596
+00:27:00,606 --> 00:27:02,886
+Whether it's just registered
+and you've sent the invitation
+
+
+597
+00:27:02,886 --> 00:27:05,746
+or actually associated, whether
+the user has accepted it.
+
+
+598
+00:27:06,256 --> 00:27:10,576
+And, finally, the representation
+
+
+599
+00:27:10,576 --> 00:27:14,126
+of the user's Apple ID who's
+accepted the invitation takes
+
+
+600
+00:27:14,126 --> 00:27:16,186
+the form of an iTunes
+store ID hash.
+
+
+601
+00:27:16,786 --> 00:27:18,216
+And you should track
+this as soon
+
+
+602
+00:27:18,216 --> 00:27:20,136
+as a user has accepted
+an invitation.
+
+
+603
+00:27:21,106 --> 00:27:25,416
+New in iOS 8, there's now a
+MDM query, not just in iOS 8,
+
+
+604
+00:27:25,416 --> 00:27:29,386
+it's also in OS X Yosemite, a
+query to get that hash value
+
+
+605
+00:27:29,386 --> 00:27:35,096
+so that you can know whether
+the Apple ID that's configured
+
+
+606
+00:27:35,096 --> 00:27:36,966
+on a particular device changes.
+
+
+607
+00:27:36,966 --> 00:27:39,276
+You won't know exactly what the
+Apple ID is but you'll be able
+
+
+608
+00:27:39,276 --> 00:27:40,836
+to tell if they've disassociated
+
+
+609
+00:27:40,836 --> 00:27:43,326
+and re-associated
+with a different ID.
+
+
+610
+00:27:44,346 --> 00:27:46,726
+As I mentioned already on the
+previous slide, you're going
+
+
+611
+00:27:46,726 --> 00:27:50,866
+to want to track those retired
+values if the user switches
+
+
+612
+00:27:50,866 --> 00:27:53,706
+to a different Apple ID,
+again, so you can keep track
+
+
+613
+00:27:53,706 --> 00:27:55,456
+of any irrevocable
+book assignments.
+
+
+614
+00:27:55,896 --> 00:28:01,196
+There's another new change
+that will allow you MDM vendors
+
+
+615
+00:28:01,196 --> 00:28:03,766
+to provide a better user
+experience in your tools
+
+
+616
+00:28:03,876 --> 00:28:07,696
+for users outside the U.S. that
+we now report the country code
+
+
+617
+00:28:07,876 --> 00:28:10,726
+that the account is tied to
+when you get your information
+
+
+618
+00:28:10,726 --> 00:28:13,476
+down from the service so that
+you can fetch the proper app
+
+
+619
+00:28:13,476 --> 00:28:15,756
+metadata, artwork, description,
+
+
+620
+00:28:15,756 --> 00:28:18,546
+app name from the
+correct iTunes Store.
+
+
+621
+00:28:21,806 --> 00:28:24,366
+So managed apps is
+not a new concept.
+
+
+622
+00:28:24,366 --> 00:28:26,276
+We've had it for a
+couple of iOS releases.
+
+
+623
+00:28:26,666 --> 00:28:30,626
+It's a way for enterprises
+to keep better control
+
+
+624
+00:28:30,626 --> 00:28:32,926
+over the data and documents
+tied to particular apps.
+
+
+625
+00:28:33,376 --> 00:28:36,026
+It works with both App
+Store and enterprise apps.
+
+
+626
+00:28:36,906 --> 00:28:39,916
+The managed apps must
+be installed via MDM
+
+
+627
+00:28:40,716 --> 00:28:42,296
+with the install
+application command
+
+
+628
+00:28:42,296 --> 00:28:45,686
+and with the management
+flag set on the app itself.
+
+
+629
+00:28:46,546 --> 00:28:49,286
+One limitation is that if the
+user has already installed an
+
+
+630
+00:28:49,286 --> 00:28:51,596
+app, the MDM server
+cannot convert it
+
+
+631
+00:28:51,596 --> 00:28:52,926
+to manage retroactively.
+
+
+632
+00:28:53,506 --> 00:28:54,766
+However, the server
+can, of course,
+
+
+633
+00:28:54,766 --> 00:28:59,046
+detect that an app is unmanaged
+and then alert the administrator
+
+
+634
+00:28:59,046 --> 00:29:02,766
+so they could take action
+outside of MDM, if necessary,
+
+
+635
+00:29:03,176 --> 00:29:05,306
+to have the user delete that app
+
+
+636
+00:29:05,306 --> 00:29:07,306
+and the MDM server
+push it out again.
+
+
+637
+00:29:08,636 --> 00:29:13,576
+Managed apps work with Managed
+Open In a new feature in iOS 7
+
+
+638
+00:29:13,956 --> 00:29:16,176
+to help, again, prevent
+data leakage
+
+
+639
+00:29:16,176 --> 00:29:19,026
+from managed apps
+to unmanaged apps.
+
+
+640
+00:29:19,806 --> 00:29:21,616
+So that if you have
+a particular app
+
+
+641
+00:29:21,706 --> 00:29:25,156
+that has sensitive documents,
+you can treat it as managed.
+
+
+642
+00:29:25,216 --> 00:29:28,216
+Turn on Managed Open In, and
+then users will not be able
+
+
+643
+00:29:28,216 --> 00:29:30,256
+to open those documents
+in other apps
+
+
+644
+00:29:30,256 --> 00:29:31,666
+like well, I won't name any.
+
+
+645
+00:29:32,976 --> 00:29:35,166
+So you might imagine, I
+talked about filling gaps
+
+
+646
+00:29:35,166 --> 00:29:37,646
+and eliminating inconsistencies.
+
+
+647
+00:29:37,646 --> 00:29:40,786
+We have managed apps so what
+are we introducing in iOS 8?
+
+
+648
+00:29:40,786 --> 00:29:42,646
+Well, of course, managed books.
+
+
+649
+00:29:43,576 --> 00:29:46,326
+And just like managed
+apps, managed books works
+
+
+650
+00:29:46,326 --> 00:29:51,546
+with both iBookstore books where
+you can, just like managed apps,
+
+
+651
+00:29:52,146 --> 00:29:55,446
+tell the device to download
+a particular iBookstore book
+
+
+652
+00:29:55,446 --> 00:29:56,526
+and treat it as managed.
+
+
+653
+00:29:57,316 --> 00:29:59,096
+That that book must
+be published,
+
+
+654
+00:29:59,266 --> 00:30:02,156
+purchased via VPP even
+if the user has it.
+
+
+655
+00:30:03,396 --> 00:30:07,126
+One difference between managed
+books and managed apps is
+
+
+656
+00:30:07,126 --> 00:30:09,756
+that you can retroactively
+manage books
+
+
+657
+00:30:09,756 --> 00:30:11,096
+in contrast to manage apps.
+
+
+658
+00:30:11,096 --> 00:30:12,436
+Even if the user
+has it installed.
+
+
+659
+00:30:13,076 --> 00:30:15,566
+This is very useful
+in schools to ensure
+
+
+660
+00:30:15,566 --> 00:30:17,256
+that a particular
+title is installed,
+
+
+661
+00:30:17,346 --> 00:30:19,226
+make sure the students
+have all their work
+
+
+662
+00:30:19,226 --> 00:30:20,146
+and the dog didn't eat it.
+
+
+663
+00:30:21,816 --> 00:30:27,286
+Turning to enterprise books, you
+can, just like enterprise apps,
+
+
+664
+00:30:27,286 --> 00:30:31,266
+can install the MDM
+and remove PDFs, ePubs,
+
+
+665
+00:30:31,266 --> 00:30:32,496
+and iBooks Author books.
+
+
+666
+00:30:33,836 --> 00:30:36,746
+These documents or
+these titles are stored
+
+
+667
+00:30:36,746 --> 00:30:38,736
+in a different location
+than iBookstore books
+
+
+668
+00:30:39,246 --> 00:30:40,706
+with Class C data protection.
+
+
+669
+00:30:41,806 --> 00:30:43,176
+There are also a
+number of restrictions
+
+
+670
+00:30:43,176 --> 00:30:45,096
+that we're introducing
+in iOS 8 to, again,
+
+
+671
+00:30:45,096 --> 00:30:48,896
+give institutions
+more confidence
+
+
+672
+00:30:48,896 --> 00:30:51,306
+that the sensitive
+data will be protected
+
+
+673
+00:30:51,306 --> 00:30:53,526
+and not escape their control.
+
+
+674
+00:30:54,136 --> 00:30:57,496
+They can disable iCloud backups
+of these enterprise books
+
+
+675
+00:30:58,136 --> 00:31:00,276
+so that they just stay on the
+device where they're installed
+
+
+676
+00:31:00,866 --> 00:31:04,006
+and also disable the
+user's highlights and notes
+
+
+677
+00:31:04,006 --> 00:31:06,376
+on that title from being
+synced to other devices.
+
+
+678
+00:31:08,446 --> 00:31:09,966
+For you MDM vendors out there,
+
+
+679
+00:31:09,966 --> 00:31:11,876
+it's going to be pretty straight
+forward to implement this.
+
+
+680
+00:31:12,066 --> 00:31:14,606
+Just like there's an install
+application MDM command,
+
+
+681
+00:31:14,766 --> 00:31:17,086
+there's now an Install
+Media MDM command
+
+
+682
+00:31:17,656 --> 00:31:20,766
+where if it's a managed
+iBookstore book,
+
+
+683
+00:31:20,766 --> 00:31:22,826
+you'll just specify
+the iTunes store ID.
+
+
+684
+00:31:23,856 --> 00:31:26,946
+And if it's an enterprise
+book, you'll specify a URL back
+
+
+685
+00:31:26,946 --> 00:31:28,596
+to your server to
+download the bits.
+
+
+686
+00:31:29,696 --> 00:31:32,316
+You need to specify a persistent
+ID that's under your control
+
+
+687
+00:31:32,316 --> 00:31:35,236
+so that you can uniquely
+identify each enterprise book
+
+
+688
+00:31:35,236 --> 00:31:37,236
+that's being installed
+and its kind
+
+
+689
+00:31:38,036 --> 00:31:40,106
+and then the matching
+remove media command.
+
+
+690
+00:31:42,606 --> 00:31:44,256
+There are a few limitations.
+
+
+691
+00:31:45,026 --> 00:31:48,046
+Just like managed apps, is
+requires the app installation
+
+
+692
+00:31:48,046 --> 00:31:49,116
+and the end enrollment, right,
+
+
+693
+00:31:49,116 --> 00:31:50,696
+to be able to install
+managed books.
+
+
+694
+00:31:51,996 --> 00:31:54,666
+And managing iBookstore books
+requires that you've, again,
+
+
+695
+00:31:54,666 --> 00:31:58,096
+purchased it via VPP and
+that the App Store is enabled
+
+
+696
+00:31:58,096 --> 00:32:00,376
+on the device that you're
+pushing an enterprise book to.
+
+
+697
+00:32:02,336 --> 00:32:04,836
+Another distinction
+between managed apps
+
+
+698
+00:32:04,836 --> 00:32:08,186
+and managed books is that the
+MDM query to obtain the list
+
+
+699
+00:32:08,186 --> 00:32:11,136
+of installed books will
+only show managed books
+
+
+700
+00:32:11,136 --> 00:32:13,406
+and not every book that's
+installed by the user
+
+
+701
+00:32:13,526 --> 00:32:14,766
+to preserve user privacy.
+
+
+702
+00:32:15,786 --> 00:32:19,846
+And finally, again, to allow
+the institutions to keep control
+
+
+703
+00:32:19,846 --> 00:32:21,806
+over these enterprise books
+and their sensitive data,
+
+
+704
+00:32:22,216 --> 00:32:24,236
+enterprise books cannot
+be synced off a device
+
+
+705
+00:32:24,236 --> 00:32:25,026
+using iTunes.
+
+
+706
+00:32:26,656 --> 00:32:29,066
+So turning from what's
+new in iOS 8 to what's new
+
+
+707
+00:32:29,066 --> 00:32:31,046
+in OS X Yosemite, we're
+going to fill another gap.
+
+
+708
+00:32:32,056 --> 00:32:34,826
+And we are, have
+added the ability
+
+
+709
+00:32:34,826 --> 00:32:40,116
+to install non App Store
+apps via MDM on OS X.
+
+
+710
+00:32:40,436 --> 00:32:40,896
+Thank you.
+
+
+711
+00:32:41,516 --> 00:32:43,546
+[ Applause ]
+
+
+712
+00:32:44,046 --> 00:32:47,226
+You can thank you Jussi
+when he gets back up here.
+
+
+713
+00:32:47,316 --> 00:32:51,756
+So you can specify a signed flat
+package containing an app via
+
+
+714
+00:32:51,756 --> 00:32:54,546
+this MDM command, the install
+application MDM command
+
+
+715
+00:32:54,546 --> 00:32:58,366
+which is now supported on OS
+X for non App Store books.
+
+
+716
+00:32:58,936 --> 00:33:02,006
+And, in fact, your MDM
+solution can do the same thing
+
+
+717
+00:33:02,006 --> 00:33:03,036
+that Profile Manager has done
+
+
+718
+00:33:03,036 --> 00:33:05,746
+that you can support the
+administrator's providing you
+
+
+719
+00:33:05,746 --> 00:33:08,666
+with just a .app bundle
+as long as you package it
+
+
+720
+00:33:08,666 --> 00:33:13,046
+up as a signed flat package and
+send that over the MDM command.
+
+
+721
+00:33:14,116 --> 00:33:16,676
+So without any further ado,
+instead of talking more
+
+
+722
+00:33:16,676 --> 00:33:19,026
+about this, I'd like to ask
+Jussi and Mark to come back up
+
+
+723
+00:33:19,026 --> 00:33:20,496
+and show you installing
+
+
+724
+00:33:20,616 --> 00:33:23,046
+and removing enterprise
+apps and books.
+
+
+725
+00:33:24,506 --> 00:33:24,806
+>> All right.
+
+
+726
+00:33:24,926 --> 00:33:25,656
+Thank you, Todd.
+
+
+727
+00:33:26,416 --> 00:33:28,766
+And I'm just going to go
+into my iBooks library.
+
+
+728
+00:33:28,946 --> 00:33:30,886
+So here we have some books
+that we already downloaded.
+
+
+729
+00:33:30,886 --> 00:33:32,446
+I've been a keen reader
+
+
+730
+00:33:32,446 --> 00:33:34,176
+of the Human Interface
+Guidelines, apparently.
+
+
+731
+00:33:34,276 --> 00:33:37,246
+And we just downloaded the
+Swift book so we're going
+
+
+732
+00:33:37,246 --> 00:33:38,036
+to learn some new things.
+
+
+733
+00:33:38,316 --> 00:33:41,406
+And Mark's now going to
+push a PDF for the device.
+
+
+734
+00:33:41,816 --> 00:33:43,766
+So this is going to
+be an enterprise book.
+
+
+735
+00:33:43,766 --> 00:33:47,976
+And this is will have
+the same open rules
+
+
+736
+00:33:47,976 --> 00:33:51,496
+as any other managed
+assets on the device.
+
+
+737
+00:33:51,496 --> 00:33:53,696
+So we'll have data protection
+between applications.
+
+
+738
+00:33:54,156 --> 00:33:58,186
+And we won't be able to
+share the book anywhere else.
+
+
+739
+00:33:58,346 --> 00:34:01,596
+So this our fancy new PDF
+that just got installed.
+
+
+740
+00:34:01,966 --> 00:34:04,986
+And now, since this is a
+managed book controlled
+
+
+741
+00:34:04,986 --> 00:34:08,516
+by our MDM solution, Mark
+can also remove the book.
+
+
+742
+00:34:08,835 --> 00:34:11,726
+So Mark can now remove the book
+
+
+743
+00:34:11,726 --> 00:34:13,706
+and it disappears
+from our bookshelf.
+
+
+744
+00:34:13,996 --> 00:34:16,266
+So that's managing
+books on iOS 8.
+
+
+745
+00:34:16,266 --> 00:34:17,146
+And we're.
+
+
+746
+00:34:18,516 --> 00:34:20,576
+[ Applause ]
+
+
+747
+00:34:21,076 --> 00:34:21,466
+Thank you.
+
+
+748
+00:34:22,676 --> 00:34:25,886
+And on iOS we've had the Apple
+Teaching Store enterprise
+
+
+749
+00:34:25,886 --> 00:34:28,746
+application so that we have
+our fancy new Swift application
+
+
+750
+00:34:28,746 --> 00:34:29,806
+here, ACME Hub.
+
+
+751
+00:34:30,226 --> 00:34:32,246
+But as Todd mentioned,
+we also have support
+
+
+752
+00:34:32,246 --> 00:34:34,286
+for installing applications
+on OS X.
+
+
+753
+00:34:34,676 --> 00:34:38,116
+So here we go into our
+Launchpad and Mark is now going
+
+
+754
+00:34:38,116 --> 00:34:39,866
+to install our fancy ACME app
+
+
+755
+00:34:40,366 --> 00:34:43,356
+onto the OS X client
+and no hands.
+
+
+756
+00:34:43,446 --> 00:34:46,045
+This is all installed
+by the system.
+
+
+757
+00:34:46,426 --> 00:34:49,626
+So sparkles fly and the ACME
+app landed on the system.
+
+
+758
+00:34:49,626 --> 00:34:53,936
+So over here's OS X using
+the DEP app installation.
+
+
+759
+00:34:54,826 --> 00:34:55,946
+So thank you, Mark.
+
+
+760
+00:34:55,946 --> 00:34:57,466
+And now back to Todd.
+
+
+761
+00:34:58,156 --> 00:34:58,686
+>> All right.
+
+
+762
+00:34:58,686 --> 00:34:59,716
+Thank you very much, guys.
+
+
+763
+00:34:59,716 --> 00:35:01,426
+That app was written
+using Swift, right?
+
+
+764
+00:35:01,686 --> 00:35:02,326
+>> Of course.
+
+
+765
+00:35:03,156 --> 00:35:03,976
+>> They stayed up all night.
+
+
+766
+00:35:05,076 --> 00:35:05,466
+All right.
+
+
+767
+00:35:05,746 --> 00:35:10,946
+So Mark and Jussi just showed
+installing a PDF on iOS 8 device
+
+
+768
+00:35:10,946 --> 00:35:14,646
+and removing it as well as
+installing an enterprise app
+
+
+769
+00:35:14,646 --> 00:35:16,376
+on a Mac running OS X Yosemite.
+
+
+770
+00:35:17,156 --> 00:35:20,196
+So let's proceed on to
+our final section and talk
+
+
+771
+00:35:20,196 --> 00:35:22,146
+about ongoing management
+of devices.
+
+
+772
+00:35:23,506 --> 00:35:26,076
+We're going to complete
+the Activation Lock story
+
+
+773
+00:35:26,076 --> 00:35:27,956
+to show you, to talk
+about how you use
+
+
+774
+00:35:27,956 --> 00:35:30,386
+that bypass code you
+obtained at enrollment time.
+
+
+775
+00:35:31,296 --> 00:35:33,636
+Talk a little bit about
+integrating you're MDM solutions
+
+
+776
+00:35:33,636 --> 00:35:35,076
+with external data sources.
+
+
+777
+00:35:36,236 --> 00:35:39,486
+Talk about something new
+called MDM service config.
+
+
+778
+00:35:39,486 --> 00:35:41,016
+We'll come on to that
+in a few minutes.
+
+
+779
+00:35:41,016 --> 00:35:43,286
+And, then again, conclude
+with what's coming
+
+
+780
+00:35:43,286 --> 00:35:45,226
+in this year's OS releases.
+
+
+781
+00:35:46,906 --> 00:35:50,216
+So one thing to keep in mind
+with Activation Lock is,
+
+
+782
+00:35:50,426 --> 00:35:53,216
+it's a little bit different
+from some other services.
+
+
+783
+00:35:54,046 --> 00:35:55,916
+When you get the device
+information query,
+
+
+784
+00:35:55,916 --> 00:35:57,576
+and Mark showed this
+in Profile Manager
+
+
+785
+00:35:57,576 --> 00:35:59,876
+when he re fetched
+the device information
+
+
+786
+00:35:59,876 --> 00:36:02,666
+and it reflected the change
+and Activation Lock status.
+
+
+787
+00:36:02,756 --> 00:36:05,116
+There's a key that tells you
+whether the device thinks it's
+
+
+788
+00:36:05,116 --> 00:36:05,886
+Activation Locked.
+
+
+789
+00:36:06,826 --> 00:36:10,606
+And there's a request that
+you send not to the device,
+
+
+790
+00:36:10,606 --> 00:36:13,756
+but to our activation server
+to clear the Activation Lock
+
+
+791
+00:36:14,236 --> 00:36:16,336
+and specify the bypass
+code that you have.
+
+
+792
+00:36:17,436 --> 00:36:19,696
+Now, because that request
+doesn't go to the device,
+
+
+793
+00:36:20,736 --> 00:36:23,006
+the device isn't checking
+with the activation server,
+
+
+794
+00:36:23,006 --> 00:36:24,926
+it's not going to know
+that it's been cleared.
+
+
+795
+00:36:24,926 --> 00:36:26,536
+So it's going to
+continue to report
+
+
+796
+00:36:26,536 --> 00:36:28,876
+that it's Activation
+Locked to your MDM server.
+
+
+797
+00:36:30,826 --> 00:36:33,186
+Also, even after
+you have cleared
+
+
+798
+00:36:33,186 --> 00:36:36,146
+on the activation server,
+the user, if they log out of
+
+
+799
+00:36:36,146 --> 00:36:38,426
+or remove their Apple
+ID and log in again,
+
+
+800
+00:36:38,426 --> 00:36:40,026
+that will re enable
+Activation Lock.
+
+
+801
+00:36:40,476 --> 00:36:41,736
+So you want to definitely
+keep hold
+
+
+802
+00:36:41,736 --> 00:36:43,496
+of that bypass code even
+if you've cleared it.
+
+
+803
+00:36:43,796 --> 00:36:45,706
+This isn't going to,
+in the real world,
+
+
+804
+00:36:45,706 --> 00:36:48,046
+going to usually be an issue
+because typically you're going
+
+
+805
+00:36:48,046 --> 00:36:49,806
+to use this when you have
+the device in your hands.
+
+
+806
+00:36:50,376 --> 00:36:52,406
+But you definitely want
+to keep that bypass codes
+
+
+807
+00:36:52,406 --> 00:36:53,836
+because you might
+need to use it again.
+
+
+808
+00:36:57,516 --> 00:36:57,886
+All right.
+
+
+809
+00:36:58,206 --> 00:37:01,296
+So one of the most important
+external data sources
+
+
+810
+00:37:01,296 --> 00:37:02,596
+that your MDM server
+needs to integrate
+
+
+811
+00:37:02,596 --> 00:37:04,396
+with is directory services.
+
+
+812
+00:37:04,396 --> 00:37:05,746
+There are a number
+of different ones
+
+
+813
+00:37:05,746 --> 00:37:07,986
+that your server
+probably supports.
+
+
+814
+00:37:09,136 --> 00:37:11,506
+However, compared to
+the database that's back
+
+
+815
+00:37:11,506 --> 00:37:12,616
+in your MDM solution,
+
+
+816
+00:37:13,176 --> 00:37:15,746
+most directory services
+have some capabilities
+
+
+817
+00:37:15,746 --> 00:37:17,996
+which make them limited
+in this context.
+
+
+818
+00:37:19,146 --> 00:37:21,756
+Usually you can't get a full
+enumeration of their contents.
+
+
+819
+00:37:22,336 --> 00:37:24,526
+And there's not an easy
+way to discover the changes
+
+
+820
+00:37:24,526 --> 00:37:26,436
+from the last time you
+fetched some subsection
+
+
+821
+00:37:26,436 --> 00:37:27,306
+of those contents.
+
+
+822
+00:37:27,836 --> 00:37:30,556
+They can be intermittently
+available and slow.
+
+
+823
+00:37:31,156 --> 00:37:32,696
+So you're going to want
+to need to mirror some
+
+
+824
+00:37:32,696 --> 00:37:34,606
+of the information
+into your server.
+
+
+825
+00:37:34,996 --> 00:37:38,236
+In contrast, we've designed both
+the Device Enrollment Program
+
+
+826
+00:37:38,236 --> 00:37:41,106
+service and the Volume Purchase
+Program service to be simple
+
+
+827
+00:37:41,106 --> 00:37:43,996
+and efficient to mirror that
+data into your MDM solution.
+
+
+828
+00:37:44,446 --> 00:37:46,946
+You can fully enumerate
+the licenses for VPP
+
+
+829
+00:37:47,146 --> 00:37:49,316
+or the device list for the
+Device Enrollment Program.
+
+
+830
+00:37:49,786 --> 00:37:51,806
+And it's easy to get the
+changes from the last time
+
+
+831
+00:37:51,806 --> 00:37:53,056
+that you got the enumeration.
+
+
+832
+00:37:53,846 --> 00:37:55,436
+So you should definitely
+mirror this information
+
+
+833
+00:37:55,436 --> 00:37:58,886
+down in your database and
+not use those services
+
+
+834
+00:37:58,886 --> 00:38:01,816
+for live access.
+
+
+835
+00:38:01,996 --> 00:38:04,616
+Similarly, you're
+going to want to mirror
+
+
+836
+00:38:04,616 --> 00:38:06,386
+in the directory
+services information
+
+
+837
+00:38:06,386 --> 00:38:08,296
+to get better performance
+and reliability
+
+
+838
+00:38:08,296 --> 00:38:11,006
+and all the benefits
+of your database.
+
+
+839
+00:38:11,526 --> 00:38:13,096
+But definitely leave
+the authentication piece
+
+
+840
+00:38:13,096 --> 00:38:14,226
+in directory services.
+
+
+841
+00:38:14,226 --> 00:38:16,086
+It's less frequently
+used, and you need
+
+
+842
+00:38:16,086 --> 00:38:18,876
+to have a single source
+of truth for that.
+
+
+843
+00:38:19,116 --> 00:38:20,196
+Also, you're not going to want
+
+
+844
+00:38:20,196 --> 00:38:21,946
+to mirror your entire
+directory services
+
+
+845
+00:38:21,976 --> 00:38:23,306
+into your database, of course.
+
+
+846
+00:38:23,306 --> 00:38:26,256
+You want to just mirror in
+records that are related to MDM.
+
+
+847
+00:38:26,256 --> 00:38:32,316
+Next, I want to talk about
+a new concept that those
+
+
+848
+00:38:32,316 --> 00:38:34,426
+of you familiar with the
+StoreBag from iTunes,
+
+
+849
+00:38:34,426 --> 00:38:36,466
+we could also call
+this the URL bag.
+
+
+850
+00:38:37,676 --> 00:38:40,116
+It's something that would
+make it much easier for tools
+
+
+851
+00:38:40,116 --> 00:38:42,586
+like Apple Configurator and
+other device management tools
+
+
+852
+00:38:42,626 --> 00:38:46,686
+to just ask the MDM server what
+information they can obtain
+
+
+853
+00:38:46,826 --> 00:38:47,746
+from it.
+
+
+854
+00:38:49,266 --> 00:38:51,866
+We specify this new
+URI MDM service config
+
+
+855
+00:38:52,316 --> 00:38:57,096
+that any tool could then make
+an unauthenticated HTTPS request
+
+
+856
+00:38:57,096 --> 00:39:01,616
+to your server and ask for it to
+provide a UTF8 JSON encoded hash
+
+
+857
+00:39:01,616 --> 00:39:05,806
+for example, the URL for your
+MDM server's Device Enrollment
+
+
+858
+00:39:05,806 --> 00:39:06,566
+Program enrollment.
+
+
+859
+00:39:07,356 --> 00:39:09,686
+This would allow a tool
+like Apple Configurator
+
+
+860
+00:39:09,686 --> 00:39:12,576
+to make it much easier for
+administrator to use it
+
+
+861
+00:39:12,576 --> 00:39:14,806
+to configure settings
+because they wouldn't have
+
+
+862
+00:39:14,806 --> 00:39:16,596
+to type the entire
+enrollment URL.
+
+
+863
+00:39:16,676 --> 00:39:19,186
+They'd only have to type
+the domain of your server.
+
+
+864
+00:39:19,636 --> 00:39:22,176
+And it could then ask the
+server what's your URL
+
+
+865
+00:39:22,176 --> 00:39:23,476
+and complete that for the user.
+
+
+866
+00:39:24,136 --> 00:39:26,396
+So we're going to
+be implementing this
+
+
+867
+00:39:26,396 --> 00:39:28,826
+in Profile Manager and we strong
+we would really like to see
+
+
+868
+00:39:28,826 --> 00:39:30,406
+that in your MDM
+solutions as well.
+
+
+869
+00:39:31,856 --> 00:39:35,556
+So, again, let's turn to what's
+coming new in iOS 8 in terms
+
+
+870
+00:39:35,556 --> 00:39:37,316
+of MDM commands and queries.
+
+
+871
+00:39:37,316 --> 00:39:38,756
+We've seen some of
+these already.
+
+
+872
+00:39:38,756 --> 00:39:42,136
+But it's now possible for
+supervised devices to tell them
+
+
+873
+00:39:42,136 --> 00:39:44,076
+to set their device
+name via MDM.
+
+
+874
+00:39:44,846 --> 00:39:47,426
+You can also clear the
+restrictions passcode
+
+
+875
+00:39:47,426 --> 00:39:49,596
+in the user has themselves
+configured
+
+
+876
+00:39:49,596 --> 00:39:53,126
+in the settings UI
+restrictions and set a passcode.
+
+
+877
+00:39:53,126 --> 00:39:56,616
+That would have prevented,
+in the past the administrator
+
+
+878
+00:39:56,616 --> 00:39:58,216
+from overriding those
+restrictions.
+
+
+879
+00:39:58,636 --> 00:40:02,046
+Now, you can send an MDM command
+that removes those settings
+
+
+880
+00:40:02,046 --> 00:40:05,426
+and allows the MDM server to
+configure its own settings.
+
+
+881
+00:40:06,116 --> 00:40:07,556
+We've already seen
+the new install
+
+
+882
+00:40:07,556 --> 00:40:11,306
+and remove media commands
+as well as the query
+
+
+883
+00:40:11,306 --> 00:40:14,326
+that allows you to ask which
+iTunes account is configured
+
+
+884
+00:40:14,326 --> 00:40:16,956
+on the device via the
+iTunes Store ID hash.
+
+
+885
+00:40:17,486 --> 00:40:20,046
+But it's also now possible
+to query the device to ask,
+
+
+886
+00:40:20,046 --> 00:40:21,946
+when did it last
+back up to iCloud?
+
+
+887
+00:40:24,386 --> 00:40:26,646
+There are a number of new
+payloads and additions
+
+
+888
+00:40:26,646 --> 00:40:28,346
+to existing payloads in iOS 8.
+
+
+889
+00:40:29,186 --> 00:40:31,106
+There's a new VPN
+connection type.
+
+
+890
+00:40:32,376 --> 00:40:36,526
+We've added new plug in content
+filters to expand on the built
+
+
+891
+00:40:36,526 --> 00:40:38,766
+in content filters that
+we shipped in iOS 7.
+
+
+892
+00:40:40,136 --> 00:40:42,036
+There's a new payload,
+called Managed Domains,
+
+
+893
+00:40:42,036 --> 00:40:43,686
+which we're going to show
+you a little bit later
+
+
+894
+00:40:43,686 --> 00:40:46,976
+that you can have managed
+email and web domains that work
+
+
+895
+00:40:46,976 --> 00:40:50,236
+in conjunction with managed apps
+and books and managed open end
+
+
+896
+00:40:50,236 --> 00:40:53,846
+and help institutions
+keep their data secure.
+
+
+897
+00:40:55,896 --> 00:40:57,366
+I think they actually mentioned,
+
+
+898
+00:40:57,416 --> 00:41:00,146
+Craig actually mentioned
+the message S/MIME switch
+
+
+899
+00:41:00,146 --> 00:41:01,256
+in mail yesterday.
+
+
+900
+00:41:01,256 --> 00:41:03,316
+And it's possible to configure
+whether that's available
+
+
+901
+00:41:03,316 --> 00:41:05,566
+to you user for both
+email and exchange.
+
+
+902
+00:41:06,656 --> 00:41:09,616
+You can specify a certificate
+in the single sign-on payload
+
+
+903
+00:41:09,616 --> 00:41:13,056
+that allows automatic refreshing
+of the Kerberos credentials
+
+
+904
+00:41:13,056 --> 00:41:15,076
+without the user having
+to take any action.
+
+
+905
+00:41:15,286 --> 00:41:17,556
+And there are a number
+of new restrictions,
+
+
+906
+00:41:18,486 --> 00:41:20,536
+both for unsupervised devices,
+
+
+907
+00:41:20,586 --> 00:41:24,596
+the 5 at the top including
+disabling the it's a really cool
+
+
+908
+00:41:24,596 --> 00:41:29,356
+feature Handoff, but that also
+may worry certain institutions
+
+
+909
+00:41:29,356 --> 00:41:32,646
+about data that they consider
+sensitive transitioning
+
+
+910
+00:41:32,646 --> 00:41:36,126
+from a managed device to another
+device outside of their control.
+
+
+911
+00:41:37,076 --> 00:41:39,346
+We also already saw
+the restrictions
+
+
+912
+00:41:39,346 --> 00:41:40,626
+on enterprise books.
+
+
+913
+00:41:41,406 --> 00:41:44,816
+And there are 2 new
+supervised restrictions
+
+
+914
+00:41:45,516 --> 00:41:47,866
+that you can prevent the
+user from erasing all content
+
+
+915
+00:41:47,866 --> 00:41:49,866
+and settings and wiping
+the device and undoing all
+
+
+916
+00:41:49,866 --> 00:41:51,826
+that hard work you did
+to configure that device.
+
+
+917
+00:41:52,606 --> 00:41:55,696
+As well as a pair
+for the MDM command
+
+
+918
+00:41:55,696 --> 00:41:57,586
+that once you've
+cleared the restrictions,
+
+
+919
+00:41:57,586 --> 00:41:58,966
+you can disable the user
+
+
+920
+00:41:58,966 --> 00:42:05,336
+from actually configuring them
+using the device UI in settings.
+
+
+921
+00:42:06,246 --> 00:42:08,046
+Speaking of the device
+UI in settings,
+
+
+922
+00:42:08,046 --> 00:42:10,036
+the iOS team has
+done a lot of work
+
+
+923
+00:42:10,036 --> 00:42:12,496
+to dramatically improve
+the end user experience
+
+
+924
+00:42:12,836 --> 00:42:15,696
+to see the effects
+of an MDM enrollment
+
+
+925
+00:42:15,696 --> 00:42:17,816
+and any configuration profiles.
+
+
+926
+00:42:18,576 --> 00:42:22,586
+An MDM relationship is now
+represented with a single item
+
+
+927
+00:42:23,046 --> 00:42:25,986
+that coalesces all the
+profiles that are installed via
+
+
+928
+00:42:25,986 --> 00:42:29,576
+that MDM channel showing
+all the settings, apps,
+
+
+929
+00:42:29,576 --> 00:42:32,036
+and books that have come down
+via that MDM relationship
+
+
+930
+00:42:32,416 --> 00:42:34,766
+with the most important
+things likes accounts and apps
+
+
+931
+00:42:34,766 --> 00:42:36,426
+and books and restrictions
+at the top.
+
+
+932
+00:42:37,286 --> 00:42:38,256
+What this also means is
+
+
+933
+00:42:38,256 --> 00:42:40,056
+that users cannot no
+longer cherry pick
+
+
+934
+00:42:40,056 --> 00:42:41,696
+and remove individual profiles
+
+
+935
+00:42:41,696 --> 00:42:43,896
+that the MDM server has
+delivered to the device
+
+
+936
+00:42:43,956 --> 00:42:45,386
+because they're just
+not shown that way.
+
+
+937
+00:42:47,996 --> 00:42:49,736
+Another improvement
+in the settings UI is
+
+
+938
+00:42:49,766 --> 00:42:52,216
+that if there are particular
+features like the camera
+
+
+939
+00:42:52,216 --> 00:42:55,886
+or in the restrictions UI in
+settings, it will indicate
+
+
+940
+00:42:55,886 --> 00:42:59,286
+to the user that this particular
+feature has been disabled due
+
+
+941
+00:42:59,286 --> 00:43:00,606
+to a profile being installed.
+
+
+942
+00:43:01,536 --> 00:43:04,876
+So that they aren't confused
+and need to come to Genius Bar
+
+
+943
+00:43:04,876 --> 00:43:06,286
+to ask them why their
+camera's disabled.
+
+
+944
+00:43:08,426 --> 00:43:10,476
+It's also much easier to see
+all the certificate details
+
+
+945
+00:43:10,476 --> 00:43:12,106
+that have been delivered
+via MDM.
+
+
+946
+00:43:13,016 --> 00:43:16,396
+And finally provision profiles
+no longer appear at all
+
+
+947
+00:43:16,396 --> 00:43:19,036
+in settings because it's handled
+completely automatically.
+
+
+948
+00:43:19,426 --> 00:43:23,286
+The device will automatically
+prune expired provision profiles
+
+
+949
+00:43:23,286 --> 00:43:23,976
+when they're no longer needed.
+
+
+950
+00:43:24,516 --> 00:43:27,926
+[ Applause ]
+
+
+951
+00:43:28,426 --> 00:43:29,696
+One less thing to worry about.
+
+
+952
+00:43:30,706 --> 00:43:35,006
+Turning to OS X Yosemite,
+you'll see that we have support
+
+
+953
+00:43:35,006 --> 00:43:36,316
+for a number of the
+new payloads.
+
+
+954
+00:43:36,316 --> 00:43:39,636
+I already talked about on
+iOS 8 as well as the query
+
+
+955
+00:43:39,636 --> 00:43:42,956
+to determine which iTunes
+account has been configured
+
+
+956
+00:43:42,956 --> 00:43:43,916
+on that particular Mac.
+
+
+957
+00:43:44,756 --> 00:43:48,596
+And we also have plugged another
+gap in adding the command
+
+
+958
+00:43:48,596 --> 00:43:51,446
+that tells a Mac to
+initiate AirPlay Mirroring
+
+
+959
+00:43:51,446 --> 00:43:52,406
+to a destination.
+
+
+960
+00:43:54,376 --> 00:43:56,356
+So without further ado,
+I'm going to ask the guys
+
+
+961
+00:43:56,356 --> 00:43:59,156
+to come back up and show you a
+few things that I just talked
+
+
+962
+00:43:59,156 --> 00:44:02,336
+about and completing
+the device duty cycle.
+
+
+963
+00:44:03,086 --> 00:44:07,396
+>> So we go to the settings and
+we'll see what we have active
+
+
+964
+00:44:07,396 --> 00:44:10,226
+as manage settings
+from our MDM server.
+
+
+965
+00:44:10,226 --> 00:44:14,376
+So you'll notice that you
+don't have a profile setting
+
+
+966
+00:44:14,376 --> 00:44:15,266
+under general anymore.
+
+
+967
+00:44:15,516 --> 00:44:16,756
+This is called Device
+Management.
+
+
+968
+00:44:17,026 --> 00:44:20,296
+If I just had regular
+configuration profiles
+
+
+969
+00:44:20,296 --> 00:44:22,886
+installed, this tab
+would be called Profiles.
+
+
+970
+00:44:23,126 --> 00:44:25,086
+If I have both Device
+Management setting
+
+
+971
+00:44:25,356 --> 00:44:28,006
+and Profiles installed it will
+be called Device Management
+
+
+972
+00:44:28,006 --> 00:44:28,536
+and Profiles.
+
+
+973
+00:44:29,016 --> 00:44:31,526
+So but since we only have the
+MDM enrollment profile here,
+
+
+974
+00:44:31,976 --> 00:44:33,446
+I'm going to look into that.
+
+
+975
+00:44:33,446 --> 00:44:38,706
+And, as you notice, this now
+a non-removable MDM profile.
+
+
+976
+00:44:39,276 --> 00:44:41,646
+And you'll notice that
+every single profile
+
+
+977
+00:44:41,646 --> 00:44:44,286
+that the server has
+pushed is now collated
+
+
+978
+00:44:44,316 --> 00:44:46,966
+into some sensical category.
+
+
+979
+00:44:46,966 --> 00:44:48,876
+So we have restrictions
+so you can tell
+
+
+980
+00:44:49,206 --> 00:44:51,586
+which restrictions have been
+configured by the server.
+
+
+981
+00:44:52,926 --> 00:44:56,196
+And we have applications that
+have been installed here.
+
+
+982
+00:44:56,566 --> 00:44:58,786
+And we have also accounts
+that have been configured.
+
+
+983
+00:44:59,116 --> 00:45:01,396
+So we don't show the
+individual profiles
+
+
+984
+00:45:01,556 --> 00:45:02,846
+that actually configured this.
+
+
+985
+00:45:03,166 --> 00:45:04,666
+We just collate all
+this information
+
+
+986
+00:45:04,666 --> 00:45:07,406
+so that's it's more readily
+accessible and discoverable.
+
+
+987
+00:45:08,146 --> 00:45:10,366
+And in more details,
+as Todd mentioned,
+
+
+988
+00:45:10,366 --> 00:45:12,946
+we have better information
+about certificates.
+
+
+989
+00:45:12,946 --> 00:45:16,556
+We can now actually see the full
+signatures and how they keyed it
+
+
+990
+00:45:16,556 --> 00:45:18,296
+up so it's not just
+like dot, dot, dot.
+
+
+991
+00:45:19,166 --> 00:45:21,836
+And you can also
+have information
+
+
+992
+00:45:21,836 --> 00:45:23,766
+about other settings
+that come down.
+
+
+993
+00:45:23,956 --> 00:45:25,746
+And here we have
+managed domains.
+
+
+994
+00:45:25,746 --> 00:45:27,896
+So I'm going to show
+you managed domains.
+
+
+995
+00:45:27,896 --> 00:45:29,836
+How those are working in mail.
+
+
+996
+00:45:30,196 --> 00:45:33,416
+So we are in ACME, Inc.
+
+
+997
+00:45:33,556 --> 00:45:34,886
+in acmeinc.private.
+
+
+998
+00:45:34,886 --> 00:45:37,766
+And as I'm going to
+start composing an email,
+
+
+999
+00:45:38,156 --> 00:45:40,726
+I'm going to pick
+mark@mdm.apple.com.
+
+
+1000
+00:45:41,106 --> 00:45:43,116
+And this is now Mark's address.
+
+
+1001
+00:45:43,716 --> 00:45:46,346
+This is not something that I
+should probably be sending email
+
+
+1002
+00:45:46,516 --> 00:45:48,266
+to so it's marked as red.
+
+
+1003
+00:45:48,736 --> 00:45:51,476
+If I use a different address,
+
+
+1004
+00:45:51,626 --> 00:45:55,656
+use my acme in private mail
+that's marked as a valid email
+
+
+1005
+00:45:55,906 --> 00:45:58,676
+that meets our email rules.
+
+
+1006
+00:45:58,946 --> 00:46:00,736
+And this also applies
+to my sending account
+
+
+1007
+00:46:00,736 --> 00:46:03,426
+so since I have configured
+this device for iCloud,
+
+
+1008
+00:46:03,426 --> 00:46:05,016
+I also have my iCloud account.
+
+
+1009
+00:46:05,416 --> 00:46:08,566
+So my iCloud account
+is also marked
+
+
+1010
+00:46:08,826 --> 00:46:12,476
+as not something I should
+be sending mail with.
+
+
+1011
+00:46:12,716 --> 00:46:15,276
+So that's managed
+domains inside mail.
+
+
+1012
+00:46:17,526 --> 00:46:20,446
+And then we are basically
+done with the device.
+
+
+1013
+00:46:20,656 --> 00:46:22,686
+So now we can return
+this device to service
+
+
+1014
+00:46:22,986 --> 00:46:25,166
+so the next user is going
+to grab this machine.
+
+
+1015
+00:46:25,496 --> 00:46:26,656
+And what Mark's going to do,
+
+
+1016
+00:46:26,656 --> 00:46:30,236
+he's going to issue an erase
+command onto the device.
+
+
+1017
+00:46:30,606 --> 00:46:34,196
+So basically the user has left
+the company or has graduated
+
+
+1018
+00:46:34,196 --> 00:46:36,966
+from the school and
+magic happens now.
+
+
+1019
+00:46:37,096 --> 00:46:39,086
+So we're going to unplug
+this device and plug
+
+
+1020
+00:46:39,136 --> 00:46:39,976
+to a different device.
+
+
+1021
+00:46:41,216 --> 00:46:42,166
+So here we go.
+
+
+1022
+00:46:42,716 --> 00:46:47,376
+And now we have just
+received the same device
+
+
+1023
+00:46:47,646 --> 00:46:49,846
+and we're back in
+the home screen.
+
+
+1024
+00:46:50,106 --> 00:46:52,866
+I'm going to as a new
+user, I'm going to walk
+
+
+1025
+00:46:52,866 --> 00:46:55,726
+through the setup screens
+and configure this device.
+
+
+1026
+00:46:55,726 --> 00:46:55,826
+So.
+
+
+1027
+00:46:55,996 --> 00:46:59,256
+>> This a device that's come
+back for the duty cycle.
+
+
+1028
+00:46:59,496 --> 00:47:02,656
+And I've got the Activation Lock
+bypass code for this device.
+
+
+1029
+00:47:03,116 --> 00:47:04,896
+And so he's just
+going to walk through,
+
+
+1030
+00:47:04,896 --> 00:47:07,536
+go ahead, and set it up.
+
+
+1031
+00:47:07,806 --> 00:47:11,116
+And when he encounters the fact
+that it's locked, I'll be able
+
+
+1032
+00:47:11,116 --> 00:47:12,596
+to clear it; and he'll be able
+
+
+1033
+00:47:12,596 --> 00:47:15,656
+to actually finish
+activation and continue on.
+
+
+1034
+00:47:16,336 --> 00:47:18,216
+>> Right. So as soon
+as the device talks
+
+
+1035
+00:47:18,216 --> 00:47:20,986
+to the Apple services
+again, I'm getting prompted
+
+
+1036
+00:47:20,986 --> 00:47:24,666
+for some random Apple ID because
+the previous user had enabled
+
+
+1037
+00:47:24,666 --> 00:47:27,116
+iCloud even though this
+was a supervised device,
+
+
+1038
+00:47:27,116 --> 00:47:29,956
+we had allowed people
+to use find my iPad
+
+
+1039
+00:47:30,356 --> 00:47:33,236
+and now I have no idea what
+this user's account is,
+
+
+1040
+00:47:33,486 --> 00:47:37,946
+so Mark has just issued an
+Activation Lock unlock command
+
+
+1041
+00:47:38,046 --> 00:47:41,466
+from Profile Manager
+and if I now go back
+
+
+1042
+00:47:41,466 --> 00:47:46,976
+to the activation phase, now
+I'm going to prompted to enroll
+
+
+1043
+00:47:46,976 --> 00:47:50,586
+in my MDM server, again all
+ACME help desk for an issue.
+
+
+1044
+00:47:51,086 --> 00:47:53,836
+And my next user is now
+going to get prompted
+
+
+1045
+00:47:53,836 --> 00:47:56,866
+to enter their password,
+and we're good to go.
+
+
+1046
+00:47:57,126 --> 00:48:00,456
+So that's the duty cycle
+of using iPads with MDM
+
+
+1047
+00:48:00,456 --> 00:48:02,306
+and Device Enrollment Program.
+
+
+1048
+00:48:02,306 --> 00:48:04,546
+So thank you, Mark,
+and back to Todd.
+
+
+1049
+00:48:04,836 --> 00:48:07,886
+>> So Jussi just gave you a
+brief tour of the new easier
+
+
+1050
+00:48:07,886 --> 00:48:11,736
+to understand user interface
+in settings in iOS 8.
+
+
+1051
+00:48:11,736 --> 00:48:15,376
+Make it easier for a user to
+understand what the impacts
+
+
+1052
+00:48:15,376 --> 00:48:17,436
+of that MDM relationship
+is on their device.
+
+
+1053
+00:48:18,496 --> 00:48:20,926
+Showed you how managed
+email domains work
+
+
+1054
+00:48:21,206 --> 00:48:25,866
+to help users prevent data
+leakage sending documents
+
+
+1055
+00:48:25,866 --> 00:48:26,996
+to the wrong email addresses.
+
+
+1056
+00:48:27,836 --> 00:48:30,976
+We also showed how to use the
+Activation Lock bypass code
+
+
+1057
+00:48:30,976 --> 00:48:33,906
+that we captured when enrolling
+device to enable the device
+
+
+1058
+00:48:33,906 --> 00:48:35,606
+to be wiped and returned
+to service
+
+
+1059
+00:48:35,886 --> 00:48:37,166
+by completing the duty cycle.
+
+
+1060
+00:48:37,766 --> 00:48:39,266
+And, again, getting that device
+
+
+1061
+00:48:39,266 --> 00:48:41,056
+through Device Enrollment
+Program settings
+
+
+1062
+00:48:41,166 --> 00:48:42,856
+to reenroll in your
+MDM solution.
+
+
+1063
+00:48:44,356 --> 00:48:46,086
+That brings us to the
+end of our session.
+
+
+1064
+00:48:46,626 --> 00:48:48,166
+I'd like to sum up for, again,
+
+
+1065
+00:48:48,166 --> 00:48:49,776
+the different audiences
+for this session.
+
+
+1066
+00:48:49,996 --> 00:48:51,116
+If you're an administrator,
+
+
+1067
+00:48:51,466 --> 00:48:53,526
+you should use the Device
+Enrollment Program if you want
+
+
+1068
+00:48:53,526 --> 00:48:56,316
+to enroll your devices
+wirelessly or Apple Configurator
+
+
+1069
+00:48:56,316 --> 00:48:57,356
+if you want to do it wired.
+
+
+1070
+00:48:58,456 --> 00:49:00,926
+You should use the Volume
+Purchase Program managed
+
+
+1071
+00:49:00,926 --> 00:49:02,916
+distribution and
+managed apps and books
+
+
+1072
+00:49:02,916 --> 00:49:04,836
+to distribute content
+to your devices.
+
+
+1073
+00:49:05,486 --> 00:49:07,106
+If you are a MDM
+solution provider,
+
+
+1074
+00:49:07,416 --> 00:49:09,366
+please support all
+these services:
+
+
+1075
+00:49:09,366 --> 00:49:11,906
+Device Enrollment Program,
+Volume Purchase Program,
+
+
+1076
+00:49:11,946 --> 00:49:14,306
+and Activation Lock
+management as well
+
+
+1077
+00:49:14,306 --> 00:49:16,136
+as all the new futures
+we talked about today
+
+
+1078
+00:49:16,266 --> 00:49:18,366
+in both iOS 8 and OS X Yosemite.
+
+
+1079
+00:49:19,166 --> 00:49:20,286
+If you're an app developer,
+
+
+1080
+00:49:20,836 --> 00:49:24,166
+for your enterprise we've got
+this great new page that talks
+
+
+1081
+00:49:24,166 --> 00:49:26,746
+about how you can use
+iOS to the best effect
+
+
+1082
+00:49:26,746 --> 00:49:29,016
+within your enterprise
+doing in-house development.
+
+
+1083
+00:49:30,306 --> 00:49:31,966
+We have a number of
+resources, again,
+
+
+1084
+00:49:31,966 --> 00:49:34,506
+for developers both
+MDM and app developers.
+
+
+1085
+00:49:34,706 --> 00:49:37,116
+Our documentation
+of or MDM protocol,
+
+
+1086
+00:49:37,116 --> 00:49:38,756
+the configuration
+profile reference,
+
+
+1087
+00:49:39,206 --> 00:49:40,596
+the developer forums for MDM.
+
+
+1088
+00:49:40,596 --> 00:49:43,596
+And if there are any
+administrators out there,
+
+
+1089
+00:49:44,116 --> 00:49:46,976
+we've got documentation for
+the Device Enrollment Program
+
+
+1090
+00:49:47,106 --> 00:49:50,036
+and Apple Configurator and a
+number of discussion boards
+
+
+1091
+00:49:50,036 --> 00:49:52,436
+that are great places to ask
+your questions and get help,
+
+
+1092
+00:49:52,786 --> 00:49:54,646
+both from your fellow
+administrators
+
+
+1093
+00:49:54,646 --> 00:49:56,556
+and Apple representatives.
+
+
+1094
+00:49:58,116 --> 00:50:01,466
+There are a number of additional
+sessions this week including 2
+
+
+1095
+00:50:01,466 --> 00:50:03,826
+following this session right
+here in Pacific Heights.
+
+
+1096
+00:50:04,476 --> 00:50:07,896
+Some of our colleagues that help
+make that great new UI in iOS
+
+
+1097
+00:50:07,896 --> 00:50:09,526
+and implement a lot
+of these features.
+
+
+1098
+00:50:10,026 --> 00:50:12,306
+And with that, I will thank
+you for your attention
+
+
+1099
+00:50:12,306 --> 00:50:14,166
+and hope you have a
+great rest of the show.
+
+
+1100
+00:50:14,496 --> 00:50:14,856
+Thank you.
+

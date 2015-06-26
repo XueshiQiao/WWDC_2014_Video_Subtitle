@@ -1,0 +1,5324 @@
+1
+00:00:11,856 --> 00:00:14,416
+>> Good morning, everyone,
+my name is Jesse Bunch.
+
+
+2
+00:00:14,526 --> 00:00:16,436
+I'm an engineer on
+Apple's Productivity team,
+
+
+3
+00:00:16,436 --> 00:00:18,976
+and today I'm going to
+be talking to you about
+
+
+4
+00:00:18,976 --> 00:00:21,486
+"Improving the Accessibility
+and Usability
+
+
+5
+00:00:21,686 --> 00:00:23,246
+of Complex Web Applications".
+
+
+6
+00:00:23,806 --> 00:00:27,146
+So my teammates and
+I have been hard
+
+
+7
+00:00:27,146 --> 00:00:29,346
+at work improving the
+accessibility of iWork
+
+
+8
+00:00:29,346 --> 00:00:31,786
+for iCloud, which is
+a sophisticated suite
+
+
+9
+00:00:31,906 --> 00:00:34,836
+of web applications designed
+to allow you to create
+
+
+10
+00:00:34,836 --> 00:00:38,586
+and edit your Pages documents,
+your Numbers spreadsheets,
+
+
+11
+00:00:39,356 --> 00:00:42,916
+and your Keynote presentations
+all across platforms and all
+
+
+12
+00:00:42,916 --> 00:00:45,616
+from within your web browser.
+
+
+13
+00:00:45,776 --> 00:00:47,456
+While there is still
+more work to be done
+
+
+14
+00:00:47,456 --> 00:00:50,686
+in making them accessible, we
+found that a lot of the issues
+
+
+15
+00:00:50,686 --> 00:00:53,816
+that we were fixing in
+iWork for iCloud are issues
+
+
+16
+00:00:54,016 --> 00:00:56,106
+that are commonplace in
+web applications today.
+
+
+17
+00:00:56,526 --> 00:00:59,056
+And so we thought it would
+be really great to highlight
+
+
+18
+00:00:59,056 --> 00:01:01,576
+for you some of these specific
+accessibility challenges,
+
+
+19
+00:01:01,576 --> 00:01:04,846
+as well as provide practical
+solutions for these challenges
+
+
+20
+00:01:05,135 --> 00:01:06,676
+and give you tips on
+how you may be able
+
+
+21
+00:01:06,676 --> 00:01:07,656
+to avoid them altogether.
+
+
+22
+00:01:08,956 --> 00:01:12,136
+So today, we're going
+to cover accessibility
+
+
+23
+00:01:12,316 --> 00:01:13,386
+at a fundamental level.
+
+
+24
+00:01:13,386 --> 00:01:15,436
+We're going to cover
+the latest research
+
+
+25
+00:01:15,436 --> 00:01:17,516
+and statistics regarding
+users with disabilities.
+
+
+26
+00:01:17,596 --> 00:01:20,786
+And then we're going to cover
+Web Accessibility Standards
+
+
+27
+00:01:20,966 --> 00:01:22,646
+as well as some of
+the tools you can use
+
+
+28
+00:01:22,646 --> 00:01:23,896
+to help meet those standards.
+
+
+29
+00:01:24,456 --> 00:01:26,746
+And then finally, we're
+going to apply everything
+
+
+30
+00:01:26,746 --> 00:01:28,586
+that we've learned
+to help diagnose
+
+
+31
+00:01:28,586 --> 00:01:30,466
+and fix some accessibility
+issues
+
+
+32
+00:01:30,466 --> 00:01:32,606
+in a text editing
+application that I've created.
+
+
+33
+00:01:32,876 --> 00:01:34,206
+And I'll even show you some
+
+
+34
+00:01:34,206 --> 00:01:38,216
+of the new accessibility
+debugging tools found
+
+
+35
+00:01:38,216 --> 00:01:40,586
+in the Safari Node
+Inspector in OS X Yosemite.
+
+
+36
+00:01:40,586 --> 00:01:44,086
+So let's get started.
+
+
+37
+00:01:44,356 --> 00:01:47,786
+This is the 1992 version
+of the very first website.
+
+
+38
+00:01:48,236 --> 00:01:49,666
+It's still on the
+Internet today.
+
+
+39
+00:01:50,396 --> 00:01:52,796
+It's just a page full of
+data and links that go
+
+
+40
+00:01:52,796 --> 00:01:54,836
+out to other pages
+full of data and links.
+
+
+41
+00:01:55,556 --> 00:01:57,436
+And it was revolutionary
+in its time.
+
+
+42
+00:01:58,016 --> 00:02:01,116
+And while it was revolutionary,
+it was also very simple.
+
+
+43
+00:02:01,426 --> 00:02:03,276
+In fact, the argument
+can be made
+
+
+44
+00:02:03,276 --> 00:02:05,756
+that this website was
+accessible by default.
+
+
+45
+00:02:06,236 --> 00:02:10,216
+After all, it's just text-based
+content, and it's rather trivial
+
+
+46
+00:02:10,216 --> 00:02:13,586
+to disseminate purely text-based
+content to a screen reader.
+
+
+47
+00:02:14,536 --> 00:02:17,036
+But if you fast forward
+to web applications today,
+
+
+48
+00:02:17,366 --> 00:02:19,666
+modern web applications
+sometimes use completely
+
+
+49
+00:02:19,666 --> 00:02:20,606
+custom controls.
+
+
+50
+00:02:21,066 --> 00:02:23,026
+They have real-time
+content and data coming
+
+
+51
+00:02:23,026 --> 00:02:24,036
+in and out of the page.
+
+
+52
+00:02:24,546 --> 00:02:26,576
+They use charts and graphs.
+
+
+53
+00:02:27,006 --> 00:02:29,246
+And most of this content
+was initially designed
+
+
+54
+00:02:29,406 --> 00:02:30,956
+with only the mouse
+user in mind.
+
+
+55
+00:02:31,666 --> 00:02:34,466
+But what if you don't
+prefer using a mouse?
+
+
+56
+00:02:35,096 --> 00:02:36,786
+Or what if you can't
+use a mouse due
+
+
+57
+00:02:36,786 --> 00:02:38,766
+to some dexterity
+issue in your hands?
+
+
+58
+00:02:39,556 --> 00:02:43,116
+Well, in fact millions of people
+every day use accessible web
+
+
+59
+00:02:43,116 --> 00:02:44,916
+applications, some of them
+
+
+60
+00:02:44,996 --> 00:02:47,656
+with only a single switch
+using Switch Control software.
+
+
+61
+00:02:48,146 --> 00:02:51,696
+This lady can control an
+entire iOS device as well
+
+
+62
+00:02:51,696 --> 00:02:55,616
+as your accessible web
+applications using only the
+
+
+63
+00:02:55,616 --> 00:02:57,476
+single switch that's
+mounted by her forehead.
+
+
+64
+00:02:58,006 --> 00:02:59,266
+It's absolutely incredible.
+
+
+65
+00:02:59,266 --> 00:03:02,946
+And accessibility
+is a broad field
+
+
+66
+00:03:02,946 --> 00:03:04,806
+that means different
+things to different people.
+
+
+67
+00:03:05,276 --> 00:03:08,676
+But in short, accessibility is
+about supporting real people
+
+
+68
+00:03:08,676 --> 00:03:11,286
+with real needs, whatever
+those needs may be.
+
+
+69
+00:03:11,666 --> 00:03:13,936
+And sometimes we do that
+by providing an alternate
+
+
+70
+00:03:13,936 --> 00:03:17,156
+interaction model, such as a
+keyboard or a switch control,
+
+
+71
+00:03:17,896 --> 00:03:20,636
+that's more appropriate given
+the user's specific needs.
+
+
+72
+00:03:21,436 --> 00:03:25,036
+And as web engineers, it is our
+most basic duty to make sure
+
+
+73
+00:03:25,036 --> 00:03:28,136
+that our web applications work
+well with assistive technology.
+
+
+74
+00:03:29,426 --> 00:03:33,606
+That's true, and we do that by
+handling the right JavaScript
+
+
+75
+00:03:33,606 --> 00:03:35,706
+events, by adding the
+right markup in our code.
+
+
+76
+00:03:35,706 --> 00:03:37,896
+But what if we took
+it a step further?
+
+
+77
+00:03:38,826 --> 00:03:41,816
+What if we designed our
+applications so thoughtfully
+
+
+78
+00:03:42,186 --> 00:03:45,116
+that they would be useable by
+everyone, regardless of whether
+
+
+79
+00:03:45,116 --> 00:03:46,256
+or not they had a disability?
+
+
+80
+00:03:47,346 --> 00:03:50,236
+The term "universal design"
+deals with this specifically,
+
+
+81
+00:03:50,266 --> 00:03:51,996
+and the quintessential example
+
+
+82
+00:03:51,996 --> 00:03:53,996
+of universal design
+is the curb cut.
+
+
+83
+00:03:55,296 --> 00:03:59,246
+This is now required by law,
+and it's crucial for someone
+
+
+84
+00:03:59,246 --> 00:04:02,036
+who needs a wheelchair for
+mobility, but it is just
+
+
+85
+00:04:02,036 --> 00:04:04,376
+as useful for someone
+who is pushing a stroller
+
+
+86
+00:04:04,376 --> 00:04:06,876
+down the street, or
+movers moving you
+
+
+87
+00:04:06,876 --> 00:04:07,946
+into your new apartment.
+
+
+88
+00:04:09,176 --> 00:04:10,246
+Another great example
+
+
+89
+00:04:10,246 --> 00:04:11,986
+of universal design
+is closed captioning.
+
+
+90
+00:04:12,696 --> 00:04:16,036
+Here, we have a baseball game
+and the announcer is talking
+
+
+91
+00:04:16,036 --> 00:04:17,916
+about this guy's
+swing-which looks beautiful
+
+
+92
+00:04:17,916 --> 00:04:20,726
+by the way-and we're
+using closed captioning
+
+
+93
+00:04:20,726 --> 00:04:22,446
+to provide a text-based
+alternative
+
+
+94
+00:04:22,446 --> 00:04:23,866
+for the audio track
+in this movie.
+
+
+95
+00:04:24,706 --> 00:04:27,396
+This is absolutely vital for
+someone who is hearing-impaired
+
+
+96
+00:04:27,396 --> 00:04:30,516
+or deaf, but it is just
+as useful in an airport
+
+
+97
+00:04:30,516 --> 00:04:33,346
+or a doctor's office or
+somewhere else where sound needs
+
+
+98
+00:04:33,346 --> 00:04:36,476
+to be regulated and therefore
+they may not have audio playing.
+
+
+99
+00:04:36,996 --> 00:04:40,956
+For web applications,
+a great example
+
+
+100
+00:04:40,956 --> 00:04:43,516
+of universal design is
+full keyboard access.
+
+
+101
+00:04:44,146 --> 00:04:47,206
+This is the idea that your
+application should be usable
+
+
+102
+00:04:47,426 --> 00:04:48,566
+using only the keyboard.
+
+
+103
+00:04:49,376 --> 00:04:51,966
+If we take a look at the Pages
+for iCloud user interface,
+
+
+104
+00:04:52,636 --> 00:04:56,076
+you'll see that when the user
+hits the Tab key, focus is going
+
+
+105
+00:04:56,076 --> 00:04:57,916
+to go to the button at
+the top of the page.
+
+
+106
+00:04:57,916 --> 00:05:00,616
+This is the Zoom popup
+button, and you know this
+
+
+107
+00:05:00,656 --> 00:05:02,786
+because of the blue outline
+that appeared over the button.
+
+
+108
+00:05:02,846 --> 00:05:05,286
+And I've highlighted
+that with that box.
+
+
+109
+00:05:06,256 --> 00:05:08,396
+Now, keyboard users
+expect to be able
+
+
+110
+00:05:08,396 --> 00:05:10,786
+to select a button
+using the Space bar
+
+
+111
+00:05:10,786 --> 00:05:12,006
+or sometimes the Return key.
+
+
+112
+00:05:12,376 --> 00:05:15,036
+So if the user hits the Space
+bar to activate this button,
+
+
+113
+00:05:15,296 --> 00:05:17,106
+you'll see that the
+menu is activated just
+
+
+114
+00:05:17,106 --> 00:05:18,686
+as if they had clicked
+it with the mouse.
+
+
+115
+00:05:19,556 --> 00:05:22,156
+Then we can navigate the menu
+with the Arrow keys and go
+
+
+116
+00:05:22,156 --> 00:05:24,216
+down to the 75% Zoom level.
+
+
+117
+00:05:24,586 --> 00:05:29,766
+And when we get to the 75% Zoom
+level, a keyboard user expects
+
+
+118
+00:05:29,766 --> 00:05:31,536
+to be able to press the
+Space bar to activate
+
+
+119
+00:05:31,536 --> 00:05:32,656
+and select that menu item.
+
+
+120
+00:05:33,016 --> 00:05:35,456
+And so when they do that, you'll
+see that the menu goes away,
+
+
+121
+00:05:35,456 --> 00:05:37,156
+just as if they had
+clicked that with the mouse,
+
+
+122
+00:05:37,526 --> 00:05:40,526
+and the Zoom level of the
+page obviously changes.
+
+
+123
+00:05:40,696 --> 00:05:42,686
+And then you'll notice
+an important detail,
+
+
+124
+00:05:42,866 --> 00:05:44,876
+that we've set the
+keyboard focus back
+
+
+125
+00:05:44,876 --> 00:05:46,236
+to the button that
+opened the menu.
+
+
+126
+00:05:46,546 --> 00:05:49,236
+This small detail is very
+important for keyboard users
+
+
+127
+00:05:49,236 --> 00:05:52,086
+to be able to save the context
+to where they were at prior
+
+
+128
+00:05:52,086 --> 00:05:54,886
+to some interactive
+element popping up onscreen.
+
+
+129
+00:05:55,226 --> 00:05:58,386
+And being able to interact with
+the user interface of Pages
+
+
+130
+00:05:58,386 --> 00:06:01,606
+for iCloud in this way is
+absolutely crucial for someone
+
+
+131
+00:06:01,606 --> 00:06:03,316
+who has a dexterity
+issue in their hand
+
+
+132
+00:06:03,316 --> 00:06:04,906
+and therefore they
+cannot use a mouse.
+
+
+133
+00:06:05,626 --> 00:06:08,316
+But it is just as important
+for someone who has a lot
+
+
+134
+00:06:08,316 --> 00:06:11,426
+of document editing to do in
+perhaps a short amount of time
+
+
+135
+00:06:11,686 --> 00:06:13,696
+and they want to be as
+efficient as possible.
+
+
+136
+00:06:15,126 --> 00:06:18,186
+While we're mostly
+focused on the human aspect
+
+
+137
+00:06:18,186 --> 00:06:20,406
+of accessibility, it
+is worth mentioning
+
+
+138
+00:06:20,406 --> 00:06:22,636
+that applying the
+principals of universal design
+
+
+139
+00:06:22,636 --> 00:06:26,236
+and making your web applications
+accessible will make them easier
+
+
+140
+00:06:26,236 --> 00:06:26,946
+to automate.
+
+
+141
+00:06:27,316 --> 00:06:29,816
+And automation has
+numerous benefits for you
+
+
+142
+00:06:29,816 --> 00:06:30,746
+and your organization.
+
+
+143
+00:06:31,316 --> 00:06:34,236
+And for more information about
+automation and how it relates
+
+
+144
+00:06:34,236 --> 00:06:37,656
+to accessibility, I've included
+a link to a previous year's talk
+
+
+145
+00:06:37,796 --> 00:06:38,956
+at the end of this presentation.
+
+
+146
+00:06:39,476 --> 00:06:43,446
+So as you saw from
+the previous examples,
+
+
+147
+00:06:43,826 --> 00:06:46,416
+the reasons for making your web
+application accessible are not
+
+
+148
+00:06:46,416 --> 00:06:49,126
+limited to simply caring
+for those with disabilities.
+
+
+149
+00:06:49,446 --> 00:06:51,686
+Rather, all users can
+benefit from the work
+
+
+150
+00:06:51,686 --> 00:06:52,676
+that you do in this area.
+
+
+151
+00:06:53,396 --> 00:06:56,406
+But for the purposes of this
+talk and our topic of web apps,
+
+
+152
+00:06:56,666 --> 00:06:58,806
+we're going to be focusing
+specifically on users
+
+
+153
+00:06:58,806 --> 00:07:01,126
+with visual impairments
+that may or may not be able
+
+
+154
+00:07:01,126 --> 00:07:03,436
+to use our applications
+without some sort
+
+
+155
+00:07:03,436 --> 00:07:05,616
+of assistive technology,
+such as a screen reader
+
+
+156
+00:07:05,736 --> 00:07:06,706
+or braille device.
+
+
+157
+00:07:06,936 --> 00:07:10,046
+And in fact, that user
+base is no small figure:
+
+
+158
+00:07:10,756 --> 00:07:14,736
+285 million people across the
+world are visually impaired
+
+
+159
+00:07:14,736 --> 00:07:18,906
+worldwide, such that they
+cannot read some or all
+
+
+160
+00:07:19,166 --> 00:07:21,486
+of the given content
+of a given web page.
+
+
+161
+00:07:22,396 --> 00:07:26,156
+And out of that 285 million
+people, 40 million people
+
+
+162
+00:07:26,156 --> 00:07:27,906
+across the world
+are completely blind
+
+
+163
+00:07:28,266 --> 00:07:30,326
+and therefore require the
+use of a screen reader
+
+
+164
+00:07:30,326 --> 00:07:32,666
+or braille device to
+be able to benefit
+
+
+165
+00:07:32,666 --> 00:07:33,916
+from your web application.
+
+
+166
+00:07:34,806 --> 00:07:38,016
+So for more than 40 million
+people around the world,
+
+
+167
+00:07:38,196 --> 00:07:40,976
+accessibility is not just
+a nice-to-have feature;
+
+
+168
+00:07:40,976 --> 00:07:43,606
+it is a vital part
+of their lives.
+
+
+169
+00:07:44,406 --> 00:07:46,986
+And for some, it is a
+prerequisite from being able
+
+
+170
+00:07:46,986 --> 00:07:50,216
+to benefit from your application
+or the hard work that you
+
+
+171
+00:07:50,216 --> 00:07:55,046
+and your teams have put into it.
+
+
+172
+00:07:55,306 --> 00:07:57,886
+So now that I've hopefully
+sold you on the idea
+
+
+173
+00:07:57,886 --> 00:07:59,646
+of making your application
+accessible,
+
+
+174
+00:08:00,126 --> 00:08:03,136
+let's talk about some of the
+web standards that are out there
+
+
+175
+00:08:03,136 --> 00:08:04,256
+to help you along the way.
+
+
+176
+00:08:04,316 --> 00:08:06,896
+And specifically, I
+want to talk about the
+
+
+177
+00:08:06,896 --> 00:08:08,976
+"Web Content Accessibility
+Guidelines,"
+
+
+178
+00:08:09,276 --> 00:08:11,206
+abbreviated WCAG for short.
+
+
+179
+00:08:12,296 --> 00:08:15,776
+Now, the WCAG document is quite
+lengthy, but for the purposes
+
+
+180
+00:08:15,776 --> 00:08:19,296
+of this talk we can boil it
+down to four basic principles,
+
+
+181
+00:08:19,716 --> 00:08:22,916
+which are: perceivable,
+operable,
+
+
+182
+00:08:23,516 --> 00:08:25,916
+understandable and robust.
+
+
+183
+00:08:26,326 --> 00:08:28,016
+And we're going to go
+through the four of these
+
+
+184
+00:08:28,016 --> 00:08:29,986
+in more detail starting
+with perceivable.
+
+
+185
+00:08:31,166 --> 00:08:34,326
+"Perceivable" basically means,
+"Do I know it is there?"
+
+
+186
+00:08:35,166 --> 00:08:38,126
+In this, we're going back to
+the closed captioned example.
+
+
+187
+00:08:38,126 --> 00:08:42,176
+In this example we have, you
+know, some text-based content
+
+
+188
+00:08:42,226 --> 00:08:45,126
+that is an alternative for
+the audio track in a movie.
+
+
+189
+00:08:45,126 --> 00:08:47,616
+And this is just one example.
+
+
+190
+00:08:48,106 --> 00:08:50,436
+In fact, having text-based
+descriptions
+
+
+191
+00:08:50,436 --> 00:08:52,616
+for non-textual content is one
+
+
+192
+00:08:52,616 --> 00:08:55,126
+of the most common accessibility
+issues on the web today,
+
+
+193
+00:08:55,346 --> 00:08:57,536
+specifically for web
+applications because we
+
+
+194
+00:08:57,536 --> 00:09:00,006
+like to use buttons
+with beautiful icons.
+
+
+195
+00:09:00,226 --> 00:09:02,426
+And we oftentimes
+forget to add the labels
+
+
+196
+00:09:02,426 --> 00:09:03,726
+for these buttons
+into the markup.
+
+
+197
+00:09:05,546 --> 00:09:08,716
+"Operable" means,
+"Can I use it?"
+
+
+198
+00:09:10,056 --> 00:09:12,376
+This goes back to our full
+keyboard access example.
+
+
+199
+00:09:12,796 --> 00:09:16,086
+Simply put, if you can navigate
+to an element with the mouse
+
+
+200
+00:09:16,086 --> 00:09:18,606
+and perform some action on
+that element with the mouse,
+
+
+201
+00:09:18,996 --> 00:09:20,496
+you should be able to
+get to that element
+
+
+202
+00:09:20,496 --> 00:09:23,236
+and perform the very same
+action using the keyboard alone.
+
+
+203
+00:09:23,596 --> 00:09:25,636
+Now, this can be
+tricky at times,
+
+
+204
+00:09:25,636 --> 00:09:28,636
+especially if you're using
+custom controls, but we're going
+
+
+205
+00:09:28,636 --> 00:09:30,696
+to discuss a common
+approach in the demo later
+
+
+206
+00:09:30,696 --> 00:09:32,576
+on that you can take
+back and use
+
+
+207
+00:09:32,576 --> 00:09:34,026
+in your own web applications.
+
+
+208
+00:09:35,616 --> 00:09:37,996
+"Understandable" should
+be fairly obvious:
+
+
+209
+00:09:38,986 --> 00:09:41,856
+Does your website's
+content make sense?
+
+
+210
+00:09:42,226 --> 00:09:44,116
+Does it perform in
+predictable ways?
+
+
+211
+00:09:44,216 --> 00:09:47,606
+An example of this would be
+a segmented or pill control,
+
+
+212
+00:09:47,606 --> 00:09:49,186
+such as the one found
+in the Keynote
+
+
+213
+00:09:49,186 --> 00:09:50,386
+for iCloud Theme Chooser.
+
+
+214
+00:09:50,926 --> 00:09:55,786
+Now, this control might be
+perceivable and operable
+
+
+215
+00:09:55,786 --> 00:09:59,086
+to a screen reader user, but
+unless it's marked up correctly,
+
+
+216
+00:09:59,326 --> 00:10:01,156
+the user, when they
+land on this control,
+
+
+217
+00:10:01,336 --> 00:10:02,906
+might hear something like this.
+
+
+218
+00:10:06,006 --> 00:10:08,016
+>> Standard, wide.
+
+
+219
+00:10:08,806 --> 00:10:12,166
+>> So voiceover on the Mac
+said, "Standard, wide."
+
+
+220
+00:10:12,866 --> 00:10:14,786
+That doesn't tell them
+all of the information
+
+
+221
+00:10:14,786 --> 00:10:17,566
+that a sighted user sees, in
+that there are two buttons
+
+
+222
+00:10:17,566 --> 00:10:19,876
+on this page, they are
+mutually exclusive,
+
+
+223
+00:10:20,036 --> 00:10:21,246
+and one of them is selected.
+
+
+224
+00:10:22,056 --> 00:10:25,026
+Instead, a better experience
+would be to mark up this element
+
+
+225
+00:10:25,026 --> 00:10:27,516
+in such a way that the
+user hears something
+
+
+226
+00:10:27,516 --> 00:10:28,556
+like this instead.
+
+
+227
+00:10:30,026 --> 00:10:32,286
+>> Standard, selected
+tab, one of two.
+
+
+228
+00:10:32,896 --> 00:10:34,486
+Wide, tab two of two.
+
+
+229
+00:10:34,856 --> 00:10:38,096
+>> So, again, voiceover
+said, "Standard,
+
+
+230
+00:10:38,096 --> 00:10:39,976
+selected tab, one of two.
+
+
+231
+00:10:40,376 --> 00:10:43,776
+Wide, tab two of two," which
+tells the user everything
+
+
+232
+00:10:43,776 --> 00:10:45,966
+that the sighted user sees
+when they look at this control
+
+
+233
+00:10:46,146 --> 00:10:48,486
+and is a much better
+experience for a voiceover user.
+
+
+234
+00:10:50,596 --> 00:10:52,796
+Now, "robust" is a
+bit more complicated,
+
+
+235
+00:10:52,796 --> 00:10:55,076
+and we can really divide it
+up into two different parts.
+
+
+236
+00:10:55,576 --> 00:10:58,036
+The first part of robust
+is simply making sure
+
+
+237
+00:10:58,036 --> 00:10:59,896
+that your markup is
+semantic and correct,
+
+
+238
+00:11:00,366 --> 00:11:03,496
+such that it is displayed
+correctly across user agents
+
+
+239
+00:11:03,776 --> 00:11:06,666
+and is more resilient to the
+change in technology around it.
+
+
+240
+00:11:07,726 --> 00:11:10,666
+The second part of robust
+is having alternatives
+
+
+241
+00:11:10,666 --> 00:11:12,056
+for the presentation
+of your content.
+
+
+242
+00:11:12,746 --> 00:11:15,506
+So a good example of this
+would be iCloud in general,
+
+
+243
+00:11:15,506 --> 00:11:18,046
+but let's look at
+specifically Pages for iCloud.
+
+
+244
+00:11:18,336 --> 00:11:21,866
+If you're editing a document
+in Pages and you discover a bug
+
+
+245
+00:11:22,136 --> 00:11:24,666
+that prevents you from being
+able to access your content,
+
+
+246
+00:11:25,216 --> 00:11:28,086
+you could simply open this
+document in either the OS X
+
+
+247
+00:11:28,346 --> 00:11:31,486
+or the iOS applications and
+use the built-in accessibility
+
+
+248
+00:11:31,486 --> 00:11:32,166
+support there.
+
+
+249
+00:11:33,136 --> 00:11:36,016
+Another great example of
+having robust content would be
+
+
+250
+00:11:36,126 --> 00:11:40,806
+exporting your data through some
+sort of feed, like RSS or Atom.
+
+
+251
+00:11:40,806 --> 00:11:43,236
+And this allows the
+user to use any number
+
+
+252
+00:11:43,236 --> 00:11:46,006
+of accessible applications to
+be able to consume your content.
+
+
+253
+00:11:46,916 --> 00:11:48,576
+And in other words, no one bug
+
+
+254
+00:11:48,576 --> 00:11:51,486
+or issue should completely
+prevent users from being able
+
+
+255
+00:11:51,486 --> 00:11:52,566
+to access your content.
+
+
+256
+00:11:52,566 --> 00:11:54,706
+Now, it's worth mentioning
+
+
+257
+00:11:54,706 --> 00:11:57,676
+that having robust content
+is not mutually exclusive
+
+
+258
+00:11:57,676 --> 00:11:59,046
+with having accessible content.
+
+
+259
+00:11:59,656 --> 00:12:01,276
+They are meant to
+complement each other
+
+
+260
+00:12:01,346 --> 00:12:04,326
+and give your users options
+should they encounter issues.
+
+
+261
+00:12:04,856 --> 00:12:12,316
+So as we just saw, your content
+should be perceivable, operable,
+
+
+262
+00:12:12,316 --> 00:12:13,916
+understandable, and robust.
+
+
+263
+00:12:14,496 --> 00:12:17,226
+Now I want to get a bit more
+tactical and talk about some
+
+
+264
+00:12:17,226 --> 00:12:19,316
+of the ways you actually
+accomplish these things,
+
+
+265
+00:12:19,656 --> 00:12:21,196
+starting with semantic markup.
+
+
+266
+00:12:23,596 --> 00:12:26,686
+So using semantic markup is one
+of the first things you can do
+
+
+267
+00:12:26,686 --> 00:12:28,946
+to help improve your web
+applications' accessibility.
+
+
+268
+00:12:29,666 --> 00:12:32,266
+Here are two screenshots
+of the very same web page.
+
+
+269
+00:12:32,746 --> 00:12:35,686
+The screenshot on the left was
+implemented using only <div>
+
+
+270
+00:12:35,686 --> 00:12:37,706
+tags for the headings that
+you see on the screen.
+
+
+271
+00:12:38,796 --> 00:12:41,626
+The screenshot on the right was
+implemented using semantic <h1>
+
+
+272
+00:12:41,626 --> 00:12:44,186
+tags for the headings that
+you see on the screen.
+
+
+273
+00:12:45,346 --> 00:12:48,706
+Now, to a sighted user, these
+two web pages are going to look
+
+
+274
+00:12:48,706 --> 00:12:50,336
+and perform in identical ways.
+
+
+275
+00:12:50,576 --> 00:12:53,136
+In fact, the sighted user is not
+going to be able to know at all
+
+
+276
+00:12:53,266 --> 00:12:55,586
+that they were implemented
+one way or the other.
+
+
+277
+00:12:56,176 --> 00:12:58,116
+But to a user of
+assistive technology,
+
+
+278
+00:12:58,116 --> 00:13:00,266
+these two pages are going
+to appear and they're going
+
+
+279
+00:13:00,266 --> 00:13:02,016
+to perform in completely
+different ways.
+
+
+280
+00:13:02,446 --> 00:13:04,246
+And to find out why,
+let's take a look
+
+
+281
+00:13:04,246 --> 00:13:05,496
+at the markup behind the scenes.
+
+
+282
+00:13:06,036 --> 00:13:11,086
+As I said, the image on the left
+was implemented using only a
+
+
+283
+00:13:11,086 --> 00:13:11,766
+<div> tag.
+
+
+284
+00:13:11,766 --> 00:13:14,226
+And, in fact, the style
+was actually inlined
+
+
+285
+00:13:14,226 --> 00:13:15,196
+in the tag itself.
+
+
+286
+00:13:15,826 --> 00:13:17,606
+Now, an assistive
+technology user,
+
+
+287
+00:13:17,606 --> 00:13:20,536
+specifically a screen reader
+user, is going to hear this
+
+
+288
+00:13:20,536 --> 00:13:21,636
+when they land on this heading.
+
+
+289
+00:13:23,046 --> 00:13:23,776
+>> All about widgets.
+
+
+290
+00:13:24,446 --> 00:13:27,096
+>> So voiceover said,
+"All about widgets."
+
+
+291
+00:13:27,606 --> 00:13:28,846
+And you could argue, "Yeah,
+
+
+292
+00:13:28,846 --> 00:13:30,836
+so they got the content
+of that heading."
+
+
+293
+00:13:31,276 --> 00:13:33,656
+But there's really no
+semantic information
+
+
+294
+00:13:33,656 --> 00:13:34,536
+that is conveyed here.
+
+
+295
+00:13:34,596 --> 00:13:36,766
+And we're especially not
+conveying the same information
+
+
+296
+00:13:36,766 --> 00:13:39,466
+that a sighted user sees
+in that this is a heading.
+
+
+297
+00:13:39,756 --> 00:13:42,476
+And in fact it's one of the most
+prominent headings on the page.
+
+
+298
+00:13:43,156 --> 00:13:45,486
+So this is obviously not the
+best experience for the user.
+
+
+299
+00:13:46,476 --> 00:13:49,606
+Instead, if we were to
+use a semantic <h1> tag,
+
+
+300
+00:13:50,206 --> 00:13:53,206
+the user using a screen reader
+would hear this instead.
+
+
+301
+00:13:54,636 --> 00:13:56,456
+>> Heading level 1,
+all about widgets.
+
+
+302
+00:13:57,416 --> 00:13:58,216
+>> So the voiceover said,
+
+
+303
+00:13:58,216 --> 00:14:00,656
+"Heading level 1,
+all about widgets."
+
+
+304
+00:14:01,116 --> 00:14:03,396
+That conveys way more
+information to the user
+
+
+305
+00:14:03,566 --> 00:14:06,046
+and is obviously exactly
+what the sighted user sees.
+
+
+306
+00:14:06,266 --> 00:14:07,996
+So this is a much
+better experience.
+
+
+307
+00:14:08,716 --> 00:14:10,056
+It's also worth noting
+
+
+308
+00:14:10,176 --> 00:14:12,396
+that screen readers
+oftentimes allow a user
+
+
+309
+00:14:12,396 --> 00:14:14,396
+to navigate the page
+heading by heading.
+
+
+310
+00:14:14,946 --> 00:14:18,106
+And so using a semantic
+<h1> tag allows them
+
+
+311
+00:14:18,106 --> 00:14:21,416
+to quickly find their content,
+especially on long pages.
+
+
+312
+00:14:21,466 --> 00:14:23,756
+And so that's also a better
+experience for a user.
+
+
+313
+00:14:24,286 --> 00:14:29,346
+Now, next up is using
+standard controls.
+
+
+314
+00:14:29,686 --> 00:14:32,436
+And using standard controls
+wherever possible will not only
+
+
+315
+00:14:32,436 --> 00:14:35,506
+make the experience better for
+users of assistive technology
+
+
+316
+00:14:35,926 --> 00:14:37,936
+because the controls
+will be more consistent
+
+
+317
+00:14:37,936 --> 00:14:39,506
+with what they're used
+to on their system,
+
+
+318
+00:14:40,136 --> 00:14:42,106
+but it also saves
+you a lot of work
+
+
+319
+00:14:42,106 --> 00:14:44,176
+in making them usable
+and accessible.
+
+
+320
+00:14:45,306 --> 00:14:47,696
+Say for instance you wanted
+to create a custom slider.
+
+
+321
+00:14:48,236 --> 00:14:50,226
+This is the markup that
+you might actually use,
+
+
+322
+00:14:50,466 --> 00:14:52,396
+and with some CSS magic,
+
+
+323
+00:14:52,436 --> 00:14:54,216
+that might be the actual
+look of the control.
+
+
+324
+00:14:55,456 --> 00:14:56,806
+Now, let's say you wanted
+
+
+325
+00:14:56,806 --> 00:14:58,446
+to make this control
+work with the mouse.
+
+
+326
+00:14:58,856 --> 00:15:02,056
+So you would have to handle
+several mouse events in order
+
+
+327
+00:15:02,396 --> 00:15:05,406
+to make that happen:
+mousedown to be able
+
+
+328
+00:15:05,406 --> 00:15:08,316
+to start tracking the mouse,
+mousemove to update the control,
+
+
+329
+00:15:08,316 --> 00:15:11,476
+and mouseend to finally commit
+that value back to the model.
+
+
+330
+00:15:11,856 --> 00:15:14,276
+Now let's say you wanted to make
+it work with a touch device.
+
+
+331
+00:15:14,676 --> 00:15:17,046
+So in that case you would have
+to handle similar methods,
+
+
+332
+00:15:18,146 --> 00:15:20,066
+except you have this
+added complexity
+
+
+333
+00:15:20,286 --> 00:15:23,606
+that a touch can be cancelled
+if you drag it off of the screen
+
+
+334
+00:15:23,606 --> 00:15:24,736
+or up to the browser, Chrome.
+
+
+335
+00:15:24,736 --> 00:15:25,866
+And so you have to
+account for that.
+
+
+336
+00:15:27,086 --> 00:15:29,776
+You can begin to understand
+or think about the kind
+
+
+337
+00:15:29,776 --> 00:15:31,496
+of state machine that you're
+going to need to be able
+
+
+338
+00:15:31,496 --> 00:15:32,656
+to keep track of this control.
+
+
+339
+00:15:32,656 --> 00:15:35,926
+Now, so, that's the mouse
+and that's touch devices,
+
+
+340
+00:15:35,926 --> 00:15:37,096
+but let's say you
+wanted to make this work
+
+
+341
+00:15:37,096 --> 00:15:38,236
+with the keyboard,
+as you should.
+
+
+342
+00:15:39,066 --> 00:15:40,256
+So let's scroll everything up
+
+
+343
+00:15:40,256 --> 00:15:42,196
+and let's implement
+our keyboard methods.
+
+
+344
+00:15:43,166 --> 00:15:44,936
+We're going to handle focus
+
+
+345
+00:15:44,936 --> 00:15:47,396
+so that we can update the
+visual style of the control
+
+
+346
+00:15:47,696 --> 00:15:50,476
+when the control gains
+keyboard focus to show the user
+
+
+347
+00:15:50,476 --> 00:15:52,136
+that they can begin
+interacting with it.
+
+
+348
+00:15:52,506 --> 00:15:54,716
+Then we have to handle
+blur so that we can remove
+
+
+349
+00:15:54,716 --> 00:15:56,796
+that visual style when
+focus goes elsewhere.
+
+
+350
+00:15:56,796 --> 00:15:59,786
+And then we have to handle
+keydown so that we can respond
+
+
+351
+00:15:59,786 --> 00:16:03,366
+to Arrow keys, Home,
+and Page Up, Page Down,
+
+
+352
+00:16:03,366 --> 00:16:05,786
+all of the different key
+combinations that a user
+
+
+353
+00:16:05,786 --> 00:16:07,176
+of the keyboard would
+expect to be able
+
+
+354
+00:16:07,176 --> 00:16:08,866
+to modify the value
+of that slider.
+
+
+355
+00:16:09,966 --> 00:16:13,126
+This is a lot of work, and you
+should avoid it wherever you can
+
+
+356
+00:16:13,126 --> 00:16:14,516
+by using standard controls.
+
+
+357
+00:16:15,306 --> 00:16:18,686
+The example here would be using
+a native input range control,
+
+
+358
+00:16:19,076 --> 00:16:21,236
+giving it a minimum
+and a maximum value
+
+
+359
+00:16:21,506 --> 00:16:22,706
+as well as the current value.
+
+
+360
+00:16:22,706 --> 00:16:25,966
+If you do this, the browser
+is going to handle everything
+
+
+361
+00:16:25,966 --> 00:16:28,926
+for you from mouse events
+to touch events, keyboard,
+
+
+362
+00:16:28,926 --> 00:16:32,186
+it's going to handle state
+tracking, observer notification,
+
+
+363
+00:16:32,426 --> 00:16:34,786
+and you're going to get
+accessibility out of the box.
+
+
+364
+00:16:34,876 --> 00:16:36,486
+So you literally have
+to do nothing else
+
+
+365
+00:16:36,486 --> 00:16:39,156
+to make this control work if
+you just use a standard control.
+
+
+366
+00:16:40,426 --> 00:16:42,716
+But you and I both know
+
+
+367
+00:16:43,056 --> 00:16:45,326
+that HTML controls can
+be difficult to style.
+
+
+368
+00:16:45,706 --> 00:16:46,916
+I mean, they're getting better,
+
+
+369
+00:16:47,166 --> 00:16:48,596
+but they're still
+not quite there.
+
+
+370
+00:16:49,236 --> 00:16:53,466
+And so, if you couple that fact
+with a really great designer
+
+
+371
+00:16:53,466 --> 00:16:55,806
+who just handed you a
+really beautiful visual spec
+
+
+372
+00:16:55,966 --> 00:16:58,766
+for a slider, you're probably
+going to have to roll your own.
+
+
+373
+00:16:59,266 --> 00:17:01,616
+And so let's go back to our
+custom slider control and talk
+
+
+374
+00:17:01,616 --> 00:17:03,446
+about how you can make
+it more accessible.
+
+
+375
+00:17:04,006 --> 00:17:06,976
+So this is the markup
+that we used,
+
+
+376
+00:17:06,976 --> 00:17:08,766
+and we implemented
+these JavaScript events.
+
+
+377
+00:17:09,396 --> 00:17:11,945
+But you may be surprised to know
+
+
+378
+00:17:11,945 --> 00:17:14,205
+that this control is absolutely
+inaccessible for someone
+
+
+379
+00:17:14,205 --> 00:17:16,286
+who is using a screen
+reader or a braille device.
+
+
+380
+00:17:16,286 --> 00:17:19,606
+After all, there's nothing in
+this markup that tells the user
+
+
+381
+00:17:19,606 --> 00:17:23,036
+that this is a slider at all,
+much less its current state
+
+
+382
+00:17:23,106 --> 00:17:27,136
+with a minimum and maximum value
+as well as a current value.
+
+
+383
+00:17:27,205 --> 00:17:30,486
+And what's worse is that HTML
+doesn't really give us any
+
+
+384
+00:17:30,486 --> 00:17:33,966
+ability to be able to tell
+the user this information.
+
+
+385
+00:17:34,496 --> 00:17:35,816
+So we need something else.
+
+
+386
+00:17:36,116 --> 00:17:38,396
+And that's where ARIA comes in.
+
+
+387
+00:17:38,776 --> 00:17:41,856
+ARIA stands for Accessible
+Rich Internet Applications.
+
+
+388
+00:17:42,166 --> 00:17:45,086
+And it was specifically
+designed to help bridge this gap
+
+
+389
+00:17:45,426 --> 00:17:48,026
+between HTML and
+assistive technology
+
+
+390
+00:17:48,816 --> 00:17:51,156
+by defining additional
+properties that allow us
+
+
+391
+00:17:51,156 --> 00:17:54,576
+to describe what an element is
+as well as its current state.
+
+
+392
+00:17:55,426 --> 00:17:58,946
+So going back to our custom
+slider, ARIA allows us
+
+
+393
+00:17:58,946 --> 00:18:01,776
+to give this <div>
+tag a role of slider.
+
+
+394
+00:18:02,826 --> 00:18:04,916
+Now, it's worth mentioning
+that ARIA defines
+
+
+395
+00:18:04,916 --> 00:18:07,536
+over 50 different
+roles that you can give
+
+
+396
+00:18:07,536 --> 00:18:10,176
+in many different
+situations in your markup,
+
+
+397
+00:18:10,556 --> 00:18:12,356
+but for this one we're
+going to use slider.
+
+
+398
+00:18:12,356 --> 00:18:16,346
+And for any given role,
+ARIA also specifies a list
+
+
+399
+00:18:16,456 --> 00:18:19,036
+of properties and
+attributes that you can use
+
+
+400
+00:18:19,306 --> 00:18:22,276
+to describe what the control is
+as well as its current state.
+
+
+401
+00:18:22,566 --> 00:18:25,216
+So in the case of a slider,
+we need to tell the user
+
+
+402
+00:18:25,216 --> 00:18:28,176
+about the minimum value
+and the maximum value using
+
+
+403
+00:18:28,176 --> 00:18:30,966
+aria-valuemin and
+aria-valuemax, respectively.
+
+
+404
+00:18:31,756 --> 00:18:34,246
+We also need to tell the user
+what the current value is,
+
+
+405
+00:18:34,426 --> 00:18:35,816
+so we'll add aria-valuenow.
+
+
+406
+00:18:37,626 --> 00:18:40,766
+It's worth mentioning that
+while we had to handle all
+
+
+407
+00:18:40,766 --> 00:18:43,006
+of the JavaScript events
+manually, we also have
+
+
+408
+00:18:43,006 --> 00:18:47,196
+to handle updating aria-valuenow
+when the slider's value changes,
+
+
+409
+00:18:47,196 --> 00:18:49,116
+so that's yet another thing
+that you have to keep track
+
+
+410
+00:18:49,116 --> 00:18:51,126
+of if you're using
+custom controls.
+
+
+411
+00:18:51,736 --> 00:18:55,546
+But ARIA has now allowed us to
+give the semantic equivalent
+
+
+412
+00:18:55,846 --> 00:18:58,766
+of a slider using just a
+little bit more markup.
+
+
+413
+00:19:01,136 --> 00:19:04,576
+Now, ARIA is not just for
+creating custom controls.
+
+
+414
+00:19:04,886 --> 00:19:07,126
+You can also use it to
+retrofit old content
+
+
+415
+00:19:07,126 --> 00:19:08,466
+without actually
+having to gut it.
+
+
+416
+00:19:09,146 --> 00:19:10,876
+So going back to our
+headings example,
+
+
+417
+00:19:11,086 --> 00:19:13,166
+let's say that it was too
+risky for you to be able
+
+
+418
+00:19:13,166 --> 00:19:14,906
+to change your code to spit
+
+
+419
+00:19:14,906 --> 00:19:16,996
+out an <h1> tag instead
+of a <div> tag.
+
+
+420
+00:19:17,366 --> 00:19:21,396
+In that case, we could apply
+an ARIA role of Heading as well
+
+
+421
+00:19:21,396 --> 00:19:23,256
+as aria-level="1" to be able
+
+
+422
+00:19:23,256 --> 00:19:26,896
+to give this tag the semantic
+equivalent of <h1> as far
+
+
+423
+00:19:26,896 --> 00:19:28,436
+as assistive technology
+is concerned.
+
+
+424
+00:19:29,086 --> 00:19:30,856
+Now, obviously for other
+reasons, it would be better
+
+
+425
+00:19:30,856 --> 00:19:31,616
+for us to use an <h1> tag,
+
+
+426
+00:19:31,616 --> 00:19:34,656
+but this gives you an option
+should that not be possible.
+
+
+427
+00:19:35,726 --> 00:19:38,136
+Conversely, let's say that
+you were using an <h1.
+
+
+428
+00:19:38,136 --> 00:19:41,526
+tag and for whatever reason
+this is not a heading;
+
+
+429
+00:19:41,526 --> 00:19:42,786
+it was just used for styling
+
+
+430
+00:19:42,786 --> 00:19:44,726
+or whatever else you
+might use it for.
+
+
+431
+00:19:45,386 --> 00:19:47,806
+ARIA has this idea
+of implicit roles.
+
+
+432
+00:19:48,076 --> 00:19:51,306
+And so an <h1> tag would
+automatically get a role
+
+
+433
+00:19:51,306 --> 00:19:53,976
+of Heading in an ARIA level
+of 1, so you wouldn't need
+
+
+434
+00:19:53,976 --> 00:19:55,496
+to specify it in that case.
+
+
+435
+00:19:55,996 --> 00:19:58,316
+But if you were using an <h1>
+tag where you didn't want
+
+
+436
+00:19:58,316 --> 00:20:01,256
+to convey that semantic meaning,
+you could give it a role
+
+
+437
+00:20:01,256 --> 00:20:04,666
+of "presentation", which
+would basically strip all
+
+
+438
+00:20:04,666 --> 00:20:06,846
+of the semantic information
+away from this tag
+
+
+439
+00:20:07,406 --> 00:20:09,656
+from assistive technology
+and give it the equivalent
+
+
+440
+00:20:09,656 --> 00:20:11,106
+of being just a plain <div> tag.
+
+
+441
+00:20:11,886 --> 00:20:15,466
+So that can be useful in time.
+
+
+442
+00:20:15,636 --> 00:20:17,046
+Next up is focus management.
+
+
+443
+00:20:17,596 --> 00:20:19,816
+Now, ARIA allows you
+to mark up your content
+
+
+444
+00:20:19,816 --> 00:20:21,716
+to be both perceivable
+and understandable,
+
+
+445
+00:20:22,006 --> 00:20:24,726
+while keyboard accessibility is
+important to making it operable.
+
+
+446
+00:20:25,306 --> 00:20:28,676
+But another important aspect of
+operability is focus management.
+
+
+447
+00:20:29,466 --> 00:20:31,456
+And if you're using
+custom controls,
+
+
+448
+00:20:31,766 --> 00:20:34,346
+like interactive elements and
+menus, you're going to need
+
+
+449
+00:20:34,346 --> 00:20:36,586
+to handle the focus
+management portion yourself.
+
+
+450
+00:20:37,026 --> 00:20:39,156
+And you do that using tabindex.
+
+
+451
+00:20:40,416 --> 00:20:43,816
+So HTML's tabindex
+property controls,
+
+
+452
+00:20:44,286 --> 00:20:45,996
+or basically allows
+you to specify
+
+
+453
+00:20:45,996 --> 00:20:48,136
+which elements can
+gain keyboard focus,
+
+
+454
+00:20:48,496 --> 00:20:50,656
+either by the user tabbing
+to it with the keyboard
+
+
+455
+00:20:51,136 --> 00:20:52,736
+or manually using JavaScript.
+
+
+456
+00:20:52,736 --> 00:20:59,836
+And a tabindex of "0" means
+that an element is focusable
+
+
+457
+00:20:59,936 --> 00:21:02,936
+with JavaScript and it is
+in the default tab order.
+
+
+458
+00:21:03,186 --> 00:21:05,576
+In other words, a user can
+get to it simply by tabbing
+
+
+459
+00:21:05,576 --> 00:21:06,416
+to it with the keyboard.
+
+
+460
+00:21:07,296 --> 00:21:10,416
+A tabindex of "-1" means
+that an element is focusable
+
+
+461
+00:21:10,516 --> 00:21:13,436
+with JavaScript, but it is
+not in the default tab order.
+
+
+462
+00:21:13,816 --> 00:21:15,166
+In other words, the
+user can't get
+
+
+463
+00:21:15,166 --> 00:21:16,566
+to it simply by tabbing to it.
+
+
+464
+00:21:16,566 --> 00:21:20,096
+And then finally,
+leaving tabindex off
+
+
+465
+00:21:20,096 --> 00:21:22,746
+of your control will mean
+that the element is not going
+
+
+466
+00:21:22,746 --> 00:21:26,056
+to get keyboard focus,
+either by calling focus on it
+
+
+467
+00:21:26,056 --> 00:21:29,156
+with JavaScript or by the user
+tabbing to it with the keyboard.
+
+
+468
+00:21:29,306 --> 00:21:32,596
+In fact, some older user agents
+will actually throw a JavaScript
+
+
+469
+00:21:32,596 --> 00:21:34,636
+error if you try to
+call focus on an element
+
+
+470
+00:21:34,866 --> 00:21:35,776
+that is not focusable.
+
+
+471
+00:21:36,236 --> 00:21:39,026
+Now, there's a big asterisk
+there because native controls,
+
+
+472
+00:21:39,026 --> 00:21:41,706
+like links, and buttons,
+and form elements,
+
+
+473
+00:21:41,796 --> 00:21:44,156
+all get an implicit
+tabindex of 0.
+
+
+474
+00:21:44,376 --> 00:21:47,086
+And so you don't need to specify
+it for those kinds of controls.
+
+
+475
+00:21:47,496 --> 00:21:51,906
+Now, for an example of how
+to use tabindex properly
+
+
+476
+00:21:52,186 --> 00:21:54,006
+to achieve great
+focus management,
+
+
+477
+00:21:54,556 --> 00:21:57,326
+let's look at a common
+setup in web applications
+
+
+478
+00:21:57,526 --> 00:22:00,456
+where you have some focusable
+content at the top of the page,
+
+
+479
+00:22:00,716 --> 00:22:02,156
+then you have a list of items,
+
+
+480
+00:22:02,156 --> 00:22:03,836
+and then you have
+some focusable content
+
+
+481
+00:22:03,836 --> 00:22:04,896
+at the bottom of the page.
+
+
+482
+00:22:05,616 --> 00:22:07,996
+Now, if the user hits
+the Tab key on this page,
+
+
+483
+00:22:08,206 --> 00:22:10,006
+you can see that focus is
+going to go to the link
+
+
+484
+00:22:10,006 --> 00:22:12,096
+at the top because,
+as you remember,
+
+
+485
+00:22:12,366 --> 00:22:13,976
+it has a tabindex of 0.
+
+
+486
+00:22:13,976 --> 00:22:16,876
+And the tab order
+follows the DOM order.
+
+
+487
+00:22:16,876 --> 00:22:20,006
+And so this is the first element
+in the DOM with a tabindex of 0.
+
+
+488
+00:22:20,966 --> 00:22:23,626
+If they hit the Tab key
+again, focus will go
+
+
+489
+00:22:23,626 --> 00:22:24,716
+to the link at the bottom.
+
+
+490
+00:22:25,256 --> 00:22:29,806
+And this is because none of
+the menu items have a tabindex
+
+
+491
+00:22:29,806 --> 00:22:31,206
+and they're just plain <divs>.
+
+
+492
+00:22:32,986 --> 00:22:34,216
+Now, let's say you wanted
+
+
+493
+00:22:34,216 --> 00:22:37,436
+to make these menu items
+accessible with the keyboard.
+
+
+494
+00:22:37,956 --> 00:22:40,046
+You could simply add
+a tabindex of "0"
+
+
+495
+00:22:40,046 --> 00:22:41,556
+to each one of these menu items.
+
+
+496
+00:22:42,496 --> 00:22:44,896
+But you can imagine if
+this menu were quite long,
+
+
+497
+00:22:44,896 --> 00:22:47,286
+it would be very frustrating
+for the user to have to tab
+
+
+498
+00:22:47,286 --> 00:22:49,506
+through each and every
+item in the menu to get
+
+
+499
+00:22:49,506 --> 00:22:51,526
+to the focusable
+content at the bottom.
+
+
+500
+00:22:51,776 --> 00:22:53,606
+So a better experience would be
+
+
+501
+00:22:53,606 --> 00:22:57,736
+to only expose the currently
+selected item in the tab order.
+
+
+502
+00:22:57,786 --> 00:23:00,966
+And we do that by giving
+every other element a tabindex
+
+
+503
+00:23:01,016 --> 00:23:01,696
+of "-1".
+
+
+504
+00:23:02,486 --> 00:23:04,286
+So now the behavior
+is like this:
+
+
+505
+00:23:04,696 --> 00:23:06,946
+If the user hits the Tab
+key, focus is going to go
+
+
+506
+00:23:06,946 --> 00:23:09,756
+to the first element in the
+DOM that has a tabindex of "0",
+
+
+507
+00:23:10,746 --> 00:23:12,656
+then it's going to go to
+the next element in the DOM
+
+
+508
+00:23:12,656 --> 00:23:13,926
+that has a tabindex of "0".
+
+
+509
+00:23:14,166 --> 00:23:18,496
+In this case, it's going to be
+the selected item in the list.
+
+
+510
+00:23:18,496 --> 00:23:22,566
+And then, if they navigate
+this list using the Arrow keys,
+
+
+511
+00:23:22,756 --> 00:23:25,226
+you can see that we
+are moving tabindex "0"
+
+
+512
+00:23:25,226 --> 00:23:28,176
+to the currently selected
+item each time and making sure
+
+
+513
+00:23:28,176 --> 00:23:30,776
+that all of the nonselected
+items have a tabindex
+
+
+514
+00:23:30,776 --> 00:23:31,486
+of negative 1.
+
+
+515
+00:23:31,996 --> 00:23:34,726
+This is called the
+Roaming TabIndex Technique.
+
+
+516
+00:23:34,726 --> 00:23:38,436
+Now if the user hits the
+Tab key, they're going
+
+
+517
+00:23:38,436 --> 00:23:40,976
+to leave the list and skip
+over all of the elements
+
+
+518
+00:23:40,976 --> 00:23:43,996
+with a tabindex of "-1"
+and go to the next element
+
+
+519
+00:23:43,996 --> 00:23:45,996
+that has a tabindex of
+"0", which is the link
+
+
+520
+00:23:45,996 --> 00:23:47,046
+at the bottom of the page.
+
+
+521
+00:23:48,566 --> 00:23:50,186
+This has the added benefit
+
+
+522
+00:23:50,186 --> 00:23:52,866
+of saving the user's selected
+state, so if they were
+
+
+523
+00:23:52,866 --> 00:23:54,996
+to Shift-Tab from this
+link at the bottom,
+
+
+524
+00:23:55,386 --> 00:23:58,806
+they would go directly back to
+the currently selected menu item
+
+
+525
+00:23:58,806 --> 00:24:01,256
+in the list, which is a
+really great experience
+
+
+526
+00:24:01,256 --> 00:24:02,196
+for keyboard users.
+
+
+527
+00:24:02,616 --> 00:24:05,876
+Now, they only have to hit
+Tab twice to get all the way
+
+
+528
+00:24:05,876 --> 00:24:08,186
+to the bottom of the page to
+find what they're looking for.
+
+
+529
+00:24:10,856 --> 00:24:13,446
+So to recap a bit, we've talked
+
+
+530
+00:24:13,446 --> 00:24:16,396
+about how content should
+be perceivable, operable,
+
+
+531
+00:24:16,566 --> 00:24:18,386
+understandable, and robust.
+
+
+532
+00:24:18,996 --> 00:24:21,276
+And we talked about how
+using semantic markup
+
+
+533
+00:24:21,276 --> 00:24:23,696
+and standard controls will
+get us most of the way there.
+
+
+534
+00:24:24,276 --> 00:24:27,776
+We also talked about how you
+can use ARIA to fill the gaps
+
+
+535
+00:24:27,826 --> 00:24:29,156
+and make our custom controls
+
+
+536
+00:24:29,156 --> 00:24:31,996
+and old content more
+accessible and understandable.
+
+
+537
+00:24:32,976 --> 00:24:35,236
+And we talked about how to
+use proper focus management
+
+
+538
+00:24:35,236 --> 00:24:37,326
+and keyboard accessibility
+to really clean
+
+
+539
+00:24:37,326 --> 00:24:38,536
+up the user experience.
+
+
+540
+00:24:39,476 --> 00:24:42,286
+But now we're going to apply all
+of that knowledge to diagnose
+
+
+541
+00:24:42,286 --> 00:24:45,596
+and fix several accessibility
+issues and usability issues
+
+
+542
+00:24:45,926 --> 00:24:48,276
+in a text editing application
+that I built for this talk.
+
+
+543
+00:24:49,396 --> 00:24:52,606
+So here we have a text
+editor that I created.
+
+
+544
+00:24:52,656 --> 00:24:56,576
+And if you look at it and kind
+of click around with the mouse,
+
+
+545
+00:24:56,576 --> 00:24:57,886
+you can see that we can zoom.
+
+
+546
+00:24:57,956 --> 00:25:00,816
+This is very similar to the
+Pages for iCloud user interface
+
+
+547
+00:25:00,816 --> 00:25:01,796
+that we looked at earlier.
+
+
+548
+00:25:02,406 --> 00:25:04,826
+We can also go in here
+
+
+549
+00:25:04,826 --> 00:25:07,246
+and we can add text;
+we can remove text.
+
+
+550
+00:25:07,366 --> 00:25:11,726
+So to a mouse user and to a
+visual user, this thing works,
+
+
+551
+00:25:11,726 --> 00:25:14,186
+and you wouldn't even know that
+it is completely inaccessible.
+
+
+552
+00:25:15,086 --> 00:25:17,816
+Now, when you approach an
+application and you start
+
+
+553
+00:25:17,816 --> 00:25:20,266
+to look at how to make it
+accessible, I like to divide it
+
+
+554
+00:25:20,266 --> 00:25:21,476
+up into two different parts.
+
+
+555
+00:25:22,016 --> 00:25:24,166
+The first part is the
+keyboard accessibility part.
+
+
+556
+00:25:24,216 --> 00:25:27,186
+Get it working with the keyboard
+alone, and then you can turn
+
+
+557
+00:25:27,186 --> 00:25:29,286
+on the screen reader and
+start looking at some
+
+
+558
+00:25:29,286 --> 00:25:31,936
+of the more finer points for
+users who cannot see the page.
+
+
+559
+00:25:32,626 --> 00:25:34,746
+So, to begin testing
+this with the keyboard,
+
+
+560
+00:25:34,746 --> 00:25:37,176
+we simply just start hitting the
+Tab key and see what happens.
+
+
+561
+00:25:38,156 --> 00:25:41,126
+You can see that I'm hitting
+the Tab key repeatedly
+
+
+562
+00:25:41,446 --> 00:25:45,586
+and you just see that the Safari
+address bar is getting focused.
+
+
+563
+00:25:45,586 --> 00:25:47,366
+Nothing on the page
+is actually changing.
+
+
+564
+00:25:47,366 --> 00:25:51,896
+And that's because none of these
+elements are really interactive
+
+
+565
+00:25:51,896 --> 00:25:53,286
+and none of them
+have a tabindex set.
+
+
+566
+00:25:53,766 --> 00:25:55,566
+Because if we look
+at the markup,
+
+
+567
+00:25:55,836 --> 00:25:58,596
+you can see that the buttons
+I have here are just made
+
+
+568
+00:25:58,596 --> 00:26:01,216
+with standard <div> tags.
+
+
+569
+00:26:01,396 --> 00:26:03,776
+And standard <div> tags don't
+have an implicit tabindex
+
+
+570
+00:26:03,776 --> 00:26:04,936
+like interactive elements.
+
+
+571
+00:26:05,376 --> 00:26:09,436
+So to get these buttons
+working with the keyboard,
+
+
+572
+00:26:09,436 --> 00:26:12,146
+we need to just add a tabindex
+of "0" to each one of those.
+
+
+573
+00:26:12,646 --> 00:26:14,916
+So let me go ahead and just
+add that to these buttons.
+
+
+574
+00:26:15,976 --> 00:26:19,336
+So you can see that the Zoom
+popup button now has a tabindex
+
+
+575
+00:26:19,336 --> 00:26:19,846
+of "0".
+
+
+576
+00:26:20,286 --> 00:26:23,216
+And the Save button next to
+it has a tabindex of "0".
+
+
+577
+00:26:23,816 --> 00:26:26,366
+And so now if we save and we
+go back to our application
+
+
+578
+00:26:27,236 --> 00:26:29,596
+and we refresh, you can see now
+
+
+579
+00:26:29,596 --> 00:26:33,146
+that the Zoom popup button has
+this blue outline at the top.
+
+
+580
+00:26:33,736 --> 00:26:36,256
+And so we know that this
+thing has keyboard focus.
+
+
+581
+00:26:36,866 --> 00:26:39,296
+But this blue outline
+is also applied
+
+
+582
+00:26:39,296 --> 00:26:42,166
+when you simply just click
+on any of these buttons,
+
+
+583
+00:26:42,166 --> 00:26:44,426
+and you can see that
+it kind of looks weird.
+
+
+584
+00:26:44,426 --> 00:26:47,626
+And so our QA team and our
+designers are getting upset
+
+
+585
+00:26:47,626 --> 00:26:49,676
+with us because they want us
+to remove this blue outline
+
+
+586
+00:26:49,676 --> 00:26:50,836
+because it doesn't
+look very good.
+
+
+587
+00:26:51,256 --> 00:26:53,766
+Well, removing the blue
+outline would get us right back
+
+
+588
+00:26:53,766 --> 00:26:55,976
+where we started, where these
+controls are not accessible
+
+
+589
+00:26:55,976 --> 00:26:58,756
+with the keyboard at all because
+a keyboard user will never know
+
+
+590
+00:26:58,756 --> 00:27:00,826
+that they have focus, and
+therefore they'll never know
+
+
+591
+00:27:00,826 --> 00:27:02,176
+that they'll be able
+to interact with them.
+
+
+592
+00:27:02,796 --> 00:27:05,196
+And so a better experience
+would be rather
+
+
+593
+00:27:05,196 --> 00:27:08,026
+than removing the blue outline,
+which is default in the system,
+
+
+594
+00:27:08,686 --> 00:27:10,806
+let's style it to make it
+look a little bit better.
+
+
+595
+00:27:11,236 --> 00:27:16,456
+And so if we jump over to
+our CSS, which is right here,
+
+
+596
+00:27:16,586 --> 00:27:19,406
+this is the CSS for our popup
+button, and let me just add
+
+
+597
+00:27:19,406 --> 00:27:23,556
+in a little bit of
+code to style that CSS.
+
+
+598
+00:27:23,756 --> 00:27:29,646
+So here I've added a focus
+selector to the button,
+
+
+599
+00:27:29,956 --> 00:27:32,916
+and I'm removing the default
+outline with Outline None,
+
+
+600
+00:27:33,076 --> 00:27:35,546
+so that gets rid of the blue
+outline that they hated.
+
+
+601
+00:27:35,986 --> 00:27:39,906
+And then I'm adding border-color
+to the button itself,
+
+
+602
+00:27:40,046 --> 00:27:41,366
+which makes it look
+a little bit better.
+
+
+603
+00:27:41,456 --> 00:27:45,146
+So if we save that and
+we go back to our app
+
+
+604
+00:27:45,146 --> 00:27:47,266
+and we hit the Tab
+key, you'll see now
+
+
+605
+00:27:47,266 --> 00:27:49,266
+that we have this really
+beautiful blue outline
+
+
+606
+00:27:49,266 --> 00:27:49,756
+on the button.
+
+
+607
+00:27:49,906 --> 00:27:51,796
+And our designers and
+our QA team is happy,
+
+
+608
+00:27:52,046 --> 00:27:53,446
+and our keyboard
+users are happy.
+
+
+609
+00:27:53,886 --> 00:27:56,106
+So the next thing we want
+to start doing is looking
+
+
+610
+00:27:56,106 --> 00:27:58,856
+at whether or not we can
+actually activate these controls
+
+
+611
+00:27:58,856 --> 00:27:59,496
+with the keyboard.
+
+
+612
+00:27:59,836 --> 00:28:01,846
+So if I press the Space
+bar, I would expect
+
+
+613
+00:28:01,846 --> 00:28:04,786
+that the menu would come up just
+as it did when we clicked it.
+
+
+614
+00:28:05,116 --> 00:28:07,446
+And, alas, there is
+no menu coming up.
+
+
+615
+00:28:08,046 --> 00:28:10,616
+So what we need to do is
+we need to actually go back
+
+
+616
+00:28:10,616 --> 00:28:14,286
+to the JavaScript and add some
+very basic keyboard handlers
+
+
+617
+00:28:14,486 --> 00:28:16,896
+to be able to tap into the
+same code that gets run
+
+
+618
+00:28:16,896 --> 00:28:18,416
+when the user clicks
+on it with the mouse.
+
+
+619
+00:28:18,996 --> 00:28:21,786
+So let's do that now.
+
+
+620
+00:28:21,786 --> 00:28:22,086
+All right.
+
+
+621
+00:28:22,086 --> 00:28:25,486
+So we jumped over to our
+JavaScript for our popup button.
+
+
+622
+00:28:25,486 --> 00:28:28,736
+And I have separated this
+code out so that we have kind
+
+
+623
+00:28:28,736 --> 00:28:30,416
+of a clean slate for
+working with the keyboard.
+
+
+624
+00:28:30,936 --> 00:28:35,086
+And I'm going to add some
+additional handlers here
+
+
+625
+00:28:36,006 --> 00:28:38,996
+that basically just handle
+a key down on the button.
+
+
+626
+00:28:39,576 --> 00:28:43,056
+And then we check to see whether
+or not the event is a key code
+
+
+627
+00:28:43,056 --> 00:28:45,986
+of 32 or 13, which is the
+Space bar or the Return key.
+
+
+628
+00:28:45,986 --> 00:28:49,276
+And then when that happens,
+we just call the open method
+
+
+629
+00:28:49,276 --> 00:28:51,106
+that is the same
+method that is called
+
+
+630
+00:28:51,106 --> 00:28:52,746
+when the mouse click
+is registered.
+
+
+631
+00:28:53,136 --> 00:28:55,056
+And so we're just tapping
+into the main code.
+
+
+632
+00:28:55,056 --> 00:28:57,386
+We haven't had to really
+write anything extra for this.
+
+
+633
+00:28:57,536 --> 00:28:58,996
+All right.
+
+
+634
+00:28:58,996 --> 00:29:04,996
+So if we save and go back to
+the menu, we hit the Tab key
+
+
+635
+00:29:04,996 --> 00:29:07,176
+and now we want to hit the
+Space bar to activate the menu.
+
+
+636
+00:29:07,356 --> 00:29:09,726
+And you can see the menu comes
+up, so we're getting there.
+
+
+637
+00:29:10,356 --> 00:29:11,096
+Next, we should be able
+
+
+638
+00:29:11,096 --> 00:29:13,576
+to navigate this menu
+with the Arrow keys.
+
+
+639
+00:29:13,576 --> 00:29:15,356
+And I'm pressing them
+and nothing's happening.
+
+
+640
+00:29:15,746 --> 00:29:17,796
+So this is where we're going
+to have to write a little bit
+
+
+641
+00:29:17,796 --> 00:29:20,236
+of extra code to change
+the focus of the menu
+
+
+642
+00:29:20,236 --> 00:29:22,736
+as the user uses the Arrow keys.
+
+
+643
+00:29:23,056 --> 00:29:24,476
+So let's go back there.
+
+
+644
+00:29:25,646 --> 00:29:27,366
+And let's just build
+on this right here
+
+
+645
+00:29:27,676 --> 00:29:30,236
+and add some additional
+keyboard handlers to the menu
+
+
+646
+00:29:31,166 --> 00:29:32,946
+for focusing the Next
+and Previous item.
+
+
+647
+00:29:33,336 --> 00:29:35,566
+So as you can see here,
+we're handling a keydown
+
+
+648
+00:29:36,336 --> 00:29:39,336
+and we're checking the key code
+for a Down Arrow or an Up Arrow.
+
+
+649
+00:29:40,046 --> 00:29:42,576
+And when we get a Down Arrow or
+an Up Arrow, we're simply going
+
+
+650
+00:29:42,576 --> 00:29:44,156
+to focus the Next or
+the Previous item.
+
+
+651
+00:29:44,796 --> 00:29:47,126
+And so let's jump over to that
+code and see what that does.
+
+
+652
+00:29:48,256 --> 00:29:52,256
+So focusNextItem just gets
+the currently focused item.
+
+
+653
+00:29:52,256 --> 00:29:54,286
+And if there isn't one
+focused it gets the first item.
+
+
+654
+00:29:54,986 --> 00:29:59,706
+It calls focus item with the
+next item to focus in the list.
+
+
+655
+00:29:59,706 --> 00:30:00,946
+And so if we look
+at that method,
+
+
+656
+00:30:01,476 --> 00:30:03,816
+you can see that we're
+setting the tabindex of "-1"
+
+
+657
+00:30:03,816 --> 00:30:06,666
+and then we're just calling
+focus on this with JavaScript.
+
+
+658
+00:30:07,366 --> 00:30:10,286
+Now, as you can remember
+from our talk about tabindex,
+
+
+659
+00:30:11,056 --> 00:30:14,416
+calling focus on an element
+that is not focusable, i.e., a,
+
+
+660
+00:30:14,416 --> 00:30:17,956
+you know, normal <div> tag,
+
+
+661
+00:30:18,016 --> 00:30:19,656
+which doesn't get an
+implicit tabindex,
+
+
+662
+00:30:19,846 --> 00:30:21,456
+could cause issues
+in older clients.
+
+
+663
+00:30:21,656 --> 00:30:23,886
+And so we want to be sure
+that we have a tabindex set
+
+
+664
+00:30:23,886 --> 00:30:25,866
+for this element
+before we call focus.
+
+
+665
+00:30:26,216 --> 00:30:27,746
+So we're setting it to "-1".
+
+
+666
+00:30:27,746 --> 00:30:30,626
+And you might be asking,
+"Why not set it to 0?"
+
+
+667
+00:30:31,226 --> 00:30:32,496
+Well, if we set it to 0,
+
+
+668
+00:30:32,666 --> 00:30:35,766
+as the user navigates this
+list those elements are going
+
+
+669
+00:30:35,766 --> 00:30:38,886
+to be put into the default tab
+order, which isn't what we want.
+
+
+670
+00:30:38,956 --> 00:30:39,946
+We want the user to be able
+
+
+671
+00:30:39,946 --> 00:30:41,716
+to navigate the list
+with the Arrow keys.
+
+
+672
+00:30:41,716 --> 00:30:44,446
+And then if they were to hit
+the Tab key, we want focus
+
+
+673
+00:30:44,446 --> 00:30:46,996
+to jump away from the menu to
+the next button in the toolbar.
+
+
+674
+00:30:47,356 --> 00:30:49,696
+And so that's why we're
+using "-1" here, to keep them
+
+
+675
+00:30:49,696 --> 00:30:52,666
+out of the tab order and let
+us just focus them manually
+
+
+676
+00:30:52,666 --> 00:30:53,376
+with JavaScript.
+
+
+677
+00:30:54,026 --> 00:30:56,636
+So if we save that and
+jump back to the menu
+
+
+678
+00:30:56,636 --> 00:30:58,716
+and then we hit the Space bar.
+
+
+679
+00:30:59,166 --> 00:31:01,486
+So now you can see that the
+currently selected item is
+
+
+680
+00:31:01,486 --> 00:31:03,426
+automatically focused
+when we open the menu,
+
+
+681
+00:31:03,426 --> 00:31:05,166
+which is a good experience
+for our users.
+
+
+682
+00:31:05,746 --> 00:31:07,996
+Then we can navigate this
+list using the Arrow keys
+
+
+683
+00:31:08,726 --> 00:31:11,806
+and then try to select an
+element with the Space bar.
+
+
+684
+00:31:12,136 --> 00:31:13,086
+And that doesn't work either.
+
+
+685
+00:31:13,086 --> 00:31:15,776
+So we need to again go in
+and hook into the main code
+
+
+686
+00:31:16,146 --> 00:31:17,406
+to select this menu item.
+
+
+687
+00:31:17,866 --> 00:31:19,316
+But I wanted to show
+you quickly what happens
+
+
+688
+00:31:19,316 --> 00:31:20,586
+if we press the Tab
+key from here.
+
+
+689
+00:31:21,186 --> 00:31:23,766
+If we press the Tab
+key, the menu goes away
+
+
+690
+00:31:23,766 --> 00:31:26,896
+and focus is returned to
+the next item in the menu.
+
+
+691
+00:31:27,366 --> 00:31:29,056
+That's why we set
+tabindex to "-1".
+
+
+692
+00:31:29,056 --> 00:31:30,156
+All right.
+
+
+693
+00:31:30,156 --> 00:31:31,316
+So let's go back to our menu
+
+
+694
+00:31:31,316 --> 00:31:33,806
+and let's get this
+working with the Space bar.
+
+
+695
+00:31:35,666 --> 00:31:38,136
+OK, so all I'm going
+to do is go back
+
+
+696
+00:31:38,136 --> 00:31:41,246
+up to our switch statement
+here that handles our keydown,
+
+
+697
+00:31:41,476 --> 00:31:43,146
+and we're going to add
+additional handlers
+
+
+698
+00:31:43,406 --> 00:31:46,086
+for both the Space bar
+and the Return key as well
+
+
+699
+00:31:46,086 --> 00:31:48,236
+as the Escape key to be
+able to close the menu.
+
+
+700
+00:31:51,186 --> 00:31:55,896
+OK, so actually we did
+not handle the Escape key;
+
+
+701
+00:31:55,896 --> 00:31:57,096
+we're going to do that next.
+
+
+702
+00:31:57,526 --> 00:32:01,286
+So we've added Space bar
+and Return, 32 and 13,
+
+
+703
+00:32:01,286 --> 00:32:03,676
+and then all we're doing is
+we're selecting the currently
+
+
+704
+00:32:04,046 --> 00:32:04,506
+focused item.
+
+
+705
+00:32:04,786 --> 00:32:06,356
+So that just gets the
+currently focused item
+
+
+706
+00:32:06,356 --> 00:32:09,576
+and then it calls the select
+code that we have, the same code
+
+
+707
+00:32:09,576 --> 00:32:11,066
+that the user uses
+with the mouse.
+
+
+708
+00:32:11,886 --> 00:32:16,646
+So we can go back to our
+menu and refresh the page.
+
+
+709
+00:32:17,336 --> 00:32:20,236
+And then as we go to say 75%
+zoom, you can hit the Space bar
+
+
+710
+00:32:20,236 --> 00:32:21,176
+and see that that works.
+
+
+711
+00:32:21,426 --> 00:32:23,496
+But where did keyboard focus go?
+
+
+712
+00:32:23,646 --> 00:32:27,216
+The menu went away, but there's
+nothing highlighted on the page
+
+
+713
+00:32:27,216 --> 00:32:30,486
+and there's no insertion point
+in the actual editor itself.
+
+
+714
+00:32:31,156 --> 00:32:33,686
+So in this case, we have no
+idea where keyboard focus went,
+
+
+715
+00:32:33,686 --> 00:32:35,606
+and it probably went to
+the body of the page,
+
+
+716
+00:32:35,876 --> 00:32:36,976
+which isn't very useful.
+
+
+717
+00:32:37,346 --> 00:32:38,596
+So the keyboard user,
+if they wanted
+
+
+718
+00:32:38,596 --> 00:32:41,246
+to change the Zoom level
+again, would have to tab back
+
+
+719
+00:32:41,246 --> 00:32:45,056
+to that menu and then
+activate it again.
+
+
+720
+00:32:45,056 --> 00:32:47,026
+And then, again,
+keyboard focus is lost.
+
+
+721
+00:32:47,626 --> 00:32:50,476
+As you can remember, it's a
+much better experience for us
+
+
+722
+00:32:50,476 --> 00:32:53,416
+to focus the element
+that opened the menu
+
+
+723
+00:32:54,056 --> 00:32:55,346
+after the menu goes away.
+
+
+724
+00:32:56,096 --> 00:32:57,786
+And so that's going
+to be very simple.
+
+
+725
+00:32:57,786 --> 00:33:00,616
+We're just going
+to add that code.
+
+
+726
+00:33:00,616 --> 00:33:02,936
+And then we're going
+to go in and,
+
+
+727
+00:33:03,716 --> 00:33:06,596
+when the Escape key is pressed,
+we're going to focus the button
+
+
+728
+00:33:06,636 --> 00:33:09,016
+that opened the menu and then
+we're going to close the menu.
+
+
+729
+00:33:09,836 --> 00:33:14,236
+Similarly, when Enter
+or Return is pressed
+
+
+730
+00:33:14,236 --> 00:33:16,086
+and we select the
+currently focused item,
+
+
+731
+00:33:16,496 --> 00:33:18,286
+we're going to focus the
+button that opened the menu
+
+
+732
+00:33:18,286 --> 00:33:19,496
+and then close the menu.
+
+
+733
+00:33:19,916 --> 00:33:20,906
+So very simple stuff,
+
+
+734
+00:33:20,906 --> 00:33:25,016
+but it really improves the
+usability for this code.
+
+
+735
+00:33:25,226 --> 00:33:30,066
+So going back to Safari, we
+go to the menu, we select 50%
+
+
+736
+00:33:30,746 --> 00:33:33,226
+and you can see that the Zoom
+popup button is selected now
+
+
+737
+00:33:33,226 --> 00:33:34,046
+when the menu goes away.
+
+
+738
+00:33:34,786 --> 00:33:35,836
+Really great usability.
+
+
+739
+00:33:36,396 --> 00:33:39,186
+And now the user can quickly
+change all the zoom levels just
+
+
+740
+00:33:39,186 --> 00:33:41,026
+by a couple of keyboard presses.
+
+
+741
+00:33:41,486 --> 00:33:43,116
+So that's really nice.
+
+
+742
+00:33:43,886 --> 00:33:47,836
+OK, so now we've made this
+Zoom popup button completely
+
+
+743
+00:33:47,836 --> 00:33:51,286
+accessible, which is really
+great for a keyboard user.
+
+
+744
+00:33:51,936 --> 00:33:53,886
+But now we want to kind of
+switch over and start talking
+
+
+745
+00:33:53,886 --> 00:33:56,226
+about screen readers and
+making sure that someone
+
+
+746
+00:33:56,226 --> 00:33:58,526
+who can't see this page
+is able to interact
+
+
+747
+00:33:58,526 --> 00:33:59,696
+with these elements correctly.
+
+
+748
+00:34:00,146 --> 00:34:02,346
+So the way I'm going to do
+that is I'm going to turn
+
+
+749
+00:34:02,346 --> 00:34:04,886
+on voiceover and just start
+kind of navigating the page
+
+
+750
+00:34:04,886 --> 00:34:05,866
+and seeing what I hear.
+
+
+751
+00:34:06,326 --> 00:34:07,836
+So I'm going to turn
+on voiceover
+
+
+752
+00:34:07,836 --> 00:34:09,686
+on your Mac with Command-F5.
+
+
+753
+00:34:10,076 --> 00:34:14,545
+>> Voiceover on, Safari editor
+window, editor HTML content.
+
+
+754
+00:34:15,216 --> 00:34:18,295
+>> OK, so voiceover came
+on and told us that we are
+
+
+755
+00:34:18,295 --> 00:34:20,056
+on the editor HTML content.
+
+
+756
+00:34:20,376 --> 00:34:22,956
+Now, we can kind of navigate
+through this page and kind
+
+
+757
+00:34:22,956 --> 00:34:23,856
+of see what's going on.
+
+
+758
+00:34:23,856 --> 00:34:28,005
+I'm going to quickly jump
+over to the Zoom button.
+
+
+759
+00:34:28,206 --> 00:34:29,856
+>> Edit interact with canvas,
+
+
+760
+00:34:30,226 --> 00:34:32,446
+tool interact 5-0
+percent clickable.
+
+
+761
+00:34:33,085 --> 00:34:35,616
+>> OK, so we got to the Zoom
+button and voiceover said,
+
+
+762
+00:34:35,706 --> 00:34:37,266
+"5-0 percent clickable."
+
+
+763
+00:34:37,856 --> 00:34:39,985
+Now, that does tell
+us what the content is
+
+
+764
+00:34:39,985 --> 00:34:41,956
+of that particular
+<div>, and it tells us
+
+
+765
+00:34:41,956 --> 00:34:43,386
+that they can do
+something with it,
+
+
+766
+00:34:43,716 --> 00:34:46,045
+but it doesn't really
+give them any information
+
+
+767
+00:34:46,045 --> 00:34:48,646
+about what this button is
+or really what it does.
+
+
+768
+00:34:49,356 --> 00:34:51,246
+We want to instead tell the user
+
+
+769
+00:34:51,246 --> 00:34:54,366
+that this is the Zoom popup
+button, give its current value,
+
+
+770
+00:34:54,666 --> 00:34:57,686
+and let them know that when
+they click on this button
+
+
+771
+00:34:57,686 --> 00:34:59,066
+or when they activate
+this button
+
+
+772
+00:34:59,156 --> 00:35:00,126
+that they're going
+to get a menu.
+
+
+773
+00:35:00,856 --> 00:35:02,316
+And so let's turn off voiceover
+
+
+774
+00:35:02,316 --> 00:35:05,116
+and let's go add some ARIA
+attributes to this <div> tag
+
+
+775
+00:35:05,476 --> 00:35:07,256
+to convey this information
+to the user.
+
+
+776
+00:35:07,606 --> 00:35:08,496
+>> Voiceover off.
+
+
+777
+00:35:09,396 --> 00:35:11,736
+>> So switching back
+to Xcode I'm going
+
+
+778
+00:35:11,736 --> 00:35:12,776
+to go back to our markup.
+
+
+779
+00:35:13,446 --> 00:35:18,346
+And I'm going to add just a few
+ARIA attributes to the markup
+
+
+780
+00:35:18,646 --> 00:35:20,156
+to be able to tell the
+user a little bit more
+
+
+781
+00:35:20,156 --> 00:35:20,946
+about this control.
+
+
+782
+00:35:21,526 --> 00:35:23,956
+So as we covered earlier
+you can add a role.
+
+
+783
+00:35:24,046 --> 00:35:25,556
+And we've added the
+role of button.
+
+
+784
+00:35:25,556 --> 00:35:30,056
+And then we've also added the
+ARIA property haspopup="true".
+
+
+785
+00:35:30,746 --> 00:35:32,016
+And what that tells the user is
+
+
+786
+00:35:32,016 --> 00:35:33,696
+that when they activate
+this button,
+
+
+787
+00:35:33,696 --> 00:35:35,176
+a popup menu is going
+to come up.
+
+
+788
+00:35:35,176 --> 00:35:36,816
+And so they kind of know
+that there's something else
+
+
+789
+00:35:36,816 --> 00:35:39,306
+that they can interact with.
+
+
+790
+00:35:39,496 --> 00:35:41,006
+Similarly, for the Save button,
+
+
+791
+00:35:41,076 --> 00:35:42,346
+I've just added a
+role of button.
+
+
+792
+00:35:42,346 --> 00:35:44,076
+And that's really
+all we need to do
+
+
+793
+00:35:44,076 --> 00:35:47,486
+because the label is pure
+text inside of the <div> tag.
+
+
+794
+00:35:47,486 --> 00:35:49,386
+And so voiceover is going
+to get that automatically.
+
+
+795
+00:35:50,776 --> 00:35:51,306
+All right.
+
+
+796
+00:35:51,346 --> 00:35:56,246
+So if we jump over to
+Safari and refresh the page
+
+
+797
+00:35:56,246 --> 00:35:57,156
+and we turn on voiceover:
+
+
+798
+00:35:59,866 --> 00:36:00,896
+>> Voiceover on.
+
+
+799
+00:36:00,946 --> 00:36:03,516
+Safari 1-0-0 percent
+popup button.
+
+
+800
+00:36:04,096 --> 00:36:07,126
+>> OK, so voiceover said,
+"1-0-0 percent popup button."
+
+
+801
+00:36:07,496 --> 00:36:08,866
+And that's a lot better,
+
+
+802
+00:36:08,866 --> 00:36:12,586
+but we're still not getting the
+actual-we're still not telling
+
+
+803
+00:36:12,586 --> 00:36:14,236
+them that this is a
+Zoom popup button.
+
+
+804
+00:36:14,506 --> 00:36:16,606
+So we're going to go add
+some ARIA labels to this.
+
+
+805
+00:36:16,606 --> 00:36:19,166
+And I'm going to show you how
+to add the ARIA label along
+
+
+806
+00:36:19,166 --> 00:36:20,716
+with the current
+value of the control
+
+
+807
+00:36:20,716 --> 00:36:23,746
+to make this control really
+usable for a voiceover user.
+
+
+808
+00:36:24,106 --> 00:36:27,176
+>> 1-0-0. Voiceover off.
+
+
+809
+00:36:27,176 --> 00:36:29,886
+>> OK, so let's add the
+ARIA label to the control.
+
+
+810
+00:36:29,886 --> 00:36:31,926
+And if we go back into here.
+
+
+811
+00:36:31,926 --> 00:36:34,936
+So here is the JavaScript that
+actually handles selection.
+
+
+812
+00:36:35,406 --> 00:36:38,016
+And so we've added this
+method called syncValue,
+
+
+813
+00:36:38,396 --> 00:36:42,216
+which basically, what it does
+is when the selection changes
+
+
+814
+00:36:42,216 --> 00:36:45,346
+for this menu, it finds out
+what the currently selected Zoom
+
+
+815
+00:36:45,346 --> 00:36:46,016
+level is.
+
+
+816
+00:36:46,206 --> 00:36:48,866
+And then it modifies the markup
+to show the current Zoom level.
+
+
+817
+00:36:49,176 --> 00:36:50,366
+And we've hooked into that
+
+
+818
+00:36:50,366 --> 00:36:52,786
+to also update the ARIA
+label attribute here.
+
+
+819
+00:36:52,786 --> 00:36:57,956
+And what we're doing is we're
+just prepending the value along
+
+
+820
+00:36:57,956 --> 00:37:00,226
+with a localized
+string of "Zoom".
+
+
+821
+00:37:00,226 --> 00:37:03,086
+And that allows us to tell
+the voiceover user a lot more
+
+
+822
+00:37:03,086 --> 00:37:04,236
+information about this control.
+
+
+823
+00:37:04,236 --> 00:37:08,276
+So flip back over to
+Safari, turn on voiceover.
+
+
+824
+00:37:08,276 --> 00:37:11,286
+>> Voiceover on 1-0-0
+percent Zoom popup button.
+
+
+825
+00:37:11,646 --> 00:37:13,336
+>> OK, so that tells the
+user everything they need
+
+
+826
+00:37:13,336 --> 00:37:14,346
+to know about this control.
+
+
+827
+00:37:14,576 --> 00:37:16,016
+Now, if we activate
+this control:
+
+
+828
+00:37:16,536 --> 00:37:17,786
+>> You are currently
+on a popup button.
+
+
+829
+00:37:18,376 --> 00:37:20,746
+>> Notice voiceover doesn't tell
+us anything about this menu.
+
+
+830
+00:37:21,286 --> 00:37:23,076
+>> 5-0 percent Zoom
+popup button.
+
+
+831
+00:37:23,516 --> 00:37:25,056
+>> But when the menus
+value changes,
+
+
+832
+00:37:25,246 --> 00:37:26,566
+we do get the updated value.
+
+
+833
+00:37:26,856 --> 00:37:27,776
+So the next thing that we want
+
+
+834
+00:37:27,776 --> 00:37:30,046
+to do is make this menu more
+accessible for voiceover.
+
+
+835
+00:37:30,926 --> 00:37:31,856
+>> Voiceover off.
+
+
+836
+00:37:32,676 --> 00:37:34,846
+>> So if we flip back
+over to the markup,
+
+
+837
+00:37:36,676 --> 00:37:39,686
+you can see that the menu is
+implemented using only <div>
+
+
+838
+00:37:39,686 --> 00:37:42,496
+tags, which is typically
+how you would use a menu.
+
+
+839
+00:37:42,966 --> 00:37:46,166
+And so all we want to do is add
+some ARIA markup to this menu
+
+
+840
+00:37:46,166 --> 00:37:47,526
+to get it usable with voiceover.
+
+
+841
+00:37:48,236 --> 00:37:53,326
+So we add it to the menu, a
+role of menu, and then for each
+
+
+842
+00:37:53,326 --> 00:37:55,676
+of the items we add
+role of "menuitemradio",
+
+
+843
+00:37:55,796 --> 00:37:57,856
+which tells the user that
+they can only select one
+
+
+844
+00:37:57,856 --> 00:38:00,436
+of these menu items at a time.
+
+
+845
+00:38:00,536 --> 00:38:02,456
+You know, you can
+use a menu item
+
+
+846
+00:38:02,456 --> 00:38:03,946
+if there are multiple
+things you can select.
+
+
+847
+00:38:03,946 --> 00:38:05,636
+You can use check states,
+that kind of thing,
+
+
+848
+00:38:05,906 --> 00:38:08,726
+but for this purpose we're only
+going to use menu item radio.
+
+
+849
+00:38:08,726 --> 00:38:11,866
+And then we're going to
+add ARIAchecked="true"
+
+
+850
+00:38:11,906 --> 00:38:13,446
+for the currently
+selected menu item.
+
+
+851
+00:38:13,446 --> 00:38:15,466
+And, again, we're
+going to update this
+
+
+852
+00:38:15,466 --> 00:38:16,826
+as the selection changes.
+
+
+853
+00:38:17,846 --> 00:38:18,166
+All right.
+
+
+854
+00:38:18,196 --> 00:38:21,846
+So let's jump back to the menu
+and see how this changes things.
+
+
+855
+00:38:22,556 --> 00:38:25,856
+>> Voiceover on 1-0-0
+percent Zoom popup button.
+
+
+856
+00:38:26,276 --> 00:38:27,226
+>> So that works out great.
+
+
+857
+00:38:27,226 --> 00:38:30,746
+>> One checkmark 1-0-0
+percent check, checkmark 1-0-0.
+
+
+858
+00:38:31,176 --> 00:38:32,656
+>> Okay. So voiceover
+is telling us that we're
+
+
+859
+00:38:32,656 --> 00:38:35,516
+on the 100 percent menu
+item, that there are 5 items,
+
+
+860
+00:38:35,516 --> 00:38:37,666
+and that this one that we're
+currently on is selected.
+
+
+861
+00:38:38,066 --> 00:38:39,956
+Now, if we navigate
+to say 75 percent --
+
+
+862
+00:38:39,956 --> 00:38:41,746
+>> 7-5 percent menu, 5 items.
+
+
+863
+00:38:42,706 --> 00:38:44,176
+>> Tells us that there
+are 5 items in the menu
+
+
+864
+00:38:44,176 --> 00:38:45,336
+and that we're on 75 percent.
+
+
+865
+00:38:45,986 --> 00:38:49,286
+>> 5-0 percent, one
+checkmark, 1-0-0 percent check.
+
+
+866
+00:38:49,576 --> 00:38:50,176
+>> OK, great.
+
+
+867
+00:38:50,236 --> 00:38:53,206
+>> 7-5 percent, 7-5
+percent Zoom popup button.
+
+
+868
+00:38:53,336 --> 00:38:54,776
+>> So we've selected 75 percent.
+
+
+869
+00:38:54,776 --> 00:38:56,456
+And we just want to go back
+into the menu and make sure
+
+
+870
+00:38:56,456 --> 00:38:58,626
+that the selection
+state was updated.
+
+
+871
+00:38:59,076 --> 00:39:01,216
+>> One checkmark
+7-5 percent check.
+
+
+872
+00:39:01,596 --> 00:39:05,936
+5-0 percent, 5-0-one checkmark
+7-5 percent check, check.
+
+
+873
+00:39:06,186 --> 00:39:08,636
+>> Great. So this menu is
+now completely accessible
+
+
+874
+00:39:08,636 --> 00:39:10,356
+with voiceover, which
+is really, really great.
+
+
+875
+00:39:11,186 --> 00:39:13,926
+OK, so as you saw from the
+demo, using just a little bit
+
+
+876
+00:39:13,926 --> 00:39:16,236
+of extra HTML markup, tapping
+
+
+877
+00:39:16,236 --> 00:39:18,026
+into our existing
+JavaScript code
+
+
+878
+00:39:18,336 --> 00:39:20,876
+and handling a few keyboard
+events, we were able
+
+
+879
+00:39:20,876 --> 00:39:22,786
+to really improve
+the user experience
+
+
+880
+00:39:22,786 --> 00:39:24,056
+of our text editing application.
+
+
+881
+00:39:24,056 --> 00:39:27,476
+And we were able to make it
+fully accessible using a screen
+
+
+882
+00:39:27,476 --> 00:39:29,266
+reader, in this case,
+voiceover on the Mac.
+
+
+883
+00:39:30,866 --> 00:39:34,006
+So to begin wrapping up, I'd
+like to re-emphasize four
+
+
+884
+00:39:34,006 --> 00:39:35,746
+of the most important
+points of this talk.
+
+
+885
+00:39:37,016 --> 00:39:40,926
+You should strive to make your
+content perceivable, operable,
+
+
+886
+00:39:41,186 --> 00:39:43,096
+understandable, and robust.
+
+
+887
+00:39:45,636 --> 00:39:47,206
+Using standard controls
+
+
+888
+00:39:47,206 --> 00:39:50,036
+and semantic markup wherever
+possible will make this a lot
+
+
+889
+00:39:50,036 --> 00:39:53,486
+easier, but you can use
+ARIA to fill the gaps
+
+
+890
+00:39:54,796 --> 00:39:57,146
+where HTML doesn't
+provide you enough control.
+
+
+891
+00:39:57,146 --> 00:40:00,936
+And then finally, test your
+applications with the keyboard.
+
+
+892
+00:40:01,546 --> 00:40:03,966
+All mouse interactions should
+be able to be duplicated
+
+
+893
+00:40:03,966 --> 00:40:04,896
+with the keyboard alone.
+
+
+894
+00:40:04,896 --> 00:40:06,726
+And then fire up a screen reader
+
+
+895
+00:40:06,726 --> 00:40:08,566
+and really thoroughly
+test your application.
+
+
+896
+00:40:08,566 --> 00:40:11,206
+And be asking yourself,
+"If I can't see it,
+
+
+897
+00:40:11,266 --> 00:40:12,676
+does this really make sense?
+
+
+898
+00:40:12,916 --> 00:40:15,016
+Am I really getting all of
+the information that's here
+
+
+899
+00:40:15,016 --> 00:40:16,186
+that a sighted user sees?"
+
+
+900
+00:40:16,186 --> 00:40:18,896
+And then use ARIA to kind
+of fill in those gaps
+
+
+901
+00:40:19,256 --> 00:40:22,356
+and make your user
+experience a lot better.
+
+
+902
+00:40:23,176 --> 00:40:26,376
+For more information you
+can contact Jake Behrens,
+
+
+903
+00:40:26,376 --> 00:40:28,266
+who is our App Frameworks
+Evangelist.
+
+
+904
+00:40:28,266 --> 00:40:29,456
+I've included links to the
+
+
+905
+00:40:29,456 --> 00:40:31,926
+"Web Content Accessibility
+Guidelines" as well
+
+
+906
+00:40:31,926 --> 00:40:34,126
+as the ARIA documentation
+so you can learn all
+
+
+907
+00:40:34,126 --> 00:40:35,356
+about roles and properties.
+
+
+908
+00:40:35,956 --> 00:40:38,346
+And I've also included the link
+to the talk that I promised you
+
+
+909
+00:40:38,346 --> 00:40:40,136
+about using accessibility
+in automation.
+
+
+910
+00:40:40,596 --> 00:40:42,416
+And of course you can
+always reach out to us
+
+
+911
+00:40:42,716 --> 00:40:44,146
+through the Apple
+Developer Forums.
+
+
+912
+00:40:45,376 --> 00:40:48,386
+In case you want a little bit
+more information these talks,
+
+
+913
+00:40:48,506 --> 00:40:50,806
+I would highly recommend
+you check out the videos
+
+
+914
+00:40:50,806 --> 00:40:52,966
+of accessibility on OS X, iOS.
+
+
+915
+00:40:52,966 --> 00:40:55,446
+And then more information
+about the "Web Inspector
+
+
+916
+00:40:55,446 --> 00:40:58,096
+and Modern JavaScript" can be
+found in the talk on Thursday.
+
+
+917
+00:40:58,626 --> 00:41:00,936
+Thank you, guys, so
+much for listening.
+
+
+918
+00:41:00,936 --> 00:41:03,916
+I hope you have a wonderful
+day and safe travels back home.
+
+
+919
+00:41:03,916 --> 00:41:04,856
+Thank you.
+

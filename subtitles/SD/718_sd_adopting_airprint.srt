@@ -1,0 +1,6072 @@
+1
+00:00:11,216 --> 00:00:12,616
+>> Okay, good morning,
+everybody.
+
+
+2
+00:00:13,956 --> 00:00:17,396
+Welcome to the WWDC
+2014 Printing session.
+
+
+3
+00:00:17,396 --> 00:00:19,676
+I'm Howard Miller, I'm
+the Engineering Manager
+
+
+4
+00:00:19,676 --> 00:00:21,176
+for everything printing
+at Apple.
+
+
+5
+00:00:21,176 --> 00:00:24,946
+Today we've got a pretty
+straightforward agenda,
+
+
+6
+00:00:25,076 --> 00:00:27,676
+we're going to give a little
+bit of an update on AirPrint.
+
+
+7
+00:00:27,676 --> 00:00:29,506
+We're going to spend
+the majority
+
+
+8
+00:00:29,506 --> 00:00:31,376
+of our session on iOS printing.
+
+
+9
+00:00:32,106 --> 00:00:35,346
+We're going to show you the new
+iOS printing technology that's
+
+
+10
+00:00:35,346 --> 00:00:37,306
+in iOS 8 and we're going
+to give you a demo of that.
+
+
+11
+00:00:37,726 --> 00:00:40,126
+So I know everybody probably
+went to the parties last night,
+
+
+12
+00:00:40,126 --> 00:00:41,346
+so we've got to wake
+everybody up.
+
+
+13
+00:00:41,606 --> 00:00:44,376
+How many people here have
+applications that already print?
+
+
+14
+00:00:45,556 --> 00:00:47,196
+All right, we've
+got a good number.
+
+
+15
+00:00:47,196 --> 00:00:50,176
+How many here have applications
+that you want to have print?
+
+
+16
+00:00:50,886 --> 00:00:51,376
+All right.
+
+
+17
+00:00:51,376 --> 00:00:53,526
+By the time you guys
+leave today,
+
+
+18
+00:00:53,526 --> 00:00:55,426
+your applications
+will be able to print.
+
+
+19
+00:00:55,856 --> 00:00:58,026
+I know you can write the code
+while sitting right there
+
+
+20
+00:00:58,026 --> 00:00:59,406
+because it's going
+to be that easy.
+
+
+21
+00:00:59,406 --> 00:01:02,236
+But if you don't get it done,
+we have a lab that follows this,
+
+
+22
+00:01:02,236 --> 00:01:05,366
+you can come down, and we will
+get your code printing today.
+
+
+23
+00:01:06,036 --> 00:01:07,736
+So let me give you an
+update about AirPrint.
+
+
+24
+00:01:08,266 --> 00:01:09,506
+What is AirPrint?
+
+
+25
+00:01:10,476 --> 00:01:12,196
+You know this technology
+was released
+
+
+26
+00:01:12,196 --> 00:01:17,076
+with iOS 4.2 several years
+ago, and our primary goal was
+
+
+27
+00:01:17,076 --> 00:01:20,206
+to provide a great,
+outstanding user experience.
+
+
+28
+00:01:21,266 --> 00:01:23,956
+Printing was a pain,
+really was painful.
+
+
+29
+00:01:24,496 --> 00:01:26,756
+And we worked on the
+Mac to make it simpler
+
+
+30
+00:01:26,756 --> 00:01:28,726
+but it still wasn't
+super simple.
+
+
+31
+00:01:28,726 --> 00:01:29,736
+And we got to iOS.
+
+
+32
+00:01:30,226 --> 00:01:32,346
+We had to have no drivers,
+
+
+33
+00:01:32,346 --> 00:01:34,736
+no software to install,
+no configuration.
+
+
+34
+00:01:34,736 --> 00:01:36,926
+The user just wants
+to put their printer,
+
+
+35
+00:01:37,436 --> 00:01:39,486
+connect it to the network and
+then when they go to print,
+
+
+36
+00:01:40,246 --> 00:01:41,596
+there's their printer
+and they print.
+
+
+37
+00:01:42,676 --> 00:01:44,276
+You don't need 50
+million options.
+
+
+38
+00:01:44,276 --> 00:01:45,476
+The printer should be smarter.
+
+
+39
+00:01:45,476 --> 00:01:47,316
+The printing system
+should be smarter.
+
+
+40
+00:01:47,316 --> 00:01:48,236
+And that's what we did.
+
+
+41
+00:01:48,236 --> 00:01:51,226
+But we didn't sacrifice
+output quality.
+
+
+42
+00:01:51,956 --> 00:01:55,516
+With AirPrint you get
+the full print quality
+
+
+43
+00:01:55,516 --> 00:01:58,186
+that Apple's become
+known to deliver
+
+
+44
+00:01:58,186 --> 00:01:59,966
+for the last couple decades.
+
+
+45
+00:02:00,326 --> 00:02:02,336
+It is as good or in
+some cases better
+
+
+46
+00:02:02,336 --> 00:02:03,926
+than what you can
+get from the desktop.
+
+
+47
+00:02:03,926 --> 00:02:05,316
+No compromises were made.
+
+
+48
+00:02:05,586 --> 00:02:07,826
+Your printer manufacturer?
+
+
+49
+00:02:07,826 --> 00:02:10,226
+AirPrint's a protocol,
+standards-based,
+
+
+50
+00:02:10,366 --> 00:02:12,616
+plus a little Apple
+secret sauce on the side.
+
+
+51
+00:02:12,916 --> 00:02:16,716
+And if you're a technology
+provider, a server vendor,
+
+
+52
+00:02:16,716 --> 00:02:22,396
+we will license you all this
+technology at zero cost.
+
+
+53
+00:02:23,256 --> 00:02:25,696
+Printers, you know we
+introduced with a dozen
+
+
+54
+00:02:25,696 --> 00:02:27,276
+or so printers from HP.
+
+
+55
+00:02:27,276 --> 00:02:31,596
+I'm proud to report that we have
+100 times as many printers now.
+
+
+56
+00:02:32,166 --> 00:02:34,646
+If you go into any
+Staples or Fry's
+
+
+57
+00:02:34,646 --> 00:02:37,076
+or pick your favorite
+electronic store,
+
+
+58
+00:02:37,276 --> 00:02:40,216
+virtually every network printer
+they sell now has AirPrint
+
+
+59
+00:02:40,216 --> 00:02:40,546
+in it.
+
+
+60
+00:02:40,986 --> 00:02:44,366
+By my read, about half of
+the world's installed base
+
+
+61
+00:02:44,366 --> 00:02:46,426
+of printers have AirPrint in it.
+
+
+62
+00:02:48,026 --> 00:02:53,356
+You almost cannot find a
+printer that your mom would want
+
+
+63
+00:02:53,436 --> 00:02:54,546
+that doesn't have AirPrint.
+
+
+64
+00:02:54,546 --> 00:02:57,066
+Last year, all the
+enterprise vendors came on.
+
+
+65
+00:02:57,336 --> 00:03:02,036
+Kyocera, Sharp, Toshiba all
+have AirPrint throughout their
+
+
+66
+00:03:02,036 --> 00:03:02,766
+product line.
+
+
+67
+00:03:03,316 --> 00:03:05,716
+As I mentioned, AirPrint
+is available
+
+
+68
+00:03:05,716 --> 00:03:08,656
+as a printing system
+in iOS 4.2 and later.
+
+
+69
+00:03:08,746 --> 00:03:11,066
+For those who have done the
+math, that means there are more
+
+
+70
+00:03:11,066 --> 00:03:16,616
+than 700 million users that have
+the same printing system on it.
+
+
+71
+00:03:16,996 --> 00:03:19,366
+That's more than any other
+printing system in the history
+
+
+72
+00:03:19,366 --> 00:03:20,486
+of the computing industry.
+
+
+73
+00:03:20,486 --> 00:03:23,816
+So AirPrint's printing system
+is the most prevalent printing
+
+
+74
+00:03:23,816 --> 00:03:24,716
+platform out there.
+
+
+75
+00:03:25,226 --> 00:03:27,406
+Then, of course, the most
+important thing is your app.
+
+
+76
+00:03:28,466 --> 00:03:30,006
+And you just got
+to believe this,
+
+
+77
+00:03:30,006 --> 00:03:32,656
+the Microsoft guys released
+a beautiful product,
+
+
+78
+00:03:33,286 --> 00:03:35,416
+they left one small feature out.
+
+
+79
+00:03:35,976 --> 00:03:38,266
+And they heard about it
+right away on day one.
+
+
+80
+00:03:38,816 --> 00:03:41,666
+And by the end of that
+week I was on the phone
+
+
+81
+00:03:41,666 --> 00:03:43,356
+with their engineers
+telling them to check
+
+
+82
+00:03:43,356 --> 00:03:45,776
+out the last WWDC presentation.
+
+
+83
+00:03:46,046 --> 00:03:48,546
+And within a couple days,
+their app was then printing.
+
+
+84
+00:03:48,546 --> 00:03:50,396
+Of course, it took
+them the better part
+
+
+85
+00:03:50,396 --> 00:03:51,496
+of a month to release it.
+
+
+86
+00:03:52,496 --> 00:03:54,416
+We're going to get
+you out of that.
+
+
+87
+00:03:54,416 --> 00:03:55,236
+What you need to know
+
+
+88
+00:03:55,236 --> 00:03:57,946
+about AirPrint is it's
+super, super easy.
+
+
+89
+00:03:58,716 --> 00:04:00,536
+The user interface is easy.
+
+
+90
+00:04:00,536 --> 00:04:02,576
+The user interaction is easy.
+
+
+91
+00:04:03,196 --> 00:04:05,726
+But equally important, and
+probably more important for you,
+
+
+92
+00:04:06,006 --> 00:04:10,086
+is that the API set that we
+have is not some random walk
+
+
+93
+00:04:10,086 --> 00:04:11,196
+through 100 different things.
+
+
+94
+00:04:11,376 --> 00:04:15,126
+We have a very, very focused set
+of APIs that are very efficient
+
+
+95
+00:04:15,126 --> 00:04:17,326
+to get you right down to
+what you need to know.
+
+
+96
+00:04:18,136 --> 00:04:20,016
+And with little work
+and a little help
+
+
+97
+00:04:20,016 --> 00:04:22,816
+from your application,
+print system's smart enough
+
+
+98
+00:04:22,816 --> 00:04:24,306
+to know what to do
+with your output,
+
+
+99
+00:04:24,416 --> 00:04:26,386
+and we can get super
+high-quality output
+
+
+100
+00:04:26,386 --> 00:04:28,526
+without having to have a
+bunch of user interaction.
+
+
+101
+00:04:29,056 --> 00:04:33,316
+So let's talk about what's
+gone on with AirPrint.
+
+
+102
+00:04:33,926 --> 00:04:36,626
+We started with consumer ink
+jets, we got consumer laser,
+
+
+103
+00:04:36,626 --> 00:04:40,226
+we've got enterprise lasers,
+we've got some servers.
+
+
+104
+00:04:40,506 --> 00:04:44,596
+Last year we talked about
+Brothers first roll-fed printer.
+
+
+105
+00:04:44,996 --> 00:04:48,666
+And as things go there
+are always new classes
+
+
+106
+00:04:48,666 --> 00:04:49,756
+of printers coming.
+
+
+107
+00:04:50,106 --> 00:04:52,786
+And we're getting into some
+of the specialty printers.
+
+
+108
+00:04:52,786 --> 00:04:54,766
+So we're going to start with
+one of my new favorites.
+
+
+109
+00:04:54,766 --> 00:04:57,946
+This is probably not what your
+mom's going to get at home.
+
+
+110
+00:04:57,946 --> 00:05:00,036
+This is the AstroMed
+ToughWriter 5.
+
+
+111
+00:05:00,036 --> 00:05:05,426
+The reason I like this is
+because its native spot is
+
+
+112
+00:05:05,426 --> 00:05:06,996
+on the cockpit of an airplane.
+
+
+113
+00:05:07,236 --> 00:05:10,746
+There it is, set in its
+native 747 environment.
+
+
+114
+00:05:11,116 --> 00:05:14,356
+But this will end up in
+C-17s with the military,
+
+
+115
+00:05:14,356 --> 00:05:15,876
+will end up in commercial.
+
+
+116
+00:05:16,216 --> 00:05:20,026
+But what's interesting is iPads
+and iPhones are everyplace.
+
+
+117
+00:05:20,886 --> 00:05:22,446
+Applications need to print.
+
+
+118
+00:05:22,576 --> 00:05:26,656
+And the printer manufacturers
+of all types are responding.
+
+
+119
+00:05:27,166 --> 00:05:30,366
+This is a curiosity and there
+probably won't be millions
+
+
+120
+00:05:30,366 --> 00:05:32,296
+of these printers
+sold, but it shows
+
+
+121
+00:05:32,296 --> 00:05:34,506
+that AirPrint is pretty much
+every corner of the world now.
+
+
+122
+00:05:35,626 --> 00:05:37,366
+Another printer that
+I'm really happy to talk
+
+
+123
+00:05:37,366 --> 00:05:40,666
+about is the Brother
+RuggedJet 4040.
+
+
+124
+00:05:41,106 --> 00:05:43,736
+This is a very small
+battery-powered receipt
+
+
+125
+00:05:43,736 --> 00:05:44,586
+and label printer.
+
+
+126
+00:05:44,586 --> 00:05:47,386
+It will support AirPrint soon.
+
+
+127
+00:05:47,776 --> 00:05:49,776
+And we'll have a demo
+of that later today.
+
+
+128
+00:05:51,136 --> 00:05:53,096
+So let's talk about
+what we've added.
+
+
+129
+00:05:53,566 --> 00:05:56,916
+We have added some
+new APIs in iOS 8.
+
+
+130
+00:05:56,916 --> 00:06:01,946
+These are to support specialty
+printers and applications.
+
+
+131
+00:06:03,506 --> 00:06:06,696
+If you look at what we
+did in AirPrint so far,
+
+
+132
+00:06:06,696 --> 00:06:10,086
+every time you print, the user
+has to see our print dialog,
+
+
+133
+00:06:10,086 --> 00:06:11,576
+which means they get
+to pick a printer.
+
+
+134
+00:06:12,346 --> 00:06:14,026
+Now, if you're doing
+an application
+
+
+135
+00:06:14,306 --> 00:06:18,996
+for the Lucky's store
+checkout counter,
+
+
+136
+00:06:19,216 --> 00:06:22,376
+you certainly don't want the
+clerk everyday picking their
+
+
+137
+00:06:22,376 --> 00:06:25,196
+printer every time they print
+every receipt for the customer.
+
+
+138
+00:06:25,666 --> 00:06:28,046
+If you're at Lucky's,
+at least my Lucky's,
+
+
+139
+00:06:29,326 --> 00:06:31,696
+they have two printers there.
+
+
+140
+00:06:32,256 --> 00:06:33,536
+One printer prints the receipt,
+
+
+141
+00:06:33,536 --> 00:06:35,796
+the other one prints those
+coupons, and they tear them off
+
+
+142
+00:06:35,796 --> 00:06:36,736
+and they give you both.
+
+
+143
+00:06:36,866 --> 00:06:40,056
+This set of APIs will allow
+you to have multiple sets
+
+
+144
+00:06:40,056 --> 00:06:46,976
+of printers preconfigured by an
+administrator that at runtime,
+
+
+145
+00:06:47,566 --> 00:06:50,566
+the user, the application
+can select which printer
+
+
+146
+00:06:51,166 --> 00:06:53,436
+without the user
+having to get involved.
+
+
+147
+00:06:53,976 --> 00:06:58,796
+So we'll have a bunch to
+talk about that in a minute.
+
+
+148
+00:06:58,986 --> 00:07:00,906
+So let's talk about some hints.
+
+
+149
+00:07:01,696 --> 00:07:04,036
+First off, everybody's
+designing their applications
+
+
+150
+00:07:04,036 --> 00:07:04,696
+for the screen.
+
+
+151
+00:07:04,696 --> 00:07:07,536
+We've got some beautiful
+iPads with Retina displays.
+
+
+152
+00:07:07,936 --> 00:07:09,296
+But for those of us
+in the printing world,
+
+
+153
+00:07:09,296 --> 00:07:11,056
+that's pretty low-resolution
+output.
+
+
+154
+00:07:11,126 --> 00:07:13,436
+It's also output
+that is backlit.
+
+
+155
+00:07:14,536 --> 00:07:16,616
+When we start talking
+about paper,
+
+
+156
+00:07:16,616 --> 00:07:22,316
+you have a much larger canvas,
+a much larger space to utilize.
+
+
+157
+00:07:22,816 --> 00:07:25,676
+And that means that you
+want to lay out your stuff
+
+
+158
+00:07:25,676 --> 00:07:27,996
+to make effective
+use of the space.
+
+
+159
+00:07:28,596 --> 00:07:31,366
+You want to provide
+higher quality graphics.
+
+
+160
+00:07:31,366 --> 00:07:33,456
+You're going to need
+higher resolution graphics
+
+
+161
+00:07:33,456 --> 00:07:36,276
+than what you're showing on
+screen if you want the output
+
+
+162
+00:07:36,276 --> 00:07:37,646
+to be truly spectacular.
+
+
+163
+00:07:38,416 --> 00:07:40,156
+Then I want you to
+think about readability.
+
+
+164
+00:07:41,226 --> 00:07:45,386
+You know, they don't print books
+that people are going to sit
+
+
+165
+00:07:45,386 --> 00:07:48,496
+on their couch and
+read with no margins.
+
+
+166
+00:07:49,606 --> 00:07:52,576
+There's always a big margin so
+your big, fat thumb can be there
+
+
+167
+00:07:52,576 --> 00:07:54,056
+and you can still
+read the words.
+
+
+168
+00:07:55,736 --> 00:07:57,366
+Consider what paper is.
+
+
+169
+00:07:57,916 --> 00:08:00,916
+It's going to be reflective,
+light's going to come off of it.
+
+
+170
+00:08:01,356 --> 00:08:04,736
+Gray looks awesome on screen,
+gray looks awful when it comes
+
+
+171
+00:08:04,736 --> 00:08:06,156
+to print, it's hard to read.
+
+
+172
+00:08:06,156 --> 00:08:08,666
+Consider the contrast,
+consider the margin,
+
+
+173
+00:08:08,666 --> 00:08:10,836
+consider the fonts,
+consider the spacing.
+
+
+174
+00:08:11,286 --> 00:08:13,216
+Paper's a little
+different than screen,
+
+
+175
+00:08:13,576 --> 00:08:15,506
+and with just a little
+bit of forethought,
+
+
+176
+00:08:15,506 --> 00:08:19,176
+you can get spectacular
+printed output.
+
+
+177
+00:08:19,176 --> 00:08:20,476
+With respect to the
+printing system,
+
+
+178
+00:08:20,476 --> 00:08:21,966
+it's a smart printing system.
+
+
+179
+00:08:21,966 --> 00:08:25,076
+We do a huge amount of
+stuff to help your app.
+
+
+180
+00:08:25,486 --> 00:08:27,776
+If you tell us that it's
+a photo, for example,
+
+
+181
+00:08:28,146 --> 00:08:30,956
+we will automatically
+pick the photo tray,
+
+
+182
+00:08:31,766 --> 00:08:34,836
+pick photo print mode, pick
+the highest quality print mode,
+
+
+183
+00:08:35,086 --> 00:08:37,956
+scale the item to fit on
+the page centered and print.
+
+
+184
+00:08:39,476 --> 00:08:41,686
+You're going to tell us
+what you're trying to print,
+
+
+185
+00:08:41,686 --> 00:08:43,976
+we're going to work all
+the magic behind the scenes
+
+
+186
+00:08:43,976 --> 00:08:45,956
+in the printing system to
+make sure the user gets the
+
+
+187
+00:08:45,956 --> 00:08:46,686
+best output.
+
+
+188
+00:08:47,876 --> 00:08:50,326
+Okay, there are a few data
+objects that we're going
+
+
+189
+00:08:50,326 --> 00:08:51,936
+to hand you, you're
+going to hand us back.
+
+
+190
+00:08:51,936 --> 00:08:56,496
+And I just you know the caveat,
+don't troll around in those
+
+
+191
+00:08:56,496 --> 00:08:59,556
+and try and tweak stuff, don't
+introspect these opaque objects,
+
+
+192
+00:08:59,556 --> 00:09:01,746
+we may change something,
+in fact we probably will,
+
+
+193
+00:09:01,746 --> 00:09:03,466
+and I don't want to break
+your app in the future.
+
+
+194
+00:09:03,816 --> 00:09:06,226
+And then the last thing,
+if there's anybody here
+
+
+195
+00:09:06,226 --> 00:09:08,006
+who tests their app - does
+anybody tests their app?
+
+
+196
+00:09:08,676 --> 00:09:10,026
+Okay, at least a few of you do.
+
+
+197
+00:09:10,616 --> 00:09:14,776
+You don't have to go buy all
+1,200 AirPrint printer models
+
+
+198
+00:09:14,776 --> 00:09:15,906
+that are available in the world.
+
+
+199
+00:09:16,186 --> 00:09:20,046
+Go back to the 2012
+WWDC session.
+
+
+200
+00:09:20,046 --> 00:09:21,226
+We spent about 15 minutes
+
+
+201
+00:09:21,226 --> 00:09:23,736
+on something called the
+Printer Simulator, which is part
+
+
+202
+00:09:23,736 --> 00:09:25,426
+of your Xcode release.
+
+
+203
+00:09:26,246 --> 00:09:29,266
+It allows you to simulate
+every common type of printer,
+
+
+204
+00:09:29,266 --> 00:09:32,016
+including changing some
+of their parameters.
+
+
+205
+00:09:32,296 --> 00:09:34,966
+So ink jet printers, laser
+printers, roll-fed printers,
+
+
+206
+00:09:35,346 --> 00:09:36,496
+you don't have to buy them all.
+
+
+207
+00:09:36,496 --> 00:09:40,556
+Buy one and use the printer
+simulator to do your work.
+
+
+208
+00:09:41,256 --> 00:09:43,866
+Okay, let's get to the
+focus of today's meeting.
+
+
+209
+00:09:43,866 --> 00:09:46,396
+Again, our goal is by the
+time you leave here today,
+
+
+210
+00:09:46,396 --> 00:09:48,056
+you can create an
+app that prints.
+
+
+211
+00:09:48,636 --> 00:09:50,376
+And for the meat of
+this presentation,
+
+
+212
+00:09:50,376 --> 00:09:53,406
+I am going to bring up one of
+my engineers, Todd Ritland,
+
+
+213
+00:09:53,996 --> 00:09:58,686
+and he is going to take you
+through everything you need
+
+
+214
+00:09:58,746 --> 00:10:00,846
+to know to make your app print.
+
+
+215
+00:10:01,516 --> 00:10:05,546
+[ Applause ]
+
+
+216
+00:10:06,046 --> 00:10:07,476
+>> Thanks, Howard.
+
+
+217
+00:10:07,476 --> 00:10:09,416
+I'm Todd Ritland, I'm
+an AirPrint Engineer.
+
+
+218
+00:10:09,456 --> 00:10:11,486
+I'm the lead on the
+iOS printing system.
+
+
+219
+00:10:11,486 --> 00:10:15,016
+So we're going to talk
+about iOS printing here.
+
+
+220
+00:10:15,016 --> 00:10:16,776
+First we'll talk about
+picking what to print.
+
+
+221
+00:10:17,786 --> 00:10:21,416
+Next we'll go over the APIs
+and how to actually get output.
+
+
+222
+00:10:21,416 --> 00:10:22,956
+Then we'll talk about some
+
+
+223
+00:10:22,956 --> 00:10:24,546
+of the different
+printing UI options.
+
+
+224
+00:10:24,546 --> 00:10:29,086
+So first, this is our motto,
+I think we've made this clear,
+
+
+225
+00:10:29,086 --> 00:10:32,186
+but iOS printing is
+easy but powerful.
+
+
+226
+00:10:32,516 --> 00:10:35,916
+We designed the AirPrint
+protocol to scale from,
+
+
+227
+00:10:35,916 --> 00:10:39,486
+you know, small consumer
+printers all the way
+
+
+228
+00:10:39,486 --> 00:10:41,576
+up to big enterprise-class
+printers,
+
+
+229
+00:10:41,866 --> 00:10:42,966
+and everything in-between.
+
+
+230
+00:10:43,376 --> 00:10:45,586
+And with every iOS
+release, we've been adding
+
+
+231
+00:10:45,626 --> 00:10:48,436
+and expanding the types of
+things you can do from iOS.
+
+
+232
+00:10:49,986 --> 00:10:53,066
+But we kept it real easy; so
+we want the user interaction
+
+
+233
+00:10:53,066 --> 00:10:54,836
+to be really, really
+simple and basic.
+
+
+234
+00:10:55,136 --> 00:10:58,066
+We haven't added and added
+and added, and really try
+
+
+235
+00:10:58,066 --> 00:10:59,716
+to keep feature creep down.
+
+
+236
+00:11:01,996 --> 00:11:04,036
+So providing good
+content for printing,
+
+
+237
+00:11:04,036 --> 00:11:05,726
+this is really the
+most important part.
+
+
+238
+00:11:06,096 --> 00:11:09,756
+What we're looking for is
+printed output that's useful,
+
+
+239
+00:11:09,906 --> 00:11:11,706
+attractive and high quality.
+
+
+240
+00:11:12,226 --> 00:11:15,816
+We like to think of this
+like high-end graphic design.
+
+
+241
+00:11:16,016 --> 00:11:19,546
+It's best to design your output
+like a graphic designer would,
+
+
+242
+00:11:20,086 --> 00:11:23,136
+and then use our classes
+to make that happen instead
+
+
+243
+00:11:23,226 --> 00:11:24,716
+of approaching it
+the other way around,
+
+
+244
+00:11:24,716 --> 00:11:26,566
+where you're just looking
+at all the classes and kind
+
+
+245
+00:11:26,566 --> 00:11:28,476
+of tweaking what you want to do.
+
+
+246
+00:11:28,726 --> 00:11:30,576
+First, design it and
+then use our classes.
+
+
+247
+00:11:31,226 --> 00:11:34,296
+As Howard said, what looks good
+onscreen doesn't always look
+
+
+248
+00:11:34,326 --> 00:11:35,346
+good on paper.
+
+
+249
+00:11:37,336 --> 00:11:39,926
+We also want you to make use
+of the dynamic printing system.
+
+
+250
+00:11:39,926 --> 00:11:43,446
+So paper size can be
+anything, and we actually talk
+
+
+251
+00:11:43,446 --> 00:11:45,246
+to the AirPrint printer,
+
+
+252
+00:11:45,286 --> 00:11:47,976
+we figure out what size
+papers are available.
+
+
+253
+00:11:48,716 --> 00:11:51,616
+Some printers actually
+have paper size sensors
+
+
+254
+00:11:51,616 --> 00:11:54,796
+that can tell what papers in
+it or the user can enter it
+
+
+255
+00:11:54,796 --> 00:11:56,346
+on the front panel
+what paper is loaded.
+
+
+256
+00:11:57,066 --> 00:11:59,356
+And so the printing system
+was designed to be dynamic,
+
+
+257
+00:11:59,696 --> 00:12:01,476
+it sends that all the
+way up to your app.
+
+
+258
+00:12:01,806 --> 00:12:04,386
+If your app is dynamic about
+its content, laying it out,
+
+
+259
+00:12:04,566 --> 00:12:05,926
+then you get the
+full benefit of that.
+
+
+260
+00:12:07,466 --> 00:12:09,446
+Printer hardware margins
+also vary quite a bit.
+
+
+261
+00:12:09,536 --> 00:12:11,656
+Sometimes the bottom
+margin might be large.
+
+
+262
+00:12:11,706 --> 00:12:15,946
+The margins on other sides
+might be really, really small.
+
+
+263
+00:12:17,176 --> 00:12:18,836
+So for all these reasons,
+it's really best not
+
+
+264
+00:12:18,836 --> 00:12:22,886
+to produce a thick-size PDF and
+send it to the printing system.
+
+
+265
+00:12:22,886 --> 00:12:24,346
+Also, another thing
+to keep in mind is,
+
+
+266
+00:12:24,816 --> 00:12:27,796
+there's really two major
+document sizes for paper
+
+
+267
+00:12:27,796 --> 00:12:30,486
+in the world, U.S. letter, which
+is what we use in the U.S.,
+
+
+268
+00:12:31,156 --> 00:12:33,086
+and then there's A4
+which is used in a lot
+
+
+269
+00:12:33,086 --> 00:12:34,616
+of other regions in the world.
+
+
+270
+00:12:35,036 --> 00:12:38,236
+So if you design your output
+based only on the paper size
+
+
+271
+00:12:38,276 --> 00:12:40,346
+that your region uses,
+you might be missing
+
+
+272
+00:12:40,346 --> 00:12:42,366
+out on a whole other
+market, so it's good to think
+
+
+273
+00:12:42,366 --> 00:12:43,916
+about all these different
+paper sizes.
+
+
+274
+00:12:44,316 --> 00:12:46,586
+And like we said, the
+printing simulator you can use
+
+
+275
+00:12:46,586 --> 00:12:48,166
+to simulate these
+different conditions.
+
+
+276
+00:12:48,686 --> 00:12:53,346
+So a good example of printing is
+this math dictionary for kids.
+
+
+277
+00:12:54,216 --> 00:12:56,636
+This is an app that
+lets you look
+
+
+278
+00:12:56,636 --> 00:12:58,716
+at different definitions
+of math terms.
+
+
+279
+00:12:58,746 --> 00:13:00,736
+In this case, we're looking
+at the laws of arithmetic.
+
+
+280
+00:13:01,266 --> 00:13:03,186
+And if you were a teacher
+and you wanted to make
+
+
+281
+00:13:03,186 --> 00:13:05,656
+like a handout of this,
+you can print it out
+
+
+282
+00:13:06,386 --> 00:13:07,386
+and this is the output
+you'd get.
+
+
+283
+00:13:07,436 --> 00:13:08,616
+It looks really nice.
+
+
+284
+00:13:08,666 --> 00:13:10,206
+This would be suitable to hand
+
+
+285
+00:13:10,206 --> 00:13:12,146
+out to all the students
+in a classroom.
+
+
+286
+00:13:12,766 --> 00:13:14,276
+It has a nice header and footer.
+
+
+287
+00:13:14,776 --> 00:13:16,466
+There's the page
+number at the bottom.
+
+
+288
+00:13:16,896 --> 00:13:19,316
+The examples are in
+nice callout boxes
+
+
+289
+00:13:19,316 --> 00:13:20,246
+that are a different color.
+
+
+290
+00:13:20,806 --> 00:13:22,676
+And this output would
+actually even look really good
+
+
+291
+00:13:22,676 --> 00:13:23,696
+on a black and white printer.
+
+
+292
+00:13:24,996 --> 00:13:29,026
+And if whoever was printing
+had U.S. legal loaded
+
+
+293
+00:13:29,026 --> 00:13:32,526
+in their printer, and the
+printer reported that back
+
+
+294
+00:13:32,526 --> 00:13:35,506
+to the printing system,
+this app is dynamic
+
+
+295
+00:13:35,656 --> 00:13:38,496
+and it fits all the
+content on one page,
+
+
+296
+00:13:38,496 --> 00:13:39,946
+it stretches it out,
+it looks good.
+
+
+297
+00:13:40,006 --> 00:13:45,966
+So this is a good example of
+being dynamic about the content.
+
+
+298
+00:13:45,966 --> 00:13:48,146
+Okay, so let's step
+right into the APIs here.
+
+
+299
+00:13:49,746 --> 00:13:52,706
+The basic steps of printing with
+a UI, this is standard printing,
+
+
+300
+00:13:53,276 --> 00:13:55,196
+first your app will get
+the print controller
+
+
+301
+00:13:55,196 --> 00:13:57,076
+or the activity controller,
+the share sheet.
+
+
+302
+00:13:58,206 --> 00:13:59,876
+You'll set up the
+attributes for the job,
+
+
+303
+00:13:59,876 --> 00:14:01,566
+like job name and
+the type of job.
+
+
+304
+00:14:02,566 --> 00:14:04,316
+Then you'll provide the
+content for printing,
+
+
+305
+00:14:04,466 --> 00:14:06,126
+and we'll go over that later.
+
+
+306
+00:14:07,026 --> 00:14:09,586
+And then you'll present the UI.
+
+
+307
+00:14:09,686 --> 00:14:12,836
+At this point iOS takes
+over, it communicates
+
+
+308
+00:14:12,836 --> 00:14:13,686
+with the AirPrint printer,
+
+
+309
+00:14:13,686 --> 00:14:15,516
+figures out all the
+relevant information.
+
+
+310
+00:14:16,096 --> 00:14:18,006
+The Daemon takes over
+managing the job.
+
+
+311
+00:14:18,466 --> 00:14:22,286
+If the job needs a
+username and password,
+
+
+312
+00:14:22,286 --> 00:14:23,876
+the printing system
+takes care of that.
+
+
+313
+00:14:23,876 --> 00:14:26,756
+If paper runs out or ink runs
+out, any of that kind of stuff,
+
+
+314
+00:14:26,986 --> 00:14:28,456
+that's all managed
+by the Daemon.
+
+
+315
+00:14:28,456 --> 00:14:32,406
+So your app doesn't need to
+deal with any of that stuff.
+
+
+316
+00:14:32,516 --> 00:14:35,256
+So here's the classes we're
+going to be focusing on.
+
+
+317
+00:14:35,976 --> 00:14:40,196
+First, UIPrintInfo, just
+the general sort of metadata
+
+
+318
+00:14:40,196 --> 00:14:42,466
+about the print job, the job
+name, and the type of job.
+
+
+319
+00:14:43,816 --> 00:14:45,936
+UIPrintPaper which just
+represents the sheet
+
+
+320
+00:14:45,936 --> 00:14:46,876
+of paper at the printer.
+
+
+321
+00:14:47,586 --> 00:14:52,756
+A PrintFormatter which knows how
+to format content for a sheet.
+
+
+322
+00:14:54,736 --> 00:14:57,636
+UIPrintPageRenderer which
+lets you take full control
+
+
+323
+00:14:57,636 --> 00:14:58,136
+over drawing.
+
+
+324
+00:15:00,496 --> 00:15:03,236
+Then for showing UI
+and managing the job,
+
+
+325
+00:15:03,236 --> 00:15:04,966
+we have
+UIPrintInteractionController,
+
+
+326
+00:15:05,916 --> 00:15:08,436
+or UIActivityViewController
+which is the share sheet.
+
+
+327
+00:15:09,946 --> 00:15:12,606
+So first let's go
+over UIPrintInfo.
+
+
+328
+00:15:13,316 --> 00:15:17,496
+Every print job should have
+a UIPrintInfo set up for it.
+
+
+329
+00:15:17,666 --> 00:15:19,426
+First thing you'll do
+is set the job name.
+
+
+330
+00:15:20,356 --> 00:15:22,756
+Now, this job name
+appears on the front panel
+
+
+331
+00:15:22,816 --> 00:15:23,926
+when the user prints
+to printer -
+
+
+332
+00:15:24,696 --> 00:15:26,016
+when the user prints their job.
+
+
+333
+00:15:26,016 --> 00:15:28,736
+But also appears
+in print center,
+
+
+334
+00:15:29,016 --> 00:15:30,716
+if the user wants
+to cancel their job.
+
+
+335
+00:15:31,436 --> 00:15:33,486
+If they're printing to a
+server, for like a print
+
+
+336
+00:15:33,486 --> 00:15:36,276
+and release server,
+this is how user's going
+
+
+337
+00:15:36,276 --> 00:15:38,136
+to be identifying their job.
+
+
+338
+00:15:38,416 --> 00:15:40,246
+So it needs to be
+really specific.
+
+
+339
+00:15:40,486 --> 00:15:42,616
+If it's something generic
+like just "print job",
+
+
+340
+00:15:42,816 --> 00:15:45,626
+that doesn't really help users
+identify which job is theirs.
+
+
+341
+00:15:45,626 --> 00:15:47,216
+So it's really important
+to make sure this is
+
+
+342
+00:15:47,336 --> 00:15:48,756
+as specific as possible.
+
+
+343
+00:15:49,186 --> 00:15:51,146
+Next we have output type.
+
+
+344
+00:15:52,566 --> 00:15:54,256
+This just tells the printing
+system about the type
+
+
+345
+00:15:54,256 --> 00:15:55,736
+of content that you're printing.
+
+
+346
+00:15:56,436 --> 00:15:59,676
+It allows the printing system
+to make appropriate choices
+
+
+347
+00:15:59,676 --> 00:16:02,316
+for paper size, the
+print quality mode,
+
+
+348
+00:16:02,756 --> 00:16:05,246
+and we also make UI
+decisions about what to show
+
+
+349
+00:16:05,246 --> 00:16:06,736
+for the UI based on output type.
+
+
+350
+00:16:07,116 --> 00:16:08,186
+We have four of these.
+
+
+351
+00:16:09,046 --> 00:16:12,946
+First one, just a general
+UIPrintInfoOutputGeneral.
+
+
+352
+00:16:13,806 --> 00:16:16,366
+This is like, you know,
+mixed text and graphics,
+
+
+353
+00:16:16,366 --> 00:16:18,006
+like a webpage that
+we're showing here.
+
+
+354
+00:16:18,866 --> 00:16:21,996
+We'll tell the printer to
+print at normal quality,
+
+
+355
+00:16:21,996 --> 00:16:23,406
+so it's not going
+to do high quality
+
+
+356
+00:16:23,406 --> 00:16:25,286
+and take a really long time.
+
+
+357
+00:16:25,286 --> 00:16:27,586
+It'll by default choose
+a document paper size,
+
+
+358
+00:16:27,586 --> 00:16:29,096
+so like A4 or letter.
+
+
+359
+00:16:30,036 --> 00:16:33,286
+The UI allows duplex to be
+shown and page range too.
+
+
+360
+00:16:34,126 --> 00:16:36,826
+Next one we have is
+document grayscale.
+
+
+361
+00:16:36,936 --> 00:16:38,786
+This is very similar
+to the previous one,
+
+
+362
+00:16:38,786 --> 00:16:41,996
+but this is optimized
+for monochrome like text
+
+
+363
+00:16:41,996 --> 00:16:43,486
+and monochrome graphics.
+
+
+364
+00:16:43,706 --> 00:16:46,266
+In this case, you'll
+get improved print speed
+
+
+365
+00:16:46,266 --> 00:16:48,686
+because we can tell the printer
+this is just black and white.
+
+
+366
+00:16:49,076 --> 00:16:51,476
+The data over the
+network can be less.
+
+
+367
+00:16:52,066 --> 00:16:56,526
+It will in many cases reduce
+the amount of ink that gets used
+
+
+368
+00:16:56,526 --> 00:16:58,516
+because the printer will
+go into a black-only mode.
+
+
+369
+00:16:59,336 --> 00:17:03,246
+And like the previous
+example, duplex allowed
+
+
+370
+00:17:03,246 --> 00:17:05,796
+and page range controls
+will be allowed in the UI.
+
+
+371
+00:17:06,906 --> 00:17:08,415
+The next one is photo.
+
+
+372
+00:17:08,415 --> 00:17:10,496
+Like Howard mentioned, you can
+tell us you're printing a photo.
+
+
+373
+00:17:11,576 --> 00:17:13,736
+We'll choose high quality,
+we'll tell the printer,
+
+
+374
+00:17:13,826 --> 00:17:15,776
+this is a photo, print
+it at highest quality.
+
+
+375
+00:17:16,455 --> 00:17:19,136
+We'll choose a photo paper
+size based on the region.
+
+
+376
+00:17:20,496 --> 00:17:22,136
+If the printer allows
+borderless printing,
+
+
+377
+00:17:22,136 --> 00:17:23,445
+we'll choose borderless
+printing.
+
+
+378
+00:17:24,705 --> 00:17:26,856
+And because duplex and
+page range don't make sense
+
+
+379
+00:17:26,856 --> 00:17:28,706
+for a photo, we don't
+show those in UI.
+
+
+380
+00:17:28,846 --> 00:17:30,436
+So you get a really,
+really simple UI.
+
+
+381
+00:17:31,056 --> 00:17:35,546
+And then similarly, we have
+high quality grayscale photo,
+
+
+382
+00:17:35,546 --> 00:17:40,026
+which is in most ways it's
+the same as the previous one.
+
+
+383
+00:17:40,966 --> 00:17:43,686
+But some printers have a
+high-quality grayscale mode.
+
+
+384
+00:17:43,686 --> 00:17:47,686
+Some have gray inks
+and can print a photo
+
+
+385
+00:17:47,686 --> 00:17:49,246
+in grayscale really,
+really nicely.
+
+
+386
+00:17:49,626 --> 00:17:50,966
+So we'll tell the
+printer to do that.
+
+
+387
+00:17:50,966 --> 00:17:53,636
+So choose this if you
+want your photo to come
+
+
+388
+00:17:53,636 --> 00:17:56,146
+out in a really high-end
+grayscale way.
+
+
+389
+00:17:56,676 --> 00:17:59,636
+Okay, so that's UIPrintInfo.
+
+
+390
+00:18:00,546 --> 00:18:02,356
+Next we'll talk about
+UIPrintPaper.
+
+
+391
+00:18:02,356 --> 00:18:04,456
+This is a really simple class,
+
+
+392
+00:18:04,456 --> 00:18:06,366
+it just basically
+has a paperRect
+
+
+393
+00:18:06,366 --> 00:18:11,206
+that represents the full
+sheet of paper, at (0,0),
+
+
+394
+00:18:11,206 --> 00:18:13,196
+and just the rectangle
+is the size of the sheet.
+
+
+395
+00:18:13,766 --> 00:18:15,556
+Then inside of that we
+have the printableRect,
+
+
+396
+00:18:16,366 --> 00:18:17,616
+this is the imageable area.
+
+
+397
+00:18:18,686 --> 00:18:22,496
+It's where the printer can
+actually image content.
+
+
+398
+00:18:22,496 --> 00:18:26,086
+So it's basically the full page
+minus the hardware margins.
+
+
+399
+00:18:27,316 --> 00:18:31,726
+Okay, next we'll talk
+about providing content,
+
+
+400
+00:18:31,806 --> 00:18:34,446
+so this is really the meat
+of the presentation here.
+
+
+401
+00:18:35,216 --> 00:18:37,486
+There's three levels here.
+
+
+402
+00:18:37,486 --> 00:18:39,806
+We have the easiest way,
+
+
+403
+00:18:39,806 --> 00:18:42,156
+then there's a little bit
+more it's still simple
+
+
+404
+00:18:42,156 --> 00:18:43,176
+but a little bit more involved,
+
+
+405
+00:18:43,176 --> 00:18:45,156
+and then the fully
+custom drawn pages.
+
+
+406
+00:18:45,726 --> 00:18:49,536
+So first, the easy is
+PDF files, image files,
+
+
+407
+00:18:49,536 --> 00:18:51,646
+things that are already
+basically ready to print.
+
+
+408
+00:18:52,576 --> 00:18:56,156
+To print these, it
+could be a single item
+
+
+409
+00:18:56,196 --> 00:18:58,396
+or it can be an array of
+items, like if you have a bunch
+
+
+410
+00:18:58,396 --> 00:19:00,476
+of photos you wanted to print,
+you could provide an array.
+
+
+411
+00:19:00,976 --> 00:19:03,866
+It could be, like I
+said, PDFs, JPEGs,
+
+
+412
+00:19:03,866 --> 00:19:05,866
+any image type that
+iOS understands.
+
+
+413
+00:19:06,686 --> 00:19:10,646
+It can be in the form of an
+NSURL to like a file on disk,
+
+
+414
+00:19:11,106 --> 00:19:12,836
+or they could be in
+memory in the form
+
+
+415
+00:19:12,836 --> 00:19:16,216
+of an NSData, UIImage, CIImage.
+
+
+416
+00:19:16,256 --> 00:19:19,866
+It can even be something in the
+photo library like an ALAsset
+
+
+417
+00:19:19,866 --> 00:19:24,006
+or an ALAssetURL, and the
+printing system knows how to go
+
+
+418
+00:19:24,006 --> 00:19:25,626
+into the photo library
+and grab that.
+
+
+419
+00:19:26,966 --> 00:19:28,426
+If you provide an
+array of items,
+
+
+420
+00:19:28,426 --> 00:19:30,416
+each one of those items
+will be a separate job.
+
+
+421
+00:19:34,516 --> 00:19:37,866
+So here's all the code that it
+would take to print a PDF file.
+
+
+422
+00:19:37,996 --> 00:19:38,666
+It's pretty simple.
+
+
+423
+00:19:39,476 --> 00:19:42,636
+This method just takes in the
+URL to a PDF file on disk.
+
+
+424
+00:19:43,876 --> 00:19:46,316
+First we ask the
+UIPrintInteractionController
+
+
+425
+00:19:46,996 --> 00:19:48,936
+if it can print this URL.
+
+
+426
+00:19:49,506 --> 00:19:51,666
+Some examples of when it
+wouldn't be able to print it are
+
+
+427
+00:19:51,666 --> 00:19:53,746
+if the PDF was
+password-protected
+
+
+428
+00:19:53,746 --> 00:19:55,356
+or if it was malformed
+in some way.
+
+
+429
+00:19:57,426 --> 00:20:00,726
+Next we grab the
+UIPrintInteractionControllers.
+
+
+430
+00:20:01,096 --> 00:20:03,656
+It's a shared object, so we just
+grab the sharedPrintController.
+
+
+431
+00:20:04,126 --> 00:20:07,296
+We set the printing
+item property
+
+
+432
+00:20:07,356 --> 00:20:08,796
+to be this URL to our PDF.
+
+
+433
+00:20:08,796 --> 00:20:11,296
+If it was an array of items,
+
+
+434
+00:20:11,756 --> 00:20:13,796
+there's a different
+property called printingItems
+
+
+435
+00:20:14,096 --> 00:20:15,296
+that you'd set to be the array.
+
+
+436
+00:20:15,986 --> 00:20:19,966
+And then we set up our
+UIPrintInfo, like I said,
+
+
+437
+00:20:19,966 --> 00:20:21,136
+we'll do this for every job.
+
+
+438
+00:20:21,336 --> 00:20:26,366
+We'll set the output type to
+be UIPrintInfoOutputGeneral,
+
+
+439
+00:20:26,546 --> 00:20:29,686
+because PDFs typically have
+mixed text and graphics.
+
+
+440
+00:20:30,116 --> 00:20:33,076
+The job name will be just
+the filename of the PDF.
+
+
+441
+00:20:33,076 --> 00:20:35,906
+And then we'll set the
+print info property
+
+
+442
+00:20:35,956 --> 00:20:37,576
+of the
+UIPrintInteractionController
+
+
+443
+00:20:37,616 --> 00:20:39,116
+to be the print info
+that we just created.
+
+
+444
+00:20:39,546 --> 00:20:45,046
+Next we'll set the show as
+page range property to be yes.
+
+
+445
+00:20:45,306 --> 00:20:48,966
+By default it's no, but for a
+PDF, usually users are going
+
+
+446
+00:20:48,966 --> 00:20:50,866
+to want to be able
+to specify page range
+
+
+447
+00:20:50,866 --> 00:20:51,946
+within the PDF to print.
+
+
+448
+00:20:52,456 --> 00:20:57,276
+And then we'll just
+call presentAnimated:YES
+
+
+449
+00:20:57,456 --> 00:20:59,456
+completionHandler with
+no completion handler.
+
+
+450
+00:21:00,196 --> 00:21:03,326
+And at this point iOS
+takes over, you don't have
+
+
+451
+00:21:03,326 --> 00:21:04,426
+to do anything else in your app.
+
+
+452
+00:21:04,546 --> 00:21:08,516
+Like I said, if there's issues,
+you know, like out of paper,
+
+
+453
+00:21:08,516 --> 00:21:09,826
+any of that kind of
+stuff, that's all managed
+
+
+454
+00:21:09,826 --> 00:21:11,366
+by the system, you
+don't have to handle any
+
+
+455
+00:21:11,366 --> 00:21:12,356
+of those errors or anything.
+
+
+456
+00:21:12,756 --> 00:21:16,256
+Okay, so that's the easy level.
+
+
+457
+00:21:17,866 --> 00:21:20,486
+Next is basic: printing
+simple content.
+
+
+458
+00:21:20,486 --> 00:21:22,486
+If you have just text
+
+
+459
+00:21:22,486 --> 00:21:25,976
+or if you've written your
+whole print layout in HTML,
+
+
+460
+00:21:26,846 --> 00:21:29,296
+you'll just use one of these
+provided formatter classes.
+
+
+461
+00:21:31,256 --> 00:21:34,526
+So formatters is
+what we'll be using.
+
+
+462
+00:21:35,066 --> 00:21:36,016
+Now, what is a formatter?
+
+
+463
+00:21:36,676 --> 00:21:38,956
+It's pretty basic, it
+just basically takes
+
+
+464
+00:21:38,956 --> 00:21:41,206
+in the abstract sense, it
+takes some data in your app
+
+
+465
+00:21:42,426 --> 00:21:45,066
+and some rectangle on the
+outputted sheet of paper,
+
+
+466
+00:21:45,966 --> 00:21:47,336
+and it knows how to format it.
+
+
+467
+00:21:47,336 --> 00:21:48,646
+So it's pretty basic.
+
+
+468
+00:21:48,676 --> 00:21:52,746
+So in this case, like
+a string of texts,
+
+
+469
+00:21:53,506 --> 00:21:55,886
+say we have the Gettysburg
+Address in an NSString,
+
+
+470
+00:21:56,886 --> 00:21:58,746
+we can use a
+UISimpleTextFormatter
+
+
+471
+00:21:59,016 --> 00:22:01,966
+and it knows how to take
+that string and to lay it
+
+
+472
+00:22:01,966 --> 00:22:03,776
+out onto a page into
+this rectangle.
+
+
+473
+00:22:03,776 --> 00:22:06,566
+Now, the whole string
+doesn't fit on this one page,
+
+
+474
+00:22:06,566 --> 00:22:12,116
+so formatter knows to just keep
+going until all the content -
+
+
+475
+00:22:12,116 --> 00:22:14,286
+all the data gets used up.
+
+
+476
+00:22:16,776 --> 00:22:18,666
+So you can use formatters
+directly
+
+
+477
+00:22:18,666 --> 00:22:20,246
+with
+UIPrinterInteractionController
+
+
+478
+00:22:20,246 --> 00:22:23,566
+or the UIActivityController,
+the share sheet
+
+
+479
+00:22:23,566 --> 00:22:24,856
+to format for a whole page.
+
+
+480
+00:22:25,706 --> 00:22:28,596
+You can also use formatters as
+a helper and a full renderer,
+
+
+481
+00:22:28,666 --> 00:22:29,836
+and we'll talk about that later.
+
+
+482
+00:22:30,796 --> 00:22:34,196
+For plain text, use this
+UISimpleTextFormatter.
+
+
+483
+00:22:34,606 --> 00:22:37,906
+This allows you to specify font,
+color, alignment, you know,
+
+
+484
+00:22:37,906 --> 00:22:40,336
+kind of control the text, how
+you want it to look on the page.
+
+
+485
+00:22:40,846 --> 00:22:45,096
+For HTML markup, you'll use
+the UIMarkupTextFormatter.
+
+
+486
+00:22:45,246 --> 00:22:47,396
+And it knows how to
+format, you know,
+
+
+487
+00:22:47,396 --> 00:22:49,396
+based on HTML rules,
+using WebKit.
+
+
+488
+00:22:50,006 --> 00:22:55,336
+So the layout, by
+default, here's our paper,
+
+
+489
+00:22:55,336 --> 00:22:56,306
+like we shared before,
+
+
+490
+00:22:56,626 --> 00:22:58,326
+by default it uses
+the printableRect,
+
+
+491
+00:22:59,006 --> 00:23:00,046
+which is the imageable area.
+
+
+492
+00:23:00,836 --> 00:23:03,106
+But that might be really, really
+close to the edge of the page.
+
+
+493
+00:23:03,106 --> 00:23:05,756
+Some printers, you know, only
+have like 1/10 of an inch
+
+
+494
+00:23:05,756 --> 00:23:07,836
+on the edge that
+they can't print.
+
+
+495
+00:23:07,926 --> 00:23:09,746
+So like Howard mentioned,
+that's not a good thing.
+
+
+496
+00:23:09,746 --> 00:23:12,186
+We don't want our
+content to be that close
+
+
+497
+00:23:12,186 --> 00:23:13,096
+to the edge of the page.
+
+
+498
+00:23:14,606 --> 00:23:18,536
+So we've provided a property on
+the formatter that you can use.
+
+
+499
+00:23:18,576 --> 00:23:21,726
+And new this year, we
+have perPageContentInsets.
+
+
+500
+00:23:22,276 --> 00:23:27,246
+This lets you specify left, top,
+right and bottom on every page.
+
+
+501
+00:23:28,236 --> 00:23:33,356
+So it'll keep going until
+all the content's used up
+
+
+502
+00:23:33,356 --> 00:23:35,686
+and it'll honor those
+margins on every single page.
+
+
+503
+00:23:36,186 --> 00:23:37,766
+Previously we had
+a content inset,
+
+
+504
+00:23:38,206 --> 00:23:39,926
+which has behaved a
+little bit differently,
+
+
+505
+00:23:39,926 --> 00:23:42,516
+and we think this is a little
+better, it'll allow you
+
+
+506
+00:23:42,516 --> 00:23:44,616
+to get nice top and
+bottom margins
+
+
+507
+00:23:44,756 --> 00:23:46,656
+that are consistent
+on every single page.
+
+
+508
+00:23:49,606 --> 00:23:52,526
+So here's a quick code
+sample of using a formatter.
+
+
+509
+00:23:53,216 --> 00:23:54,616
+And this is all the
+code you would need
+
+
+510
+00:23:54,616 --> 00:23:57,476
+if you had your print
+layout design in HTML,
+
+
+511
+00:23:57,726 --> 00:24:00,686
+this is really all you'd need
+to do is this method here.
+
+
+512
+00:24:01,336 --> 00:24:04,456
+And so the method takes the
+HTML text as a parameter.
+
+
+513
+00:24:05,516 --> 00:24:07,576
+We create our
+UIMarkupTextFormatter,
+
+
+514
+00:24:08,446 --> 00:24:11,316
+initialize it with the
+text that was passed in.
+
+
+515
+00:24:12,376 --> 00:24:15,606
+Next we set up our per
+page content insets,
+
+
+516
+00:24:16,066 --> 00:24:17,306
+which is a UIEdgeInset.
+
+
+517
+00:24:17,306 --> 00:24:19,276
+So we'll call UIEdgeInsetsMake.
+
+
+518
+00:24:20,186 --> 00:24:24,486
+We'll put 3/4 inch top
+left, bottom and right.
+
+
+519
+00:24:25,446 --> 00:24:29,386
+And then we'll just set the
+print formatter property
+
+
+520
+00:24:29,386 --> 00:24:31,586
+on the controller to be the
+formatter we just created.
+
+
+521
+00:24:32,076 --> 00:24:35,366
+Then we'll set up our
+UIPrintInfo like we always do.
+
+
+522
+00:24:35,756 --> 00:24:38,176
+We'll just set output general.
+
+
+523
+00:24:38,176 --> 00:24:41,976
+The job name will be
+the webpage's URL field.
+
+
+524
+00:24:42,686 --> 00:24:44,846
+And you present.
+
+
+525
+00:24:44,996 --> 00:24:48,736
+So that's all that
+you need to do.
+
+
+526
+00:24:48,976 --> 00:24:53,026
+Now, view formatters, every view
+in iOS has a print formatter
+
+
+527
+00:24:53,026 --> 00:24:55,206
+that knows how to
+get the content
+
+
+528
+00:24:55,206 --> 00:24:56,096
+in the view onto the page.
+
+
+529
+00:24:56,096 --> 00:25:01,476
+iOS wasn't really designed to
+be view-based printing though,
+
+
+530
+00:25:01,616 --> 00:25:03,656
+but some views are
+really useful for this.
+
+
+531
+00:25:03,926 --> 00:25:06,766
+So this example, a map view, if
+you want to get that content,
+
+
+532
+00:25:06,836 --> 00:25:09,946
+the map that's in a
+map view, all you need
+
+
+533
+00:25:09,946 --> 00:25:12,386
+to do is call the
+ViewPrintFormatter
+
+
+534
+00:25:12,386 --> 00:25:14,956
+on your map view, and then
+you can add this right
+
+
+535
+00:25:14,956 --> 00:25:17,296
+to your print controller
+and print with it.
+
+
+536
+00:25:17,946 --> 00:25:19,706
+Another view that's
+really useful
+
+
+537
+00:25:19,946 --> 00:25:23,046
+to use the view print
+formatter is a web view.
+
+
+538
+00:25:23,176 --> 00:25:25,076
+If you have a web view in
+your app and you want to get
+
+
+539
+00:25:25,076 --> 00:25:26,986
+that content to print,
+all you need
+
+
+540
+00:25:26,986 --> 00:25:28,456
+to call is the
+ViewPrintFormatter.
+
+
+541
+00:25:28,566 --> 00:25:30,116
+So you don't need to
+initialize it on your own,
+
+
+542
+00:25:30,116 --> 00:25:33,456
+you just grab it from the view.
+
+
+543
+00:25:33,656 --> 00:25:35,506
+Okay, so that's our
+print formatters.
+
+
+544
+00:25:35,506 --> 00:25:41,926
+So that's the intermediate
+level, the basic level.
+
+
+545
+00:25:42,326 --> 00:25:44,386
+Next is, you know, a
+little bit more advanced,
+
+
+546
+00:25:44,386 --> 00:25:46,046
+it's fully custom drawn pages.
+
+
+547
+00:25:46,046 --> 00:25:47,426
+This is for if you want
+
+
+548
+00:25:47,426 --> 00:25:49,916
+to really take total
+control over the drawing.
+
+
+549
+00:25:50,556 --> 00:25:52,286
+And we'll be rendering the pages
+
+
+550
+00:25:52,286 --> 00:25:54,886
+with content using
+renders mostly
+
+
+551
+00:25:54,886 --> 00:25:56,526
+but you can also
+use the formatters,
+
+
+552
+00:25:56,526 --> 00:25:59,446
+like we just went
+over, in renderer.
+
+
+553
+00:26:02,916 --> 00:26:05,526
+So renders, what is a renderer?
+
+
+554
+00:26:06,416 --> 00:26:08,866
+Well, here's our renderer object
+and it's really responsible
+
+
+555
+00:26:08,866 --> 00:26:10,636
+for at least two things.
+
+
+556
+00:26:11,096 --> 00:26:13,866
+First of which is
+responding to number of pages,
+
+
+557
+00:26:13,866 --> 00:26:16,726
+so it has to know how many pages
+total is going to be printing.
+
+
+558
+00:26:16,966 --> 00:26:19,556
+In this case, two,
+it responds two.
+
+
+559
+00:26:20,206 --> 00:26:22,416
+The next thing it has to do is
+
+
+560
+00:26:22,556 --> 00:26:26,346
+when it's called drawContentFor
+PageAtIndex:inRect.
+
+
+561
+00:26:26,796 --> 00:26:29,266
+So the printing system tells
+it draw the first page.
+
+
+562
+00:26:30,566 --> 00:26:32,886
+And it gets to use
+any drawing methods
+
+
+563
+00:26:32,946 --> 00:26:34,216
+that are at its disposal.
+
+
+564
+00:26:34,216 --> 00:26:37,736
+So any screen drawing methods,
+Core graphics, Core texts,
+
+
+565
+00:26:38,606 --> 00:26:39,796
+UIKit drawing methods.
+
+
+566
+00:26:40,096 --> 00:26:42,576
+And then it's told,
+draw the second page,
+
+
+567
+00:26:42,576 --> 00:26:44,446
+because we said two
+pages, and so it just gets
+
+
+568
+00:26:44,446 --> 00:26:46,286
+to do however it wants to draw.
+
+
+569
+00:26:47,486 --> 00:26:48,996
+So this is what you'd
+do for, you know,
+
+
+570
+00:26:49,146 --> 00:26:51,846
+elaborate printed output.
+
+
+571
+00:26:53,816 --> 00:26:56,216
+So you'll subclass
+UIPrintPageRenderer.
+
+
+572
+00:26:56,656 --> 00:26:59,746
+And like I said, at a minimum
+you'll override number of pages,
+
+
+573
+00:26:59,996 --> 00:27:01,846
+and drawContentForPageAtIndex.
+
+
+574
+00:27:02,496 --> 00:27:05,686
+It also has a few other
+methods you can override,
+
+
+575
+00:27:05,686 --> 00:27:07,756
+like draw header, draw
+footer, things like that,
+
+
+576
+00:27:08,286 --> 00:27:09,356
+and those are documented.
+
+
+577
+00:27:11,156 --> 00:27:13,106
+You'll set the
+UIPrintInteraction Controllers
+
+
+578
+00:27:13,106 --> 00:27:16,856
+printPageRenderer property to
+be your instantiated object
+
+
+579
+00:27:16,856 --> 00:27:19,526
+or your custom
+UIPrintPageRenderer class.
+
+
+580
+00:27:20,536 --> 00:27:23,246
+Or you can add that object to
+the array of activity items,
+
+
+581
+00:27:23,356 --> 00:27:24,666
+if you're using a share sheet.
+
+
+582
+00:27:25,196 --> 00:27:29,166
+You can also add formatters
+by calling addPrintFormatter:
+
+
+583
+00:27:29,166 --> 00:27:32,106
+startingAtPageIndex, because
+a print formatter can start
+
+
+584
+00:27:32,106 --> 00:27:32,906
+at any page.
+
+
+585
+00:27:33,706 --> 00:27:36,006
+Now, how would you use a
+formatter with a renderer?
+
+
+586
+00:27:36,106 --> 00:27:40,066
+Kind of maybe a little bit
+complicated to think about,
+
+
+587
+00:27:40,066 --> 00:27:41,576
+but it's really pretty basic.
+
+
+588
+00:27:41,816 --> 00:27:44,576
+So here's our renderer, and
+when it's told to draw page,
+
+
+589
+00:27:44,956 --> 00:27:47,346
+all it's doing is it's going
+to draw some flourishes
+
+
+590
+00:27:47,346 --> 00:27:48,336
+on the top and the bottom.
+
+
+591
+00:27:48,936 --> 00:27:51,006
+But in the middle we
+want to draw text.
+
+
+592
+00:27:51,806 --> 00:27:54,366
+So the renderer has a
+UISimpleTextFormatter.
+
+
+593
+00:27:55,556 --> 00:27:56,896
+Here's our rectangle
+that we've set
+
+
+594
+00:27:56,896 --> 00:27:58,296
+up where we want
+that text to go.
+
+
+595
+00:27:58,726 --> 00:28:00,886
+And our Gettysburg
+Address again.
+
+
+596
+00:28:00,886 --> 00:28:03,376
+The UISimpleTextFormatter
+just formats it in the middle.
+
+
+597
+00:28:03,576 --> 00:28:08,566
+So if you want to use formatter
+to, you know, do HTML on a part
+
+
+598
+00:28:08,566 --> 00:28:10,706
+of your page but then
+you want full control
+
+
+599
+00:28:10,706 --> 00:28:15,516
+over drawing the rest
+of it, you can do that.
+
+
+600
+00:28:15,516 --> 00:28:18,426
+Okay, so showing the UI, there's
+a couple different options.
+
+
+601
+00:28:19,736 --> 00:28:21,816
+Printing from the
+share sheet is probably
+
+
+602
+00:28:22,136 --> 00:28:23,726
+where most people
+expect printing
+
+
+603
+00:28:23,836 --> 00:28:25,706
+if it's sharing some
+general content
+
+
+604
+00:28:25,706 --> 00:28:27,046
+and printing is one
+of the options.
+
+
+605
+00:28:27,736 --> 00:28:30,266
+This is where printing appears
+in most of the built-in apps
+
+
+606
+00:28:30,266 --> 00:28:32,936
+in iOS, like here in Safari.
+
+
+607
+00:28:33,596 --> 00:28:36,936
+To do that is really
+basic, we'll just,
+
+
+608
+00:28:37,876 --> 00:28:39,486
+when we set up our
+activityItems,
+
+
+609
+00:28:41,096 --> 00:28:44,266
+we'll just add a printInfo
+which has job name and job type
+
+
+610
+00:28:44,266 --> 00:28:47,326
+and all that, you can add then
+a renderer like this case.
+
+
+611
+00:28:48,096 --> 00:28:51,316
+And for this example we're
+like sharing a webpage,
+
+
+612
+00:28:51,316 --> 00:28:54,086
+and most the time when you share
+a webpage you're sharing the
+
+
+613
+00:28:54,086 --> 00:28:54,996
+actual URL.
+
+
+614
+00:28:55,346 --> 00:28:57,576
+But in the case of printing,
+you want to actually render
+
+
+615
+00:28:57,576 --> 00:28:58,476
+out the whole web page.
+
+
+616
+00:28:58,476 --> 00:28:59,916
+So that's what this
+example's showing.
+
+
+617
+00:29:01,176 --> 00:29:04,656
+Now we'll just initialize
+our UIActivityViewController
+
+
+618
+00:29:05,216 --> 00:29:07,096
+with activity items
+that we just created,
+
+
+619
+00:29:07,416 --> 00:29:09,616
+and nil application activities.
+
+
+620
+00:29:09,616 --> 00:29:11,836
+So printing is always
+an activity item,
+
+
+621
+00:29:11,836 --> 00:29:13,236
+not an application activity.
+
+
+622
+00:29:13,296 --> 00:29:17,066
+And then we'll just present
+using the standard view
+
+
+623
+00:29:17,066 --> 00:29:18,126
+controller present methods.
+
+
+624
+00:29:18,656 --> 00:29:23,526
+So in the other case, printing
+with like a Print button,
+
+
+625
+00:29:23,526 --> 00:29:25,976
+you'll create and set up the
+UIPrintInteractionController,
+
+
+626
+00:29:26,106 --> 00:29:27,636
+like we did in our examples.
+
+
+627
+00:29:28,536 --> 00:29:30,096
+For a standard presentation,
+
+
+628
+00:29:30,346 --> 00:29:32,386
+you'll call presentAnimated
+CompletionHandler.
+
+
+629
+00:29:33,316 --> 00:29:37,296
+And for a popover presentation,
+presentFromRect inView
+
+
+630
+00:29:37,626 --> 00:29:40,536
+or presentFromBarButton item,
+animated completionHandler.
+
+
+631
+00:29:43,856 --> 00:29:45,576
+So now printing as a menu item,
+
+
+632
+00:29:45,576 --> 00:29:48,096
+if you want to embed the
+printing UI in your own UI,
+
+
+633
+00:29:48,386 --> 00:29:51,226
+like in this case's pages where
+you select the Print button
+
+
+634
+00:29:51,926 --> 00:29:54,236
+and it slides over and
+gets pushed into it
+
+
+635
+00:29:54,236 --> 00:29:55,136
+like a NAV controller.
+
+
+636
+00:29:56,286 --> 00:29:58,316
+You'll set your class
+as a delegate
+
+
+637
+00:29:58,376 --> 00:30:00,326
+for the shared UI
+printInteractionController.
+
+
+638
+00:30:01,246 --> 00:30:03,036
+You'll implement
+printInteractionController
+
+
+639
+00:30:03,166 --> 00:30:04,206
+ParentViewController.
+
+
+640
+00:30:04,416 --> 00:30:06,986
+So you'll tell the
+printInteractionController
+
+
+641
+00:30:06,986 --> 00:30:08,876
+which view should be apparent.
+
+
+642
+00:30:09,396 --> 00:30:11,906
+Then when the user
+taps print in your UI,
+
+
+643
+00:30:12,876 --> 00:30:14,336
+you'll just call
+presentAnimated:
+
+
+644
+00:30:14,336 --> 00:30:16,806
+CompletionHandler on the
+UIPrintInteractionController.
+
+
+645
+00:30:17,616 --> 00:30:19,516
+And then if your class
+
+
+646
+00:30:19,566 --> 00:30:20,896
+that you've told it
+is the parent is a
+
+
+647
+00:30:20,896 --> 00:30:22,916
+UINavigationController,
+it'll get a push.
+
+
+648
+00:30:23,046 --> 00:30:25,936
+And if it's some other
+UIViewController,
+
+
+649
+00:30:25,936 --> 00:30:27,456
+it'll just get a
+modal presentation.
+
+
+650
+00:30:28,176 --> 00:30:29,986
+But really the
+NavigationController is
+
+
+651
+00:30:29,986 --> 00:30:30,996
+where this is most useful.
+
+
+652
+00:30:33,176 --> 00:30:37,676
+Now, controlling paper size,
+if your app is designed
+
+
+653
+00:30:37,676 --> 00:30:39,206
+with specific paper
+size in mind,
+
+
+654
+00:30:39,206 --> 00:30:41,006
+like a document center gap,
+
+
+655
+00:30:41,006 --> 00:30:43,596
+like pages where the
+user's actually laying
+
+
+656
+00:30:43,596 --> 00:30:46,246
+out their content,
+your app will have
+
+
+657
+00:30:46,246 --> 00:30:47,826
+to provide its own
+paper selection UI.
+
+
+658
+00:30:48,176 --> 00:30:50,566
+This is the example for
+pages here where you get
+
+
+659
+00:30:50,566 --> 00:30:52,066
+to choose a couple
+different paper sizes.
+
+
+660
+00:30:52,916 --> 00:30:54,986
+Then you'll use the delegate
+method printInteraction
+
+
+661
+00:30:54,986 --> 00:30:56,346
+Controller:choosePaper.
+
+
+662
+00:30:57,336 --> 00:30:59,896
+This is called after the
+user selects a printer.
+
+
+663
+00:30:59,976 --> 00:31:01,416
+We've communicated
+with the printer.
+
+
+664
+00:31:01,586 --> 00:31:03,346
+We figured out the
+papers that are available.
+
+
+665
+00:31:04,836 --> 00:31:07,766
+And you then will ask for a
+paper size that's a good match
+
+
+666
+00:31:07,766 --> 00:31:09,206
+to the one that the
+user selected.
+
+
+667
+00:31:09,816 --> 00:31:13,426
+If the printer has paper sensors
+
+
+668
+00:31:13,426 --> 00:31:15,876
+or if the user inputted exactly
+what paper they're loading,
+
+
+669
+00:31:16,266 --> 00:31:18,516
+the array that gets returned
+will only be the ones
+
+
+670
+00:31:18,516 --> 00:31:21,036
+that are detected, because those
+are the only options available.
+
+
+671
+00:31:22,846 --> 00:31:28,266
+So here's a quick example of our
+delegate method for choosePaper.
+
+
+672
+00:31:28,676 --> 00:31:32,896
+In this case we're looking for
+8 1/2 by 11 sheet of paper,
+
+
+673
+00:31:32,896 --> 00:31:35,996
+so we'll just create
+a CGSize pageSize.
+
+
+674
+00:31:36,946 --> 00:31:41,876
+And then we'll use UIPrintPaper
+bestPaperForPageSize
+
+
+675
+00:31:42,276 --> 00:31:43,776
+withPapersFromArray method.
+
+
+676
+00:31:44,516 --> 00:31:46,896
+So we've provided this method
+for you on UIPrintPaper
+
+
+677
+00:31:46,896 --> 00:31:49,866
+because it's actually
+pretty complicated to match
+
+
+678
+00:31:50,536 --> 00:31:54,236
+for a target paper size
+from a list of papers,
+
+
+679
+00:31:54,236 --> 00:31:58,016
+it's kind of complicated and
+we've made it easy for you.
+
+
+680
+00:31:58,016 --> 00:31:59,686
+So we just recommend
+that you just call this.
+
+
+681
+00:32:00,746 --> 00:32:03,246
+Next up is roll paper.
+
+
+682
+00:32:03,436 --> 00:32:04,946
+This was new in iOS 7.
+
+
+683
+00:32:06,676 --> 00:32:08,436
+It's similar to choose paper
+
+
+684
+00:32:08,436 --> 00:32:11,996
+in that you can have a delegate
+method called cutLengthForPaper.
+
+
+685
+00:32:13,646 --> 00:32:16,646
+This method will only be called
+after the user selects a printer
+
+
+686
+00:32:16,646 --> 00:32:20,526
+that actually has a
+roll loaded in it.
+
+
+687
+00:32:20,526 --> 00:32:23,836
+It'll have a UIPrintPaper
+passed into it with the width
+
+
+688
+00:32:23,836 --> 00:32:25,646
+of the roll, and the height
+
+
+689
+00:32:25,646 --> 00:32:29,446
+of the paper will be the maximum
+height that the printer allows.
+
+
+690
+00:32:31,016 --> 00:32:33,966
+By default, if you don't
+have this delegate method,
+
+
+691
+00:32:33,966 --> 00:32:37,606
+which most apps won't, and
+if the user chooses a printer
+
+
+692
+00:32:37,606 --> 00:32:40,826
+that has a roll loaded, the cut
+length will just be proportional
+
+
+693
+00:32:40,826 --> 00:32:43,156
+to whatever default paper
+would be used for that job.
+
+
+694
+00:32:43,156 --> 00:32:50,336
+Okay, next up this is
+the new thing in iOS 8
+
+
+695
+00:32:50,336 --> 00:32:51,696
+that we're very happy
+
+
+696
+00:32:51,766 --> 00:32:53,796
+to announce is printing
+without showing UI.
+
+
+697
+00:32:56,076 --> 00:33:00,046
+Now this opens up the
+opportunity for new types
+
+
+698
+00:33:00,046 --> 00:33:02,396
+of printing applications, so
+we're really excited about that.
+
+
+699
+00:33:02,856 --> 00:33:07,506
+WWDC this year is all about
+enabling developers to do new,
+
+
+700
+00:33:07,506 --> 00:33:09,616
+interesting things that you
+weren't able to do before.
+
+
+701
+00:33:09,616 --> 00:33:10,806
+So we're excited to have this.
+
+
+702
+00:33:11,426 --> 00:33:13,576
+But what this is
+not for is for apps
+
+
+703
+00:33:13,576 --> 00:33:15,916
+that provide their own
+custom print panel.
+
+
+704
+00:33:15,916 --> 00:33:18,446
+It wasn't designed for that, and
+in some ways you're not going
+
+
+705
+00:33:18,446 --> 00:33:21,086
+to be able to do that.
+
+
+706
+00:33:21,426 --> 00:33:22,886
+So here's our standard
+printing UI,
+
+
+707
+00:33:23,506 --> 00:33:25,546
+let's just break it
+down into some steps.
+
+
+708
+00:33:26,136 --> 00:33:28,356
+First what the user
+uses this UI to do is
+
+
+709
+00:33:28,356 --> 00:33:32,116
+to select their printer,
+then they set some options
+
+
+710
+00:33:32,116 --> 00:33:34,966
+like copies or duplex,
+things like that.
+
+
+711
+00:33:34,966 --> 00:33:39,086
+And then they tap Print when
+they actually want to print.
+
+
+712
+00:33:39,336 --> 00:33:40,826
+So what we've really
+done is separated this
+
+
+713
+00:33:40,826 --> 00:33:41,906
+out into two things.
+
+
+714
+00:33:42,286 --> 00:33:45,266
+The user's still going to
+need to select a printer,
+
+
+715
+00:33:46,246 --> 00:33:47,396
+but that's done up front.
+
+
+716
+00:33:47,666 --> 00:33:49,556
+And so for that we
+have a printer picker.
+
+
+717
+00:33:50,846 --> 00:33:54,136
+And then to replace the settings
+that they would be using,
+
+
+718
+00:33:54,136 --> 00:33:55,896
+we have App Controlled
+Settings in API.
+
+
+719
+00:33:55,896 --> 00:33:59,966
+And then we have
+a new print method
+
+
+720
+00:33:59,966 --> 00:34:02,496
+on UIPrintInteractionController
+that you'll be calling.
+
+
+721
+00:34:02,766 --> 00:34:05,346
+So it's kind of separated
+into two things, initial setup
+
+
+722
+00:34:05,346 --> 00:34:07,746
+and then when you
+actually print.
+
+
+723
+00:34:08,706 --> 00:34:10,556
+So the basic steps for
+printing without a UI,
+
+
+724
+00:34:11,255 --> 00:34:13,716
+first your app will include a
+setting for setting the printer,
+
+
+725
+00:34:13,916 --> 00:34:15,826
+this is in the app
+setting somewhere
+
+
+726
+00:34:15,826 --> 00:34:17,315
+or in a settings
+button somewhere.
+
+
+727
+00:34:18,266 --> 00:34:20,226
+So to do that you'll first
+get the printer selector,
+
+
+728
+00:34:20,226 --> 00:34:21,686
+this new class.
+
+
+729
+00:34:22,496 --> 00:34:23,335
+You'll present that UI.
+
+
+730
+00:34:24,896 --> 00:34:27,065
+Then you'll save the
+printer chosen by the user.
+
+
+731
+00:34:27,065 --> 00:34:28,906
+So the user will be
+choosing a printer.
+
+
+732
+00:34:28,906 --> 00:34:30,496
+It's the app's responsibility
+to save that.
+
+
+733
+00:34:31,446 --> 00:34:34,846
+Then whenever appropriate,
+when your app decides to print,
+
+
+734
+00:34:35,806 --> 00:34:37,485
+the app will then get
+the print controller,
+
+
+735
+00:34:37,485 --> 00:34:38,936
+the
+UIPrintInteractionController.
+
+
+736
+00:34:39,516 --> 00:34:42,156
+It'll set up the attributes for
+the job and provide content,
+
+
+737
+00:34:42,156 --> 00:34:43,275
+just like we did before.
+
+
+738
+00:34:43,456 --> 00:34:47,045
+Then they'll send the job with
+this new print controller method
+
+
+739
+00:34:47,045 --> 00:34:48,505
+that just sends without
+showing UI.
+
+
+740
+00:34:48,505 --> 00:34:52,505
+At this point, like before, iOS
+communicates with the printer,
+
+
+741
+00:34:52,505 --> 00:34:54,286
+the Daemon takes over,
+your app doesn't have
+
+
+742
+00:34:54,286 --> 00:34:55,766
+to deal with any of that.
+
+
+743
+00:34:57,356 --> 00:35:00,786
+So here's the classes we'll be
+using for background printing.
+
+
+744
+00:35:01,956 --> 00:35:04,086
+First, the new class,
+UIPrinterPickerController,
+
+
+745
+00:35:04,086 --> 00:35:05,116
+that you'll be presenting.
+
+
+746
+00:35:06,246 --> 00:35:09,346
+Then a UIPrinter object
+that your app will be saving
+
+
+747
+00:35:09,346 --> 00:35:13,056
+or instantiating between
+runs, and providing
+
+
+748
+00:35:13,056 --> 00:35:14,896
+that to the
+UIPrintInteractionController.
+
+
+749
+00:35:15,166 --> 00:35:17,366
+So everything that we've talked
+
+
+750
+00:35:17,366 --> 00:35:20,286
+about with the
+UIPrinterInteractionController
+
+
+751
+00:35:20,686 --> 00:35:21,396
+still applies.
+
+
+752
+00:35:22,316 --> 00:35:24,356
+So your app is required
+
+
+753
+00:35:24,356 --> 00:35:26,196
+to use this
+UIPrinterPickerController
+
+
+754
+00:35:26,196 --> 00:35:26,916
+to pick the printer.
+
+
+755
+00:35:28,126 --> 00:35:31,166
+It's complicated to show
+all the different printers
+
+
+756
+00:35:31,166 --> 00:35:33,766
+and sometimes, you know, your
+users need to unlock a printer
+
+
+757
+00:35:33,766 --> 00:35:36,126
+if it has a username and
+password, all that kind
+
+
+758
+00:35:36,126 --> 00:35:37,396
+of stuff is handled
+by the system.
+
+
+759
+00:35:37,396 --> 00:35:39,646
+So you'll use the
+UIPrinterPickerController.
+
+
+760
+00:35:39,926 --> 00:35:41,776
+It has the same presentation
+options
+
+
+761
+00:35:41,776 --> 00:35:43,156
+as the print interaction
+controller.
+
+
+762
+00:35:43,156 --> 00:35:45,996
+So you can present it
+as a popover or a sheet
+
+
+763
+00:35:45,996 --> 00:35:47,806
+or you can embed it
+in a NAV controller.
+
+
+764
+00:35:49,066 --> 00:35:50,796
+Then, like I said, your
+app will be responsible
+
+
+765
+00:35:50,796 --> 00:35:51,866
+for saving that printer.
+
+
+766
+00:35:52,276 --> 00:35:54,146
+Between runs you'll
+save the URL,
+
+
+767
+00:35:54,146 --> 00:35:56,246
+and then you'll instantiate
+a new UIPrinter
+
+
+768
+00:35:56,486 --> 00:35:59,556
+with just this URL
+that you've saved.
+
+
+769
+00:35:59,806 --> 00:36:00,106
+Also,
+
+
+770
+00:36:00,106 --> 00:36:02,346
+this UIPrinterPickerController
+allows you to filter
+
+
+771
+00:36:02,346 --> 00:36:04,136
+out printers if your
+app is designed
+
+
+772
+00:36:04,456 --> 00:36:06,146
+for just a specific
+type of printer,
+
+
+773
+00:36:06,146 --> 00:36:07,436
+and we'll talk about that later.
+
+
+774
+00:36:10,046 --> 00:36:11,396
+So like I said, you'll
+create and set
+
+
+775
+00:36:11,396 --> 00:36:12,926
+up the
+UIPrinterPickerController,
+
+
+776
+00:36:13,646 --> 00:36:17,056
+you can present with standard
+presentation, presentAnimated,
+
+
+777
+00:36:17,056 --> 00:36:20,206
+or pop-over presentation
+with presentFromRect
+
+
+778
+00:36:20,206 --> 00:36:22,356
+or presentFromBarButton Item.
+
+
+779
+00:36:22,356 --> 00:36:23,416
+The completion handler though
+
+
+780
+00:36:23,416 --> 00:36:27,996
+for these methods will tell you
+whether the user actually did
+
+
+781
+00:36:27,996 --> 00:36:28,746
+select a printer.
+
+
+782
+00:36:29,286 --> 00:36:32,096
+If they didn't, you know,
+they could've just cancel it,
+
+
+783
+00:36:32,096 --> 00:36:33,726
+so then it'll say that they
+didn't select a printer.
+
+
+784
+00:36:34,246 --> 00:36:36,056
+But then your app is
+responsible for saving
+
+
+785
+00:36:36,056 --> 00:36:37,706
+that printer that was selected.
+
+
+786
+00:36:39,616 --> 00:36:41,526
+So when your app is
+ready to print then,
+
+
+787
+00:36:41,856 --> 00:36:43,376
+at the appropriate moment,
+
+
+788
+00:36:43,376 --> 00:36:45,076
+you'll use the
+UIPrinterInteractionController
+
+
+789
+00:36:45,076 --> 00:36:47,516
+and you'll call the new
+method printToPrinter
+
+
+790
+00:36:47,806 --> 00:36:50,696
+with this UIPrinter
+object completion handler.
+
+
+791
+00:36:51,586 --> 00:36:54,456
+The UIPrinter passed in,
+like I said, can be obtained
+
+
+792
+00:36:54,456 --> 00:36:55,976
+from the
+UIPrinterPickerController
+
+
+793
+00:36:55,976 --> 00:36:58,236
+directly or you could
+have instantiated it
+
+
+794
+00:36:58,236 --> 00:36:59,406
+with the saved URL.
+
+
+795
+00:37:00,316 --> 00:37:03,666
+Okay, so that's
+UIPrinterPickerController.
+
+
+796
+00:37:05,446 --> 00:37:07,566
+UIPrinter, new class in iOS 8,
+
+
+797
+00:37:08,626 --> 00:37:10,786
+first it has a contactPrinter
+method.
+
+
+798
+00:37:11,526 --> 00:37:13,676
+So this is used if
+you're instantiating it,
+
+
+799
+00:37:13,676 --> 00:37:15,426
+you want to make sure
+this printer is there,
+
+
+800
+00:37:15,426 --> 00:37:18,686
+and to fill out the rest of
+the properties for the printer,
+
+
+801
+00:37:18,926 --> 00:37:19,996
+you have to contact it.
+
+
+802
+00:37:21,156 --> 00:37:23,046
+You'll pass in a block
+that's a result block
+
+
+803
+00:37:23,046 --> 00:37:25,006
+that will tell you whether the
+printer's available or not,
+
+
+804
+00:37:25,006 --> 00:37:30,816
+it might not be on anymore, so
+it'll return no in that case.
+
+
+805
+00:37:31,456 --> 00:37:33,756
+Next is the URL which
+is a read-only property.
+
+
+806
+00:37:33,966 --> 00:37:35,326
+This is what you'll be saving
+
+
+807
+00:37:35,326 --> 00:37:37,706
+out once you get your
+initial UIPrinter,
+
+
+808
+00:37:37,706 --> 00:37:38,536
+you'll be saving this.
+
+
+809
+00:37:39,046 --> 00:37:41,726
+Next we have displayName,
+
+
+810
+00:37:42,046 --> 00:37:45,096
+which this is our standard
+printing UI, the displayName is,
+
+
+811
+00:37:45,236 --> 00:37:47,206
+you know, this, the name of
+the printer, it's appropriate
+
+
+812
+00:37:47,206 --> 00:37:50,006
+for you to show in your UI.
+
+
+813
+00:37:50,196 --> 00:37:52,676
+displayLocation which is
+the smaller text underneath
+
+
+814
+00:37:52,726 --> 00:37:53,256
+the name.
+
+
+815
+00:37:53,816 --> 00:37:55,936
+You can use this for
+display in your UI as well.
+
+
+816
+00:37:57,086 --> 00:38:00,186
+And then some various
+things about the printer,
+
+
+817
+00:38:00,186 --> 00:38:02,396
+like supportedJobTypes,
+which is a bit field.
+
+
+818
+00:38:02,796 --> 00:38:05,516
+It'll say like whether it
+supports photo printing
+
+
+819
+00:38:05,516 --> 00:38:08,516
+or receipt printing or envelope
+printing, different types
+
+
+820
+00:38:08,516 --> 00:38:11,156
+of jobs it supports,
+and makeAndModel
+
+
+821
+00:38:11,156 --> 00:38:12,336
+and some other capabilities.
+
+
+822
+00:38:12,336 --> 00:38:18,876
+So here's a quick code example
+of using UIPrinter to show
+
+
+823
+00:38:18,876 --> 00:38:21,646
+like the printer name and
+the location in your UI.
+
+
+824
+00:38:23,156 --> 00:38:25,906
+So first let's grab
+the savedPrinterURL
+
+
+825
+00:38:25,906 --> 00:38:28,036
+from a previous run
+of the application.
+
+
+826
+00:38:28,036 --> 00:38:30,396
+Here we're just getting
+it from the UserDefaults.
+
+
+827
+00:38:30,906 --> 00:38:37,326
+If we got one back from
+UserDefaults, we'll initialize
+
+
+828
+00:38:37,396 --> 00:38:41,166
+with UIPrinter printerWithURL
+with the savedPrinterURL.
+
+
+829
+00:38:41,886 --> 00:38:44,796
+And then it'll actually
+contact the printer.
+
+
+830
+00:38:45,856 --> 00:38:49,356
+The block that we will pass in
+we'll see if it's available,
+
+
+831
+00:38:50,226 --> 00:38:53,986
+then we'll set our printer name
+label to be the display name
+
+
+832
+00:38:53,986 --> 00:38:56,496
+of the printer, and the
+printer location label
+
+
+833
+00:38:56,536 --> 00:38:57,706
+to be the display location.
+
+
+834
+00:38:57,706 --> 00:39:00,776
+So the printer name and
+location aren't available
+
+
+835
+00:39:00,776 --> 00:39:02,216
+until it's actually
+been contacted,
+
+
+836
+00:39:02,216 --> 00:39:04,886
+so that's why we do
+that in this block.
+
+
+837
+00:39:05,866 --> 00:39:07,476
+If the printer's not available,
+
+
+838
+00:39:09,176 --> 00:39:10,936
+we'll have some
+ConnectionGoneIndicator
+
+
+839
+00:39:10,936 --> 00:39:11,576
+in our app.
+
+
+840
+00:39:11,816 --> 00:39:14,336
+If you want to have this,
+this is how you do it.
+
+
+841
+00:39:14,336 --> 00:39:17,256
+So if it was like a little
+red indicator to tell users
+
+
+842
+00:39:17,256 --> 00:39:18,396
+that their printer's
+not available,
+
+
+843
+00:39:18,396 --> 00:39:23,106
+this is how you'd do that.
+
+
+844
+00:39:23,226 --> 00:39:26,546
+Okay, so like I said, you
+can use - you can filter
+
+
+845
+00:39:26,546 --> 00:39:27,886
+out printers in the
+printer picker.
+
+
+846
+00:39:28,306 --> 00:39:31,086
+For that, this is, you
+know, for apps designed
+
+
+847
+00:39:31,086 --> 00:39:33,516
+with specific printers in mind,
+if you really only want your app
+
+
+848
+00:39:33,516 --> 00:39:37,526
+to be used with receipt printers
+or with, you know, specific type
+
+
+849
+00:39:37,596 --> 00:39:39,936
+of printer, this
+is what you'd do.
+
+
+850
+00:39:41,286 --> 00:39:42,706
+Any one of those properties
+
+
+851
+00:39:42,866 --> 00:39:45,326
+on the UIPrinter you
+can use to filter.
+
+
+852
+00:39:46,086 --> 00:39:48,086
+When you present the
+UIPrinterPickerController,
+
+
+853
+00:39:48,316 --> 00:39:50,616
+you'll just use the delegate
+method, shouldShowPrinter.
+
+
+854
+00:39:52,046 --> 00:39:54,006
+You'll return yes or no
+whether it should be shown.
+
+
+855
+00:39:54,216 --> 00:39:56,966
+So this is called for every
+printer as it gets discovered,
+
+
+856
+00:39:57,666 --> 00:40:00,146
+and you can choose whether
+it gets shown in UI or not.
+
+
+857
+00:40:01,406 --> 00:40:02,976
+So we're really excited
+about this.
+
+
+858
+00:40:03,366 --> 00:40:05,226
+We really do think this
+will enable a new class
+
+
+859
+00:40:05,226 --> 00:40:06,966
+of printing applications
+that weren't possible.
+
+
+860
+00:40:07,506 --> 00:40:10,256
+And to talk about some of
+those new types of apps,
+
+
+861
+00:40:10,256 --> 00:40:12,876
+I'd like to bring
+up Claudia Roberts,
+
+
+862
+00:40:12,876 --> 00:40:13,876
+our Printing System Engineer.
+
+
+863
+00:40:15,516 --> 00:40:20,866
+[ Applause ]
+
+
+864
+00:40:21,366 --> 00:40:22,046
+>> Hello, everyone.
+
+
+865
+00:40:22,046 --> 00:40:23,336
+My name is Claudia Roberts
+
+
+866
+00:40:23,336 --> 00:40:25,086
+and this is my colleague,
+Charles Duyk.
+
+
+867
+00:40:25,526 --> 00:40:29,096
+The exciting thing about UI-less
+printing is that it opens
+
+
+868
+00:40:29,096 --> 00:40:31,896
+up the door to a wide range
+of printing applications.
+
+
+869
+00:40:32,606 --> 00:40:35,326
+One of our most requested
+features for iOS 8 was
+
+
+870
+00:40:35,326 --> 00:40:37,296
+to allow apps the
+ability to print receipts
+
+
+871
+00:40:37,296 --> 00:40:38,646
+without showing the
+print dialog.
+
+
+872
+00:40:39,506 --> 00:40:42,276
+In a few minutes, Charles will
+demonstrate how to do just that,
+
+
+873
+00:40:42,276 --> 00:40:44,006
+using a cash register app.
+
+
+874
+00:40:44,566 --> 00:40:46,946
+But we encourage you
+to think more broadly.
+
+
+875
+00:40:47,226 --> 00:40:49,266
+Think of a photo booth app
+that automatically prints
+
+
+876
+00:40:49,266 --> 00:40:50,346
+out your burst of photos.
+
+
+877
+00:40:50,346 --> 00:40:54,086
+Or a label printout to be used
+at conference sign-in tables.
+
+
+878
+00:40:55,086 --> 00:40:57,056
+The fact that we're letting
+you save printers means
+
+
+879
+00:40:57,056 --> 00:40:58,986
+that you can now
+preconfigure an app to print
+
+
+880
+00:40:58,986 --> 00:41:00,066
+to more than one printer.
+
+
+881
+00:41:00,606 --> 00:41:02,866
+This is a great feature that
+can be used when setting
+
+
+882
+00:41:02,866 --> 00:41:04,916
+up multiple printers
+where each might serve a
+
+
+883
+00:41:04,916 --> 00:41:05,746
+different function.
+
+
+884
+00:41:06,296 --> 00:41:07,836
+Think airline kiosk app.
+
+
+885
+00:41:08,326 --> 00:41:10,846
+The person traveling
+checks in, enters the number
+
+
+886
+00:41:10,846 --> 00:41:12,756
+of bags they're traveling with,
+
+
+887
+00:41:12,756 --> 00:41:14,946
+and after finalizing
+their information,
+
+
+888
+00:41:15,156 --> 00:41:17,556
+one designated printer prints
+out their baggage labels
+
+
+889
+00:41:17,776 --> 00:41:19,946
+and another prints out
+their boarding pass,
+
+
+890
+00:41:20,476 --> 00:41:22,056
+all without ever
+having to traverse
+
+
+891
+00:41:22,056 --> 00:41:24,556
+or even see the print UI.
+
+
+892
+00:41:25,536 --> 00:41:28,336
+Today to illustrate the
+power of this new feature,
+
+
+893
+00:41:28,336 --> 00:41:31,886
+and to demonstrate just how easy
+it is to add UI list printing
+
+
+894
+00:41:31,886 --> 00:41:35,746
+to your app, we've created a
+hypothetical cash register app.
+
+
+895
+00:41:36,696 --> 00:41:39,366
+A cash register app is
+something you'd find
+
+
+896
+00:41:39,366 --> 00:41:40,606
+in most any retail store.
+
+
+897
+00:41:41,136 --> 00:41:43,976
+In using the printing
+paradigm in iOS 7,
+
+
+898
+00:41:44,336 --> 00:41:45,866
+printing a receipt
+used to mean a lot
+
+
+899
+00:41:45,866 --> 00:41:47,886
+of unnecessary interaction
+with the print UI.
+
+
+900
+00:41:47,956 --> 00:41:50,716
+And there was really no
+way of getting around this.
+
+
+901
+00:41:51,416 --> 00:41:56,346
+After finalizing a sale in
+this demo app, it takes 1, 2,
+
+
+902
+00:41:56,986 --> 00:42:01,076
+3 steps to print out a receipt
+each time the clerk goes
+
+
+903
+00:42:01,076 --> 00:42:01,866
+to finish the sale.
+
+
+904
+00:42:02,726 --> 00:42:04,466
+Add a queue of 5 to 6 people,
+
+
+905
+00:42:04,526 --> 00:42:06,836
+and you have yourself a
+less than ideal situation.
+
+
+906
+00:42:07,536 --> 00:42:09,286
+So what do we know to be true?
+
+
+907
+00:42:09,286 --> 00:42:11,406
+For the most part, in a
+given day at the shop,
+
+
+908
+00:42:11,556 --> 00:42:13,066
+the clerk will almost
+always print
+
+
+909
+00:42:13,066 --> 00:42:14,106
+to the same receipt printer.
+
+
+910
+00:42:14,836 --> 00:42:16,576
+Thus, this leads to
+our desired behavior,
+
+
+911
+00:42:16,916 --> 00:42:19,566
+the ability to simply tap
+on the Finish Sale button
+
+
+912
+00:42:19,686 --> 00:42:22,316
+and have our dedicated receipt
+printer print out the receipt
+
+
+913
+00:42:22,586 --> 00:42:24,956
+so that a customer can
+quickly be on his or her way.
+
+
+914
+00:42:25,546 --> 00:42:29,106
+I will now hand it over to
+Charles who will demonstrate how
+
+
+915
+00:42:29,106 --> 00:42:32,356
+to update this cash register app
+with the necessary code changes
+
+
+916
+00:42:32,356 --> 00:42:33,666
+to achieve the desired behavior.
+
+
+917
+00:42:34,096 --> 00:42:35,166
+>> Thanks, Claudia.
+
+
+918
+00:42:36,146 --> 00:42:40,206
+So what I have here is the
+code for the cash register app
+
+
+919
+00:42:40,206 --> 00:42:41,466
+that Claudia just showed you.
+
+
+920
+00:42:42,016 --> 00:42:45,506
+And I want to update this
+to use these new APIs.
+
+
+921
+00:42:46,666 --> 00:42:50,246
+So like Todd said, there's
+really two basic steps
+
+
+922
+00:42:50,416 --> 00:42:51,596
+to printing without the UI.
+
+
+923
+00:42:52,106 --> 00:42:54,086
+The first is selecting
+and saving a printer,
+
+
+924
+00:42:54,086 --> 00:42:56,406
+and the second is telling iOS
+
+
+925
+00:42:56,666 --> 00:42:58,236
+which printer we'd
+like to save to.
+
+
+926
+00:42:58,666 --> 00:43:01,216
+So in order to do this,
+I'm first going to want
+
+
+927
+00:43:01,216 --> 00:43:05,096
+to create a place to
+save the UIPrinter object
+
+
+928
+00:43:05,096 --> 00:43:06,016
+that I'm going to get.
+
+
+929
+00:43:06,546 --> 00:43:09,416
+I'm going to add a property here
+to my ReceiptViewController,
+
+
+930
+00:43:10,416 --> 00:43:12,076
+using the new UIPrinter class.
+
+
+931
+00:43:12,766 --> 00:43:14,236
+This is what iOS uses
+
+
+932
+00:43:14,566 --> 00:43:19,806
+to represent the printer
+throughout the printing system.
+
+
+933
+00:43:19,806 --> 00:43:23,116
+Next I'm going to add a place
+where an administrator can go
+
+
+934
+00:43:23,366 --> 00:43:25,706
+and set up the cash
+register in order
+
+
+935
+00:43:25,706 --> 00:43:29,246
+to let the app know this
+is the printer I'm going
+
+
+936
+00:43:29,246 --> 00:43:29,876
+to be printing to.
+
+
+937
+00:43:30,516 --> 00:43:32,386
+So we'll do that in
+the Settings button.
+
+
+938
+00:43:32,456 --> 00:43:35,726
+So I'm going to go to my
+settingsButtonPressed method,
+
+
+939
+00:43:35,756 --> 00:43:40,316
+which is a - sorry, which
+is the target action
+
+
+940
+00:43:40,316 --> 00:43:42,456
+of a Settings button in the app.
+
+
+941
+00:43:42,746 --> 00:43:43,866
+And I'm going to go ahead
+
+
+942
+00:43:44,016 --> 00:43:47,736
+and create a
+UIPrinterPickerController.
+
+
+943
+00:43:50,906 --> 00:43:53,656
+We'll create the
+UIPrinterPickerController using
+
+
+944
+00:43:53,806 --> 00:43:56,806
+printerPickerController
+WithInitiallySelectedPrinter,
+
+
+945
+00:43:57,156 --> 00:43:59,296
+to scroll the controller
+to maybe a printer
+
+
+946
+00:43:59,296 --> 00:44:01,516
+that we've already set up.
+
+
+947
+00:44:01,936 --> 00:44:06,196
+Next I'm going to use the
+UIPrinterPickerController method
+
+
+948
+00:44:06,196 --> 00:44:09,326
+presentFromRect inView
+animated in completionHandler.
+
+
+949
+00:44:09,866 --> 00:44:11,966
+And when the user goes
+and selects a printer,
+
+
+950
+00:44:12,296 --> 00:44:15,316
+we'll go ahead and check to
+see that they did select it,
+
+
+951
+00:44:15,566 --> 00:44:18,526
+and if they didn't cancel the
+operation, save the printer
+
+
+952
+00:44:18,526 --> 00:44:21,666
+that they selected in the
+property that we just created.
+
+
+953
+00:44:23,366 --> 00:44:25,696
+Now I'm going to go
+ahead and update my app
+
+
+954
+00:44:25,696 --> 00:44:27,076
+to use these new APIs.
+
+
+955
+00:44:29,746 --> 00:44:35,826
+So here you can see our print
+method as it exists in iOS 7.
+
+
+956
+00:44:36,076 --> 00:44:38,296
+We do all the standard
+printing things,
+
+
+957
+00:44:38,296 --> 00:44:41,736
+we create a PrintPageRenderer,
+we create a UIPrintInfo,
+
+
+958
+00:44:41,886 --> 00:44:45,466
+set some job options, and get
+the sharedPrintController,
+
+
+959
+00:44:46,176 --> 00:44:47,606
+set the options on the job,
+
+
+960
+00:44:48,116 --> 00:44:51,346
+and then present it
+using the present APIs,
+
+
+961
+00:44:51,346 --> 00:44:55,076
+which you'll notice, look almost
+exactly the same as the methods
+
+
+962
+00:44:55,076 --> 00:44:56,556
+on UIPrinterPickerController.
+
+
+963
+00:44:57,156 --> 00:45:00,146
+So what we can actually do now,
+and this is what's kind of neat
+
+
+964
+00:45:00,146 --> 00:45:02,636
+about this API, is
+delete some of this code,
+
+
+965
+00:45:02,636 --> 00:45:04,726
+because we don't need it, we're
+no longer presenting anything,
+
+
+966
+00:45:04,726 --> 00:45:07,346
+we're just going to
+print to printer.
+
+
+967
+00:45:07,456 --> 00:45:07,886
+There we go.
+
+
+968
+00:45:10,006 --> 00:45:12,156
+Then we can go ahead and
+delete that little bit
+
+
+969
+00:45:12,156 --> 00:45:14,656
+of auto-generated code.
+
+
+970
+00:45:14,656 --> 00:45:16,016
+And it's really just that easy.
+
+
+971
+00:45:16,546 --> 00:45:18,646
+All of a sudden, the
+completion handler's the same
+
+
+972
+00:45:18,646 --> 00:45:20,856
+and we're now going to be
+able to print without the UI.
+
+
+973
+00:45:22,026 --> 00:45:26,946
+So I'm going to go ahead and
+fire up the simulator here
+
+
+974
+00:45:26,946 --> 00:45:29,076
+so we can show this to you.
+
+
+975
+00:45:29,186 --> 00:45:33,286
+And something that I didn't
+get a chance to talk about here
+
+
+976
+00:45:33,286 --> 00:45:36,326
+but that could be a logical
+extension is maybe filtering
+
+
+977
+00:45:37,066 --> 00:45:40,526
+based on the type of printer
+that we're going to use.
+
+
+978
+00:45:41,006 --> 00:45:43,396
+We want to use only receipt
+printers with this app.
+
+
+979
+00:45:43,436 --> 00:45:47,326
+But, you know, maybe your
+shop also has a photo printer
+
+
+980
+00:45:47,326 --> 00:45:52,056
+and you wouldn't want to print
+to that - or you wouldn't want
+
+
+981
+00:45:52,056 --> 00:45:53,276
+to show that to the
+administrator
+
+
+982
+00:45:53,276 --> 00:45:54,596
+when they were setting
+up the printer.
+
+
+983
+00:45:54,596 --> 00:45:56,446
+All right, so now
+we have our app.
+
+
+984
+00:45:57,176 --> 00:45:59,766
+And let's go ahead, let's say
+maybe we're in a coffee shop.
+
+
+985
+00:45:59,766 --> 00:46:04,306
+So let's get, you know, the
+San Francisco coffee and,
+
+
+986
+00:46:05,326 --> 00:46:06,596
+you know, maybe a bagel.
+
+
+987
+00:46:07,176 --> 00:46:10,366
+Yeah, okay, why not.
+
+
+988
+00:46:10,366 --> 00:46:14,146
+All right, so that looks good,
+you know, we're splurging
+
+
+989
+00:46:14,146 --> 00:46:16,636
+on the bagel, so maybe we
+won't get cream cheese.
+
+
+990
+00:46:16,636 --> 00:46:19,736
+So let's go ahead
+and say finish sale.
+
+
+991
+00:46:19,926 --> 00:46:21,636
+Oops, I didn't select a printer.
+
+
+992
+00:46:22,656 --> 00:46:24,386
+So let's go ahead
+and look for this.
+
+
+993
+00:46:24,386 --> 00:46:26,546
+Notice we're going to
+pick this Brother printer
+
+
+994
+00:46:26,546 --> 00:46:28,666
+that we have here,
+it's a Wi-Fi-enabled,
+
+
+995
+00:46:28,666 --> 00:46:29,996
+battery-powered receipt printer.
+
+
+996
+00:46:30,726 --> 00:46:32,626
+Now we'll go ahead
+and click Finish Sale.
+
+
+997
+00:46:33,406 --> 00:46:36,866
+And now iOS will take
+over the job communicating
+
+
+998
+00:46:36,866 --> 00:46:38,386
+with the printer, you know,
+
+
+999
+00:46:38,506 --> 00:46:40,376
+getting all the options,
+et cetera.
+
+
+1000
+00:46:41,296 --> 00:46:44,836
+And in a moment should
+be seeing the paper come
+
+
+1001
+00:46:44,836 --> 00:46:47,456
+out of the printer.
+
+
+1002
+00:46:47,456 --> 00:46:49,146
+And with that, I
+will hand it back
+
+
+1003
+00:46:49,146 --> 00:46:52,296
+to Howard who will take us out.
+
+
+1004
+00:46:52,906 --> 00:46:56,306
+>> Today, what I hope you have
+learned is adding printing
+
+
+1005
+00:46:56,306 --> 00:46:58,566
+to your application
+regardless of style
+
+
+1006
+00:46:58,566 --> 00:47:00,686
+of application is really easy.
+
+
+1007
+00:47:00,866 --> 00:47:03,836
+For a lot of the
+content, 10 lines of code.
+
+
+1008
+00:47:03,836 --> 00:47:08,896
+If you have pictures, HTML,
+web views, maps, you're set.
+
+
+1009
+00:47:08,956 --> 00:47:11,036
+10 lines of code, it's
+really 9 if you count,
+
+
+1010
+00:47:11,036 --> 00:47:13,316
+depending on how you
+look at the wraps.
+
+
+1011
+00:47:13,316 --> 00:47:14,546
+Super, super easy.
+
+
+1012
+00:47:14,546 --> 00:47:19,326
+If you need more control, a
+lot of stuff you can now do
+
+
+1013
+00:47:19,326 --> 00:47:22,126
+with formatters now that we
+have the per-page insets.
+
+
+1014
+00:47:22,446 --> 00:47:25,256
+We think web viewing
+apps or a lot of apps
+
+
+1015
+00:47:25,256 --> 00:47:28,756
+that are HTML-based will only
+need those 10 lines of code
+
+
+1016
+00:47:28,756 --> 00:47:29,966
+to print and print well.
+
+
+1017
+00:47:30,426 --> 00:47:33,226
+But if you do need the
+full power, full control
+
+
+1018
+00:47:33,226 --> 00:47:35,636
+of what you're doing, you
+can always use a renderer
+
+
+1019
+00:47:35,636 --> 00:47:39,706
+which can use any of the
+common 2D printing APIs
+
+
+1020
+00:47:39,706 --> 00:47:42,276
+or graphics APIs to do print.
+
+
+1021
+00:47:42,776 --> 00:47:45,806
+And then you can combine
+formatters with renderers
+
+
+1022
+00:47:45,806 --> 00:47:46,876
+to make it super easy.
+
+
+1023
+00:47:46,876 --> 00:47:50,796
+And then new in iOS
+8, as we demonstrated,
+
+
+1024
+00:47:50,796 --> 00:47:53,656
+you can now separate the
+picking of the printer
+
+
+1025
+00:47:53,656 --> 00:47:55,256
+from the actual act of printing.
+
+
+1026
+00:47:56,926 --> 00:47:59,036
+So more information,
+
+
+1027
+00:47:59,036 --> 00:48:01,956
+our technology evangelist
+is Paul Danbold.
+
+
+1028
+00:48:02,356 --> 00:48:05,546
+For those who don't know the
+name, Paul has been in printing
+
+
+1029
+00:48:05,546 --> 00:48:08,076
+for longer than I have,
+which makes it 23 years.
+
+
+1030
+00:48:08,586 --> 00:48:11,886
+And he is readily available
+and can answer many questions.
+
+
+1031
+00:48:12,456 --> 00:48:15,096
+We put up a new website
+this week,
+
+
+1032
+00:48:15,096 --> 00:48:18,906
+developer.apple.com/airprint,
+this is your source
+
+
+1033
+00:48:18,906 --> 00:48:22,136
+for all iOS printing-related
+stuff.
+
+
+1034
+00:48:22,136 --> 00:48:24,266
+There are a handful
+of sample apps there.
+
+
+1035
+00:48:24,456 --> 00:48:27,126
+All the documentation, all
+the reference document stuff
+
+
+1036
+00:48:27,126 --> 00:48:28,006
+that you're going to need.
+
+
+1037
+00:48:28,306 --> 00:48:32,106
+There's also a link to the
+list of every AirPrint printer
+
+
+1038
+00:48:32,106 --> 00:48:34,756
+in the world, every model of
+AirPrint printer in the world,
+
+
+1039
+00:48:35,116 --> 00:48:37,686
+as well as information
+on licensing
+
+
+1040
+00:48:37,686 --> 00:48:39,066
+of the AirPrint technology.
+
+
+1041
+00:48:39,066 --> 00:48:42,526
+So developer.apple.com/airprint
+will get you everything.
+
+
+1042
+00:48:42,526 --> 00:48:45,756
+And then of course, if you've
+got some ongoing questions,
+
+
+1043
+00:48:45,756 --> 00:48:49,066
+you're always welcome to use
+Apple's Developer forums.
+
+
+1044
+00:48:49,596 --> 00:48:52,346
+And then there's another
+plug for AirPrint Basics,
+
+
+1045
+00:48:52,346 --> 00:48:53,796
+which lists all the printers.
+
+
+1046
+00:48:54,616 --> 00:48:59,396
+I know you guys are all probably
+pretty experienced application
+
+
+1047
+00:48:59,396 --> 00:49:02,156
+writers already, but if you
+still got a few details,
+
+
+1048
+00:49:02,156 --> 00:49:05,066
+I do strongly encourage you
+to go back and watch the video
+
+
+1049
+00:49:05,066 --> 00:49:08,256
+for the "What's New
+in Cocoa Touch".
+
+
+1050
+00:49:09,636 --> 00:49:10,786
+So that's it.
+
+
+1051
+00:49:11,046 --> 00:49:11,886
+Thank you very much.
+
+
+1052
+00:49:13,516 --> 00:49:21,470
+[ Applause ]
+

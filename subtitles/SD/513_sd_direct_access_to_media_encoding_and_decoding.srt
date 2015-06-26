@@ -1,0 +1,6286 @@
+1
+00:00:00,506 --> 00:00:09,516
+[ Silence ]
+
+
+2
+00:00:10,016 --> 00:00:16,000
+[ Applause ]
+
+
+3
+00:00:16,366 --> 00:00:17,086
+>> Hi everyone.
+
+
+4
+00:00:17,086 --> 00:00:18,016
+Thanks for coming today.
+
+
+5
+00:00:18,456 --> 00:00:19,586
+My name is David Eldred.
+
+
+6
+00:00:19,586 --> 00:00:22,056
+This is session 513
+and we're going to talk
+
+
+7
+00:00:22,056 --> 00:00:25,156
+about Video Encoders
+and Decoders today.
+
+
+8
+00:00:25,866 --> 00:00:26,296
+All right.
+
+
+9
+00:00:26,716 --> 00:00:28,916
+We want to make sure that
+no matter what you're doing
+
+
+10
+00:00:28,916 --> 00:00:31,216
+with the video in your
+application, you have access
+
+
+11
+00:00:31,596 --> 00:00:33,416
+to hardware encoders
+and decoders.
+
+
+12
+00:00:34,256 --> 00:00:36,136
+This will help users.
+
+
+13
+00:00:36,136 --> 00:00:38,596
+This will improve user
+experience in a number of ways.
+
+
+14
+00:00:39,426 --> 00:00:41,196
+Obviously, they'll
+get better performance
+
+
+15
+00:00:41,196 --> 00:00:46,176
+and they will be far more
+efficient, but most importantly,
+
+
+16
+00:00:46,176 --> 00:00:47,616
+this will extend battery life.
+
+
+17
+00:00:48,236 --> 00:00:53,456
+Users will really appreciate it
+if their OS X, their portables,
+
+
+18
+00:00:53,736 --> 00:00:56,616
+as well as their iOS devices
+have improved battery life.
+
+
+19
+00:00:57,356 --> 00:01:00,486
+And as an added bonus, people
+with portables will love it
+
+
+20
+00:01:00,486 --> 00:01:02,096
+if their fans don't kick
+
+
+21
+00:01:02,096 --> 00:01:03,916
+in every time they're
+doing video processing.
+
+
+22
+00:01:05,256 --> 00:01:09,366
+So today, we're going
+to break this --
+
+
+23
+00:01:09,366 --> 00:01:11,396
+first, we're going to break this
+down into a few case studies.
+
+
+24
+00:01:11,396 --> 00:01:13,806
+We're going to look at
+some common user scenarios.
+
+
+25
+00:01:14,546 --> 00:01:16,696
+The first scenario we're going
+to talk about is the case
+
+
+26
+00:01:16,696 --> 00:01:19,706
+where you have a stream of H.264
+data coming in over the network
+
+
+27
+00:01:20,056 --> 00:01:21,406
+and you want to display
+that inside
+
+
+28
+00:01:21,406 --> 00:01:22,766
+of a layer in your application.
+
+
+29
+00:01:23,356 --> 00:01:25,556
+The next one we're going
+to talk about is the case
+
+
+30
+00:01:25,556 --> 00:01:28,746
+where you have a stream of H.264
+data coming in over the network,
+
+
+31
+00:01:29,016 --> 00:01:30,186
+but you don't just
+want to display
+
+
+32
+00:01:30,186 --> 00:01:33,026
+that in your application, but
+you want to actually get access
+
+
+33
+00:01:33,026 --> 00:01:34,736
+to those decoded
+CV pixel buffers.
+
+
+34
+00:01:36,646 --> 00:01:39,686
+Next, we'll be talking
+about when the case
+
+
+35
+00:01:39,686 --> 00:01:42,596
+where you have a sequence of
+images coming in from the camera
+
+
+36
+00:01:42,596 --> 00:01:44,086
+or someplace else and you'd
+
+
+37
+00:01:44,086 --> 00:01:46,316
+like to compress those
+directly into a movie file.
+
+
+38
+00:01:48,086 --> 00:01:51,826
+And accompanying that, there's
+the case where you have a stream
+
+
+39
+00:01:51,826 --> 00:01:54,326
+of images coming in from
+the camera or someplace else
+
+
+40
+00:01:54,906 --> 00:01:57,186
+and you'd like to compress
+those but get direct access
+
+
+41
+00:01:57,186 --> 00:01:58,726
+to those compressed
+sample buffers
+
+
+42
+00:01:59,066 --> 00:02:00,616
+so that you can send
+them out over the network
+
+
+43
+00:02:00,996 --> 00:02:02,356
+or do whatever you
+like with them.
+
+
+44
+00:02:03,336 --> 00:02:05,906
+And then finally, we're
+going to give you an intro
+
+
+45
+00:02:05,906 --> 00:02:07,486
+to our new multi-pass APIs
+
+
+46
+00:02:07,486 --> 00:02:11,136
+that we're introducing
+in iOS8 and Yosemite.
+
+
+47
+00:02:11,446 --> 00:02:15,836
+All right, let's
+do a quick overview
+
+
+48
+00:02:15,836 --> 00:02:17,166
+of our media interface stack.
+
+
+49
+00:02:17,406 --> 00:02:19,976
+You've seen stuff like
+this earlier this week,
+
+
+50
+00:02:20,026 --> 00:02:23,796
+but we'll do it once more, and
+there's a little focus on video
+
+
+51
+00:02:23,796 --> 00:02:27,296
+in my view of this, because
+we're talking about video.
+
+
+52
+00:02:28,116 --> 00:02:30,496
+So at the top we have AVKit.
+
+
+53
+00:02:30,496 --> 00:02:33,866
+AVKit provides very
+easy-to-use high level - ah,
+
+
+54
+00:02:34,056 --> 00:02:36,056
+view level interfaces
+for dealing with media.
+
+
+55
+00:02:37,496 --> 00:02:39,316
+Below that, we have
+AVFoundation.
+
+
+56
+00:02:39,686 --> 00:02:42,226
+AVFoundation provides an
+easy-to-use Objective-C
+
+
+57
+00:02:42,226 --> 00:02:45,026
+interface for a wide
+range of media tasks.
+
+
+58
+00:02:46,186 --> 00:02:48,726
+And below that, we
+have Video Toolbox.
+
+
+59
+00:02:49,076 --> 00:02:51,796
+Video Toolbox has been
+there on OS X for a while,
+
+
+60
+00:02:51,796 --> 00:02:55,006
+but now it's finally
+populated with headers on iOS.
+
+
+61
+00:02:55,676 --> 00:02:58,646
+This provides direct access
+to encoders and decoders.
+
+
+62
+00:03:01,306 --> 00:03:05,926
+[applause] And below that we
+have Core Media and Core Video.
+
+
+63
+00:03:06,246 --> 00:03:09,226
+These frameworks provide
+many of the necessary types
+
+
+64
+00:03:09,226 --> 00:03:10,246
+that you'll see throughout
+the --
+
+
+65
+00:03:10,346 --> 00:03:14,236
+in the interfaces in
+the rest of the stack.
+
+
+66
+00:03:15,076 --> 00:03:18,326
+So today, we're going
+to focus on AVFoundation
+
+
+67
+00:03:18,326 --> 00:03:19,456
+and the Video Toolbox.
+
+
+68
+00:03:19,896 --> 00:03:22,596
+In AVFoundation, we'll be
+looking at some interfaces
+
+
+69
+00:03:22,596 --> 00:03:25,616
+that allow you to decode
+video directly into a layer
+
+
+70
+00:03:25,616 --> 00:03:30,676
+in your application or compress
+frames directly into a file.
+
+
+71
+00:03:30,676 --> 00:03:34,156
+And the Video Toolbox -- we'll
+be looking at these interfaces
+
+
+72
+00:03:34,156 --> 00:03:37,216
+to give you more direct access
+to encoders and decoders
+
+
+73
+00:03:37,756 --> 00:03:40,186
+so you can decompress
+directly to CV pixel buffers
+
+
+74
+00:03:40,186 --> 00:03:42,836
+or compress directly
+to CM sample buffers.
+
+
+75
+00:03:44,376 --> 00:03:48,676
+So a quick note on
+using these frameworks.
+
+
+76
+00:03:48,676 --> 00:03:50,896
+A lot of people think they have
+to dive down to the lowest level
+
+
+77
+00:03:50,896 --> 00:03:52,286
+and use the Video
+Toolbox in order
+
+
+78
+00:03:52,286 --> 00:03:56,026
+to get hardware acceleration,
+but that's really not true.
+
+
+79
+00:03:57,366 --> 00:03:59,806
+On iOS, AVKit, AVFoundation
+
+
+80
+00:03:59,806 --> 00:04:02,816
+and Video Toolbox will
+all use hardware codecs.
+
+
+81
+00:04:04,046 --> 00:04:07,236
+On OS X, AVKit and AVFoundation
+will use hardware codecs
+
+
+82
+00:04:07,236 --> 00:04:09,596
+when they're available on
+the system and when you --
+
+
+83
+00:04:09,756 --> 00:04:10,876
+when it's appropriate.
+
+
+84
+00:04:11,706 --> 00:04:14,336
+And Video Toolbox will
+use hardware codecs
+
+
+85
+00:04:14,336 --> 00:04:17,976
+when it's available on system
+and when you request it.
+
+
+86
+00:04:19,026 --> 00:04:19,375
+All right.
+
+
+87
+00:04:20,646 --> 00:04:23,056
+So before we dive into
+more stuff, we're going --
+
+
+88
+00:04:23,206 --> 00:04:25,866
+I'm going to do a quick look
+at this cast of characters.
+
+
+89
+00:04:25,866 --> 00:04:27,126
+These are some of
+the common types
+
+
+90
+00:04:27,126 --> 00:04:29,486
+that you'll encounter
+in these interfaces.
+
+
+91
+00:04:31,606 --> 00:04:33,436
+First off, there's
+CVPixelBuffer.
+
+
+92
+00:04:33,816 --> 00:04:39,476
+CVPixelBuffer contains a block
+of image data and wrapping
+
+
+93
+00:04:39,476 --> 00:04:42,906
+that buffer of data is the
+CVPixelBuffer wrapping.
+
+
+94
+00:04:43,286 --> 00:04:45,656
+And the CVPixelBuffer
+wrapping tells you how
+
+
+95
+00:04:45,656 --> 00:04:46,716
+to access that data.
+
+
+96
+00:04:46,816 --> 00:04:49,506
+It's got the dimensions,
+the width and the height.
+
+
+97
+00:04:49,506 --> 00:04:52,166
+It's got the pixel format,
+everything you need in order
+
+
+98
+00:04:52,166 --> 00:04:55,916
+to correctly interpret
+the pixel data.
+
+
+99
+00:04:56,636 --> 00:04:58,436
+Next, we've got the
+CVPixelBufferPool.
+
+
+100
+00:04:58,436 --> 00:05:00,306
+The CVPixelBufferPool allows you
+
+
+101
+00:05:00,306 --> 00:05:03,136
+to efficiently recycle
+CVPixelBuffer back ends.
+
+
+102
+00:05:03,826 --> 00:05:07,496
+Those data buffers can be very
+expensive to constantly allocate
+
+
+103
+00:05:07,496 --> 00:05:08,266
+and de-allocate,
+
+
+104
+00:05:08,356 --> 00:05:11,996
+so PixelBufferPool allows
+you to recycle them.
+
+
+105
+00:05:12,766 --> 00:05:15,726
+The way a PixelBufferPool works
+is you allocate a CVPixelBuffer
+
+
+106
+00:05:15,726 --> 00:05:18,946
+from the pool and the
+CVPixelBuffer is a ref
+
+
+107
+00:05:18,946 --> 00:05:19,656
+counted object.
+
+
+108
+00:05:19,976 --> 00:05:22,116
+When everyone releases
+that CVPixelBuffer,
+
+
+109
+00:05:22,436 --> 00:05:25,016
+the data back end goes back
+into the pool and it's available
+
+
+110
+00:05:25,016 --> 00:05:30,266
+for reuse next time you allocate
+a pixel buffer from that pool.
+
+
+111
+00:05:31,266 --> 00:05:34,336
+Next thing is
+pixelBufferAttributes.
+
+
+112
+00:05:34,456 --> 00:05:36,636
+This isn't actually a type,
+like the rest of the things
+
+
+113
+00:05:36,636 --> 00:05:40,576
+in this list, but it's a
+common object you'll see listed
+
+
+114
+00:05:40,576 --> 00:05:41,446
+in our interfaces.
+
+
+115
+00:05:41,446 --> 00:05:42,526
+You'll see requests
+
+
+116
+00:05:42,526 --> 00:05:44,266
+for pixelBufferAttributes
+dictionaries.
+
+
+117
+00:05:44,996 --> 00:05:47,336
+pixelBufferAttributes are a
+CF dictionary containing a set
+
+
+118
+00:05:47,336 --> 00:05:50,106
+of requirements for
+either a CVPixelBuffer
+
+
+119
+00:05:50,106 --> 00:05:51,136
+or a PixelBufferPool.
+
+
+120
+00:05:52,646 --> 00:05:56,096
+This includes the, you can --
+this can include several things.
+
+
+121
+00:05:56,096 --> 00:05:57,206
+This can include dimensions
+
+
+122
+00:05:57,206 --> 00:05:58,906
+that you're requesting,
+the width and height.
+
+
+123
+00:05:59,436 --> 00:06:02,076
+This can include a specific
+pixel format or a list
+
+
+124
+00:06:02,076 --> 00:06:04,886
+of pixel formats that
+you'd like to receive.
+
+
+125
+00:06:05,926 --> 00:06:09,586
+And you can include specific
+compatibility flags requesting
+
+
+126
+00:06:09,586 --> 00:06:12,636
+compatibility with specific
+display technologies
+
+
+127
+00:06:12,636 --> 00:06:16,336
+such as OpenGL, OpenGL
+ES or Core Animation.
+
+
+128
+00:06:19,316 --> 00:06:19,696
+All right.
+
+
+129
+00:06:19,696 --> 00:06:20,996
+Next, we've got CMTime.
+
+
+130
+00:06:21,626 --> 00:06:24,716
+CMTime is the basic
+description of time
+
+
+131
+00:06:24,716 --> 00:06:26,006
+that you'll see in
+your interfaces.
+
+
+132
+00:06:26,506 --> 00:06:29,716
+This is a rational
+representation of a time value.
+
+
+133
+00:06:29,716 --> 00:06:33,656
+It contains a 64-bit time
+value that's the numerator,
+
+
+134
+00:06:34,216 --> 00:06:36,676
+and a 32-bit time scale,
+which is the denominator.
+
+
+135
+00:06:37,326 --> 00:06:39,096
+We use this sort of
+rational representation
+
+
+136
+00:06:39,096 --> 00:06:41,966
+so that these time values can
+be passed throughout your media
+
+
+137
+00:06:41,966 --> 00:06:46,816
+pipeline and you won't have to
+do any sort of rounding on them.
+
+
+138
+00:06:47,436 --> 00:06:47,886
+All right.
+
+
+139
+00:06:48,406 --> 00:06:50,446
+Next, CMVideoFormatDescription.
+
+
+140
+00:06:50,746 --> 00:06:52,516
+You'll see this in a
+bunch of our interfaces,
+
+
+141
+00:06:52,576 --> 00:06:55,626
+and a CMVideoFormatDescription
+is basically a description
+
+
+142
+00:06:55,626 --> 00:06:56,276
+of video data.
+
+
+143
+00:06:56,866 --> 00:06:58,346
+This contains the dimensions.
+
+
+144
+00:06:58,786 --> 00:07:03,446
+This includes the pixel format
+and there's a set of extensions
+
+
+145
+00:07:03,446 --> 00:07:07,546
+that go along with the
+CMVideoFormatDescription.
+
+
+146
+00:07:07,936 --> 00:07:11,186
+These extensions can
+include information to --
+
+
+147
+00:07:11,866 --> 00:07:15,416
+information used for
+displaying that video data,
+
+
+148
+00:07:15,416 --> 00:07:16,896
+such as pixel aspect ratio,
+
+
+149
+00:07:17,356 --> 00:07:19,546
+and it can include
+color space information.
+
+
+150
+00:07:19,866 --> 00:07:24,766
+And in the case of H.264 data,
+the parameter sets are included
+
+
+151
+00:07:24,766 --> 00:07:26,746
+in these extensions
+and we'll talk
+
+
+152
+00:07:26,746 --> 00:07:29,536
+about that more a
+little bit later.
+
+
+153
+00:07:30,536 --> 00:07:32,116
+All right, next is
+CMBlockBuffer.
+
+
+154
+00:07:32,626 --> 00:07:37,076
+CMBlockBuffer is the basic way
+that we wrap arbitrary blocks
+
+
+155
+00:07:37,076 --> 00:07:38,096
+of data in Core Media.
+
+
+156
+00:07:39,096 --> 00:07:41,506
+In general, when you
+encounter video data,
+
+
+157
+00:07:41,646 --> 00:07:43,586
+compressed video
+data in our pipeline,
+
+
+158
+00:07:43,586 --> 00:07:45,346
+it will be wrapped
+in a CMBlockBuffer.
+
+
+159
+00:07:45,916 --> 00:07:50,286
+All right, now we
+have CMSampleBuffer.
+
+
+160
+00:07:50,596 --> 00:07:53,776
+You'll see CMSampleBuffer show
+up a lot in our interfaces.
+
+
+161
+00:07:54,266 --> 00:07:55,726
+These wrap samples of data.
+
+
+162
+00:07:56,056 --> 00:07:58,356
+In the case of video,
+
+
+163
+00:07:58,446 --> 00:08:02,006
+CMSampleBuffers can wrap
+either compressed video frames
+
+
+164
+00:08:02,006 --> 00:08:06,046
+or uncompressed video frames and
+CMSampleBuffers build on several
+
+
+165
+00:08:06,046 --> 00:08:07,366
+of the types that we've
+talked about here.
+
+
+166
+00:08:08,226 --> 00:08:09,796
+They contain a CMTime.
+
+
+167
+00:08:09,916 --> 00:08:12,056
+This is the presentation
+time for the sample.
+
+
+168
+00:08:12,646 --> 00:08:15,706
+They contain a
+CMVideoFormatDescription.
+
+
+169
+00:08:15,816 --> 00:08:18,446
+This describes the data
+inside of the CMSampleBuffer.
+
+
+170
+00:08:19,826 --> 00:08:21,746
+And finally, in the case
+of compressed video,
+
+
+171
+00:08:21,746 --> 00:08:23,236
+they contain a CMBlockBuffer
+
+
+172
+00:08:23,236 --> 00:08:25,586
+and the CMBlockBuffer has
+the compressed video data.
+
+
+173
+00:08:26,446 --> 00:08:29,346
+And if it's an uncompressed
+image in the CMSampleBuffer,
+
+
+174
+00:08:29,846 --> 00:08:32,426
+the uncompressed image
+may be in a CVPixelBuffer
+
+
+175
+00:08:32,816 --> 00:08:34,385
+or it may be in a CMBlockBuffer.
+
+
+176
+00:08:34,956 --> 00:08:37,056
+All right.
+
+
+177
+00:08:37,056 --> 00:08:38,346
+Next, we've got CMClock.
+
+
+178
+00:08:39,576 --> 00:08:42,746
+CMClock is the Core Media
+wrapper around a source
+
+
+179
+00:08:42,746 --> 00:08:45,936
+of time and, like the
+clock on a wall --
+
+
+180
+00:08:46,076 --> 00:08:47,366
+there's no clocks on
+the wall here, but --
+
+
+181
+00:08:47,506 --> 00:08:50,066
+like a clock on the wall,
+time is always moving
+
+
+182
+00:08:50,066 --> 00:08:52,226
+and it's always increasing
+on a CMClock.
+
+
+183
+00:08:53,506 --> 00:08:55,246
+One of the common clocks
+
+
+184
+00:08:55,246 --> 00:08:57,556
+that you'll see used
+is the HostTimeClock.
+
+
+185
+00:08:58,026 --> 00:09:03,546
+So CMClockgetHostTimeClock will
+return a clock which is based
+
+
+186
+00:09:03,696 --> 00:09:06,016
+on mach-absolute-time.
+
+
+187
+00:09:08,096 --> 00:09:10,516
+So CMClocks are hard to control.
+
+
+188
+00:09:10,516 --> 00:09:12,156
+You can't really control them.
+
+
+189
+00:09:12,466 --> 00:09:14,526
+As I mentioned, they're
+always moving
+
+
+190
+00:09:14,896 --> 00:09:16,306
+and always at a constant rate.
+
+
+191
+00:09:16,896 --> 00:09:20,606
+So CMTimebase provides a more
+controlled view onto a CMClock.
+
+
+192
+00:09:22,156 --> 00:09:25,606
+So if we go ahead and
+create a CMClock based --
+
+
+193
+00:09:25,826 --> 00:09:27,956
+CMTimebase based on
+the hostTime clock,
+
+
+194
+00:09:28,346 --> 00:09:31,196
+we could then set the time
+to time zero on our timebase.
+
+
+195
+00:09:32,966 --> 00:09:37,606
+Now, time zero on our timebase
+maps to the current time
+
+
+196
+00:09:37,656 --> 00:09:42,006
+on the CMClock, and you
+can control the rate
+
+
+197
+00:09:42,096 --> 00:09:43,246
+of your timebase.
+
+
+198
+00:09:43,346 --> 00:09:46,206
+So if you were then to go and
+set your timebase rate to one,
+
+
+199
+00:09:46,376 --> 00:09:48,866
+time will begin advancing on
+your timebase at the same rate
+
+
+200
+00:09:48,916 --> 00:09:50,596
+at which the clock is advancing.
+
+
+201
+00:09:51,036 --> 00:09:54,916
+And CMTimebases can be
+created based on CMClocks
+
+
+202
+00:09:54,916 --> 00:09:57,216
+or they can be created
+based on other CMTimebases.
+
+
+203
+00:09:58,836 --> 00:09:59,736
+All right.
+
+
+204
+00:10:00,576 --> 00:10:02,376
+Let's hop into our
+first use case.
+
+
+205
+00:10:02,936 --> 00:10:05,156
+This is the case where you
+have a stream of data coming
+
+
+206
+00:10:05,156 --> 00:10:08,746
+in over the network and
+since its video data coming
+
+
+207
+00:10:08,746 --> 00:10:10,986
+over the network, we can
+safely assume it's a cat video
+
+
+208
+00:10:12,246 --> 00:10:16,916
+[applause] and so we've got
+AVSampleBufferDisplayLayer,
+
+
+209
+00:10:16,916 --> 00:10:21,086
+which takes -- which can take
+a sequence of compressed frames
+
+
+210
+00:10:21,476 --> 00:10:23,566
+and display it in a layer
+inside of your application.
+
+
+211
+00:10:24,666 --> 00:10:26,846
+AVSampleBufferDisplayLayer
+shipped
+
+
+212
+00:10:27,016 --> 00:10:29,906
+in Mavericks, and
+it's new in iOS8.
+
+
+213
+00:10:31,026 --> 00:10:33,806
+So let's take a look inside
+AVSampleBufferDisplayLayer.
+
+
+214
+00:10:34,846 --> 00:10:37,546
+As I mentioned, it takes
+a -- a CM sample --
+
+
+215
+00:10:37,546 --> 00:10:40,306
+a sequence of compressed
+frames as input and these need
+
+
+216
+00:10:40,306 --> 00:10:41,706
+to be in CMSampleBuffers.
+
+
+217
+00:10:42,796 --> 00:10:44,776
+Internally, it's going
+to have a video decoder
+
+
+218
+00:10:45,656 --> 00:10:49,006
+and it will decode the
+frames into CVPixelBuffers
+
+
+219
+00:10:49,006 --> 00:10:51,806
+and it will have a sequence
+of CVPixelBuffers queued up,
+
+
+220
+00:10:51,936 --> 00:10:53,996
+ready to display
+in your application
+
+
+221
+00:10:53,996 --> 00:10:54,976
+at the appropriate time.
+
+
+222
+00:10:55,546 --> 00:11:00,966
+But, I mentioned we were getting
+our data off of the network.
+
+
+223
+00:11:01,186 --> 00:11:03,646
+A lot of times, when
+you're getting a stream
+
+
+224
+00:11:03,646 --> 00:11:06,176
+of compressed video off the
+network, it's going to be
+
+
+225
+00:11:06,176 --> 00:11:07,746
+in the form of an
+elementary stream.
+
+
+226
+00:11:08,886 --> 00:11:10,686
+And I mentioned that CMSample --
+
+
+227
+00:11:10,796 --> 00:11:13,926
+uh, AVSampleBufferDisplayLayer
+wants CMSampleBuffers
+
+
+228
+00:11:13,926 --> 00:11:14,566
+as its input.
+
+
+229
+00:11:15,836 --> 00:11:18,256
+Well, there's a little bit of
+work that has to happen here
+
+
+230
+00:11:18,256 --> 00:11:20,036
+to convert your elementary
+stream data
+
+
+231
+00:11:20,036 --> 00:11:21,276
+into CMSampleBuffers.
+
+
+232
+00:11:21,276 --> 00:11:23,766
+So let's talk about this.
+
+
+233
+00:11:23,766 --> 00:11:28,176
+H.264 defines a couple
+of ways of packaging --
+
+
+234
+00:11:28,176 --> 00:11:33,226
+the H.264 spec defines a couple
+of ways of packaging H.264 data.
+
+
+235
+00:11:33,226 --> 00:11:34,386
+The first one I'm going to refer
+
+
+236
+00:11:34,386 --> 00:11:35,996
+to as Elementary
+Stream packaging.
+
+
+237
+00:11:36,506 --> 00:11:38,986
+This is used in elementary
+streams, transport streams,
+
+
+238
+00:11:38,986 --> 00:11:41,966
+a lot of things with
+streams in their name.
+
+
+239
+00:11:41,966 --> 00:11:43,596
+Next, is MPEG-4 packaging.
+
+
+240
+00:11:44,056 --> 00:11:47,596
+This is used in movie
+files and MP4 files.
+
+
+241
+00:11:48,786 --> 00:11:52,516
+And in our interfaces that deal
+with CMSampleBuffers, Core Media
+
+
+242
+00:11:52,516 --> 00:11:56,376
+and AVFoundation exclusively
+want the data packaged
+
+
+243
+00:11:56,616 --> 00:11:58,656
+in MPEG-4 packaging.
+
+
+244
+00:12:00,006 --> 00:12:03,496
+So let's look closer
+at an H.264 stream.
+
+
+245
+00:12:04,066 --> 00:12:08,336
+An H.264 stream consists
+of a sequence of blocks
+
+
+246
+00:12:08,336 --> 00:12:10,356
+of data packaged in NAL Units.
+
+
+247
+00:12:10,836 --> 00:12:13,546
+These NAL Units can
+contain several --
+
+
+248
+00:12:13,996 --> 00:12:15,566
+so this is the network
+abstraction layer,
+
+
+249
+00:12:16,126 --> 00:12:18,416
+and these are Network
+Abstraction Layer units.
+
+
+250
+00:12:19,266 --> 00:12:20,956
+These can contain a
+few different things.
+
+
+251
+00:12:21,436 --> 00:12:23,446
+First off, they can
+contain sample data.
+
+
+252
+00:12:25,846 --> 00:12:30,976
+So you could have -- a single
+frame of video could be packaged
+
+
+253
+00:12:30,976 --> 00:12:36,016
+in one NAL Unit, or a frame
+of video could be spread
+
+
+254
+00:12:36,016 --> 00:12:37,386
+across several NAL Units.
+
+
+255
+00:12:38,286 --> 00:12:43,116
+The other thing that NAL Units
+can contain is parameter sets.
+
+
+256
+00:12:43,446 --> 00:12:45,686
+The parameter sets, the
+Sequence Parameter Set
+
+
+257
+00:12:45,686 --> 00:12:49,526
+and Picture Parameter
+Set, are chunks of data
+
+
+258
+00:12:49,526 --> 00:12:51,856
+which the decoder holds
+on to and these apply
+
+
+259
+00:12:51,856 --> 00:12:55,916
+to all subsequent frames; well,
+
+
+260
+00:12:55,916 --> 00:12:57,316
+until a new parameter
+set arrives.
+
+
+261
+00:12:59,226 --> 00:13:01,536
+So let's look at
+Elementary Stream packaging.
+
+
+262
+00:13:01,976 --> 00:13:04,786
+Elementary Stream packaging,
+in Elementary Stream packaging,
+
+
+263
+00:13:05,126 --> 00:13:06,366
+the parameter sets are included
+
+
+264
+00:13:06,366 --> 00:13:08,206
+in NAL Units right
+inside the stream.
+
+
+265
+00:13:08,396 --> 00:13:10,296
+This is great if you're
+doing sequential playback.
+
+
+266
+00:13:10,866 --> 00:13:13,196
+You read in your parameter
+sets and they apply
+
+
+267
+00:13:13,196 --> 00:13:16,156
+to all subsequent frames until
+a new frame or sets arrive.
+
+
+268
+00:13:17,556 --> 00:13:21,036
+MPEG-4 packaging has the NAL
+Units pulled out and it's
+
+
+269
+00:13:21,036 --> 00:13:24,616
+in a separate block of data,
+and this block of data is stored
+
+
+270
+00:13:24,616 --> 00:13:26,236
+in the CMVideoFormatDescription.
+
+
+271
+00:13:26,786 --> 00:13:27,586
+So as I mentioned,
+
+
+272
+00:13:27,666 --> 00:13:32,346
+each CMSampleBuffer references
+this CMVideoFormatDescription.
+
+
+273
+00:13:32,476 --> 00:13:35,666
+That means each frame
+of data has access
+
+
+274
+00:13:35,756 --> 00:13:37,146
+to the parameter sets.
+
+
+275
+00:13:38,106 --> 00:13:40,826
+This sort of packaging
+is superior
+
+
+276
+00:13:40,826 --> 00:13:42,246
+for random access in a file.
+
+
+277
+00:13:42,306 --> 00:13:44,836
+It allows you to jump anywhere
+
+
+278
+00:13:44,836 --> 00:13:47,106
+and begin decoding
+at an I frame.
+
+
+279
+00:13:49,066 --> 00:13:50,356
+So what do you have to do
+
+
+280
+00:13:50,356 --> 00:13:52,076
+if you have an Elementary
+Stream coming in?
+
+
+281
+00:13:52,986 --> 00:13:55,046
+Well, we've got --
+you've got a couple --
+
+
+282
+00:13:55,276 --> 00:13:58,276
+you've got your parameter sets
+and NAL Units and you're going
+
+
+283
+00:13:58,276 --> 00:14:01,276
+to have to package those in
+a CMVideoFormatDescription.
+
+
+284
+00:14:02,086 --> 00:14:05,096
+Well, we provide a handy
+utility that does this for you;
+
+
+285
+00:14:05,246 --> 00:14:07,976
+CMVideoFormatDescription
+CreatefromH264ParameterSets.
+
+
+286
+00:14:08,516 --> 00:14:12,516
+[ Applause ]
+
+
+287
+00:14:13,016 --> 00:14:13,083
+[ Laughs ]
+
+
+288
+00:14:13,456 --> 00:14:17,396
+All right, so the next
+difference that we're going
+
+
+289
+00:14:17,396 --> 00:14:19,536
+to talk about between
+an Elementary Stream
+
+
+290
+00:14:19,536 --> 00:14:23,306
+and MPEG-4 packaging
+is in NAL Unit headers.
+
+
+291
+00:14:24,086 --> 00:14:25,916
+So each NAL Unit
+in an the stream --
+
+
+292
+00:14:25,916 --> 00:14:29,866
+Elementary Stream will have a
+three or four bytes start code
+
+
+293
+00:14:29,866 --> 00:14:33,166
+as the header and
+in MPEG-4 packaging,
+
+
+294
+00:14:33,256 --> 00:14:34,786
+we have a length code.
+
+
+295
+00:14:35,456 --> 00:14:37,616
+So for each NAL Unit in your
+stream, they're going --
+
+
+296
+00:14:38,156 --> 00:14:41,026
+you have to strip
+off that start code
+
+
+297
+00:14:41,026 --> 00:14:42,426
+and replace it with
+the length code.
+
+
+298
+00:14:42,766 --> 00:14:44,066
+That's the length
+of the NAL Unit.
+
+
+299
+00:14:45,256 --> 00:14:46,126
+It's not that hard.
+
+
+300
+00:14:48,096 --> 00:14:50,226
+So let's talk about
+building a CMSampleBuffer
+
+
+301
+00:14:50,876 --> 00:14:52,626
+from your Elementary Stream.
+
+
+302
+00:14:52,916 --> 00:14:55,096
+First thing you're going to have
+to do is take your NAL Unit,
+
+
+303
+00:14:55,476 --> 00:15:00,496
+or NAL Units, and replace the
+start code with a length code.
+
+
+304
+00:15:02,436 --> 00:15:05,986
+And you'll wrap that NAL
+Unit in a CMBlockBuffer.
+
+
+305
+00:15:06,646 --> 00:15:09,776
+One note here, for simplicity,
+I'm showing a single NAL Unit
+
+
+306
+00:15:09,776 --> 00:15:12,326
+but if you have a frame that
+consists of several NAL Units,
+
+
+307
+00:15:12,716 --> 00:15:14,506
+you need to include
+all of the NAL Units
+
+
+308
+00:15:14,506 --> 00:15:15,746
+in your CMSampleBuffer.
+
+
+309
+00:15:16,876 --> 00:15:18,486
+So you have a CMBlockBuffer.
+
+
+310
+00:15:18,786 --> 00:15:20,306
+You have your
+CMVideoFormatDescription
+
+
+311
+00:15:20,306 --> 00:15:21,556
+that you created
+from your initial --
+
+
+312
+00:15:21,626 --> 00:15:25,286
+from your parameter sets,
+and throw in a CMTime value,
+
+
+313
+00:15:25,286 --> 00:15:27,016
+that's the presentation
+time of your frame,
+
+
+314
+00:15:27,646 --> 00:15:29,876
+and you have everything
+you need in order
+
+
+315
+00:15:29,876 --> 00:15:33,696
+to create a CMSampleBuffer
+using CMSampleBufferCreate.
+
+
+316
+00:15:34,536 --> 00:15:38,256
+All right, let's talk
+
+
+317
+00:15:38,256 --> 00:15:40,336
+about AVSampleBufferDisplayLayer
+and Time.
+
+
+318
+00:15:41,086 --> 00:15:41,936
+So as we saw,
+
+
+319
+00:15:41,936 --> 00:15:44,826
+all CMSampleBuffers have an
+associated presentation time
+
+
+320
+00:15:44,826 --> 00:15:48,176
+stamp, and our video
+decoder's going to be spitting
+
+
+321
+00:15:48,176 --> 00:15:52,226
+out CVPixelBuffers each with
+an associated presentation
+
+
+322
+00:15:52,226 --> 00:15:52,796
+time stamp.
+
+
+323
+00:15:53,646 --> 00:15:55,556
+Well, how does it know when
+to display these frames?
+
+
+324
+00:15:56,516 --> 00:15:59,286
+By default, it will be driven
+off of the hostTime clock.
+
+
+325
+00:16:00,466 --> 00:16:02,426
+Well, that can be a
+little bit hard to manage;
+
+
+326
+00:16:02,426 --> 00:16:05,266
+the hostTime clock isn't
+really under your control.
+
+
+327
+00:16:06,126 --> 00:16:08,796
+So we allow you to
+replace the hostTime clock
+
+
+328
+00:16:08,796 --> 00:16:10,936
+with your own timebase.
+
+
+329
+00:16:11,816 --> 00:16:14,826
+To do this you set the time -
+y'know, in the example here,
+
+
+330
+00:16:15,026 --> 00:16:18,566
+we're creating a timebase
+based on the hostTime clock
+
+
+331
+00:16:18,986 --> 00:16:21,096
+and we're setting that
+as the control timebase
+
+
+332
+00:16:21,096 --> 00:16:22,716
+on our
+AVSampleBufferDisplayLayer.
+
+
+333
+00:16:24,056 --> 00:16:26,016
+Here, we're setting the
+timebase time to five,
+
+
+334
+00:16:26,056 --> 00:16:29,146
+which would mean our frame
+whose time stamp is five will be
+
+
+335
+00:16:29,146 --> 00:16:31,916
+displayed in our layer,
+and then we go ahead
+
+
+336
+00:16:31,916 --> 00:16:33,676
+and set the timebase
+rate to one,
+
+
+337
+00:16:34,046 --> 00:16:36,266
+and now our timebase begins
+moving at the same rate
+
+
+338
+00:16:36,266 --> 00:16:38,936
+as the hostTime clock,
+
+
+339
+00:16:39,476 --> 00:16:42,186
+and subsequent frames
+will be displayed
+
+
+340
+00:16:42,186 --> 00:16:44,616
+at the appropriate time.
+
+
+341
+00:16:45,636 --> 00:16:46,466
+All right.
+
+
+342
+00:16:47,706 --> 00:16:50,956
+So providing the
+CMSampleBuffers,
+
+
+343
+00:16:50,956 --> 00:16:52,426
+the SampleBufferDisplayLayer,
+
+
+344
+00:16:52,626 --> 00:16:54,826
+there's really two
+major scenarios
+
+
+345
+00:16:54,826 --> 00:16:55,746
+that can describe this.
+
+
+346
+00:16:56,446 --> 00:16:58,226
+First off, there's
+the periodic source.
+
+
+347
+00:16:58,486 --> 00:16:59,966
+This is the case where
+you're getting frames
+
+
+348
+00:16:59,966 --> 00:17:03,026
+in at basically the same rate
+at which they're being displayed
+
+
+349
+00:17:03,026 --> 00:17:05,556
+in the
+AVSampleBufferDisplayLayer.
+
+
+350
+00:17:06,086 --> 00:17:08,336
+This would be the case
+for a live streaming app
+
+
+351
+00:17:08,896 --> 00:17:12,195
+or live streaming
+app with low latency
+
+
+352
+00:17:12,195 --> 00:17:14,066
+or video conferencing scenario.
+
+
+353
+00:17:15,175 --> 00:17:17,626
+The next case is the
+unconstrained source.
+
+
+354
+00:17:18,056 --> 00:17:22,215
+This is the case where you have
+a large set of CMSampleBuffers
+
+
+355
+00:17:22,215 --> 00:17:23,576
+at your disposal ready to feed
+
+
+356
+00:17:23,576 --> 00:17:26,415
+into the
+AVSampleBufferDisplayLayer
+
+
+357
+00:17:26,756 --> 00:17:27,445
+at one time.
+
+
+358
+00:17:28,756 --> 00:17:31,076
+This would be the case
+if you have a large cache
+
+
+359
+00:17:31,076 --> 00:17:32,446
+of buffered network data
+
+
+360
+00:17:32,816 --> 00:17:35,136
+or if you're reading the
+CMSampleBuffers from a file.
+
+
+361
+00:17:35,926 --> 00:17:38,246
+All right, let's talk
+about the first case.
+
+
+362
+00:17:39,066 --> 00:17:40,066
+This is really simple.
+
+
+363
+00:17:40,166 --> 00:17:41,366
+Frames are coming
+in at the same rate
+
+
+364
+00:17:41,366 --> 00:17:42,456
+at which they're
+being displayed.
+
+
+365
+00:17:42,786 --> 00:17:45,306
+You can go ahead and just
+enqueue the sample buffers
+
+
+366
+00:17:45,446 --> 00:17:47,446
+with your
+AVSampleBufferDisplayLayer
+
+
+367
+00:17:47,446 --> 00:17:48,206
+as they arrive.
+
+
+368
+00:17:50,166 --> 00:17:52,096
+You use the enqueueSampleBuffer
+column.
+
+
+369
+00:17:52,576 --> 00:17:53,756
+All right.
+
+
+370
+00:17:53,756 --> 00:17:56,006
+The unconstrained source is a
+little bit more complicated.
+
+
+371
+00:17:56,206 --> 00:17:59,056
+You don't want to just shove
+all of those CMSampleBuffers
+
+
+372
+00:17:59,056 --> 00:18:00,446
+into the
+AVSampleBufferDisplayLayer
+
+
+373
+00:18:00,446 --> 00:18:00,836
+at once.
+
+
+374
+00:18:01,456 --> 00:18:02,956
+No one will be happy with that.
+
+
+375
+00:18:03,706 --> 00:18:05,136
+What you want to do,
+
+
+376
+00:18:05,226 --> 00:18:10,326
+the AVSampleBufferDisplayLayer
+can tell you when it's buffers -
+
+
+377
+00:18:10,376 --> 00:18:13,086
+it's internal buffers are
+low and it needs more data
+
+
+378
+00:18:13,086 --> 00:18:15,806
+and you can ask it when
+it has enough data.
+
+
+379
+00:18:16,856 --> 00:18:20,946
+The way you do this is
+using the requestMediaData
+
+
+380
+00:18:20,946 --> 00:18:22,076
+WhenReadyOnQueue.
+
+
+381
+00:18:23,236 --> 00:18:26,716
+You provide a block
+in this interface
+
+
+382
+00:18:27,136 --> 00:18:31,156
+and AVSampleBufferDisplayLayer
+will call your block every time
+
+
+383
+00:18:31,216 --> 00:18:34,346
+its internal queues are
+low and it needs more data.
+
+
+384
+00:18:36,576 --> 00:18:38,646
+Inside of that block,
+you can go ahead
+
+
+385
+00:18:38,646 --> 00:18:43,096
+and loop while you're asking
+whether it has enough data.
+
+
+386
+00:18:43,206 --> 00:18:45,816
+You use isReadyForMoreMediaData
+column.
+
+
+387
+00:18:46,296 --> 00:18:49,166
+If it returns true, that means
+it wants more SampleBuffers,
+
+
+388
+00:18:49,306 --> 00:18:51,126
+so you keep on feeding
+SampleBuffers in.
+
+
+389
+00:18:51,316 --> 00:18:53,246
+As soon as it returns false,
+
+
+390
+00:18:53,246 --> 00:18:55,226
+that means it has
+enough and you can stop.
+
+
+391
+00:18:56,226 --> 00:18:58,656
+So it's a pretty
+simple loop to write.
+
+
+392
+00:19:00,276 --> 00:19:01,456
+All right.
+
+
+393
+00:19:02,476 --> 00:19:04,466
+Let's do a quick
+summary of what we talked
+
+
+394
+00:19:04,466 --> 00:19:06,106
+about with
+AVSampleBufferDisplayLayer.
+
+
+395
+00:19:06,226 --> 00:19:08,356
+At this point, you
+should be able
+
+
+396
+00:19:08,356 --> 00:19:10,426
+to create an
+AVSampleBufferDisplayLayer.
+
+
+397
+00:19:11,716 --> 00:19:16,256
+You've learned how to convert
+your Elementary Stream H.264
+
+
+398
+00:19:16,256 --> 00:19:20,376
+data into CMSampleBuffers that
+will happily be decompressed
+
+
+399
+00:19:20,376 --> 00:19:21,926
+by your
+AVSampleBufferDisplayLayer.
+
+
+400
+00:19:23,886 --> 00:19:26,006
+We've talked about a
+couple of scenarios
+
+
+401
+00:19:26,286 --> 00:19:28,796
+about how you would provide
+these CMSampleBuffers
+
+
+402
+00:19:28,836 --> 00:19:31,406
+to your layer,
+AVSampleBufferDisplayLayer.
+
+
+403
+00:19:31,786 --> 00:19:34,386
+And finally, we talked about
+using a custom CMTimebase
+
+
+404
+00:19:34,386 --> 00:19:35,966
+with the
+AVSampleBufferDisplayLayer.
+
+
+405
+00:19:36,596 --> 00:19:37,626
+All right.
+
+
+406
+00:19:38,476 --> 00:19:40,116
+So let's dive into
+our second case.
+
+
+407
+00:19:40,436 --> 00:19:43,296
+This is the case where you have
+a stream of H.264 data coming
+
+
+408
+00:19:43,296 --> 00:19:45,536
+in over the network, but you
+don't want to just display it
+
+
+409
+00:19:45,536 --> 00:19:48,066
+in your application; you want
+to actually decode those frames
+
+
+410
+00:19:48,066 --> 00:19:50,766
+and get the decompressed
+pixel buffers.
+
+
+411
+00:19:52,416 --> 00:19:55,666
+So what we had
+
+
+412
+00:19:55,666 --> 00:19:57,886
+in AVSampleBufferDisplayLayer
+contains a lot
+
+
+413
+00:19:57,886 --> 00:19:58,756
+of the pieces we need.
+
+
+414
+00:19:59,656 --> 00:20:01,886
+But instead of accessing
+the video decoder
+
+
+415
+00:20:01,886 --> 00:20:03,646
+through the
+AVSampleBufferDisplayLayer,
+
+
+416
+00:20:04,166 --> 00:20:06,616
+we'll access it through
+the VTDecompressionSession.
+
+
+417
+00:20:07,386 --> 00:20:10,126
+Like the
+AVSampleBufferDisplayLayer,
+
+
+418
+00:20:10,236 --> 00:20:13,836
+VTDecompressionSession wants
+CMSampleBuffers as its input.
+
+
+419
+00:20:15,946 --> 00:20:18,196
+And it will decode
+the CMSampleBuffers
+
+
+420
+00:20:18,196 --> 00:20:20,796
+to CVPixelBuffers
+and receive those
+
+
+421
+00:20:20,796 --> 00:20:22,866
+in the OutputCallback
+that you implement.
+
+
+422
+00:20:24,166 --> 00:20:26,766
+So in order to create a
+VTDecompressionSession,
+
+
+423
+00:20:26,766 --> 00:20:27,796
+you'll need a few things.
+
+
+424
+00:20:28,626 --> 00:20:30,376
+First, you need to
+provide a description
+
+
+425
+00:20:30,376 --> 00:20:32,506
+of the source buffers that
+you'll be decompressing.
+
+
+426
+00:20:33,386 --> 00:20:35,256
+This is a
+CMVideoFormatDescription.
+
+
+427
+00:20:35,306 --> 00:20:38,956
+If you're decompressing
+from an Elementary Stream,
+
+
+428
+00:20:38,956 --> 00:20:40,576
+you've created this from
+your parameter sets,
+
+
+429
+00:20:41,006 --> 00:20:43,046
+if you just have a
+CMSampleBuffer that you want
+
+
+430
+00:20:43,046 --> 00:20:46,026
+to decompress you can pull it
+straight off the CMSampleBuffer.
+
+
+431
+00:20:47,916 --> 00:20:49,726
+Next, you need to
+describe your requirements
+
+
+432
+00:20:49,726 --> 00:20:51,306
+for your output pixelBuffers.
+
+
+433
+00:20:51,986 --> 00:20:55,086
+You use a pixelBufferAttributes
+dictionary for this.
+
+
+434
+00:20:56,696 --> 00:20:57,706
+And finally, you need
+
+
+435
+00:20:57,706 --> 00:21:00,406
+to implement a
+VTDecompressionOutputCallback.
+
+
+436
+00:21:01,226 --> 00:21:02,346
+All right.
+
+
+437
+00:21:02,566 --> 00:21:04,446
+Let's talk about
+describing your requirements
+
+
+438
+00:21:04,446 --> 00:21:06,286
+for the output pixelBuffers.
+
+
+439
+00:21:07,006 --> 00:21:08,906
+Here, you need to create
+a PixelBufferAttributes
+
+
+440
+00:21:08,906 --> 00:21:09,426
+dictionary.
+
+
+441
+00:21:09,926 --> 00:21:12,726
+So let's look at a
+scenario where we want
+
+
+442
+00:21:12,886 --> 00:21:14,936
+to use the Output CVPixelBuffers
+
+
+443
+00:21:14,936 --> 00:21:16,886
+in an open GLS ES
+render pipeline.
+
+
+444
+00:21:18,406 --> 00:21:20,336
+Really, the only
+requirement here that we have
+
+
+445
+00:21:20,336 --> 00:21:21,796
+for our Output PixelBuffers is
+
+
+446
+00:21:21,796 --> 00:21:23,746
+that they be OpenGL
+ES compatible.
+
+
+447
+00:21:24,416 --> 00:21:28,336
+So we can go ahead and
+just create a CFDictionary
+
+
+448
+00:21:28,336 --> 00:21:32,016
+or NSDictionary specifying
+the kCVPixelBufferOpen
+
+
+449
+00:21:32,016 --> 00:21:37,976
+GLESCompatibilityKey
+and set it to true.
+
+
+450
+00:21:38,826 --> 00:21:41,276
+So it can be very tempting to,
+
+
+451
+00:21:41,326 --> 00:21:42,926
+when you're creating these
+PixelBufferAttributes
+
+
+452
+00:21:42,926 --> 00:21:44,636
+dictionaries, to
+be very specific.
+
+
+453
+00:21:45,226 --> 00:21:47,256
+That way, there's no
+surprises about what you get
+
+
+454
+00:21:47,256 --> 00:21:48,786
+out of the
+VTDecompressionSession,
+
+
+455
+00:21:49,126 --> 00:21:50,326
+but there's some pitfalls here.
+
+
+456
+00:21:50,966 --> 00:21:52,506
+So let's look at this case
+
+
+457
+00:21:52,506 --> 00:21:56,446
+where we had kCVPixelBufferOpen
+GLESCompatibilityKey set
+
+
+458
+00:21:56,446 --> 00:21:56,876
+to true.
+
+
+459
+00:21:58,126 --> 00:21:59,636
+Here, our decompression
+session --
+
+
+460
+00:21:59,886 --> 00:22:02,176
+the decoder inside of our
+decompression session is going
+
+
+461
+00:22:02,176 --> 00:22:05,736
+to be decoding the frames and
+outputting YUV CVPixelBuffers.
+
+
+462
+00:22:06,966 --> 00:22:10,736
+In the VTDecompressionSession
+we'll then ask, is this --
+
+
+463
+00:22:11,146 --> 00:22:14,006
+well, it'll ask itself, "is
+this PixelBuffer compatible
+
+
+464
+00:22:14,006 --> 00:22:16,066
+with those requested
+attributes?"
+
+
+465
+00:22:16,696 --> 00:22:17,686
+And the answer is yes.
+
+
+466
+00:22:17,876 --> 00:22:21,016
+That YUV frame is OpenGL ES
+compatible so it can return
+
+
+467
+00:22:21,016 --> 00:22:22,336
+that directly to your callback.
+
+
+468
+00:22:23,596 --> 00:22:28,796
+But let's say you were
+possessed to add BGRA request
+
+
+469
+00:22:28,896 --> 00:22:30,536
+to your PixelBufferAttributes.
+
+
+470
+00:22:31,446 --> 00:22:35,086
+So just like before,
+the decoder inside
+
+
+471
+00:22:35,086 --> 00:22:38,066
+of our VTDecompressionSession
+will decode to a YUV format
+
+
+472
+00:22:38,066 --> 00:22:42,336
+and will ask whether this
+CVPixelBuffer is compatible
+
+
+473
+00:22:42,336 --> 00:22:44,186
+with the requested
+output requirements.
+
+
+474
+00:22:44,986 --> 00:22:48,626
+And it is OpenGL ES compatible,
+but it's certainly not BGRA.
+
+
+475
+00:22:49,716 --> 00:22:52,616
+So it will need to do an
+extra buffer copy to convert
+
+
+476
+00:22:52,616 --> 00:22:54,446
+that YUV data to BGRA data.
+
+
+477
+00:22:56,616 --> 00:22:59,056
+So extra buffer copies are bad.
+
+
+478
+00:22:59,296 --> 00:23:02,856
+They decrease efficiency
+and they can lead
+
+
+479
+00:23:02,986 --> 00:23:04,686
+to decreased battery life.
+
+
+480
+00:23:05,086 --> 00:23:08,456
+So the moral story here is --
+be, uh -- don't over specify.
+
+
+481
+00:23:09,796 --> 00:23:12,776
+All right, let's talk
+about your Output Callback.
+
+
+482
+00:23:14,276 --> 00:23:15,956
+So the Output Callback is
+
+
+483
+00:23:15,956 --> 00:23:18,576
+where you'll receive the
+decoded CVPixelBuffers
+
+
+484
+00:23:19,736 --> 00:23:23,196
+and CVPixelBuffers don't
+have a built in time stamp,
+
+
+485
+00:23:23,196 --> 00:23:25,496
+so you'll receive the
+presentation time stamp
+
+
+486
+00:23:26,356 --> 00:23:27,726
+for that PixelBuffer here.
+
+
+487
+00:23:28,876 --> 00:23:32,426
+And if there are errors or the
+frame is dropped for any reason,
+
+
+488
+00:23:32,426 --> 00:23:34,556
+you'll receive that information
+in the Output Callback.
+
+
+489
+00:23:34,696 --> 00:23:35,866
+And it's important to note
+
+
+490
+00:23:35,866 --> 00:23:38,786
+that the Output Callback will
+be called for every single frame
+
+
+491
+00:23:38,786 --> 00:23:41,786
+that you push into the
+VTDecompressionSession even
+
+
+492
+00:23:41,786 --> 00:23:43,556
+if there's an error,
+even if it's dropped.
+
+
+493
+00:23:45,556 --> 00:23:48,386
+All right, let's talk
+about providing frames
+
+
+494
+00:23:48,436 --> 00:23:50,106
+to your VTDecompressionSession.
+
+
+495
+00:23:50,746 --> 00:23:53,666
+To do that, you call
+VTDecompression
+
+
+496
+00:23:53,666 --> 00:23:54,896
+SessionDecodeFrame.
+
+
+497
+00:23:56,336 --> 00:23:58,236
+Just like
+AVSampleBufferDisplayLayer,
+
+
+498
+00:23:58,526 --> 00:24:03,306
+you need to provide these as
+CMSampleBuffers, and you need
+
+
+499
+00:24:03,306 --> 00:24:05,196
+to provide these
+frames in decode order.
+
+
+500
+00:24:07,726 --> 00:24:08,906
+And by default,
+
+
+501
+00:24:08,906 --> 00:24:11,256
+VTDecompressionSession
+DecodeFrame will
+
+
+502
+00:24:11,256 --> 00:24:12,416
+operate synchronously.
+
+
+503
+00:24:12,736 --> 00:24:15,356
+This means that your
+OutputCallback will be called
+
+
+504
+00:24:15,566 --> 00:24:18,976
+before VTDecompression
+SessionDecodeFrame returns.
+
+
+505
+00:24:20,526 --> 00:24:22,746
+If you want asynchronous
+operation, you can pass
+
+
+506
+00:24:22,746 --> 00:24:25,556
+in the flag requesting
+EnableAsynchronous
+
+
+507
+00:24:25,586 --> 00:24:26,346
+Decompression.
+
+
+508
+00:24:26,896 --> 00:24:32,256
+All right, let's talk about
+asynchronous decompression then.
+
+
+509
+00:24:32,256 --> 00:24:33,546
+With ASynchronousDecompression,
+
+
+510
+00:24:33,856 --> 00:24:34,346
+the call
+
+
+511
+00:24:34,346 --> 00:24:37,696
+to VTDecompressionSession
+DecodeFrame returns as soon
+
+
+512
+00:24:37,696 --> 00:24:40,196
+as it hands the frame
+off to the decoder.
+
+
+513
+00:24:40,656 --> 00:24:44,726
+But decoders often have limited
+pipelines for decoding frames.
+
+
+514
+00:24:45,446 --> 00:24:48,566
+So when the decoder's
+internal pipeline is full,
+
+
+515
+00:24:48,566 --> 00:24:51,966
+the call to VTDecompression
+SessionDecodeFrame will block
+
+
+516
+00:24:52,306 --> 00:24:54,656
+until space opens up in
+the decoders pipeline.
+
+
+517
+00:24:56,246 --> 00:24:57,756
+We call this decoder
+back pressure.
+
+
+518
+00:24:58,896 --> 00:25:01,996
+So what this means is that
+even though you're calling
+
+
+519
+00:25:02,086 --> 00:25:04,186
+VTDecompressionSession
+DecodeFrame
+
+
+520
+00:25:04,186 --> 00:25:06,096
+and requesting Asynchronous
+Decompression,
+
+
+521
+00:25:06,356 --> 00:25:09,316
+we will be doing the
+decompression asynchronously
+
+
+522
+00:25:09,396 --> 00:25:11,866
+but the call can still
+block (in some cases).
+
+
+523
+00:25:12,406 --> 00:25:14,336
+So be aware of that.
+
+
+524
+00:25:14,336 --> 00:25:15,796
+You're doing
+AsynchronousDecompression
+
+
+525
+00:25:15,796 --> 00:25:19,546
+but the call can block, so don't
+perform UI tasks on that thread.
+
+
+526
+00:25:20,766 --> 00:25:24,616
+All right, if you find yourself
+in a situation where you want
+
+
+527
+00:25:24,616 --> 00:25:26,746
+to ensure that all asynchronous
+frames have been cleared
+
+
+528
+00:25:26,746 --> 00:25:30,596
+out of the decoder, you can
+call VTDecompressionSession
+
+
+529
+00:25:30,596 --> 00:25:32,496
+and WaitForAsynchronousFrames.
+
+
+530
+00:25:32,996 --> 00:25:35,666
+This call will not return until
+all frames have been omitted
+
+
+531
+00:25:35,666 --> 00:25:36,996
+from the decompression session.
+
+
+532
+00:25:39,876 --> 00:25:42,796
+So, sometimes, while
+decoding a sequence
+
+
+533
+00:25:42,796 --> 00:25:45,426
+of video frames there
+will be a change
+
+
+534
+00:25:45,426 --> 00:25:46,956
+in the CMVideoFormatDescription.
+
+
+535
+00:25:47,156 --> 00:25:50,086
+So let's look at the case
+where we had a sequence
+
+
+536
+00:25:50,086 --> 00:25:51,666
+of an Elementary Stream
+
+
+537
+00:25:51,666 --> 00:25:53,946
+and we created the
+first format description
+
+
+538
+00:25:53,946 --> 00:25:56,186
+out of the first parameter
+sets that we encountered.
+
+
+539
+00:25:56,386 --> 00:25:58,166
+So now we have format
+description one
+
+
+540
+00:25:58,306 --> 00:25:59,946
+with our first SPS and PPS.
+
+
+541
+00:25:59,946 --> 00:26:04,126
+We can go ahead and create
+our VTDecompressionSession
+
+
+542
+00:26:04,126 --> 00:26:07,856
+with that format description and
+decode all the subsequent frames
+
+
+543
+00:26:08,036 --> 00:26:10,706
+with that format description
+attached to the CMSampleBuffer
+
+
+544
+00:26:11,956 --> 00:26:16,826
+until we encounter a new
+SPS and PPS in the stream.
+
+
+545
+00:26:17,886 --> 00:26:20,266
+Then, we need to create
+a new format description
+
+
+546
+00:26:20,266 --> 00:26:24,496
+with that new -- the new SPS
+and PPS and we have to make sure
+
+
+547
+00:26:24,496 --> 00:26:26,726
+that the decompression
+session can switch
+
+
+548
+00:26:26,726 --> 00:26:28,186
+between these format
+descriptions.
+
+
+549
+00:26:29,316 --> 00:26:32,966
+So to do that, you call
+VTDecompressionSession
+
+
+550
+00:26:32,966 --> 00:26:34,596
+CanAcceptFormatDescription.
+
+
+551
+00:26:35,296 --> 00:26:37,926
+This will ensure -- ask the
+decoder whether it's able
+
+
+552
+00:26:37,926 --> 00:26:39,856
+to transition from
+FormatDescription one
+
+
+553
+00:26:39,856 --> 00:26:42,826
+to FormatDescription two.
+
+
+554
+00:26:43,366 --> 00:26:46,116
+If the answer is true (yes,
+
+
+555
+00:26:46,116 --> 00:26:49,776
+it can handle the new
+accepted FormatDescription)
+
+
+556
+00:26:50,146 --> 00:26:52,226
+that means you can
+pass subsequent samples
+
+
+557
+00:26:52,226 --> 00:26:54,346
+with that new FormatDescription
+attached to them
+
+
+558
+00:26:54,946 --> 00:26:57,806
+into the Decompression Session
+and everything will work fine.
+
+
+559
+00:26:58,186 --> 00:27:02,066
+If it returns false, that
+means the decompressor cannot
+
+
+560
+00:27:02,066 --> 00:27:04,696
+transition from that
+first format description
+
+
+561
+00:27:04,946 --> 00:27:07,236
+to the second format
+description, and you'll need
+
+
+562
+00:27:07,236 --> 00:27:09,236
+to create a new
+VTDecompressionSession
+
+
+563
+00:27:09,966 --> 00:27:13,566
+and be sure to -- and pass
+the new frames into that one.
+
+
+564
+00:27:14,326 --> 00:27:17,266
+And be sure to release that
+old VTDecompressionSession
+
+
+565
+00:27:17,796 --> 00:27:20,256
+when you're no longer using it.
+
+
+566
+00:27:20,816 --> 00:27:21,296
+All right.
+
+
+567
+00:27:21,976 --> 00:27:23,076
+Quick summary of what we talked
+
+
+568
+00:27:23,076 --> 00:27:24,746
+about with
+VTDecompressionSession.
+
+
+569
+00:27:25,586 --> 00:27:30,166
+We talked about creating the
+VTDecompressionSession and how
+
+
+570
+00:27:30,166 --> 00:27:32,846
+to make optimal decisions when
+creating your PixelBuffer--
+
+
+571
+00:27:33,136 --> 00:27:35,356
+ah, your PixelBufferAttributes
+dictionary
+
+
+572
+00:27:36,326 --> 00:27:38,996
+for specifying your
+output requirements.
+
+
+573
+00:27:39,616 --> 00:27:43,046
+We talked about running your
+decompression session both
+
+
+574
+00:27:43,046 --> 00:27:46,426
+synchronously and
+asynchronously and we talked
+
+
+575
+00:27:46,426 --> 00:27:49,106
+about handing changes in
+CMVideo FormatDescription.
+
+
+576
+00:27:50,846 --> 00:27:53,886
+So. With that, let's
+hop into case three.
+
+
+577
+00:27:54,446 --> 00:27:59,686
+This is the case where you
+have a stream of CVPixelBuffers
+
+
+578
+00:27:59,686 --> 00:28:02,566
+or frames coming in from a
+camera or another source,
+
+
+579
+00:28:03,296 --> 00:28:05,786
+and you want to compress those
+directly into a movie file.
+
+
+580
+00:28:07,136 --> 00:28:10,216
+Well, for this -- you may be
+familiar with this already --
+
+
+581
+00:28:10,326 --> 00:28:11,726
+we have AVAssetWriter.
+
+
+582
+00:28:13,306 --> 00:28:16,626
+AVAssetWriter has an encoder
+internally, and it's going
+
+
+583
+00:28:16,626 --> 00:28:19,196
+to be encoding those
+frames into CMSampleBuffers
+
+
+584
+00:28:20,046 --> 00:28:22,086
+and it's got some
+file writing smarts,
+
+
+585
+00:28:22,196 --> 00:28:25,066
+so it can write these
+optimally into a movie file.
+
+
+586
+00:28:25,896 --> 00:28:30,056
+We're not actually going to
+talk more, at this point,
+
+
+587
+00:28:30,056 --> 00:28:34,326
+about AVAssetWriter, but
+it's an important concept
+
+
+588
+00:28:34,326 --> 00:28:36,396
+and an important thing to bring
+up in the context of this talk,
+
+
+589
+00:28:36,596 --> 00:28:39,446
+so if you want more information
+on the AVAssetWriter,
+
+
+590
+00:28:39,546 --> 00:28:45,506
+you can go back to WWDC 2013
+and the talk "Moving to AVKit
+
+
+591
+00:28:45,506 --> 00:28:48,086
+and AVFoundation" or 2011,
+
+
+592
+00:28:48,766 --> 00:28:50,736
+"Working with Media
+and AVFoundation."
+
+
+593
+00:28:51,756 --> 00:28:53,856
+All right.
+
+
+594
+00:28:54,236 --> 00:28:56,086
+Let's just hop straight
+into case four.
+
+
+595
+00:28:56,466 --> 00:28:59,886
+This is the case where you
+have that stream of data coming
+
+
+596
+00:28:59,886 --> 00:29:03,156
+in from your camera and
+you want to compress it,
+
+
+597
+00:29:03,156 --> 00:29:04,906
+but you don't want to
+write into a movie file.
+
+
+598
+00:29:05,046 --> 00:29:07,656
+You want direct access to
+those compressed SampleBuffers.
+
+
+599
+00:29:08,896 --> 00:29:11,486
+So we want to approach
+our video encoder
+
+
+600
+00:29:11,986 --> 00:29:14,446
+through a VTCompressionSession
+rather
+
+
+601
+00:29:14,446 --> 00:29:15,706
+than through the AVAssetWriter.
+
+
+602
+00:29:17,316 --> 00:29:18,976
+So just like the AVAssetWriter,
+
+
+603
+00:29:18,976 --> 00:29:21,946
+VTCompressionSession takes
+CVPixelBuffers as its input,
+
+
+604
+00:29:22,726 --> 00:29:25,586
+and it's going to compress those
+and return CMSampleBuffers,
+
+
+605
+00:29:25,876 --> 00:29:27,336
+and we can go ahead and send
+
+
+606
+00:29:27,716 --> 00:29:29,376
+that compressed data
+out over the network.
+
+
+607
+00:29:30,736 --> 00:29:34,156
+So to create a
+VTCompressionSession,
+
+
+608
+00:29:34,156 --> 00:29:36,826
+you'll need a few things,
+and this is really simple.
+
+
+609
+00:29:37,206 --> 00:29:39,296
+You just need to specify
+the dimensions you want
+
+
+610
+00:29:39,296 --> 00:29:40,516
+for your compressed output.
+
+
+611
+00:29:41,616 --> 00:29:44,556
+You need to tell us what
+format you want to compress to,
+
+
+612
+00:29:44,556 --> 00:29:47,616
+such as kCMVideoCodec
+Type-H.264,
+
+
+613
+00:29:48,726 --> 00:29:51,826
+and you can optionally
+provide a set
+
+
+614
+00:29:51,826 --> 00:29:54,316
+of PixelBufferAttributes
+describing your source
+
+
+615
+00:29:54,476 --> 00:29:56,326
+CVPixelBuffers that
+you'll be sending
+
+
+616
+00:29:56,326 --> 00:29:56,976
+to the VTCompressionSession.
+
+
+617
+00:29:57,106 --> 00:29:59,966
+And finally, you need
+
+
+618
+00:29:59,966 --> 00:30:02,346
+to implement a VTCompression
+OutputCallback.
+
+
+619
+00:30:04,386 --> 00:30:07,336
+So you've created a
+VTCompressionSession.
+
+
+620
+00:30:07,626 --> 00:30:09,356
+Now you want to configure it.
+
+
+621
+00:30:10,386 --> 00:30:12,126
+You configure a
+VTCompressionSession
+
+
+622
+00:30:12,126 --> 00:30:14,166
+using VTSessionSetProperty.
+
+
+623
+00:30:14,666 --> 00:30:17,316
+In fact, you can
+have a whole sequence
+
+
+624
+00:30:17,316 --> 00:30:19,516
+of VTSessionSetProperty calls.
+
+
+625
+00:30:19,596 --> 00:30:24,866
+So I'm going to go through a few
+common properties here and, but,
+
+
+626
+00:30:24,866 --> 00:30:26,226
+this is not an exhaustive list.
+
+
+627
+00:30:26,876 --> 00:30:29,216
+The first one I'm going to
+mention is AllowFrameReordering.
+
+
+628
+00:30:29,216 --> 00:30:33,816
+By default, H.264 encoder will
+allow frames to be reordered.
+
+
+629
+00:30:34,286 --> 00:30:36,826
+That means the presentation
+time stamp that you pass them
+
+
+630
+00:30:36,826 --> 00:30:41,116
+in will not necessarily
+equal the decode order
+
+
+631
+00:30:41,376 --> 00:30:42,576
+in which they're emitted.
+
+
+632
+00:30:43,446 --> 00:30:46,926
+If you want to disable this
+behavior, you can pass false
+
+
+633
+00:30:47,266 --> 00:30:48,456
+to allow frame reordering.
+
+
+634
+00:30:50,426 --> 00:30:51,936
+Next one: AverageBitRate.
+
+
+635
+00:30:52,386 --> 00:30:54,916
+This is how you set a target
+bit rate for the compressor.
+
+
+636
+00:30:57,186 --> 00:31:00,806
+H264EntropyMode -- using this,
+
+
+637
+00:31:00,806 --> 00:31:04,266
+you can specify CAVLC
+compression or kVTH compression
+
+
+638
+00:31:04,266 --> 00:31:06,616
+for your H.264 encoder.
+
+
+639
+00:31:07,436 --> 00:31:10,306
+All right, and then there's
+the RealTime property.
+
+
+640
+00:31:10,956 --> 00:31:13,396
+The RealTime property allows
+you to tell the encoder
+
+
+641
+00:31:13,396 --> 00:31:16,586
+that this is a real-time
+encoding operation (such
+
+
+642
+00:31:16,586 --> 00:31:22,166
+as in a live streaming case,
+conferencing case) as opposed
+
+
+643
+00:31:22,166 --> 00:31:26,636
+to more of a background activity
+(like a transcode operation).
+
+
+644
+00:31:27,426 --> 00:31:30,256
+And the final one I'm going
+
+
+645
+00:31:30,256 --> 00:31:32,276
+to mention here is
+the ProfileLevel key.
+
+
+646
+00:31:32,756 --> 00:31:35,726
+This allows you to specify
+specific profiles and levels
+
+
+647
+00:31:35,826 --> 00:31:39,236
+or specific profiles and allow
+us to choose the correct level.
+
+
+648
+00:31:39,816 --> 00:31:43,366
+And this is definitely
+not an exhaustive list.
+
+
+649
+00:31:43,456 --> 00:31:48,006
+There's a lot of these options
+available, so go ahead and look
+
+
+650
+00:31:48,006 --> 00:31:52,316
+in VTCompressionProperties.H
+and see what we have for you.
+
+
+651
+00:31:52,316 --> 00:31:57,006
+All right, let's talk about
+providing CVPixelBuffers
+
+
+652
+00:31:57,006 --> 00:31:58,376
+to your VTCompressionSession.
+
+
+653
+00:31:59,406 --> 00:32:02,196
+Use VTCompressionSession
+EncodeFrame to do this,
+
+
+654
+00:32:03,046 --> 00:32:09,346
+and you'll need to provide
+CVPixelBuffers and, CV --
+
+
+655
+00:32:09,346 --> 00:32:10,066
+as I've mentioned,
+
+
+656
+00:32:10,066 --> 00:32:14,076
+CVPixelBuffers don't have a
+presentation time stamp built
+
+
+657
+00:32:14,076 --> 00:32:16,286
+into them, so as a
+separate parameter,
+
+
+658
+00:32:16,286 --> 00:32:18,096
+you'll provide the
+presentation time stamp.
+
+
+659
+00:32:19,626 --> 00:32:23,576
+You need to feed the frames
+in in presentation order.
+
+
+660
+00:32:25,996 --> 00:32:30,746
+And it's -- one more note about
+the presentation order: they --
+
+
+661
+00:32:31,106 --> 00:32:33,496
+the presentation time
+stamps must be increasing.
+
+
+662
+00:32:33,926 --> 00:32:36,236
+No duplicate presentation
+time stamps,
+
+
+663
+00:32:36,576 --> 00:32:38,066
+no time stamps that
+go backwards.
+
+
+664
+00:32:39,736 --> 00:32:42,146
+And so compression sessions --
+
+
+665
+00:32:42,326 --> 00:32:45,866
+compression operations usually
+require a window of frames
+
+
+666
+00:32:45,866 --> 00:32:49,046
+that they'll operate on, so
+your output may be delayed.
+
+
+667
+00:32:49,756 --> 00:32:52,916
+So you may not receive
+a compressed frame
+
+
+668
+00:32:52,916 --> 00:32:54,716
+in your output callback
+until a certain number
+
+
+669
+00:32:54,716 --> 00:32:56,556
+of frames have been
+pushed into the encoder.
+
+
+670
+00:32:57,116 --> 00:32:59,476
+All right.
+
+
+671
+00:32:59,476 --> 00:33:01,946
+And finally, if you've
+reached the end of the frames
+
+
+672
+00:33:01,946 --> 00:33:04,196
+that you're passing to the
+compression session and you want
+
+
+673
+00:33:04,876 --> 00:33:07,606
+to have it emit all of the
+frames that it's received
+
+
+674
+00:33:07,606 --> 00:33:10,106
+so far, you can use
+VTCompressionSession
+
+
+675
+00:33:10,106 --> 00:33:11,096
+CompleteFrames.
+
+
+676
+00:33:11,436 --> 00:33:12,956
+All pending frames
+will be omitted.
+
+
+677
+00:33:14,896 --> 00:33:15,376
+All right.
+
+
+678
+00:33:15,706 --> 00:33:17,336
+Let's talk about
+your output callback.
+
+
+679
+00:33:19,296 --> 00:33:20,426
+So your OutputCallback is
+
+
+680
+00:33:20,426 --> 00:33:23,276
+where you'll receive your
+output CMSampleBuffers.
+
+
+681
+00:33:23,426 --> 00:33:25,126
+These contain the
+compressed frames.
+
+
+682
+00:33:25,976 --> 00:33:29,476
+If there were any errors or
+dropped frames, you'll receive
+
+
+683
+00:33:29,476 --> 00:33:30,526
+that information here.
+
+
+684
+00:33:31,466 --> 00:33:34,786
+And final thing, frames will
+be emitted in decode order.
+
+
+685
+00:33:35,006 --> 00:33:37,436
+So you provided frames to
+the VTCompressionSession
+
+
+686
+00:33:37,436 --> 00:33:38,446
+in presentation order
+
+
+687
+00:33:38,856 --> 00:33:40,716
+and they'll be emitted
+in decode order.
+
+
+688
+00:33:41,456 --> 00:33:44,486
+All right.
+
+
+689
+00:33:45,176 --> 00:33:48,136
+Well, so you've compressed
+a bunch of frames.
+
+
+690
+00:33:48,306 --> 00:33:51,516
+They're now compressed
+in CMSampleBuffers,
+
+
+691
+00:33:51,516 --> 00:33:54,876
+which means that they're
+using MPEG-4 packaging.
+
+
+692
+00:33:55,646 --> 00:33:57,696
+And you want to send that
+out over the network,
+
+
+693
+00:33:58,036 --> 00:34:01,576
+which means you may
+need to switch these
+
+
+694
+00:34:01,576 --> 00:34:03,416
+over to Elementary
+Stream packaging.
+
+
+695
+00:34:04,346 --> 00:34:05,866
+Well, once again,
+you're going to have
+
+
+696
+00:34:05,866 --> 00:34:08,025
+to do a little bit of work.
+
+
+697
+00:34:09,096 --> 00:34:12,196
+So we talked about the
+parameter sets before.
+
+
+698
+00:34:13,025 --> 00:34:16,626
+So the parameters sets will
+-- in your MPEG-4 package,
+
+
+699
+00:34:16,626 --> 00:34:20,315
+H.264 will be in the
+CMVideoFormatDescription.
+
+
+700
+00:34:21,076 --> 00:34:22,335
+So the first thing
+you're going to have
+
+
+701
+00:34:22,335 --> 00:34:25,866
+to do is extract those
+parameter sets and package them
+
+
+702
+00:34:25,866 --> 00:34:27,766
+as NAL Units to send
+out over the network.
+
+
+703
+00:34:29,716 --> 00:34:33,686
+Well, we provide a handy
+utility for that too.
+
+
+704
+00:34:34,186 --> 00:34:38,176
+CMVideoFormatDescription
+GetH.264ParameterSetAtIndex.
+
+
+705
+00:34:39,696 --> 00:34:44,686
+All right, and the next thing
+you need to do is the opposite
+
+
+706
+00:34:44,686 --> 00:34:46,795
+of what we did with
+AVSampleBufferDisplayLayer.
+
+
+707
+00:34:47,616 --> 00:34:51,666
+Our NAL Units are all going
+to have length headers
+
+
+708
+00:34:52,585 --> 00:34:53,636
+and you're going to need
+
+
+709
+00:34:53,636 --> 00:34:56,835
+to convert those length
+headers into start codes.
+
+
+710
+00:34:58,816 --> 00:35:00,966
+So as you extract each NAL Unit
+
+
+711
+00:35:00,966 --> 00:35:03,576
+from the compressed data
+inside the CMSampleBuffer,
+
+
+712
+00:35:04,206 --> 00:35:06,106
+convert those headers
+on the NAL Units.
+
+
+713
+00:35:07,736 --> 00:35:08,236
+All right.
+
+
+714
+00:35:08,536 --> 00:35:10,136
+Quick summary of what we talked
+
+
+715
+00:35:10,136 --> 00:35:11,776
+about with the
+VTCompressionSession.
+
+
+716
+00:35:12,636 --> 00:35:15,026
+We talked about creating
+the VTCompressionSession.
+
+
+717
+00:35:16,216 --> 00:35:17,086
+We've talked about how
+
+
+718
+00:35:17,086 --> 00:35:19,766
+to configure it using the
+VTSessionSetProperty column.
+
+
+719
+00:35:21,886 --> 00:35:24,676
+And we talked about how you
+would provide CVPixelBuffers
+
+
+720
+00:35:24,676 --> 00:35:25,996
+to the compression session.
+
+
+721
+00:35:27,816 --> 00:35:31,316
+And finally, we talked about
+converting those CMSampleBuffers
+
+
+722
+00:35:31,316 --> 00:35:34,736
+into an H.264 Elementary
+Stream packaging.
+
+
+723
+00:35:35,796 --> 00:35:36,436
+All right.
+
+
+724
+00:35:36,436 --> 00:35:39,126
+And with that, I'd like
+to hand things off to Eric
+
+
+725
+00:35:39,126 --> 00:35:40,546
+so he can talk about Multi-Pass.
+
+
+726
+00:35:40,996 --> 00:35:43,806
+>> Good morning everyone.
+
+
+727
+00:35:43,996 --> 00:35:45,326
+My name is Eric Turnquist.
+
+
+728
+00:35:45,326 --> 00:35:47,486
+I'm the Core Media Engineer,
+and today, I want to talk to you
+
+
+729
+00:35:47,486 --> 00:35:48,636
+about Multi-Pass Encoding.
+
+
+730
+00:35:49,606 --> 00:35:53,096
+So as a media engineer, we often
+deal with two opposing forces;
+
+
+731
+00:35:53,326 --> 00:35:54,936
+quality versus bit rate.
+
+
+732
+00:35:55,536 --> 00:35:58,276
+So quality is how pristine
+the image is, and we all know
+
+
+733
+00:35:58,276 --> 00:36:01,076
+when we've seen great quality
+video and we really don't
+
+
+734
+00:36:01,076 --> 00:36:02,596
+like seeing bad quality video.
+
+
+735
+00:36:03,476 --> 00:36:05,436
+Bit rate is how much
+data per time is
+
+
+736
+00:36:05,436 --> 00:36:06,536
+in the output media file.
+
+
+737
+00:36:07,076 --> 00:36:08,956
+So let's say we're
+preparing some content.
+
+
+738
+00:36:10,636 --> 00:36:13,436
+If you're like me, you go
+for high quality first.
+
+
+739
+00:36:13,776 --> 00:36:15,116
+So great, we have high quality.
+
+
+740
+00:36:16,076 --> 00:36:17,996
+Now in this case, what
+happens with the bit rate?
+
+
+741
+00:36:18,806 --> 00:36:21,476
+Well unfortunately, if you have
+high quality, you also tend
+
+
+742
+00:36:21,476 --> 00:36:22,436
+to have a high bit rate.
+
+
+743
+00:36:22,436 --> 00:36:25,116
+Now that's okay,
+but not what we want
+
+
+744
+00:36:25,116 --> 00:36:27,486
+if we're streaming this content
+or storing it on a server.
+
+
+745
+00:36:28,606 --> 00:36:30,446
+So in that case we
+want to a low bit rate
+
+
+746
+00:36:30,756 --> 00:36:33,046
+but the quality isn't
+going to stay this high.
+
+
+747
+00:36:33,826 --> 00:36:35,916
+Unfortunately, that's also
+going to go down as well.
+
+
+748
+00:36:37,086 --> 00:36:39,936
+So we've all seen this as
+blocky encoder artifacts
+
+
+749
+00:36:39,936 --> 00:36:41,846
+or an output image that
+doesn't really even look
+
+
+750
+00:36:41,846 --> 00:36:42,626
+like the source.
+
+
+751
+00:36:42,716 --> 00:36:43,586
+We don't want this either.
+
+
+752
+00:36:44,246 --> 00:36:45,786
+Ideally, we want
+something like this;
+
+
+753
+00:36:46,126 --> 00:36:47,856
+high quality and low bit rate.
+
+
+754
+00:36:48,426 --> 00:36:51,236
+In order to achieve that goal,
+we've added Multi-Pass Encoding
+
+
+755
+00:36:51,236 --> 00:36:53,166
+to AVFoundation and
+Video Toolbox.
+
+
+756
+00:36:53,166 --> 00:36:53,706
+[ Applause ]
+
+
+757
+00:36:53,706 --> 00:37:02,266
+Yeah. So first off, what
+is Multi-Pass Encoding?
+
+
+758
+00:37:02,716 --> 00:37:05,786
+Well, let's do a review of what
+Single-Pass Encoding is first.
+
+
+759
+00:37:05,786 --> 00:37:07,956
+So this is what David covered
+in his portion of the talk.
+
+
+760
+00:37:09,146 --> 00:37:11,306
+With Single-Pass Encoding,
+you have frames coming in,
+
+
+761
+00:37:11,456 --> 00:37:13,186
+going into the encoder
+and being emitted.
+
+
+762
+00:37:13,466 --> 00:37:14,926
+In this case, we're
+going to a movie file.
+
+
+763
+00:37:16,206 --> 00:37:18,996
+Then once you're done appending
+all the samples, we're finished,
+
+
+764
+00:37:20,356 --> 00:37:21,966
+and we're left with
+our output movie file.
+
+
+765
+00:37:22,246 --> 00:37:22,826
+Simple enough.
+
+
+766
+00:37:24,066 --> 00:37:25,616
+Let's see how multi-pass
+differs.
+
+
+767
+00:37:25,796 --> 00:37:27,746
+So you have uncompressed
+frames coming in going,
+
+
+768
+00:37:27,746 --> 00:37:29,826
+into the compression
+session, being emitted
+
+
+769
+00:37:29,826 --> 00:37:30,946
+as compressed samples.
+
+
+770
+00:37:30,946 --> 00:37:32,566
+Now we're going to change
+things up a little bit.
+
+
+771
+00:37:33,206 --> 00:37:35,126
+So we're going to have
+our Frame Database.
+
+
+772
+00:37:35,446 --> 00:37:37,076
+This will store the
+compressed samples
+
+
+773
+00:37:37,076 --> 00:37:39,136
+and allow us random
+access and replacement,
+
+
+774
+00:37:39,136 --> 00:37:40,526
+which is important
+for multi-pass.
+
+
+775
+00:37:40,886 --> 00:37:42,726
+And we're going to have
+our Encoder Database;
+
+
+776
+00:37:43,226 --> 00:37:44,976
+this will store frame analysis.
+
+
+777
+00:37:46,876 --> 00:37:49,066
+So we're done appending
+for one pass,
+
+
+778
+00:37:49,066 --> 00:37:52,036
+and the encoder will decide I
+think, "I can actually do better
+
+
+779
+00:37:52,036 --> 00:37:54,266
+in another pass, so I can tweak
+the parameters a little bit
+
+
+780
+00:37:54,266 --> 00:37:55,156
+to get better quality."
+
+
+781
+00:37:57,536 --> 00:37:59,896
+It will request some
+samples and you'll go through
+
+
+782
+00:37:59,896 --> 00:38:01,736
+and send those samples
+again to the encoder,
+
+
+783
+00:38:02,306 --> 00:38:06,596
+and then it may decide I'm
+done or I'm actually --
+
+
+784
+00:38:06,596 --> 00:38:07,766
+or, I want more passes.
+
+
+785
+00:38:07,766 --> 00:38:09,466
+In this case, let's
+assume that we're finished.
+
+
+786
+00:38:11,016 --> 00:38:13,326
+So we no longer need
+the encoder database
+
+
+787
+00:38:13,326 --> 00:38:14,896
+or the compression
+session, but we're left
+
+
+788
+00:38:14,896 --> 00:38:17,246
+with this Frame Database
+and we want a movie file,
+
+
+789
+00:38:17,546 --> 00:38:18,606
+so we need one more step.
+
+
+790
+00:38:19,856 --> 00:38:22,326
+There's a final copy
+from the Frame Database
+
+
+791
+00:38:22,326 --> 00:38:25,356
+to the output movie
+file and that's it.
+
+
+792
+00:38:25,356 --> 00:38:28,576
+We have a multi-pass encoded
+video track on a movie file.
+
+
+793
+00:38:29,986 --> 00:38:32,466
+Cool. Let's go over
+some encoder features.
+
+
+794
+00:38:33,556 --> 00:38:36,066
+So my first point is -- I
+want to make a note of --
+
+
+795
+00:38:36,066 --> 00:38:38,716
+is David said that Single-Pass
+is hardware accelerated
+
+
+796
+00:38:39,056 --> 00:38:41,166
+and multi-pass is also
+hardware accelerated,
+
+
+797
+00:38:41,366 --> 00:38:43,296
+so you're not losing any
+hardware acceleration there.
+
+
+798
+00:38:46,536 --> 00:38:49,486
+Second point is that multi-pass
+has knowledge of the future.
+
+
+799
+00:38:50,046 --> 00:38:52,446
+No, it's not some crazy,
+time-traveling video encoder.
+
+
+800
+00:38:53,016 --> 00:38:55,226
+(Bonus points: whoever files
+that enhancement request!)
+
+
+801
+00:38:55,766 --> 00:38:59,696
+It allows, or -- is able
+to see your entire content.
+
+
+802
+00:39:00,216 --> 00:39:03,196
+So in Single-Pass, as frames
+come in, the encoder has
+
+
+803
+00:39:03,226 --> 00:39:05,166
+to make assumptions about
+what might come next.
+
+
+804
+00:39:05,786 --> 00:39:07,996
+In multi-pass, it's already
+seen all your content
+
+
+805
+00:39:07,996 --> 00:39:09,626
+so it can make much
+better decisions there.
+
+
+806
+00:39:11,996 --> 00:39:14,456
+Third, it can change
+decisions that it's made.
+
+
+807
+00:39:14,716 --> 00:39:18,406
+So in Single-Pass, as soon as
+the frame is emitted, that's it.
+
+
+808
+00:39:18,406 --> 00:39:21,096
+It can't -- it can no
+longer change, uh --
+
+
+809
+00:39:21,646 --> 00:39:23,146
+Yeah, it can no longer
+change its mind
+
+
+810
+00:39:23,146 --> 00:39:23,986
+about what it's emitted.
+
+
+811
+00:39:24,986 --> 00:39:27,966
+In multi-pass, because the frame
+database supports replacement,
+
+
+812
+00:39:28,316 --> 00:39:30,686
+each pass you can go through
+and change its mind about how
+
+
+813
+00:39:30,686 --> 00:39:32,006
+to achieve optimal quality.
+
+
+814
+00:39:32,566 --> 00:39:35,046
+And as a result of this,
+
+
+815
+00:39:35,046 --> 00:39:37,476
+you really get optimal
+quality per bit, so it's sort
+
+
+816
+00:39:37,476 --> 00:39:40,906
+of like having a very awesome
+custom encoder for your content.
+
+
+817
+00:39:41,916 --> 00:39:45,246
+So that's how multi-pass
+works and some new features.
+
+
+818
+00:39:45,296 --> 00:39:46,736
+Let's talk about new APIs.
+
+
+819
+00:39:47,966 --> 00:39:49,976
+So first off, let's
+talk about AVFoundation.
+
+
+820
+00:39:50,636 --> 00:39:54,646
+In AVFoundation, we have a new
+AVAssetExportSession property.
+
+
+821
+00:39:55,046 --> 00:39:57,366
+We have new pass descriptions
+for AVAssetWriterInput
+
+
+822
+00:39:57,766 --> 00:39:59,696
+and we have reuse on
+AVAssetReaderOutput.
+
+
+823
+00:40:00,596 --> 00:40:02,276
+So first, let's go
+over an overview
+
+
+824
+00:40:02,276 --> 00:40:03,586
+of AVAssetExportSession.
+
+
+825
+00:40:04,766 --> 00:40:07,296
+In AVAssetExportSession, you're
+going from a source file,
+
+
+826
+00:40:07,836 --> 00:40:10,556
+decoding them, then
+performing some operation
+
+
+827
+00:40:10,556 --> 00:40:11,776
+on those uncompressed buffers --
+
+
+828
+00:40:11,776 --> 00:40:13,986
+something like scaling
+or color conversion,
+
+
+829
+00:40:14,356 --> 00:40:16,496
+and you're encoding them and
+writing them to a movie file.
+
+
+830
+00:40:17,036 --> 00:40:19,476
+So in this case, what does
+AVAssetExportSession provide?
+
+
+831
+00:40:20,376 --> 00:40:21,726
+Well, it does all this for you.
+
+
+832
+00:40:21,896 --> 00:40:26,456
+It's the easiest way to
+transcode media on iOS and OS X.
+
+
+833
+00:40:26,686 --> 00:40:27,906
+So let's see what
+we've added here.
+
+
+834
+00:40:29,246 --> 00:40:31,696
+So in AVAssetExportSession
+multiple passes are taken care
+
+
+835
+00:40:31,696 --> 00:40:33,156
+of for you automatically.
+
+
+836
+00:40:33,236 --> 00:40:34,836
+There's no work that
+you have to do
+
+
+837
+00:40:34,836 --> 00:40:36,546
+to send the samples
+between passes.
+
+
+838
+00:40:37,066 --> 00:40:39,926
+And also, it falls
+back to Single-Pass
+
+
+839
+00:40:39,926 --> 00:40:41,206
+if multi-pass isn't supported.
+
+
+840
+00:40:41,586 --> 00:40:44,156
+So if you choose a
+preset that uses a codec
+
+
+841
+00:40:44,156 --> 00:40:46,256
+where multi-pass isn't
+supported, don't worry,
+
+
+842
+00:40:46,296 --> 00:40:47,296
+it'll use Single-Pass.
+
+
+843
+00:40:48,566 --> 00:40:50,846
+And we have one new
+property; set this to yes
+
+
+844
+00:40:50,846 --> 00:40:53,196
+and you're automatically opted
+into multi-pass, and that's it.
+
+
+845
+00:40:53,666 --> 00:40:56,426
+So for a large majority of
+you, this is all you need.
+
+
+846
+00:40:57,616 --> 00:40:59,466
+Next, let's talk
+about AVAssetWriter.
+
+
+847
+00:41:00,356 --> 00:41:03,136
+So AVAssetWriter, you're coming
+from uncompressed samples.
+
+
+848
+00:41:03,136 --> 00:41:05,126
+You want to compress them and
+write them to a movie file.
+
+
+849
+00:41:06,356 --> 00:41:09,486
+You might be coming from an
+OpenGL or OpenGL ES context.
+
+
+850
+00:41:09,826 --> 00:41:11,766
+In this case, what does
+AVAssetWriter provide?
+
+
+851
+00:41:13,106 --> 00:41:15,686
+Well, it wraps this portion,
+going from the encoder
+
+
+852
+00:41:15,846 --> 00:41:17,186
+to the output movie file.
+
+
+853
+00:41:19,686 --> 00:41:23,406
+Another use case, it's
+similar to AVAssetExportSession
+
+
+854
+00:41:23,446 --> 00:41:25,276
+where you're going from
+a source movie file
+
+
+855
+00:41:25,346 --> 00:41:26,836
+to a destination
+output movie file
+
+
+856
+00:41:26,836 --> 00:41:28,636
+and modifying the
+buffers in some way.
+
+
+857
+00:41:29,536 --> 00:41:32,116
+Well in this case, you're going
+to use an AVAssetReaderOutput
+
+
+858
+00:41:32,116 --> 00:41:33,486
+and an AVAssetWriterInput.
+
+
+859
+00:41:33,486 --> 00:41:36,156
+You're responsible for sending
+samples from one to the other.
+
+
+860
+00:41:36,686 --> 00:41:42,356
+Let's go over our new
+AVAssetWriterInput APIs.
+
+
+861
+00:41:42,486 --> 00:41:45,566
+So like AVAssetExportSession,
+you need to enable multi-pass,
+
+
+862
+00:41:46,036 --> 00:41:48,226
+so set this to yes and you're
+automatically opted in.
+
+
+863
+00:41:48,806 --> 00:41:52,356
+Then after you're done
+appending samples,
+
+
+864
+00:41:52,726 --> 00:41:54,636
+you need to mark the
+current pass as finished.
+
+
+865
+00:41:55,366 --> 00:41:56,326
+So what does this do?
+
+
+866
+00:41:56,676 --> 00:41:58,456
+Well, this triggers
+the encoder analysis.
+
+
+867
+00:41:58,696 --> 00:42:01,756
+The encoder needs to decide if I
+need to perform multiple passes
+
+
+868
+00:42:02,296 --> 00:42:04,916
+and if so, what time ranges.
+
+
+869
+00:42:05,026 --> 00:42:06,196
+So the encoder might say,
+
+
+870
+00:42:06,196 --> 00:42:08,536
+"I want to see the entire
+sequence again," or "I want
+
+
+871
+00:42:08,536 --> 00:42:10,086
+to see subsets of the sequence."
+
+
+872
+00:42:11,126 --> 00:42:12,316
+So how does the encoder talk
+
+
+873
+00:42:12,316 --> 00:42:15,876
+about what time ranges it
+wants for the next pass?
+
+
+874
+00:42:16,196 --> 00:42:17,446
+Well, that's through
+an AVAssetWriter
+
+
+875
+00:42:17,446 --> 00:42:18,576
+InputPassDescription.
+
+
+876
+00:42:19,016 --> 00:42:22,846
+So in this case, we have time
+from 0 to 3, but not the sample
+
+
+877
+00:42:22,846 --> 00:42:27,606
+at time 3, and samples from 5 to
+7, but not the sample at time 7.
+
+
+878
+00:42:28,376 --> 00:42:32,136
+So a pass description is the
+encoder's request for media
+
+
+879
+00:42:32,136 --> 00:42:35,686
+in the next pass, and it may
+contain the entire sequence
+
+
+880
+00:42:35,756 --> 00:42:37,156
+or subsets of the sequence.
+
+
+881
+00:42:37,536 --> 00:42:41,316
+On a pass description, you
+can query the time ranges
+
+
+882
+00:42:41,316 --> 00:42:44,046
+that the encoder has requested
+by calling sourceTimeRanges.
+
+
+883
+00:42:47,616 --> 00:42:50,526
+All right, let's talk about
+how AVAssetWriterInput uses
+
+
+884
+00:42:50,526 --> 00:42:51,496
+pass descriptions.
+
+
+885
+00:42:52,896 --> 00:42:55,626
+So when you trigger the encoder
+analysis, the encoder needs
+
+
+886
+00:42:55,626 --> 00:42:57,836
+to reply with what
+decisions it's made.
+
+
+887
+00:42:57,926 --> 00:43:01,396
+So you provide a block on this
+method to allow the encoder
+
+
+888
+00:43:01,396 --> 00:43:02,926
+to give you that answer.
+
+
+889
+00:43:03,226 --> 00:43:05,396
+So this block is called when
+the encoder makes a decision
+
+
+890
+00:43:05,396 --> 00:43:07,796
+about the next pass.
+
+
+891
+00:43:08,076 --> 00:43:10,396
+In that block, you can get
+the new pass description,
+
+
+892
+00:43:10,396 --> 00:43:11,256
+the encoder's decision
+
+
+893
+00:43:11,256 --> 00:43:13,216
+about what content it
+wants for the next pass.
+
+
+894
+00:43:13,506 --> 00:43:15,026
+Let's see how that
+works all in a sample.
+
+
+895
+00:43:15,586 --> 00:43:18,606
+So here's our sample.
+
+
+896
+00:43:19,286 --> 00:43:21,116
+We have our block
+callback that your provide.
+
+
+897
+00:43:23,036 --> 00:43:25,676
+Inside that callback you
+call currentPassDescription.
+
+
+898
+00:43:25,676 --> 00:43:27,876
+This asks the encoder
+what time ranges it wants
+
+
+899
+00:43:27,876 --> 00:43:30,726
+for the next pass.
+
+
+900
+00:43:30,846 --> 00:43:33,626
+If the pass is non-nil
+(meaning the encoder wants data
+
+
+901
+00:43:33,626 --> 00:43:36,566
+for another pass) you
+reconfigure your source.
+
+
+902
+00:43:36,656 --> 00:43:38,966
+So this is where the
+source will send samples
+
+
+903
+00:43:39,316 --> 00:43:40,626
+to the AVAssetWriterInput,
+
+
+904
+00:43:41,286 --> 00:43:43,686
+and then you prepare
+the AVAssetWriterInput
+
+
+905
+00:43:43,736 --> 00:43:44,766
+for the next pass.
+
+
+906
+00:43:44,856 --> 00:43:45,516
+You're already familiar
+
+
+907
+00:43:45,516 --> 00:43:47,666
+with requestMediaData
+WhenReadyOnQueue.
+
+
+908
+00:43:48,276 --> 00:43:53,036
+If the pass is nil, that means
+the encoder has finished passes.
+
+
+909
+00:43:53,366 --> 00:43:53,916
+Then you're done.
+
+
+910
+00:43:53,986 --> 00:43:55,616
+You can mark your
+input as finished.
+
+
+911
+00:43:56,136 --> 00:44:00,686
+All right, let's say you're
+going from a source media file.
+
+
+912
+00:44:00,686 --> 00:44:01,996
+That was in our second example.
+
+
+913
+00:44:02,486 --> 00:44:05,036
+So we have new APIs for
+AVAssetReaderOutput.
+
+
+914
+00:44:05,696 --> 00:44:07,726
+You can prepare your
+source for multi-pass
+
+
+915
+00:44:07,726 --> 00:44:10,246
+by saying supportsRandomAccess
+equals yes.
+
+
+916
+00:44:10,816 --> 00:44:14,276
+Then when the encoder
+wants new time ranges,
+
+
+917
+00:44:14,276 --> 00:44:16,296
+you need to reconfigure
+your AVAssetReaderOutput
+
+
+918
+00:44:16,376 --> 00:44:17,676
+to deliver those time ranges.
+
+
+919
+00:44:18,126 --> 00:44:20,106
+So that's
+resetForReadingTimeRanges
+
+
+920
+00:44:20,106 --> 00:44:21,696
+with an NSArray of time ranges.
+
+
+921
+00:44:23,056 --> 00:44:25,226
+Finally, when all
+passes have completed you
+
+
+922
+00:44:25,226 --> 00:44:26,826
+callMarkConfigurationAsFinal.
+
+
+923
+00:44:27,256 --> 00:44:29,326
+This allows the
+AVAssetReaderOutput
+
+
+924
+00:44:29,326 --> 00:44:30,996
+to transition to
+its completed state
+
+
+925
+00:44:30,996 --> 00:44:34,006
+so it can start tearing
+itself down.
+
+
+926
+00:44:34,036 --> 00:44:36,026
+Right. Now there's a couple
+short cuts you can use
+
+
+927
+00:44:36,026 --> 00:44:38,696
+if you're using AVAssetReader
+and AVAssetWriter
+
+
+928
+00:44:38,696 --> 00:44:39,796
+in combination together.
+
+
+929
+00:44:41,256 --> 00:44:44,076
+So you can enable an
+AVAssetReaderOutput
+
+
+930
+00:44:44,076 --> 00:44:46,766
+if the AVAssetWriterInput
+supports multi-pass.
+
+
+931
+00:44:47,086 --> 00:44:49,086
+So if the encoder
+supports multi-pass,
+
+
+932
+00:44:49,696 --> 00:44:51,836
+we need to support random
+access on the source.
+
+
+933
+00:44:52,366 --> 00:44:56,776
+Then you can reconfigure your
+source to deliver samples
+
+
+934
+00:44:56,776 --> 00:44:58,236
+for the AVAssetWriterInput.
+
+
+935
+00:44:58,496 --> 00:45:01,266
+So with your readerOutput
+call resetForReadingTimeRanges
+
+
+936
+00:45:01,476 --> 00:45:03,276
+with the pass description's
+time ranges.
+
+
+937
+00:45:03,746 --> 00:45:06,026
+Let's go over that
+in the sample.
+
+
+938
+00:45:07,046 --> 00:45:09,266
+So instead of delivering
+for an arbitrary source,
+
+
+939
+00:45:09,266 --> 00:45:11,706
+we now want to deliver for
+our AVAssetReaderOuput.
+
+
+940
+00:45:11,706 --> 00:45:13,576
+So we call
+resetForReadingTimeRanges
+
+
+941
+00:45:13,576 --> 00:45:16,206
+with the pass description
+sourceTimeRanges.
+
+
+942
+00:45:20,976 --> 00:45:24,416
+Great. So that's the new API
+and AVFoundation for multi-pass.
+
+
+943
+00:45:24,416 --> 00:45:26,196
+Let's talk next about
+Video Toolbox.
+
+
+944
+00:45:27,146 --> 00:45:30,336
+So in Video Toolbox, our
+encoder frame analysis database,
+
+
+945
+00:45:30,836 --> 00:45:33,746
+we like to call this
+our VTMultiPassStorage.
+
+
+946
+00:45:34,776 --> 00:45:37,266
+We also have additions
+to VTCompressionSession,
+
+
+947
+00:45:37,266 --> 00:45:39,166
+which David introduced in
+his portion of the talk,
+
+
+948
+00:45:39,776 --> 00:45:41,606
+and decompressed frame database,
+
+
+949
+00:45:42,046 --> 00:45:43,866
+or as we call it,
+the VTFrameSilo.
+
+
+950
+00:45:44,306 --> 00:45:46,576
+So let's go over
+the architecture,
+
+
+951
+00:45:47,426 --> 00:45:50,176
+but this time replacing
+the frame database
+
+
+952
+00:45:50,176 --> 00:45:51,406
+and the encoder database
+
+
+953
+00:45:51,406 --> 00:45:53,296
+with the objects
+that we actually use.
+
+
+954
+00:45:54,066 --> 00:45:55,996
+So in this case, we
+have our VTFrameSilo
+
+
+955
+00:45:55,996 --> 00:45:57,676
+and our VTMultiPassStorage.
+
+
+956
+00:45:59,766 --> 00:46:00,826
+We're done with this pass.
+
+
+957
+00:46:00,826 --> 00:46:02,596
+The encoder wants to
+see samples again.
+
+
+958
+00:46:04,276 --> 00:46:06,606
+We're sending in those
+samples that it requests.
+
+
+959
+00:46:09,556 --> 00:46:12,856
+Then we're finished and we can
+tear down the VTMultiPassStorage
+
+
+960
+00:46:12,856 --> 00:46:19,006
+and the compression session and
+we're left with our FrameSilo.
+
+
+961
+00:46:19,066 --> 00:46:20,646
+So this is where we
+need to perform the copy
+
+
+962
+00:46:20,646 --> 00:46:22,566
+from the FrameSilo to
+the output movie file.
+
+
+963
+00:46:23,096 --> 00:46:26,966
+Great, we have our
+output movie file.
+
+
+964
+00:46:28,276 --> 00:46:31,476
+So first off, let's go over
+what the VTMultiPassStorage is.
+
+
+965
+00:46:31,476 --> 00:46:33,256
+So this is the encoder analysis.
+
+
+966
+00:46:33,476 --> 00:46:35,276
+This is a pretty simple API.
+
+
+967
+00:46:35,416 --> 00:46:37,036
+First you create the storage
+
+
+968
+00:46:38,296 --> 00:46:40,606
+and then you close the
+file once you're finished.
+
+
+969
+00:46:40,876 --> 00:46:43,996
+So that's all the API
+that you need to use.
+
+
+970
+00:46:44,406 --> 00:46:46,566
+The data that's stored in
+this is private to the encoder
+
+
+971
+00:46:46,566 --> 00:46:48,486
+and you don't have
+to worry about it.
+
+
+972
+00:46:49,626 --> 00:46:52,256
+Next, let's talk about additions
+to VTCompressionSession.
+
+
+973
+00:46:53,906 --> 00:46:56,336
+So first, you need to tell
+the VTCompressionSession
+
+
+974
+00:46:56,336 --> 00:46:59,426
+and the encoder about
+your VTMultiPassStorage.
+
+
+975
+00:46:59,546 --> 00:47:01,796
+So you can do that by
+setting a property.
+
+
+976
+00:47:02,246 --> 00:47:04,386
+This will tell the
+encoder to use MultiPass
+
+
+977
+00:47:04,386 --> 00:47:08,036
+and use this VTMultiPassStorage
+for its frame analysis.
+
+
+978
+00:47:08,506 --> 00:47:13,316
+Next, we've added a couple
+functions for multi-pass.
+
+
+979
+00:47:13,856 --> 00:47:18,506
+So you call beginPass before
+you've appended any frames then
+
+
+980
+00:47:18,506 --> 00:47:19,946
+after you're done
+appending frames
+
+
+981
+00:47:19,946 --> 00:47:21,776
+for that pass, you call endPass.
+
+
+982
+00:47:22,456 --> 00:47:25,796
+EndPass also asks the encoder if
+another pass can be performed.
+
+
+983
+00:47:27,816 --> 00:47:30,156
+So if another -- if the
+encoder wants another pass
+
+
+984
+00:47:30,156 --> 00:47:32,446
+to be performed then you need
+to ask it what time ranges
+
+
+985
+00:47:32,446 --> 00:47:34,156
+of samples it wants
+for the next pass.
+
+
+986
+00:47:34,746 --> 00:47:37,006
+That's called
+VTCompressionSession
+
+
+987
+00:47:37,006 --> 00:47:39,436
+GetTimeRangesFor NextPass
+and you're given a count
+
+
+988
+00:47:39,436 --> 00:47:40,816
+and a C array of time ranges.
+
+
+989
+00:47:41,046 --> 00:47:44,776
+Now let's talk about
+the VTFrameSilo.
+
+
+990
+00:47:44,776 --> 00:47:46,716
+So this is the compressed
+frame store.
+
+
+991
+00:47:48,416 --> 00:47:52,776
+So like the other objects you
+created, and then you want
+
+
+992
+00:47:52,776 --> 00:47:55,566
+to add samples to
+this VTFrameSilo.
+
+
+993
+00:47:57,226 --> 00:47:59,796
+So frames will automatically
+be replaced
+
+
+994
+00:47:59,796 --> 00:48:01,996
+if they have the same
+presentation time stamp
+
+
+995
+00:48:01,996 --> 00:48:05,036
+and how this data is stored
+is abstracted away from you
+
+
+996
+00:48:05,036 --> 00:48:06,446
+and you don't need
+to worry about it.
+
+
+997
+00:48:06,446 --> 00:48:09,766
+It's a convenient
+database for you to use.
+
+
+998
+00:48:09,886 --> 00:48:12,656
+Then you can prepare the
+VTFrameSilo for the next pass.
+
+
+999
+00:48:12,736 --> 00:48:16,826
+This optimizes the
+storage for the next pass.
+
+
+1000
+00:48:19,756 --> 00:48:23,146
+Finally, let's talk about
+the copy from the VTFrameSilo
+
+
+1001
+00:48:23,286 --> 00:48:24,456
+to the output movie file.
+
+
+1002
+00:48:25,766 --> 00:48:28,976
+So you can retrieve samples
+for a given time range.
+
+
+1003
+00:48:29,286 --> 00:48:32,086
+This allows you to get a
+sample in a block callback
+
+
+1004
+00:48:32,086 --> 00:48:34,486
+that you provide and add it
+to your output movie file.
+
+
+1005
+00:48:34,486 --> 00:48:38,166
+All right, that's the
+new Video Toolbox APIs.
+
+
+1006
+00:48:38,356 --> 00:48:40,456
+So I want to close with
+a couple considerations.
+
+
+1007
+00:48:41,756 --> 00:48:44,256
+So we've talked about
+how multi-pass works
+
+
+1008
+00:48:44,256 --> 00:48:47,546
+and what APIs you can use in
+AVFoundation and Video Toolbox,
+
+
+1009
+00:48:47,826 --> 00:48:49,556
+but we need to talk
+about your use cases
+
+
+1010
+00:48:49,556 --> 00:48:51,976
+and your priority in your app.
+
+
+1011
+00:48:52,226 --> 00:48:54,236
+So if you're performing
+real time encoding,
+
+
+1012
+00:48:55,396 --> 00:48:56,856
+you should be using single-pass.
+
+
+1013
+00:48:57,066 --> 00:48:59,256
+Real time encoding has
+very specific deadlines
+
+
+1014
+00:48:59,256 --> 00:49:01,046
+of how much compression can take
+
+
+1015
+00:49:01,456 --> 00:49:04,486
+and multi-pass will perform
+more passes over the time range,
+
+
+1016
+00:49:04,516 --> 00:49:06,176
+so use Single-Pass
+in these cases.
+
+
+1017
+00:49:08,996 --> 00:49:11,416
+If you're concerned about
+using the minimum amount
+
+
+1018
+00:49:11,416 --> 00:49:14,696
+of power during encoding,
+use single-pass.
+
+
+1019
+00:49:15,076 --> 00:49:17,636
+Multiple passes will
+take more power and,
+
+
+1020
+00:49:17,636 --> 00:49:19,406
+as will the encoder analysis.
+
+
+1021
+00:49:20,756 --> 00:49:23,186
+If you're concerned with
+using the minimum amount
+
+
+1022
+00:49:23,186 --> 00:49:25,046
+of temporary storage
+during the encode
+
+
+1023
+00:49:25,046 --> 00:49:28,466
+or transcode operation,
+use single-pass.
+
+
+1024
+00:49:28,636 --> 00:49:30,046
+The encoder analysis storage
+
+
+1025
+00:49:30,046 --> 00:49:32,126
+and the frame database
+will use more storage
+
+
+1026
+00:49:32,126 --> 00:49:33,206
+than the output media file.
+
+
+1027
+00:49:34,856 --> 00:49:37,906
+However, if you're concerned
+about having the best quality
+
+
+1028
+00:49:37,906 --> 00:49:40,876
+for your content,
+multi-pass is a great option.
+
+
+1029
+00:49:41,496 --> 00:49:45,386
+If you want to be as close to
+the target bit rate you set
+
+
+1030
+00:49:45,386 --> 00:49:47,566
+on the VTCompressionSession
+or AssetWriter
+
+
+1031
+00:49:47,566 --> 00:49:50,346
+as possible, use multi-pass.
+
+
+1032
+00:49:50,346 --> 00:49:54,176
+Multi-pass can see all of the
+portions of your source media
+
+
+1033
+00:49:54,176 --> 00:49:56,496
+and so it can allocate bits
+only where it needs to.
+
+
+1034
+00:49:56,596 --> 00:49:57,926
+It's very smart in this sense.
+
+
+1035
+00:50:00,676 --> 00:50:04,046
+If it's okay to take longer
+in your app (so if it's okay
+
+
+1036
+00:50:04,046 --> 00:50:06,426
+for the encoder transfer
+operation to take longer
+
+
+1037
+00:50:06,426 --> 00:50:09,586
+for better quality)
+multi-pass is a good option.
+
+
+1038
+00:50:10,136 --> 00:50:13,176
+But the biggest takeaway
+is that in your app,
+
+
+1039
+00:50:13,566 --> 00:50:14,636
+you need to experiment.
+
+
+1040
+00:50:14,636 --> 00:50:17,816
+So you need to think about
+your use cases and your users
+
+
+1041
+00:50:17,816 --> 00:50:19,846
+and if they're willing to wait
+longer for better quality.
+
+
+1042
+00:50:20,286 --> 00:50:24,896
+Next, let's talk about content.
+
+
+1043
+00:50:27,376 --> 00:50:29,576
+So if you, if your
+app has low quality --
+
+
+1044
+00:50:29,576 --> 00:50:31,756
+or, low complexity
+content, think of this
+
+
+1045
+00:50:31,756 --> 00:50:34,416
+like a title sequence or
+a static image sequence.
+
+
+1046
+00:50:36,676 --> 00:50:38,786
+Both single-pass and
+multi-pass are going
+
+
+1047
+00:50:38,786 --> 00:50:40,416
+to both give you
+great quality here,
+
+
+1048
+00:50:40,706 --> 00:50:42,516
+but multi-pass won't give
+you much better quality
+
+
+1049
+00:50:42,516 --> 00:50:43,256
+than single-pass.
+
+
+1050
+00:50:43,256 --> 00:50:44,766
+These are both pretty
+easy to encode.
+
+
+1051
+00:50:46,136 --> 00:50:48,516
+Next, let's talk about
+high complexity content.
+
+
+1052
+00:50:48,646 --> 00:50:51,376
+So think of this as classic
+encoder stress tests;
+
+
+1053
+00:50:51,376 --> 00:50:53,066
+water, fire, explosions.
+
+
+1054
+00:50:53,656 --> 00:50:56,856
+We all love to do
+this, but single-pass
+
+
+1055
+00:50:57,086 --> 00:50:59,376
+and multi-pass are
+both going to do well,
+
+
+1056
+00:50:59,376 --> 00:51:01,916
+but multi-pass probably won't
+do much better than single-pass.
+
+
+1057
+00:51:01,916 --> 00:51:03,936
+These are -- this kind
+of content is hard
+
+
+1058
+00:51:03,936 --> 00:51:04,986
+for encoders to encode.
+
+
+1059
+00:51:08,406 --> 00:51:10,346
+Where is multi-pass
+a better decision?
+
+
+1060
+00:51:11,396 --> 00:51:13,666
+Well, that's in varying
+complexity, so think of this
+
+
+1061
+00:51:13,666 --> 00:51:16,036
+as a feature-length
+movie or a documentary
+
+
+1062
+00:51:16,036 --> 00:51:18,286
+in Final Cut Pro or
+an iMovie trailer.
+
+
+1063
+00:51:18,286 --> 00:51:21,816
+They might have low complexity
+regions, a title sequence,
+
+
+1064
+00:51:21,816 --> 00:51:23,326
+high complexity transitions.
+
+
+1065
+00:51:23,786 --> 00:51:25,716
+Because there's a lot of
+different kinds of content,
+
+
+1066
+00:51:25,876 --> 00:51:28,056
+multi-pass is able to
+analyze those sections
+
+
+1067
+00:51:28,056 --> 00:51:30,446
+and really give you the
+best quality per bit.
+
+
+1068
+00:51:30,956 --> 00:51:34,146
+But again, the message
+is: with your content,
+
+
+1069
+00:51:34,786 --> 00:51:35,846
+you need to experiment.
+
+
+1070
+00:51:35,966 --> 00:51:38,106
+So you know your content
+and you should know
+
+
+1071
+00:51:38,106 --> 00:51:41,046
+if multi-pass will give you a
+good benefit in these cases.
+
+
+1072
+00:51:41,586 --> 00:51:45,586
+So let's go over what
+we've talked about today.
+
+
+1073
+00:51:45,586 --> 00:51:48,446
+AVFoundation provides powerful
+APIs to operate on media,
+
+
+1074
+00:51:48,516 --> 00:51:51,506
+and for most of you, these are
+the APIs you will be using.
+
+
+1075
+00:51:52,136 --> 00:51:55,336
+And when you need
+the extra power,
+
+
+1076
+00:51:55,426 --> 00:51:58,626
+Video Toolbox APIs provide
+you direct media access.
+
+
+1077
+00:51:58,626 --> 00:52:01,456
+If you fall into one of the use
+cases that David talked about,
+
+
+1078
+00:52:01,526 --> 00:52:04,926
+this is a good way
+to use Video Toolbox.
+
+
+1079
+00:52:06,696 --> 00:52:09,596
+Finally, multi-pass can
+provide substantial quality
+
+
+1080
+00:52:09,596 --> 00:52:11,976
+improvements, but you need
+to think about your app,
+
+
+1081
+00:52:12,206 --> 00:52:15,466
+your use cases and your
+users before you enable it.
+
+
+1082
+00:52:16,796 --> 00:52:19,886
+So for more information,
+here's our Evangelism email.
+
+
+1083
+00:52:20,076 --> 00:52:21,686
+You have AVFoundation
+Documentation
+
+
+1084
+00:52:21,686 --> 00:52:22,636
+and a programming guide.
+
+
+1085
+00:52:23,056 --> 00:52:25,516
+We can answer your questions
+on the developer forums.
+
+
+1086
+00:52:26,296 --> 00:52:28,336
+For those of you that
+are watching online,
+
+
+1087
+00:52:28,336 --> 00:52:29,906
+a lot of these talks
+have already happened.
+
+
+1088
+00:52:29,906 --> 00:52:32,196
+If you're here live, so these
+are the talks you might be
+
+
+1089
+00:52:32,196 --> 00:52:32,836
+interested in.
+
+
+1090
+00:52:33,156 --> 00:52:34,926
+Thanks everyone and have
+a good rest of your day.
+
+
+1091
+00:52:35,516 --> 00:52:42,300
+[ Applause ]
+

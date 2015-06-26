@@ -1,0 +1,3727 @@
+1
+00:00:11,086 --> 00:00:12,316
+>> Good afternoon everyone.
+
+
+2
+00:00:12,956 --> 00:00:13,876
+I'm Nav Patel.
+
+
+3
+00:00:13,876 --> 00:00:16,796
+I'm a software engineer
+on the Core Location team,
+
+
+4
+00:00:17,106 --> 00:00:19,436
+and today I want to tell you
+
+
+5
+00:00:20,106 --> 00:00:22,896
+about the next great leap we're
+taking in location services.
+
+
+6
+00:00:23,906 --> 00:00:25,766
+We're taking Core
+Location indoors.
+
+
+7
+00:00:28,366 --> 00:00:32,046
+So we'll start off by covering
+what indoor positioning is,
+
+
+8
+00:00:32,886 --> 00:00:34,256
+how does it work,
+how does it fit
+
+
+9
+00:00:34,256 --> 00:00:36,366
+in with the other Core
+Location technologies?
+
+
+10
+00:00:37,626 --> 00:00:41,046
+We'll also cover how you use
+it, what APIs you'll use,
+
+
+11
+00:00:41,556 --> 00:00:47,296
+and we also will talk
+about indoor positioning
+
+
+12
+00:00:47,626 --> 00:00:50,676
+and iBeacon technology and
+how they work together.
+
+
+13
+00:00:52,166 --> 00:00:53,596
+Finally, we'll cover
+some next steps
+
+
+14
+00:00:54,136 --> 00:00:55,606
+on how venues can get signed up
+
+
+15
+00:00:55,606 --> 00:00:57,796
+and how you guys
+can start looking
+
+
+16
+00:00:57,796 --> 00:01:02,166
+at the documentation
+and the APIs.
+
+
+17
+00:01:03,176 --> 00:01:06,206
+So with today's technology,
+Core Location
+
+
+18
+00:01:06,356 --> 00:01:09,506
+on iOS is the best
+location service you can get
+
+
+19
+00:01:09,506 --> 00:01:10,196
+on a mobile device.
+
+
+20
+00:01:11,116 --> 00:01:12,286
+We have the best accuracy.
+
+
+21
+00:01:13,166 --> 00:01:14,306
+We have the best response time.
+
+
+22
+00:01:14,306 --> 00:01:15,856
+We have the best
+Time To First Fix,
+
+
+23
+00:01:17,256 --> 00:01:19,516
+and this comes from
+the tight hardware
+
+
+24
+00:01:19,556 --> 00:01:21,326
+and software integration
+we have.
+
+
+25
+00:01:22,156 --> 00:01:23,866
+The hardware team and
+the software team work
+
+
+26
+00:01:23,866 --> 00:01:26,316
+with each other to make
+sure we get the most
+
+
+27
+00:01:26,496 --> 00:01:28,186
+out of the hardware we
+have on our devices.
+
+
+28
+00:01:28,186 --> 00:01:33,876
+So our Core Location
+technologies today start off
+
+
+29
+00:01:34,466 --> 00:01:35,086
+with cellular.
+
+
+30
+00:01:36,386 --> 00:01:40,326
+Now, cellular is great
+for iPhones and iPads
+
+
+31
+00:01:40,326 --> 00:01:43,776
+with data connectivity
+because it's essentially free.
+
+
+32
+00:01:44,406 --> 00:01:46,066
+You're already connected
+to these cell towers,
+
+
+33
+00:01:46,766 --> 00:01:49,316
+and it's good enough to
+give you an approximation
+
+
+34
+00:01:49,316 --> 00:01:51,076
+of which area of
+a city you're in.
+
+
+35
+00:01:51,666 --> 00:01:54,716
+Now, because you're already
+associated with a tower,
+
+
+36
+00:01:55,156 --> 00:01:59,836
+you're not spending any more
+energy or power to get this fix
+
+
+37
+00:02:00,596 --> 00:02:01,646
+and it's usually available.
+
+
+38
+00:02:02,556 --> 00:02:05,366
+So, for cases like: you're
+landing in an airplane
+
+
+39
+00:02:05,876 --> 00:02:08,496
+and you turn on your phone, this
+is the first fix you'll get,
+
+
+40
+00:02:08,496 --> 00:02:09,996
+and it's good enough
+to set your time zone.
+
+
+41
+00:02:10,536 --> 00:02:12,276
+Next we have GPS technology.
+
+
+42
+00:02:13,246 --> 00:02:15,296
+Now, GPS is based on satellite,
+
+
+43
+00:02:15,296 --> 00:02:19,366
+and it was the first big
+revolution in location services.
+
+
+44
+00:02:19,366 --> 00:02:23,366
+It was accurate enough
+to do outdoor navigation
+
+
+45
+00:02:23,886 --> 00:02:25,976
+and responsive enough to
+do outdoor navigation.
+
+
+46
+00:02:27,106 --> 00:02:28,176
+Now, we didn't stop there.
+
+
+47
+00:02:28,176 --> 00:02:29,776
+GPS was introduced
+a little while ago,
+
+
+48
+00:02:29,776 --> 00:02:33,356
+but we've been constantly
+improving the accuracy
+
+
+49
+00:02:33,356 --> 00:02:35,936
+and the Time To First
+Fix of GPS as well.
+
+
+50
+00:02:37,376 --> 00:02:41,226
+What's great about GPS is we
+launched satellites into space.
+
+
+51
+00:02:41,466 --> 00:02:43,736
+We use both the American Navstar
+
+
+52
+00:02:43,736 --> 00:02:47,256
+and the Russian GLONASS
+satellite constellation,
+
+
+53
+00:02:47,586 --> 00:02:51,376
+and this gives us really
+great global coverage.
+
+
+54
+00:02:52,616 --> 00:02:57,266
+Now, the issue with
+GPS is urban canyons.
+
+
+55
+00:02:58,026 --> 00:03:00,086
+When you're in a city
+with tall buildings,
+
+
+56
+00:03:01,136 --> 00:03:03,146
+they can obscure your
+view to the satellite,
+
+
+57
+00:03:04,096 --> 00:03:05,446
+and so you might
+not get a signal,
+
+
+58
+00:03:05,506 --> 00:03:08,116
+and when you do get a signal,
+
+
+59
+00:03:09,366 --> 00:03:10,776
+that signal can suffer
+from multipath.
+
+
+60
+00:03:11,066 --> 00:03:13,256
+So the signal will bounce
+off in between buildings,
+
+
+61
+00:03:13,896 --> 00:03:15,956
+and you might not get a
+very good fix at first.
+
+
+62
+00:03:17,336 --> 00:03:20,996
+So to solve this
+problem, we use Wi-Fi.
+
+
+63
+00:03:21,876 --> 00:03:24,796
+Now, Wi-Fi is good enough
+
+
+64
+00:03:24,866 --> 00:03:27,346
+to give you position
+within a city block.
+
+
+65
+00:03:27,346 --> 00:03:29,056
+Often it will put you in
+front of the right building,
+
+
+66
+00:03:29,926 --> 00:03:32,386
+and this is really for
+those cases like New York
+
+
+67
+00:03:32,386 --> 00:03:34,956
+and San Francisco where you have
+tons of Wi-Fi already out there
+
+
+68
+00:03:35,866 --> 00:03:37,556
+where you can use this
+to give you position
+
+
+69
+00:03:37,556 --> 00:03:38,806
+in urban canyon environments.
+
+
+70
+00:03:39,326 --> 00:03:43,336
+What's great is that this also
+gives you location services
+
+
+71
+00:03:43,336 --> 00:03:44,686
+on Wi-Fi only devices.
+
+
+72
+00:03:45,326 --> 00:03:47,866
+So if you have an
+iPod or an iPad Wi-Fi,
+
+
+73
+00:03:48,596 --> 00:03:49,996
+you can get location using this.
+
+
+74
+00:03:50,826 --> 00:03:53,676
+So their entire location
+experience is based on Wi-Fi.
+
+
+75
+00:03:54,196 --> 00:03:58,206
+So the existing technologies
+work great.
+
+
+76
+00:03:58,206 --> 00:04:00,056
+They'll let you navigate
+outdoors.
+
+
+77
+00:04:00,736 --> 00:04:02,396
+They also work well globally.
+
+
+78
+00:04:02,396 --> 00:04:03,976
+You don't need to put
+up any infrastructure.
+
+
+79
+00:04:04,146 --> 00:04:07,376
+You don't need to launch
+satellites as an app developer,
+
+
+80
+00:04:08,216 --> 00:04:10,016
+and the Wi-Fi AP's
+already out there,
+
+
+81
+00:04:10,016 --> 00:04:13,266
+and so it actually
+works very well.
+
+
+82
+00:04:14,046 --> 00:04:17,176
+But there's an issue, and
+that's when you move indoors.
+
+
+83
+00:04:18,676 --> 00:04:21,426
+Today we do give you
+some position indoors,
+
+
+84
+00:04:22,306 --> 00:04:24,206
+and you might have had that
+experience where you pull
+
+
+85
+00:04:24,206 --> 00:04:26,956
+out your phone in a mall at a
+Starbucks, and it will tell you,
+
+
+86
+00:04:26,956 --> 00:04:28,606
+"Hey, it actually
+found my exact spot.
+
+
+87
+00:04:28,606 --> 00:04:29,986
+How are they doing that?"
+
+
+88
+00:04:29,986 --> 00:04:33,246
+And that is using a combination
+of GPS that may have come
+
+
+89
+00:04:33,246 --> 00:04:36,796
+in through the windows or
+skylights or using Wi-Fi,
+
+
+90
+00:04:37,856 --> 00:04:40,566
+and that can work indoors, but
+it's really not good enough
+
+
+91
+00:04:40,646 --> 00:04:42,516
+to do any sort of
+navigation indoors.
+
+
+92
+00:04:42,996 --> 00:04:46,026
+Also, Core Location
+gives you an altitude,
+
+
+93
+00:04:46,726 --> 00:04:49,016
+and when you're thinking
+about the context of being
+
+
+94
+00:04:49,016 --> 00:04:51,736
+in a building, you really
+want floor information.
+
+
+95
+00:04:51,816 --> 00:04:53,866
+Altitude is hard to use.
+
+
+96
+00:04:55,466 --> 00:04:59,396
+So we heard you guys really
+want to build applications
+
+
+97
+00:04:59,516 --> 00:05:00,726
+for indoor venues, and for
+
+
+98
+00:05:00,966 --> 00:05:03,316
+that we're announcing
+Indoor Positioning.
+
+
+99
+00:05:04,396 --> 00:05:06,626
+So here's a look at
+what it looks like.
+
+
+100
+00:05:08,056 --> 00:05:11,296
+This is me a couple of days
+ago in the California Academy
+
+
+101
+00:05:11,296 --> 00:05:12,816
+of Sciences in Golden Gate Park.
+
+
+102
+00:05:13,976 --> 00:05:16,506
+Now, you can see me walking
+around the planetarium here.
+
+
+103
+00:05:17,296 --> 00:05:19,036
+The playback has
+been sped up by 10x
+
+
+104
+00:05:19,036 --> 00:05:20,656
+so you can actually see
+me move through the space.
+
+
+105
+00:05:22,206 --> 00:05:25,316
+Here I'll walk past the giant
+swinging pendulum towards the
+
+
+106
+00:05:25,356 --> 00:05:29,826
+swamp, the albino
+alligator, and as you can see,
+
+
+107
+00:05:29,826 --> 00:05:36,196
+this is pretty accurate, and it
+works amazingly well indoors.
+
+
+108
+00:05:36,196 --> 00:05:38,776
+It's also very responsive.
+
+
+109
+00:05:38,776 --> 00:05:42,186
+You know, hypothetically, you
+could build a game of Pac-Man
+
+
+110
+00:05:42,186 --> 00:05:45,426
+in your office, and a bunch
+of engineers could run
+
+
+111
+00:05:45,426 --> 00:05:46,746
+around and piss off HR...
+
+
+112
+00:05:46,746 --> 00:05:48,196
+[ Laughter ]
+
+
+113
+00:05:48,196 --> 00:05:48,866
+...hypothetically.
+
+
+114
+00:05:50,366 --> 00:05:52,516
+But it's quite good.
+
+
+115
+00:05:53,136 --> 00:05:58,686
+So indoor positioning works
+using RF parametric data that's
+
+
+116
+00:05:58,686 --> 00:05:59,616
+in your venue already.
+
+
+117
+00:06:01,296 --> 00:06:03,246
+We also use motion sensors.
+
+
+118
+00:06:04,076 --> 00:06:08,866
+We use the M7 chip, and these
+sensors and these RF signals
+
+
+119
+00:06:08,866 --> 00:06:10,566
+that are in the air
+is what we use
+
+
+120
+00:06:10,566 --> 00:06:12,296
+to give you your
+indoor position.
+
+
+121
+00:06:12,896 --> 00:06:15,626
+So how does this all work?
+
+
+122
+00:06:16,426 --> 00:06:19,156
+Well, we use your existing
+technologies: your cell,
+
+
+123
+00:06:19,156 --> 00:06:21,946
+GPS and Wi-Fi, and
+these are running,
+
+
+124
+00:06:21,946 --> 00:06:24,336
+and they'll put you close
+to or inside a venue
+
+
+125
+00:06:24,426 --> 00:06:26,876
+like we just talked about.
+
+
+126
+00:06:27,056 --> 00:06:30,066
+When you approach a venue
+that's indoor position enabled,
+
+
+127
+00:06:31,126 --> 00:06:33,396
+we'll start scanning
+your Wi-Fi and using more
+
+
+128
+00:06:33,396 --> 00:06:34,306
+of your motion sensors.
+
+
+129
+00:06:35,076 --> 00:06:36,806
+We use your motion
+sensors at this point
+
+
+130
+00:06:37,136 --> 00:06:40,426
+because it gives us information
+for our estimation algorithms
+
+
+131
+00:06:40,426 --> 00:06:41,916
+of where you're moving indoors,
+
+
+132
+00:06:42,576 --> 00:06:44,426
+but it also gives
+us key information
+
+
+133
+00:06:45,706 --> 00:06:47,296
+about how quickly you're moving.
+
+
+134
+00:06:47,296 --> 00:06:49,176
+If you're moving at 40
+miles per hour in a car,
+
+
+135
+00:06:49,706 --> 00:06:50,926
+you're probably not indoors.
+
+
+136
+00:06:51,466 --> 00:06:52,486
+Hopefully, you're not indoors.
+
+
+137
+00:06:53,316 --> 00:06:57,316
+So when we get a good fix
+and we're confident, hey,
+
+
+138
+00:06:57,316 --> 00:07:01,876
+you are indoors, we'll also
+turn down your GPS chip.
+
+
+139
+00:07:03,326 --> 00:07:04,456
+So this is the hardware
+
+
+140
+00:07:04,456 --> 00:07:06,096
+and software integration I
+was talking about earlier.
+
+
+141
+00:07:06,096 --> 00:07:07,586
+We do this to save power.
+
+
+142
+00:07:07,676 --> 00:07:10,746
+So that indoor positioning,
+even though we're using RF more,
+
+
+143
+00:07:10,916 --> 00:07:13,016
+we're not consuming more power.
+
+
+144
+00:07:13,016 --> 00:07:18,136
+Now, all of this is really
+cool and it looks really great.
+
+
+145
+00:07:18,806 --> 00:07:19,726
+But why indoors?
+
+
+146
+00:07:20,356 --> 00:07:23,146
+Why do we care?
+
+
+147
+00:07:23,296 --> 00:07:25,746
+Well, there are a lot
+of amazing applications
+
+
+148
+00:07:25,886 --> 00:07:27,316
+for large indoor venues today.
+
+
+149
+00:07:27,316 --> 00:07:29,856
+We have things like directories.
+
+
+150
+00:07:30,566 --> 00:07:32,956
+So here's the Heathrow
+application, and it's great.
+
+
+151
+00:07:32,956 --> 00:07:35,036
+It shows you all the
+shops and restaurants
+
+
+152
+00:07:35,086 --> 00:07:36,446
+that are throughout
+the entire airport.
+
+
+153
+00:07:37,626 --> 00:07:39,636
+We also have venue maps.
+
+
+154
+00:07:40,896 --> 00:07:43,766
+Now, venue maps will tell
+you: "Oh, the Nordstrom's is
+
+
+155
+00:07:43,766 --> 00:07:45,436
+on this side, the Macy's
+is on the other side,"
+
+
+156
+00:07:45,436 --> 00:07:47,536
+and it gives you
+useful information,
+
+
+157
+00:07:48,066 --> 00:07:51,606
+and we have some level
+of interactivity.
+
+
+158
+00:07:53,826 --> 00:07:55,906
+So this is the MOMA application,
+
+
+159
+00:07:56,236 --> 00:07:58,606
+and a user can browse
+the catalog
+
+
+160
+00:07:59,436 --> 00:08:02,776
+and pick a particular thing that
+they're looking at and listen
+
+
+161
+00:08:02,776 --> 00:08:04,226
+to commentary about it.
+
+
+162
+00:08:06,736 --> 00:08:09,826
+But there's only limited
+context over here.
+
+
+163
+00:08:10,326 --> 00:08:14,566
+What we want to do is more.
+
+
+164
+00:08:14,776 --> 00:08:17,996
+With indoors you can enable
+things like way-finding.
+
+
+165
+00:08:18,896 --> 00:08:21,346
+So here you can imagine you're
+going through the airport,
+
+
+166
+00:08:21,906 --> 00:08:24,246
+now we can route you
+to the right gate.
+
+
+167
+00:08:26,616 --> 00:08:28,776
+You can also imagine
+the impact this can have
+
+
+168
+00:08:29,026 --> 00:08:30,456
+on the visually impaired
+community.
+
+
+169
+00:08:31,966 --> 00:08:34,405
+They get great GPS
+services outdoors today
+
+
+170
+00:08:34,405 --> 00:08:36,166
+and that helps them get around.
+
+
+171
+00:08:37,116 --> 00:08:38,785
+Venues can also build
+this experience
+
+
+172
+00:08:38,785 --> 00:08:42,986
+into their applications so that
+you can navigate indoors inside
+
+
+173
+00:08:42,986 --> 00:08:43,405
+a mall.
+
+
+174
+00:08:43,405 --> 00:08:46,836
+And not just for the
+visually impaired,
+
+
+175
+00:08:46,836 --> 00:08:50,016
+but think about when you're
+visiting a new large indoor
+
+
+176
+00:08:50,016 --> 00:08:50,996
+venue for the first time.
+
+
+177
+00:08:50,996 --> 00:08:53,466
+If you're at a hospital,
+you don't want
+
+
+178
+00:08:53,466 --> 00:08:55,876
+to follow a 10-step direction
+you got at the reception.
+
+
+179
+00:08:55,876 --> 00:08:57,376
+You don't want to
+parse floor plans.
+
+
+180
+00:08:57,376 --> 00:08:59,166
+You just want to find
+your loved one's room,
+
+
+181
+00:08:59,956 --> 00:09:02,816
+and this is where indoor
+positioning and navigating
+
+
+182
+00:09:02,816 --> 00:09:05,496
+with way-finding steps in.
+
+
+183
+00:09:06,556 --> 00:09:09,296
+Now, with location we
+can also do other really
+
+
+184
+00:09:09,296 --> 00:09:09,936
+interesting things.
+
+
+185
+00:09:11,026 --> 00:09:13,706
+We can help you find each other.
+
+
+186
+00:09:14,496 --> 00:09:15,196
+So you can think
+
+
+187
+00:09:15,196 --> 00:09:17,566
+about applications
+like Find My Friends.
+
+
+188
+00:09:18,216 --> 00:09:20,536
+Here you can imagine a kid
+gets dropped off at the mall
+
+
+189
+00:09:21,116 --> 00:09:22,696
+and pulls out his
+phone and says, hey,
+
+
+190
+00:09:22,696 --> 00:09:23,726
+where are all my
+friends hanging out?
+
+
+191
+00:09:24,346 --> 00:09:26,746
+Okay, they're at that the food
+court on the ground floor.
+
+
+192
+00:09:26,746 --> 00:09:27,776
+I can head there.
+
+
+193
+00:09:28,246 --> 00:09:28,846
+That's pretty cool.
+
+
+194
+00:09:29,546 --> 00:09:33,066
+You can also find you.
+
+
+195
+00:09:33,686 --> 00:09:36,656
+So the venue in this
+case could be aware
+
+
+196
+00:09:36,886 --> 00:09:38,326
+of where you're using
+your application.
+
+
+197
+00:09:39,266 --> 00:09:40,626
+This is one of my
+favorite use cases.
+
+
+198
+00:09:40,986 --> 00:09:42,316
+Imagine you're in
+a Vegas casino.
+
+
+199
+00:09:42,966 --> 00:09:43,776
+You're in your hotel room.
+
+
+200
+00:09:44,096 --> 00:09:45,246
+You pull out your phone,
+
+
+201
+00:09:45,916 --> 00:09:49,166
+and as you're leaving,
+you order a drink.
+
+
+202
+00:09:49,316 --> 00:09:52,256
+You go downstairs, settle
+down on a poker table,
+
+
+203
+00:09:52,256 --> 00:09:54,626
+and the drink arrives to
+exactly where you are.
+
+
+204
+00:09:55,186 --> 00:09:57,366
+That's a pretty awesome
+experience.
+
+
+205
+00:10:00,106 --> 00:10:04,926
+Now, these use cases are pretty
+location centric, but I want you
+
+
+206
+00:10:04,926 --> 00:10:07,616
+to think about how you
+can use indoor positioning
+
+
+207
+00:10:08,316 --> 00:10:10,476
+to be the last piece of
+the puzzle in a problem.
+
+
+208
+00:10:12,146 --> 00:10:13,716
+So here you can imagine
+something
+
+
+209
+00:10:13,716 --> 00:10:15,006
+like an airport application.
+
+
+210
+00:10:15,796 --> 00:10:17,416
+Now, I have my flight
+leaving soon,
+
+
+211
+00:10:17,416 --> 00:10:18,816
+but I need to grab a quick bite.
+
+
+212
+00:10:18,856 --> 00:10:21,956
+So I'm going to walk over to
+a restaurant and sit down.
+
+
+213
+00:10:22,746 --> 00:10:25,856
+My application knows which
+gate I'm leaving from,
+
+
+214
+00:10:26,386 --> 00:10:27,886
+knows what time my
+flight is boarding,
+
+
+215
+00:10:27,886 --> 00:10:31,016
+and it knows how far away
+I am from the gate now,
+
+
+216
+00:10:32,306 --> 00:10:34,306
+and so we can start
+incorporating this information
+
+
+217
+00:10:34,306 --> 00:10:36,176
+to, say, give you a
+quick buzz and say, "Hey,
+
+
+218
+00:10:36,176 --> 00:10:38,476
+you better start heading
+back to your gate if you want
+
+
+219
+00:10:38,476 --> 00:10:39,046
+to board this flight."
+
+
+220
+00:10:40,146 --> 00:10:42,776
+So these are some pretty
+exciting use cases you can build
+
+
+221
+00:10:42,776 --> 00:10:43,466
+with indoor positioning.
+
+
+222
+00:10:44,056 --> 00:10:46,566
+So how do you start using it?
+
+
+223
+00:10:48,056 --> 00:10:52,126
+Well, you need to
+have your Wi-Fi on.
+
+
+224
+00:10:52,576 --> 00:10:55,756
+We depend on RF parametric
+data in these venues.
+
+
+225
+00:10:56,616 --> 00:10:57,826
+We also want your users
+
+
+226
+00:10:57,886 --> 00:11:00,586
+to be actively engaged
+in the application.
+
+
+227
+00:11:01,246 --> 00:11:04,866
+We use aggressive Wi-Fi
+scanning and motion sensors,
+
+
+228
+00:11:04,866 --> 00:11:06,386
+so we want to make sure
+we're not just running this
+
+
+229
+00:11:06,476 --> 00:11:09,516
+if the user isn't actually
+using that indoor positioning.
+
+
+230
+00:11:12,336 --> 00:11:15,986
+Now, in terms of API, what
+API do you need to use
+
+
+231
+00:11:16,316 --> 00:11:17,226
+for indoor positioning?
+
+
+232
+00:11:17,936 --> 00:11:21,966
+Well, you can use the exact same
+Core Location API you've already
+
+
+233
+00:11:21,966 --> 00:11:22,376
+been using.
+
+
+234
+00:11:23,916 --> 00:11:28,576
+Now, this is really cool because
+if your application today is
+
+
+235
+00:11:28,576 --> 00:11:32,756
+requesting best accuracy,
+you'll start seeing indoor fixes
+
+
+236
+00:11:32,756 --> 00:11:35,746
+when your user wanders into
+an indoor-enabled environment.
+
+
+237
+00:11:36,106 --> 00:11:40,126
+You won't have to make
+any code change for that.
+
+
+238
+00:11:40,756 --> 00:11:45,086
+Now, one problem we talked
+about earlier was altitude
+
+
+239
+00:11:45,196 --> 00:11:48,446
+versus floors and if you
+want to build an indoor app,
+
+
+240
+00:11:48,626 --> 00:11:49,906
+you really want to
+know the floor number.
+
+
+241
+00:11:50,766 --> 00:11:55,356
+So in iOS 8 we're adding floor
+number to the Core Location API.
+
+
+242
+00:11:56,176 --> 00:11:58,826
+It looks something like this:
+
+
+243
+00:11:58,826 --> 00:12:03,326
+in the CLLocation object
+you'll see a "floor" property.
+
+
+244
+00:12:04,266 --> 00:12:07,106
+This property will usually
+be nil, but when you walk
+
+
+245
+00:12:07,106 --> 00:12:09,706
+into a venue and we're
+serving you indoor fixes,
+
+
+246
+00:12:10,216 --> 00:12:13,456
+we'll populate this number
+with the level of floor
+
+
+247
+00:12:13,456 --> 00:12:15,666
+that you're on, zero
+being the ground floor.
+
+
+248
+00:12:15,666 --> 00:12:17,036
+Positive numbers up.
+
+
+249
+00:12:17,156 --> 00:12:17,876
+Negative numbers down.
+
+
+250
+00:12:18,346 --> 00:12:21,666
+We'll still show you 13.
+
+
+251
+00:12:21,666 --> 00:12:22,396
+[ Laughter ]
+
+
+252
+00:12:22,396 --> 00:12:25,266
+So we have your floor number,
+
+
+253
+00:12:25,266 --> 00:12:29,606
+but Core Location is giving
+you a latitude and longitude,
+
+
+254
+00:12:30,346 --> 00:12:33,676
+and you're usually displaying
+your floor plan on a flat image.
+
+
+255
+00:12:35,226 --> 00:12:36,846
+So how do you deal with this?
+
+
+256
+00:12:36,846 --> 00:12:39,126
+How do you go from your
+latitude and longitude
+
+
+257
+00:12:39,606 --> 00:12:40,816
+onto your X, Y on your floor?
+
+
+258
+00:12:41,796 --> 00:12:44,176
+To help you figure
+this out I'm going
+
+
+259
+00:12:44,176 --> 00:12:45,536
+to call my colleague Vitali.
+
+
+260
+00:12:46,146 --> 00:12:46,676
+>> Thanks, Nav.
+
+
+261
+00:12:47,096 --> 00:12:48,406
+Hi, I'm Vitali Lovich.
+
+
+262
+00:12:48,406 --> 00:12:51,046
+I'm from the Core Location
+team, and I'm going
+
+
+263
+00:12:51,046 --> 00:12:53,866
+to show you how you can
+integrate your existing Core
+
+
+264
+00:12:53,866 --> 00:12:56,156
+Location API with an
+existing app that you have
+
+
+265
+00:12:56,156 --> 00:12:57,396
+that shows an indoor floor plan.
+
+
+266
+00:12:58,696 --> 00:13:00,476
+So a geographic coordinate
+system,
+
+
+267
+00:13:00,716 --> 00:13:03,756
+as you may be familiar with,
+is a latitude and a longitude.
+
+
+268
+00:13:04,136 --> 00:13:05,396
+It's very common and convenient.
+
+
+269
+00:13:05,396 --> 00:13:09,276
+Two numbers represent any
+place in the world; however,
+
+
+270
+00:13:09,276 --> 00:13:10,786
+there are some challenges
+that you may have
+
+
+271
+00:13:10,786 --> 00:13:11,976
+when you work with them.
+
+
+272
+00:13:12,376 --> 00:13:14,566
+For instance, finding the
+distance between two latitudes
+
+
+273
+00:13:14,566 --> 00:13:16,496
+and longitudes or a direction
+
+
+274
+00:13:16,496 --> 00:13:19,246
+between them is very
+complicated math.
+
+
+275
+00:13:20,636 --> 00:13:22,466
+But when you show
+a floor plan image,
+
+
+276
+00:13:22,926 --> 00:13:24,676
+you want to show a floor
+plan image to the user,
+
+
+277
+00:13:24,676 --> 00:13:26,066
+and it's very easy to display.
+
+
+278
+00:13:26,066 --> 00:13:28,606
+It maps to the display
+coordinate frame system very
+
+
+279
+00:13:28,606 --> 00:13:32,326
+well, and its in pixels,
+and it's X is positive
+
+
+280
+00:13:32,326 --> 00:13:35,146
+to the right, Y is
+positive down.
+
+
+281
+00:13:36,256 --> 00:13:39,086
+And so we want to somehow
+bridge the two by converting
+
+
+282
+00:13:39,836 --> 00:13:42,826
+and so there are three
+coordinate systems that you want
+
+
+283
+00:13:42,826 --> 00:13:45,366
+to keep in mind when
+doing these conversions:
+
+
+284
+00:13:45,876 --> 00:13:47,366
+There's the geographic
+coordinate system,
+
+
+285
+00:13:47,366 --> 00:13:50,316
+which is spherical; There's the
+floor plan coordinate system,
+
+
+286
+00:13:50,316 --> 00:13:52,696
+which is in pixels
+and it's planar;
+
+
+287
+00:13:52,696 --> 00:13:55,716
+And then there's the display
+coordinate frame system,
+
+
+288
+00:13:55,926 --> 00:13:58,526
+where you show what part of the
+floor plan you're interested in,
+
+
+289
+00:13:59,156 --> 00:14:01,556
+and for this talk we're
+going to cover the conversion
+
+
+290
+00:14:01,556 --> 00:14:06,156
+from geographic to floor
+plan coordinate frames.
+
+
+291
+00:14:06,156 --> 00:14:07,826
+So you want to make
+sure that you account
+
+
+292
+00:14:07,826 --> 00:14:10,586
+for spherical distortion,
+because any time you go
+
+
+293
+00:14:10,586 --> 00:14:13,226
+from a sphere and
+you try to map it
+
+
+294
+00:14:13,226 --> 00:14:17,306
+onto a rectangular plane you'll
+have all sorts of distortions
+
+
+295
+00:14:17,306 --> 00:14:18,886
+where straight lines aren't
+straight lines anymore .
+
+
+296
+00:14:20,656 --> 00:14:23,966
+So to help us accomplish this
+task, we're going to make use
+
+
+297
+00:14:23,966 --> 00:14:26,156
+of some amazing MapKit
+helper functions,
+
+
+298
+00:14:26,946 --> 00:14:28,316
+and so the first
+one I want to call
+
+
+299
+00:14:28,316 --> 00:14:30,116
+out is MKMapPointForCoordinate.
+
+
+300
+00:14:30,816 --> 00:14:34,106
+Now, what this does is it
+takes a geographical latitude
+
+
+301
+00:14:34,106 --> 00:14:36,306
+and longitude and converts
+it to a MapKit point,
+
+
+302
+00:14:36,706 --> 00:14:39,986
+which is just an X, Y coordinate
+on a Mercator projection,
+
+
+303
+00:14:40,536 --> 00:14:44,476
+and so positive-- so,
+X and Y represent east
+
+
+304
+00:14:44,476 --> 00:14:45,796
+and south and it's in points.
+
+
+305
+00:14:46,726 --> 00:14:49,536
+MKMetersBetweenMapPoints
+is a very accurate
+
+
+306
+00:14:49,536 --> 00:14:51,616
+and very precise way
+of finding the distance
+
+
+307
+00:14:51,616 --> 00:14:55,866
+between two MK map points
+in meters, and it accounts
+
+
+308
+00:14:55,866 --> 00:14:58,706
+for your spherical distortions,
+and then we'll take a look
+
+
+309
+00:14:58,706 --> 00:15:01,126
+at MKMetersPerMapPointAtLatitude
+a little bit later.
+
+
+310
+00:15:02,406 --> 00:15:06,006
+So now that we have this primer,
+what do we need to get started?
+
+
+311
+00:15:06,476 --> 00:15:09,676
+Well, we want to find
+two points on our map,
+
+
+312
+00:15:09,676 --> 00:15:10,756
+and we'll call them
+anchor points,
+
+
+313
+00:15:11,666 --> 00:15:14,746
+and an anchor point is simply
+a latitude and longitude mapped
+
+
+314
+00:15:14,976 --> 00:15:19,246
+to a floor plan pixel so we
+know how the floor plan exists
+
+
+315
+00:15:19,246 --> 00:15:19,976
+in the real world.
+
+
+316
+00:15:20,916 --> 00:15:22,156
+So what you want
+to do is you want
+
+
+317
+00:15:22,156 --> 00:15:24,696
+to find two identifying
+features in your floor plan
+
+
+318
+00:15:25,006 --> 00:15:27,956
+that are very easy to find on an
+aerial map, like you might find
+
+
+319
+00:15:27,956 --> 00:15:30,956
+in Apple Maps, and then you
+find the corresponding latitude
+
+
+320
+00:15:30,956 --> 00:15:32,636
+and longitude for
+that floor plan pixel.
+
+
+321
+00:15:33,526 --> 00:15:36,596
+So now that we have these two
+anchor points, we need to figure
+
+
+322
+00:15:36,596 --> 00:15:41,886
+out how the floor plan in
+pixels maps to the real world.
+
+
+323
+00:15:41,886 --> 00:15:43,056
+So we need to figure
+out a scale.
+
+
+324
+00:15:43,816 --> 00:15:46,366
+So how many pixels
+represent a single meter?
+
+
+325
+00:15:46,866 --> 00:15:48,566
+So to accomplish
+this we're going
+
+
+326
+00:15:48,566 --> 00:15:51,356
+to use the MapKit helper
+functions I pointed out earlier
+
+
+327
+00:15:51,356 --> 00:15:54,756
+and we're going to convert our
+anchor points' geographical
+
+
+328
+00:15:54,756 --> 00:15:57,496
+coordinates into
+Mercator projection,
+
+
+329
+00:15:57,496 --> 00:16:00,016
+and then we use MapKit
+again to figure
+
+
+330
+00:16:00,016 --> 00:16:00,966
+out the distance in meters.
+
+
+331
+00:16:00,966 --> 00:16:02,896
+So now we have distance
+in meters.
+
+
+332
+00:16:03,986 --> 00:16:06,876
+And then the distance in a floor
+plan is very easy to calculate.
+
+
+333
+00:16:06,876 --> 00:16:08,586
+It's just the Pythagorean
+Theorem, and we're just going
+
+
+334
+00:16:08,586 --> 00:16:10,316
+to call hypot to do it for us,
+
+
+335
+00:16:10,316 --> 00:16:11,976
+and now we have a
+distance in pixels.
+
+
+336
+00:16:12,126 --> 00:16:12,846
+So now we have pixels.
+
+
+337
+00:16:12,846 --> 00:16:13,426
+We have meters.
+
+
+338
+00:16:13,766 --> 00:16:15,686
+We know how many pixels
+represent 1 meter.
+
+
+339
+00:16:16,796 --> 00:16:18,796
+Orientation is a little
+bit more complicated,
+
+
+340
+00:16:19,146 --> 00:16:22,156
+and so your floor plan, when
+you show it to the user,
+
+
+341
+00:16:22,156 --> 00:16:26,296
+is usually aligned to
+some logical orientation.
+
+
+342
+00:16:26,386 --> 00:16:29,516
+You might show it to them
+so that X is positive
+
+
+343
+00:16:29,686 --> 00:16:31,656
+on the screen, and Y is down.
+
+
+344
+00:16:32,096 --> 00:16:34,756
+That doesn't necessarily
+correspond to your north
+
+
+345
+00:16:34,856 --> 00:16:38,726
+and east coordinates,
+and so we need to figure
+
+
+346
+00:16:38,726 --> 00:16:40,906
+out how we would rotate
+to that floor plan
+
+
+347
+00:16:41,206 --> 00:16:42,706
+to make it show up correctly.
+
+
+348
+00:16:42,826 --> 00:16:48,656
+So what we're going to do is
+we're going to align the east
+
+
+349
+00:16:48,656 --> 00:16:51,606
+and south to the X and
+Y, and we can see now
+
+
+350
+00:16:51,606 --> 00:16:55,156
+that our two anchor points in
+yellow are relative to the east
+
+
+351
+00:16:55,156 --> 00:16:57,126
+and south, but they're
+somewhat different.
+
+
+352
+00:16:57,126 --> 00:17:01,036
+They're rotated relative to
+the green, which is relative
+
+
+353
+00:17:01,036 --> 00:17:03,996
+to the floor plan, and so
+what we're going to do is try
+
+
+354
+00:17:03,996 --> 00:17:08,076
+to calculate the angle
+between the green line
+
+
+355
+00:17:08,076 --> 00:17:10,435
+and the yellow line using
+some existing angles
+
+
+356
+00:17:10,435 --> 00:17:13,455
+that we know about,
+and so the way to do
+
+
+357
+00:17:13,455 --> 00:17:16,766
+that is you simply
+subtract the two angles.
+
+
+358
+00:17:17,796 --> 00:17:21,236
+So now we know how much to
+rotate the floor plan by to get
+
+
+359
+00:17:21,236 --> 00:17:25,576
+into your logical
+orientation that you want.
+
+
+360
+00:17:26,866 --> 00:17:29,296
+So now we have these
+two precomputed values.
+
+
+361
+00:17:29,296 --> 00:17:30,776
+What do we do with them?
+
+
+362
+00:17:31,036 --> 00:17:33,316
+Well, we're going to
+get a user position
+
+
+363
+00:17:33,426 --> 00:17:35,956
+in geographical coordinates,
+latitudes and longitudes.
+
+
+364
+00:17:36,366 --> 00:17:37,936
+As you may have guessed,
+we convert it
+
+
+365
+00:17:37,936 --> 00:17:39,276
+into the Mercator projection,
+
+
+366
+00:17:40,116 --> 00:17:43,066
+and so that gives us a user
+point, and now what we're going
+
+
+367
+00:17:43,066 --> 00:17:44,866
+to do is subtract the
+user points from one
+
+
+368
+00:17:44,866 --> 00:17:48,426
+of our anchor points, and that
+gives us how many MapKit points
+
+
+369
+00:17:48,426 --> 00:17:53,006
+we are east and south
+from the floor plan.
+
+
+370
+00:17:54,526 --> 00:17:56,086
+But we want to account
+for the fact
+
+
+371
+00:17:56,086 --> 00:17:57,816
+that MapKit points are not
+the same thing as meters.
+
+
+372
+00:17:57,816 --> 00:18:02,946
+So we want to account for the
+fact that MapKit is a projection
+
+
+373
+00:18:02,946 --> 00:18:04,866
+of the globe, and so
+it has distortion,
+
+
+374
+00:18:04,956 --> 00:18:06,666
+and so the distortion
+changes depending
+
+
+375
+00:18:06,666 --> 00:18:08,976
+on which latitude you're at.
+
+
+376
+00:18:09,046 --> 00:18:10,726
+And so, by multiplying
+by this meter scale,
+
+
+377
+00:18:11,106 --> 00:18:13,786
+we know how many meters
+east and south the user is
+
+
+378
+00:18:13,786 --> 00:18:17,326
+on your floor plan, and so
+now we just apply the scale we
+
+
+379
+00:18:17,326 --> 00:18:18,406
+precomputed previously.
+
+
+380
+00:18:18,996 --> 00:18:22,226
+That gives us how many
+pixels east and south,
+
+
+381
+00:18:22,486 --> 00:18:25,186
+and then once we apply the
+rotation, we get pixels
+
+
+382
+00:18:25,186 --> 00:18:26,666
+in X, Y of your floor plan.
+
+
+383
+00:18:27,296 --> 00:18:29,486
+And so, if you were to
+apply this backwards,
+
+
+384
+00:18:29,716 --> 00:18:31,626
+you would have a mechanism
+-- like, literally,
+
+
+385
+00:18:31,626 --> 00:18:33,186
+the exact same steps
+backwards --
+
+
+386
+00:18:33,506 --> 00:18:35,366
+you would have a mechanism
+converting your floor plan
+
+
+387
+00:18:35,366 --> 00:18:37,186
+pixels into geographic
+coordinates.
+
+
+388
+00:18:38,676 --> 00:18:41,416
+So I hope I've demonstrated
+a way for you
+
+
+389
+00:18:41,416 --> 00:18:45,376
+to incorporate the existing
+geographic coordinates
+
+
+390
+00:18:45,376 --> 00:18:48,476
+that you get from Core Location
+into your indoor floor plan.
+
+
+391
+00:18:49,096 --> 00:18:49,536
+Thank you.
+
+
+392
+00:18:50,306 --> 00:18:53,356
+>> So with that information you
+can take your Core Location fix,
+
+
+393
+00:18:54,116 --> 00:18:55,186
+map it to your floor plan
+
+
+394
+00:18:55,186 --> 00:18:56,556
+and start displaying
+it to your user.
+
+
+395
+00:18:57,936 --> 00:19:00,646
+Now that's really cool; you can
+build an application with that.
+
+
+396
+00:19:01,896 --> 00:19:03,696
+Where can you start
+building these applications?
+
+
+397
+00:19:04,726 --> 00:19:06,576
+Well, in terms of availability,
+
+
+398
+00:19:06,666 --> 00:19:08,116
+I'd like to tell you
+about three venues.
+
+
+399
+00:19:09,276 --> 00:19:12,326
+There's the California Academy
+of Sciences that I demoed
+
+
+400
+00:19:12,326 --> 00:19:14,816
+to you earlier, in Golden
+Gate Park in San Francisco,
+
+
+401
+00:19:16,166 --> 00:19:18,356
+which is a big natural
+history museum.
+
+
+402
+00:19:19,806 --> 00:19:23,056
+There's the Westfield SF Mall
+a couple of blocks from here.
+
+
+403
+00:19:23,946 --> 00:19:26,706
+Has many floors, and it's
+a quintessential mall
+
+
+404
+00:19:26,706 --> 00:19:27,236
+in a big city.
+
+
+405
+00:19:27,236 --> 00:19:31,426
+You may have also flown in
+from the San Jose International
+
+
+406
+00:19:31,426 --> 00:19:34,356
+Airport, and so we're going
+to be enabling that soon,
+
+
+407
+00:19:35,296 --> 00:19:38,596
+and all of these will be
+enabled in upcoming seeds
+
+
+408
+00:19:38,596 --> 00:19:43,176
+of the developer build along
+with sample code that walk you
+
+
+409
+00:19:43,176 --> 00:19:44,846
+through the process that
+Vitali just described.
+
+
+410
+00:19:45,476 --> 00:19:48,496
+So keep an eye out on
+developer.apple.com for when
+
+
+411
+00:19:48,496 --> 00:19:51,156
+that sample code comes out, and
+you guys can run out and start,
+
+
+412
+00:19:51,156 --> 00:19:52,726
+and we'll enable these venues,
+
+
+413
+00:19:52,946 --> 00:19:54,896
+and you guys can start
+using indoor positioning.
+
+
+414
+00:19:55,786 --> 00:19:57,496
+Now, these are not the
+only set of venues.
+
+
+415
+00:19:57,616 --> 00:20:00,666
+There are very many, many more
+that are going to be coming
+
+
+416
+00:20:00,666 --> 00:20:01,746
+up in the upcoming months,
+
+
+417
+00:20:02,766 --> 00:20:05,386
+and so we'll be announcing
+them as that happens.
+
+
+418
+00:20:06,556 --> 00:20:08,776
+So you build this application.
+
+
+419
+00:20:09,616 --> 00:20:12,626
+How do we get people to
+start using this application?
+
+
+420
+00:20:12,626 --> 00:20:14,866
+How do we get people to
+install this application?
+
+
+421
+00:20:15,616 --> 00:20:17,786
+Well, there's a traditional way,
+
+
+422
+00:20:17,866 --> 00:20:19,276
+which is just advertise
+at your venue.
+
+
+423
+00:20:19,546 --> 00:20:22,286
+Put up a giant sign
+with an ugly QR code,
+
+
+424
+00:20:23,226 --> 00:20:24,606
+but we don't like
+that very much.
+
+
+425
+00:20:24,606 --> 00:20:28,366
+So last year we introduced
+the Near Me feature
+
+
+426
+00:20:28,646 --> 00:20:31,436
+in the App Store,
+and that allowed you
+
+
+427
+00:20:31,436 --> 00:20:35,046
+to launch the App Store,
+look at that particular view,
+
+
+428
+00:20:35,046 --> 00:20:37,056
+and it would tell
+you the relevant
+
+
+429
+00:20:37,056 --> 00:20:39,136
+and popular applications
+near you.
+
+
+430
+00:20:40,256 --> 00:20:44,026
+But that still relies on the
+user to launch the application
+
+
+431
+00:20:44,026 --> 00:20:45,156
+and look for nearby venues,
+
+
+432
+00:20:45,156 --> 00:20:46,656
+which they might have
+never thought about.
+
+
+433
+00:20:47,606 --> 00:20:52,346
+So as a continuity
+feature, we're bubbling
+
+
+434
+00:20:52,346 --> 00:20:56,216
+up that popular application
+onto your Lock screen.
+
+
+435
+00:20:57,166 --> 00:21:00,516
+So now when you open your
+phone and wake your device,
+
+
+436
+00:21:01,156 --> 00:21:02,506
+you'll see this in the
+bottom left corner.
+
+
+437
+00:21:03,326 --> 00:21:04,766
+I'll show a little
+App Store icon
+
+
+438
+00:21:04,766 --> 00:21:08,866
+so that you can launch the
+App Store directly to the page
+
+
+439
+00:21:08,866 --> 00:21:11,556
+that will tell you the
+popular applications near you,
+
+
+440
+00:21:12,806 --> 00:21:14,806
+and once that application
+is installed,
+
+
+441
+00:21:15,186 --> 00:21:18,896
+we'll actually show you the icon
+for that particular application.
+
+
+442
+00:21:19,436 --> 00:21:22,436
+And when the user
+swipes this up,
+
+
+443
+00:21:22,436 --> 00:21:26,956
+we'll launch your application
+directly from the Lock screen.
+
+
+444
+00:21:27,146 --> 00:21:27,946
+Now that's really cool.
+
+
+445
+00:21:28,346 --> 00:21:31,006
+Now people can show up at your
+venue, pull out their phone
+
+
+446
+00:21:31,246 --> 00:21:33,206
+and launch the appropriate
+application without ever having
+
+
+447
+00:21:33,206 --> 00:21:35,536
+to go through multiple steps.
+
+
+448
+00:21:36,316 --> 00:21:40,036
+But let's say I have a specific
+venue with a really great app
+
+
+449
+00:21:40,036 --> 00:21:44,166
+and I want to notify people
+when they walk into my venue.
+
+
+450
+00:21:45,466 --> 00:21:48,546
+Well, here we're thinking about
+when we're close to, let's say,
+
+
+451
+00:21:48,546 --> 00:21:50,406
+the entrance of a
+venue, and we're thinking
+
+
+452
+00:21:50,406 --> 00:21:51,746
+about notifying your
+application,
+
+
+453
+00:21:53,186 --> 00:21:55,196
+and that's when we want to
+think about iBeacon technology.
+
+
+454
+00:21:56,686 --> 00:21:57,806
+So, indoor positioning
+
+
+455
+00:21:58,116 --> 00:22:00,476
+and iBeacon technology
+really complement each other.
+
+
+456
+00:22:00,886 --> 00:22:03,936
+They complete the indoor
+experience that we expect.
+
+
+457
+00:22:04,566 --> 00:22:10,366
+Now, iBeacon technology, we
+covered this last year in the
+
+
+458
+00:22:10,366 --> 00:22:14,976
+"What's New in Core
+Location" talk.
+
+
+459
+00:22:15,186 --> 00:22:18,986
+Devices with iBeacon technology,
+these little beacons,
+
+
+460
+00:22:19,166 --> 00:22:22,506
+can run on little coin
+batteries and last a few months.
+
+
+461
+00:22:22,836 --> 00:22:25,386
+You can also take any
+iOS device with Bluetooth
+
+
+462
+00:22:26,076 --> 00:22:29,876
+and advertise beacons with them.
+
+
+463
+00:22:30,206 --> 00:22:32,576
+So if you have a point of
+sale device, you can turn
+
+
+464
+00:22:32,576 --> 00:22:36,736
+that into a beacon as well,
+and we can use these beacons
+
+
+465
+00:22:36,986 --> 00:22:40,606
+to advertise that, "Hey, I
+have a region over here,"
+
+
+466
+00:22:41,516 --> 00:22:44,396
+and your application can
+register to get notified
+
+
+467
+00:22:45,156 --> 00:22:46,386
+when the device sees
+that region.
+
+
+468
+00:22:46,766 --> 00:22:49,696
+So when we're thinking
+about indoor positioning
+
+
+469
+00:22:49,776 --> 00:22:52,976
+and iBeacon technology,
+indoor positioning is really
+
+
+470
+00:22:52,976 --> 00:22:57,286
+about your position in the
+geographic space, where you're
+
+
+471
+00:22:57,286 --> 00:23:00,346
+on the floor plan, and it's
+about navigation and getting you
+
+
+472
+00:23:00,346 --> 00:23:01,266
+from one place to another.
+
+
+473
+00:23:01,636 --> 00:23:05,436
+iBeacon technology
+is about proximity.
+
+
+474
+00:23:06,016 --> 00:23:08,286
+What is near me?
+
+
+475
+00:23:08,856 --> 00:23:10,246
+It's also about notification.
+
+
+476
+00:23:10,386 --> 00:23:14,426
+Because it's based on Bluetooth
+for energy, you can register
+
+
+477
+00:23:14,426 --> 00:23:20,046
+for beacon regions, and we'll
+notify your application --
+
+
+478
+00:23:20,046 --> 00:23:24,056
+even if it's in the background
+-- when the device sees this.
+
+
+479
+00:23:25,516 --> 00:23:30,396
+So let's ground all
+of this in an example.
+
+
+480
+00:23:30,396 --> 00:23:31,866
+I want you think
+about an art gallery,
+
+
+481
+00:23:32,796 --> 00:23:38,166
+and in this art gallery we
+have an amazing application
+
+
+482
+00:23:39,406 --> 00:23:42,556
+that really creates an immersive
+experience for our visitors,
+
+
+483
+00:23:43,526 --> 00:23:44,886
+and we love this
+application so much,
+
+
+484
+00:23:44,886 --> 00:23:47,436
+we want to notify our
+users when they enter
+
+
+485
+00:23:47,436 --> 00:23:48,296
+into this art gallery.
+
+
+486
+00:23:49,556 --> 00:23:52,736
+Well, you could use
+a CLCircularRegion.
+
+
+487
+00:23:53,226 --> 00:23:56,256
+Now, this is a region with a
+point in the middle in lat/long
+
+
+488
+00:23:56,806 --> 00:24:00,606
+and a radius, and a
+CLCircularRegion is a great API
+
+
+489
+00:24:00,826 --> 00:24:03,806
+that lets you notify the
+same way beacons would
+
+
+490
+00:24:03,966 --> 00:24:05,326
+in the background.
+
+
+491
+00:24:06,276 --> 00:24:12,256
+But CLCircularRegions rely on
+Wi-Fi, and so we really want
+
+
+492
+00:24:12,256 --> 00:24:14,896
+to make the radius about
+as small as 100 meters,
+
+
+493
+00:24:14,896 --> 00:24:16,286
+not much less than that.
+
+
+494
+00:24:17,456 --> 00:24:18,596
+Now, this would work great
+
+
+495
+00:24:18,626 --> 00:24:22,026
+if you have a colossal
+building that's perfectly round,
+
+
+496
+00:24:23,116 --> 00:24:24,806
+but that might not be the case.
+
+
+497
+00:24:26,066 --> 00:24:30,826
+So for our floor plan, if
+we have a round region,
+
+
+498
+00:24:32,096 --> 00:24:32,896
+this might be an issue.
+
+
+499
+00:24:34,016 --> 00:24:35,036
+Now, if someone is walking
+
+
+500
+00:24:35,036 --> 00:24:37,246
+into your parking lot,
+they'll get notified.
+
+
+501
+00:24:37,586 --> 00:24:39,096
+If you're on the second
+floor of a building
+
+
+502
+00:24:39,096 --> 00:24:40,326
+and you're just walking
+
+
+503
+00:24:40,326 --> 00:24:42,246
+on the first floor,
+they'll get notified.
+
+
+504
+00:24:42,246 --> 00:24:46,816
+Here's where we want to use the
+power of iBeacon technology.
+
+
+505
+00:24:47,346 --> 00:24:53,136
+What we can do is install
+beacons at the entrances
+
+
+506
+00:24:53,696 --> 00:24:55,786
+of your floor plan,
+and the great thing
+
+
+507
+00:24:55,786 --> 00:24:57,696
+about these beacons is
+we can really tune them
+
+
+508
+00:24:57,696 --> 00:24:59,416
+and drop them exactly
+where we want
+
+
+509
+00:25:00,116 --> 00:25:03,106
+and with what power we want
+them to emit their signal
+
+
+510
+00:25:03,186 --> 00:25:06,576
+so that we can control, "I
+want to notify at this point."
+
+
+511
+00:25:07,806 --> 00:25:10,246
+And now the device can say...
+
+
+512
+00:25:11,486 --> 00:25:14,256
+when you have your application,
+the application can register
+
+
+513
+00:25:14,256 --> 00:25:15,356
+with Core Location and say,
+
+
+514
+00:25:15,576 --> 00:25:17,356
+"when you see this
+beacon, notify me."
+
+
+515
+00:25:17,986 --> 00:25:22,586
+And when the device
+enters your region,
+
+
+516
+00:25:22,666 --> 00:25:25,906
+it will trigger that API.
+
+
+517
+00:25:26,056 --> 00:25:29,836
+So we use the
+startMonitoringForRegion API
+
+
+518
+00:25:30,406 --> 00:25:32,286
+with a beaconRegion
+where you specify
+
+
+519
+00:25:32,566 --> 00:25:35,966
+which unique identifier
+you are looking for on
+
+
+520
+00:25:35,966 --> 00:25:38,216
+that iBeacon technology device.
+
+
+521
+00:25:38,546 --> 00:25:41,886
+And when you see that region,
+
+
+522
+00:25:41,886 --> 00:25:44,856
+we'll trigger the
+didEnterRegion delegate,
+
+
+523
+00:25:44,856 --> 00:25:47,696
+and this is when you can
+start notifying your user
+
+
+524
+00:25:47,806 --> 00:25:48,406
+when appropriate.
+
+
+525
+00:25:48,916 --> 00:25:55,126
+At this point the user sees the
+notification, and they think,
+
+
+526
+00:25:55,406 --> 00:25:56,816
+oh great, I do have
+this application.
+
+
+527
+00:25:56,816 --> 00:25:57,366
+Let me launch it.
+
+
+528
+00:25:58,226 --> 00:26:00,786
+And here you can create your
+indoor positioning experience.
+
+
+529
+00:26:01,556 --> 00:26:03,646
+So you can display your
+user's position on the map,
+
+
+530
+00:26:04,776 --> 00:26:08,046
+and as the user walks around,
+the little dot will follow them,
+
+
+531
+00:26:08,046 --> 00:26:11,136
+which is pretty cool, and while
+they're browsing your catalog,
+
+
+532
+00:26:11,906 --> 00:26:13,456
+they can pick something that
+they really want to see,
+
+
+533
+00:26:13,576 --> 00:26:17,346
+and you can navigate them
+to that particular exhibit.
+
+
+534
+00:26:18,276 --> 00:26:22,156
+This can provide
+step-by-step direction exactly
+
+
+535
+00:26:22,456 --> 00:26:23,896
+where you want to go.
+
+
+536
+00:26:28,206 --> 00:26:30,136
+So once we're at this place,
+
+
+537
+00:26:30,696 --> 00:26:34,596
+we want to also show the
+user relevant commentary
+
+
+538
+00:26:34,966 --> 00:26:36,376
+about the exhibits
+that are around them.
+
+
+539
+00:26:37,526 --> 00:26:39,816
+And again, here we're
+talking about proximity,
+
+
+540
+00:26:40,186 --> 00:26:42,126
+and when we're thinking
+about proximity,
+
+
+541
+00:26:42,326 --> 00:26:43,656
+we want to think about iBeacons.
+
+
+542
+00:26:43,656 --> 00:26:45,556
+We need fine-grain proximity.
+
+
+543
+00:26:47,136 --> 00:26:50,806
+So what we can do
+now is deploy beacons
+
+
+544
+00:26:51,386 --> 00:26:53,746
+at all the various exhibits
+where we have commentary
+
+
+545
+00:26:54,706 --> 00:27:00,716
+on our floor plan, and when a
+user is using your application
+
+
+546
+00:27:00,976 --> 00:27:05,036
+and enters the region, we can
+start ranging from that beacon,
+
+
+547
+00:27:05,716 --> 00:27:07,716
+and we can say, "Oh,
+am I just seeing it
+
+
+548
+00:27:07,716 --> 00:27:09,096
+or am I very close to it?
+
+
+549
+00:27:09,096 --> 00:27:10,836
+Am I right up next to it?"
+
+
+550
+00:27:10,976 --> 00:27:14,186
+And when you are, you
+can start doing things
+
+
+551
+00:27:14,186 --> 00:27:15,516
+like providing commentary
+
+
+552
+00:27:15,936 --> 00:27:17,736
+or showing the appropriate
+item in the catalog.
+
+
+553
+00:27:18,326 --> 00:27:21,026
+Now, this uses the Ranging API.
+
+
+554
+00:27:21,956 --> 00:27:24,216
+So you can call
+startRangingBeaconsInRegion,
+
+
+555
+00:27:25,016 --> 00:27:27,276
+and then your delegate
+will get called
+
+
+556
+00:27:27,446 --> 00:27:30,166
+with all the beacons
+that it sees.
+
+
+557
+00:27:30,346 --> 00:27:32,726
+Here you can use the
+proximity value to filter
+
+
+558
+00:27:32,726 --> 00:27:35,416
+for how close you want
+to be from that beacon.
+
+
+559
+00:27:36,026 --> 00:27:42,156
+Now, these beacons will
+also advertise a major
+
+
+560
+00:27:42,156 --> 00:27:42,946
+and a minor code.
+
+
+561
+00:27:46,976 --> 00:27:49,246
+Now, this major code can
+encode something like,
+
+
+562
+00:27:49,476 --> 00:27:52,046
+"Is this an entry beacon or
+is this an exhibit beacon,"
+
+
+563
+00:27:52,416 --> 00:27:54,796
+and the minor code
+can tell you exactly
+
+
+564
+00:27:54,796 --> 00:27:58,936
+which exhibit this exhibit
+beacon is advertising,
+
+
+565
+00:27:59,206 --> 00:28:00,636
+and then you can
+do a local lookup
+
+
+566
+00:28:00,866 --> 00:28:03,226
+and show relevant
+information for that.
+
+
+567
+00:28:05,586 --> 00:28:08,686
+So we can build these
+amazing features with beacons
+
+
+568
+00:28:09,326 --> 00:28:12,456
+and indoor positioning, and this
+really completes that experience
+
+
+569
+00:28:12,456 --> 00:28:15,276
+of what your application needs
+to do for an indoor venue.
+
+
+570
+00:28:17,226 --> 00:28:20,626
+Now, when you're thinking
+about these amazing features,
+
+
+571
+00:28:20,626 --> 00:28:22,376
+you have to keep
+the user in mind.
+
+
+572
+00:28:22,716 --> 00:28:24,356
+You have a lot of power
+with these features,
+
+
+573
+00:28:25,166 --> 00:28:26,176
+and with great power...
+
+
+574
+00:28:27,136 --> 00:28:28,996
+comes strict security
+and privacy guidelines.
+
+
+575
+00:28:29,026 --> 00:28:31,026
+[ Laughter ]
+
+
+576
+00:28:31,056 --> 00:28:34,086
+So we want you and your users
+to be on the same page here.
+
+
+577
+00:28:34,166 --> 00:28:40,086
+You, as the app developer, need
+to anticipate how am I going
+
+
+578
+00:28:40,086 --> 00:28:44,046
+to be, how is my user going
+to be using their location?
+
+
+579
+00:28:44,566 --> 00:28:48,286
+Your user also needs to
+be able to anticipate,
+
+
+580
+00:28:48,286 --> 00:28:50,446
+"How is this application
+using my location?"
+
+
+581
+00:28:51,026 --> 00:28:56,106
+So forming this trust
+between the user
+
+
+582
+00:28:56,106 --> 00:29:00,726
+and the app developers is what
+allows users to trust you,
+
+
+583
+00:29:00,726 --> 00:29:02,246
+as the app developer,
+with their location.
+
+
+584
+00:29:03,176 --> 00:29:05,126
+So there's a couple
+of things you can do.
+
+
+585
+00:29:05,296 --> 00:29:07,346
+You can request location
+only as you need it.
+
+
+586
+00:29:07,506 --> 00:29:09,136
+So if you have a particular view
+
+
+587
+00:29:09,136 --> 00:29:11,096
+in your application
+that's not using location
+
+
+588
+00:29:11,096 --> 00:29:11,936
+and you're just logging in,
+
+
+589
+00:29:12,646 --> 00:29:14,296
+don't start requesting
+location immediately.
+
+
+590
+00:29:14,806 --> 00:29:18,226
+Wait till you actually launch
+a view that has a map on it
+
+
+591
+00:29:18,376 --> 00:29:19,996
+or you need to use
+some location services.
+
+
+592
+00:29:21,846 --> 00:29:23,796
+Also use When In
+Use authorization.
+
+
+593
+00:29:24,686 --> 00:29:28,446
+Now, this is something new
+that was introduced in iOS 8.
+
+
+594
+00:29:28,636 --> 00:29:30,876
+If you missed the "What's
+New In Core Location" talk
+
+
+595
+00:29:30,916 --> 00:29:32,156
+that just happened
+prior to this one,
+
+
+596
+00:29:33,116 --> 00:29:34,306
+be sure to check out that video.
+
+
+597
+00:29:34,706 --> 00:29:35,876
+There's some amazing
+new features,
+
+
+598
+00:29:37,336 --> 00:29:39,866
+and When In Use authorization
+really makes it clear
+
+
+599
+00:29:39,866 --> 00:29:42,326
+to the user that I can tell
+
+
+600
+00:29:42,326 --> 00:29:44,626
+when this application is using
+my location so I can trust it.
+
+
+601
+00:29:46,496 --> 00:29:47,996
+Also have a clear
+purpose string.
+
+
+602
+00:29:48,586 --> 00:29:51,126
+Tell your users what you're
+doing with your location.
+
+
+603
+00:29:51,576 --> 00:29:53,856
+This is a really great
+opportunity to communicate
+
+
+604
+00:29:53,856 --> 00:29:55,826
+with them so that they're
+on the same page as you.
+
+
+605
+00:29:56,916 --> 00:30:00,046
+So let's talk about
+some next steps.
+
+
+606
+00:30:00,236 --> 00:30:02,736
+We have the Maps Connect
+website, and here,
+
+
+607
+00:30:02,736 --> 00:30:07,116
+if you're a venue owner or if
+you're building an application
+
+
+608
+00:30:07,116 --> 00:30:10,126
+for a particular venue, you can
+head on over to this website
+
+
+609
+00:30:10,406 --> 00:30:11,706
+and tell us all about it.
+
+
+610
+00:30:11,706 --> 00:30:13,416
+Tell us what you plan
+on doing at this venue.
+
+
+611
+00:30:13,936 --> 00:30:16,076
+Tell us what kind of
+applications you plan
+
+
+612
+00:30:16,076 --> 00:30:18,866
+on building, and we can get
+you started on the pipeline
+
+
+613
+00:30:18,866 --> 00:30:21,246
+so that we can enable indoor
+positioning in your venue.
+
+
+614
+00:30:22,306 --> 00:30:24,776
+There's also the Maps page,
+which is a great resource
+
+
+615
+00:30:25,236 --> 00:30:27,156
+for maps and Core Location APIs,
+
+
+616
+00:30:27,156 --> 00:30:31,956
+and there's also a new iBeacon
+page, where it will tell you
+
+
+617
+00:30:31,956 --> 00:30:35,886
+about iBeacon technology, again,
+all the API and documentation
+
+
+618
+00:30:35,886 --> 00:30:38,196
+that you'll need, and
+also licensing information
+
+
+619
+00:30:38,286 --> 00:30:39,406
+if you're interested
+
+
+620
+00:30:39,716 --> 00:30:42,476
+in manufacturing
+iBeacon technology.
+
+
+621
+00:30:43,216 --> 00:30:48,666
+So as a summary, we talked
+about indoor positioning today.
+
+
+622
+00:30:48,666 --> 00:30:50,826
+We talked about some
+amazing use cases
+
+
+623
+00:30:50,826 --> 00:30:53,506
+that we can enable with this.
+
+
+624
+00:30:53,716 --> 00:30:55,586
+We also talked about
+Core Location APIs
+
+
+625
+00:30:55,586 --> 00:30:58,686
+and how there's very little you
+need to add to your application
+
+
+626
+00:30:59,126 --> 00:31:00,326
+to make them indoor enabled.
+
+
+627
+00:31:01,296 --> 00:31:04,136
+We're just using indoor position
+
+
+628
+00:31:04,136 --> 00:31:06,256
+to create a new amazing
+experience for your users,
+
+
+629
+00:31:07,186 --> 00:31:09,916
+and with indoor positioning
+and iBeacon technology,
+
+
+630
+00:31:11,006 --> 00:31:13,826
+these two technologies
+really work perfectly well
+
+
+631
+00:31:13,826 --> 00:31:17,306
+with each other, and they
+complete the indoor experience
+
+
+632
+00:31:17,306 --> 00:31:18,756
+that you expect from
+your application
+
+
+633
+00:31:19,416 --> 00:31:21,746
+so that you start breaking
+out of the barriers of, "Hey,
+
+
+634
+00:31:21,746 --> 00:31:22,986
+this is what's happening
+in my phone,
+
+
+635
+00:31:22,986 --> 00:31:24,996
+and this is what's
+happening around me."
+
+
+636
+00:31:24,996 --> 00:31:27,466
+Now the environment and
+the device can interact
+
+
+637
+00:31:27,516 --> 00:31:27,966
+with each other.
+
+
+638
+00:31:28,506 --> 00:31:31,676
+For more information, be sure to
+check out the developer forums
+
+
+639
+00:31:31,716 --> 00:31:32,736
+and the documentation.
+
+
+640
+00:31:33,986 --> 00:31:36,126
+There was a related
+session, as I mentioned,
+
+
+641
+00:31:36,126 --> 00:31:37,326
+of "What's New In
+Core Location".
+
+
+642
+00:31:37,326 --> 00:31:39,866
+So please make sure
+to check that out.
+
+
+643
+00:31:40,166 --> 00:31:45,626
+Also there's a "User Privacy in
+iOS and OS X" talk on Thursday,
+
+
+644
+00:31:46,106 --> 00:31:50,036
+and here we'll discuss how
+you should be using location,
+
+
+645
+00:31:50,036 --> 00:31:52,436
+how you can communicate
+appropriately with your users.
+
+
+646
+00:31:52,926 --> 00:31:53,526
+Thank you very much.
+
+
+647
+00:31:53,526 --> 00:31:55,000
+[ Applause ]
+

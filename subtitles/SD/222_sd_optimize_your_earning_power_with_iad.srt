@@ -1,0 +1,7064 @@
+1
+00:00:13,436 --> 00:00:14,656
+>> OK. Hello everybody.
+
+
+2
+00:00:14,786 --> 00:00:16,315
+My name is Dave Wilson.
+
+
+3
+00:00:16,315 --> 00:00:18,986
+I'm on the iAd team, and
+I'm here to talk to you
+
+
+4
+00:00:18,986 --> 00:00:21,556
+about optimizing your
+earning power with iAd.
+
+
+5
+00:00:21,856 --> 00:00:25,916
+For those of you who
+don't know somehow,
+
+
+6
+00:00:25,916 --> 00:00:29,276
+iAd is Apple's digital
+advertising platform.
+
+
+7
+00:00:29,896 --> 00:00:31,466
+This is what's used -
+you may have seen it
+
+
+8
+00:00:31,466 --> 00:00:33,326
+in other apps you've
+used on iOS.
+
+
+9
+00:00:33,676 --> 00:00:35,836
+If you use iTunes Radio at
+all, the ads that you see
+
+
+10
+00:00:35,836 --> 00:00:37,426
+in iTunes Radio are
+driven by iAd.
+
+
+11
+00:00:37,886 --> 00:00:40,066
+So that's what iAd is.
+
+
+12
+00:00:41,116 --> 00:00:42,646
+There's two parts to
+this presentation.
+
+
+13
+00:00:42,856 --> 00:00:44,946
+We're going to be talking
+first about monetization:
+
+
+14
+00:00:45,346 --> 00:00:48,126
+how you can use iAd
+inside your apps
+
+
+15
+00:00:48,126 --> 00:00:49,576
+to drive revenue for your apps.
+
+
+16
+00:00:49,626 --> 00:00:52,936
+And the second part is
+promotion: how you can use iAd
+
+
+17
+00:00:53,276 --> 00:00:55,296
+to get more downloads of
+your app to get more users
+
+
+18
+00:00:55,296 --> 00:00:58,546
+of your app - to get your app
+out in everyone else's hands.
+
+
+19
+00:00:58,626 --> 00:01:01,986
+So let's start off
+with monetization.
+
+
+20
+00:01:01,986 --> 00:01:03,806
+I'm going to start off
+
+
+21
+00:01:04,075 --> 00:01:05,826
+with a few different pieces
+we're going to talk about here.
+
+
+22
+00:01:06,496 --> 00:01:07,966
+Talk about some developer
+benefits,
+
+
+23
+00:01:07,966 --> 00:01:09,626
+what iAd can do for you.
+
+
+24
+00:01:09,626 --> 00:01:14,146
+Talk about some core concepts,
+sort of an advertising 101.
+
+
+25
+00:01:14,696 --> 00:01:17,186
+We'll talk about improving
+performance, how you can sort
+
+
+26
+00:01:17,186 --> 00:01:19,666
+of best use iAd and
+get the most out of it.
+
+
+27
+00:01:20,506 --> 00:01:22,956
+We'll talk some details about
+the actual code you have
+
+
+28
+00:01:22,956 --> 00:01:24,706
+to write to integrate
+iAd inside your app,
+
+
+29
+00:01:24,756 --> 00:01:26,586
+which is fortunately
+pretty simple.
+
+
+30
+00:01:26,666 --> 00:01:28,656
+We'll talk a little
+bit about testing iAd
+
+
+31
+00:01:28,656 --> 00:01:31,076
+and making sure your integration
+is actually working before you
+
+
+32
+00:01:31,076 --> 00:01:32,606
+get out in the App Store
+and then just get bugs
+
+
+33
+00:01:32,606 --> 00:01:37,366
+So let's start off with
+developer benefits.
+
+
+34
+00:01:39,716 --> 00:01:44,326
+First of all, iAd provides
+rich, engaging ads.
+
+
+35
+00:01:44,556 --> 00:01:49,856
+This is a platform that
+values great ads to go
+
+
+36
+00:01:49,856 --> 00:01:51,986
+into the great apps
+that you create.
+
+
+37
+00:01:53,976 --> 00:01:55,506
+They're high production values.
+
+
+38
+00:01:56,406 --> 00:01:57,966
+There's rich media apps,
+
+
+39
+00:01:57,966 --> 00:01:59,776
+and there's rich media
+ads involved here.
+
+
+40
+00:01:59,776 --> 00:02:01,596
+These are things
+that involve video.
+
+
+41
+00:02:02,186 --> 00:02:03,756
+They involve animations.
+
+
+42
+00:02:05,056 --> 00:02:06,266
+They're immersive.
+
+
+43
+00:02:06,366 --> 00:02:10,116
+These are sometimes entire
+games presented inside ads.
+
+
+44
+00:02:10,116 --> 00:02:11,926
+There was an Intel ad recently
+
+
+45
+00:02:11,926 --> 00:02:14,866
+that was literally a game
+once the users tapped on it.
+
+
+46
+00:02:14,906 --> 00:02:15,936
+This is the other things
+
+
+47
+00:02:15,936 --> 00:02:18,336
+that your users are actually
+interested in engaging on,
+
+
+48
+00:02:18,596 --> 00:02:20,836
+interested in tapping on,
+which is great for you
+
+
+49
+00:02:21,186 --> 00:02:23,556
+as a potential advertising
+publisher here.
+
+
+50
+00:02:24,896 --> 00:02:26,806
+These are award-winning ads.
+
+
+51
+00:02:26,806 --> 00:02:30,946
+These are not just fly by
+night, you know, one off apps -
+
+
+52
+00:02:30,946 --> 00:02:33,376
+or ads with link tags
+in them that are going
+
+
+53
+00:02:33,376 --> 00:02:34,596
+to annoy the heck
+out of your users.
+
+
+54
+00:02:34,946 --> 00:02:36,476
+These are carefully crafted ads
+
+
+55
+00:02:36,816 --> 00:02:39,286
+that actually look good
+as part of your app.
+
+
+56
+00:02:41,066 --> 00:02:44,536
+OK? In addition, Apple
+is providing this SDK.
+
+
+57
+00:02:44,536 --> 00:02:49,686
+As a result, the same care
+that Apple takes with respect
+
+
+58
+00:02:49,686 --> 00:02:53,966
+to privacy and power efficiency
+on the rest of Apple's system,
+
+
+59
+00:02:54,336 --> 00:02:56,436
+Apple invests in iAd as well.
+
+
+60
+00:02:57,016 --> 00:03:00,556
+That means that we take
+care of all of the power
+
+
+61
+00:03:00,556 --> 00:03:03,166
+and privacy considerations
+for you
+
+
+62
+00:03:03,166 --> 00:03:04,596
+so you don't have
+to worry about them.
+
+
+63
+00:03:04,926 --> 00:03:05,546
+You don't need to worry
+
+
+64
+00:03:05,546 --> 00:03:07,876
+about obeying the limit
+ad tracking switch.
+
+
+65
+00:03:07,876 --> 00:03:10,026
+You don't need to obey
+about - don't need to worry
+
+
+66
+00:03:10,026 --> 00:03:13,346
+about location permissions
+or making sure
+
+
+67
+00:03:13,346 --> 00:03:15,506
+that your users' privacy
+
+
+68
+00:03:15,506 --> 00:03:17,596
+and personal data is
+protected properly.
+
+
+69
+00:03:21,576 --> 00:03:24,056
+In addition, because this
+is an Apple-provided SDK,
+
+
+70
+00:03:24,056 --> 00:03:26,556
+it's part of the iOS SDK.
+
+
+71
+00:03:26,556 --> 00:03:27,606
+Integration is simple.
+
+
+72
+00:03:28,506 --> 00:03:29,726
+There's nothing else to install.
+
+
+73
+00:03:29,726 --> 00:03:32,036
+There are no static
+libraries to include.
+
+
+74
+00:03:32,036 --> 00:03:33,766
+There's no third-party
+headers to drop
+
+
+75
+00:03:33,766 --> 00:03:35,146
+into your project to
+clutter things up.
+
+
+76
+00:03:35,416 --> 00:03:36,606
+It's all there to begin with.
+
+
+77
+00:03:36,816 --> 00:03:39,136
+You can be up and
+running with minimal code.
+
+
+78
+00:03:39,136 --> 00:03:41,756
+As we're going to see later,
+it's about two lines of code
+
+
+79
+00:03:41,756 --> 00:03:43,706
+to get banners in your app.
+
+
+80
+00:03:44,896 --> 00:03:49,106
+In addition, along with the
+rest of the code that other -
+
+
+81
+00:03:49,186 --> 00:03:51,636
+along with the rest of the
+SDK that Apple provides,
+
+
+82
+00:03:51,636 --> 00:03:54,096
+there's great documentation
+and great sample code available
+
+
+83
+00:03:54,096 --> 00:03:56,096
+to you on the websites.
+
+
+84
+00:03:56,256 --> 00:03:59,436
+iAd has global reach.
+
+
+85
+00:03:59,636 --> 00:04:00,786
+We're in 14 countries now.
+
+
+86
+00:04:01,246 --> 00:04:02,486
+We're constantly expanding.
+
+
+87
+00:04:02,486 --> 00:04:03,816
+This a larger list of countries
+
+
+88
+00:04:03,816 --> 00:04:05,086
+than we showed up
+here last year.
+
+
+89
+00:04:05,086 --> 00:04:08,786
+And that means that you're
+going to get ads in all
+
+
+90
+00:04:08,786 --> 00:04:10,516
+of those countries
+inside your app.
+
+
+91
+00:04:10,516 --> 00:04:13,186
+So as soon as you get your
+app in all those countries,
+
+
+92
+00:04:13,186 --> 00:04:14,256
+you're going to be
+able to get revenue
+
+
+93
+00:04:14,256 --> 00:04:15,326
+in those countries as well.
+
+
+94
+00:04:18,555 --> 00:04:20,906
+Just like the actual
+app purchase
+
+
+95
+00:04:20,906 --> 00:04:23,376
+and then In-App Purchases
+as well, you're going
+
+
+96
+00:04:23,376 --> 00:04:25,226
+to get 70 percent of
+the advertising revenue
+
+
+97
+00:04:25,456 --> 00:04:27,196
+from iAd inside your app.
+
+
+98
+00:04:27,666 --> 00:04:30,596
+Apple takes its 30 percent
+share, and everything else goes
+
+
+99
+00:04:30,596 --> 00:04:33,346
+to you from whatever we
+take in from the advertisers
+
+
+100
+00:04:33,586 --> 00:04:38,666
+who are producing these
+ads to run inside your app.
+
+
+101
+00:04:39,696 --> 00:04:43,046
+It's very easy for you to
+get into the iAd ecosystem.
+
+
+102
+00:04:43,506 --> 00:04:47,176
+There's an iAd contract on the
+itunesconnect.apple.com site
+
+
+103
+00:04:47,176 --> 00:04:47,926
+that you have to sign.
+
+
+104
+00:04:48,376 --> 00:04:49,186
+That's pretty easy.
+
+
+105
+00:04:49,876 --> 00:04:51,726
+You integrate the iAd
+framework; that's what the rest
+
+
+106
+00:04:51,726 --> 00:04:52,896
+of this talk is going
+to be about.
+
+
+107
+00:04:52,896 --> 00:04:54,876
+And then, you submit
+your app for review,
+
+
+108
+00:04:55,296 --> 00:04:56,696
+and that's really
+all you have to do.
+
+
+109
+00:04:56,696 --> 00:05:02,476
+OK. So that's sort of
+what iAd can do for you.
+
+
+110
+00:05:02,476 --> 00:05:03,956
+Let's talk about
+some core concepts.
+
+
+111
+00:05:03,956 --> 00:05:06,856
+These are some fundamental
+basics of advertising
+
+
+112
+00:05:06,856 --> 00:05:09,406
+and some terminology
+that you're going to see,
+
+
+113
+00:05:09,626 --> 00:05:12,966
+especially on the iTunes Connect
+website once you've integrated
+
+
+114
+00:05:12,966 --> 00:05:17,106
+iAd and are trying to track the
+progress of you getting revenue
+
+
+115
+00:05:17,106 --> 00:05:19,236
+from iAd inside your app.
+
+
+116
+00:05:20,516 --> 00:05:23,186
+First of all, there's an ad
+request, and you're going
+
+
+117
+00:05:23,186 --> 00:05:24,506
+to see this come up again.
+
+
+118
+00:05:24,506 --> 00:05:25,906
+Later, you'll see
+this in metrics.
+
+
+119
+00:05:26,146 --> 00:05:27,036
+What is an ad request?
+
+
+120
+00:05:27,646 --> 00:05:28,606
+It's a network request.
+
+
+121
+00:05:28,606 --> 00:05:30,936
+It goes from the device,
+through the iAd framework.
+
+
+122
+00:05:30,936 --> 00:05:34,206
+It's going to go out to the
+iAd servers up in the cloud.
+
+
+123
+00:05:34,726 --> 00:05:37,006
+And hopefully, ads will
+come back down to you,
+
+
+124
+00:05:37,286 --> 00:05:40,836
+assuming there are ads available
+for your particular app
+
+
+125
+00:05:41,106 --> 00:05:43,206
+in the current situation
+of the user.
+
+
+126
+00:05:43,746 --> 00:05:46,526
+You know, again, if the user
+is in a country we're not in,
+
+
+127
+00:05:46,526 --> 00:05:48,986
+you're not going to be able to
+get ads there, unfortunately.
+
+
+128
+00:05:51,106 --> 00:05:53,616
+Once you've started
+getting ads from the -
+
+
+129
+00:05:53,616 --> 00:05:56,336
+if you get an ad request, you
+want to look at your fill rate.
+
+
+130
+00:05:56,606 --> 00:06:00,136
+This is the ratio of ads
+delivered by the ad server
+
+
+131
+00:06:00,556 --> 00:06:03,056
+to the number of requests that
+you actually make to the server.
+
+
+132
+00:06:03,446 --> 00:06:04,796
+This is, again, going
+to be determined
+
+
+133
+00:06:04,796 --> 00:06:08,426
+by where your users are located,
+what type of app you have,
+
+
+134
+00:06:08,426 --> 00:06:11,786
+how well your app has
+done with iAd in the past.
+
+
+135
+00:06:11,786 --> 00:06:14,646
+And we'll get to that in a
+little bit - a little later,
+
+
+136
+00:06:14,986 --> 00:06:16,556
+as to how that can
+be really important
+
+
+137
+00:06:16,556 --> 00:06:18,106
+in driving your fill rate.
+
+
+138
+00:06:19,496 --> 00:06:22,496
+Once you've gotten ads,
+you've gotten your fill rate
+
+
+139
+00:06:22,496 --> 00:06:23,906
+and you've shown
+ads to the user,
+
+
+140
+00:06:24,296 --> 00:06:26,216
+there's a constant called
+the tap-through rate.
+
+
+141
+00:06:26,466 --> 00:06:28,026
+This is the number of the ads
+
+
+142
+00:06:28,026 --> 00:06:30,266
+that your user has
+actually tapped on,
+
+
+143
+00:06:30,266 --> 00:06:33,276
+and this does not
+count accidental taps.
+
+
+144
+00:06:33,276 --> 00:06:35,256
+So if the tap - if the user just
+taps on it and then closes it
+
+
+145
+00:06:35,256 --> 00:06:37,256
+because they didn't really
+mean it, that doesn't count.
+
+
+146
+00:06:37,256 --> 00:06:40,606
+This is the number of taps
+that the user actually meant
+
+
+147
+00:06:40,606 --> 00:06:43,036
+to have happen relative
+to the number
+
+
+148
+00:06:43,036 --> 00:06:44,556
+of ads you displayed
+to that user.
+
+
+149
+00:06:44,556 --> 00:06:45,626
+This is something
+you want to attempt
+
+
+150
+00:06:45,626 --> 00:06:48,006
+to maximize inside your app.
+
+
+151
+00:06:48,496 --> 00:06:50,916
+Again, though, accidental
+taps don't count.
+
+
+152
+00:06:50,916 --> 00:06:53,346
+So trying to play games
+is not a good idea.
+
+
+153
+00:06:55,366 --> 00:06:56,476
+Ad engagement.
+
+
+154
+00:06:58,506 --> 00:07:01,386
+Obviously, you need
+to display the ad.
+
+
+155
+00:07:01,386 --> 00:07:03,426
+If you're not displaying
+the ad to the user,
+
+
+156
+00:07:03,426 --> 00:07:05,036
+it doesn't matter how
+many of them you request
+
+
+157
+00:07:05,036 --> 00:07:08,406
+from the server, you're not
+going to get paid for them,
+
+
+158
+00:07:08,696 --> 00:07:10,046
+and you might as well
+not have bothered.
+
+
+159
+00:07:12,046 --> 00:07:16,046
+Once you do that, make sure it's
+actually fully visible as well.
+
+
+160
+00:07:16,516 --> 00:07:19,916
+The fact that it's onscreen and
+only one pixel of it is showing
+
+
+161
+00:07:19,916 --> 00:07:21,466
+because you've got it covered
+up with something else,
+
+
+162
+00:07:21,646 --> 00:07:22,936
+that doesn't really
+count either.
+
+
+163
+00:07:23,046 --> 00:07:25,756
+You want to make sure
+that the ad is visible
+
+
+164
+00:07:25,756 --> 00:07:26,836
+for as long as possible.
+
+
+165
+00:07:27,846 --> 00:07:29,096
+Leave it onscreen.
+
+
+166
+00:07:30,056 --> 00:07:32,406
+Again, if it shows
+up and it flashes
+
+
+167
+00:07:32,406 --> 00:07:34,866
+for two seconds, no
+one really saw it.
+
+
+168
+00:07:34,866 --> 00:07:35,516
+It doesn't matter.
+
+
+169
+00:07:35,516 --> 00:07:37,746
+You want to make sure
+that ads are onscreen.
+
+
+170
+00:07:37,866 --> 00:07:40,096
+This is - has two benefits.
+
+
+171
+00:07:40,096 --> 00:07:41,996
+One, it's not distracting
+to your user.
+
+
+172
+00:07:41,996 --> 00:07:44,236
+You're not annoying people
+by flashing things on
+
+
+173
+00:07:44,236 --> 00:07:46,376
+and offscreen all the time that
+people really don't want to see.
+
+
+174
+00:07:46,376 --> 00:07:49,916
+In addition, the user has
+time to interact with it.
+
+
+175
+00:07:49,916 --> 00:07:50,936
+They have time to see it.
+
+
+176
+00:07:50,936 --> 00:07:52,336
+They have time to
+see its message.
+
+
+177
+00:07:52,336 --> 00:07:53,536
+They have time to say, "Hey.
+
+
+178
+00:07:53,536 --> 00:07:55,826
+You know, I'd actually like to
+tap on this and engage with it
+
+
+179
+00:07:55,826 --> 00:07:59,656
+and see what's going
+on under the hood."
+
+
+180
+00:07:59,656 --> 00:08:01,586
+That leads into allow
+interaction.
+
+
+181
+00:08:02,006 --> 00:08:04,066
+It's really easy to
+put something onscreen
+
+
+182
+00:08:04,066 --> 00:08:05,506
+and accidentally cover it up,
+
+
+183
+00:08:05,656 --> 00:08:07,686
+especially accidentally
+covering it up with something
+
+
+184
+00:08:07,686 --> 00:08:09,066
+that blocks user interaction.
+
+
+185
+00:08:09,066 --> 00:08:12,236
+If you put a banner onscreen,
+you cover it up with something
+
+
+186
+00:08:12,286 --> 00:08:14,746
+that is, say, a transparent view
+
+
+187
+00:08:14,746 --> 00:08:17,256
+that does not allow user
+interaction, the user can't tap
+
+
+188
+00:08:17,256 --> 00:08:18,086
+on the banner under the hood.
+
+
+189
+00:08:19,066 --> 00:08:20,506
+That's not a good
+situation for the ad.
+
+
+190
+00:08:20,506 --> 00:08:22,056
+The user is going to
+be trying to tap on it,
+
+
+191
+00:08:22,366 --> 00:08:23,406
+nothing's going to happen.
+
+
+192
+00:08:23,406 --> 00:08:25,736
+It's going to be
+a bad experience.
+
+
+193
+00:08:25,736 --> 00:08:28,446
+In addition, again,
+you're not going
+
+
+194
+00:08:28,446 --> 00:08:30,576
+to get the revenue you're hoping
+for in this sort of situation
+
+
+195
+00:08:30,576 --> 00:08:32,515
+because the ad wasn't
+really onscreen.
+
+
+196
+00:08:34,746 --> 00:08:37,405
+OK. So there's some
+sort of core concepts.
+
+
+197
+00:08:37,405 --> 00:08:39,035
+Talk a little bit
+about what you can do
+
+
+198
+00:08:39,035 --> 00:08:40,746
+to improve the performance
+
+
+199
+00:08:40,746 --> 00:08:43,645
+of iAd once you've actually
+integrated it inside your app.
+
+
+200
+00:08:44,376 --> 00:08:46,836
+First of all, revenue
+starts with your app.
+
+
+201
+00:08:47,086 --> 00:08:49,296
+If you don't have a great app,
+
+
+202
+00:08:49,326 --> 00:08:51,746
+it doesn't matter how
+many banners you show,
+
+
+203
+00:08:51,746 --> 00:08:53,176
+it doesn't matter how
+many ads you show.
+
+
+204
+00:08:53,506 --> 00:08:54,406
+No one is using your app,
+
+
+205
+00:08:54,406 --> 00:08:55,806
+and you're not going
+to make any money.
+
+
+206
+00:08:55,806 --> 00:09:00,096
+So the number one thing you
+can do to drive revenue via ads
+
+
+207
+00:09:00,096 --> 00:09:02,736
+in your app is to start
+off with a great app.
+
+
+208
+00:09:02,736 --> 00:09:07,316
+And that's what the rest of WWDC
+is about, but a couple of sort
+
+
+209
+00:09:07,316 --> 00:09:08,556
+of small things we
+can mention here.
+
+
+210
+00:09:08,646 --> 00:09:11,136
+First of all, app
+engagement time.
+
+
+211
+00:09:12,256 --> 00:09:14,306
+If your - if you have an
+app that's - you're trying
+
+
+212
+00:09:14,306 --> 00:09:19,366
+to drive revenue by showing
+ads, you need to make sure
+
+
+213
+00:09:19,366 --> 00:09:20,936
+that your have sufficient
+engagement time
+
+
+214
+00:09:20,936 --> 00:09:23,096
+for your users to
+actually do this.
+
+
+215
+00:09:23,186 --> 00:09:26,256
+If it's a utility app that
+the user is going to pull up,
+
+
+216
+00:09:26,256 --> 00:09:28,606
+it's going to be onscreen
+for about three seconds,
+
+
+217
+00:09:28,606 --> 00:09:30,396
+and then they're going
+to close your app again,
+
+
+218
+00:09:31,116 --> 00:09:33,636
+that's not enough time to
+actually show ads to the users
+
+
+219
+00:09:33,636 --> 00:09:36,666
+and allow interaction and to get
+interaction from those users.
+
+
+220
+00:09:36,846 --> 00:09:39,996
+So you need an app that
+actually is going to be onscreen
+
+
+221
+00:09:40,766 --> 00:09:43,756
+and that people are actually
+going to engage with.
+
+
+222
+00:09:43,756 --> 00:09:46,436
+Again, once you've done
+that, you want to make sure
+
+
+223
+00:09:46,436 --> 00:09:49,486
+that the ad is placed
+carefully within that app.
+
+
+224
+00:09:49,486 --> 00:09:51,396
+Think about what
+the user is doing
+
+
+225
+00:09:51,396 --> 00:09:52,636
+on the various screens
+of your app.
+
+
+226
+00:09:52,636 --> 00:09:56,046
+Make sure the ad is placed
+appropriately within the app.
+
+
+227
+00:09:56,046 --> 00:09:58,486
+If you have a game,
+for instance,
+
+
+228
+00:09:58,606 --> 00:10:01,866
+and the user is tapping and
+swiping and slicing constantly,
+
+
+229
+00:10:02,496 --> 00:10:04,746
+maybe that's not a great place
+for a banner where they're going
+
+
+230
+00:10:04,746 --> 00:10:05,976
+to be accidentally tapping.
+
+
+231
+00:10:06,806 --> 00:10:08,956
+The ad will pop up over
+the top of everything.
+
+
+232
+00:10:08,996 --> 00:10:11,206
+You're going to be annoying
+your users, and you're going
+
+
+233
+00:10:11,206 --> 00:10:18,216
+to be harming your app more than
+you're helping it with the ads.
+
+
+234
+00:10:18,216 --> 00:10:21,556
+OK? Pulling back into app
+engagement time: user loyalty.
+
+
+235
+00:10:22,006 --> 00:10:24,246
+You need to come - you need
+your users to come back
+
+
+236
+00:10:24,246 --> 00:10:26,446
+to the app repeatedly.
+
+
+237
+00:10:27,136 --> 00:10:28,656
+That's how you get
+more screen time,
+
+
+238
+00:10:28,656 --> 00:10:30,766
+that's how you get more ad
+time for those particular -
+
+
+239
+00:10:31,056 --> 00:10:33,446
+for showing ads to those users.
+
+
+240
+00:10:34,046 --> 00:10:37,396
+In addition, user loyalty
+is what drives ad -
+
+
+241
+00:10:37,396 --> 00:10:40,046
+or app engagement and
+what drives app downloads.
+
+
+242
+00:10:40,336 --> 00:10:42,606
+The sort of network effects that
+you may have heard of before.
+
+
+243
+00:10:42,866 --> 00:10:45,406
+The more people are using
+your app, the more they want
+
+
+244
+00:10:45,406 --> 00:10:47,146
+to use it, the more they're
+going to tell their friends
+
+
+245
+00:10:47,146 --> 00:10:49,286
+about using it, the more
+downloads you're going to get.
+
+
+246
+00:10:49,766 --> 00:10:51,486
+Therefore, the more eyeballs
+you're going to get looking
+
+
+247
+00:10:51,486 --> 00:10:52,966
+at ads within your app.
+
+
+248
+00:10:54,566 --> 00:10:57,606
+OK? I mentioned that
+iAd is in 14 countries.
+
+
+249
+00:10:57,806 --> 00:11:00,846
+That means that your app should
+be in 14 countries if you want
+
+
+250
+00:11:01,016 --> 00:11:06,676
+to get as most - the most
+revenue from iAd as you can.
+
+
+251
+00:11:06,876 --> 00:11:09,336
+Market your app to the
+countries where iAd actually is.
+
+
+252
+00:11:09,836 --> 00:11:12,016
+If you're - if you've spent
+the time to integrate iAd
+
+
+253
+00:11:12,016 --> 00:11:14,556
+into your app, you want to make
+sure that your app is in all
+
+
+254
+00:11:14,556 --> 00:11:18,346
+of the places that iAd is so you
+have the largest reach possible
+
+
+255
+00:11:18,346 --> 00:11:21,136
+to potentially get the most
+users possible for your app.
+
+
+256
+00:11:21,916 --> 00:11:24,486
+A big part of that is
+localizing your app.
+
+
+257
+00:11:24,836 --> 00:11:27,326
+If the only thing you've done
+is write your app in English,
+
+
+258
+00:11:27,626 --> 00:11:29,916
+and you're trying to get it
+in all 14 of these countries,
+
+
+259
+00:11:29,916 --> 00:11:31,266
+you're going to have a
+hard time in countries
+
+
+260
+00:11:31,466 --> 00:11:33,056
+where English has
+a small presence.
+
+
+261
+00:11:33,326 --> 00:11:35,806
+Make sure you take the time to
+localize your app appropriately
+
+
+262
+00:11:36,046 --> 00:11:38,066
+to drive users in
+those countries.
+
+
+263
+00:11:41,506 --> 00:11:43,596
+And back into ad
+placement a little bit,
+
+
+264
+00:11:43,596 --> 00:11:46,126
+because this is a piece I'm
+going to keep coming back to.
+
+
+265
+00:11:46,126 --> 00:11:50,016
+Ad placement is extraordinarily
+important within your app.
+
+
+266
+00:11:51,246 --> 00:11:54,046
+You will recognize high-use
+areas inside your app,
+
+
+267
+00:11:54,046 --> 00:11:57,356
+and you want to make sure you
+put banners inside those areas.
+
+
+268
+00:11:57,466 --> 00:12:00,056
+Those are the places where
+users are going to be looking
+
+
+269
+00:12:00,056 --> 00:12:01,406
+at the screen for a
+long period of time.
+
+
+270
+00:12:01,696 --> 00:12:02,736
+They're going to
+have the opportunity
+
+
+271
+00:12:02,736 --> 00:12:03,726
+to see the app - the ad.
+
+
+272
+00:12:03,726 --> 00:12:04,896
+They're going to
+have the opportunity
+
+
+273
+00:12:04,896 --> 00:12:06,176
+to engage with the ad.
+
+
+274
+00:12:06,656 --> 00:12:09,326
+At the same time,
+as I mentioned,
+
+
+275
+00:12:09,326 --> 00:12:10,906
+avoid accidental taps.
+
+
+276
+00:12:10,906 --> 00:12:15,016
+Accidental taps are bad for your
+user, and they're bad for you.
+
+
+277
+00:12:15,536 --> 00:12:18,596
+They're going to annoy
+your user, and iAd doesn't
+
+
+278
+00:12:18,596 --> 00:12:19,856
+like accidental taps either.
+
+
+279
+00:12:19,856 --> 00:12:23,096
+So you want to make sure that
+you are using the framework
+
+
+280
+00:12:23,096 --> 00:12:24,966
+in a way that does
+not encourage them
+
+
+281
+00:12:24,966 --> 00:12:29,816
+because your app will ultimately
+end up being penalized for this.
+
+
+282
+00:12:29,926 --> 00:12:31,346
+User context is really
+important.
+
+
+283
+00:12:32,556 --> 00:12:35,506
+You want to take advantage of
+different types of ads based
+
+
+284
+00:12:35,506 --> 00:12:38,586
+on what the user is
+doing at any given time.
+
+
+285
+00:12:38,766 --> 00:12:41,526
+Say the user is on the
+menu screen of your game.
+
+
+286
+00:12:41,526 --> 00:12:42,936
+Maybe that's a great
+place to put a banner
+
+
+287
+00:12:42,936 --> 00:12:43,846
+at the bottom of the screen.
+
+
+288
+00:12:44,146 --> 00:12:45,226
+They're looking at the menu.
+
+
+289
+00:12:45,426 --> 00:12:47,526
+Maybe they notice the app
+- or the ad at the bottom.
+
+
+290
+00:12:47,526 --> 00:12:48,886
+Maybe they tap on it
+and engage with it.
+
+
+291
+00:12:49,246 --> 00:12:52,526
+At the same time, if they tap
+to go into the first level
+
+
+292
+00:12:52,526 --> 00:12:55,406
+of your game, and you
+immediately pop a full-fledged
+
+
+293
+00:12:55,406 --> 00:12:58,136
+ad and interrupt their
+experience once they've done
+
+
+294
+00:12:58,136 --> 00:12:59,496
+their first action
+inside the game,
+
+
+295
+00:12:59,896 --> 00:13:01,156
+that's just going to annoy them.
+
+
+296
+00:13:01,156 --> 00:13:02,376
+You're going to drive
+users away.
+
+
+297
+00:13:02,646 --> 00:13:04,716
+Users aren't going to want
+to engage with the ads.
+
+
+298
+00:13:05,076 --> 00:13:06,866
+That's what you want
+to try to avoid.
+
+
+299
+00:13:06,866 --> 00:13:10,106
+So be very careful about
+where you're putting the ads
+
+
+300
+00:13:10,106 --> 00:13:13,186
+within your app.
+
+
+301
+00:13:13,446 --> 00:13:16,766
+Once you've integrated iAd
+and you can start looking
+
+
+302
+00:13:16,766 --> 00:13:19,206
+on the website, you'll
+start getting reports
+
+
+303
+00:13:19,206 --> 00:13:20,006
+about your revenue.
+
+
+304
+00:13:20,006 --> 00:13:21,866
+One of the things
+you're going to notice,
+
+
+305
+00:13:22,076 --> 00:13:24,126
+everyone always notices
+this and brings this up,
+
+
+306
+00:13:24,126 --> 00:13:26,136
+is that revenue will fluctuate.
+
+
+307
+00:13:26,626 --> 00:13:28,056
+This is perfectly natural.
+
+
+308
+00:13:28,676 --> 00:13:30,256
+Consumer spending is seasonal.
+
+
+309
+00:13:31,316 --> 00:13:33,466
+Advertiser spending
+is also seasonal
+
+
+310
+00:13:33,466 --> 00:13:35,216
+because consumer
+spending is seasonal.
+
+
+311
+00:13:36,026 --> 00:13:37,986
+You need to be aware of
+this and watch for it.
+
+
+312
+00:13:38,166 --> 00:13:40,526
+You can also take
+advantage of this.
+
+
+313
+00:13:40,986 --> 00:13:42,806
+Market your app accordingly.
+
+
+314
+00:13:43,446 --> 00:13:47,106
+Start of summer, back to
+school, holiday season -
+
+
+315
+00:13:47,406 --> 00:13:49,356
+these are the times
+when users are going
+
+
+316
+00:13:49,356 --> 00:13:52,586
+out to get new devices, they're
+going out to get new apps,
+
+
+317
+00:13:52,956 --> 00:13:56,396
+and advertisers are going out to
+get eyeballs inside those apps.
+
+
+318
+00:13:56,636 --> 00:13:59,656
+So that's when you want to
+try and get - try and put all
+
+
+319
+00:13:59,656 --> 00:14:05,226
+of your money into
+pushing your app out there.
+
+
+320
+00:14:05,426 --> 00:14:07,226
+OK. We've talked about ads.
+
+
+321
+00:14:07,226 --> 00:14:08,426
+We've talked about impressions.
+
+
+322
+00:14:08,476 --> 00:14:09,776
+We've talked about tap-throughs.
+
+
+323
+00:14:09,896 --> 00:14:11,186
+We've talked about fill rate.
+
+
+324
+00:14:11,406 --> 00:14:13,526
+This is a virtuous cycle.
+
+
+325
+00:14:13,936 --> 00:14:15,326
+OK? You're going to
+get ads to begin with.
+
+
+326
+00:14:15,426 --> 00:14:17,606
+They're going to
+lead to impressions.
+
+
+327
+00:14:17,606 --> 00:14:19,376
+Impressions are going
+to lead to tap-throughs.
+
+
+328
+00:14:19,866 --> 00:14:21,706
+The more tap-throughs you get,
+the more ads you're going to get
+
+
+329
+00:14:21,706 --> 00:14:27,436
+from the ad server, the more
+impressions you're going to get.
+
+
+330
+00:14:27,436 --> 00:14:29,126
+OK. So that's performance.
+
+
+331
+00:14:29,416 --> 00:14:31,526
+Now that we've done that, now we
+can go into some actual details
+
+
+332
+00:14:31,526 --> 00:14:34,446
+about how you actually go about
+integrating all of this stuff,
+
+
+333
+00:14:34,556 --> 00:14:35,646
+sort of the meat of this talk.
+
+
+334
+00:14:37,516 --> 00:14:39,016
+There's four ad formats.
+
+
+335
+00:14:39,526 --> 00:14:41,386
+There's banner, there's
+interstitial,
+
+
+336
+00:14:41,386 --> 00:14:44,216
+there's medium rect, and
+there's a pre-roll video ad.
+
+
+337
+00:14:44,266 --> 00:14:46,366
+We'll talk about each
+of these four in turn.
+
+
+338
+00:14:46,676 --> 00:14:49,276
+As I mentioned earlier,
+you're going to want
+
+
+339
+00:14:49,276 --> 00:14:51,816
+to choose the correct
+ad for your app
+
+
+340
+00:14:51,816 --> 00:14:53,456
+in the various contexts
+within your app.
+
+
+341
+00:14:53,746 --> 00:14:55,696
+So all four of these types
+
+
+342
+00:14:55,696 --> 00:14:59,266
+of ads are important
+for many, many apps.
+
+
+343
+00:14:59,526 --> 00:15:02,706
+We'll start off with banner.
+
+
+344
+00:15:04,356 --> 00:15:05,676
+OK? So what is a banner?
+
+
+345
+00:15:06,076 --> 00:15:08,576
+It's a slim device width view.
+
+
+346
+00:15:08,976 --> 00:15:11,696
+It's placed at the
+bottom of your content.
+
+
+347
+00:15:12,156 --> 00:15:15,196
+It continuously loads ads.
+
+
+348
+00:15:15,196 --> 00:15:19,716
+You may have used other iAd
+SDKs or ad SDKs where you've got
+
+
+349
+00:15:19,716 --> 00:15:20,676
+to make a specific request.
+
+
+350
+00:15:21,046 --> 00:15:21,666
+This isn't that.
+
+
+351
+00:15:21,666 --> 00:15:22,286
+You create a view.
+
+
+352
+00:15:22,286 --> 00:15:24,036
+It's going to show up at
+the bottom of the page
+
+
+353
+00:15:24,186 --> 00:15:26,636
+and will continuously
+load ads over time
+
+
+354
+00:15:26,636 --> 00:15:28,326
+as new ads are downloaded
+from the ad server.
+
+
+355
+00:15:28,496 --> 00:15:31,806
+There's nothing you have
+to do to manage that.
+
+
+356
+00:15:31,956 --> 00:15:34,246
+Once the user taps on it, it's
+going to go into some sort
+
+
+357
+00:15:34,246 --> 00:15:38,276
+of full-screen ad
+experience - and supported
+
+
+358
+00:15:38,276 --> 00:15:39,596
+on both iPhone and iPad.
+
+
+359
+00:15:39,596 --> 00:15:41,686
+It has been since
+the beginning of iAd.
+
+
+360
+00:15:43,536 --> 00:15:46,626
+Integrating banners
+in your app is
+
+
+361
+00:15:46,626 --> 00:15:48,236
+about the simplest
+thing that you could do.
+
+
+362
+00:15:48,936 --> 00:15:49,996
+There's three steps to this.
+
+
+363
+00:15:49,996 --> 00:15:51,536
+You're going to link
+the iAd framework.
+
+
+364
+00:15:52,826 --> 00:15:56,826
+You're going to import
+the iAd header,
+
+
+365
+00:15:56,826 --> 00:15:58,116
+which is the first
+line that popped there.
+
+
+366
+00:15:58,116 --> 00:16:00,056
+And you're going to configure
+your view controller,
+
+
+367
+00:16:00,056 --> 00:16:02,626
+which involves setting the
+.canDisplayBannerAds property
+
+
+368
+00:16:02,626 --> 00:16:04,326
+to yes on your view controller.
+
+
+369
+00:16:05,316 --> 00:16:05,866
+That's it.
+
+
+370
+00:16:06,506 --> 00:16:09,186
+If you've done that, you've
+got a banner inside your app.
+
+
+371
+00:16:09,186 --> 00:16:12,046
+OK? So what does that look like?
+
+
+372
+00:16:12,476 --> 00:16:13,526
+OK. Loading an ad.
+
+
+373
+00:16:14,476 --> 00:16:15,316
+You've got your view.
+
+
+374
+00:16:15,686 --> 00:16:18,336
+The moment you set the
+.canDisplayBannerAds property
+
+
+375
+00:16:18,336 --> 00:16:20,466
+on it, we're going to do
+something under the hood
+
+
+376
+00:16:20,466 --> 00:16:21,526
+to your view controller.
+
+
+377
+00:16:21,956 --> 00:16:25,186
+Your view is going to turn
+into original content view.
+
+
+378
+00:16:25,186 --> 00:16:27,526
+We're going to move your view
+over to original content view,
+
+
+379
+00:16:27,666 --> 00:16:29,746
+and we're going to take a
+review on your view controller.
+
+
+380
+00:16:30,006 --> 00:16:31,616
+So it's very important
+for you to remember
+
+
+381
+00:16:31,616 --> 00:16:34,756
+if you're subsequently
+attempting to access your view
+
+
+382
+00:16:34,756 --> 00:16:35,786
+on that view controller.
+
+
+383
+00:16:35,786 --> 00:16:39,366
+We're then going to make a
+request up the ad server.
+
+
+384
+00:16:39,366 --> 00:16:40,816
+It's going to come back
+
+
+385
+00:16:40,816 --> 00:16:42,106
+and hopefully a banner
+is going to load.
+
+
+386
+00:16:42,706 --> 00:16:47,116
+And at that time, we're going
+to move the banner onscreen
+
+
+387
+00:16:47,356 --> 00:16:49,216
+and we're going to resize
+your original content view
+
+
+388
+00:16:49,216 --> 00:16:51,986
+appropriately and with
+the appropriate animation
+
+
+389
+00:16:51,986 --> 00:16:52,956
+to move the thing onscreen
+
+
+390
+00:16:52,956 --> 00:16:57,866
+so the user can actually
+look at it.
+
+
+391
+00:16:58,016 --> 00:16:59,376
+Once it's been onscreen
+for a while,
+
+
+392
+00:16:59,376 --> 00:17:01,116
+hopefully the user is going
+to go ahead and tap on it.
+
+
+393
+00:17:01,646 --> 00:17:02,356
+And at that point,
+
+
+394
+00:17:02,706 --> 00:17:04,576
+the full-screen ad
+experience is going to pop up.
+
+
+395
+00:17:04,576 --> 00:17:08,616
+When that happens, there are a
+couple of things you need to do.
+
+
+396
+00:17:08,806 --> 00:17:11,976
+First of which is to pause
+activity in -viewWillDisappear:.
+
+
+397
+00:17:11,976 --> 00:17:15,036
+Your app is probably doing
+things in the background while
+
+
+398
+00:17:15,036 --> 00:17:16,246
+that banner is onscreen.
+
+
+399
+00:17:16,705 --> 00:17:18,796
+When the user wants
+to engage with the ad,
+
+
+400
+00:17:18,796 --> 00:17:20,376
+you want to get out of the way.
+
+
+401
+00:17:20,945 --> 00:17:22,116
+If you're playing music.
+
+
+402
+00:17:22,296 --> 00:17:24,165
+If you're running
+a game simulation.
+
+
+403
+00:17:24,165 --> 00:17:26,445
+If you're doing anything else
+that's potentially intensive
+
+
+404
+00:17:26,665 --> 00:17:28,956
+or distracting, you're
+going to pause that activity
+
+
+405
+00:17:28,956 --> 00:17:31,266
+in -viewWillDisappear:
+so that it gets
+
+
+406
+00:17:31,266 --> 00:17:34,106
+out of the way of the ad.
+
+
+407
+00:17:34,366 --> 00:17:36,756
+Eventually, the user will be
+done interacting with the ad.
+
+
+408
+00:17:36,756 --> 00:17:37,536
+They'll dismiss it.
+
+
+409
+00:17:37,676 --> 00:17:38,826
+You'll get a -viewDidAppear:.
+
+
+410
+00:17:39,366 --> 00:17:40,706
+Resume all that activity.
+
+
+411
+00:17:40,966 --> 00:17:43,286
+Once the ad's gone, you want
+to start the music up again.
+
+
+412
+00:17:43,286 --> 00:17:48,476
+You want to start your
+game simulation, etcetera.
+
+
+413
+00:17:48,476 --> 00:17:51,496
+Eventually, say the user goes
+out of network connectivity
+
+
+414
+00:17:51,496 --> 00:17:54,266
+or something, you may not
+have an ad available anymore.
+
+
+415
+00:17:55,046 --> 00:17:58,296
+When that happens, the banner is
+going to be moved off of screen.
+
+
+416
+00:17:59,106 --> 00:18:03,706
+The original content view will
+resized and that - and you can,
+
+
+417
+00:18:03,736 --> 00:18:05,756
+you know, wait until it
+hopefully reloads again.
+
+
+418
+00:18:06,936 --> 00:18:09,416
+In addition to waiting for
+the network connectivity
+
+
+419
+00:18:09,416 --> 00:18:11,826
+to just move the banner
+back off of screen,
+
+
+420
+00:18:11,826 --> 00:18:13,976
+you can control the banner
+visibility whenever you
+
+
+421
+00:18:13,976 --> 00:18:14,446
+would like.
+
+
+422
+00:18:14,446 --> 00:18:17,286
+If something happens within
+your app that you would
+
+
+423
+00:18:17,286 --> 00:18:19,226
+like to move the banner
+offscreen temporarily,
+
+
+424
+00:18:19,226 --> 00:18:20,316
+you can go ahead and so.
+
+
+425
+00:18:20,846 --> 00:18:23,246
+Just go ahead and set
+.canDisplayBannerAds to no.
+
+
+426
+00:18:23,766 --> 00:18:26,366
+Just don't forget to
+set it back to yes
+
+
+427
+00:18:26,446 --> 00:18:27,626
+when you want to re-enable it.
+
+
+428
+00:18:27,986 --> 00:18:30,676
+Make sure you put the ad back
+onscreen whenever you actually
+
+
+429
+00:18:30,766 --> 00:18:33,076
+need to.
+
+
+430
+00:18:33,296 --> 00:18:34,606
+OK. So that's banners.
+
+
+431
+00:18:35,036 --> 00:18:37,326
+Let's talk about interstitials
+next, which is the sort
+
+
+432
+00:18:37,326 --> 00:18:39,836
+of second major type of
+banner - type of ad here.
+
+
+433
+00:18:40,746 --> 00:18:41,956
+Very different than banners.
+
+
+434
+00:18:42,366 --> 00:18:44,436
+Rather than something
+being permanently onscreen,
+
+
+435
+00:18:44,886 --> 00:18:46,866
+they're immediate
+full-screen display.
+
+
+436
+00:18:47,536 --> 00:18:49,096
+They immediately take
+over the entire screen
+
+
+437
+00:18:49,096 --> 00:18:50,036
+when you want to present them.
+
+
+438
+00:18:50,036 --> 00:18:52,646
+The user is immediately
+able to interact with them.
+
+
+439
+00:18:53,396 --> 00:18:56,086
+OK? They've been on
+iPad since iOS 4.3,
+
+
+440
+00:18:56,146 --> 00:19:00,556
+and they were introduced on
+the phone in iOS 7 last year.
+
+
+441
+00:19:02,576 --> 00:19:05,836
+There's two major ways to handle
+interstitial presentation.
+
+
+442
+00:19:05,836 --> 00:19:07,566
+The first is automatic
+presentation.
+
+
+443
+00:19:08,106 --> 00:19:10,416
+Just like banners, it's pretty
+simple to configure here.
+
+
+444
+00:19:10,766 --> 00:19:12,766
+Rather than setting
+.canDisplayBannerAds,
+
+
+445
+00:19:12,766 --> 00:19:15,456
+you're going to set
+.interstitialPresentationPolicy
+
+
+446
+00:19:15,736 --> 00:19:18,556
+to ADInterstitial
+PresentationPolicyAutomatic.
+
+
+447
+00:19:19,066 --> 00:19:21,286
+What that does is tell
+the iAd framework, hey,
+
+
+448
+00:19:21,526 --> 00:19:24,586
+this is a great view
+controller to show ads on,
+
+
+449
+00:19:25,166 --> 00:19:28,026
+and whenever you, as the iAd
+framework, think is a great time
+
+
+450
+00:19:28,026 --> 00:19:29,916
+to show ads, go ahead and do so.
+
+
+451
+00:19:30,356 --> 00:19:33,236
+At the moment, that means
+that we're going to show ads
+
+
+452
+00:19:33,596 --> 00:19:37,296
+when this view controller first
+moves onscreen, when it appears.
+
+
+453
+00:19:37,576 --> 00:19:38,786
+I'm going to take
+that as an opportunity
+
+
+454
+00:19:38,786 --> 00:19:41,426
+to show an interstitial
+ad if one is available.
+
+
+455
+00:19:42,236 --> 00:19:44,336
+So to do that, just take
+your view controller,
+
+
+456
+00:19:44,646 --> 00:19:47,206
+push it onscreen, make it - push
+it into your navigation stack,
+
+
+457
+00:19:47,206 --> 00:19:48,696
+or however you want
+to put it onscreen.
+
+
+458
+00:19:49,836 --> 00:19:52,776
+That moves in, and we're going
+to pop an ad up over top of it.
+
+
+459
+00:19:53,086 --> 00:19:54,496
+When the user is
+done interacting
+
+
+460
+00:19:54,496 --> 00:19:57,776
+with it, it'll come back off.
+
+
+461
+00:19:58,136 --> 00:19:59,716
+In addition to automatic
+presentation,
+
+
+462
+00:19:59,716 --> 00:20:01,236
+there's manual presentation.
+
+
+463
+00:20:01,236 --> 00:20:02,936
+Just set the presentation policy
+
+
+464
+00:20:02,936 --> 00:20:05,286
+to ADInterstitial
+PresentationPolicyManual,
+
+
+465
+00:20:05,786 --> 00:20:08,436
+and instead of us automatically
+presenting it whenever the view
+
+
+466
+00:20:08,436 --> 00:20:10,396
+moves onscreen, you can call -
+
+
+467
+00:20:10,396 --> 00:20:12,976
+request interstitial ad
+presentation to attempt
+
+
+468
+00:20:12,976 --> 00:20:15,096
+to display it whenever you
+think it's an appropriate time
+
+
+469
+00:20:15,096 --> 00:20:16,976
+for an ad to pop up over
+top of your content.
+
+
+470
+00:20:23,056 --> 00:20:25,446
+Next, preparing for
+presentation.
+
+
+471
+00:20:25,446 --> 00:20:28,966
+Because interstitials don't
+have something onscreen,
+
+
+472
+00:20:28,966 --> 00:20:31,046
+something sitting
+there requesting ads,
+
+
+473
+00:20:31,046 --> 00:20:32,786
+attempting to display
+things at all times,
+
+
+474
+00:20:33,266 --> 00:20:35,506
+you want to notify the iAd
+framework that you would
+
+
+475
+00:20:35,506 --> 00:20:38,836
+like to present interstitials
+in the future so we can go ahead
+
+
+476
+00:20:38,836 --> 00:20:41,726
+and make an ad request and
+have an interstitial waiting
+
+
+477
+00:20:41,726 --> 00:20:43,846
+for you when that time comes.
+
+
+478
+00:20:44,296 --> 00:20:46,496
+To do that, you're going to want
+
+
+479
+00:20:46,496 --> 00:20:51,776
+to call UIViewController
+prepareInterstitialAds inside
+
+
+480
+00:20:52,336 --> 00:20:54,236
+something early in
+your app's life cycle.
+
+
+481
+00:20:54,236 --> 00:20:56,666
+ApplicationDidFinish
+LaunchingWithOptions is a good
+
+
+482
+00:20:56,666 --> 00:20:57,606
+opportunity here.
+
+
+483
+00:20:57,606 --> 00:20:59,456
+If you're doing a lot of
+other work at that point,
+
+
+484
+00:20:59,456 --> 00:21:00,506
+maybe defer it a little bit.
+
+
+485
+00:21:00,696 --> 00:21:03,496
+But you want to call this
+prior to your attempt
+
+
+486
+00:21:03,496 --> 00:21:05,926
+to present an interstitial
+for the first time.
+
+
+487
+00:21:06,336 --> 00:21:08,966
+That gives the iAd
+framework enough time to go
+
+
+488
+00:21:08,966 --> 00:21:12,056
+out to the network, request an
+ad, and have everything ready
+
+
+489
+00:21:12,056 --> 00:21:14,846
+to present by the time you
+want one to be presented.
+
+
+490
+00:21:14,846 --> 00:21:17,786
+That will prevent you from
+missing ad opportunities.
+
+
+491
+00:21:18,806 --> 00:21:21,456
+OK. So that's banners
+and interstitials.
+
+
+492
+00:21:21,586 --> 00:21:24,346
+We're going to go from
+here into a quick demo just
+
+
+493
+00:21:24,346 --> 00:21:26,506
+of the APIs I just went over.
+
+
+494
+00:21:27,386 --> 00:21:33,076
+So we'll switch over to
+my demo machine here.
+
+
+495
+00:21:33,596 --> 00:21:36,606
+What I'm going to start off
+with here, I'll just draw
+
+
+496
+00:21:36,606 --> 00:21:40,976
+up my little app, is a very
+simple master detail app here.
+
+
+497
+00:21:40,976 --> 00:21:43,396
+Just shows some news articles.
+
+
+498
+00:21:43,396 --> 00:21:45,776
+I can click on one of these
+news articles and bring it up.
+
+
+499
+00:21:45,776 --> 00:21:49,646
+And what we'd like to do is
+take this app and add some ads
+
+
+500
+00:21:49,646 --> 00:21:51,106
+to it, monetize it with iAd.
+
+
+501
+00:21:51,706 --> 00:21:54,126
+So if I can quit the
+simulator again here.
+
+
+502
+00:21:54,766 --> 00:21:56,026
+What do we want to
+do here first?
+
+
+503
+00:21:56,346 --> 00:22:00,316
+The first thing we're going to
+do is add a banner to the bottom
+
+
+504
+00:22:00,316 --> 00:22:03,136
+of the MasterViewController,
+the bottom of that article list.
+
+
+505
+00:22:03,266 --> 00:22:05,346
+So inside our
+MasterViewController here,
+
+
+506
+00:22:05,906 --> 00:22:09,046
+we're going to import
+the iAd header.
+
+
+507
+00:22:09,886 --> 00:22:10,866
+Do that like this.
+
+
+508
+00:22:10,866 --> 00:22:14,346
+And then, inside, awakeFromNib,
+all we're going to do is call -
+
+
+509
+00:22:14,346 --> 00:22:18,026
+set self.canDisplayBannerAds
+to yes,
+
+
+510
+00:22:19,106 --> 00:22:20,516
+and that's really
+all we have to do.
+
+
+511
+00:22:21,036 --> 00:22:22,436
+Oh, one more thing.
+
+
+512
+00:22:23,576 --> 00:22:26,806
+We need to go in here,
+development phases,
+
+
+513
+00:22:26,806 --> 00:22:29,426
+and ensure that we link
+against the iAd framework.
+
+
+514
+00:22:33,056 --> 00:22:36,036
+Make sure the APIs are actually
+available to us, so we go back
+
+
+515
+00:22:36,116 --> 00:22:38,096
+to MasterViewController here.
+
+
+516
+00:22:38,576 --> 00:22:39,406
+Go ahead and run.
+
+
+517
+00:22:45,066 --> 00:22:48,916
+And we'll see that with two
+lines of code and one link,
+
+
+518
+00:22:49,076 --> 00:22:50,766
+we have banners at the
+bottom of our screen
+
+
+519
+00:22:51,176 --> 00:22:54,496
+that are automatically in
+line with our view controller.
+
+
+520
+00:22:55,516 --> 00:22:58,586
+Now, we only set that on
+the MasterViewController.
+
+
+521
+00:22:58,586 --> 00:23:01,216
+That means that when we go into
+an article, there's no ad there,
+
+
+522
+00:23:01,216 --> 00:23:02,486
+which is a little
+bit unfortunate.
+
+
+523
+00:23:03,196 --> 00:23:05,346
+So the next thing we want
+to do is take advantage
+
+
+524
+00:23:05,346 --> 00:23:08,316
+of the other type of ad that
+we talked about, interstitials,
+
+
+525
+00:23:08,686 --> 00:23:11,366
+to present an ad
+to the user prior
+
+
+526
+00:23:11,366 --> 00:23:13,346
+to them actually being
+able to read the article.
+
+
+527
+00:23:13,386 --> 00:23:16,526
+So once they've tapped
+on the article title,
+
+
+528
+00:23:16,846 --> 00:23:18,716
+we want to add the
+popup over the top
+
+
+529
+00:23:18,716 --> 00:23:20,706
+of the screen before they
+can actually see the article.
+
+
+530
+00:23:21,036 --> 00:23:24,236
+So let's go ahead
+and quit this again.
+
+
+531
+00:23:25,176 --> 00:23:29,826
+And this time, we're
+going to, down here,
+
+
+532
+00:23:30,306 --> 00:23:32,816
+inside our prepareForSegue
+function, we're just going
+
+
+533
+00:23:32,816 --> 00:23:34,986
+to set up the
+DetailViewController
+
+
+534
+00:23:34,986 --> 00:23:36,836
+that shows the actual article.
+
+
+535
+00:23:37,596 --> 00:23:41,626
+We're going to grab this
+destination.interstitial
+
+
+536
+00:23:41,626 --> 00:23:43,966
+PresentationPolicy
+ADinterstitial
+
+
+537
+00:23:43,966 --> 00:23:46,596
+PresentationPolicyAutomatic
+so that we can say
+
+
+538
+00:23:46,596 --> 00:23:48,046
+that on this
+DetailViewController,
+
+
+539
+00:23:48,046 --> 00:23:49,266
+the thing that's
+showing the article,
+
+
+540
+00:23:49,656 --> 00:23:53,056
+we want the iAd framework
+to manage presentation
+
+
+541
+00:23:53,056 --> 00:23:56,066
+of interstitial ads over
+top of this view controller.
+
+
+542
+00:23:57,236 --> 00:24:00,596
+Once we've done that, that's
+going to get interstitials shown
+
+
+543
+00:24:00,596 --> 00:24:01,476
+over that view controller.
+
+
+544
+00:24:01,476 --> 00:24:04,576
+However, we want to make sure
+that the iAd framework knows
+
+
+545
+00:24:04,576 --> 00:24:05,236
+to go out and look
+
+
+546
+00:24:05,236 --> 00:24:07,146
+for interstitials
+before the user taps
+
+
+547
+00:24:07,146 --> 00:24:08,616
+on an article for
+the first time.
+
+
+548
+00:24:08,966 --> 00:24:11,266
+So to do that, we're
+going to go over here.
+
+
+549
+00:24:11,266 --> 00:24:13,056
+We're going to get to
+our AppDelegate here,
+
+
+550
+00:24:13,056 --> 00:24:16,416
+and we're just going to
+grab UIViewController
+
+
+551
+00:24:16,936 --> 00:24:18,556
+prepareInterstitialAds.
+
+
+552
+00:24:18,756 --> 00:24:22,196
+Make sure we import
+the header as well.
+
+
+553
+00:24:22,766 --> 00:24:25,456
+That tells iAd, hey, go
+prepare interstitial ads
+
+
+554
+00:24:25,456 --> 00:24:26,936
+so they're ready
+for our user here.
+
+
+555
+00:24:26,936 --> 00:24:28,406
+So I'll go ahead and save this.
+
+
+556
+00:24:29,626 --> 00:24:31,936
+Run our demo again.
+
+
+557
+00:24:33,566 --> 00:24:36,016
+Once again, we've got
+the article view here.
+
+
+558
+00:24:36,166 --> 00:24:38,186
+We've got a banner loaded
+at the bottom that happened.
+
+
+559
+00:24:39,026 --> 00:24:43,566
+Now, once the user taps on this,
+the interstitial ad is going
+
+
+560
+00:24:43,566 --> 00:24:45,146
+to pop up over top
+of the article.
+
+
+561
+00:24:45,306 --> 00:24:47,196
+Once the appropriate
+time is expired,
+
+
+562
+00:24:47,196 --> 00:24:49,716
+the user is done interacting
+with this, they can go ahead
+
+
+563
+00:24:49,716 --> 00:24:52,516
+and close that, and the article
+is behind, and they can go ahead
+
+
+564
+00:24:52,516 --> 00:24:54,206
+and start reading their article.
+
+
+565
+00:24:54,276 --> 00:24:58,786
+So that's basically how easy
+it is to integrate banners
+
+
+566
+00:24:58,786 --> 00:25:01,766
+and interstitials to your app.
+
+
+567
+00:25:02,916 --> 00:25:04,116
+So we'll go back to the slides.
+
+
+568
+00:25:04,116 --> 00:25:08,906
+OK. So that's banners
+and interstitials,
+
+
+569
+00:25:08,906 --> 00:25:12,716
+which are the first two
+major types of ads for iAd.
+
+
+570
+00:25:12,716 --> 00:25:15,576
+They were also the first two
+types of ads that iAd had.
+
+
+571
+00:25:15,576 --> 00:25:17,276
+Those were the ones that were
+sort of available pretty much
+
+
+572
+00:25:17,276 --> 00:25:18,396
+from the beginning of iAd.
+
+
+573
+00:25:18,396 --> 00:25:20,646
+There are a couple of
+newer types that we've got.
+
+
+574
+00:25:20,646 --> 00:25:23,706
+The first new type, it's
+- talking about banners
+
+
+575
+00:25:24,126 --> 00:25:25,926
+and interstitial a
+little bit more, sorry.
+
+
+576
+00:25:27,876 --> 00:25:31,916
+First of all, use
+.canDisplayBannerAds
+
+
+577
+00:25:32,026 --> 00:25:34,006
+and
+.interstitialPresentationPolicy
+
+
+578
+00:25:34,086 --> 00:25:36,166
+on your controllers
+as much as possible.
+
+
+579
+00:25:36,376 --> 00:25:39,096
+We talked about ad engagement.
+
+
+580
+00:25:39,096 --> 00:25:42,326
+We talked about the user having
+the opportunity to see the ads,
+
+
+581
+00:25:43,316 --> 00:25:45,556
+leaving them onscreen, the
+user having the opportunity
+
+
+582
+00:25:45,556 --> 00:25:46,576
+to engage with the ads.
+
+
+583
+00:25:47,016 --> 00:25:51,846
+Setting these properties
+is a big part of that.
+
+
+584
+00:25:51,946 --> 00:25:54,256
+In addition, remember to
+use .originalContentView
+
+
+585
+00:25:54,256 --> 00:25:56,306
+when you actually use
+.canDisplayBannerAds.
+
+
+586
+00:25:56,646 --> 00:25:59,706
+It's very important that once
+you set .canDisplayBannerAds,
+
+
+587
+00:25:59,706 --> 00:26:02,376
+you realize that you have
+given over control of view
+
+
+588
+00:26:02,376 --> 00:26:03,946
+to the iAd framework,
+
+
+589
+00:26:04,426 --> 00:26:07,676
+and .originalContentView
+is yours to continue using.
+
+
+590
+00:26:12,076 --> 00:26:14,206
+Pick the right transitions
+for interstitials.
+
+
+591
+00:26:14,556 --> 00:26:17,426
+Think about what your user
+is doing at any given time
+
+
+592
+00:26:17,426 --> 00:26:18,176
+when they're transitioning
+
+
+593
+00:26:18,176 --> 00:26:19,596
+from view controller
+to view controller.
+
+
+594
+00:26:19,986 --> 00:26:20,546
+And make sure
+
+
+595
+00:26:20,546 --> 00:26:23,506
+that .interstitialPresentation
+PolicyAutomatic is set
+
+
+596
+00:26:23,736 --> 00:26:26,376
+on the appropriate view
+controllers for an ad to show
+
+
+597
+00:26:26,376 --> 00:26:28,086
+up when they first pop up.
+
+
+598
+00:26:28,136 --> 00:26:31,436
+For instance, in the news
+demo that we just showed you,
+
+
+599
+00:26:32,656 --> 00:26:36,196
+having that show up on the
+main article list is probably
+
+
+600
+00:26:36,196 --> 00:26:37,106
+not appropriate.
+
+
+601
+00:26:37,106 --> 00:26:39,046
+That would just be distracting
+and annoying to users.
+
+
+602
+00:26:39,306 --> 00:26:42,536
+Having it on the article view
+controller, on the other hand,
+
+
+603
+00:26:43,056 --> 00:26:45,776
+just gives a gating
+function to allowing the user
+
+
+604
+00:26:45,776 --> 00:26:47,766
+to actually use your content.
+
+
+605
+00:26:47,766 --> 00:26:49,946
+That's sort of the appropriate
+use for the interstitial.
+
+
+606
+00:26:52,956 --> 00:26:55,046
+Be consistent throughout
+your navigation stack
+
+
+607
+00:26:55,046 --> 00:26:55,896
+in your use of these.
+
+
+608
+00:26:55,896 --> 00:26:59,816
+This is particularly important
+for navigation controllers,
+
+
+609
+00:27:00,106 --> 00:27:02,106
+in particular deep
+navigation controllers.
+
+
+610
+00:27:02,796 --> 00:27:05,576
+What I mean by this
+is, in particular
+
+
+611
+00:27:05,576 --> 00:27:07,126
+with .canDisplayBannerAds,
+
+
+612
+00:27:07,696 --> 00:27:10,306
+if you have a deep navigation
+hierarchy, you want to attempt
+
+
+613
+00:27:10,306 --> 00:27:13,256
+to set .canDisplayBannerAds on
+as many of the view controllers
+
+
+614
+00:27:13,256 --> 00:27:16,016
+that you're going to be pushing
+into that hierarchy as possible
+
+
+615
+00:27:16,496 --> 00:27:18,806
+to ensure that the
+ad remains onscreen
+
+
+616
+00:27:19,096 --> 00:27:21,566
+as the user navigates
+throughout that hierarchy.
+
+
+617
+00:27:22,256 --> 00:27:24,426
+Otherwise, you have the
+possibility of the ad popping
+
+
+618
+00:27:24,426 --> 00:27:25,956
+up onscreen for a second.
+
+
+619
+00:27:25,956 --> 00:27:28,776
+The user taps on something;
+the ad goes back away.
+
+
+620
+00:27:29,126 --> 00:27:30,666
+They tapped to something else.
+
+
+621
+00:27:30,666 --> 00:27:31,656
+Maybe the ad comes back.
+
+
+622
+00:27:32,036 --> 00:27:33,536
+That's distracting to your user.
+
+
+623
+00:27:33,806 --> 00:27:35,706
+At the same time, it
+doesn't allow the ad
+
+
+624
+00:27:35,706 --> 00:27:38,916
+to stay onscreen long
+enough for the user
+
+
+625
+00:27:38,916 --> 00:27:43,506
+to actually engage with that ad.
+
+
+626
+00:27:43,666 --> 00:27:46,586
+OK. So now, we're done talking
+with banners and interstitials.
+
+
+627
+00:27:46,796 --> 00:27:49,576
+Let's talk about medium rect,
+which is then next major type
+
+
+628
+00:27:49,576 --> 00:27:52,106
+of ad that iAd provides to you.
+
+
+629
+00:27:52,106 --> 00:27:54,346
+What is a medium rect?
+
+
+630
+00:27:55,556 --> 00:27:58,056
+It is an International
+Advertising Bureau medium
+
+
+631
+00:27:58,056 --> 00:27:59,896
+rectangle; it's a
+standard ad type.
+
+
+632
+00:27:59,896 --> 00:28:02,146
+It's positioned inline
+with your content.
+
+
+633
+00:28:02,956 --> 00:28:06,166
+It's a standardized size;
+this is the same size
+
+
+634
+00:28:06,166 --> 00:28:08,026
+that you may have seen when
+you're browsing the web.
+
+
+635
+00:28:08,026 --> 00:28:08,976
+You see this sort of square
+
+
+636
+00:28:08,976 --> 00:28:12,416
+or rectangular ads positioned
+inline with the web content.
+
+
+637
+00:28:12,416 --> 00:28:14,136
+This is the same type
+of ad that we've got.
+
+
+638
+00:28:14,196 --> 00:28:18,216
+Just like banners, they
+automatically cycle over time.
+
+
+639
+00:28:18,856 --> 00:28:21,616
+So you put them onscreen,
+new ads will be loaded
+
+
+640
+00:28:21,616 --> 00:28:23,456
+out of the iAd framework
+- feels appropriate -
+
+
+641
+00:28:23,456 --> 00:28:25,306
+and will automatically
+manage making a request
+
+
+642
+00:28:25,306 --> 00:28:26,526
+and putting ads in here for you.
+
+
+643
+00:28:26,526 --> 00:28:31,876
+And just like banners, there's
+a full-screen ad experience once
+
+
+644
+00:28:31,876 --> 00:28:33,846
+the user taps on and
+engages with this banner.
+
+
+645
+00:28:35,656 --> 00:28:41,466
+They were introduced in iOS 6
+on iPads and happy to announce
+
+
+646
+00:28:41,546 --> 00:28:44,226
+that in iOS 8, we're adding
+this to phone as well.
+
+
+647
+00:28:47,006 --> 00:28:51,066
+OK. So what's the medium
+rectangle life cycle look like?
+
+
+648
+00:28:51,346 --> 00:28:56,466
+Because these banners are not
+managed by the iAd framework,
+
+
+649
+00:28:56,466 --> 00:29:00,536
+you have to do a little bit
+more work to put these onscreen.
+
+
+650
+00:29:00,996 --> 00:29:04,316
+OK? You need to create the
+banner explicitly rather
+
+
+651
+00:29:04,316 --> 00:29:06,176
+than just setting a property
+on your view controller.
+
+
+652
+00:29:06,286 --> 00:29:09,036
+You need to configure a
+delegate, which is going
+
+
+653
+00:29:09,036 --> 00:29:10,826
+to allow us to tell you
+when certain things happen,
+
+
+654
+00:29:10,826 --> 00:29:12,766
+and we're going to get into the
+code for this in the next slide.
+
+
+655
+00:29:13,686 --> 00:29:16,836
+Implement the delegate protocol
+so you can actually take notice
+
+
+656
+00:29:16,836 --> 00:29:18,816
+of these events and move
+the thing on and offscreen
+
+
+657
+00:29:18,816 --> 00:29:20,896
+as the banner loads and unloads.
+
+
+658
+00:29:21,066 --> 00:29:24,176
+You're going to show the banner
+
+
+659
+00:29:24,236 --> 00:29:26,016
+when you receive the
+-bannerViewDidLoadAd:
+
+
+660
+00:29:26,016 --> 00:29:27,836
+property - or delegate callback.
+
+
+661
+00:29:29,136 --> 00:29:30,556
+You're going to pause activity
+
+
+662
+00:29:30,556 --> 00:29:33,096
+in -bannerViewActionShould
+Begin:willLeaveApplication:.
+
+
+663
+00:29:33,096 --> 00:29:36,746
+This is analogous to getting
+the view will disappear message
+
+
+664
+00:29:36,856 --> 00:29:39,506
+from interstitials or banners.
+
+
+665
+00:29:39,956 --> 00:29:43,206
+And you want to resume activity
+in -bannerViewActionDidFinish:,
+
+
+666
+00:29:43,266 --> 00:29:44,426
+analogous to view will appear.
+
+
+667
+00:29:44,426 --> 00:29:47,946
+You're going to hide the
+banner in -bannerView:
+
+
+668
+00:29:47,946 --> 00:29:49,356
+didFailTo ReceiveAdWithError:.
+
+
+669
+00:29:49,356 --> 00:29:50,136
+This is important.
+
+
+670
+00:29:50,166 --> 00:29:53,446
+This indicates that your banner
+no longer has an ad loaded
+
+
+671
+00:29:53,446 --> 00:29:55,586
+and it should no longer be
+taking up space onscreen.
+
+
+672
+00:29:55,586 --> 00:29:58,276
+So what does this look like?
+
+
+673
+00:29:59,066 --> 00:30:00,606
+First of all, creating a banner.
+
+
+674
+00:30:01,456 --> 00:30:03,276
+You're going to import
+the iAd header at the top.
+
+
+675
+00:30:03,406 --> 00:30:06,506
+You're going to implement
+ADBannerViewDelegate
+
+
+676
+00:30:06,506 --> 00:30:08,016
+on whatever object you would
+
+
+677
+00:30:08,016 --> 00:30:10,416
+like to actually be managing
+this particular banner.
+
+
+678
+00:30:11,756 --> 00:30:13,336
+Then you're going to
+create the banner view.
+
+
+679
+00:30:13,336 --> 00:30:15,456
+You can do that with
+initWithAdType:
+
+
+680
+00:30:15,456 --> 00:30:18,826
+ADAdTypeMediumRectangle,
+and then you're going
+
+
+681
+00:30:18,826 --> 00:30:19,576
+to set the delegate
+
+
+682
+00:30:19,636 --> 00:30:20,936
+to the object that's
+implementing the
+
+
+683
+00:30:20,936 --> 00:30:21,766
+delegate protocol.
+
+
+684
+00:30:22,376 --> 00:30:24,236
+So what does that delegate
+protocol look like?
+
+
+685
+00:30:24,706 --> 00:30:28,346
+Well, first how does a medium
+rect actually load and unload?
+
+
+686
+00:30:28,346 --> 00:30:29,466
+It's going to start
+out unloaded.
+
+
+687
+00:30:29,466 --> 00:30:30,936
+When you first create it
+there's nothing in there.
+
+
+688
+00:30:30,936 --> 00:30:32,016
+We haven't made an ad request.
+
+
+689
+00:30:32,016 --> 00:30:33,316
+There's nothing to
+put onscreen yet.
+
+
+690
+00:30:33,496 --> 00:30:35,786
+So don't put it onscreen
+when you first create it.
+
+
+691
+00:30:35,786 --> 00:30:36,976
+It's just going to
+be a blank slide,
+
+
+692
+00:30:36,976 --> 00:30:40,436
+and we're going to
+send you an error.
+
+
+693
+00:30:40,586 --> 00:30:42,186
+Once you get a
+-bannerViewDidLoadAd:,
+
+
+694
+00:30:42,186 --> 00:30:45,656
+that's your cue that there is an
+ad available inside your medium
+
+
+695
+00:30:45,656 --> 00:30:47,296
+rect, and you should
+move it onscreen.
+
+
+696
+00:30:47,296 --> 00:30:50,046
+You're going to leave
+the banner onscreen
+
+
+697
+00:30:50,046 --> 00:30:51,176
+as long as it has an ad.
+
+
+698
+00:30:51,516 --> 00:30:53,816
+Remember, too, that this is
+something that's supposed
+
+
+699
+00:30:53,816 --> 00:30:55,936
+to be positioned inline
+with your content.
+
+
+700
+00:30:55,986 --> 00:30:58,006
+When you move it onscreen,
+when you leave it onscreen,
+
+
+701
+00:30:58,236 --> 00:31:00,666
+make sure that it's within
+the rest of your content.
+
+
+702
+00:31:00,666 --> 00:31:03,656
+If you have an article and you
+put the medium rect onscreen
+
+
+703
+00:31:03,656 --> 00:31:05,446
+with the article, text
+should flow around it.
+
+
+704
+00:31:05,446 --> 00:31:07,196
+It should be inside a
+scroll view and scroll
+
+
+705
+00:31:07,196 --> 00:31:09,136
+with the rest of your content.
+
+
+706
+00:31:09,356 --> 00:31:12,536
+That's what this type
+of ad is intended for.
+
+
+707
+00:31:14,956 --> 00:31:16,906
+You're going to move the
+banner back offscreen
+
+
+708
+00:31:16,906 --> 00:31:19,036
+in bannerView:didFail
+ToReceiveAdWithError.
+
+
+709
+00:31:19,156 --> 00:31:20,866
+Again, once you move
+it offscreen,
+
+
+710
+00:31:20,866 --> 00:31:23,266
+it's your responsibility
+to reflow your content
+
+
+711
+00:31:23,606 --> 00:31:28,856
+to fill the hole that
+was just left by the ad.
+
+
+712
+00:31:28,856 --> 00:31:30,376
+At that time, it's
+going to move offscreen.
+
+
+713
+00:31:30,486 --> 00:31:31,646
+You reflow up your content.
+
+
+714
+00:31:33,596 --> 00:31:35,956
+This is what banner loading and
+unloading is going to look like.
+
+
+715
+00:31:35,956 --> 00:31:37,316
+You're going - there's
+two important delegate
+
+
+716
+00:31:37,316 --> 00:31:37,956
+callbacks here.
+
+
+717
+00:31:38,156 --> 00:31:40,686
+BannerViewDidLoadAd, in
+which case you're just going
+
+
+718
+00:31:40,686 --> 00:31:43,936
+to put the banner onscreen,
+rehandle all of your layout.
+
+
+719
+00:31:44,226 --> 00:31:46,286
+And bannerView
+didFailToReceiveAdWithError,
+
+
+720
+00:31:46,286 --> 00:31:48,196
+you're going to remove
+it from the super view.
+
+
+721
+00:31:48,256 --> 00:31:49,316
+You're going to do the converse.
+
+
+722
+00:31:49,316 --> 00:31:51,736
+You're going to, again,
+layout, reflowing your content
+
+
+723
+00:31:51,736 --> 00:31:53,596
+around the hole that was
+left by the banner view.
+
+
+724
+00:31:55,836 --> 00:31:57,796
+So some best practices
+for medium rectangle.
+
+
+725
+00:31:58,786 --> 00:32:00,676
+Again, this is great
+for reflowable content.
+
+
+726
+00:32:00,676 --> 00:32:02,266
+This is the sort of
+thing that you're going
+
+
+727
+00:32:02,266 --> 00:32:05,776
+to put inside a scroll view,
+within the rest of your content
+
+
+728
+00:32:06,126 --> 00:32:08,416
+that may scroll up and
+down along the device,
+
+
+729
+00:32:08,566 --> 00:32:09,796
+may go on- and offscreen.
+
+
+730
+00:32:10,186 --> 00:32:13,136
+It's sort of static with
+the rest of your content -
+
+
+731
+00:32:13,626 --> 00:32:15,436
+flows around it, fills a hole
+
+
+732
+00:32:15,436 --> 00:32:17,736
+with inside the space
+on the screen.
+
+
+733
+00:32:19,796 --> 00:32:22,446
+It's got a full-screen
+ad on tap, remember that.
+
+
+734
+00:32:23,166 --> 00:32:26,956
+Pay attention to the delegate
+callbacks for willBeginAction,
+
+
+735
+00:32:27,246 --> 00:32:30,086
+didFinishAction so that you
+can pause and resume activity.
+
+
+736
+00:32:31,966 --> 00:32:33,956
+Pause it in
+bannerViewActionShouldBegin.
+
+
+737
+00:32:35,416 --> 00:32:38,126
+And resume activity in
+bannerViewActionDidFinish.
+
+
+738
+00:32:39,176 --> 00:32:40,476
+So that's medium rectangle.
+
+
+739
+00:32:40,476 --> 00:32:43,136
+A little bit more complicated
+than the banner because you have
+
+
+740
+00:32:43,136 --> 00:32:44,466
+to manage positioning yourself,
+
+
+741
+00:32:44,466 --> 00:32:46,436
+but still fairly
+simple to implement.
+
+
+742
+00:32:48,146 --> 00:32:51,466
+OK, the fourth type of ad
+that we're going to talk
+
+
+743
+00:32:51,466 --> 00:32:52,966
+about here is the pre-roll.
+
+
+744
+00:32:53,466 --> 00:32:56,396
+What is a pre-roll?
+
+
+745
+00:32:56,646 --> 00:33:00,326
+The video pre-roll is a short
+video that plays between -
+
+
+746
+00:33:00,326 --> 00:33:02,646
+before your own media content.
+
+
+747
+00:33:03,116 --> 00:33:08,886
+It's full-screen ad on tap, just
+like the other banner types.
+
+
+748
+00:33:08,886 --> 00:33:10,546
+It was added in iOS 7.
+
+
+749
+00:33:11,756 --> 00:33:15,566
+And in iOS 7 we added it
+on MPMoviePlayerController.
+
+
+750
+00:33:15,996 --> 00:33:18,056
+And new in iOS 8
+we're also adding it
+
+
+751
+00:33:18,056 --> 00:33:20,966
+on AVPlayerViewController,
+new AV kit APIs
+
+
+752
+00:33:20,966 --> 00:33:22,406
+that are introduced
+here at WWDC.
+
+
+753
+00:33:23,456 --> 00:33:27,206
+This is available on both
+iPhone and iPad and has been
+
+
+754
+00:33:27,206 --> 00:33:28,916
+since the initial introduction.
+
+
+755
+00:33:29,136 --> 00:33:32,826
+I want to sort of circle back
+to the very first bullet here,
+
+
+756
+00:33:32,826 --> 00:33:34,306
+the short video plays
+before content.
+
+
+757
+00:33:34,756 --> 00:33:35,706
+This is really important.
+
+
+758
+00:33:36,016 --> 00:33:38,256
+This is not an
+interstitial-style ad.
+
+
+759
+00:33:38,546 --> 00:33:41,036
+This is something to be
+played before your content,
+
+
+760
+00:33:41,076 --> 00:33:41,976
+so you need to make sure
+
+
+761
+00:33:41,976 --> 00:33:44,606
+that you actually have a
+video to play after it.
+
+
+762
+00:33:44,866 --> 00:33:47,916
+We don't want - it's not
+supported for you to attempt
+
+
+763
+00:33:47,916 --> 00:33:50,946
+to use this just to play a
+random ad at a random time.
+
+
+764
+00:33:51,246 --> 00:33:52,986
+Make sure that you have
+content to follow it;
+
+
+765
+00:33:52,986 --> 00:33:55,286
+that's what the API
+is designed for.
+
+
+766
+00:33:57,496 --> 00:34:00,626
+So setting up and playback,
+also fairly straightforward.
+
+
+767
+00:34:00,626 --> 00:34:01,476
+You're going to start off
+
+
+768
+00:34:01,516 --> 00:34:03,636
+by linking the MediaPlayer
+and iAd frameworks.
+
+
+769
+00:34:03,996 --> 00:34:05,856
+Import Media and iAd headers.
+
+
+770
+00:34:05,856 --> 00:34:06,986
+You're going to create a player.
+
+
+771
+00:34:07,056 --> 00:34:09,406
+You're going to tell it to
+play the pre-roll video,
+
+
+772
+00:34:09,406 --> 00:34:10,946
+and then you'll play
+your content video.
+
+
+773
+00:34:11,366 --> 00:34:12,216
+Very straightforward.
+
+
+774
+00:34:12,496 --> 00:34:14,966
+Basically almost all
+those except the iAd vids
+
+
+775
+00:34:14,966 --> 00:34:17,186
+and the play pre-roll
+you already have to do
+
+
+776
+00:34:17,186 --> 00:34:18,536
+if you've got your own content.
+
+
+777
+00:34:18,636 --> 00:34:21,016
+This is just a few
+tiny additional lines.
+
+
+778
+00:34:21,545 --> 00:34:22,846
+So what does that look like?
+
+
+779
+00:34:23,065 --> 00:34:25,686
+First import MediaPlayer
+and import iAd.
+
+
+780
+00:34:26,146 --> 00:34:29,656
+You're going to create your
+MPMoviePlayerController.
+
+
+781
+00:34:29,846 --> 00:34:30,076
+You're going
+
+
+782
+00:34:30,076 --> 00:34:31,985
+to initWithContentURL
+as you already would.
+
+
+783
+00:34:31,985 --> 00:34:34,025
+You're going to add
+that MoviePlayer
+
+
+784
+00:34:34,025 --> 00:34:36,396
+into your view hierarchy
+so that it's onscreen.
+
+
+785
+00:34:37,156 --> 00:34:38,746
+Call layouts, you
+redo your layout
+
+
+786
+00:34:38,746 --> 00:34:39,755
+for it once it's there as well.
+
+
+787
+00:34:40,226 --> 00:34:43,315
+And then you're going to
+call playPrerollAdWith
+
+
+788
+00:34:43,315 --> 00:34:44,306
+CompletionHandler.
+
+
+789
+00:34:44,306 --> 00:34:45,576
+You're going to call
+this instead
+
+
+790
+00:34:45,576 --> 00:34:47,056
+of immediately calling Play.
+
+
+791
+00:34:47,056 --> 00:34:50,696
+This tells iAd, "Hey, try
+to put a pre-roll video
+
+
+792
+00:34:50,696 --> 00:34:51,735
+in there if you've got one.
+
+
+793
+00:34:52,266 --> 00:34:53,376
+Play that first."
+
+
+794
+00:34:54,416 --> 00:34:55,636
+This takes a completion handler.
+
+
+795
+00:34:55,636 --> 00:34:57,036
+It's going to return
+an error possibly
+
+
+796
+00:34:57,036 --> 00:34:57,926
+if something went wrong.
+
+
+797
+00:34:58,616 --> 00:35:01,986
+Inside the completion handler is
+your cue to start your content.
+
+
+798
+00:35:02,356 --> 00:35:05,026
+You want to make sure you don't
+automatically play your content.
+
+
+799
+00:35:05,026 --> 00:35:06,216
+You want to pause your content
+
+
+800
+00:35:06,216 --> 00:35:08,256
+until this actually
+begins playing,
+
+
+801
+00:35:08,906 --> 00:35:11,126
+or until the pre-roll
+finishes playing and you want
+
+
+802
+00:35:11,126 --> 00:35:14,306
+to begin your own content then.
+
+
+803
+00:35:14,306 --> 00:35:15,886
+For AVKit it's almost identical.
+
+
+804
+00:35:15,926 --> 00:35:18,236
+You're going to create an
+AVPlayerViewController instead.
+
+
+805
+00:35:18,236 --> 00:35:19,846
+You're going to import
+the AVKit headers.
+
+
+806
+00:35:20,356 --> 00:35:22,156
+And you're going to call, again,
+
+
+807
+00:35:22,156 --> 00:35:23,696
+playPrerollAdWith
+CompletionHandler.
+
+
+808
+00:35:23,696 --> 00:35:25,056
+It has identical semantics
+
+
+809
+00:35:25,056 --> 00:35:26,986
+to the MPMediaPlayerController
+ones.
+
+
+810
+00:35:27,456 --> 00:35:30,266
+Inside the completion handler,
+you're going to call player play
+
+
+811
+00:35:30,266 --> 00:35:33,056
+to start your own video
+content afterward.
+
+
+812
+00:35:33,546 --> 00:35:34,766
+This is new in iOS 8.
+
+
+813
+00:35:37,416 --> 00:35:40,536
+Just like interstitials, because
+this is something that is going
+
+
+814
+00:35:40,536 --> 00:35:43,626
+to happen at some point and
+you want to have iAd prepare it
+
+
+815
+00:35:43,626 --> 00:35:46,056
+for it you need to tell
+the iAd framework, "Hey,
+
+
+816
+00:35:46,056 --> 00:35:48,586
+I'm going to want to play
+pre-rolls in the future."
+
+
+817
+00:35:49,166 --> 00:35:50,896
+That allows us to have
+the opportunity to go
+
+
+818
+00:35:50,896 --> 00:35:54,656
+out to the ad server, grab ads,
+and be ready for your request
+
+
+819
+00:35:54,656 --> 00:35:56,586
+to play pre-rolls so that
+we can actually play one
+
+
+820
+00:35:56,586 --> 00:35:58,886
+when the user does
+something that requires it.
+
+
+821
+00:35:59,506 --> 00:36:01,766
+To do that, just like
+interstitials you don't want
+
+
+822
+00:36:01,766 --> 00:36:04,006
+to miss these early impressions,
+so you're going to want
+
+
+823
+00:36:04,006 --> 00:36:05,346
+to start ad requests early
+
+
+824
+00:36:05,726 --> 00:36:07,746
+by calling
+MPMoviePlayerController
+
+
+825
+00:36:07,876 --> 00:36:09,146
+preparePrerollAds.
+
+
+826
+00:36:09,406 --> 00:36:11,626
+Again, probably an
+application did finish launching
+
+
+827
+00:36:11,626 --> 00:36:15,896
+with options or some other early
+in your app's life cycle period,
+
+
+828
+00:36:16,106 --> 00:36:18,216
+so we haven't had an
+opportunity to go get ads
+
+
+829
+00:36:18,216 --> 00:36:20,506
+for you before you
+call the APIs.
+
+
+830
+00:36:21,136 --> 00:36:23,256
+If you're using AVKit
+it's almost identical,
+
+
+831
+00:36:23,506 --> 00:36:26,286
+AVPlayerController
+preparePrerollAds instead.
+
+
+832
+00:36:26,286 --> 00:36:33,346
+Going with best practices for
+video then: Don't play content
+
+
+833
+00:36:33,656 --> 00:36:34,886
+until the ad completes.
+
+
+834
+00:36:35,886 --> 00:36:38,396
+If you've called playPrerollAd,
+
+
+835
+00:36:38,626 --> 00:36:42,156
+and then half a second later you
+call play before we've called
+
+
+836
+00:36:42,156 --> 00:36:45,296
+your completion handler,
+we're going to interrupt it.
+
+
+837
+00:36:46,246 --> 00:36:49,646
+You know, notification handling
+is a very common case for this.
+
+
+838
+00:36:49,646 --> 00:36:52,246
+This is going to interrupt
+playing of the pre-roll ad.
+
+
+839
+00:36:52,246 --> 00:36:53,506
+It's going to immediately skip.
+
+
+840
+00:36:53,506 --> 00:36:54,646
+It's going to go
+to your content.
+
+
+841
+00:36:54,766 --> 00:36:56,396
+And it's like the ad
+never played except
+
+
+842
+00:36:56,396 --> 00:36:58,376
+that it's a poor user
+experience for your user.
+
+
+843
+00:36:58,376 --> 00:37:00,346
+You'd like to try to
+avoid this when possible.
+
+
+844
+00:37:00,636 --> 00:37:02,366
+So make sure that you wait
+
+
+845
+00:37:02,366 --> 00:37:04,466
+until our completion handler
+is called to call play.
+
+
+846
+00:37:04,466 --> 00:37:06,036
+For notifications,
+
+
+847
+00:37:06,036 --> 00:37:07,876
+this frequently means
+just recording the fact
+
+
+848
+00:37:07,876 --> 00:37:09,126
+that your content is ready.
+
+
+849
+00:37:09,456 --> 00:37:12,506
+If you're already calling
+play in these notifications,
+
+
+850
+00:37:12,506 --> 00:37:16,626
+instead of just calling
+play, record that fact,
+
+
+851
+00:37:16,626 --> 00:37:18,116
+and inside the completion
+handler check
+
+
+852
+00:37:18,116 --> 00:37:19,506
+for that fact, and
+then call play.
+
+
+853
+00:37:20,856 --> 00:37:23,896
+Similarly, defer
+UI customization.
+
+
+854
+00:37:23,896 --> 00:37:26,636
+Many of you may be doing
+UI customization on top
+
+
+855
+00:37:26,636 --> 00:37:28,846
+of the MediaPlayer controller
+to present custom controls
+
+
+856
+00:37:28,846 --> 00:37:30,486
+or present custom UI around it.
+
+
+857
+00:37:30,786 --> 00:37:32,286
+Wait to do that until
+
+
+858
+00:37:32,286 --> 00:37:33,956
+after we've called your
+completion handler.
+
+
+859
+00:37:33,956 --> 00:37:37,306
+The pre-roll already has
+custom UI, and you don't want
+
+
+860
+00:37:37,306 --> 00:37:40,586
+to interfere with that custom
+UI with your own customization.
+
+
+861
+00:37:40,706 --> 00:37:43,496
+That's, again, going to
+provide a very poor experience
+
+
+862
+00:37:43,496 --> 00:37:44,266
+for your users.
+
+
+863
+00:37:45,546 --> 00:37:48,286
+OK, so now that we've
+got that, let's go back
+
+
+864
+00:37:48,286 --> 00:37:49,356
+to our demo machine here.
+
+
+865
+00:37:49,356 --> 00:37:52,136
+I've got a quick demo
+setting that up as well.
+
+
+866
+00:37:53,916 --> 00:37:57,656
+Let's close - yep - that.
+
+
+867
+00:37:57,726 --> 00:38:03,446
+I can pull up quick little
+demo of this as well.
+
+
+868
+00:38:05,106 --> 00:38:06,466
+Can run this.
+
+
+869
+00:38:06,576 --> 00:38:09,396
+This is a very simple
+little app,
+
+
+870
+00:38:09,396 --> 00:38:13,636
+just provides a few quick
+little video clips here.
+
+
+871
+00:38:13,636 --> 00:38:17,066
+I can click on one of these
+and we've got a quick video.
+
+
+872
+00:38:17,446 --> 00:38:20,116
+Now what I'd like to do is, now
+that I've got this video content
+
+
+873
+00:38:20,116 --> 00:38:21,506
+that my user would
+like to engage with,
+
+
+874
+00:38:21,506 --> 00:38:25,066
+I'd like to monetize this by
+playing a pre-roll ad prior
+
+
+875
+00:38:25,066 --> 00:38:27,476
+to the user actually being
+able to view my clips.
+
+
+876
+00:38:27,966 --> 00:38:30,426
+So let's go ahead and quit
+this and see what we have
+
+
+877
+00:38:30,426 --> 00:38:31,436
+to do to get that done.
+
+
+878
+00:38:32,626 --> 00:38:36,356
+We can start off here - the very
+first thing we need to do is,
+
+
+879
+00:38:36,356 --> 00:38:38,936
+as for interstitials, we want
+to make sure that we tell iAd,
+
+
+880
+00:38:38,936 --> 00:38:41,276
+"Hey, I'm going to be
+playing pre-roll ads,
+
+
+881
+00:38:41,436 --> 00:38:42,566
+go fetch them early."
+
+
+882
+00:38:42,856 --> 00:38:44,806
+We'll start off in
+our app delegate here,
+
+
+883
+00:38:47,056 --> 00:38:53,496
+and we will import iAd, and
+we'll import the MediaPlayer
+
+
+884
+00:38:53,496 --> 00:38:55,776
+so we have the appropriate
+classes for our APIs.
+
+
+885
+00:38:56,206 --> 00:38:59,656
+And we'll go ahead and
+call preparePrerollAds
+
+
+886
+00:38:59,656 --> 00:39:00,986
+on MPMoviePlayerController.
+
+
+887
+00:39:01,956 --> 00:39:04,286
+Once we've done that, we
+need to actually go ahead
+
+
+888
+00:39:04,286 --> 00:39:06,256
+and call preparePrerollAds,
+
+
+889
+00:39:06,256 --> 00:39:08,106
+so we'll go to our
+View Controller here,
+
+
+890
+00:39:08,106 --> 00:39:11,226
+which is doing the actual
+display, and we're going
+
+
+891
+00:39:11,226 --> 00:39:13,946
+to scroll down to -
+at the bottom here,
+
+
+892
+00:39:13,946 --> 00:39:16,736
+collectionView
+didSelectItemAtIndexPath.
+
+
+893
+00:39:17,016 --> 00:39:19,296
+This is what happens when
+the user actually taps on it.
+
+
+894
+00:39:19,596 --> 00:39:22,086
+At the moment, all
+we're doing is creating
+
+
+895
+00:39:22,086 --> 00:39:25,236
+MPMoviePlayerViewController,
+setting the content URL,
+
+
+896
+00:39:25,236 --> 00:39:26,766
+and then calling
+presentMoviePlayer
+
+
+897
+00:39:26,766 --> 00:39:28,216
+to have it start
+playing automatically.
+
+
+898
+00:39:28,946 --> 00:39:30,996
+We want to sort of
+interrupt that briefly,
+
+
+899
+00:39:30,996 --> 00:39:32,636
+and instead we're
+going to go ahead
+
+
+900
+00:39:32,636 --> 00:39:37,386
+and call playPrerollAdWith
+CompletionHandler.
+
+
+901
+00:39:37,826 --> 00:39:39,816
+And again, inside the
+completion handler to that,
+
+
+902
+00:39:39,966 --> 00:39:43,456
+that's where we're going to call
+mpvController.moviePlayer play.
+
+
+903
+00:39:44,196 --> 00:39:48,766
+Go back up to the top here, and
+ensure that we are importing iAd
+
+
+904
+00:39:48,766 --> 00:39:52,186
+as well, so we get the
+iAd APIs available.
+
+
+905
+00:39:52,186 --> 00:39:54,266
+Go ahead and save that.
+
+
+906
+00:39:55,436 --> 00:39:56,386
+We can run again.
+
+
+907
+00:39:59,566 --> 00:40:03,016
+No. This is what I
+knew I was going to do.
+
+
+908
+00:40:03,706 --> 00:40:05,076
+Once again, we got
+to go in here,
+
+
+909
+00:40:05,076 --> 00:40:06,976
+make sure that the iAd
+framework is linked.
+
+
+910
+00:40:14,046 --> 00:40:15,186
+Now we can run it.
+
+
+911
+00:40:16,286 --> 00:40:20,256
+OK, and we got our ad up
+- our app up here again,
+
+
+912
+00:40:20,256 --> 00:40:22,156
+same quick little videos.
+
+
+913
+00:40:22,536 --> 00:40:24,506
+We can go ahead and click
+on one of these now.
+
+
+914
+00:40:25,556 --> 00:40:28,766
+And before the video content
+actually plays you see
+
+
+915
+00:40:28,766 --> 00:40:32,366
+that we've got an iAd workbench
+ad that comes up instead.
+
+
+916
+00:40:32,366 --> 00:40:36,236
+The user can view
+this ad content.
+
+
+917
+00:40:36,236 --> 00:40:37,996
+Once they're done with it
+they can decide to go ahead
+
+
+918
+00:40:37,996 --> 00:40:40,216
+and skip ahead of it, and
+we go immediately back
+
+
+919
+00:40:40,276 --> 00:40:42,956
+to the video content
+for the app itself.
+
+
+920
+00:40:43,186 --> 00:40:46,826
+And that's pretty much
+all that's involved
+
+
+921
+00:40:46,826 --> 00:40:50,996
+in implementing pre-rolls once
+you've already got MediaPlayer
+
+
+922
+00:40:50,996 --> 00:40:53,436
+content for that pre-roll
+to play in front of.
+
+
+923
+00:40:54,546 --> 00:40:59,246
+OK, so those are the four
+different types of ads
+
+
+924
+00:40:59,246 --> 00:41:01,976
+that we have for integration
+with iAd inside your app.
+
+
+925
+00:41:02,486 --> 00:41:03,926
+Once you've started using them,
+
+
+926
+00:41:03,926 --> 00:41:05,356
+let's talk a little
+bit about testing.
+
+
+927
+00:41:07,756 --> 00:41:10,166
+First of all, there are a
+couple of things we add -
+
+
+928
+00:41:10,316 --> 00:41:13,226
+we've added to the developer
+settings on the phone
+
+
+929
+00:41:13,286 --> 00:41:17,166
+to help you test the integration
+of iAd within your app.
+
+
+930
+00:41:18,036 --> 00:41:20,246
+First, you can adjust
+the fill rate.
+
+
+931
+00:41:20,816 --> 00:41:25,216
+This is inside the apps that you
+have when you're testing them
+
+
+932
+00:41:25,216 --> 00:41:27,896
+on the device - you can adjust
+how frequently you're going
+
+
+933
+00:41:27,896 --> 00:41:28,566
+to get ads.
+
+
+934
+00:41:28,566 --> 00:41:30,476
+This allows you to
+test error conditions.
+
+
+935
+00:41:30,616 --> 00:41:32,836
+It allows you to test always
+working conditions and make sure
+
+
+936
+00:41:32,836 --> 00:41:35,516
+that your app handles those
+conditions appropriately.
+
+
+937
+00:41:36,746 --> 00:41:39,776
+In addition you can adjust
+the refresh rate for things
+
+
+938
+00:41:39,776 --> 00:41:41,406
+like banners and medium rects.
+
+
+939
+00:41:41,406 --> 00:41:42,876
+This is going to
+adjust the frequency
+
+
+940
+00:41:42,876 --> 00:41:44,436
+with which new ads come in.
+
+
+941
+00:41:45,116 --> 00:41:49,036
+In addition, in combination with
+the fill rate this allows you
+
+
+942
+00:41:49,036 --> 00:41:50,676
+to rapidly test error
+
+
+943
+00:41:50,676 --> 00:41:53,786
+and nonerror conditions moving
+things on- and offscreen.
+
+
+944
+00:41:57,676 --> 00:42:00,226
+Most importantly there's
+a switch called Highlight
+
+
+945
+00:42:00,226 --> 00:42:01,016
+Clipped Banners.
+
+
+946
+00:42:01,316 --> 00:42:04,316
+If you're using the
+.canDisplayBannerAds,
+
+
+947
+00:42:04,316 --> 00:42:06,216
+this isn't going to
+affect banners very much,
+
+
+948
+00:42:06,216 --> 00:42:08,366
+but this is very
+important for medium rect.
+
+
+949
+00:42:09,116 --> 00:42:12,486
+It's very easy to accidently
+occlude part of the medium rect
+
+
+950
+00:42:12,486 --> 00:42:14,376
+with some other UI element.
+
+
+951
+00:42:14,426 --> 00:42:17,356
+If you do that, that's a
+part of the medium rect
+
+
+952
+00:42:17,356 --> 00:42:18,796
+that may not be seen
+by your user.
+
+
+953
+00:42:19,056 --> 00:42:20,516
+It's a part of the
+medium rect that you -
+
+
+954
+00:42:20,516 --> 00:42:23,156
+that the user may not be able
+to tap on and interact with.
+
+
+955
+00:42:23,266 --> 00:42:25,336
+This will detect that.
+
+
+956
+00:42:25,926 --> 00:42:27,856
+You turn on the Highlight
+Clipped Banners button.
+
+
+957
+00:42:27,856 --> 00:42:30,246
+We're going to provide
+a green or a red overlay
+
+
+958
+00:42:30,556 --> 00:42:33,616
+over your medium rect, or
+banners, or instructions
+
+
+959
+00:42:33,616 --> 00:42:37,006
+for that matter, that will show
+when the user can actually tap
+
+
+960
+00:42:37,006 --> 00:42:38,406
+on all parts of this banner,
+
+
+961
+00:42:38,636 --> 00:42:41,176
+when it is officially
+onscreen and visible.
+
+
+962
+00:42:41,476 --> 00:42:43,136
+You want to make
+sure that any banners
+
+
+963
+00:42:43,136 --> 00:42:45,426
+that you show inside your
+app are always green.
+
+
+964
+00:42:45,426 --> 00:42:52,456
+Remember this only affects your
+apps, your developer-mode apps
+
+
+965
+00:42:52,456 --> 00:42:55,696
+that you have run from Xcode
+and deployed onto your device.
+
+
+966
+00:42:55,696 --> 00:42:57,926
+So no, you can't just
+fill right to zero
+
+
+967
+00:42:57,926 --> 00:43:00,276
+for all the other iAd-using
+apps on your device.
+
+
+968
+00:43:00,276 --> 00:43:02,376
+This only affects
+developer-mode apps.
+
+
+969
+00:43:02,896 --> 00:43:06,656
+OK, so that's monetization.
+
+
+970
+00:43:06,656 --> 00:43:09,006
+That was sort of the first
+major portion of the talk.
+
+
+971
+00:43:09,006 --> 00:43:11,226
+Let's talk next a little
+bit about promotion.
+
+
+972
+00:43:11,226 --> 00:43:13,946
+This is the other half
+of the iAd ecosystem.
+
+
+973
+00:43:14,046 --> 00:43:18,986
+This is how you can use iAd to
+drive downloads of your own app.
+
+
+974
+00:43:19,226 --> 00:43:21,606
+So there's three major parts
+
+
+975
+00:43:22,636 --> 00:43:24,856
+that we're going
+to talk about here.
+
+
+976
+00:43:24,856 --> 00:43:27,716
+First I'm going to do a really
+quick intro to iAd Workbench.
+
+
+977
+00:43:27,716 --> 00:43:29,126
+There's another session
+on that tomorrow
+
+
+978
+00:43:29,126 --> 00:43:30,156
+if you get more in detail.
+
+
+979
+00:43:30,156 --> 00:43:31,396
+So this is just a
+quick overview.
+
+
+980
+00:43:31,886 --> 00:43:35,426
+And then there are two new APIs
+that we're introducing in iOS 8,
+
+
+981
+00:43:35,576 --> 00:43:39,486
+one for app attribution and one
+for app audience retargeting.
+
+
+982
+00:43:39,486 --> 00:43:42,406
+And we'll talk a little
+bit about those new APIs.
+
+
+983
+00:43:42,406 --> 00:43:44,436
+Let's start off with
+iAd Workbench.
+
+
+984
+00:43:45,596 --> 00:43:46,616
+What is iAd Workbench?
+
+
+985
+00:43:46,856 --> 00:43:48,806
+iAd Workbench is
+iAd's self-servicing
+
+
+986
+00:43:48,806 --> 00:43:50,246
+advertising platform.
+
+
+987
+00:43:50,346 --> 00:43:53,306
+It's basically a web
+app on the apple.com,
+
+
+988
+00:43:53,306 --> 00:43:55,046
+iadworkbench.apple.com.
+
+
+989
+00:43:55,356 --> 00:43:59,506
+This is how you can manage
+being an advertiser on iAd.
+
+
+990
+00:43:59,776 --> 00:44:02,136
+OK? You can create mobile ads.
+
+
+991
+00:44:02,446 --> 00:44:03,726
+You can upload your own banners.
+
+
+992
+00:44:03,726 --> 00:44:05,196
+You can use built-in templates.
+
+
+993
+00:44:05,196 --> 00:44:10,026
+You can also use iProducer to
+create your own iAd assets.
+
+
+994
+00:44:11,456 --> 00:44:14,526
+Once you've done that, you can
+use this to reach the users
+
+
+995
+00:44:14,526 --> 00:44:17,006
+who are most likely to
+actually download your app.
+
+
+996
+00:44:17,436 --> 00:44:19,516
+iAd is an iOS advertising
+platform.
+
+
+997
+00:44:19,516 --> 00:44:22,366
+You're going to reach a whole
+bunch of users who are on iOS
+
+
+998
+00:44:22,366 --> 00:44:25,826
+who are already using apps on
+iOS and who are, therefore,
+
+
+999
+00:44:25,826 --> 00:44:29,526
+highly likely to engage with the
+ad that is advertising your app
+
+
+1000
+00:44:29,526 --> 00:44:30,656
+and download your app.
+
+
+1001
+00:44:30,806 --> 00:44:34,366
+You can also manage your
+campaign performance here.
+
+
+1002
+00:44:34,366 --> 00:44:35,036
+This is where you're going
+
+
+1003
+00:44:35,036 --> 00:44:37,106
+to see how many people
+have seen your ad,
+
+
+1004
+00:44:37,106 --> 00:44:39,936
+how the campaign is doing,
+tap-through rates, etcetera,
+
+
+1005
+00:44:39,936 --> 00:44:41,836
+for your particular
+advertising campaign.
+
+
+1006
+00:44:42,986 --> 00:44:44,176
+So that's Workbench.
+
+
+1007
+00:44:44,176 --> 00:44:44,656
+Again, there's going
+
+
+1008
+00:44:44,656 --> 00:44:46,826
+to be another session tomorrow
+going into more detail.
+
+
+1009
+00:44:47,306 --> 00:44:50,106
+Next important part to
+talk about is some new APIs
+
+
+1010
+00:44:50,106 --> 00:44:52,166
+that we've got for
+app attribution.
+
+
+1011
+00:44:52,686 --> 00:44:54,796
+OK, what is app attribution?
+
+
+1012
+00:44:55,646 --> 00:44:58,806
+App attribution allows you to
+track app downloads of your app
+
+
+1013
+00:44:58,866 --> 00:45:00,296
+that originated from iAd.
+
+
+1014
+00:45:00,296 --> 00:45:04,186
+OK? This is going to let you
+measure the effectiveness
+
+
+1015
+00:45:04,186 --> 00:45:06,606
+of your campaigns that you've
+created in iAd Workbench
+
+
+1016
+00:45:06,606 --> 00:45:09,246
+that you're running to
+actually promote your app.
+
+
+1017
+00:45:09,446 --> 00:45:16,106
+OK, the APIs were available
+in iOS 7 - or iOS 7.1, rather.
+
+
+1018
+00:45:16,586 --> 00:45:19,216
+And we've enhanced them a
+little bit in iOS 8 as well.
+
+
+1019
+00:45:19,216 --> 00:45:20,736
+So there's a new one in iOS 8.
+
+
+1020
+00:45:21,426 --> 00:45:23,396
+So what does the API
+actually look like?
+
+
+1021
+00:45:23,396 --> 00:45:24,166
+It's very simple.
+
+
+1022
+00:45:24,296 --> 00:45:26,676
+Again, you're going
+to include iAd/iAd.h,
+
+
+1023
+00:45:26,676 --> 00:45:28,086
+as everything starts
+with for iAd.
+
+
+1024
+00:45:28,646 --> 00:45:32,316
+And then you're going to
+call ADClient sharedClient.
+
+
+1025
+00:45:32,316 --> 00:45:35,726
+And on that you're going to
+call lookupAdConversionDetails.
+
+
+1026
+00:45:36,026 --> 00:45:40,366
+OK? Inside that you can use
+the two dates that are provided
+
+
+1027
+00:45:40,366 --> 00:45:42,686
+with completion handler
+to determine whether
+
+
+1028
+00:45:42,686 --> 00:45:44,926
+or not this particular
+installation
+
+
+1029
+00:45:44,926 --> 00:45:46,826
+of the app was due to iAd.
+
+
+1030
+00:45:46,826 --> 00:45:49,526
+OK? These dates are going
+to give you two things.
+
+
+1031
+00:45:49,896 --> 00:45:51,936
+The first is the
+app purchase date -
+
+
+1032
+00:45:51,936 --> 00:45:54,316
+the date at which the user
+actually made the purchase
+
+
+1033
+00:45:54,316 --> 00:45:54,836
+of this app.
+
+
+1034
+00:45:55,496 --> 00:45:57,916
+And then the date
+of the impression,
+
+
+1035
+00:45:57,916 --> 00:46:01,616
+the date that the user saw and
+interacted with the ad prior
+
+
+1036
+00:46:01,616 --> 00:46:03,276
+to them purchasing the app.
+
+
+1037
+00:46:03,776 --> 00:46:07,756
+OK? If both of these dates are
+there and true, that's going
+
+
+1038
+00:46:07,756 --> 00:46:09,046
+to indicate to you that as far
+
+
+1039
+00:46:09,046 --> 00:46:11,876
+as iAd is concerned
+this was a installation
+
+
+1040
+00:46:11,876 --> 00:46:13,556
+of your app directly
+attributable
+
+
+1041
+00:46:13,556 --> 00:46:14,926
+to the user interacting with
+
+
+1042
+00:46:14,926 --> 00:46:17,536
+and seeing an iAd
+promoting your app.
+
+
+1043
+00:46:22,616 --> 00:46:24,426
+It's very important to remember
+that these dates are going
+
+
+1044
+00:46:24,426 --> 00:46:27,946
+to be nil if they are
+not attributed to iAd.
+
+
+1045
+00:46:28,826 --> 00:46:31,936
+They'll also be nil if the user
+has Limit Ad Tracking enabled.
+
+
+1046
+00:46:31,936 --> 00:46:33,246
+So regardless of whether
+
+
+1047
+00:46:33,246 --> 00:46:35,806
+or not this is an
+iAd-driven installation,
+
+
+1048
+00:46:36,156 --> 00:46:37,916
+the user has Limit
+Ad Tracking enabled;
+
+
+1049
+00:46:37,916 --> 00:46:40,616
+they don't want their ad
+browsing data to be tracked
+
+
+1050
+00:46:40,616 --> 00:46:42,816
+or shown to various apps.
+
+
+1051
+00:46:43,136 --> 00:46:43,836
+These are going to be nil.
+
+
+1052
+00:46:43,836 --> 00:46:45,646
+We're not going to give you
+this information in those cases.
+
+
+1053
+00:46:45,646 --> 00:46:47,576
+So you should be aware of that
+if you're trying to use this
+
+
+1054
+00:46:47,576 --> 00:46:48,716
+for any sort of analytics.
+
+
+1055
+00:46:49,976 --> 00:46:52,546
+In addition, you
+want to avoid lookups
+
+
+1056
+00:46:52,546 --> 00:46:53,926
+of this data on every launch.
+
+
+1057
+00:46:53,926 --> 00:46:56,046
+It's probably very
+tempting to add this
+
+
+1058
+00:46:56,046 --> 00:46:58,886
+to appDidFinishLaunching,
+lookup your conversion details,
+
+
+1059
+00:46:58,886 --> 00:47:00,456
+set some state flag,
+and do something
+
+
+1060
+00:47:00,456 --> 00:47:01,806
+on every single launch
+on the app.
+
+
+1061
+00:47:02,066 --> 00:47:03,336
+Try to avoid doing that.
+
+
+1062
+00:47:03,686 --> 00:47:06,136
+There is some cost to
+actually doing this lookup.
+
+
+1063
+00:47:06,466 --> 00:47:08,836
+You want to defer doing this
+lookup until you actually need
+
+
+1064
+00:47:08,836 --> 00:47:11,196
+to and then cache
+the data afterward.
+
+
+1065
+00:47:11,196 --> 00:47:14,356
+OK, so that's app attribution.
+
+
+1066
+00:47:14,356 --> 00:47:15,976
+The next thing we can talk
+
+
+1067
+00:47:15,976 --> 00:47:18,876
+about is the app
+audience retargeting APIs.
+
+
+1068
+00:47:19,066 --> 00:47:20,856
+These are new APIs in iOS 8.
+
+
+1069
+00:47:21,166 --> 00:47:24,986
+So what is app audience
+retargeting to begin with?
+
+
+1070
+00:47:25,186 --> 00:47:28,586
+Audience retargeting allows you
+to group the users of your app,
+
+
+1071
+00:47:28,666 --> 00:47:32,686
+that particular audience, into
+various categories depending
+
+
+1072
+00:47:32,686 --> 00:47:35,676
+on their activity within your
+app or things that you know
+
+
+1073
+00:47:35,676 --> 00:47:37,766
+about them from their
+use of your app.
+
+
+1074
+00:47:39,706 --> 00:47:41,836
+This might be frequent
+in-app purchases.
+
+
+1075
+00:47:42,496 --> 00:47:45,116
+It might be a very high
+usage rate relative
+
+
+1076
+00:47:45,116 --> 00:47:46,426
+to other users within your app.
+
+
+1077
+00:47:47,016 --> 00:47:49,976
+It might be dormant users, users
+who used your app a while ago
+
+
+1078
+00:47:49,976 --> 00:47:51,456
+but you haven't seen in a while.
+
+
+1079
+00:47:53,196 --> 00:47:56,696
+You can then use this
+information to target new ads
+
+
+1080
+00:47:56,696 --> 00:48:01,086
+in iAd Workbench directly at
+specific subgroups of your users
+
+
+1081
+00:48:01,276 --> 00:48:06,476
+to reach specific audiences
+within the users of your app.
+
+
+1082
+00:48:06,726 --> 00:48:09,516
+Each group defines
+what we call a segment.
+
+
+1083
+00:48:09,896 --> 00:48:11,156
+That's terminology
+that's going to come
+
+
+1084
+00:48:11,156 --> 00:48:12,226
+up in the next couple of slides.
+
+
+1085
+00:48:12,226 --> 00:48:13,126
+That's important to know.
+
+
+1086
+00:48:13,466 --> 00:48:15,696
+A specific group of
+your users is a -
+
+
+1087
+00:48:15,806 --> 00:48:18,746
+with a specific name
+is a segment.
+
+
+1088
+00:48:21,356 --> 00:48:23,586
+So why would you
+want to use this?
+
+
+1089
+00:48:24,236 --> 00:48:25,756
+Let's say you're a
+game app developer.
+
+
+1090
+00:48:26,976 --> 00:48:29,266
+You want to promote the
+new iAd version of your app
+
+
+1091
+00:48:29,266 --> 00:48:31,006
+to all your iPhone users.
+
+
+1092
+00:48:31,086 --> 00:48:34,306
+You want to go back and reach
+those specific users and say,
+
+
+1093
+00:48:34,306 --> 00:48:37,876
+"Hey, I've got a great
+new iPad version of it.
+
+
+1094
+00:48:37,876 --> 00:48:38,626
+Come try it again.
+
+
+1095
+00:48:38,626 --> 00:48:40,946
+Come back to this app,
+maybe redownload it."
+
+
+1096
+00:48:42,666 --> 00:48:45,316
+If there's new features
+that affect specific subsets
+
+
+1097
+00:48:45,316 --> 00:48:49,056
+of your app, you can use this
+to reach those specific users.
+
+
+1098
+00:48:49,436 --> 00:48:51,656
+That's going to ensure that
+the ads you create are going
+
+
+1099
+00:48:51,656 --> 00:48:53,786
+to reach precisely the
+audience you're attempting
+
+
+1100
+00:48:53,786 --> 00:48:58,426
+to target with those ads.
+
+
+1101
+00:48:58,426 --> 00:49:00,536
+Similarly you can
+reengage dormant users.
+
+
+1102
+00:49:00,536 --> 00:49:02,206
+If you've got users
+that you haven't seen
+
+
+1103
+00:49:02,206 --> 00:49:05,296
+in a while you can craft a
+message specifically designed
+
+
+1104
+00:49:05,296 --> 00:49:07,206
+to try to pull those
+people back into your app
+
+
+1105
+00:49:07,416 --> 00:49:09,906
+to reengage those users who
+may not have used your app
+
+
+1106
+00:49:09,906 --> 00:49:10,486
+in some time.
+
+
+1107
+00:49:12,696 --> 00:49:14,196
+If you're a retail app instead,
+
+
+1108
+00:49:14,196 --> 00:49:16,106
+there's similar reasons
+to use this.
+
+
+1109
+00:49:16,726 --> 00:49:19,326
+It can remind users who may
+have abandoned a shopping cart
+
+
+1110
+00:49:19,326 --> 00:49:22,486
+in your app, segment those into
+something, send them a message,
+
+
+1111
+00:49:22,586 --> 00:49:24,296
+"Hey, you abandoned
+your shopping cart.
+
+
+1112
+00:49:24,296 --> 00:49:26,816
+Maybe you should come back
+and reengage with this app.
+
+
+1113
+00:49:26,846 --> 00:49:28,556
+Maybe you still want to
+purchase those things."
+
+
+1114
+00:49:29,346 --> 00:49:31,576
+If you've got loyal
+customers, maybe you want
+
+
+1115
+00:49:31,576 --> 00:49:32,536
+to send them a special offer.
+
+
+1116
+00:49:32,536 --> 00:49:34,686
+Maybe you want to send them a
+gift for being a loyal customer.
+
+
+1117
+00:49:34,966 --> 00:49:36,666
+You can do that with
+an ad as well.
+
+
+1118
+00:49:36,666 --> 00:49:41,296
+You can retarget specific ads to
+specific segments of your users.
+
+
+1119
+00:49:41,956 --> 00:49:44,816
+If they've - you
+can group customers
+
+
+1120
+00:49:44,816 --> 00:49:47,366
+into specific categories based
+on their previous purchases.
+
+
+1121
+00:49:47,366 --> 00:49:49,856
+You can promote sales based
+on their previous purchases.
+
+
+1122
+00:49:49,976 --> 00:49:53,146
+All these are done by segmenting
+those users into specific groups
+
+
+1123
+00:49:53,676 --> 00:49:56,486
+and recording that so
+that you can reengage
+
+
+1124
+00:49:56,486 --> 00:49:58,166
+with those users
+with specific ads.
+
+
+1125
+00:49:58,256 --> 00:49:59,976
+So how does this actually work?
+
+
+1126
+00:50:00,046 --> 00:50:02,506
+First thing you're going
+to do is you're going to go
+
+
+1127
+00:50:02,506 --> 00:50:05,406
+on iAd Workbench, and you're
+going to create segments.
+
+
+1128
+00:50:05,646 --> 00:50:07,586
+And you're going to tell
+iAd Workbench, "Hey,
+
+
+1129
+00:50:07,586 --> 00:50:09,756
+I'm going to group these people
+into 10 different segments.
+
+
+1130
+00:50:10,066 --> 00:50:12,536
+Please give me some segment
+identifiers to use for that."
+
+
+1131
+00:50:12,816 --> 00:50:14,846
+It's important to notice that
+you do not create segment -
+
+
+1132
+00:50:14,846 --> 00:50:17,816
+specific segment identifiers;
+iAd Workbench does instead,
+
+
+1133
+00:50:17,816 --> 00:50:20,306
+and this is partially
+for privacy reasons.
+
+
+1134
+00:50:20,306 --> 00:50:22,656
+We manage the specific
+segment identifiers.
+
+
+1135
+00:50:23,556 --> 00:50:25,676
+Once you've done that,
+you're going to go ahead
+
+
+1136
+00:50:25,676 --> 00:50:27,956
+and update your app and take
+advantage of the new APIs,
+
+
+1137
+00:50:27,956 --> 00:50:30,516
+so you can actually
+associate specific segments
+
+
+1138
+00:50:30,516 --> 00:50:31,936
+with specific users.
+
+
+1139
+00:50:32,036 --> 00:50:33,136
+And that goes up to the server
+
+
+1140
+00:50:33,136 --> 00:50:34,926
+so we can actually
+record that information.
+
+
+1141
+00:50:36,116 --> 00:50:38,596
+Once that's done, you go
+back to iAd Workbench,
+
+
+1142
+00:50:38,626 --> 00:50:41,376
+and you create your
+new Workbench campaign
+
+
+1143
+00:50:41,686 --> 00:50:45,466
+to retarget those customers
+with some specific ad message.
+
+
+1144
+00:50:46,046 --> 00:50:49,576
+OK, so how do you
+actually do this?
+
+
+1145
+00:50:49,576 --> 00:50:51,216
+Actually very simple
+on the client side.
+
+
+1146
+00:50:51,646 --> 00:50:52,986
+You're going to include iAd.
+
+
+1147
+00:50:54,206 --> 00:50:56,386
+You're going to create
+an array of segments,
+
+
+1148
+00:50:56,386 --> 00:50:57,646
+and these are segments -
+
+
+1149
+00:50:57,806 --> 00:51:00,486
+the segment identifiers are
+what you've already gotten
+
+
+1150
+00:51:00,486 --> 00:51:01,386
+from Workbench.
+
+
+1151
+00:51:01,386 --> 00:51:03,966
+If you attempt to send random
+segment identifiers up to iAd,
+
+
+1152
+00:51:04,276 --> 00:51:05,506
+we're just going to ignore them,
+
+
+1153
+00:51:05,506 --> 00:51:07,026
+so you want to make sure
+you're using the ones
+
+
+1154
+00:51:07,026 --> 00:51:09,696
+that you've already created
+and set up inside Workbench.
+
+
+1155
+00:51:10,036 --> 00:51:13,346
+So maybe you decided you know
+Segment A is loyal users,
+
+
+1156
+00:51:13,346 --> 00:51:15,816
+Segment B is frequent
+purchases, and you want
+
+
+1157
+00:51:15,816 --> 00:51:18,316
+to associate the current
+user with those two segments.
+
+
+1158
+00:51:18,316 --> 00:51:19,866
+And you go ahead and
+create a segment array
+
+
+1159
+00:51:19,866 --> 00:51:20,926
+with those segments in it.
+
+
+1160
+00:51:21,436 --> 00:51:24,226
+And you're going to call
+ADClient sharedClient,
+
+
+1161
+00:51:24,226 --> 00:51:28,226
+addClientToSegments,
+replaceExisting.
+
+
+1162
+00:51:28,226 --> 00:51:31,496
+This is by default with
+replaceExisting:NO going
+
+
+1163
+00:51:31,496 --> 00:51:34,316
+to add these segments
+to the current user.
+
+
+1164
+00:51:34,316 --> 00:51:37,126
+If instead you'd like to
+say, "Hey, these are all
+
+
+1165
+00:51:37,126 --> 00:51:38,766
+of the segments I'd like
+to associate the user,"
+
+
+1166
+00:51:39,116 --> 00:51:41,386
+which might also allow
+you to remove old segments
+
+
+1167
+00:51:41,386 --> 00:51:44,306
+from the user, you can just
+update that replaceExisting
+
+
+1168
+00:51:44,306 --> 00:51:47,056
+to yes to just completely
+replace the old set
+
+
+1169
+00:51:47,226 --> 00:51:48,116
+with the new set.
+
+
+1170
+00:51:50,456 --> 00:51:55,466
+OK, so that's basically iAd
+for promotion, the new APIs
+
+
+1171
+00:51:55,466 --> 00:51:56,836
+that we've added in iOS 8.
+
+
+1172
+00:51:57,346 --> 00:51:58,526
+So what did we learn?
+
+
+1173
+00:52:00,406 --> 00:52:02,696
+First of all, there's some
+best practices for using iAd.
+
+
+1174
+00:52:02,996 --> 00:52:04,896
+There are four different types
+of banners that we've talked -
+
+
+1175
+00:52:04,896 --> 00:52:06,526
+four different types of ads
+that we've talked about.
+
+
+1176
+00:52:06,526 --> 00:52:07,116
+There's a banner.
+
+
+1177
+00:52:07,586 --> 00:52:08,446
+There's an interstitial.
+
+
+1178
+00:52:09,016 --> 00:52:09,956
+There's a medium rect.
+
+
+1179
+00:52:10,196 --> 00:52:12,876
+And there's a pre-roll, and
+they all have their place.
+
+
+1180
+00:52:13,216 --> 00:52:15,936
+You want to take advantage
+of the different ad formats
+
+
+1181
+00:52:15,936 --> 00:52:19,086
+that we've given to you,
+think about where they belong
+
+
+1182
+00:52:19,086 --> 00:52:22,306
+in your app, and make sure
+you use the appropriate ad
+
+
+1183
+00:52:22,306 --> 00:52:23,706
+for the appropriate context.
+
+
+1184
+00:52:24,086 --> 00:52:27,406
+As part of that, consider the
+user when you're placing ads.
+
+
+1185
+00:52:27,976 --> 00:52:31,746
+Yes, ads are very valuable
+for generating revenue
+
+
+1186
+00:52:31,746 --> 00:52:34,216
+from your app, and iAd can
+help a lot with doing that.
+
+
+1187
+00:52:34,856 --> 00:52:39,596
+But great revenue and great apps
+start with great users as well.
+
+
+1188
+00:52:39,596 --> 00:52:41,566
+If you're going to
+alienate all of your users
+
+
+1189
+00:52:41,676 --> 00:52:44,696
+by poor ad placement,
+by poor ad choice,
+
+
+1190
+00:52:45,066 --> 00:52:46,886
+you're not actually going
+to have a net win here.
+
+
+1191
+00:52:47,196 --> 00:52:50,216
+You want to really make sure
+you have a user-centric focus
+
+
+1192
+00:52:50,426 --> 00:52:52,346
+to where you're picking
+to put ads
+
+
+1193
+00:52:52,346 --> 00:52:54,566
+and which type you're
+choosing to put there.
+
+
+1194
+00:52:56,916 --> 00:53:00,636
+In addition, there's
+a cycle here
+
+
+1195
+00:53:00,636 --> 00:53:02,946
+between monetization
+and promotion.
+
+
+1196
+00:53:03,216 --> 00:53:06,496
+OK? Optimize your ad's
+performance to begin -
+
+
+1197
+00:53:06,496 --> 00:53:08,856
+your app's ad performance
+to begin with, that's going
+
+
+1198
+00:53:08,856 --> 00:53:10,066
+to generate revenue from it.
+
+
+1199
+00:53:10,976 --> 00:53:12,856
+But don't forget to take
+advantage of iAd Workbench
+
+
+1200
+00:53:12,856 --> 00:53:14,646
+and repromote your app.
+
+
+1201
+00:53:14,646 --> 00:53:17,976
+It's important to continue
+to get new users for your app
+
+
+1202
+00:53:17,976 --> 00:53:20,276
+if you want to continue to
+get revenue from your app.
+
+
+1203
+00:53:20,886 --> 00:53:22,096
+The two feed into each other.
+
+
+1204
+00:53:22,096 --> 00:53:24,156
+You want to generate revenue;
+you want to spend some
+
+
+1205
+00:53:24,156 --> 00:53:26,876
+of your revenue to readvertise
+your app and acquire new users.
+
+
+1206
+00:53:27,346 --> 00:53:32,026
+OK? So those are some sort
+of best practices for iAd.
+
+
+1207
+00:53:32,676 --> 00:53:34,746
+For more information
+beyond this,
+
+
+1208
+00:53:34,816 --> 00:53:37,546
+we've got Mark Malone is our
+iAd Technologies Evangelist.
+
+
+1209
+00:53:37,546 --> 00:53:39,366
+You can reach him at
+the email address above.
+
+
+1210
+00:53:40,046 --> 00:53:42,996
+There's an iAd Programming
+Guide online along
+
+
+1211
+00:53:42,996 --> 00:53:45,896
+with the iOS STK
+developer information.
+
+
+1212
+00:53:46,646 --> 00:53:48,906
+There's some Apple developer
+forums that we monitor.
+
+
+1213
+00:53:48,906 --> 00:53:51,666
+If you've got questions,
+you and other developers,
+
+
+1214
+00:53:51,666 --> 00:53:53,696
+and us will be monitoring
+those to answer questions,
+
+
+1215
+00:53:53,696 --> 00:53:54,526
+hopefully help you out.
+
+
+1216
+00:53:54,526 --> 00:53:58,336
+There are a couple related
+sessions here at WWDC.
+
+
+1217
+00:53:58,336 --> 00:54:00,596
+Unfortunately you already
+missed "The New iTunes Connect,"
+
+
+1218
+00:54:00,596 --> 00:54:01,916
+which talked a little
+bit about iAd.
+
+
+1219
+00:54:02,116 --> 00:54:03,076
+That was yesterday.
+
+
+1220
+00:54:03,296 --> 00:54:04,256
+You can watch the video.
+
+
+1221
+00:54:04,656 --> 00:54:07,346
+Tomorrow morning at 9:00 in
+Nob Hill there's "What's New
+
+
+1222
+00:54:07,346 --> 00:54:08,886
+in iAd Workbench,"
+which is going to go
+
+
+1223
+00:54:08,886 --> 00:54:11,546
+into a little bit more detail
+about the app attribution
+
+
+1224
+00:54:11,546 --> 00:54:13,456
+and the audience segment
+retargeting that I talked
+
+
+1225
+00:54:13,456 --> 00:54:15,286
+about at the end of
+this presentation.
+
+
+1226
+00:54:15,986 --> 00:54:16,556
+And that's it.
+
+
+1227
+00:54:16,826 --> 00:54:17,566
+Thank you very much.
+
+
+1228
+00:54:17,566 --> 00:54:19,000
+[ Applause ]
+

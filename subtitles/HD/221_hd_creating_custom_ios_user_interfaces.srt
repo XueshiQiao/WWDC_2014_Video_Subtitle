@@ -1,0 +1,6068 @@
+1
+00:00:00,506 --> 00:00:10,936
+[ Silence ]
+
+
+2
+00:00:11,436 --> 00:00:11,886
+>> Good afternoon.
+
+
+3
+00:00:12,516 --> 00:00:18,546
+[ Applause ]
+
+
+4
+00:00:19,046 --> 00:00:21,466
+>> My name is Brandon Newendorp
+and I'm the Software Engineer
+
+
+5
+00:00:21,606 --> 00:00:25,686
+on iOS, and welcome to Creating
+Custom iOS User Interfaces.
+
+
+6
+00:00:26,726 --> 00:00:29,436
+If you take a look at
+iOS today it is filled
+
+
+7
+00:00:29,436 --> 00:00:31,616
+with really interesting
+and engaging,
+
+
+8
+00:00:31,686 --> 00:00:33,386
+unique interfaces for our users.
+
+
+9
+00:00:34,156 --> 00:00:36,686
+You can see that in things
+like the Notification Center
+
+
+10
+00:00:37,036 --> 00:00:39,736
+which takes advantage of a
+blur effect to give you a sense
+
+
+11
+00:00:39,736 --> 00:00:42,596
+of it being at a different depth
+above the operating system.
+
+
+12
+00:00:43,466 --> 00:00:46,486
+Notification Center also
+uses effects like vibrancy
+
+
+13
+00:00:46,716 --> 00:00:49,246
+to create text that is
+highly legible at all times.
+
+
+14
+00:00:50,396 --> 00:00:52,126
+You also see interesting
+interfaces
+
+
+15
+00:00:52,126 --> 00:00:54,816
+like what we call the
+Suggestions View in Siri
+
+
+16
+00:00:54,966 --> 00:00:57,926
+where we have these pieces
+of text that are animating on
+
+
+17
+00:00:57,926 --> 00:01:00,306
+and off screen at all
+times, getting the sense
+
+
+18
+00:01:00,306 --> 00:01:01,936
+of being pulled on
+and off of the screen.
+
+
+19
+00:01:02,836 --> 00:01:06,166
+We use custom UI in a lot
+of places across the system,
+
+
+20
+00:01:06,646 --> 00:01:08,056
+and you might be
+thinking to yourself,
+
+
+21
+00:01:08,316 --> 00:01:10,636
+"I want to build really cool
+stuff like this as well."
+
+
+22
+00:01:11,116 --> 00:01:12,236
+There's some things
+that you should think
+
+
+23
+00:01:12,236 --> 00:01:15,196
+about that are questions we
+also like to ask ourselves
+
+
+24
+00:01:15,546 --> 00:01:18,426
+when creating new pieces of
+UI for the operating system.
+
+
+25
+00:01:19,516 --> 00:01:21,626
+The first thing that you
+should think about is
+
+
+26
+00:01:21,626 --> 00:01:23,106
+where are you going
+to use this UI?
+
+
+27
+00:01:23,106 --> 00:01:25,786
+How does this fit into
+your app and what kind
+
+
+28
+00:01:25,836 --> 00:01:28,756
+of purpose does it serve for
+your users and your customers?
+
+
+29
+00:01:30,096 --> 00:01:32,426
+Sometimes you want to
+create UI that needs
+
+
+30
+00:01:32,426 --> 00:01:33,776
+to represent multiple states.
+
+
+31
+00:01:34,436 --> 00:01:36,956
+For example you might be
+creating a download control
+
+
+32
+00:01:36,956 --> 00:01:40,706
+that needs to have states
+like in idle, downloading,
+
+
+33
+00:01:40,956 --> 00:01:43,606
+in progress, cancelled
+and complete states.
+
+
+34
+00:01:44,156 --> 00:01:46,976
+So you want to think about those
+and think about how to design
+
+
+35
+00:01:47,066 --> 00:01:48,906
+and craft your control in a way
+
+
+36
+00:01:48,906 --> 00:01:53,156
+that supports those different
+states it's intended for.
+
+
+37
+00:01:53,976 --> 00:01:55,566
+You also want to think
+about whether you're going
+
+
+38
+00:01:55,566 --> 00:01:57,786
+to share this control
+or this piece of UI
+
+
+39
+00:01:57,786 --> 00:01:59,196
+across several applications.
+
+
+40
+00:01:59,956 --> 00:02:02,956
+Starting in iOS 8 you can
+create frameworks for your app,
+
+
+41
+00:02:02,996 --> 00:02:05,806
+which are a great way to
+share code between apps
+
+
+42
+00:02:06,306 --> 00:02:09,015
+that your team is creating or
+even release it to the public
+
+
+43
+00:02:09,545 --> 00:02:11,986
+to help other people use the
+same kind of pieces of UI.
+
+
+44
+00:02:13,006 --> 00:02:15,956
+And then the last thing
+that you might want to think
+
+
+45
+00:02:15,956 --> 00:02:19,006
+about are what pieces
+of API can you leverage
+
+
+46
+00:02:19,006 --> 00:02:20,196
+to make your job easier?
+
+
+47
+00:02:20,756 --> 00:02:24,406
+A lot of times we have
+UI or controls in UIKit
+
+
+48
+00:02:24,406 --> 00:02:27,376
+that will make it very easy
+for you to create custom things
+
+
+49
+00:02:27,576 --> 00:02:29,156
+without having to subclass code.
+
+
+50
+00:02:30,426 --> 00:02:33,286
+So what are some APIs that you
+might find useful if you were
+
+
+51
+00:02:33,286 --> 00:02:36,696
+to want to take advantage
+of things we offer in UIKit?
+
+
+52
+00:02:37,626 --> 00:02:39,516
+One of those is the
+UIAppearance system.
+
+
+53
+00:02:40,156 --> 00:02:41,576
+UIAppearance allows you
+
+
+54
+00:02:41,576 --> 00:02:43,356
+to configure certain
+characteristics
+
+
+55
+00:02:43,646 --> 00:02:46,906
+of the default UIKit controls
+without having to subclass them.
+
+
+56
+00:02:46,906 --> 00:02:51,356
+One of the most popular uses for
+UIAppearance is the tint color
+
+
+57
+00:02:51,746 --> 00:02:54,366
+which allows you to configure
+the color of controls
+
+
+58
+00:02:54,366 --> 00:02:57,856
+that we provide as part of UIKit
+without having to subclass them.
+
+
+59
+00:02:59,226 --> 00:03:00,746
+One particularly useful piece
+
+
+60
+00:03:00,746 --> 00:03:04,216
+of the UIAppearance system
+is the UIImageRenderingMode.
+
+
+61
+00:03:04,756 --> 00:03:07,566
+This is something that we
+introduced in iOS 7 last year,
+
+
+62
+00:03:07,566 --> 00:03:09,926
+that allows you to
+provide a single image
+
+
+63
+00:03:09,926 --> 00:03:11,076
+into your application.
+
+
+64
+00:03:11,786 --> 00:03:13,846
+We take a look at the alpha
+channel from that image
+
+
+65
+00:03:14,056 --> 00:03:15,576
+and can apply tint colors to it.
+
+
+66
+00:03:16,176 --> 00:03:17,596
+So if you would like
+to change the color
+
+
+67
+00:03:17,596 --> 00:03:19,776
+of this image during
+your app's lifecycle
+
+
+68
+00:03:20,236 --> 00:03:22,706
+or if your design team would
+like to change the tint color
+
+
+69
+00:03:22,706 --> 00:03:25,296
+of your application while
+it's in development it's very,
+
+
+70
+00:03:25,296 --> 00:03:28,886
+very easy to apply
+universally across your app.
+
+
+71
+00:03:29,596 --> 00:03:32,186
+We introduced Dynamic
+Type with iOS 7
+
+
+72
+00:03:32,626 --> 00:03:33,956
+which gives you a
+really great way
+
+
+73
+00:03:33,956 --> 00:03:37,666
+to respect your users request
+for larger or smaller type
+
+
+74
+00:03:37,826 --> 00:03:39,896
+across the system
+and it's important
+
+
+75
+00:03:39,896 --> 00:03:42,716
+that you do the best you can
+to honor those preferences
+
+
+76
+00:03:42,716 --> 00:03:47,366
+to help things be more
+legible for your users.
+
+
+77
+00:03:47,666 --> 00:03:49,776
+Accessibility is a
+critical part of iOS.
+
+
+78
+00:03:50,276 --> 00:03:53,306
+We care very deeply about making
+sure our operating system is
+
+
+79
+00:03:53,306 --> 00:03:55,366
+accessible to as many
+people as possible
+
+
+80
+00:03:55,886 --> 00:03:58,946
+and there's some very powerful
+APIs around accessibility
+
+
+81
+00:03:59,306 --> 00:04:01,596
+that are important for
+you to use if you decide
+
+
+82
+00:04:01,596 --> 00:04:03,596
+to build custom UI
+in your application.
+
+
+83
+00:04:04,456 --> 00:04:09,006
+There's no reason to not support
+accessibility in your app.
+
+
+84
+00:04:09,006 --> 00:04:10,286
+And finally localization,
+
+
+85
+00:04:10,436 --> 00:04:12,636
+another very critical
+part of iOS.
+
+
+86
+00:04:13,496 --> 00:04:16,596
+We really on localization to
+extend iOS to as many customers
+
+
+87
+00:04:16,596 --> 00:04:20,156
+as possible and there's some
+new localization tools in iOS 8
+
+
+88
+00:04:20,426 --> 00:04:21,755
+that make this even
+easier for you.
+
+
+89
+00:04:22,406 --> 00:04:26,256
+Beyond those I'd like to
+introduce four new topics today.
+
+
+90
+00:04:27,166 --> 00:04:29,816
+The first is we're going to
+talk about spring animations,
+
+
+91
+00:04:30,256 --> 00:04:32,596
+which are a great way to
+make your controls feel
+
+
+92
+00:04:32,596 --> 00:04:33,796
+like a native part of iOS.
+
+
+93
+00:04:35,086 --> 00:04:36,896
+The next thing are
+some new techniques
+
+
+94
+00:04:36,896 --> 00:04:38,296
+for vibrancy and blur.
+
+
+95
+00:04:39,666 --> 00:04:42,006
+After that we're going to
+talk about CAShapeLayers.
+
+
+96
+00:04:42,806 --> 00:04:45,416
+CAShapeLayers are a great way
+that you can draw custom UI
+
+
+97
+00:04:45,416 --> 00:04:48,406
+within your application
+and animate changes to it.
+
+
+98
+00:04:49,186 --> 00:04:50,856
+And then finally,
+we're going to talk
+
+
+99
+00:04:50,856 --> 00:04:52,916
+about Dynamic Core
+Animation behaviors
+
+
+100
+00:04:53,416 --> 00:04:55,586
+and how you can make changes
+and have even more control
+
+
+101
+00:04:55,586 --> 00:04:57,646
+than you may realize
+over the behaviors
+
+
+102
+00:04:57,646 --> 00:04:59,566
+that Core Animation
+provides today.
+
+
+103
+00:05:00,986 --> 00:05:02,996
+Let's get started with
+Spring Animations.
+
+
+104
+00:05:04,366 --> 00:05:05,626
+The first thing to
+understand is you need
+
+
+105
+00:05:05,626 --> 00:05:08,176
+to understand what a
+Spring Animation is,
+
+
+106
+00:05:08,686 --> 00:05:10,626
+and you probably think
+of a Spring Animation
+
+
+107
+00:05:10,906 --> 00:05:13,046
+as a bouncing effect
+that mimics a spring
+
+
+108
+00:05:13,046 --> 00:05:14,336
+or a slinky in the real world.
+
+
+109
+00:05:14,866 --> 00:05:17,896
+And while you can create
+very bouncy effects like that
+
+
+110
+00:05:17,956 --> 00:05:21,056
+with Spring Animations that's
+not the only things you do
+
+
+111
+00:05:21,056 --> 00:05:21,556
+with springs.
+
+
+112
+00:05:22,726 --> 00:05:24,666
+Really you can think
+about Spring Animations
+
+
+113
+00:05:25,096 --> 00:05:27,456
+as a new default timing
+curve for animations
+
+
+114
+00:05:27,456 --> 00:05:31,206
+within your applications
+and in fact we use that --
+
+
+115
+00:05:31,306 --> 00:05:32,386
+these new timing curves
+
+
+116
+00:05:32,836 --> 00:05:36,186
+for nearly every system
+animation starting in iOS 7.
+
+
+117
+00:05:36,596 --> 00:05:38,656
+Nearly everything you see
+that we provide as part
+
+
+118
+00:05:38,656 --> 00:05:41,506
+of iOS is built around
+Spring Animations now.
+
+
+119
+00:05:42,576 --> 00:05:45,516
+You can actually create new
+animations or Spring Animations
+
+
+120
+00:05:45,516 --> 00:05:48,236
+in your app without the
+use of UIKit Dynamics.
+
+
+121
+00:05:48,906 --> 00:05:51,126
+Dynamics is an incredibly
+powerful tool
+
+
+122
+00:05:51,126 --> 00:05:53,446
+for creating physics
+simulations within your app
+
+
+123
+00:05:53,696 --> 00:05:56,026
+but there's easier ways to
+get at Spring Animations.
+
+
+124
+00:05:56,836 --> 00:05:59,136
+In fact the API for
+making a Spring Animation
+
+
+125
+00:05:59,136 --> 00:06:01,176
+in your app is nearly the same
+
+
+126
+00:06:01,446 --> 00:06:04,096
+as using the animateWithDuration
+block that you're used
+
+
+127
+00:06:04,096 --> 00:06:05,626
+to using today on UIView.
+
+
+128
+00:06:07,036 --> 00:06:08,726
+So what do Spring
+Animations look like?
+
+
+129
+00:06:10,036 --> 00:06:11,826
+On the, uh, left side
+
+
+130
+00:06:11,826 --> 00:06:14,606
+of the screen (for you guys)
+I have a red box that's going
+
+
+131
+00:06:14,606 --> 00:06:17,706
+to animate using the default
+Ease in/Ease out timing curve.
+
+
+132
+00:06:18,266 --> 00:06:21,366
+On the right side we have a
+blue box that's going to animate
+
+
+133
+00:06:21,506 --> 00:06:22,556
+with a Spring Animation.
+
+
+134
+00:06:23,346 --> 00:06:25,446
+Both animations will
+use the same duration
+
+
+135
+00:06:25,776 --> 00:06:27,146
+and they're moving
+the same distance.
+
+
+136
+00:06:27,886 --> 00:06:30,666
+But when the animations
+start you'll notice
+
+
+137
+00:06:30,796 --> 00:06:33,246
+that the Spring Animation
+very quickly gets up to speed
+
+
+138
+00:06:33,246 --> 00:06:34,646
+and then slowly tappers off
+
+
+139
+00:06:34,646 --> 00:06:36,756
+as it reaches its
+final position compared
+
+
+140
+00:06:36,756 --> 00:06:38,436
+to the Ease In/Ease
+Out animation.
+
+
+141
+00:06:39,486 --> 00:06:40,896
+Let's slow that down
+a little bit more
+
+
+142
+00:06:40,896 --> 00:06:42,336
+so you can take a closer look.
+
+
+143
+00:06:43,646 --> 00:06:48,056
+You can see when the animation
+begins the Spring Animation
+
+
+144
+00:06:48,056 --> 00:06:49,226
+quickly moves up to speed
+
+
+145
+00:06:49,226 --> 00:06:50,756
+and then spends a
+considerable amount
+
+
+146
+00:06:50,756 --> 00:06:53,716
+of its animation duration
+reaching that final position,
+
+
+147
+00:06:53,716 --> 00:06:54,956
+its final resting state.
+
+
+148
+00:06:55,546 --> 00:06:57,066
+Compare this with Ease in/Ease
+
+
+149
+00:06:57,066 --> 00:06:59,466
+out where it takes a little bit
+more time to get up to speed.
+
+
+150
+00:07:01,036 --> 00:07:03,646
+Another way to visualize
+this is to plot what
+
+
+151
+00:07:03,646 --> 00:07:05,956
+that timing curve
+looks like over time.
+
+
+152
+00:07:06,706 --> 00:07:10,066
+You can see a default curve very
+slowly builds up its velocity
+
+
+153
+00:07:10,066 --> 00:07:11,496
+and then immediately
+starts to slow
+
+
+154
+00:07:11,496 --> 00:07:12,776
+down its velocity for the end.
+
+
+155
+00:07:13,996 --> 00:07:15,316
+Spring Animations, however,
+
+
+156
+00:07:15,736 --> 00:07:17,596
+launch up to speed
+almost immediately
+
+
+157
+00:07:17,796 --> 00:07:19,496
+and then spend the
+last third or so
+
+
+158
+00:07:19,496 --> 00:07:22,206
+of their duration reaching
+what we call the "long tail"
+
+
+159
+00:07:22,396 --> 00:07:24,356
+or that slow bit where
+we finally reach the
+
+
+160
+00:07:24,686 --> 00:07:25,466
+final position.
+
+
+161
+00:07:26,686 --> 00:07:28,756
+Where do we use Spring
+Animations in iOS today?
+
+
+162
+00:07:29,586 --> 00:07:32,516
+One place is launching apps and
+opening and closing folders.
+
+
+163
+00:07:33,646 --> 00:07:34,676
+If you pay close attention
+
+
+164
+00:07:34,676 --> 00:07:38,376
+to these animations you see it
+feels like the animation begins
+
+
+165
+00:07:38,376 --> 00:07:40,736
+and very quickly shows the
+user the content that they're
+
+
+166
+00:07:40,736 --> 00:07:43,076
+about to see and
+then, when closing,
+
+
+167
+00:07:43,266 --> 00:07:46,536
+very quickly pulls the
+folder out of the way.
+
+
+168
+00:07:46,766 --> 00:07:49,306
+Another place that we like
+to use Spring Animations is
+
+
+169
+00:07:49,306 --> 00:07:51,446
+in the default push
+and pop animations
+
+
+170
+00:07:51,446 --> 00:07:54,976
+for navigation controllers, as
+well as presenting modal views
+
+
+171
+00:07:54,976 --> 00:07:56,026
+on and off of the screen.
+
+
+172
+00:07:57,866 --> 00:08:00,826
+And finally, that Siri
+suggestions view that we looked
+
+
+173
+00:08:00,826 --> 00:08:03,266
+at earlier is built
+with Spring Animations.
+
+
+174
+00:08:03,926 --> 00:08:06,716
+We use a single Spring Animation
+to pull the text onscreen,
+
+
+175
+00:08:06,966 --> 00:08:09,886
+off the bottom, and allow it to
+slowly drift across the screen,
+
+
+176
+00:08:10,356 --> 00:08:12,766
+and then a second Spring
+Animation to quickly pull it
+
+
+177
+00:08:12,766 --> 00:08:15,686
+out of the way, making room
+for the next set of strings.
+
+
+178
+00:08:16,256 --> 00:08:19,916
+What does the API look
+like for Spring Animations?
+
+
+179
+00:08:20,956 --> 00:08:23,586
+It's -- like I said, there's
+a single method on UIView
+
+
+180
+00:08:23,876 --> 00:08:25,596
+that makes this really
+straightforward for you
+
+
+181
+00:08:25,596 --> 00:08:28,706
+to take advantage of Spring
+Animations in your app.
+
+
+182
+00:08:28,846 --> 00:08:30,636
+Many of these parameters
+look familiar to you.
+
+
+183
+00:08:31,256 --> 00:08:33,606
+But I'd like to call out
+the two that are unique
+
+
+184
+00:08:33,606 --> 00:08:36,256
+to Spring Animations and
+those are the damping
+
+
+185
+00:08:36,256 --> 00:08:38,775
+and initialSpringVelocity
+parameters.
+
+
+186
+00:08:39,775 --> 00:08:41,936
+Damping takes a value
+from 0 to 1
+
+
+187
+00:08:42,196 --> 00:08:44,556
+and controls how much
+resistance the spring has
+
+
+188
+00:08:44,556 --> 00:08:46,516
+to completing the
+animation at the end.
+
+
+189
+00:08:47,316 --> 00:08:49,536
+The initialSpringVelocity
+is used
+
+
+190
+00:08:49,536 --> 00:08:52,166
+to give the animation a
+kick to push the object
+
+
+191
+00:08:52,166 --> 00:08:53,786
+into the animation curve.
+
+
+192
+00:08:54,446 --> 00:08:56,696
+You can also use it to
+synchronize the animation
+
+
+193
+00:08:56,896 --> 00:08:58,166
+with something that's
+in flight today.
+
+
+194
+00:08:58,946 --> 00:09:01,696
+Let's take a look at how these
+different values have an effect
+
+
+195
+00:09:01,836 --> 00:09:02,876
+on Spring Animations.
+
+
+196
+00:09:03,356 --> 00:09:08,976
+We're going to start out with
+the same blue box and a damping
+
+
+197
+00:09:08,976 --> 00:09:12,246
+of 0.1, and you can see when the
+animation completes there's a
+
+
+198
+00:09:12,246 --> 00:09:13,996
+lot of oscillation at the end.
+
+
+199
+00:09:13,996 --> 00:09:16,946
+It feels like you would expect a
+spring to be in the real world.
+
+
+200
+00:09:17,676 --> 00:09:18,746
+You might want this effect...
+
+
+201
+00:09:18,976 --> 00:09:19,876
+but you might not.
+
+
+202
+00:09:20,886 --> 00:09:22,526
+By stepping the damping
+up to something
+
+
+203
+00:09:22,526 --> 00:09:25,906
+like 0.5 you can see we
+considerably reduce how much
+
+
+204
+00:09:25,906 --> 00:09:28,006
+oscillation we get
+with this animation.
+
+
+205
+00:09:28,466 --> 00:09:30,196
+There's still a fair amount
+of bouncing at the end
+
+
+206
+00:09:30,486 --> 00:09:31,606
+but it's much more controlled.
+
+
+207
+00:09:33,156 --> 00:09:36,156
+Bringing the damping
+up to 0.8 reduces most
+
+
+208
+00:09:36,156 --> 00:09:36,996
+of that damping effect.
+
+
+209
+00:09:37,556 --> 00:09:39,546
+You can see there's a very
+small bounce back at the end
+
+
+210
+00:09:39,546 --> 00:09:42,926
+of the animation but for the
+most part the animation just
+
+
+211
+00:09:43,016 --> 00:09:44,056
+smoothly reaches the end.
+
+
+212
+00:09:45,396 --> 00:09:46,706
+And finally bringing the damping
+
+
+213
+00:09:46,706 --> 00:09:49,966
+up to 1.0 gives us no
+oscillation at the end.
+
+
+214
+00:09:49,966 --> 00:09:50,996
+It just smoothly reaches
+
+
+215
+00:09:50,996 --> 00:09:53,296
+that final position
+giving a very nice,
+
+
+216
+00:09:53,506 --> 00:09:54,896
+fast feeling to the animation.
+
+
+217
+00:09:54,896 --> 00:09:58,986
+So let's bring in the
+initial velocity parameter.
+
+
+218
+00:09:59,966 --> 00:10:01,296
+We're going to leave
+damping the same
+
+
+219
+00:10:01,696 --> 00:10:03,586
+but give our spring
+a much stronger kick
+
+
+220
+00:10:03,656 --> 00:10:04,606
+to start the animation.
+
+
+221
+00:10:05,246 --> 00:10:07,726
+You can see it almost
+immediately launches the box
+
+
+222
+00:10:07,726 --> 00:10:10,856
+past its first position and
+actually overcomes the spring
+
+
+223
+00:10:10,856 --> 00:10:13,976
+to have it bounce back
+a little bit at the end.
+
+
+224
+00:10:14,046 --> 00:10:17,186
+An even stronger initial
+velocity can blow even further
+
+
+225
+00:10:17,186 --> 00:10:20,906
+past that final position but the
+damping value very quickly pulls
+
+
+226
+00:10:20,906 --> 00:10:21,596
+it into rest.
+
+
+227
+00:10:22,736 --> 00:10:24,586
+And then finally we
+can combine these
+
+
+228
+00:10:24,876 --> 00:10:27,856
+to make very unique effects
+giving us a damping value
+
+
+229
+00:10:27,856 --> 00:10:30,786
+that resists oscillation
+and an initial velocity
+
+
+230
+00:10:30,936 --> 00:10:33,036
+to give a nice fast
+kick to our spring.
+
+
+231
+00:10:33,766 --> 00:10:36,106
+So where would you want to think
+
+
+232
+00:10:36,106 --> 00:10:38,536
+about using Spring
+Animations in your application?
+
+
+233
+00:10:39,336 --> 00:10:42,366
+They're a fantastic
+substitute for linear animations
+
+
+234
+00:10:42,636 --> 00:10:43,686
+that you're used to using
+
+
+235
+00:10:44,066 --> 00:10:46,236
+with the current UIView
+animateWithDuration.
+
+
+236
+00:10:47,056 --> 00:10:49,916
+In fact, any place that
+you would like to fit
+
+
+237
+00:10:49,916 --> 00:10:51,446
+into the native UIKit controls
+
+
+238
+00:10:51,446 --> 00:10:54,586
+that we provide you should
+consider using Spring Animations
+
+
+239
+00:10:54,636 --> 00:10:58,026
+instead, because nearly every
+animation that's part of UIKit,
+
+
+240
+00:10:58,076 --> 00:11:00,966
+that's part of the OS, is
+built around Spring Animations.
+
+
+241
+00:11:02,396 --> 00:11:05,786
+Spring Animations also
+give your controls
+
+
+242
+00:11:05,786 --> 00:11:08,176
+and your animations a more
+natural feeling to the users,
+
+
+243
+00:11:08,556 --> 00:11:10,156
+because springs are
+something that are part
+
+
+244
+00:11:10,156 --> 00:11:11,326
+of the real world around us.
+
+
+245
+00:11:12,386 --> 00:11:14,166
+It's also important
+to keep in mind
+
+
+246
+00:11:14,636 --> 00:11:15,966
+that while I've showed
+you examples
+
+
+247
+00:11:15,966 --> 00:11:18,986
+with the position property
+you can use Spring Animations
+
+
+248
+00:11:19,186 --> 00:11:21,646
+to apply to any animatable
+property in UIKit.
+
+
+249
+00:11:22,216 --> 00:11:24,856
+That means if you want to
+have the alpha for your layers
+
+
+250
+00:11:24,856 --> 00:11:27,926
+or your views change you can do
+that on a spring timing curve.
+
+
+251
+00:11:29,416 --> 00:11:31,896
+I have a demo application put
+together and let's take a look
+
+
+252
+00:11:31,896 --> 00:11:33,696
+at what Spring Animations
+can do for us there.
+
+
+253
+00:11:34,076 --> 00:11:36,686
+So this is my demo application.
+
+
+254
+00:11:37,106 --> 00:11:39,946
+I have this very nice
+rainbow gradient background
+
+
+255
+00:11:39,946 --> 00:11:41,686
+and then a control
+bar at the bottom
+
+
+256
+00:11:41,686 --> 00:11:43,726
+where I have some custom
+controls that I can use
+
+
+257
+00:11:43,726 --> 00:11:46,346
+to configure that
+gradient's rendering.
+
+
+258
+00:11:46,686 --> 00:11:47,936
+I can change the
+number of colors
+
+
+259
+00:11:48,556 --> 00:11:51,116
+and I can also pick
+how many colors repeat
+
+
+260
+00:11:51,116 --> 00:11:51,856
+within the gradient.
+
+
+261
+00:11:52,946 --> 00:11:56,146
+Now these controls are currently
+being animated on and off screen
+
+
+262
+00:11:56,146 --> 00:11:57,886
+with the default Ease in/Ease
+
+
+263
+00:11:57,886 --> 00:12:00,546
+out timing curve
+and it feels very...
+
+
+264
+00:12:00,546 --> 00:12:03,836
+very normal, but it also feels
+like there's a lot of time spent
+
+
+265
+00:12:04,086 --> 00:12:05,356
+with the control
+getting in the way
+
+
+266
+00:12:05,356 --> 00:12:07,406
+of the user actually
+interacting with it.
+
+
+267
+00:12:08,146 --> 00:12:11,566
+So I'm going to substitute in
+a pair of spring animations.
+
+
+268
+00:12:12,676 --> 00:12:15,416
+So in my demo code I
+have a couple of blocks
+
+
+269
+00:12:15,416 --> 00:12:18,006
+that I'm doing animations in
+already that I use to present
+
+
+270
+00:12:18,166 --> 00:12:19,306
+and dismiss the modal view,
+
+
+271
+00:12:19,306 --> 00:12:23,576
+and you can see here I'm already
+using UIView animateWithDuration
+
+
+272
+00:12:24,136 --> 00:12:25,796
+and passing it in
+Animation Block.
+
+
+273
+00:12:26,426 --> 00:12:29,286
+What I'm going to
+do is just replace
+
+
+274
+00:12:29,286 --> 00:12:31,016
+that with a Spring Animation.
+
+
+275
+00:12:31,646 --> 00:12:34,256
+You can see the API is almost
+exactly what we had before,
+
+
+276
+00:12:34,256 --> 00:12:36,206
+just with a couple
+of extra arguments.
+
+
+277
+00:12:37,066 --> 00:12:40,726
+For my presentation we're going
+to use a damping value of .75
+
+
+278
+00:12:40,786 --> 00:12:42,366
+and if you remember the boxes
+
+
+279
+00:12:42,366 --> 00:12:45,116
+on screen this will give us
+just a little bit of oscillation
+
+
+280
+00:12:45,116 --> 00:12:47,136
+or a little bit of bouncing
+at the end of the animation.
+
+
+281
+00:12:47,866 --> 00:12:50,766
+I'm also going to use an
+initial spring velocity of 10
+
+
+282
+00:12:51,116 --> 00:12:52,676
+to give it even more
+of a kick to get
+
+
+283
+00:12:52,676 --> 00:12:54,026
+that control on screen quickly.
+
+
+284
+00:12:56,116 --> 00:12:59,026
+We're also going to take a
+look at my dismiss animation.
+
+
+285
+00:13:00,326 --> 00:13:03,176
+Again right now we're using
+the same animateWithDuration
+
+
+286
+00:13:03,766 --> 00:13:06,686
+and we're going to substitute
+in another Spring Animation.
+
+
+287
+00:13:07,376 --> 00:13:10,296
+For the dismiss I'm going to
+use a very strong damping of 1
+
+
+288
+00:13:10,296 --> 00:13:11,956
+because I don't really
+want it to be bouncing
+
+
+289
+00:13:11,956 --> 00:13:13,796
+when it reaches its final
+position in the dock
+
+
+290
+00:13:14,346 --> 00:13:16,286
+and I'm going to give it
+no initial velocity --
+
+
+291
+00:13:16,436 --> 00:13:18,316
+to just let the spring
+itself pull
+
+
+292
+00:13:18,316 --> 00:13:19,916
+that view back into the dock.
+
+
+293
+00:13:20,836 --> 00:13:22,306
+With those changes
+let's take a look
+
+
+294
+00:13:22,306 --> 00:13:23,306
+at what that does to the app.
+
+
+295
+00:13:24,556 --> 00:13:27,136
+Just as a quick reminder: this
+is what it looks like right now,
+
+
+296
+00:13:27,296 --> 00:13:28,576
+without the Spring Animations.
+
+
+297
+00:13:29,716 --> 00:13:31,456
+The control very
+smoothly slides in and out
+
+
+298
+00:13:31,456 --> 00:13:33,756
+but it still feels a little bit
+like it's getting in the way.
+
+
+299
+00:13:33,756 --> 00:13:36,206
+When we switch over to a version
+
+
+300
+00:13:36,206 --> 00:13:39,426
+with the Spring Animations you
+can see there's a very different
+
+
+301
+00:13:39,636 --> 00:13:40,386
+but subtle effect.
+
+
+302
+00:13:41,446 --> 00:13:44,056
+The spring quickly
+pulls the view onscreen.
+
+
+303
+00:13:44,246 --> 00:13:46,226
+You can see that very small
+bounce when it presents,
+
+
+304
+00:13:46,946 --> 00:13:49,576
+but it feels like it gets on
+and off the screen and available
+
+
+305
+00:13:49,576 --> 00:13:51,766
+to the user much faster
+than it did before.
+
+
+306
+00:13:52,846 --> 00:13:54,746
+And that's how we can
+use Spring Animations
+
+
+307
+00:13:54,746 --> 00:13:58,276
+to bring a new feeling to
+animations within your app.
+
+
+308
+00:13:58,596 --> 00:13:59,676
+The next thing I'd like to talk
+
+
+309
+00:13:59,676 --> 00:14:02,556
+about is something
+called UIVisualEffectView.
+
+
+310
+00:14:03,456 --> 00:14:06,286
+Before we get to that however,
+I'd like to spend a couple
+
+
+311
+00:14:06,286 --> 00:14:09,456
+of minutes talking about
+how we render things on iOS.
+
+
+312
+00:14:10,706 --> 00:14:12,436
+Some of the APIs that
+we're going to be talking
+
+
+313
+00:14:12,436 --> 00:14:14,856
+about today can have
+a dramatic effect
+
+
+314
+00:14:15,356 --> 00:14:17,326
+on the rendering performance
+of your application
+
+
+315
+00:14:17,526 --> 00:14:20,096
+and it's important to understand
+how they actually work
+
+
+316
+00:14:20,096 --> 00:14:21,046
+within the rendering system.
+
+
+317
+00:14:21,116 --> 00:14:24,076
+So if you were to take a look
+
+
+318
+00:14:24,076 --> 00:14:27,666
+at the entire system there's
+largely four steps that we take
+
+
+319
+00:14:27,666 --> 00:14:29,316
+to render content
+for your application.
+
+
+320
+00:14:30,006 --> 00:14:31,736
+We give your app a
+chance to handle events
+
+
+321
+00:14:31,796 --> 00:14:34,066
+and then commit a transaction
+to the render server.
+
+
+322
+00:14:34,786 --> 00:14:37,166
+The render server, which is
+part of the system on iOS,
+
+
+323
+00:14:37,516 --> 00:14:40,236
+processes that transaction,
+does some more work
+
+
+324
+00:14:40,236 --> 00:14:42,746
+and then composites
+layers which are handed off
+
+
+325
+00:14:42,806 --> 00:14:44,166
+to the GPU to be rendered.
+
+
+326
+00:14:44,826 --> 00:14:46,516
+The GPU will take
+its own block of time
+
+
+327
+00:14:46,516 --> 00:14:49,746
+to render all those layers and
+then hand it off to the display
+
+
+328
+00:14:50,146 --> 00:14:51,136
+to present to your user.
+
+
+329
+00:14:52,566 --> 00:14:55,186
+Let's focus in just a little
+bit on the steps that we take
+
+
+330
+00:14:55,386 --> 00:14:56,306
+within your application.
+
+
+331
+00:14:57,526 --> 00:15:00,636
+There's largely four things
+that take place within your app.
+
+
+332
+00:15:01,186 --> 00:15:03,516
+The first thing we'll
+do is do any setup work
+
+
+333
+00:15:03,666 --> 00:15:05,436
+and ask your views to
+lay themselves out.
+
+
+334
+00:15:06,276 --> 00:15:08,006
+If you're using auto
+layout we're going
+
+
+335
+00:15:08,006 --> 00:15:10,856
+to take the time here to
+compute the layout for your app.
+
+
+336
+00:15:11,076 --> 00:15:13,646
+If you're doing manual layout
+for your views we're going
+
+
+337
+00:15:13,646 --> 00:15:15,866
+to call layout subviews
+and ask your views
+
+
+338
+00:15:16,176 --> 00:15:17,206
+to lay themselves out.
+
+
+339
+00:15:18,316 --> 00:15:20,916
+The next thing we'll do is
+do any necessary drawing.
+
+
+340
+00:15:21,416 --> 00:15:23,006
+If any views need
+to draw themselves,
+
+
+341
+00:15:23,226 --> 00:15:25,796
+if you've implemented
+drawRect on some of your views,
+
+
+342
+00:15:25,876 --> 00:15:27,196
+we'll ask that to occur here.
+
+
+343
+00:15:27,626 --> 00:15:30,636
+We'll also do some string
+drawing at this time.
+
+
+344
+00:15:30,936 --> 00:15:33,826
+Next we're going to give Core
+Animation a little bit of time
+
+
+345
+00:15:34,026 --> 00:15:36,786
+to prepare some images if it
+needs to decode or convert them
+
+
+346
+00:15:36,786 --> 00:15:39,626
+for rendering before we
+finally package up the layers
+
+
+347
+00:15:39,866 --> 00:15:41,286
+and send them off to
+the render server.
+
+
+348
+00:15:42,016 --> 00:15:44,046
+This is a very, very
+broad overview
+
+
+349
+00:15:44,366 --> 00:15:45,586
+of how the render server works.
+
+
+350
+00:15:46,286 --> 00:15:48,626
+If you'd like to find out more
+there was a fantastic talk
+
+
+351
+00:15:48,626 --> 00:15:50,796
+yesterday by the
+performance team
+
+
+352
+00:15:50,956 --> 00:15:52,566
+that I would really
+encourage you to check out.
+
+
+353
+00:15:52,736 --> 00:15:54,166
+They go into a lot
+of great detail
+
+
+354
+00:15:54,496 --> 00:15:56,006
+on how all these
+depths actually work.
+
+
+355
+00:15:56,006 --> 00:15:59,526
+So with that quick
+understanding, let's go back
+
+
+356
+00:15:59,526 --> 00:16:00,836
+to UIVisualEffectView.
+
+
+357
+00:16:02,036 --> 00:16:06,146
+Last year at WWDC we
+introduced a new API called
+
+
+358
+00:16:06,146 --> 00:16:09,126
+drawViewHierarchyInRect,
+and a system to go with that
+
+
+359
+00:16:09,126 --> 00:16:12,446
+for creating fast, static blur
+effects within your application
+
+
+360
+00:16:13,066 --> 00:16:15,046
+and we continue to recommend
+you to take advantage
+
+
+361
+00:16:15,046 --> 00:16:17,486
+of this technique if the
+content that you want
+
+
+362
+00:16:17,486 --> 00:16:21,026
+to show behind the blur is not
+actively changing for the user.
+
+
+363
+00:16:21,536 --> 00:16:24,686
+The reason for this is it's
+just incredibly well optimized
+
+
+364
+00:16:24,686 --> 00:16:25,516
+for your application.
+
+
+365
+00:16:26,176 --> 00:16:29,376
+So we encourage you to continue
+using that as much as possible.
+
+
+366
+00:16:30,216 --> 00:16:32,086
+However, we heard
+that one or two
+
+
+367
+00:16:32,086 --> 00:16:33,986
+of you wanted something a
+little bit more advanced.
+
+
+368
+00:16:34,236 --> 00:16:37,406
+You wanted to do live blur
+effects like we have across iOS,
+
+
+369
+00:16:38,346 --> 00:16:41,666
+and to that end we are
+introducing UIVisualEffectView.
+
+
+370
+00:16:42,746 --> 00:16:46,206
+UIVisualEffectView
+creates two effect types.
+
+
+371
+00:16:47,126 --> 00:16:49,676
+It's a technique for creating
+live blurs in your application
+
+
+372
+00:16:50,206 --> 00:16:51,696
+and for creating
+vibrancy effects.
+
+
+373
+00:16:52,746 --> 00:16:55,276
+Let's take a look at what both
+of those effects actually mean.
+
+
+374
+00:16:56,026 --> 00:16:59,176
+A live blur effect is exactly
+what the name suggests.
+
+
+375
+00:16:59,826 --> 00:17:02,956
+It's where you can have content
+behind a view that is blurred,
+
+
+376
+00:17:03,096 --> 00:17:05,286
+and has some color effects
+changed to it as well,
+
+
+377
+00:17:05,665 --> 00:17:07,425
+all rendered in real
+time on your device.
+
+
+378
+00:17:09,336 --> 00:17:12,965
+Vibrancy is used to create
+content that is highly legible
+
+
+379
+00:17:12,965 --> 00:17:14,925
+at all times on top of a blur.
+
+
+380
+00:17:15,685 --> 00:17:18,766
+In the screenshot you see
+right now the Facetime icon
+
+
+381
+00:17:18,766 --> 00:17:22,665
+and the text are being rendered
+with vibrancy and you can see
+
+
+382
+00:17:22,665 --> 00:17:25,986
+that that text is always
+legible no matter what colors
+
+
+383
+00:17:25,986 --> 00:17:30,166
+or content are being
+blurred behind it.
+
+
+384
+00:17:31,516 --> 00:17:37,876
+[ Applause ]
+
+
+385
+00:17:38,376 --> 00:17:40,156
+We have three styles
+for blur effects.
+
+
+386
+00:17:41,456 --> 00:17:42,876
+The first of those
+is a Dark blur.
+
+
+387
+00:17:43,376 --> 00:17:45,286
+You can see that we're
+darkening the background here,
+
+
+388
+00:17:45,586 --> 00:17:47,806
+we're also desaturating
+the colors a little bit.
+
+
+389
+00:17:48,116 --> 00:17:49,966
+It's more than just
+changing a blur.
+
+
+390
+00:17:50,876 --> 00:17:53,716
+A Light blur effect is
+almost the opposite of that.
+
+
+391
+00:17:53,956 --> 00:17:56,146
+Again we're blurring, but
+we're starting to wash out some
+
+
+392
+00:17:56,146 --> 00:17:57,246
+of the colors as well.
+
+
+393
+00:17:58,036 --> 00:18:00,236
+Finally we introduce
+ExtraLight blur,
+
+
+394
+00:18:00,596 --> 00:18:03,096
+which almost entirely
+desaturates the content
+
+
+395
+00:18:03,096 --> 00:18:04,596
+and blows out most
+of the colors,
+
+
+396
+00:18:04,966 --> 00:18:07,406
+but still gives you a blur
+effect to give you a sense
+
+
+397
+00:18:07,406 --> 00:18:11,386
+of what content is
+behind the view.
+
+
+398
+00:18:12,026 --> 00:18:16,026
+So what steps do we make to
+take -- to create a blur effect?
+
+
+399
+00:18:16,026 --> 00:18:18,356
+As I said, it's more than
+just a simple Gaussian blur
+
+
+400
+00:18:18,356 --> 00:18:19,326
+within your application.
+
+
+401
+00:18:20,216 --> 00:18:22,516
+The first thing we do when we
+create a blur effect is we're
+
+
+402
+00:18:22,516 --> 00:18:23,766
+going to downsample all
+
+
+403
+00:18:23,766 --> 00:18:25,716
+of the content that's
+waiting to be blurred.
+
+
+404
+00:18:26,446 --> 00:18:28,416
+The reason we're doing
+that is for performance.
+
+
+405
+00:18:29,086 --> 00:18:31,416
+You aren't going to see the
+fine details of the view
+
+
+406
+00:18:31,596 --> 00:18:32,536
+when we're going to blur it.
+
+
+407
+00:18:33,056 --> 00:18:34,356
+So we go ahead and downsample
+
+
+408
+00:18:34,356 --> 00:18:37,226
+that to a much smaller size
+before applying blur effect.
+
+
+409
+00:18:38,346 --> 00:18:41,276
+The next thing we do is modify
+the colors and this is based
+
+
+410
+00:18:41,276 --> 00:18:42,896
+on what blur effect
+you requested.
+
+
+411
+00:18:43,316 --> 00:18:45,876
+We'll either desaturate
+or oversaturate colors
+
+
+412
+00:18:46,186 --> 00:18:47,496
+to create the various styles.
+
+
+413
+00:18:48,516 --> 00:18:51,666
+And then the final step is
+we're going to compute the blurs
+
+
+414
+00:18:51,966 --> 00:18:54,246
+and then composite this
+back into your application.
+
+
+415
+00:18:55,756 --> 00:18:58,346
+Vibrancy effect, as I
+said, is a technique
+
+
+416
+00:18:58,346 --> 00:18:59,666
+for making legible content
+
+
+417
+00:18:59,976 --> 00:19:01,866
+that is typically
+placed on top of a blur.
+
+
+418
+00:19:02,606 --> 00:19:04,586
+And we create this with
+a few steps as well.
+
+
+419
+00:19:05,296 --> 00:19:07,336
+The first thing we'll do
+is boost the saturation
+
+
+420
+00:19:07,336 --> 00:19:09,236
+of your content and
+then we're going
+
+
+421
+00:19:09,236 --> 00:19:11,726
+to apply a custom blend
+mode to the vibrant content
+
+
+422
+00:19:12,376 --> 00:19:16,506
+and that blend mode is going
+to change based on what kind
+
+
+423
+00:19:16,506 --> 00:19:18,866
+of blur you expect to
+put the vibrant effect
+
+
+424
+00:19:18,866 --> 00:19:19,646
+on top of that with.
+
+
+425
+00:19:20,516 --> 00:19:22,856
+And for that reason you
+need to tell us what kind
+
+
+426
+00:19:22,856 --> 00:19:25,666
+of blur you're using when
+you create a vibrant effect.
+
+
+427
+00:19:27,076 --> 00:19:28,626
+So how do we use this
+in your application?
+
+
+428
+00:19:29,456 --> 00:19:33,056
+The first thing you'll do is
+initialize a new UIVisualEffect,
+
+
+429
+00:19:33,926 --> 00:19:35,926
+and you can initialize
+either a UIBlurEffect
+
+
+430
+00:19:36,656 --> 00:19:37,986
+or a UIVibrancyEffect.
+
+
+431
+00:19:38,976 --> 00:19:42,406
+UIVibrancyEffect actually takes
+the blur in its initializer
+
+
+432
+00:19:42,636 --> 00:19:44,636
+so we know how to create
+that vibrancy effect
+
+
+433
+00:19:44,896 --> 00:19:46,186
+for the blur you plan to use.
+
+
+434
+00:19:47,366 --> 00:19:51,246
+After that you can instantiate
+a UIVisualEffectView and pass
+
+
+435
+00:19:51,476 --> 00:19:53,816
+that visual effect that
+you've just created.
+
+
+436
+00:19:54,996 --> 00:19:59,256
+Finally, the UIVisualEffectView
+provides a content view
+
+
+437
+00:19:59,556 --> 00:20:01,776
+and you should add your
+subviews to that content view.
+
+
+438
+00:20:02,106 --> 00:20:05,016
+That way we know what views
+you want to have manipulated
+
+
+439
+00:20:05,016 --> 00:20:05,936
+or effected by the
+visual effects.
+
+
+440
+00:20:06,086 --> 00:20:09,646
+There's a couple of
+things you can do
+
+
+441
+00:20:09,646 --> 00:20:12,106
+to customize VisualEffectViews
+in your application.
+
+
+442
+00:20:12,996 --> 00:20:15,836
+The first thing you can do
+is you can tint the blurs
+
+
+443
+00:20:16,336 --> 00:20:18,166
+by changing the backgroundColor
+property
+
+
+444
+00:20:18,496 --> 00:20:20,356
+on the VisualEffectView's
+contentView.
+
+
+445
+00:20:20,926 --> 00:20:23,436
+So if you would like to
+create a dark red blur effect,
+
+
+446
+00:20:23,436 --> 00:20:26,206
+for example, you
+can make a dark blur
+
+
+447
+00:20:26,206 --> 00:20:29,846
+and then set the contentView's
+backgroundColor to a red color
+
+
+448
+00:20:29,846 --> 00:20:31,166
+to have the desired effect.
+
+
+449
+00:20:32,446 --> 00:20:35,356
+You can also do some
+animations to the frame changes
+
+
+450
+00:20:35,356 --> 00:20:37,956
+within your application
+to change the position
+
+
+451
+00:20:37,956 --> 00:20:39,026
+and size of the blur effect.
+
+
+452
+00:20:40,356 --> 00:20:43,566
+Now visual effects also come
+with a number of caveats
+
+
+453
+00:20:43,606 --> 00:20:45,566
+when you consider using
+them in your application.
+
+
+454
+00:20:46,606 --> 00:20:49,246
+The first of those is the
+idea of setting alpha.
+
+
+455
+00:20:50,156 --> 00:20:52,416
+If you think about the
+purposes of blurs in alpha,
+
+
+456
+00:20:52,776 --> 00:20:53,966
+they're at odds with each other.
+
+
+457
+00:20:54,626 --> 00:20:56,806
+You apply alpha to
+a view in order
+
+
+458
+00:20:56,806 --> 00:20:59,106
+to make content legible
+behind another view;
+
+
+459
+00:20:59,106 --> 00:21:00,146
+to see what's back there.
+
+
+460
+00:21:00,866 --> 00:21:03,336
+You use a blur effect to show
+that there's something there
+
+
+461
+00:21:03,336 --> 00:21:04,916
+but you're not interested
+in the details.
+
+
+462
+00:21:05,646 --> 00:21:09,406
+So it's not really sensical
+to apply an alpha to a blur
+
+
+463
+00:21:09,406 --> 00:21:12,146
+at the same time and for
+that reason we're going
+
+
+464
+00:21:12,146 --> 00:21:14,146
+to drop the blur feature if
+you try to change the alpha.
+
+
+465
+00:21:15,416 --> 00:21:19,146
+You should also be very cautious
+about placing VisualEffectViews
+
+
+466
+00:21:19,536 --> 00:21:21,096
+in a view hierarchy
+that uses masks.
+
+
+467
+00:21:21,976 --> 00:21:23,576
+They're not going to
+work very well together.
+
+
+468
+00:21:24,866 --> 00:21:27,196
+You also should be conscious
+of whether you're going to --
+
+
+469
+00:21:27,276 --> 00:21:29,326
+if you place a Visual
+Effect View in groups,
+
+
+470
+00:21:29,636 --> 00:21:31,136
+they can have an
+impact on its rendering:
+
+
+471
+00:21:31,596 --> 00:21:34,026
+either animation groups
+or opacity groups.
+
+
+472
+00:21:34,856 --> 00:21:37,556
+It's very easy to have -- to
+forget that you have, say,
+
+
+473
+00:21:37,556 --> 00:21:39,806
+a blur or a vibrancy
+effect really deep
+
+
+474
+00:21:39,806 --> 00:21:42,526
+in your view hierarchy and
+then, when you add an animation
+
+
+475
+00:21:42,526 --> 00:21:44,236
+over here, forget that
+it's going to pick
+
+
+476
+00:21:44,236 --> 00:21:46,866
+up that VisualEffectView and
+try to make changes to it.
+
+
+477
+00:21:48,726 --> 00:21:50,146
+So I started this
+section by talking
+
+
+478
+00:21:50,146 --> 00:21:52,036
+about the rendering
+pipeline and I'd
+
+
+479
+00:21:52,036 --> 00:21:54,876
+like to highlight what
+impact VisualEffectViews have
+
+
+480
+00:21:55,336 --> 00:21:56,726
+on the rendering of
+your application.
+
+
+481
+00:21:57,816 --> 00:21:58,416
+All of the work
+
+
+482
+00:21:58,416 --> 00:22:01,396
+for VisualEffectViews is
+having an impact on the GPU.
+
+
+483
+00:22:02,086 --> 00:22:05,926
+So if we look at a standard view
+in your application it's going
+
+
+484
+00:22:05,926 --> 00:22:09,426
+to take a pretty typical amount
+of time to render on the GPU.
+
+
+485
+00:22:10,326 --> 00:22:13,186
+In order to create blur
+effects we have to take all
+
+
+486
+00:22:13,186 --> 00:22:14,536
+of those steps that
+were outlined
+
+
+487
+00:22:14,916 --> 00:22:16,676
+and render those offscreen.
+
+
+488
+00:22:17,166 --> 00:22:19,206
+It's just the way that we
+have to create blur effects.
+
+
+489
+00:22:19,576 --> 00:22:20,866
+So we're going to ask the GPU
+
+
+490
+00:22:20,866 --> 00:22:22,976
+to stop rendering
+your app's main views,
+
+
+491
+00:22:23,166 --> 00:22:25,096
+and create this blur
+effect offscreen,
+
+
+492
+00:22:25,426 --> 00:22:27,026
+and then combine
+everything back together...
+
+
+493
+00:22:27,026 --> 00:22:29,926
+and that can take
+considerably more time
+
+
+494
+00:22:30,076 --> 00:22:32,106
+than rendering a standard
+view without blur effects.
+
+
+495
+00:22:33,216 --> 00:22:37,166
+Vibrancy takes additional passes
+in addition to the blur effect
+
+
+496
+00:22:37,166 --> 00:22:38,596
+that they're placed on top of.
+
+
+497
+00:22:38,676 --> 00:22:43,066
+So to add vibrancy into a view
+takes even more offscreen time
+
+
+498
+00:22:43,066 --> 00:22:43,876
+for your application.
+
+
+499
+00:22:44,786 --> 00:22:47,876
+Now to contrast this with
+drawViewHierarchyInRect,
+
+
+500
+00:22:48,896 --> 00:22:51,496
+we can do that considerably
+faster because we don't have
+
+
+501
+00:22:51,496 --> 00:22:53,786
+to do all of those
+offscreen passes every frame.
+
+
+502
+00:22:54,576 --> 00:22:57,606
+So this is why we still strongly
+encourage the static blur
+
+
+503
+00:22:57,606 --> 00:23:00,026
+techniques from last
+year if at all possible.
+
+
+504
+00:23:00,646 --> 00:23:03,696
+Let's take a look at how we
+can use VisualEffectViews
+
+
+505
+00:23:03,866 --> 00:23:05,276
+in that same demo application.
+
+
+506
+00:23:05,816 --> 00:23:09,526
+So going back to the demo app,
+I still have these controls
+
+
+507
+00:23:09,526 --> 00:23:12,696
+that come onscreen and right now
+they're just being placed on top
+
+
+508
+00:23:12,696 --> 00:23:15,956
+of a dimming view and you can
+see I have this white text label
+
+
+509
+00:23:15,956 --> 00:23:18,846
+at the bottom that's not
+really legible anyway
+
+
+510
+00:23:18,896 --> 00:23:20,866
+and it just doesn't
+look very interesting.
+
+
+511
+00:23:21,596 --> 00:23:24,266
+We're going to use -- we also
+have a control bar at the bottom
+
+
+512
+00:23:24,456 --> 00:23:26,796
+which is just solid white
+right now and kind of feels
+
+
+513
+00:23:26,796 --> 00:23:29,896
+out of place on this rich,
+colorful gradient background.
+
+
+514
+00:23:30,146 --> 00:23:31,876
+So we're going to
+use blur effects
+
+
+515
+00:23:31,876 --> 00:23:33,666
+and vibrancy effects
+to improve this.
+
+
+516
+00:23:34,566 --> 00:23:38,036
+So back in my demo application
+the first thing we're going
+
+
+517
+00:23:38,036 --> 00:23:41,106
+to do is go to the gradient
+view controller and we're going
+
+
+518
+00:23:41,106 --> 00:23:42,966
+to set up that control bar
+at the bottom of the screen.
+
+
+519
+00:23:44,106 --> 00:23:45,956
+The control bar is that
+white bar at the bottom
+
+
+520
+00:23:45,956 --> 00:23:48,386
+with the different controls
+in it and we're going
+
+
+521
+00:23:48,386 --> 00:23:51,426
+to create an ExtraLight blur
+effect, and the key things
+
+
+522
+00:23:51,426 --> 00:23:54,086
+that you should take a look
+at here are: the first part,
+
+
+523
+00:23:54,086 --> 00:23:57,666
+where we create a new UI blur
+effect and give it a style.
+
+
+524
+00:23:58,176 --> 00:24:02,726
+In this case we're using an
+ExtraLight blur effect style.
+
+
+525
+00:24:02,936 --> 00:24:05,076
+Next we're going to
+create a UIVisualEffectView
+
+
+526
+00:24:05,516 --> 00:24:07,456
+and pass it the effect
+that we just created,
+
+
+527
+00:24:07,666 --> 00:24:08,996
+that ExtraLight blur effect.
+
+
+528
+00:24:09,626 --> 00:24:12,586
+And then finally we'll add
+this to our view hierarchy.
+
+
+529
+00:24:14,086 --> 00:24:17,176
+We're also going to do this
+on the clickwheel controller
+
+
+530
+00:24:17,396 --> 00:24:19,806
+and I want to do both
+the blurred background
+
+
+531
+00:24:20,406 --> 00:24:21,486
+and a vibrant title here.
+
+
+532
+00:24:22,396 --> 00:24:24,336
+First we're going to make
+that blurred background view.
+
+
+533
+00:24:24,906 --> 00:24:27,966
+Very similar to before we're
+going to make a UI blur effect
+
+
+534
+00:24:27,966 --> 00:24:29,966
+but give it the Dark
+blur effect style
+
+
+535
+00:24:30,726 --> 00:24:34,606
+and then again create a
+UIVisualEffectView and pass it
+
+
+536
+00:24:34,606 --> 00:24:38,506
+that blur effect that we
+just created and then add it
+
+
+537
+00:24:38,506 --> 00:24:39,276
+to our view hierarchy.
+
+
+538
+00:24:40,476 --> 00:24:42,586
+The next thing we do
+is we want to modify
+
+
+539
+00:24:42,586 --> 00:24:44,306
+that title label
+to use vibrancy.
+
+
+540
+00:24:44,916 --> 00:24:46,586
+You can see right now
+I'm creating my label
+
+
+541
+00:24:46,666 --> 00:24:47,996
+and just giving it
+a white color.
+
+
+542
+00:24:49,546 --> 00:24:52,276
+It's pretty straightforward to
+upgrade that to use vibrancy.
+
+
+543
+00:24:53,146 --> 00:24:54,936
+To do that we're going
+to make a vibrancy effect
+
+
+544
+00:24:54,936 --> 00:24:58,156
+and you notice the initializer
+is effectForBlurEffect.
+
+
+545
+00:24:58,896 --> 00:25:03,776
+We're going to grab a
+reference to the blur effect off
+
+
+546
+00:25:03,776 --> 00:25:05,766
+of that backdropView that
+we created right up here,
+
+
+547
+00:25:05,806 --> 00:25:08,986
+and pass that into the
+vibrancy effect because we plan
+
+
+548
+00:25:08,986 --> 00:25:12,136
+to composite this title label
+on top of that background blur.
+
+
+549
+00:25:13,536 --> 00:25:15,776
+Same as before, we'll make
+a new UIVisualEffectView
+
+
+550
+00:25:16,036 --> 00:25:18,076
+and give it the vibrancy
+effect that we just created,
+
+
+551
+00:25:18,076 --> 00:25:20,736
+and then down here at
+the bottom we're going
+
+
+552
+00:25:20,736 --> 00:25:23,416
+to add my title label
+to the content view
+
+
+553
+00:25:23,796 --> 00:25:26,926
+of that new vibrancyEffectView.
+
+
+554
+00:25:27,826 --> 00:25:30,536
+So those are the three steps
+I needed to take to add blurs
+
+
+555
+00:25:30,536 --> 00:25:32,526
+and vibrancy to the
+demo application.
+
+
+556
+00:25:33,056 --> 00:25:34,376
+Let's take a look at
+what those look like.
+
+
+557
+00:25:35,506 --> 00:25:37,966
+You immediately see that we're
+picking up that blur effect,
+
+
+558
+00:25:38,226 --> 00:25:40,276
+that ExtraLight blur
+effect, at the control bar
+
+
+559
+00:25:40,276 --> 00:25:41,296
+at the bottom of the screen.
+
+
+560
+00:25:41,826 --> 00:25:43,986
+It's reflecting the purple
+color of the gradient behind it.
+
+
+561
+00:25:44,636 --> 00:25:47,396
+When we bring our controls
+onscreen you can see
+
+
+562
+00:25:47,396 --> 00:25:49,856
+that we're blurring that
+gradient as well as picking
+
+
+563
+00:25:49,856 --> 00:25:51,906
+up vibrancy for that
+text label at the bottom.
+
+
+564
+00:25:52,016 --> 00:25:53,256
+You can see the purple
+and the white
+
+
+565
+00:25:53,256 --> 00:25:54,946
+from the views behind
+it taking place.
+
+
+566
+00:25:54,946 --> 00:25:57,546
+Now you're probably thinking,
+"Well that's great Brandon,
+
+
+567
+00:25:57,546 --> 00:25:59,386
+but you're probably just
+faking it with that live blur
+
+
+568
+00:25:59,386 --> 00:26:00,396
+or that static blur thing."
+
+
+569
+00:26:00,566 --> 00:26:01,646
+I promise you we're not.
+
+
+570
+00:26:01,646 --> 00:26:04,576
+Because if I start scrolling
+this you can see the blur
+
+
+571
+00:26:04,576 --> 00:26:07,716
+effects are all taking place
+in real time and you can see
+
+
+572
+00:26:07,716 --> 00:26:09,186
+that the vibrancy
+is also picking
+
+
+573
+00:26:09,186 --> 00:26:12,466
+up all those really cool
+colors behind everything.
+
+
+574
+00:26:13,626 --> 00:26:15,226
+You'll also see that
+control bar picking
+
+
+575
+00:26:15,226 --> 00:26:17,476
+up those colors behind
+itself as well.
+
+
+576
+00:26:18,116 --> 00:26:21,856
+It's that easy to add vibrancy
+and blur to your application.
+
+
+577
+00:26:22,516 --> 00:26:30,706
+[ Applause ]
+
+
+578
+00:26:31,206 --> 00:26:34,846
+So moving on, next we're going
+to talk about CAShapeLayer.
+
+
+579
+00:26:36,266 --> 00:26:38,896
+CAShapeLayer is a
+really powerful tool
+
+
+580
+00:26:39,006 --> 00:26:41,826
+for drawing custom Bézier
+paths within your application.
+
+
+581
+00:26:42,996 --> 00:26:46,146
+CAShapeLayer, as the name
+suggests, is a subclass
+
+
+582
+00:26:46,146 --> 00:26:49,816
+of CALayer, which makes it
+very, very easy to use in all
+
+
+583
+00:26:49,816 --> 00:26:53,456
+of your app's existing view
+hierarchies because on iOS all
+
+
+584
+00:26:53,456 --> 00:26:55,876
+of your views are already
+backed with CALayers.
+
+
+585
+00:26:56,876 --> 00:27:00,566
+The other really powerful part
+of CAShapeLayer is that all
+
+
+586
+00:27:00,566 --> 00:27:01,486
+of the properties on it
+
+
+587
+00:27:01,486 --> 00:27:03,626
+that control its
+appearance are animatable.
+
+
+588
+00:27:04,956 --> 00:27:06,756
+So where am I going to
+use this Shape Layer?
+
+
+589
+00:27:07,516 --> 00:27:08,866
+One place is if you were going
+
+
+590
+00:27:08,866 --> 00:27:11,556
+to create a download control
+similar to the one that you see
+
+
+591
+00:27:11,556 --> 00:27:13,816
+in the music app or of
+different store apps.
+
+
+592
+00:27:14,556 --> 00:27:16,106
+These need to have a
+few different states:
+
+
+593
+00:27:16,656 --> 00:27:19,116
+one that shows a thinking state
+(where there's a ring that's
+
+
+594
+00:27:19,406 --> 00:27:22,636
+partially completed, that's
+spinning); it shows a state
+
+
+595
+00:27:22,636 --> 00:27:25,436
+with a stop; and then it also
+shows a download progress (where
+
+
+596
+00:27:25,436 --> 00:27:28,466
+it completes the ring,
+going from zero to 100%).
+
+
+597
+00:27:29,226 --> 00:27:30,946
+This would be a great
+thing to draw
+
+
+598
+00:27:30,946 --> 00:27:32,626
+with CAShapeLayering
+in your application.
+
+
+599
+00:27:33,746 --> 00:27:36,046
+I'd like to show you a few of
+the more interesting properties
+
+
+600
+00:27:36,046 --> 00:27:37,056
+on Shape Layers right now.
+
+
+601
+00:27:38,386 --> 00:27:40,746
+The most important one
+is the path property.
+
+
+602
+00:27:41,436 --> 00:27:42,496
+As the name suggests,
+
+
+603
+00:27:42,876 --> 00:27:45,356
+this defines what your shape
+layer actually is going
+
+
+604
+00:27:45,356 --> 00:27:45,816
+to look like.
+
+
+605
+00:27:46,686 --> 00:27:50,036
+You create these by
+handing us a CGPathRef.
+
+
+606
+00:27:50,736 --> 00:27:52,786
+Personally, I like to
+work with UIBezierPath
+
+
+607
+00:27:53,296 --> 00:27:56,196
+and then hand off the CGPath
+version of that at the end.
+
+
+608
+00:27:57,106 --> 00:27:59,096
+So there's a few steps
+that we're going to take
+
+
+609
+00:27:59,096 --> 00:28:00,726
+to create the curve
+that you see onscreen.
+
+
+610
+00:28:01,436 --> 00:28:04,106
+You can think about creating
+paths as very similar to drawing
+
+
+611
+00:28:04,106 --> 00:28:06,386
+on a piece of paper, where you
+move your pencil to a point
+
+
+612
+00:28:06,386 --> 00:28:09,726
+and then move the pencil
+on the paper to draw lines.
+
+
+613
+00:28:11,036 --> 00:28:13,996
+The first thing we're going to
+do is move to a specific point
+
+
+614
+00:28:13,996 --> 00:28:15,106
+where we want to start the line.
+
+
+615
+00:28:15,746 --> 00:28:16,836
+In this case we're
+going to start
+
+
+616
+00:28:16,836 --> 00:28:18,176
+on the lower left-hand corner.
+
+
+617
+00:28:19,756 --> 00:28:22,526
+The next thing we'll do is
+add two curves to the point
+
+
+618
+00:28:23,116 --> 00:28:25,646
+and you'll notice we pass
+this a pair of control points.
+
+
+619
+00:28:26,366 --> 00:28:29,446
+Bézier paths are defined
+by a point and then a pair
+
+
+620
+00:28:29,446 --> 00:28:32,396
+of control handles which you see
+in blue on the diagram above.
+
+
+621
+00:28:32,996 --> 00:28:35,716
+Those control points
+define what the curve looks
+
+
+622
+00:28:35,716 --> 00:28:37,686
+like between the first
+-- the previous --
+
+
+623
+00:28:37,966 --> 00:28:38,746
+and the current point.
+
+
+624
+00:28:38,896 --> 00:28:42,516
+So we're going to add two
+curves with their control points
+
+
+625
+00:28:42,516 --> 00:28:46,156
+to my path and then finally set
+that path on my shape layer.
+
+
+626
+00:28:46,896 --> 00:28:51,406
+The next set of properties
+control what the line looks like
+
+
+627
+00:28:51,846 --> 00:28:54,376
+and there's a few particularly
+interesting properties
+
+
+628
+00:28:54,496 --> 00:28:55,056
+on the line.
+
+
+629
+00:28:55,896 --> 00:28:57,806
+The first is the
+lineCap property.
+
+
+630
+00:28:58,316 --> 00:29:00,556
+This defines what the ends
+of each line look like.
+
+
+631
+00:29:00,996 --> 00:29:02,446
+By default they're
+just a flat line.
+
+
+632
+00:29:02,876 --> 00:29:05,186
+In this case we're going to
+set a round lineCap on them
+
+
+633
+00:29:05,366 --> 00:29:06,696
+to give them a nice,
+rounded effect.
+
+
+634
+00:29:08,146 --> 00:29:11,336
+The lineDashPattern defines
+how we draw dashed lines
+
+
+635
+00:29:11,336 --> 00:29:12,656
+and it gives you
+a lot of control
+
+
+636
+00:29:12,656 --> 00:29:13,566
+over what that looks like.
+
+
+637
+00:29:14,606 --> 00:29:18,486
+You create a lineDashPattern by
+giving us an array of NSNumbers
+
+
+638
+00:29:18,966 --> 00:29:22,376
+and we go through this array to
+decide how many points to draw,
+
+
+639
+00:29:22,376 --> 00:29:24,016
+and then how many
+points to not draw.
+
+
+640
+00:29:24,666 --> 00:29:28,096
+So in this example, we're
+asking the CAShapeLayer to draw
+
+
+641
+00:29:28,096 --> 00:29:31,936
+for two points and then not draw
+for four points, draw for six
+
+
+642
+00:29:31,936 --> 00:29:34,906
+and then not draw for the
+final six, and then repeat
+
+
+643
+00:29:34,906 --> 00:29:36,876
+that pattern across
+the length of the line.
+
+
+644
+00:29:38,166 --> 00:29:41,306
+LineDashPhase is used
+to control how far
+
+
+645
+00:29:41,306 --> 00:29:43,196
+into that array we
+start the line drawing.
+
+
+646
+00:29:43,886 --> 00:29:46,796
+So by setting a lineDashPhase
+of four it essentially shifts
+
+
+647
+00:29:46,796 --> 00:29:49,046
+that dash pattern four
+points along the line.
+
+
+648
+00:29:50,556 --> 00:29:52,876
+The next set of properties
+relate to the stroke
+
+
+649
+00:29:52,876 --> 00:29:55,066
+of the line, which is what
+we actually draw it like.
+
+
+650
+00:29:55,836 --> 00:29:58,186
+The most obvious one is
+called strokeColor and,
+
+
+651
+00:29:58,186 --> 00:30:01,196
+as you would expect, it
+defines the color of the line.
+
+
+652
+00:30:01,616 --> 00:30:02,896
+Pretty straightforward
+to use I hope.
+
+
+653
+00:30:03,716 --> 00:30:05,466
+The next two are a little
+bit more interesting
+
+
+654
+00:30:05,856 --> 00:30:08,726
+and that's the strokeBegin
+and strokeEnd properties.
+
+
+655
+00:30:09,946 --> 00:30:13,036
+StrokeBegin defines how far
+into the line we're going
+
+
+656
+00:30:13,036 --> 00:30:14,566
+to begin stroking
+it or drawing it.
+
+
+657
+00:30:15,446 --> 00:30:18,746
+In the video above, I'm actually
+drawing the original path
+
+
+658
+00:30:18,746 --> 00:30:21,256
+in a dark red behind that, so
+that you can see the difference
+
+
+659
+00:30:21,256 --> 00:30:23,016
+between the actual --
+what the code is doing.
+
+
+660
+00:30:23,726 --> 00:30:26,266
+So by setting our stroke
+begin to 0.2 we're going
+
+
+661
+00:30:26,266 --> 00:30:28,226
+to skip drawing the
+first 20% of the line.
+
+
+662
+00:30:29,376 --> 00:30:32,616
+StrokeEnd is very similar
+but defines how far
+
+
+663
+00:30:32,616 --> 00:30:33,976
+from the end we're
+going to draw that path.
+
+
+664
+00:30:34,956 --> 00:30:36,676
+So by saying it's
+0.6 we're going
+
+
+665
+00:30:36,676 --> 00:30:38,596
+to not draw the final
+60% of the path.
+
+
+666
+00:30:39,606 --> 00:30:43,066
+You can imagine this particular
+property will be very powerful
+
+
+667
+00:30:43,146 --> 00:30:44,986
+if you were creating
+a download control.
+
+
+668
+00:30:45,406 --> 00:30:47,506
+Because you could take that
+download progress from zero
+
+
+669
+00:30:47,506 --> 00:30:51,506
+to 100% and directly map that
+onto the strokeEnd property
+
+
+670
+00:30:51,706 --> 00:30:54,446
+on CAShapeLayer, which
+is again animated
+
+
+671
+00:30:54,776 --> 00:30:56,696
+so the shape layer is
+automatically going to animate
+
+
+672
+00:30:56,696 --> 00:30:57,756
+between states for you.
+
+
+673
+00:30:58,406 --> 00:31:01,266
+The final property that
+you'll probably find useful
+
+
+674
+00:31:01,266 --> 00:31:02,996
+in some cases is the fillColor.
+
+
+675
+00:31:03,536 --> 00:31:05,136
+You don't always want
+to add fillColor.
+
+
+676
+00:31:05,396 --> 00:31:08,836
+It doesn't always look awesome,
+but it's a very powerful thing
+
+
+677
+00:31:08,836 --> 00:31:10,356
+to have if you want
+more of a closed path.
+
+
+678
+00:31:12,536 --> 00:31:14,986
+Shape layers also
+can have a big impact
+
+
+679
+00:31:15,176 --> 00:31:16,986
+on the rendering performance
+of your application.
+
+
+680
+00:31:17,456 --> 00:31:19,286
+So let's go back to that
+rendering pipeline one
+
+
+681
+00:31:19,286 --> 00:31:19,686
+more time.
+
+
+682
+00:31:20,726 --> 00:31:24,416
+In this case shape layers have
+an impact on all the rendering
+
+
+683
+00:31:24,416 --> 00:31:26,466
+that occurs within
+your application itself
+
+
+684
+00:31:26,466 --> 00:31:28,606
+and there's a few things
+that we want to talk
+
+
+685
+00:31:28,606 --> 00:31:30,346
+about when you're
+rendering shape layers.
+
+
+686
+00:31:31,526 --> 00:31:33,236
+When you have a shape
+layer we have
+
+
+687
+00:31:33,236 --> 00:31:36,496
+to rasterize the shape layer on
+the CPU within your application.
+
+
+688
+00:31:37,186 --> 00:31:39,776
+What that means is
+when we're doing all
+
+
+689
+00:31:39,776 --> 00:31:41,496
+of your view drawing we're
+going to actually have
+
+
+690
+00:31:41,496 --> 00:31:43,656
+to ask the shape layer
+to compute itself
+
+
+691
+00:31:43,656 --> 00:31:45,396
+and then draw it
+into, essentially,
+
+
+692
+00:31:45,396 --> 00:31:47,376
+an image that we
+can composite later.
+
+
+693
+00:31:48,476 --> 00:31:50,116
+We're going to send
+that rasterized layer
+
+
+694
+00:31:50,186 --> 00:31:52,266
+over to the render server
+for later compositing
+
+
+695
+00:31:52,836 --> 00:31:56,086
+and this process can get very
+expensive in terms of CPU time.
+
+
+696
+00:31:56,526 --> 00:31:58,956
+Especially if you have
+a very complex path
+
+
+697
+00:31:58,956 --> 00:32:00,206
+for your shape layer.
+
+
+698
+00:32:00,726 --> 00:32:03,446
+The more complex it is, the
+longer it's going to take us
+
+
+699
+00:32:03,526 --> 00:32:05,476
+to draw and prepare
+that shape layer.
+
+
+700
+00:32:06,306 --> 00:32:07,766
+So one thing you
+could do to minimize
+
+
+701
+00:32:07,766 --> 00:32:11,676
+that effect is you can use more
+layers with less complexity
+
+
+702
+00:32:11,856 --> 00:32:14,316
+and then stack them behind each
+other to get the same effect
+
+
+703
+00:32:14,316 --> 00:32:15,226
+that you're asking for.
+
+
+704
+00:32:16,056 --> 00:32:17,806
+For example, with
+that download control,
+
+
+705
+00:32:17,806 --> 00:32:20,396
+that's showing the download
+state: you might want
+
+
+706
+00:32:20,396 --> 00:32:23,176
+to draw the square as one
+shape layer, the outer ring
+
+
+707
+00:32:23,176 --> 00:32:25,826
+as a second shape layer and
+then show the download progress
+
+
+708
+00:32:25,826 --> 00:32:28,156
+as a third shape layer and
+then composite the three
+
+
+709
+00:32:28,156 --> 00:32:30,316
+of them together by just
+stacking them in the same place
+
+
+710
+00:32:30,556 --> 00:32:31,396
+in your view hierarchy.
+
+
+711
+00:32:32,596 --> 00:32:35,596
+You should also be very
+conscious of frequent changes
+
+
+712
+00:32:35,816 --> 00:32:37,306
+to shape layers within
+your application.
+
+
+713
+00:32:38,106 --> 00:32:41,326
+Every time a shape layer changes
+we have to re-rasterize it
+
+
+714
+00:32:41,616 --> 00:32:43,856
+and send that new result
+over to the render server.
+
+
+715
+00:32:44,486 --> 00:32:46,906
+So if your shape layer is
+changing every frame we're
+
+
+716
+00:32:46,906 --> 00:32:49,956
+constantly having to redraw it
+and hand this new object off
+
+
+717
+00:32:50,186 --> 00:32:52,776
+which can get very expensive
+and have a negative impact
+
+
+718
+00:32:52,906 --> 00:32:53,886
+on your app's performance.
+
+
+719
+00:32:55,766 --> 00:32:58,296
+I actually have a shape layer
+hidden in the demo application
+
+
+720
+00:32:58,296 --> 00:32:59,756
+that we've been taking
+a look at,
+
+
+721
+00:32:59,876 --> 00:33:01,586
+so I'd like to show you
+how that's implemented
+
+
+722
+00:33:01,586 --> 00:33:03,566
+and then we'll make a
+couple of quick changes
+
+
+723
+00:33:03,566 --> 00:33:07,196
+to the appearance
+of my shape layer.
+
+
+724
+00:33:08,066 --> 00:33:09,456
+So first let's see
+where that's at.
+
+
+725
+00:33:11,016 --> 00:33:13,496
+If we look in the demo
+application you probably notice
+
+
+726
+00:33:13,496 --> 00:33:15,326
+that there's two controls
+that I haven't touched yet
+
+
+727
+00:33:15,786 --> 00:33:18,556
+and those effect the line
+end and the dash size.
+
+
+728
+00:33:19,116 --> 00:33:22,076
+So let's bring the stroke
+end all the way up to 100%
+
+
+729
+00:33:22,076 --> 00:33:24,466
+and you see I suddenly
+get this nice red box.
+
+
+730
+00:33:24,546 --> 00:33:26,386
+It's the world's most
+interesting shape layer.
+
+
+731
+00:33:27,686 --> 00:33:31,036
+I also have a dash size property
+that controls the length
+
+
+732
+00:33:31,036 --> 00:33:32,576
+of the dashes in that array.
+
+
+733
+00:33:33,106 --> 00:33:34,226
+So if I bring my dash size
+
+
+734
+00:33:34,226 --> 00:33:36,596
+up we're creating a
+dashed line effect instead.
+
+
+735
+00:33:37,546 --> 00:33:40,076
+If we bring the stroke end back
+down to something else like,
+
+
+736
+00:33:40,076 --> 00:33:43,906
+68% you can see we're
+only drawing the first 68%
+
+
+737
+00:33:43,906 --> 00:33:44,306
+of the line.
+
+
+738
+00:33:45,176 --> 00:33:47,336
+My shape layer's line starts
+in the upper left corner
+
+
+739
+00:33:47,336 --> 00:33:49,466
+and then progress around
+the box from there.
+
+
+740
+00:33:50,606 --> 00:33:52,586
+Let's take a look at how
+this is implemented in code
+
+
+741
+00:33:52,866 --> 00:33:54,346
+and make a couple of
+quick changes to it.
+
+
+742
+00:33:55,076 --> 00:33:58,496
+What I've done is I've created
+a custom UIView subclass
+
+
+743
+00:33:58,496 --> 00:34:03,226
+that I'm calling Shape View and
+my Shape View, like all views
+
+
+744
+00:34:03,226 --> 00:34:05,016
+in iOS, is backed
+with a CALayer.
+
+
+745
+00:34:06,016 --> 00:34:09,235
+We give you the ability to
+actually override what kind
+
+
+746
+00:34:09,235 --> 00:34:10,735
+of layer that your
+view is backed
+
+
+747
+00:34:10,735 --> 00:34:13,025
+with by implementing
+the Layer Class Method,
+
+
+748
+00:34:13,485 --> 00:34:15,005
+and I've asked my
+view to be backed
+
+
+749
+00:34:15,505 --> 00:34:16,956
+with a CAShapeLayer instead.
+
+
+750
+00:34:17,686 --> 00:34:21,295
+In my awakeFromNib I'm going
+to do some configuration work
+
+
+751
+00:34:21,295 --> 00:34:22,406
+to create that shape layer.
+
+
+752
+00:34:23,196 --> 00:34:25,606
+The first thing we'll do
+is create a CGPath Ref
+
+
+753
+00:34:25,606 --> 00:34:26,985
+and create it with a rectangle
+
+
+754
+00:34:26,985 --> 00:34:28,436
+that represents my
+view's bounds.
+
+
+755
+00:34:28,946 --> 00:34:30,606
+That's how we're
+creating that nice,
+
+
+756
+00:34:30,606 --> 00:34:32,005
+simple, square shape layer.
+
+
+757
+00:34:33,616 --> 00:34:36,826
+We set the path and then spend
+some time configuring a few
+
+
+758
+00:34:36,826 --> 00:34:38,146
+of the properties
+of my shape layer.
+
+
+759
+00:34:38,786 --> 00:34:41,426
+The stroke color, again, is
+what defines the color we use
+
+
+760
+00:34:41,426 --> 00:34:42,916
+to draw the outside
+of the path width --
+
+
+761
+00:34:43,235 --> 00:34:44,356
+in this case a red color.
+
+
+762
+00:34:45,326 --> 00:34:47,946
+We're setting our line width to
+six to make it nice and visible
+
+
+763
+00:34:47,946 --> 00:34:51,585
+on top of the background and I
+had the strokeEnd start at zero,
+
+
+764
+00:34:51,585 --> 00:34:53,786
+so that none of you would see
+the shape layer in advance.
+
+
+765
+00:34:54,335 --> 00:34:56,716
+I also have the line Join.
+
+
+766
+00:34:57,386 --> 00:34:59,896
+LineJoin defines what the
+corners of those lines look
+
+
+767
+00:34:59,896 --> 00:35:01,046
+like when they come together
+
+
+768
+00:35:01,046 --> 00:35:03,066
+and we're defaulting
+that to a round join.
+
+
+769
+00:35:03,066 --> 00:35:06,606
+We're also setting the
+lineCap (which is, again,
+
+
+770
+00:35:06,606 --> 00:35:08,196
+what controls the
+edges of each line)
+
+
+771
+00:35:08,256 --> 00:35:09,676
+and making those round as well.
+
+
+772
+00:35:10,116 --> 00:35:12,796
+And finally I'm not using a
+fill color for my shape layer.
+
+
+773
+00:35:13,926 --> 00:35:16,746
+Down here at the bottom I
+have two methods that are used
+
+
+774
+00:35:16,746 --> 00:35:19,026
+to configure properties
+based on those controls
+
+
+775
+00:35:19,026 --> 00:35:20,066
+that you see onscreen.
+
+
+776
+00:35:20,696 --> 00:35:21,946
+One controls the strokeEnd,
+
+
+777
+00:35:22,386 --> 00:35:24,176
+the other is setting
+that lineDashLength.
+
+
+778
+00:35:25,066 --> 00:35:26,766
+Right now what I'm
+doing is making an array
+
+
+779
+00:35:27,196 --> 00:35:30,096
+that creates two NSNumbers
+that use the same value
+
+
+780
+00:35:30,096 --> 00:35:33,476
+for both the distance to draw
+and the distance not to draw
+
+
+781
+00:35:33,966 --> 00:35:35,746
+and we're going to make
+a change to that first.
+
+
+782
+00:35:36,576 --> 00:35:39,146
+I've decided that the
+dashes just look too close
+
+
+783
+00:35:39,146 --> 00:35:41,346
+to each other so
+instead what we're going
+
+
+784
+00:35:41,346 --> 00:35:44,886
+to do is first use the same
+NSNumber to draw for a distance
+
+
+785
+00:35:44,886 --> 00:35:47,076
+and then we're going to
+multiply that by four
+
+
+786
+00:35:47,076 --> 00:35:49,566
+to have a much larger
+gap between our dashes.
+
+
+787
+00:35:51,296 --> 00:35:54,346
+I'm also going to make a
+quick change to the line joint
+
+
+788
+00:35:54,346 --> 00:35:57,206
+of my shape layer and switch
+over to a bevel line join.
+
+
+789
+00:35:58,406 --> 00:35:59,546
+Let's take a look
+at those changes
+
+
+790
+00:35:59,576 --> 00:36:00,766
+in the demo application now.
+
+
+791
+00:36:01,956 --> 00:36:03,986
+So again we're going to bring
+that strokeEnd all the way
+
+
+792
+00:36:03,986 --> 00:36:05,446
+up first to see the
+changes we've made
+
+
+793
+00:36:05,446 --> 00:36:08,016
+and the first thing
+you see is the change
+
+
+794
+00:36:08,016 --> 00:36:09,246
+that we made to the line join.
+
+
+795
+00:36:09,716 --> 00:36:11,786
+If you take a look at
+the corners of my boxes,
+
+
+796
+00:36:12,086 --> 00:36:13,146
+instead of having that nice,
+
+
+797
+00:36:13,146 --> 00:36:14,986
+rounded effect they
+had this nice, like,
+
+
+798
+00:36:14,986 --> 00:36:16,526
+diamond-cut chamfer
+around the edges.
+
+
+799
+00:36:16,526 --> 00:36:17,526
+It looks fantastic.
+
+
+800
+00:36:18,806 --> 00:36:19,816
+We're also going to take a look
+
+
+801
+00:36:19,816 --> 00:36:22,656
+at those dash size changes we
+made so we'll dial that up a bit
+
+
+802
+00:36:22,656 --> 00:36:24,466
+and you can see a
+dramatic difference
+
+
+803
+00:36:24,466 --> 00:36:25,316
+in what we had before.
+
+
+804
+00:36:25,746 --> 00:36:28,636
+We're drawing a very short dash
+followed by a much longer gap.
+
+
+805
+00:36:29,846 --> 00:36:32,886
+And again, just to illustrate
+those changes, let's dial some
+
+
+806
+00:36:32,886 --> 00:36:35,696
+of these effects back and you
+can again see the difference
+
+
+807
+00:36:35,696 --> 00:36:37,986
+that makes on our shape layer.
+
+
+808
+00:36:39,316 --> 00:36:40,606
+Now you might have
+noticed in code
+
+
+809
+00:36:40,876 --> 00:36:43,286
+that I have a tap
+gesture recognizer setup
+
+
+810
+00:36:43,286 --> 00:36:44,096
+on my shape layer.
+
+
+811
+00:36:45,236 --> 00:36:46,486
+Let's take a look at
+what that's doing.
+
+
+812
+00:36:47,866 --> 00:36:51,236
+Every time I tap on my shape
+layer I'm picking a random alpha
+
+
+813
+00:36:51,236 --> 00:36:54,406
+value to animate to and
+changing the opacity of my view
+
+
+814
+00:36:54,586 --> 00:36:55,876
+and of the shape layer itself.
+
+
+815
+00:36:55,876 --> 00:36:59,926
+It's an interesting effect but
+it's kind of boring and I'd
+
+
+816
+00:36:59,926 --> 00:37:01,426
+like to do something a
+little bit more interesting
+
+
+817
+00:37:01,426 --> 00:37:04,456
+for my users and to do that
+we're going to take a look
+
+
+818
+00:37:04,456 --> 00:37:07,336
+at how we can create Dynamic
+Behaviors with Core Animation.
+
+
+819
+00:37:08,666 --> 00:37:12,916
+As you're probably aware
+UIKit and UIView provide a lot
+
+
+820
+00:37:12,916 --> 00:37:15,106
+of interesting animations
+for your application
+
+
+821
+00:37:15,356 --> 00:37:16,496
+and you have a lot of control
+
+
+822
+00:37:16,496 --> 00:37:18,566
+over how these animations
+look and behave.
+
+
+823
+00:37:19,686 --> 00:37:22,786
+Core Animation provides implicit
+animations on your layers.
+
+
+824
+00:37:23,296 --> 00:37:25,026
+Nearly every property
+that you would change
+
+
+825
+00:37:25,026 --> 00:37:28,086
+on a layer would be implicitly
+animated by Core Animation.
+
+
+826
+00:37:28,636 --> 00:37:29,916
+That means you set the property
+
+
+827
+00:37:30,286 --> 00:37:33,116
+and CA will just provide an
+animation from the current value
+
+
+828
+00:37:33,116 --> 00:37:35,056
+to the new value for
+you automatically.
+
+
+829
+00:37:35,776 --> 00:37:37,966
+What you might not
+be aware of is you
+
+
+830
+00:37:37,966 --> 00:37:39,406
+as a developer have the ability
+
+
+831
+00:37:39,406 --> 00:37:41,496
+to override the implicit
+behaviors
+
+
+832
+00:37:41,496 --> 00:37:43,246
+that Core Animation
+provides to you.
+
+
+833
+00:37:44,356 --> 00:37:45,776
+And you might be
+thinking, "That's nice.
+
+
+834
+00:37:45,776 --> 00:37:47,046
+What would I want
+to do with that?"
+
+
+835
+00:37:48,106 --> 00:37:49,966
+One thing you could do is
+you could just disable the
+
+
+836
+00:37:49,966 --> 00:37:50,816
+implicit animations.
+
+
+837
+00:37:51,106 --> 00:37:53,576
+You could just say, "You know,
+I don't want any animations.
+
+
+838
+00:37:53,576 --> 00:37:54,246
+Thanks anyway.
+
+
+839
+00:37:54,546 --> 00:37:55,736
+Don't do anything at all."
+
+
+840
+00:37:55,736 --> 00:37:56,376
+And that's fine.
+
+
+841
+00:37:57,436 --> 00:38:00,756
+You can also use this capability
+to change the behavior
+
+
+842
+00:38:00,756 --> 00:38:03,616
+of the default animations
+that Core Animation provides.
+
+
+843
+00:38:04,456 --> 00:38:07,116
+For example you might
+want to have your layer
+
+
+844
+00:38:07,116 --> 00:38:09,616
+or your view show a different
+color while the opacity
+
+
+845
+00:38:09,616 --> 00:38:10,546
+animation takes place.
+
+
+846
+00:38:11,506 --> 00:38:14,136
+You also might decide that
+you're implementing OS X Weed
+
+
+847
+00:38:14,216 --> 00:38:17,026
+and you want to have that path
+be less than linear as it moves
+
+
+848
+00:38:17,026 --> 00:38:18,266
+from point A to point B.
+
+
+849
+00:38:19,526 --> 00:38:22,606
+If you were to create a new
+CALayer subclass you can also
+
+
+850
+00:38:22,606 --> 00:38:24,756
+add your own properties
+and make them animatable
+
+
+851
+00:38:24,756 --> 00:38:25,586
+with this technique.
+
+
+852
+00:38:26,906 --> 00:38:29,716
+The key part of this is that
+we can use this technique
+
+
+853
+00:38:29,716 --> 00:38:33,106
+to define behaviors that
+are inherent to custom views
+
+
+854
+00:38:33,106 --> 00:38:34,006
+within your application.
+
+
+855
+00:38:34,566 --> 00:38:37,366
+This encapsulates any custom
+animation behaviors you'd like
+
+
+856
+00:38:37,766 --> 00:38:39,446
+and bakes them into
+the view itself.
+
+
+857
+00:38:39,766 --> 00:38:42,976
+So if you want to reuse this
+view elsewhere in your app
+
+
+858
+00:38:43,546 --> 00:38:46,336
+or in a framework it just comes
+along as part of the view.
+
+
+859
+00:38:47,526 --> 00:38:48,276
+How do these work?
+
+
+860
+00:38:49,346 --> 00:38:52,376
+In this case I have my view
+which, like all views in iOS,
+
+
+861
+00:38:52,656 --> 00:38:53,936
+is backed with a CALayer.
+
+
+862
+00:38:55,716 --> 00:38:58,786
+CALayers have a CALayerDelegate
+protocol that all
+
+
+863
+00:38:58,786 --> 00:39:02,156
+of your views implement and
+your view is always the delegate
+
+
+864
+00:39:02,386 --> 00:39:02,986
+for its layer.
+
+
+865
+00:39:04,116 --> 00:39:07,116
+So let's say in my application
+I want to animate the alpha.
+
+
+866
+00:39:07,726 --> 00:39:09,706
+I'm calling UIView
+animateWithDuration
+
+
+867
+00:39:09,976 --> 00:39:12,646
+and setting the alpha
+on my view to 0.2.
+
+
+868
+00:39:13,726 --> 00:39:14,726
+Let's take a look at the steps
+
+
+869
+00:39:14,756 --> 00:39:17,866
+that take place when
+we request this.
+
+
+870
+00:39:18,186 --> 00:39:22,706
+Your CALayer is going to ask its
+delegates actionForLayer:forKey
+
+
+871
+00:39:23,106 --> 00:39:25,126
+and that's going to be
+called on my custom view.
+
+
+872
+00:39:25,126 --> 00:39:28,486
+If you haven't implemented
+this it will automatically go
+
+
+873
+00:39:28,486 --> 00:39:29,236
+to the superclass.
+
+
+874
+00:39:30,276 --> 00:39:32,756
+If you have implemented it,
+you have a couple of options.
+
+
+875
+00:39:33,586 --> 00:39:36,456
+The first thing you can do is
+call back to your superclass
+
+
+876
+00:39:36,456 --> 00:39:38,116
+and just say actionForLayer:
+
+
+877
+00:39:38,176 --> 00:39:41,536
+key and pass the same result
+back on to Core Animation.
+
+
+878
+00:39:42,326 --> 00:39:43,356
+If you decide that you would
+
+
+879
+00:39:43,356 --> 00:39:44,696
+like to have a little
+bit more control
+
+
+880
+00:39:44,696 --> 00:39:46,936
+over the animation instead,
+
+
+881
+00:39:48,636 --> 00:39:52,866
+you can create a new action
+result and pass that back.
+
+
+882
+00:39:53,636 --> 00:39:57,166
+You create objects to conform to
+the CAAction protocol and hand
+
+
+883
+00:39:57,166 --> 00:39:59,626
+that new action object
+back to Core Animation.
+
+
+884
+00:40:01,336 --> 00:40:04,016
+The CAAction protocol
+defines a single method;
+
+
+885
+00:40:04,536 --> 00:40:07,436
+runActionForKey:
+object arguments.
+
+
+886
+00:40:08,226 --> 00:40:11,456
+And you can implement the
+CAAction protocol on any object.
+
+
+887
+00:40:11,986 --> 00:40:13,976
+Typically you just want to
+make this on an NSObject --
+
+
+888
+00:40:14,616 --> 00:40:17,356
+a very nice, lightweight object
+to pass back to Core Animation.
+
+
+889
+00:40:18,356 --> 00:40:19,496
+You can do whatever you would
+
+
+890
+00:40:19,496 --> 00:40:21,816
+like in the implementation
+of runActionForKey.
+
+
+891
+00:40:22,446 --> 00:40:23,616
+Typically you're going to want
+
+
+892
+00:40:23,616 --> 00:40:26,886
+to actually run some animations
+there but you might decide you'd
+
+
+893
+00:40:26,886 --> 00:40:29,546
+like to do something else:
+fire some notifications,
+
+
+894
+00:40:29,816 --> 00:40:32,756
+start or cancel timers,
+keep count of something,
+
+
+895
+00:40:33,206 --> 00:40:34,396
+whatever your minds
+come up with.
+
+
+896
+00:40:34,606 --> 00:40:36,926
+You can do whatever you
+like in runActionForKey.
+
+
+897
+00:40:37,946 --> 00:40:39,286
+There's two arguments in here
+
+
+898
+00:40:39,286 --> 00:40:40,706
+that are particularly
+interesting.
+
+
+899
+00:40:41,426 --> 00:40:42,656
+The first is the key.
+
+
+900
+00:40:43,176 --> 00:40:46,516
+This specifies what property
+just changed on the CALayer
+
+
+901
+00:40:46,746 --> 00:40:48,296
+that you're being
+asked to interact with.
+
+
+902
+00:40:49,546 --> 00:40:51,486
+The second is the
+object argument.
+
+
+903
+00:40:52,016 --> 00:40:53,426
+This is providing a reference
+
+
+904
+00:40:53,656 --> 00:40:55,986
+to the CALayer that's
+being animated right now,
+
+
+905
+00:40:56,206 --> 00:40:57,946
+or having values
+changed on it right now,
+
+
+906
+00:40:58,496 --> 00:41:00,946
+and this is how you have
+access to the new values
+
+
+907
+00:41:00,946 --> 00:41:03,896
+that have been set as well as
+how you can apply these changes
+
+
+908
+00:41:04,196 --> 00:41:05,946
+to the layer that
+you've been manipulating.
+
+
+909
+00:41:06,886 --> 00:41:08,526
+It's hard to talk
+about this in slides
+
+
+910
+00:41:08,916 --> 00:41:11,376
+so instead let's take a look at
+it back in the demo application.
+
+
+911
+00:41:12,776 --> 00:41:14,746
+We're going to go back
+to my shapeView class
+
+
+912
+00:41:15,756 --> 00:41:18,566
+and I've decided I'd like
+to add some custom behavior
+
+
+913
+00:41:18,846 --> 00:41:21,666
+for when the opacity changes
+on my layer and on my view.
+
+
+914
+00:41:23,176 --> 00:41:25,626
+The first thing I need to
+do is create a new object
+
+
+915
+00:41:25,836 --> 00:41:27,776
+that conforms to the
+CAAction protocol.
+
+
+916
+00:41:28,406 --> 00:41:32,146
+So to do that I've defined
+an opacity action object
+
+
+917
+00:41:32,766 --> 00:41:34,816
+and it has a single method
+in its implementation;
+
+
+918
+00:41:35,226 --> 00:41:37,966
+runActionForKey:
+object arguments.
+
+
+919
+00:41:38,796 --> 00:41:40,746
+Let's take a look at some of
+the steps we're making here.
+
+
+920
+00:41:42,056 --> 00:41:42,866
+The first thing we're going
+
+
+921
+00:41:42,866 --> 00:41:45,896
+to do is check what the
+event is that's being asked
+
+
+922
+00:41:45,896 --> 00:41:47,526
+for this animation --
+or for this action --
+
+
+923
+00:41:48,166 --> 00:41:50,666
+and we're only interested
+in doing things here
+
+
+924
+00:41:51,076 --> 00:41:53,956
+if the layer's opacity
+was asked to change.
+
+
+925
+00:41:54,796 --> 00:41:57,326
+I'm going to give myself a
+nice pointer to the CALayer
+
+
+926
+00:41:57,326 --> 00:42:00,086
+that was passed in and
+define a duration to use
+
+
+927
+00:42:00,086 --> 00:42:01,156
+for all of my animations.
+
+
+928
+00:42:02,326 --> 00:42:05,346
+I'm going to create
+three CA basic animations
+
+
+929
+00:42:05,346 --> 00:42:07,506
+for my application
+that take place
+
+
+930
+00:42:07,506 --> 00:42:08,916
+when this opacity change occurs.
+
+
+931
+00:42:09,746 --> 00:42:12,746
+What I've decided I'd like to
+do is have the background color
+
+
+932
+00:42:12,746 --> 00:42:16,086
+of my layer change as the
+opacity animates as well
+
+
+933
+00:42:16,646 --> 00:42:19,046
+and we're going to do
+that with these few steps.
+
+
+934
+00:42:19,046 --> 00:42:23,946
+Now the things I'd like you to
+notice is: first, the fromValue.
+
+
+935
+00:42:24,686 --> 00:42:27,116
+Core Animation needs to know
+what to start an animation with
+
+
+936
+00:42:27,116 --> 00:42:28,296
+and what to end it with.
+
+
+937
+00:42:29,306 --> 00:42:31,816
+The fromValue is defining
+the beginning of that.
+
+
+938
+00:42:32,556 --> 00:42:35,216
+Now my layer already has
+the new value set on it
+
+
+939
+00:42:35,636 --> 00:42:37,656
+when my action object
+is called...
+
+
+940
+00:42:38,666 --> 00:42:40,716
+which means I need to know
+what it looks like onscreen,
+
+
+941
+00:42:41,026 --> 00:42:44,116
+and layers provide what they
+call a presentation layer.
+
+
+942
+00:42:44,866 --> 00:42:47,616
+The presentation layer
+is a representation
+
+
+943
+00:42:47,616 --> 00:42:49,926
+of what the layer looks
+like onscreen to the user
+
+
+944
+00:42:49,926 --> 00:42:51,226
+at that instant in time.
+
+
+945
+00:42:51,966 --> 00:42:53,486
+So I'm asking my
+presentation layer
+
+
+946
+00:42:53,486 --> 00:42:54,866
+for its current background color
+
+
+947
+00:42:55,196 --> 00:42:57,116
+to be the starting
+point of this animation.
+
+
+948
+00:42:58,086 --> 00:43:00,566
+My toValue is the new value
+that we're requesting.
+
+
+949
+00:43:01,086 --> 00:43:03,286
+And what I'm doing here
+is animating changes
+
+
+950
+00:43:03,286 --> 00:43:06,906
+to the hue value and leaving the
+saturation and brightness alone.
+
+
+951
+00:43:07,266 --> 00:43:08,976
+If you're not familiar
+with hue, saturation
+
+
+952
+00:43:08,976 --> 00:43:11,126
+and brightness you can
+think about a color wheel
+
+
+953
+00:43:11,426 --> 00:43:14,196
+where the hue is defining
+what point along that circle,
+
+
+954
+00:43:14,546 --> 00:43:15,476
+what color we're using.
+
+
+955
+00:43:15,586 --> 00:43:18,506
+So I'm going to take the
+opacity value and use
+
+
+956
+00:43:18,506 --> 00:43:19,526
+that to define my hue.
+
+
+957
+00:43:20,456 --> 00:43:23,056
+I'm also going to make the same
+animation to the stroke color
+
+
+958
+00:43:23,056 --> 00:43:25,316
+of my shape layer, but
+this time we're going
+
+
+959
+00:43:25,316 --> 00:43:28,016
+to use some modifications
+to the value
+
+
+960
+00:43:28,016 --> 00:43:28,926
+that we're setting on the hue.
+
+
+961
+00:43:28,926 --> 00:43:31,696
+And then finally
+I do in fact want
+
+
+962
+00:43:31,696 --> 00:43:33,176
+to animate the opacity myself
+
+
+963
+00:43:33,906 --> 00:43:35,996
+and since I'm overriding
+the action I have
+
+
+964
+00:43:35,996 --> 00:43:38,966
+to provide my own
+opacity animation as well.
+
+
+965
+00:43:38,966 --> 00:43:42,096
+So I'll set that using the
+same presentation layer
+
+
+966
+00:43:42,356 --> 00:43:44,526
+and the toValue, and
+that's all there is
+
+
+967
+00:43:44,526 --> 00:43:45,936
+to making a new action object.
+
+
+968
+00:43:46,746 --> 00:43:49,206
+Now I need to make sure that my
+action object is actually going
+
+
+969
+00:43:49,206 --> 00:43:49,776
+to get called.
+
+
+970
+00:43:49,776 --> 00:43:51,056
+And we're going to do
+
+
+971
+00:43:51,056 --> 00:43:53,536
+that within my layers
+implementation - or,
+
+
+972
+00:43:53,536 --> 00:43:54,876
+my views implementation itself.
+
+
+973
+00:43:54,876 --> 00:43:59,496
+So my view is going to
+implement actionForLayer:forKey.
+
+
+974
+00:43:59,886 --> 00:44:01,676
+This is that CALayerDelegate
+method.
+
+
+975
+00:44:02,586 --> 00:44:03,576
+It's pretty straightforward.
+
+
+976
+00:44:03,576 --> 00:44:06,476
+I'm going to check to see if
+I'm being requested to make --
+
+
+977
+00:44:06,476 --> 00:44:08,686
+to provide an action
+for the opacity value.
+
+
+978
+00:44:09,126 --> 00:44:13,106
+If I do, I alloc-init a new
+instance of my opacity action
+
+
+979
+00:44:13,266 --> 00:44:14,596
+and hand it back
+to Core Animation.
+
+
+980
+00:44:15,526 --> 00:44:18,396
+In all other cases I'm going to
+call through to my superclass
+
+
+981
+00:44:18,786 --> 00:44:21,036
+and allow the default
+behaviors to be returned.
+
+
+982
+00:44:21,646 --> 00:44:23,396
+And those are the
+steps we need to take
+
+
+983
+00:44:23,396 --> 00:44:26,066
+to provide a custom CA action
+within your application.
+
+
+984
+00:44:26,736 --> 00:44:29,286
+Let's see what effect
+that has on our box.
+
+
+985
+00:44:30,556 --> 00:44:32,586
+So we're back in the demo app
+again and I'm going to bring
+
+
+986
+00:44:32,586 --> 00:44:34,706
+that box all the way up
+for full visibility and --
+
+
+987
+00:44:35,026 --> 00:44:37,336
+to make sure that it's, y'know,
+really going to stand out --
+
+
+988
+00:44:37,456 --> 00:44:39,266
+we'll bring some more
+colors into things as well.
+
+
+989
+00:44:39,636 --> 00:44:40,196
+Actually...
+
+
+990
+00:44:40,196 --> 00:44:44,216
+I like it with less colors, so
+we'll do that; put a little bit
+
+
+991
+00:44:44,216 --> 00:44:45,566
+of a dash size on, just for fun.
+
+
+992
+00:44:45,566 --> 00:44:48,576
+Now if you remember, the way
+this is configured is I'm going
+
+
+993
+00:44:48,576 --> 00:44:51,976
+to tap on the box which will
+pick a random opacity value
+
+
+994
+00:44:51,976 --> 00:44:55,266
+and animate to that over
+the newly defined 0.75
+
+
+995
+00:44:55,266 --> 00:44:56,086
+second duration.
+
+
+996
+00:44:56,796 --> 00:44:59,636
+Whenever we get that new
+opacity value we're also going
+
+
+997
+00:44:59,636 --> 00:45:03,286
+to animate the hue of the
+background color and the stroke.
+
+
+998
+00:45:04,376 --> 00:45:05,876
+So you can see: every time I tap
+
+
+999
+00:45:05,876 --> 00:45:08,186
+on that we're getting
+a very interesting set
+
+
+1000
+00:45:08,186 --> 00:45:11,816
+of color combinations and
+we're also still making changes
+
+
+1001
+00:45:11,816 --> 00:45:12,556
+to the background.
+
+
+1002
+00:45:12,986 --> 00:45:14,666
+It's a very interesting
+and very unique effect.
+
+
+1003
+00:45:14,936 --> 00:45:16,616
+We can see the opacity
+better this way.
+
+
+1004
+00:45:16,656 --> 00:45:20,686
+But the opacity is
+changing alongside the hue
+
+
+1005
+00:45:20,856 --> 00:45:22,956
+for the background
+and the stroke colors.
+
+
+1006
+00:45:24,006 --> 00:45:26,716
+And the really powerful part
+of the way I've built this is:
+
+
+1007
+00:45:26,716 --> 00:45:28,966
+all of these behaviors
+are inherently part
+
+
+1008
+00:45:29,266 --> 00:45:30,296
+of my custom view.
+
+
+1009
+00:45:30,796 --> 00:45:32,916
+So any time I use
+that view I can add it
+
+
+1010
+00:45:32,916 --> 00:45:35,916
+to my view hierarchy anywhere
+in the app and I don't have
+
+
+1011
+00:45:35,916 --> 00:45:37,596
+to remember to animate
+all three properties.
+
+
+1012
+00:45:37,986 --> 00:45:39,076
+I just set the alpha
+
+
+1013
+00:45:39,176 --> 00:45:41,366
+and it automatically gets
+all the new behaviors
+
+
+1014
+00:45:41,576 --> 00:45:43,606
+that I've requested.
+
+
+1015
+00:45:43,606 --> 00:45:45,976
+It's a really powerful
+capability.
+
+
+1016
+00:45:46,516 --> 00:45:53,626
+[ Applause ]
+
+
+1017
+00:45:54,126 --> 00:45:55,826
+So to summarize what
+we've talked about today:
+
+
+1018
+00:45:56,186 --> 00:45:57,716
+we've presented four
+new techniques.
+
+
+1019
+00:45:58,396 --> 00:46:00,586
+The first is how you can
+use Spring Animations
+
+
+1020
+00:46:00,586 --> 00:46:01,546
+in your application.
+
+
+1021
+00:46:02,136 --> 00:46:04,756
+Think about Spring Animations
+as a new timing curve
+
+
+1022
+00:46:04,756 --> 00:46:07,476
+for animations within your
+application that make them fit
+
+
+1023
+00:46:07,476 --> 00:46:10,366
+in better with the rest of the
+platform and feel more dynamic
+
+
+1024
+00:46:10,776 --> 00:46:12,106
+and engaging for your users.
+
+
+1025
+00:46:13,016 --> 00:46:16,606
+UIVisualEffectView is a great
+new API introduced in iOS 8
+
+
+1026
+00:46:16,606 --> 00:46:19,616
+that will allow you to create
+live blur effects as well
+
+
+1027
+00:46:19,616 --> 00:46:22,996
+as vibrancy to keep content
+highly legible on top of blurs.
+
+
+1028
+00:46:23,996 --> 00:46:26,676
+CAShapeLayer allows you to
+design custom Bézier paths
+
+
+1029
+00:46:27,076 --> 00:46:29,876
+and draw them within your
+application and animate changes
+
+
+1030
+00:46:29,876 --> 00:46:33,536
+to those properties, and we've
+talked about how to use CAAction
+
+
+1031
+00:46:33,736 --> 00:46:36,436
+to get more dynamic behaviors
+out of Core Animation.
+
+
+1032
+00:46:37,006 --> 00:46:38,206
+If you'd like to learn more
+
+
+1033
+00:46:38,206 --> 00:46:40,796
+about these technologies
+there's some great documentation
+
+
+1034
+00:46:41,216 --> 00:46:43,676
+for UIKits and for
+Core Animation.
+
+
+1035
+00:46:44,086 --> 00:46:46,976
+You can also talk to Jake, he's
+our Apps Frameworks Evangelist.
+
+
+1036
+00:46:47,056 --> 00:46:49,656
+He has great shoes and he loves
+getting email from all of you.
+
+
+1037
+00:46:50,516 --> 00:46:53,246
+There's some fantastic new
+sessions going on this week
+
+
+1038
+00:46:53,326 --> 00:46:56,086
+that talk about more of these
+topics that we have covered.
+
+
+1039
+00:46:56,496 --> 00:46:58,256
+Many of them happened
+yesterday and there's going
+
+
+1040
+00:46:58,256 --> 00:47:01,366
+to be a fantastic session on
+Friday at 11:30, in Presidio,
+
+
+1041
+00:47:01,366 --> 00:47:02,856
+that I really encourage
+you to check out.
+
+
+1042
+00:47:03,046 --> 00:47:04,856
+Thanks for coming and I
+hope you enjoy the rest
+
+
+1043
+00:47:04,856 --> 00:47:05,586
+of your time at WWDC.
+
+
+1044
+00:47:06,516 --> 00:47:12,020
+[ Applause ]
+
